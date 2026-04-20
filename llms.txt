@@ -1,0 +1,34 @@
+# ALSflow
+
+> ALSflow is a Czech AI automation service that deploys and fully manages AI assistants for small businesses — handling emails, appointment booking, and customer replies via WhatsApp or a web interface. The client pays a fixed monthly fee and never touches the infrastructure.
+
+## What ALSflow does
+
+ALSflow builds and manages three core products for Czech small businesses:
+
+- **AI Front Desk** — 24/7 automated appointment booking, reminders, and FAQ responses via WhatsApp or web chat (4,500–5,000 CZK/month)
+- **Email Bot** — AI reads and replies to incoming customer emails automatically (2,500–3,000 CZK/month)
+- **PDF Extractor** — Converts invoices, intake forms, and supplier price lists into Excel automatically (1,500–2,000 CZK/month)
+- **Full bundle** — All three services (~7,500 CZK/month)
+- **Setup fee** — 8,000–10,000 CZK one-time
+
+## Who ALSflow serves
+
+Primary: Appointment-based local businesses in Prague and Czech Republic — veterinary clinics, dentists, hair and beauty salons, physiotherapists, wellness studios.
+
+Secondary: Freelancers and small firms (2–10 people) with high administrative burden.
+
+Shared characteristic: Owner wears many hats, limited time, not technical, loses bookings due to missed calls or slow email replies.
+
+## Why ALSflow
+
+- Cheaper than hiring a receptionist (15,000–25,000 CZK/month)
+- Fully managed — client never touches the system
+- Czech language, Prague-based, personal service
+- Available 24/7
+- Fair-use cap included: 1,500 automated emails + 750 AI-booked appointments/month
+
+## Contact
+
+- Website: https://alsflow.cz
+- Email: info@alsflow.cz
