@@ -7,13 +7,20 @@
   <meta name="description" content="ALSflow nastaví a provozuje AI asistenta pro vaše e-maily, rezervace a zákazníky. Pro kadeřníky, veterináře, fyzioterapeuty a zubní ordinace v Praze." />
   <meta name="robots" content="index, follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CEX6XVFWD7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('js', new Date());
     gtag('config', 'G-CEX6XVFWD7');
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CEX6XVFWD7"></script>
 
   <!-- Open Graph -->
   <meta property="og:title" content="ALSflow — AI asistent pro vaše podnikání" />
@@ -647,7 +654,6 @@
       transform-style: preserve-3d;
     }
     .pricing-card:hover {
-      transform: translateY(-6px);
       box-shadow: 0 24px 60px rgba(0,0,0,0.35);
     }
     .pricing-card.featured {
@@ -656,7 +662,7 @@
       box-shadow: 0 0 50px rgba(59,130,246,0.1);
     }
     .pricing-card.featured:hover {
-      box-shadow: 0 24px 60px rgba(59,130,246,0.25);
+      box-shadow: 0 24px 60px rgba(59,130,246,0.28);
     }
     .pricing-badge {
       position: absolute;
@@ -864,7 +870,6 @@
     .step-card:hover {
       background: var(--surface-h);
       border-color: var(--border-h);
-      transform: translateY(-4px);
       box-shadow: 0 16px 50px rgba(0,0,0,0.3);
     }
     .step-num {
@@ -1390,12 +1395,78 @@
       .get-started-actions { flex-direction: column; align-items: center; }
       .modal-box { padding: 1.75rem 1.1rem; }
     }
+
+    /* ── COOKIE BANNER ── */
+    #cookieBanner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9998;
+      background: rgba(10,10,16,0.97);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      transform: translateY(110%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    #cookieBanner.show { transform: translateY(0); }
+    .cookie-text {
+      font-size: 0.82rem;
+      color: var(--t2);
+      line-height: 1.55;
+      max-width: 700px;
+    }
+    .cookie-text a { color: #93c5fd; text-decoration: none; }
+    .cookie-text a:hover { text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 0.65rem; flex-shrink: 0; }
+    .cookie-btn {
+      padding: 0.5rem 1.1rem;
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .cookie-btn:hover { transform: translateY(-1px); }
+    .cookie-accept {
+      background: linear-gradient(135deg, #4e8ff7, #2563eb);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(59,130,246,0.35);
+    }
+    .cookie-decline {
+      background: transparent;
+      color: var(--t2);
+      border: 1px solid var(--border-h) !important;
+    }
+    @media (max-width: 600px) {
+      #cookieBanner { padding: 1rem 1.25rem; }
+      .cookie-actions { width: 100%; }
+      .cookie-btn { flex: 1; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Cursor glow -->
   <div id="cursorGlow"></div>
+
+  <!-- Cookie consent banner -->
+  <div id="cookieBanner" role="region" aria-label="Souhlas s cookies">
+    <p class="cookie-text">
+      Používáme analytické cookies (Google Analytics) ke sledování návštěvnosti webu. Vaše data nesdílíme s třetími stranami pro reklamní účely. Více informací v&nbsp;<a href="ochrana_dat.html">ochraně osobních dat</a>.
+    </p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-decline" onclick="cookieDecline()">Odmítnout</button>
+      <button class="cookie-btn cookie-accept" onclick="cookieAccept()">Přijmout analytics</button>
+    </div>
+  </div>
 
   <!-- Ambient background -->
   <div class="orb orb-1"></div>
@@ -2102,6 +2173,27 @@
       glow.style.top  = e.clientY + 'px';
     });
 
+    /* ── COOKIE CONSENT ── */
+    (function() {
+      const stored = localStorage.getItem('alsflow_consent');
+      if (stored === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      } else if (stored === 'denied') {
+        // stay denied, no banner needed
+      } else {
+        setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1400);
+      }
+    })();
+    window.cookieAccept = function() {
+      localStorage.setItem('alsflow_consent', 'granted');
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      document.getElementById('cookieBanner').classList.remove('show');
+    };
+    window.cookieDecline = function() {
+      localStorage.setItem('alsflow_consent', 'denied');
+      document.getElementById('cookieBanner').classList.remove('show');
+    };
+
     /* ── NAV scroll shrink ── */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -2149,12 +2241,13 @@
 
     /* ── 3D CARD TILT ── */
     document.querySelectorAll('.persona-card, .pricing-card, .feat-card, .step-card').forEach(card => {
+      const liftY = card.classList.contains('pricing-card') ? -6 : card.classList.contains('step-card') ? -4 : 0;
+      const intensity = card.classList.contains('feat-card') ? 8 : 10;
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const intensity = card.classList.contains('feat-card') ? 8 : 10;
-        card.style.transform = `perspective(900px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) translateZ(8px)`;
+        card.style.transform = `perspective(900px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) translateZ(8px) translateY(${liftY}px)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
