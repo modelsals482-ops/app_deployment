@@ -41,6 +41,8 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://alsflow.cz" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='10' fill='%232563eb'/><path d='M11 29.5L20 10.5L29 29.5' stroke='white' stroke-width='2.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><path d='M14.8 23 Q20 21.2 25.2 23' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round'/><circle cx='28.4' cy='23' r='2.2' fill='white'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet" />
@@ -173,6 +175,8 @@
       background: linear-gradient(120deg, #fff 0%, var(--t2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      cursor: pointer;
     }
     .nav-logo span {
       background: linear-gradient(120deg, #60a5fa, #2563eb);
@@ -279,7 +283,7 @@
     .hero-title {
       font-size: clamp(3.5rem, 10vw, 9rem);
       font-weight: 900;
-      line-height: 0.95;
+      line-height: 1.1;
       letter-spacing: -0.04em;
       max-width: 1100px;
       animation: fadeUp 0.7s 0.1s ease both;
@@ -651,7 +655,6 @@
       text-align: left;
       position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      transform-style: preserve-3d;
     }
     .pricing-card:hover {
       box-shadow: 0 24px 60px rgba(0,0,0,0.35);
@@ -979,8 +982,9 @@
       color: var(--t3);
       letter-spacing: -0.02em;
       transition: color 0.2s;
-      cursor: default;
+      cursor: pointer;
       white-space: nowrap;
+      text-decoration: none;
     }
     .trust-logo:hover { color: var(--t2); }
 
@@ -1475,7 +1479,7 @@
 
   <!-- ── NAVBAR ── -->
   <nav id="navbar">
-    <span class="nav-logo">ALS<span>flow</span></span>
+    <a class="nav-logo" href="/" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">ALS<span>flow</span></a>
     <ul class="nav-links">
       <li><a href="#features">Funkce</a></li>
       <li><a href="#pricing">Ceny</a></li>
@@ -1937,22 +1941,22 @@
     <div class="marquee-wrapper">
       <div class="marquee-track">
         <!-- doubled for seamless loop -->
-        <span class="trust-logo">n8n</span>
-        <span class="trust-logo">Google Workspace</span>
-        <span class="trust-logo">OpenAI</span>
-        <span class="trust-logo">WhatsApp Business</span>
-        <span class="trust-logo">Railway</span>
-        <span class="trust-logo">Gmail API</span>
-        <span class="trust-logo">Google Calendar</span>
-        <span class="trust-logo">Gemini AI</span>
-        <span class="trust-logo">n8n</span>
-        <span class="trust-logo">Google Workspace</span>
-        <span class="trust-logo">OpenAI</span>
-        <span class="trust-logo">WhatsApp Business</span>
-        <span class="trust-logo">Railway</span>
-        <span class="trust-logo">Gmail API</span>
-        <span class="trust-logo">Google Calendar</span>
-        <span class="trust-logo">Gemini AI</span>
+        <a class="trust-logo" href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n</a>
+        <a class="trust-logo" href="https://workspace.google.com" target="_blank" rel="noopener noreferrer">Google Workspace</a>
+        <a class="trust-logo" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI</a>
+        <a class="trust-logo" href="https://business.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+        <a class="trust-logo" href="https://railway.app" target="_blank" rel="noopener noreferrer">Railway</a>
+        <a class="trust-logo" href="https://developers.google.com/gmail/api" target="_blank" rel="noopener noreferrer">Gmail API</a>
+        <a class="trust-logo" href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+        <a class="trust-logo" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">Gemini AI</a>
+        <a class="trust-logo" href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n</a>
+        <a class="trust-logo" href="https://workspace.google.com" target="_blank" rel="noopener noreferrer">Google Workspace</a>
+        <a class="trust-logo" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI</a>
+        <a class="trust-logo" href="https://business.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+        <a class="trust-logo" href="https://railway.app" target="_blank" rel="noopener noreferrer">Railway</a>
+        <a class="trust-logo" href="https://developers.google.com/gmail/api" target="_blank" rel="noopener noreferrer">Gmail API</a>
+        <a class="trust-logo" href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+        <a class="trust-logo" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">Gemini AI</a>
       </div>
     </div>
   </section>
@@ -2253,6 +2257,15 @@
         card.style.transform = '';
         card.style.transition = 'transform 0.55s ease, box-shadow 0.3s ease';
         setTimeout(() => { card.style.transition = ''; }, 550);
+      });
+    });
+
+    /* ── PRICING BUTTON: prevent tilt conflict ── */
+    document.querySelectorAll('.pricing-cta').forEach(btn => {
+      btn.addEventListener('mousemove', e => e.stopPropagation());
+      btn.addEventListener('mouseenter', () => {
+        const card = btn.closest('.pricing-card');
+        if (card) card.style.transform = '';
       });
     });
 
