@@ -1,0 +1,30 @@
+name: Sync frontend to n8n repo
+
+on:
+  push:
+    branches: [main]
+    paths: [index.html]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get current SHA from n8n repo
+        id: get_sha
+        run: |
+          SHA=$(curl -s             -H "Authorization: token ${{ secrets.GH_PAT }}"             "https://api.github.com/repos/modelsals482-ops/n8n/contents/frontend/index.html"             | jq -r '.sha // empty')
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
+      - name: Push index.html to n8n repo
+        run: |
+          CONTENT=$(base64 -w 0 index.html)
+          SHA="${{ steps.get_sha.outputs.sha }}"
+          if [ -n "$SHA" ]; then
+            BODY=$(jq -n --arg c "$CONTENT" --arg s "$SHA"               '{"message":"sync: update frontend/index.html from app_deployment","content":$c,"sha":$s}')
+          else
+            BODY=$(jq -n --arg c "$CONTENT"               '{"message":"sync: add frontend/index.html from app_deployment","content":$c}')
+          fi
+          curl -sf -X PUT             -H "Authorization: token ${{ secrets.GH_PAT }}"             -H "Content-Type: application/json"             "https://api.github.com/repos/modelsals482-ops/n8n/contents/frontend/index.html"             -d "$BODY"
+          echo "Synced index.html to n8n repo"
