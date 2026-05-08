@@ -2466,40 +2466,39 @@
       btn.disabled = true;
       btn.textContent = 'Odesílám…';
 
-      // Collect data for mailto body
-      const name    = document.getElementById('f-name').value;
-      const email   = document.getElementById('f-email').value;
-      const phone   = document.getElementById('f-phone').value || '—';
-      const biz     = document.getElementById('f-biz').selectedOptions[0].text;
-      const size    = document.getElementById('f-size').selectedOptions[0].text;
-      const service = document.getElementById('f-service').selectedOptions[0].text;
-      const pain    = document.getElementById('f-pain').selectedOptions[0].text;
-      const msg     = document.getElementById('f-msg').value || '—';
+      const payload = {
+        name:    document.getElementById('f-name').value,
+        email:   document.getElementById('f-email').value,
+        phone:   document.getElementById('f-phone').value || '',
+        biz:     document.getElementById('f-biz').value,
+        size:    document.getElementById('f-size').value,
+        service: document.getElementById('f-service').value,
+        pain:    document.getElementById('f-pain').value,
+        msg:     document.getElementById('f-msg').value || ''
+      };
 
-      const body = [
-        'Nový dotaz z webu ALSflow',
-        '',
-        'Jméno: '           + name,
-        'E-mail: '          + email,
-        'Telefon: '         + phone,
-        'Typ podnikání: '   + biz,
-        'Velikost týmu: '   + size,
-        'Zájem o: '         + service,
-        'Největší problém: '+ pain,
-        'Zpráva: '          + msg
-      ].join('\n');
-
-      // TODO: swap this mailto for your n8n webhook or Formspree endpoint:
-      // fetch('YOUR_ENDPOINT', { method:'POST', headers:{'Content-Type':'application/json'},
-      //   body: JSON.stringify({name,email,phone,biz,size,service,pain,msg}) });
-      window.location.href = 'mailto:info@alsflow.cz'
-        + '?subject=' + encodeURIComponent('Dotaz z webu — ' + name)
-        + '&body='    + encodeURIComponent(body);
-
-      setTimeout(() => {
+      fetch('https://primary-production-4f62.up.railway.app/webhook/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': 'alsflow-contact-2026' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('server');
         document.getElementById('modalFormInner').classList.add('hide');
         document.getElementById('modalSuccess').classList.add('show');
-      }, 700);
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Odeslat';
+        var err = document.getElementById('formError');
+        if (!err) {
+          err = document.createElement('p');
+          err.id = 'formError';
+          err.style.cssText = 'color:#f87171;font-size:0.875rem;margin-top:0.75rem;text-align:center';
+          btn.parentNode.insertBefore(err, btn.nextSibling);
+        }
+        err.textContent = 'Něco se pokazilo. Zkuste to prosim znovu nebo nás kontaktujte na info@alsflow.cz.';
+      });
     });
   </script>
 </body>
