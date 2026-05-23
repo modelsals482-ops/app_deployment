@@ -1438,6 +1438,17 @@
           </div>
           <div class="form-row">
             <div class="form-group">
+              <label class="form-label" for="f-pref">Preferovaný čas kontaktu <span style="color:var(--t3);font-weight:500">(volitelné)</span></label>
+              <select class="form-select" id="f-pref" name="pref_time">
+                <option value="kdykoliv" selected>Kdykoliv</option>
+                <option value="rano">Ráno (9–11)</option>
+                <option value="poledne">Poledne (11–13)</option>
+                <option value="odpoledne">Odpoledne (13–17)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
               <label class="form-label" for="f-msg">Zpráva <span style="color:var(--t3);font-weight:500">(volitelné)</span></label>
               <textarea class="form-textarea" id="f-msg" name="message" placeholder="Popište svůj byznys nebo co vás trápí nejvíc…"></textarea>
             </div>
@@ -1812,7 +1823,8 @@
         biz:     document.getElementById('f-biz').value,
         size:    document.getElementById('f-size').value,
         service: document.getElementById('f-service').value,
-        pain:    document.getElementById('f-pain').value,
+        pain:     document.getElementById('f-pain').value,
+        pref_time: document.getElementById('f-pref').value || 'kdykoliv',
         msg:     document.getElementById('f-msg').value || ''
       };
 
