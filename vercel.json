@@ -30,5 +30,17 @@
       ]
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/dakuji",
+      "destination": "/dekujeme",
+      "permanent": true
+    },
+    {
+      "source": "/dakuji.html",
+      "destination": "/dekujeme",
+      "permanent": true
+    }
+  ]
 }
