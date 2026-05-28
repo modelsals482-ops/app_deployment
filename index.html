@@ -1459,6 +1459,11 @@
               Souhlasím se zpracováním osobních údajů dle <a href="ochrana_dat.html" target="_blank">Ochrany dat</a>. Údaje použijeme výhradně pro přípravu vaší nabídky.
             </label>
           </div>
+          <!-- honeypot: real users never see or fill this -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
           <button type="submit" class="modal-submit" id="modalSubmit">Odeslat a čekat na nabídku →</button>
         </form>
       </div>
