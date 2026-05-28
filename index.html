@@ -380,7 +380,7 @@
     .dot-r { background: #ef4444; }
     .dot-y { background: #f59e0b; }
     .dot-g { background: #22c55e; }
-    .mockup-tabs { display: flex; gap: 0.5rem; margin-left: 1force.5rem; }
+    .mockup-tabs { display: flex; gap: 0.5rem; margin-left: 1.5rem; }
     .mock-tab {
       padding: 0.35rem 1rem;
       border-radius: 8px;
@@ -1766,6 +1766,26 @@
         wrap.scrollTop = wrap.scrollHeight;
       }, 880);
     };
+
+
+    /* ── HAMBURGER MENU ── */
+    window.toggleMenu = function() {
+      const btn  = document.getElementById('hamburger');
+      const menu = document.getElementById('mobileMenu');
+      const open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    window.closeMenu = function() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
 
     /* ── CONTACT MODAL ── */
     const serviceMap = {
