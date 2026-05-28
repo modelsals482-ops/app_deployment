@@ -927,6 +927,62 @@
       .steps-connector { display: none; }
       .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
     }
+
+    /* ═══════════════════════════════════════════════
+       PHONE-ONLY FIXES (added separately, no desktop
+       styles changed)
+    ═══════════════════════════════════════════════ */
+
+    /* ── Stats strip under hero ── */
+    @media (max-width: 900px) {
+      .stats { padding: 2rem 1.5rem; }
+      .stat-cell { padding: 1.5rem 1rem; }
+    }
+    @media (max-width: 600px) {
+      .stats { padding: 1.25rem 1rem; }
+      .stat-cell { padding: 1.1rem 1rem; }
+      .stat-label { font-size: 0.75rem; margin-top: 0.35rem; }
+    }
+
+    /* ── Pricing cards — compact on phone ── */
+    @media (max-width: 900px) {
+      /* Stack cards more tightly */
+      .pricing { padding-top: 4rem; padding-bottom: 4rem; }
+      .pricing-grid { gap: 0.85rem; margin-top: 2.5rem; }
+      .pricing-card { padding: 1.5rem 1.25rem; border-radius: 16px; }
+      .pricing-price { font-size: 1.65rem; margin-bottom: 0.2rem; }
+      .pricing-period { font-size: 0.74rem; margin-bottom: 1.25rem; }
+      .pricing-features { gap: 0.5rem; margin-bottom: 1.25rem; }
+      .pricing-features li { font-size: 0.82rem; }
+      .pricing-name { font-size: 0.95rem; }
+      .pricing-desc { font-size: 0.78rem; margin-bottom: 1rem; }
+      .pricing-icon { font-size: 1.4rem; margin-bottom: 0.65rem; }
+      .pricing-cta { padding: 0.75rem; font-size: 0.85rem; }
+      /* Bundle row */
+      .pricing-bundle { padding: 1.1rem 1.25rem; gap: 1rem; }
+      .pricing-bundle-title { font-size: 0.92rem; }
+      .pricing-bundle-desc { font-size: 0.78rem; }
+      .pricing-setup-note { font-size: 0.78rem; }
+    }
+
+    /* ── Demo section ── */
+    @media (max-width: 900px) {
+      .demo-section { padding-top: 4rem; padding-bottom: 4rem; }
+      .demo-wrapper { margin-top: 2rem; border-radius: 16px; }
+      .demo-topbar { padding: 0.75rem 1rem; }
+      .demo-pane { padding: 1.1rem; }
+      .demo-email-row { padding: 0.75rem 0.65rem; gap: 0.65rem; }
+      .demo-from { font-size: 0.8rem; }
+      .demo-subj { font-size: 0.75rem; }
+      .demo-btn { padding: 0.35rem 0.7rem; font-size: 0.72rem; }
+      .demo-avatar { width: 32px; height: 32px; font-size: 0.72rem; }
+      .demo-bubble { font-size: 0.8rem; padding: 0.7rem 0.9rem; }
+      .demo-input { font-size: 0.8rem; padding: 0.65rem 0.85rem; }
+      .demo-send { font-size: 0.78rem; padding: 0.65rem 1rem; }
+      .demo-chip { font-size: 0.72rem; padding: 0.3rem 0.7rem; }
+      .ai-reply-box { font-size: 0.8rem; padding: 1rem; }
+      .ai-label { font-size: 0.68rem; }
+    }
   </style>
 </head>
 <body>
