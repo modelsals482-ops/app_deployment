@@ -406,6 +406,9 @@
       .cookie-actions { width: 100%; }
       .cookie-btn { flex: 1; text-align: center; }
     }
+
+    /* honeypot — hidden from real users, visible to bots */
+    .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; pointer-events: none; tabindex: -1; }
   </style>
 </head>
 <body>
@@ -597,6 +600,11 @@
           </label>
         </div>
 
+          <!-- honeypot: real users never see or fill this -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
         <button type="submit" class="submit-btn" id="submitBtn">Odeslat a čekat na nabídku →</button>
         <p class="form-error" id="formError">Něco se pokazilo. Zkuste to prosím znovu nebo nás kontaktujte na <a href="mailto:info@alsflow.cz" style="color:#60a5fa">info@alsflow.cz</a>.</p>
         <p class="form-note">Ozveme se do 24 hodin. Žádný spam, žádné závazky.</p>
@@ -636,6 +644,7 @@
       errEl.classList.remove('show');
 
       const payload = {
+        website:   document.getElementById('f-website').value || '',
         name:      document.getElementById('f-name').value,
         email:     document.getElementById('f-email').value,
         phone:     document.getElementById('f-phone').value || '',
