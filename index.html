@@ -811,11 +811,87 @@
     .cookie-accept { background: linear-gradient(135deg, #4e8ff7, #2563eb); color: #fff; box-shadow: 0 2px 10px rgba(59,130,246,0.35); }
     .cookie-decline { background: transparent; color: var(--t2); border: 1px solid var(--border-h) !important; }
     
+    /* ── Hamburger & mobile menu ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      z-index: 60;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--t1);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(8,8,12,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 49;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+    .mobile-links li { width: 100%; border-bottom: 1px solid var(--border); }
+    .mobile-links li:first-child { border-top: 1px solid var(--border); }
+    .mobile-links a {
+      display: block;
+      padding: 1.1rem 0;
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--t1);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
+    }
+    .mobile-links a:hover { color: #93c5fd; }
+    .mobile-cta {
+      width: 100%;
+      max-width: 320px;
+      padding: 1rem;
+      border-radius: 14px;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: linear-gradient(135deg, #4e8ff7, #2563eb);
+      color: #fff;
+      box-shadow: 0 4px 22px rgba(59,130,246,0.4);
+    }
+
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       nav.scrolled { padding: 0.7rem 1.5rem; }
       .nav-links { display: none; }
-      .stats { grid-template-columns: 1fr; gap: 0; }
+      .desktop-cta { display: none; }
+      .hamburger { display: flex; }
+      .stats { grid-template-columns: 1fr; gap: 0; padding: 3rem 1.5rem; }
       .feature-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
       .feature-section.reverse { direction: ltr; }
       .built-for-cards { grid-template-columns: repeat(2, 1fr); }
@@ -826,16 +902,30 @@
       .pricing-bundle { flex-direction: column; text-align: center; }
       .modal-box { padding: 2rem 1.5rem; }
       .form-row.two-col { grid-template-columns: 1fr; }
+      .demo-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding-bottom: 2px; }
+      .demo-tab { white-space: nowrap; flex-shrink: 0; }
+      .hero-mockup { display: none; }
     }
     @media (max-width: 600px) {
       .built-for-cards { grid-template-columns: 1fr; }
-      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero { padding: 6rem 1.25rem 3rem; }
       .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn-lg { width: 100%; text-align: center; }
       .get-started-actions { flex-direction: column; align-items: center; }
+      .get-started-actions .btn-lg { width: 100%; max-width: 320px; text-align: center; }
       .modal-box { padding: 1.75rem 1.1rem; }
       #cookieBanner { padding: 1rem 1.25rem; }
       .cookie-actions { width: 100%; }
       .cookie-btn { flex: 1; text-align: center; }
+      .mockup-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .mock-tab { white-space: nowrap; flex-shrink: 0; }
+      .feat-card { padding: 1.25rem; }
+      .pricing-bundle-price { font-size: 1.3rem; }
+      .stat-num { font-size: clamp(2.2rem, 12vw, 4rem); }
+      .built-for-title { font-size: clamp(2rem, 10vw, 5rem); }
+      .get-started-title { font-size: clamp(2rem, 10vw, 4rem); }
+      .steps-connector { display: none; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
     }
   </style>
 </head>
@@ -865,8 +955,22 @@
       <li><a href="#how">Jak to funguje</a></li>
       <li><a href="#demo">Ukázka</a></li>
     </ul>
-    <button class="nav-cta" onclick="openModal('demo')">Chci svoji nabídku</button>
+    <button class="nav-cta desktop-cta" onclick="openModal('demo')">Chci svoji nabídku</button>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobilní menu">
+    <ul class="mobile-links">
+      <li><a href="#features" onclick="closeMenu()">Funkce</a></li>
+      <li><a href="#pricing" onclick="closeMenu()">Ceny</a></li>
+      <li><a href="#how" onclick="closeMenu()">Jak to funguje</a></li>
+      <li><a href="#demo" onclick="closeMenu()">Ukázka</a></li>
+    </ul>
+    <button class="mobile-cta" onclick="closeMenu();openModal('demo')">Chci svoji nabídku →</button>
+  </div>
 
   <section class="hero">
     <canvas id="particleCanvas"></canvas>
