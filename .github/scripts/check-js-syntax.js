@@ -14,6 +14,7 @@ for (const file of htmlFiles) {
     const attrs = match[1];
     const content = match[2].trim();
     if (/\bsrc\s*=/i.test(attrs) || !content) continue;
+    if (/\btype\s*=\s*["'][^"']*["']/i.test(attrs) && !/type\s*=\s*["']text\/javascript["']/i.test(attrs)) continue;
     blockIndex++;
 
     try {
