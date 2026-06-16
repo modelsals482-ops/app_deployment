@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
@@ -1024,6 +1024,42 @@
       .ai-reply-box { font-size: 0.8rem; padding: 1rem; }
       .ai-label { font-size: 0.68rem; }
     }
+    /* -- CHAT WIDGET -- */
+    .chat-bubble { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 950; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #4e8ff7, #2563eb); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(37,99,235,0.45); transition: transform 0.2s, box-shadow 0.2s; border: none; }
+    .chat-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,99,235,0.6); }
+    .chat-bubble svg { width: 26px; height: 26px; fill: #fff; pointer-events: none; }
+    .chat-bubble-badge { position: absolute; top: -4px; right: -4px; width: 18px; height: 18px; border-radius: 50%; background: #22c55e; border: 2px solid #08080c; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #fff; animation: live-pulse 2s ease-in-out infinite; }
+    .chat-panel { position: fixed; bottom: 4.8rem; right: 1.5rem; z-index: 950; width: 360px; background: #0f0f14; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; display: flex; flex-direction: column; box-shadow: 0 20px 60px rgba(0,0,0,0.65); transform: translateY(16px) scale(0.96); opacity: 0; pointer-events: none; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s; overflow: hidden; }
+    .chat-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+    .chat-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+    .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4e8ff7, #2563eb); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .chat-header-info { flex: 1; min-width: 0; }
+    .chat-name { font-size: 0.88rem; font-weight: 700; color: var(--t1); }
+    .chat-status { display: flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; color: var(--t2); }
+    .chat-online-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; animation: live-pulse 2s ease-in-out infinite; }
+    .chat-counter { font-size: 0.68rem; color: var(--t3); margin-right: 0.4rem; white-space: nowrap; }
+    .chat-close { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--t2); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; line-height: 1; font-family: var(--font); flex-shrink: 0; }
+    .chat-close:hover { background: rgba(255,255,255,0.12); color: var(--t1); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; min-height: 180px; max-height: 320px; }
+    .chat-messages::-webkit-scrollbar { width: 4px; } .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+    .chat-msg { display: flex; flex-direction: column; }
+    .chat-msg.user { align-items: flex-end; } .chat-msg.bot { align-items: flex-start; }
+    .chat-bubble-msg { max-width: 84%; padding: 0.65rem 0.95rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.55; }
+    .chat-msg.user .chat-bubble-msg { background: linear-gradient(135deg, rgba(59,130,246,0.22), rgba(37,99,235,0.16)); border: 1px solid rgba(59,130,246,0.3); color: #bfdbfe; }
+    .chat-msg.bot .chat-bubble-msg { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); color: var(--t1); }
+    .chat-typing-dots span { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--t2); animation: blink 1.2s infinite; margin: 0 1px; }
+    .chat-typing-dots span:nth-child(2) { animation-delay: 0.2s; } .chat-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    .chat-input-area { display: flex; gap: 0.5rem; padding: 0.8rem 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 0.6rem 0.85rem; color: var(--t1); font-family: var(--font); font-size: 0.82rem; outline: none; transition: border-color 0.2s; }
+    .chat-input:focus { border-color: rgba(59,130,246,0.5); } .chat-input::placeholder { color: var(--t3); }
+    .chat-send { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(180deg, #4e8ff7, #2563eb); color: #fff; border: none; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: transform 0.15s, box-shadow 0.15s; flex-shrink: 0; font-family: var(--font); }
+    .chat-send:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(37,99,235,0.4); } .chat-send:disabled { opacity: 0.35; cursor: not-allowed; }
+    @media (max-width: 480px) { .chat-panel { width: calc(100vw - 2rem); right: 1rem; } }
+    .demo-live-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.62rem; font-weight: 700; color: #4ade80; text-transform: uppercase; letter-spacing: 0.06em; margin-left: 0.5rem; vertical-align: middle; }
+    .demo-live-badge::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: live-pulse 1.6s ease-in-out infinite; }
+    @keyframes live-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.8)} }
+    .demo-try-hint { text-align: center; font-size: 0.8rem; color: var(--t3); margin: 0.6rem 0 0; }
+    .demo-try-hint strong { color: var(--t2); font-weight: 600; }
     .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; pointer-events: none; }
   </style>
 </head>
@@ -1426,6 +1462,7 @@
     <div class="section-label">Interaktivní ukázka</div>
     <h2 class="section-title">Vyzkoušejte sami</h2>
     <p class="section-sub">Proklikejte se a zjistěte, jak ALSflow funguje v reálném čase.</p>
+    <p class="demo-try-hint">Klikněte na záložku nebo <strong>napište vlastní dotaz</strong> — bot odpovídá živě.</p>
     <div class="demo-wrapper">
       <div class="demo-topbar">
         <div class="dot dot-r"></div>
@@ -1433,7 +1470,7 @@
         <div class="dot dot-g"></div>
         <div class="demo-tabs">
           <button class="demo-tab active" onclick="switchDemo('email', this)">✉ E-mailové odpovědi</button>
-          <button class="demo-tab" onclick="switchDemo('cal', this)">📅 Rezervace & Připomínky</button>
+          <button class="demo-tab" id="calTabBtn" onclick="switchDemo('cal', this)">📅 Rezervace & Připomínky<span class="demo-live-badge">živě</span></button>
           <button class="demo-tab" onclick="switchDemo('feedback', this)">🔁 Zpětná vazba</button>
         </div>
       </div>
@@ -2114,6 +2151,138 @@
         err.textContent = 'Něco se pokazilo. Zkuste to prosim znovu nebo nás kontaktujte na info@alsflow.cz.';
       });
     });
+  
+    /* -- CHAT WIDGET JS -- */
+    (function() {
+      var WEBHOOK = 'https://primary-production-4f62.up.railway.app/webhook/alsflow-chat';
+      var API_KEY = 'alsflow-chat-2026';
+      var MAX = 20;
+      var sid = sessionStorage.getItem('als_chat_sid');
+      if (!sid) {
+        sid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        sessionStorage.setItem('als_chat_sid', sid);
+      }
+      var history = []; var msgCount = 0; var sending = false; var opened = false;
+      window.toggleChat = function() {
+        opened = !opened;
+        var panel = document.getElementById('chatPanel');
+        var badge = document.getElementById('chatBadge');
+        if (panel) panel.classList.toggle('open', opened);
+        if (panel) panel.setAttribute('aria-hidden', String(!opened));
+        if (opened && badge) badge.style.display = 'none';
+        if (opened) setTimeout(function() { var i = document.getElementById('chatInput'); if(i) i.focus(); }, 300);
+      };
+      function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+      function addMsg(role, text) {
+        var wrap = document.getElementById('chatMessages'); if (!wrap) return;
+        var div = document.createElement('div'); div.className = 'chat-msg ' + role;
+        var bub = document.createElement('div'); bub.className = 'chat-bubble-msg';
+        bub.innerHTML = esc(text).replace(/\n/g,'<br>');
+        div.appendChild(bub); wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
+      }
+      function addTyping() {
+        var wrap = document.getElementById('chatMessages'); if (!wrap) return;
+        var div = document.createElement('div'); div.className = 'chat-msg bot'; div.id = 'chatTyping';
+        div.innerHTML = '<div class="chat-bubble-msg"><span class="chat-typing-dots"><span></span><span></span><span></span></span></div>';
+        wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
+      }
+      function removeTyping() { var t = document.getElementById('chatTyping'); if(t) t.remove(); }
+      function updateCounter() { var el = document.getElementById('chatCounter'); if(el) el.textContent = msgCount + '/' + MAX; }
+      window.sendChatMessage = function() {
+        if (sending || msgCount >= MAX) return;
+        var input = document.getElementById('chatInput');
+        var msg = input ? input.value.trim() : ''; if (!msg) return;
+        if (input) input.value = '';
+        msgCount++; updateCounter(); addMsg('user', msg);
+        var sendHistory = history.slice();
+        history.push({ role: 'user', content: msg });
+        if (history.length > 12) history = history.slice(-12);
+        sending = true;
+        var btn = document.getElementById('chatSend'); if(btn) btn.disabled = true;
+        addTyping();
+        fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
+          body: JSON.stringify({ message: msg, session_id: sid, history: sendHistory, website: '' })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          removeTyping();
+          var reply = (data && data.reply) ? String(data.reply) : 'Omlouváme se, zkuste to prosím znovu.';
+          addMsg('bot', reply);
+          history.push({ role: 'model', content: reply });
+          if (history.length > 12) history = history.slice(-12);
+        })
+        .catch(function() { removeTyping(); addMsg('bot', 'Omlouváme se, momentálně nemohu odpovědět. Napište nám na info@alsflow.cz.'); })
+        .finally(function() {
+          sending = false; if(btn) btn.disabled = (msgCount >= MAX); updateCounter();
+          if (msgCount >= MAX) addMsg('bot', 'Dosáhli jste limitu zpráv. Kontaktujte nás na info@alsflow.cz nebo využijte formulář.');
+        });
+      };
+    })();
+
+    /* -- DEMO INTERACTIVITY HINTS -- */
+    (function() {
+      var examples = ['Kdy máte volno tento týden?','Zarezervuj mi pátek 14:00','Kolik stojí ošetření?','Chci zrušit termín ve čtvrtek','Kde vás najdu?'];
+      var pi = 0;
+      var calInput = document.getElementById('calInput');
+      if (calInput) {
+        calInput.placeholder = examples[0];
+        setInterval(function() {
+          if (document.activeElement !== calInput) { pi = (pi + 1) % examples.length; calInput.placeholder = examples[pi]; }
+        }, 2800);
+      }
+      function pulseFirstChip() {
+        var chip = document.querySelector('#pane-cal .demo-chip'); if (!chip) return;
+        var n = 0;
+        var iv = setInterval(function() {
+          chip.style.background  = n % 2 === 0 ? 'rgba(59,130,246,0.15)' : '';
+          chip.style.borderColor = n % 2 === 0 ? 'rgba(59,130,246,0.4)' : '';
+          chip.style.color       = n % 2 === 0 ? '#93c5fd' : '';
+          if (++n >= 6) { clearInterval(iv); chip.style.background = chip.style.borderColor = chip.style.color = ''; }
+        }, 320);
+      }
+      var demoSection = document.getElementById('demo');
+      if (demoSection && window.IntersectionObserver) {
+        var done = false;
+        new IntersectionObserver(function(entries, obs) {
+          if (entries[0].isIntersecting && !done && document.documentElement.scrollTop > 80) {
+            done = true; obs.disconnect();
+            var calBtn = document.getElementById('calTabBtn');
+            if (calBtn) { calBtn.click(); setTimeout(pulseFirstChip, 400); }
+          }
+        }, { threshold: 0.45 }).observe(demoSection);
+      }
+    })();
   </script>
+
+  <!-- Chat Widget -->
+  <button class="chat-bubble" id="chatBubble" onclick="toggleChat()" aria-label="Otevřít chat s Lucií">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+    <span class="chat-bubble-badge" id="chatBadge" aria-hidden="true">✦</span>
+  </button>
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat s Lucií z ALSflow" aria-hidden="true">
+    <div class="chat-header">
+      <div class="chat-avatar">L</div>
+      <div class="chat-header-info">
+        <div class="chat-name">Lucie z ALSflow</div>
+        <div class="chat-status"><span class="chat-online-dot"></span>Online · AI asistentka</div>
+      </div>
+      <div class="chat-counter" id="chatCounter">0/20</div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Zavřít chat">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble-msg">Dobrý den! Jsem Lucie z ALSflow. Ptejte se na ceny, služby nebo jak to u nás funguje — ráda odpovím.</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Napište dotaz…" maxlength="500" autocomplete="off"
+        onkeydown="if(event.key==='Enter'&amp;&amp;!event.shiftKey){sendChatMessage();event.preventDefault()}" />
+      <button class="chat-send" id="chatSend" onclick="sendChatMessage()" aria-label="Odeslat">→</button>
+    </div>
+  </div>
 </body>
 </html>
