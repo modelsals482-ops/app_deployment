@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Smlouva o zpracování osobních údajů (DPA) — ALSflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #08080c;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --border-h: rgba(255,255,255,0.14);
+      --t1: #f0f0f3;
+      --t2: #8b8b9e;
+      --t3: #4a4a60;
+      --blue: #3b82f6;
+      --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--t1);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4rem;
+      background: rgba(8,8,12,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(120deg, #fff 0%, var(--t2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-logo span {
+      background: linear-gradient(120deg, #60a5fa, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-back {
+      font-size: 0.84rem;
+      color: var(--t2);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--t1); }
+
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 8rem;
+    }
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--t3);
+      margin-bottom: 1rem;
+    }
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .page-updated {
+      font-size: 0.82rem;
+      color: var(--t3);
+      margin-bottom: 2rem;
+    }
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border-h);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .toc-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--t3);
+      margin-bottom: 1rem;
+    }
+    .toc ol {
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .toc li { font-size: 0.88rem; color: var(--t2); }
+    .toc a { color: #60a5fa; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-num {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #60a5fa;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 6px;
+      padding: 0.2rem 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+    .section h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .section p {
+      font-size: 0.92rem;
+      color: var(--t2);
+      margin-bottom: 0.85rem;
+      line-height: 1.75;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul, .section ol {
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .section li {
+      font-size: 0.92rem;
+      color: var(--t2);
+      line-height: 1.65;
+    }
+    .section strong { color: var(--t1); font-weight: 700; }
+    .section a { color: #60a5fa; text-decoration: none; }
+    .section a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: rgba(59,130,246,0.06);
+      border: 1px solid rgba(59,130,246,0.18);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+      color: var(--t2);
+      line-height: 1.7;
+    }
+    .highlight-box strong { color: #93c5fd; }
+
+    .draft-banner {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.28);
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--t2);
+      line-height: 1.65;
+    }
+    .draft-banner strong { color: #fbbf24; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--t3); }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.25rem; }
+      footer { padding: 2rem 1.25rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .page-wrap { padding: 3rem 1.25rem 6rem; }
+      .toc { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="https://www.alsflow.cz/#pricing">ALS<span>flow</span></a>
+    <a class="nav-back" href="onboarding.html">← Zpět na onboarding formulář</a>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-label">Právní informace</div>
+    <h1 class="page-title">Smlouva o zpracování osobních údajů</h1>
+    <p class="page-updated">DPA dle čl. 28 GDPR · Verze 1.0 · Platná od 2. července 2026</p>
+
+    <div class="draft-banner">
+      <strong>Stav: pracovní návrh.</strong> Text vychází z běžné praxe zpracovatelských smluv a doporučujeme jeho právní kontrolu u větších nebo citlivějších zakázek. Tato smlouva se týká zpracování osobních údajů <strong>vašich zákazníků</strong> prostřednictvím AI asistenta ALSflow — nikoli vašich vlastních údajů jako zájemce o službu (to upravuje samostatná <a href="ochrana_dat.html">Ochrana osobních údajů</a>).
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">Obsah</div>
+      <ol>
+        <li><a href="#strany">Smluvní strany</a></li>
+        <li><a href="#ucel">Předmět a účel zpracování</a></li>
+        <li><a href="#udaje">Jaké údaje a čí zpracováváme</a></li>
+        <li><a href="#doba">Doba zpracování a mazání dat</a></li>
+        <li><a href="#povinnosti">Povinnosti zpracovatele</a></li>
+        <li><a href="#subzpracovatele">Subzpracovatelé</a></li>
+        <li><a href="#bezpecnost">Technická a organizační opatření</a></li>
+        <li><a href="#poruseni">Porušení zabezpečení</a></li>
+        <li><a href="#uzavreni">Jak se tato smlouva uzavírá</a></li>
+        <li><a href="#kontakt">Kontakt a stížnosti</a></li>
+      </ol>
+    </div>
+
+    <div class="section" id="strany">
+      <span class="section-num">01</span>
+      <h2>Smluvní strany</h2>
+      <div class="highlight-box">
+        <strong>Zpracovatel</strong><br>
+        ALSflow (Jakub), fyzická osoba podnikající na území České republiky<br>
+        IČO: bude doplněno po registraci<br>
+        E-mail: <a href="mailto:info@alsflow.cz">info@alsflow.cz</a> · Web: alsflow.cz
+      </div>
+      <div class="highlight-box">
+        <strong>Správce</strong><br>
+        Klient (firma nebo OSVČ), který si objednal produkt ALSflow prostřednictvím onboardingového formuláře a odsouhlasil tuto smlouvu zaškrtnutím souhlasu ve formuláři. Totožnost Správce je dána údaji vyplněnými v onboardingovém formuláři (název firmy, IČO, kontaktní osoba).
+      </div>
+    </div>
+
+    <div class="section" id="ucel">
+      <span class="section-num">02</span>
+      <h2>Předmět a účel zpracování</h2>
+      <p>Zpracovatel zpracovává osobní údaje zákazníků Správce výhradně za účelem provozu AI asistenta objednaného Správcem — například rezervačního bota, e-mailového bota nebo extrakce dokumentů. Konkrétně jde o vedení konverzace se zákazníky Správce, správu rezervací a připomínek, zodpovídání dotazů a předávání eskalací Správci.</p>
+    </div>
+
+    <div class="section" id="udaje">
+      <span class="section-num">03</span>
+      <h2>Jaké údaje a čí zpracováváme</h2>
+      <p><strong>Subjekty údajů:</strong> zákazníci a zájemci Správce, kteří komunikují s AI asistentem.</p>
+      <p><strong>Kategorie údajů:</strong></p>
+      <ul>
+        <li>Identifikační a kontaktní údaje — jméno, e-mail, telefon</li>
+        <li>Obsah konverzace se zákazníkem, případně termíny rezervací</li>
+        <li>Technické údaje — IP adresa (pouze pro omezení zneužití a rate limiting)</li>
+      </ul>
+      <p>Zpracovatel záměrně nezpracovává zvláštní kategorie osobních údajů (čl. 9 GDPR, např. údaje o zdraví). Pokud Správce nebo jeho zákazníci takové údaje do konverzace přesto zadají, děje se tak na vlastní odpovědnost Správce — Zpracovatel doporučuje ve svém provozu takové údaje nesbírat prostřednictvím AI asistenta.</p>
+    </div>
+
+    <div class="section" id="doba">
+      <span class="section-num">04</span>
+      <h2>Doba zpracování a mazání dat</h2>
+      <p>Zpracovatel zpracovává údaje po dobu trvání smluvního vztahu mezi Správcem a Zpracovatelem. Po ukončení tohoto vztahu Zpracovatel osobní údaje zákazníků Správce smaže nebo předá Správci, a to nejpozději do <strong>30 dnů</strong> od ukončení, pokud se strany nedohodnou jinak.</p>
+    </div>
+
+    <div class="section" id="povinnosti">
+      <span class="section-num">05</span>
+      <h2>Povinnosti zpracovatele</h2>
+      <ul>
+        <li>Zpracovávat osobní údaje pouze v rozsahu a za účelem objednaného produktu, dle doložených pokynů Správce.</li>
+        <li>Zajistit mlčenlivost všech osob, které k údajům mají přístup.</li>
+        <li>Přijmout přiměřená technická a organizační opatření k ochraně údajů (viz sekce 07).</li>
+        <li>Být Správci nápomocen při vyřizování žádostí subjektů údajů a při ohlašování případného porušení zabezpečení.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="subzpracovatele">
+      <span class="section-num">06</span>
+      <h2>Subzpracovatelé</h2>
+      <p>Zpracovatel využívá pro provoz služby tyto subzpracovatele:</p>
+      <ul>
+        <li><strong>Railway</strong> — hosting serverové infrastruktury (n8n + databáze). Přenos do USA na základě standardních smluvních doložek (SCC).</li>
+        <li><strong>Google (Gemini API)</strong> — AI model pro vedení konverzace. Přenos na základě EU–US Data Privacy Framework / SCC.</li>
+        <li><strong>Google (Gmail) nebo Resend</strong> — odesílání e-mailů, dle zvoleného produktu a nastavení. Přenos na základě EU–US Data Privacy Framework / SCC.</li>
+      </ul>
+      <p>Konkrétní seznam subzpracovatelů se může mírně lišit podle zvoleného produktu (např. napojení na váš vlastní e-mailový systém místo Gmail/Resend). Aktuální seznam pro váš konkrétní produkt vám na vyžádání zašleme na <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>.</p>
+    </div>
+
+    <div class="section" id="bezpecnost">
+      <span class="section-num">07</span>
+      <h2>Technická a organizační opatření</h2>
+      <ul>
+        <li>Přístup k systému chráněn API klíči a samostatnými přihlašovacími údaji pro každého klienta.</li>
+        <li>Konverzační historie zákazníků jednotlivých Správců je vzájemně izolovaná (vlastní identifikátor relace na klienta) — údaje se mezi klienty nesdílí.</li>
+        <li>Žádné přístupové klíče v prostém textu, veškerá komunikace probíhá šifrovaně (HTTPS/TLS).</li>
+        <li>Přístup k databázi je omezen pouze na Zpracovatele.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="poruseni">
+      <span class="section-num">08</span>
+      <h2>Porušení zabezpečení</h2>
+      <p>V případě zjištění porušení zabezpečení osobních údajů zpracovávaných dle této smlouvy Zpracovatel informuje Správce bez zbytečného odkladu, nejpozději do <strong>48 hodin</strong> od zjištění, a poskytne součinnost potřebnou ke splnění ohlašovacích povinností Správce vůči dozorovému úřadu a subjektům údajů.</p>
+    </div>
+
+    <div class="section" id="uzavreni">
+      <span class="section-num">09</span>
+      <h2>Jak se tato smlouva uzavírá</h2>
+      <p>Tato smlouva se považuje za uzavřenou mezi Zpracovatelem a Správcem okamžikem, kdy Správce odešle onboardingový formulář na alsflow.cz se zaškrtnutým souhlasem s touto smlouvou. Odesláním formuláře Správce potvrzuje, že se s obsahem smlouvy seznámil a souhlasí s ním.</p>
+      <p>Zpracovatel eviduje datum a čas přijetí souhlasu ke každému klientovi jako doklad o uzavření smlouvy.</p>
+      <p>Máte-li zájem o individuálně sjednanou verzi této smlouvy (typicky u větších nebo specifických zakázek), kontaktujte nás na <a href="mailto:info@alsflow.cz">info@alsflow.cz</a> ještě před odesláním onboardingového formuláře.</p>
+    </div>
+
+    <div class="section" id="kontakt">
+      <span class="section-num">10</span>
+      <h2>Kontakt a stížnosti</h2>
+      <div class="highlight-box">
+        <strong>ALSflow — zpracování osobních údajů</strong><br>
+        E-mail: <a href="mailto:info@alsflow.cz">info@alsflow.cz</a><br>
+        Odpovíme do 30 dnů od obdržení žádosti.
+      </div>
+      <p>Subjekty údajů, jejichž práva jsou touto smlouvou dotčena, se mohou obrátit i přímo na Správce (klienta, u kterého AI asistenta používaly), případně na dozorový úřad:</p>
+      <ul>
+        <li><strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>Pplk. Sochora 27, 170 00 Praha 7<br>Web: <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <a class="nav-logo" href="https://alsflow.cz">ALS<span>flow</span></a>
+    <span class="footer-copy">© 2026 ALSflow. Všechna práva vyhrazena.</span>
+  </footer>
+
+</body>
+</html>
