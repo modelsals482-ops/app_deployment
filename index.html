@@ -1396,6 +1396,14 @@
       <button class="pricing-cta pricing-cta-primary" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('bundle')">Chci celý bundle →</button>
     </div>
     <div class="pricing-setup-note">Jednorázové nastavení: <strong>8 000 – 10 000 Kč</strong> · Hotovo do 3 pracovních dnů · Žádná smlouva na dobu neurčitou</div>
+
+    <div class="pricing-bundle reveal" style="border-color:var(--border-h);background:transparent">
+      <div class="pricing-bundle-left">
+        <div class="pricing-bundle-title">Potřebujete něco na míru?</div>
+        <div class="pricing-bundle-desc">Vytváříme i bota na míru vašemu byznysu — cena se odvíjí od rozsahu a náročnosti nastavení.</div>
+      </div>
+      <button class="pricing-cta pricing-cta-ghost" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('custom')">Chci nabídku na míru →</button>
+    </div>
   </section>
 
   <section class="how-it-works" id="how">
@@ -1695,6 +1703,7 @@
                 <option value="recepce">Rezervace & Připomínky (4 500 Kč/měs)</option>
                 <option value="feedback">Zpětná vazba & Opakované rezervace (2 500 Kč/měs)</option>
                 <option value="bundle">Bundle — vše (~7 500 Kč/měs)</option>
+                <option value="custom">Bot na míru (cena dle rozsahu)</option>
                 <option value="unsure">Ještě nevím, chci poradit</option>
               </select>
             </div>
@@ -2067,6 +2076,7 @@
       'email':    'email_bot',
       'feedback': 'feedback',
       'bundle':   'bundle',
+      'custom':   'custom',
       'demo':     ''
     };
     const headlineMap = {
@@ -2074,6 +2084,7 @@
       'email':    'Začněte s E-mailovými odpověďmi',
       'feedback': 'Začněte se Zpětnou vazbou',
       'bundle':   'Získejte bundle nabídku',
+      'custom':   'Poptejte bota na míru',
       'demo':     'Nezávazná konzultace'
     };
 
