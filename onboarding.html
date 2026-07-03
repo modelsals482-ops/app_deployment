@@ -170,6 +170,17 @@
       .form-card { padding: 1.5rem; }
       .form-row.two-col { grid-template-columns: 1fr; }
     }
+    /* ---- vibrant ALSflow accents ---- */
+    .page-title .grad { background: linear-gradient(120deg,#60a5fa 0%,#a855f7 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .form-card { position: relative; overflow: hidden; }
+    .form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg,#3b82f6,#a855f7,#22c55e); }
+    .intro-card { display:flex; gap:1rem; align-items:flex-start; background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(168,85,247,0.07)); border:1px solid rgba(59,130,246,0.22); border-radius:16px; padding:1.25rem 1.4rem; margin-bottom:2.5rem; }
+    .intro-card .intro-emoji { font-size:1.6rem; flex-shrink:0; line-height:1; }
+    .intro-card p { font-size:0.9rem; color:var(--t1); line-height:1.7; }
+    .intro-card .sig { display:inline-block; margin-top:0.5rem; color:var(--t2); font-weight:700; }
+    .form-section-num.num-green  { color:#4ade80; background:rgba(34,197,94,0.10); border-color:rgba(34,197,94,0.22); }
+    .form-section-num.num-purple { color:#c084fc; background:rgba(168,85,247,0.10); border-color:rgba(168,85,247,0.22); }
+    .form-section-num.num-amber  { color:#fbbf24; background:rgba(251,191,36,0.10); border-color:rgba(251,191,36,0.22); }
   </style>
 </head>
 <body>
@@ -181,8 +192,12 @@
 
   <div class="page-wrap">
     <div class="page-label">Vítejte v ALSflow</div>
-    <h1 class="page-title">Pojďme nastavit vašeho AI asistenta</h1>
-    <p class="page-sub">Vyplňte prosím tento formulář — pomůže nám nastavit bota přesně podle vašeho podnikání. Zabere to cca 10 minut. Ozveme se do 2 pracovních dnů s dalšími kroky.</p>
+    <h1 class="page-title">Pojďme nastavit <span class="grad">vašeho AI asistenta</span></h1>
+    <p class="page-sub">Těší nás, že do toho jdete s námi! 🎉 Tenhle formulář nám pomůže nastavit vašeho asistenta přesně na míru — ať mluví jako vy a zná vaše podnikání. Zabere cca 10 minut a nemusíte umět nic technického.</p>
+    <div class="intro-card">
+      <span class="intro-emoji">👋</span>
+      <p>Nebojte se — <strong>nemusíte být technici</strong>. Vyplňte, co víte, a zbytek doladíme společně. Všechno vám nastavím a otestuji osobně a jsem tu, kdykoliv budete něco potřebovat. Čím víc nám o sobě řeknete, tím lépe bude váš asistent odpovídat vašim zákazníkům.<span class="sig">— Jakub, zakladatel ALSflow</span></p>
+    </div>
 
     <div class="form-card" id="formCard">
       <form id="onboardingForm" novalidate>
@@ -219,7 +234,7 @@
         </div>
 
         <div class="form-section">
-          <span class="form-section-num">02</span>
+          <span class="form-section-num num-green">02</span>
           <div class="form-section-title">Co si objednáváte</div>
           <div class="form-row">
             <div class="form-group">
@@ -238,7 +253,7 @@
         </div>
 
         <div class="form-section">
-          <span class="form-section-num">03</span>
+          <span class="form-section-num num-purple">03</span>
           <div class="form-section-title">Jak má bot mluvit</div>
           <div class="form-row two-col">
             <div class="form-group">
@@ -295,7 +310,7 @@
         </div>
 
         <div class="form-section">
-          <span class="form-section-num">05</span>
+          <span class="form-section-num num-amber">05</span>
           <div class="form-section-title">Technické napojení</div>
           <div class="form-row two-col">
             <div class="form-group">
@@ -324,12 +339,12 @@
         </div>
 
         <div class="form-section" style="border-bottom:none;padding-bottom:0;margin-bottom:0">
-          <span class="form-section-num">06</span>
+          <span class="form-section-num num-green">06</span>
           <div class="form-section-title">Souhlas</div>
           <div class="form-check">
             <input type="checkbox" id="f-dpa" required />
             <label class="form-check-label" for="f-dpa">
-              Souhlasím se <a href="dpa.html" target="_blank">Smlouvou o zpracování osobních údajů (DPA)</a>, která upravuje zpracování osobních údajů našich zákazníků prostřednictvím AI asistenta ALSflow.<span class="req">*</span>
+              Souhlasím se <a href="dpa.html" target="_blank">Smlouvou o zpracování osobních údajů (DPA)</a> a beru na vědomí <a href="ochrana_dat.html" target="_blank">Zásady ochrany osobních údajů</a>. Tyto dokumenty upravují, jak zpracováváme osobní údaje vašich zákazníků prostřednictvím AI asistenta ALSflow.<span class="req">*</span>
             </label>
           </div>
 
