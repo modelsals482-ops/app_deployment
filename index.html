@@ -215,6 +215,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--t1); }
+    @media (min-width: 901px) { #navbar .nav-links { position: absolute; left: 50%; transform: translateX(-50%); } }
     .nav-cta {
       background: linear-gradient(135deg, #4e8ff7, #2563eb, #4e8ff7);
       background-size: 200% 200%;
@@ -754,7 +755,7 @@
     .trust-logo { font-size: 0.88rem; font-weight: 800; color: var(--t3); letter-spacing: -0.02em; transition: color 0.2s; cursor: pointer; white-space: nowrap; text-decoration: none; }
     .trust-logo:hover { color: var(--t2); }
     
-    footer { border-top: 1px solid var(--border); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+    footer { border-top: 1px solid var(--border); padding: 3rem 4rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2rem; text-align: center; }
     .footer-logo { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(120deg, #fff 0%, var(--t2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .footer-logo span { background: linear-gradient(120deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .footer-copy { font-size: 0.8rem; color: var(--t3); }
@@ -1203,17 +1204,17 @@
   </section>
 
   <section class="stats reveal">
-    <div class="stat-cell">
+    <div class="stat-cell reveal" data-delay="1">
       <div class="stat-num" style="background:linear-gradient(135deg,#60a5fa,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">
         &lt;&nbsp;<span class="counter" data-target="2">0</span>&nbsp;min
       </div>
       <div class="stat-label">Průměrná doba odpovědi AI</div>
     </div>
-    <div class="stat-cell">
+    <div class="stat-cell reveal" data-delay="2">
       <div class="stat-num" style="background:linear-gradient(135deg,#4ade80,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">24/7</div>
       <div class="stat-label">Dostupnost bez přestávky</div>
     </div>
-    <div class="stat-cell">
+    <div class="stat-cell reveal" data-delay="3">
       <div class="stat-num" style="background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2–3h</div>
       <div class="stat-label">Ušetřeno denně na komunikaci se zákazníky</div>
     </div>
@@ -1339,22 +1340,22 @@
     </div>
     <p style="color:var(--t2);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.7">Jste u zákazníka. Zákazník píše. AI vyřídí zbytek — bez vašeho zásahu.</p>
     <div class="built-for-cards">
-      <div class="persona-card">
+      <div class="persona-card reveal" data-delay="1">
         <div class="persona-icon">🏃</div>
         <div class="persona-title">Fyzioterapeuti</div>
         <div class="persona-desc">Méně telefonátů, méně e-mailů — vy se věnujte klientům na lehátku, AI vyřídí zbytek.</div>
       </div>
-      <div class="persona-card">
+      <div class="persona-card reveal" data-delay="2">
         <div class="persona-icon">✂️</div>
         <div class="persona-title">Kadeřníci & salony</div>
         <div class="persona-desc">Konec zmeškané rezervace. AI přijme objednávku i v sobotu večer, když jste u zákazníka.</div>
       </div>
-      <div class="persona-card">
+      <div class="persona-card reveal" data-delay="3">
         <div class="persona-icon">🐾</div>
         <div class="persona-title">Veterináři</div>
         <div class="persona-desc">Zákazníci se ptají a rezervují 24/7 — bez vyrušování ordinace nebo noční služby na telefonu.</div>
       </div>
-      <div class="persona-card">
+      <div class="persona-card reveal" data-delay="4">
         <div class="persona-icon">🦷</div>
         <div class="persona-title">Zubní ordinace</div>
         <div class="persona-desc">AI odpovídá na dotazy, potvrzuje termíny a posílá připomínky. Vaše recepce nikdy nespí.</div>
@@ -1657,7 +1658,7 @@
       <a href="mailto:info@alsflow.cz">Kontakt</a>
       <a href="ochrana_dat.html">Ochrana dat</a>
     </div>
-    <span class="footer-copy">© 2025 ALSflow. Všechna práva vyhrazena.</span>
+    <span class="footer-copy">© 2026 ALSflow. Všechna práva vyhrazena.</span>
   </footer>
 
   <div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
