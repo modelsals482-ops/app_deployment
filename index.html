@@ -1157,40 +1157,72 @@
       <button class="btn-lg btn-ghost-lg" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Jak to funguje →</button>
     </div>
     
-    <div class="hero-mockup">
-      <div class="mockup-topbar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <span style="margin-left:1rem;font-size:0.78rem;color:var(--t3);font-weight:600;letter-spacing:-0.01em">ALSflow — E-mailový asistent</span>
-      </div>
-      <div class="mockup-body">
-        <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.85rem">Doručená pošta</div>
-        <div style="background:var(--surface-h);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.85rem">
-          <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.6rem">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;color:#fff;flex-shrink:0">KH</div>
-            <div style="flex:1;min-width:0">
-              <div style="font-size:0.86rem;font-weight:700;color:var(--t1)">Kateřina Horáčková</div>
-              <div style="font-size:0.72rem;color:var(--t3)">komu: vy · před 2 min</div>
-            </div>
-            <span style="font-size:0.68rem;color:var(--t3);flex-shrink:0">✉ Nový</span>
-          </div>
-          <div style="font-size:0.82rem;font-weight:600;color:var(--t1);margin-bottom:0.3rem">Máte volný termín tento týden?</div>
-          <div style="font-size:0.82rem;color:var(--t2);line-height:1.6">Dobrý den, chtěla bych se objednat na masáž. Šlo by to prosím někdy tento týden odpoledne? Děkuji, Kateřina</div>
-        </div>
-        <div style="background:var(--blue-s);border:1px solid rgba(59,130,246,0.25);border-radius:12px;padding:1rem 1.1rem">
-          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.55rem">
-            <span style="font-size:0.7rem;font-weight:800;color:#93c5fd;text-transform:uppercase;letter-spacing:0.07em">◆ ALSflow AI odpověděla</span>
-            <span class="ai-badge" style="margin-left:auto">✓ Odesláno za 90 s</span>
-          </div>
-          <div style="font-size:0.82rem;color:var(--t1);line-height:1.65">Dobrý den, paní Horáčková,<br>děkujeme za zprávu! Tento týden máme volno ve <strong>středu v 15:30</strong> nebo ve <strong>čtvrtek v 16:00</strong>. Napište mi prosím, který termín vám vyhovuje, a rovnou vám ho zarezervuji. 🙂</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.85rem;font-size:0.74rem;color:var(--t3)">
-          <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;flex-shrink:0"></span>
-          AI odpovídá automaticky 24/7 — vy dostanete kopii a máte přehled.
-        </div>
+    <div class="hero-anim">
+      <div class="alsc-phone">
+        <div class="alsc-top"><span class="alsc-av">L</span><div><div class="alsc-name">Lucie</div><div class="alsc-status"><i></i>AI asistent · online</div></div></div>
+        <div class="alsc-body" id="alsc-body"></div>
       </div>
     </div>
+    <style>
+      .hero-anim{width:100%;max-width:640px;margin:2.5rem auto 0}
+      #alsc-body,.alsc-phone{--x:0}
+      .alsc-phone{background:#0f1629;border:1px solid rgba(255,255,255,.08);border-radius:22px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+      .alsc-top{display:flex;align-items:center;gap:11px;padding:16px 20px;background:linear-gradient(120deg,#4f46e5,#38bdf8)}
+      .alsc-av{width:38px;height:38px;border-radius:50%;background:#fff;color:#4f46e5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1rem}
+      .alsc-name{color:#fff;font-weight:700;font-size:16px;line-height:1.1}
+      .alsc-status{color:rgba(255,255,255,.85);font-size:12.5px;display:flex;align-items:center;gap:5px}
+      .alsc-status i{width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block}
+      .alsc-body{padding:20px;height:340px;overflow:hidden;display:flex;flex-direction:column;gap:10px;justify-content:flex-end;background:#0b1020}
+      .alsc-msg{max-width:78%;padding:10px 15px;border-radius:16px;font-size:15px;line-height:1.45;opacity:0;transform:translateY(8px);animation:alscIn .28s ease forwards}
+      .alsc-user{align-self:flex-end;background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff;border-bottom-right-radius:4px}
+      .alsc-bot{align-self:flex-start;background:#1e2740;color:#e2e8f0;border-bottom-left-radius:4px}
+      .alsc-typing{align-self:flex-start;background:#1e2740;border-radius:16px;padding:12px 15px;display:flex;gap:4px;opacity:0;animation:alscIn .28s ease forwards}
+      .alsc-typing span{width:6px;height:6px;border-radius:50%;background:#64748b;animation:alscBounce 1.1s infinite}
+      .alsc-typing span:nth-child(2){animation-delay:.15s}.alsc-typing span:nth-child(3){animation-delay:.3s}
+      @keyframes alscIn{to{opacity:1;transform:none}}
+      @keyframes alscBounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+      @media (prefers-reduced-motion:reduce){.alsc-msg,.alsc-typing{animation:none;opacity:1;transform:none}}
+    </style>
+    <script>
+    (function(){
+      var CONVOS=[
+        [["user","Dobrý den, můžu se objednat na příští týden?"],["bot","Jistě! Mám volno v úterý v 10:00 nebo ve středu ve 14:00. Co vám vyhovuje?"],["user","Úterý 10:00 prosím 🙂"],["bot","Hotovo ✅ Potvrzení jsem poslala e-mailem. Den předem přijde připomínka."]],
+        [["user","Kolik stojí dámský střih?"],["bot","Dámský střih od 450 Kč, pánský od 300 Kč. Chcete rovnou najít termín?"],["user","Jasně, tento pátek?"],["bot","V pátek můžu v 16:00. Mám vás zapsat?"]],
+        [["user","Máte volno v sobotu?"],["bot","V sobotu je bohužel plno. Nabízím pátek 16:00 nebo pondělí 9:00 — sedne vám něco?"]],
+        [["user","Potřebuju zrušit zítřejší termín."],["bot","Zrušeno ✅ Kdykoli budete chtít nový termín, stačí napsat. 🙂"]],
+        [["user","Ahoj, děláte i barvení?"],["bot","Ano! Barvení od 800 Kč včetně střihu. Můžu vás objednat?"],["user","Super, příští týden"],["bot","Mám volno ve čtvrtek v 11:00. Zapíšu vás?"]]
+      ];
+      var body=document.getElementById("alsc-body"), host=document.querySelector(".hero-anim");
+      if(!body||!host) return;
+      var timers=[], running=false, order=[];
+      function wait(ms){ return new Promise(function(r){ timers.push(setTimeout(r,ms)); }); }
+      function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
+      function shuffle(){ order=CONVOS.map(function(_,i){return i;}); for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t;} }
+      function add(cls,text){ var d=document.createElement("div"); d.className="alsc-msg "+cls; d.textContent=text; body.appendChild(d); if(body.children.length>5) body.removeChild(body.firstChild); }
+      function typing(){ var d=document.createElement("div"); d.className="alsc-typing"; d.innerHTML="<span></span><span></span><span></span>"; body.appendChild(d); return d; }
+      async function play(){
+        running=true; var idx=0; if(!order.length) shuffle();
+        while(running){
+          var convo=CONVOS[order[idx]]; body.innerHTML="";
+          for(var m=0;m<convo.length && running;m++){
+            var who=convo[m][0], text=convo[m][1];
+            if(who==="bot"){ var t=typing(); await wait(650+Math.min(text.length*14,900)); if(!running)return; t.remove(); }
+            else { await wait(m===0?200:500); if(!running)return; }
+            add(who==="user"?"alsc-user":"alsc-bot", text);
+            await wait(who==="bot"?1300:700); if(!running)return;
+          }
+          await wait(1600); if(!running)return;
+          idx=(idx+1)%order.length; if(idx===0) shuffle();
+        }
+      }
+      function start(){ if(running)return; running=true; play(); }
+      function stop(){ running=false; clearTimers(); }
+      if("IntersectionObserver" in window){
+        new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting && !document.hidden ? start() : stop(); }); },{threshold:.25}).observe(host);
+      } else { start(); }
+      document.addEventListener("visibilitychange", function(){ document.hidden ? stop() : start(); });
+    })();
+    </script>
   </section>
 
   <section class="stats reveal">
@@ -1492,75 +1524,6 @@
     <h2 class="section-title">Vyzkoušejte sami</h2>
     <p class="section-sub">Proklikejte se a zjistěte, jak ALSflow funguje v praxi.</p>
     <p class="demo-try-hint">Proklikejte si <strong>ukázku</strong> — odpovědi jsou předpřipravené. Chcete si popovídat se <strong>skutečným botem</strong>? <a onclick="toggleChat()" style="color:var(--blue);cursor:pointer;font-weight:600">Otevřít chat →</a></p>
-
-    <!-- ==== Looping conversation showcase (animates only while visible; pauses off-screen/tab-hidden) ==== -->
-    <section class="alsc-wrap" id="alsc">
-      <div class="alsc-phone">
-        <div class="alsc-top"><span class="alsc-av">L</span><div><div class="alsc-name">Lucie</div><div class="alsc-status"><i></i>AI asistent · online</div></div></div>
-        <div class="alsc-body" id="alsc-body"></div>
-      </div>
-    </section>
-    <style>
-      .alsc-wrap{max-width:400px;width:100%;margin:2.5rem auto 0;padding:0;box-sizing:border-box}
-      .alsc-phone{background:#0f1629;border:1px solid rgba(255,255,255,.08);border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
-      .alsc-top{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(120deg,#4f46e5,#38bdf8)}
-      .alsc-av{width:34px;height:34px;border-radius:50%;background:#fff;color:#4f46e5;font-weight:800;display:flex;align-items:center;justify-content:center}
-      .alsc-name{color:#fff;font-weight:700;font-size:15px;line-height:1.1}
-      .alsc-status{color:rgba(255,255,255,.85);font-size:12px;display:flex;align-items:center;gap:5px}
-      .alsc-status i{width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block}
-      .alsc-body{padding:16px;height:300px;overflow:hidden;display:flex;flex-direction:column;gap:9px;justify-content:flex-end;background:#0b1020}
-      .alsc-msg{max-width:80%;padding:9px 13px;border-radius:15px;font-size:14px;line-height:1.4;opacity:0;transform:translateY(8px);animation:alscIn .28s ease forwards}
-      .alsc-user{align-self:flex-end;background:linear-gradient(120deg,#4f46e5,#7c3aed);color:#fff;border-bottom-right-radius:4px}
-      .alsc-bot{align-self:flex-start;background:#1e2740;color:#e2e8f0;border-bottom-left-radius:4px}
-      .alsc-typing{align-self:flex-start;background:#1e2740;border-radius:15px;padding:11px 14px;display:flex;gap:4px;opacity:0;animation:alscIn .28s ease forwards}
-      .alsc-typing span{width:6px;height:6px;border-radius:50%;background:#64748b;animation:alscBounce 1.1s infinite}
-      .alsc-typing span:nth-child(2){animation-delay:.15s}.alsc-typing span:nth-child(3){animation-delay:.3s}
-      @keyframes alscIn{to{opacity:1;transform:none}}
-      @keyframes alscBounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-      @media (prefers-reduced-motion:reduce){.alsc-msg,.alsc-typing{animation:none;opacity:1;transform:none}}
-    </style>
-    <script>
-    (function(){
-      var CONVOS=[
-        [["user","Dobrý den, můžu se objednat na příští týden?"],["bot","Jistě! Mám volno v úterý v 10:00 nebo ve středu ve 14:00. Co vám vyhovuje?"],["user","Úterý 10:00 prosím 🙂"],["bot","Hotovo ✅ Potvrzení jsem poslala e-mailem. Den předem přijde připomínka."]],
-        [["user","Kolik stojí dámský střih?"],["bot","Dámský střih od 450 Kč, pánský od 300 Kč. Chcete rovnou najít termín?"],["user","Jasně, tento pátek?"],["bot","V pátek můžu v 16:00. Mám vás zapsat?"]],
-        [["user","Máte volno v sobotu?"],["bot","V sobotu je bohužel plno. Nabízím pátek 16:00 nebo pondělí 9:00 — sedne vám něco?"]],
-        [["user","Potřebuju zrušit zítřejší termín."],["bot","Zrušeno ✅ Kdykoli budete chtít nový termín, stačí napsat. 🙂"]],
-        [["user","Ahoj, děláte i barvení?"],["bot","Ano! Barvení od 800 Kč včetně střihu. Můžu vás objednat?"],["user","Super, příští týden"],["bot","Mám volno ve čtvrtek v 11:00. Zapíšu vás?"]]
-      ];
-      var body=document.getElementById("alsc-body"), host=document.getElementById("alsc");
-      if(!body||!host) return;
-      var timers=[], running=false, order=[];
-      function wait(ms){ return new Promise(function(r){ timers.push(setTimeout(r,ms)); }); }
-      function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
-      function shuffle(){ order=CONVOS.map(function(_,i){return i;}); for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t;} }
-      function add(cls,text){ var d=document.createElement("div"); d.className="alsc-msg "+cls; d.textContent=text; body.appendChild(d); if(body.children.length>5) body.removeChild(body.firstChild); }
-      function typing(){ var d=document.createElement("div"); d.className="alsc-typing"; d.innerHTML="<span></span><span></span><span></span>"; body.appendChild(d); return d; }
-      async function play(){
-        running=true; var idx=0; if(!order.length) shuffle();
-        while(running){
-          var convo=CONVOS[order[idx]]; body.innerHTML="";
-          for(var m=0;m<convo.length && running;m++){
-            var who=convo[m][0], text=convo[m][1];
-            if(who==="bot"){ var t=typing(); await wait(650+Math.min(text.length*14,900)); if(!running)return; t.remove(); }
-            else { await wait(m===0?200:500); if(!running)return; }
-            add(who==="user"?"alsc-user":"alsc-bot", text);
-            await wait(who==="bot"?1300:700); if(!running)return;
-          }
-          await wait(1600); if(!running)return;
-          idx=(idx+1)%order.length; if(idx===0) shuffle();
-        }
-      }
-      function start(){ if(running)return; running=true; play(); }
-      function stop(){ running=false; clearTimers(); }
-      if("IntersectionObserver" in window){
-        new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting && !document.hidden ? start() : stop(); }); },{threshold:.25}).observe(host);
-      } else { start(); }
-      document.addEventListener("visibilitychange", function(){ document.hidden ? stop() : start(); });
-    })();
-    </script>
-    <!-- ==== /Looping conversation showcase ==== -->
-
     <div class="demo-wrapper">
       <div class="demo-topbar">
         <div class="dot dot-r"></div>
