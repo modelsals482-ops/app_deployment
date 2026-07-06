@@ -726,6 +726,32 @@
     .pricing-bundle-title { font-weight: 800; font-size: 1rem; margin-bottom: 0.25rem; }
     .pricing-bundle-desc { font-size: 0.82rem; color: var(--t2); }
     .pricing-bundle-price { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(135deg, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; }
+    /* Custom / "na míru" — the highest-value offering: premium card with a gradient border. */
+    .pricing-custom {
+      max-width: 1060px; margin: 1.25rem auto 0; position: relative; border-radius: 18px;
+      padding: 1.9rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      gap: 1.75rem; flex-wrap: wrap; overflow: hidden;
+      background:
+        radial-gradient(130% 150% at 0% 0%, rgba(96,165,250,0.18), transparent 55%),
+        radial-gradient(130% 150% at 100% 100%, rgba(192,132,252,0.20), transparent 55%),
+        rgba(255,255,255,0.015);
+    }
+    .pricing-custom::before {
+      content: ""; position: absolute; inset: 0; border-radius: 18px; padding: 1.5px; pointer-events: none;
+      background: linear-gradient(120deg, #60a5fa, #c084fc, #60a5fa);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .pricing-custom .pricing-bundle-left { position: relative; z-index: 1; }
+    .pricing-custom-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.6rem; padding: 0.3rem 0.7rem;
+      border-radius: 999px; color: #ddd6fe; background: linear-gradient(120deg, rgba(96,165,250,0.22), rgba(192,132,252,0.22));
+      border: 1px solid rgba(192,132,252,0.35);
+    }
+    .pricing-custom .pricing-bundle-title { font-size: 1.15rem; }
+    .pricing-custom .pricing-bundle-desc { max-width: 620px; line-height: 1.55; }
+    .pricing-custom .pricing-cta { position: relative; z-index: 1; }
     .pricing-setup-note { margin-top: 2rem; font-size: 0.82rem; color: var(--t3); text-align: center; }
     .pricing-setup-note strong { color: var(--t2); }
     
@@ -954,7 +980,8 @@
       .steps { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
       .demo-section, .how-it-works, .trusted, .get-started, .built-for, .pricing { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .pricing-bundle { flex-direction: column; text-align: center; }
+      .pricing-bundle, .pricing-custom { flex-direction: column; text-align: center; }
+      .pricing-custom .pricing-bundle-desc { margin-left: auto; margin-right: auto; }
       .modal-box { padding: 2rem 1.5rem; }
       .form-row.two-col { grid-template-columns: 1fr; }
       .demo-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding-bottom: 2px; }
@@ -1014,7 +1041,7 @@
       .pricing-icon { font-size: 1.4rem; margin-bottom: 0.65rem; }
       .pricing-cta { padding: 0.75rem; font-size: 0.85rem; }
       /* Bundle row */
-      .pricing-bundle { padding: 1.1rem 1.25rem; gap: 1rem; }
+      .pricing-bundle, .pricing-custom { padding: 1.1rem 1.25rem; gap: 1rem; }
       .pricing-bundle-title { font-size: 0.92rem; }
       .pricing-bundle-desc { font-size: 0.78rem; }
       .pricing-setup-note { font-size: 0.78rem; }
@@ -1455,12 +1482,13 @@
     </div>
     <div class="pricing-setup-note">Jednorázové nastavení: <strong>8 000 – 10 000 Kč</strong> · Hotovo do 3 pracovních dnů · Žádná smlouva na dobu neurčitou</div>
 
-    <div class="pricing-bundle reveal" style="border-color:var(--border-h);background:transparent">
+    <div class="pricing-custom reveal">
       <div class="pricing-bundle-left">
-        <div class="pricing-bundle-title">Potřebujete něco na míru?</div>
-        <div class="pricing-bundle-desc">Vytváříme i bota na míru vašemu byznysu — cena se odvíjí od rozsahu a náročnosti nastavení.</div>
+        <div class="pricing-custom-badge">✦ Na míru · nejvyšší hodnota</div>
+        <div class="pricing-bundle-title">Váš byznys se nevejde do balíčku? Postavíme řešení na míru.</div>
+        <div class="pricing-bundle-desc">Custom projekty zvládnou mnohem víc než základní bot — napojení na váš systém, vlastní procesy, více kanálů (web, WhatsApp, e-mail, telefon), integrace a AI přesně pro vás. Od jednoho chytrého automatu po kompletní digitální recepci, která roste s vámi.</div>
       </div>
-      <button class="pricing-cta pricing-cta-ghost" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('custom')">Chci nabídku na míru →</button>
+      <button class="pricing-cta pricing-cta-primary" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('custom')">Chci nabídku na míru →</button>
     </div>
   </section>
 
@@ -2367,30 +2395,26 @@
     })();
   </script>
 
-  <!-- Smooth (inertia) scroll — same Lenis config as weloveevents.cz, skipped under reduced-motion. -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
+  <!-- Smooth (inertia) scroll — same Lenis config as weloveevents.cz. Self-hosted so it passes the
+       site's CSP (script-src 'self'). Loads in order, so Lenis is defined when the init runs below. -->
+  <script src="/lenis.min.js"></script>
   <script>
     (function(){
       "use strict";
       // alsScrollTo(target): used by hero/CTA buttons so programmatic jumps go through Lenis
-      // (avoids fighting the native smooth-scroll animation once Lenis owns the wheel/touch input).
-      // Falls back to native scrollIntoView if Lenis hasn't loaded yet or is skipped.
+      // (avoids fighting the native smooth-scroll once Lenis owns wheel/touch). Falls back to native.
       window.alsScrollTo = function(target){
         var el = typeof target === "string" ? document.querySelector(target) : target;
         if(!el) return;
         if(window.__lenis){ window.__lenis.scrollTo(el, { offset: 0, duration: 1.2 }); }
         else { el.scrollIntoView({ behavior: "smooth" }); }
       };
-      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if(reduced) return; // native scroll only, matches the rest of the site's reduced-motion handling
-      function start(){
-        if(typeof Lenis === "undefined") return; // CDN blocked/offline -> silently keep native scroll
-        var lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
-        window.__lenis = lenis;
-        function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-      }
-      document.querySelector('script[src*="lenis"]').addEventListener("load", start);
+      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // keep native scroll
+      if(typeof Lenis === "undefined") return; // script failed to load -> silently keep native scroll
+      var lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+      window.__lenis = lenis;
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
     })();
   </script>
 
