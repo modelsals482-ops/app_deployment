@@ -2262,12 +2262,13 @@
         service: document.getElementById('f-service').value,
         pain:     document.getElementById('f-pain').value,
         pref_time: document.getElementById('f-pref').value || 'kdykoliv',
-        msg:     document.getElementById('f-msg').value || ''
+        msg:     document.getElementById('f-msg').value || '',
+        website: (document.getElementById('f-website') || {}).value || ''
       };
 
-      fetch('https://primary-production-4f62.up.railway.app/webhook/intake-form', {
+      fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': 'alsflow-intake-2026' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
       .then(function(res) {
