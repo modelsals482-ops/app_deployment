@@ -22,6 +22,7 @@
     gtag('config', 'G-CEX6XVFWD7');
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CEX6XVFWD7"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   
   <meta property="og:title" content="AI asistent pro kadeřníky, fyzioterapeuty a živnostníky | ALSflow" />
   <meta property="og:description" content="Váš e-mail. Váš kalendář. Váš AI. Nastavíme vše za vás — vy se staráte o klienty." />
@@ -1835,6 +1836,8 @@
             <label for="f-website">Website</label>
             <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
           </div>
+          <!-- Cloudflare Turnstile — anti-spam; token verified server-side in /api/contact -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:0 0 1rem"></div>
           <button type="submit" class="modal-submit" id="modalSubmit">Odeslat a čekat na nabídku →</button>
         </form>
       </div>
@@ -2263,7 +2266,8 @@
         pain:     document.getElementById('f-pain').value,
         pref_time: document.getElementById('f-pref').value || 'kdykoliv',
         msg:     document.getElementById('f-msg').value || '',
-        website: (document.getElementById('f-website') || {}).value || ''
+        website: (document.getElementById('f-website') || {}).value || '',
+        turnstileToken: (document.querySelector('[name="cf-turnstile-response"]') || {}).value || ''
       };
 
       fetch('/api/contact', {
@@ -2287,6 +2291,7 @@
           btn.parentNode.insertBefore(err, btn.nextSibling);
         }
         err.textContent = 'Něco se pokazilo. Zkuste to prosim znovu nebo nás kontaktujte na info@alsflow.cz.';
+        if (window.turnstile) window.turnstile.reset(); // token is single-use — refresh it for the retry
       });
     });
   
