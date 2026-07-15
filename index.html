@@ -1719,7 +1719,7 @@
   </footer>
 
   <div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalHeadline">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalHeadline" data-lenis-prevent>
       <button class="modal-close" onclick="closeModal()" aria-label="Zavřít">✕</button>
       <div class="modal-form-inner" id="modalFormInner">
         <div class="modal-logo">ALS<span>flow</span></div>
@@ -1837,7 +1837,7 @@
             <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
           </div>
           <!-- Cloudflare Turnstile — anti-spam; token verified server-side in /api/contact -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:0 0 1rem"></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:1.25rem 0 0.25rem;display:flex;justify-content:center"></div>
           <button type="submit" class="modal-submit" id="modalSubmit">Odeslat a čekat na nabídku →</button>
         </form>
       </div>
@@ -2233,12 +2233,14 @@
       
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (window.__lenis) window.__lenis.stop(); // Lenis hijacks the wheel — stop it so the page behind doesn't scroll
       setTimeout(() => document.getElementById('f-name').focus(), 120);
     };
 
     window.closeModal = function() {
       document.getElementById('contactModal').classList.remove('open');
       document.body.style.overflow = '';
+      if (window.__lenis) window.__lenis.start(); // resume smooth scroll
     };
     window.handleOverlayClick = function(e) {
       if (e.target === document.getElementById('contactModal')) closeModal();
