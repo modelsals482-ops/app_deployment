@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Onboarding — nastavení vašeho AI asistenta | ALSflow</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -353,6 +354,8 @@
             <input type="text" id="f-website" tabindex="-1" autocomplete="off" />
           </div>
 
+          <!-- Cloudflare Turnstile — anti-spam; token verified server-side in /api/onboarding -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:0.5rem 0 1rem;display:flex;justify-content:center"></div>
           <button type="submit" class="submit-btn" id="submitBtn">Odeslat formulář →</button>
           <p id="formError" style="display:none"></p>
           <div class="fallback-row">
@@ -397,7 +400,8 @@
         eskalacni_email: document.getElementById('f-eskalace').value,
         odkaz_materialy: document.getElementById('f-odkaz').value,
         dpa: document.getElementById('f-dpa').checked,
-        website: document.getElementById('f-website').value
+        website: document.getElementById('f-website').value,
+        turnstileToken: (document.querySelector('[name="cf-turnstile-response"]') || {}).value || ''
       };
     }
 
@@ -437,9 +441,9 @@
 
       var vals = fieldVals();
 
-      fetch('https://primary-production-4f62.up.railway.app/webhook/client-onboarding-form', {
+      fetch('/api/onboarding', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': 'alsflow-onboarding-2026' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(vals)
       })
       .then(function(res) {
@@ -450,6 +454,7 @@
       .catch(function() {
         btn.disabled = false;
         btn.textContent = 'Odeslat formulář →';
+        if (window.turnstile) window.turnstile.reset(); // token is single-use — refresh for retry
         errEl.textContent = 'Odeslání se nepovedlo. Zkuste to prosím znovu, nebo použijte tlačítko níže a pošlete nám formulář e-mailem.';
         errEl.style.display = 'block';
         var fb = document.getElementById('fallbackLink');
