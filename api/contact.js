@@ -15,6 +15,21 @@ module.exports = async function handler(req, res) {
   if (b.website) return res.status(200).json({ ok: true });          // honeypot -> silently drop
   if (!b.name || !b.email) return res.status(400).json({ error: 'missing name/email' });
 
+  // Cloudflare Turnstile — if a secret is configured, the token must verify or we reject (no email sent).
+  const tsSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (tsSecret) {
+    const ip = req.headers['cf-connecting-ip'] || (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+    const form = new URLSearchParams({ secret: tsSecret, response: b.turnstileToken || '' });
+    if (ip) form.append('remoteip', ip);
+    try {
+      const vr = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: form,
+      });
+      const vj = await vr.json();
+      if (!vj.success) return res.status(400).json({ error: 'turnstile' });
+    } catch (e) { console.error('turnstile verify failed:', e.message); return res.status(400).json({ error: 'turnstile' }); }
+  }
+
   const key = process.env.RESEND_API_KEY;
   if (!key) { console.error('RESEND_API_KEY not set'); return res.status(500).json({ error: 'config' }); }
   const from = process.env.RESEND_FROM || 'ALSflow <info@alsflow.cz>';
