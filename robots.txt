@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /landing
-Disallow: /dekujeme
 Sitemap: https://alsflow.cz/sitemap.xml
