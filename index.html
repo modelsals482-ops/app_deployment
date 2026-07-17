@@ -2459,7 +2459,9 @@
   if(!location.hash){return;}
   function fix(){
     var t=document.getElementById(location.hash.slice(1));
-    if(t){t.scrollIntoView({block:'start'});}
+    if(!t){return;}
+    if(window.__lenis){window.__lenis.scrollTo(t,{offset:-82,duration:0.9});}
+    else{t.scrollIntoView({block:'start'});}
   }
   window.addEventListener('load',function(){setTimeout(fix,450);});
 })();
