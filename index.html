@@ -796,7 +796,8 @@
     
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to   { opacity: 1; transform: translateY(0); } }
     /* WLE-style scroll reveal: blur + slide, expo easing, optional stagger via data-delay */
-    .reveal { opacity: 0; filter: blur(7px); transform: translateY(34px);
+    section[id], div[id] { scroll-margin-top: 82px; }
+      .reveal { opacity: 0; filter: blur(7px); transform: translateY(34px);
       transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1), filter 0.9s ease; }
     .reveal.reveal-left  { transform: translateX(-48px); }
     .reveal.reveal-scale { transform: scale(0.94); }
@@ -2453,5 +2454,15 @@
       <button class="chat-send" id="chatSend" onclick="sendChatMessage()" aria-label="Odeslat">→</button>
     </div>
   </div>
+<script>
+(function(){
+  if(!location.hash){return;}
+  function fix(){
+    var t=document.getElementById(location.hash.slice(1));
+    if(t){t.scrollIntoView({block:'start'});}
+  }
+  window.addEventListener('load',function(){setTimeout(fix,450);});
+})();
+</script>
 </body>
 </html>
