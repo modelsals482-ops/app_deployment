@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI rezervace a připomínky pro malé firmy — méně nenastoupených termínů | ALSflow</title>
+  <meta name="description" content="AI přijímá rezervace přes WhatsApp nebo web 24/7, potvrzuje termíny a den předem je připomene. Méně zapomenutých návštěv, méně telefonování. Od 4 500 Kč měsíčně, nastavení do 3 dnů." />
+  <link rel="canonical" href="https://alsflow.cz/rezervace-pripominky" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI rezervace a připomínky pro malé firmy | ALSflow" />
+  <meta property="og:description" content="Rezervace 24/7, automatická potvrzení a připomínky den předem. Vy máte plný diář, telefon zvoní míň." />
+  <meta property="og:url" content="https://alsflow.cz/rezervace-pripominky" />
+  <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Rezervace & Připomínky — AI asistent",
+    "serviceType": "AI automatizace rezervací a připomínek termínů pro malé firmy",
+    "description": "Plně spravovaný AI asistent přijímá rezervace přes WhatsApp nebo web 24/7, posílá automatická potvrzení, den předem připomíná termín a odpovídá na časté dotazy (ceny, dostupnost, postup).",
+    "url": "https://alsflow.cz/rezervace-pripominky",
+    "areaServed": "CZ",
+    "inLanguage": "cs",
+    "provider": { "@type": "Organization", "name": "ALSflow", "legalName": "Retail Shops s.r.o.", "url": "https://alsflow.cz", "email": "info@alsflow.cz" },
+    "offers": { "@type": "Offer", "name": "Rezervace & Připomínky", "price": "4500", "priceCurrency": "CZK", "description": "Měsíční paušál, zahrnuje 750 rezervací" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Kolik stojí AI rezervace a připomínky?", "acceptedAnswer": { "@type": "Answer", "text": "4 500 Kč měsíčně, zahrnuto je 750 rezervací. Jednorázové nastavení stojí 8 000–10 000 Kč a asistent běží do 3 pracovních dnů. Bez závazků, zrušit můžete kdykoli." } },
+      { "@type": "Question", "name": "Potřebuji kvůli tomu nový rezervační systém?", "acceptedAnswer": { "@type": "Answer", "text": "Ne. Asistent funguje s tím, co už máte — WhatsApp, váš web nebo Google Kalendář. Když už rezervační systém máte, umíme fungovat vedle něj, ne místo něj." } },
+      { "@type": "Question", "name": "Jak připomínky snižují počet nenastoupených termínů?", "acceptedAnswer": { "@type": "Answer", "text": "Den před termínem dostane zákazník připomínku, na kterou jde rovnou odpovědět. Kdo nemůže přijít, přeobjedná se a termín se uvolní pro jiného, místo aby propadl." } },
+      { "@type": "Question", "name": "Přijímá rezervace i mimo otevírací dobu?", "acceptedAnswer": { "@type": "Answer", "text": "Ano, 24 hodin denně. Zákazník se objedná večer i o víkendu, aniž byste museli zvednout telefon." } }
+    ]
+  }
+  </script>
+  <style>
+    :root{--bg:#08080c;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.18);--t1:#f0f0f3;--t2:#8b8b9e;--t3:#4a4a60;--blue:#3b82f6;--green:#22c55e;--purple:#a855f7;--amber:#f59e0b;--font:'Plus Jakarta Sans',-apple-system,sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--t1);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:860px;margin:0 auto;padding:0 1.4rem}
+    header{position:sticky;top:0;background:rgba(8,8,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:10}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;max-width:1100px;margin:0 auto}
+    .logo{font-weight:800;font-size:1.25rem;color:var(--t1);text-decoration:none}
+    .logo span{color:var(--blue)}
+    .top-cta{background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px}
+    .hero{padding:4.5rem 0 2.5rem;text-align:left}
+    .crumb{font-size:0.8rem;color:var(--t3);margin-bottom:1.2rem}
+    .crumb a{color:var(--t2);text-decoration:none}
+    h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
+    h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--t2);font-size:1.05rem;margin-top:1.2rem;max-width:640px}
+    h2{font-size:1.35rem;font-weight:700;margin:3rem 0 1rem;letter-spacing:-0.01em}
+    p{color:var(--t2);margin-bottom:1rem}
+    strong{color:var(--t1)}
+    ul.checks{list-style:none;margin:1.2rem 0}
+    ul.checks li{padding:0.45rem 0 0.45rem 1.9rem;position:relative;color:var(--t2)}
+    ul.checks li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin:1.4rem 0}
+    .card h3{font-size:1rem;margin-bottom:0.4rem}
+    .card .price{font-size:1.6rem;font-weight:800;margin:0.4rem 0}
+    .card .price small{font-size:0.8rem;font-weight:500;color:var(--t2)}
+    .card p{font-size:0.9rem;margin:0}
+    .steps{counter-reset:step;margin:1.4rem 0}
+    .step{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--border)}
+    .step:last-child{border-bottom:none}
+    .step::before{counter-increment:step;content:"0" counter(step);font-weight:800;color:var(--blue);font-size:1.1rem;flex-shrink:0}
+    .step div{color:var(--t2);font-size:0.95rem}
+    .step strong{display:block;margin-bottom:0.2rem}
+    .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;padding:1rem 1.2rem}
+    .faq summary{font-weight:600;cursor:pointer;color:var(--t1)}
+    .faq p{margin:0.8rem 0 0;font-size:0.93rem}
+    .cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(34,197,94,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.5rem 0}
+    .cta-box h2{margin:0 0 0.6rem}
+    .cta-box p{max-width:480px;margin:0 auto 1.4rem}
+    .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
+    .btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
+    .related{font-size:0.9rem;color:var(--t3);margin:2rem 0}
+    .related a{color:var(--blue);text-decoration:none}
+    footer{border-top:1px solid var(--border);margin-top:4rem;padding:2rem 1.4rem;text-align:center;font-size:0.8rem;color:var(--t3)}
+    footer a{color:var(--t2);text-decoration:none;margin:0 0.6rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <a class="logo" href="/">ALS<span>flow</span></a>
+      <a class="top-cta" href="/#pricing">Chci svoji nabídku</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="crumb"><a href="/">ALSflow</a> / Rezervace &amp; Připomínky</div>
+      <h1>Diář se plní sám. <em>A zapomenuté termíny</em> vám přestanou žrát čas.</h1>
+      <p class="lead">Zákazník se chce objednat večer, vy máte zavřeno. Někdo na termín zapomene a hodina propadne. AI asistent od ALSflow přijme rezervaci 24/7, termín potvrdí a den předem ho připomene. Vy děláte svoji práci, telefon zvoní míň a diář zůstává plný.</p>
+    </section>
+
+    <h2>Co za vás udělá</h2>
+    <ul class="checks">
+      <li><strong>Přijme rezervaci kdykoli</strong> — přes WhatsApp nebo váš web, i večer a o víkendu.</li>
+      <li><strong>Hned potvrdí termín</strong> — zákazník ví, že má místo. Žádné „ozvu se vám".</li>
+      <li><strong>Den předem připomene</strong> — zapomenutý termín je nejčastější tichá ztráta. Připomínka ji řeší.</li>
+      <li><strong>Uvolní termín, když někdo nemůže</strong> — zákazník na připomínku odpoví a přeobjedná se, hodina nepropadne.</li>
+      <li><strong>Odpoví na dotazy kolem</strong> — ceny, dostupnost, jak to probíhá. To pořád dokola už neřešíte vy.</li>
+    </ul>
+
+    <h2>Máte už rezervační systém? Nevadí</h2>
+    <p>Tohle není další systém, na který byste museli přecházet. Když už rezervace nějak řešíte, umíme fungovat <strong>vedle toho, ne místo toho</strong>: asistent se napojí na WhatsApp, váš web nebo Google Kalendář a bere na sebe to kolem, dotazy, potvrzení, připomínky. A když žádný systém nemáte a jedete papír nebo telefon, nastavíme vám ho celý.</p>
+
+    <h2>Jak to nastavíme</h2>
+    <div class="steps">
+      <div class="step"><div><strong>Řeknete nám, jak objednáváte</strong>Jak k vám lidé chodí, co se ptají, kde vedete termíny. 15 minut, žádná technika.</div></div>
+      <div class="step"><div><strong>Nastavíme to za vás</strong>Do 3 pracovních dnů napojíme asistenta, nastavíme připomínky a otestujeme. Vy se nedotknete jediného tlačítka.</div></div>
+      <div class="step"><div><strong>Diář jede sám</strong>Asistent objednává a připomíná od první minuty. Vy jen mrknete na měsíční přehled.</div></div>
+    </div>
+
+    <h2>Kolik to stojí</h2>
+    <div class="card">
+      <h3>📅 Rezervace &amp; Připomínky</h3>
+      <div class="price">4 500 Kč <small>/ měsíc</small></div>
+      <p>Zahrnuje 750 rezervací. Jednorázové nastavení 8 000–10 000 Kč, hotovo do 3 pracovních dnů. Bez závazků, zrušíte kdykoli.</p>
+    </div>
+    <p>Chcete i odpovědi na e-maily nebo zpětnou vazbu po návštěvě? Mrkněte na <a href="/e-mailove-odpovedi" style="color:var(--blue)">E-mailové odpovědi</a> nebo na celý <a href="/#pricing" style="color:var(--blue)">ceník</a> (bundle všech tří vyjde na 7 500 Kč/měsíc).</p>
+
+    <h2 id="faq">Časté dotazy</h2>
+    <div class="faq">
+      <details><summary>Kolik stojí AI rezervace a připomínky?</summary><p>4 500 Kč měsíčně (750 rezervací). Jednorázové nastavení 8 000–10 000 Kč, běží do 3 dnů. Bez závazků.</p></details>
+      <details><summary>Potřebuji kvůli tomu nový systém?</summary><p>Ne. Funguje s WhatsAppem, webem nebo Google Kalendářem, které už máte. Umíme jet i vedle vašeho stávajícího systému.</p></details>
+      <details><summary>Jak to snižuje počet nenastoupených termínů?</summary><p>Připomínkou den předem, na kterou jde odpovědět a přeobjednat se. Termín se uvolní, místo aby propadl.</p></details>
+      <details><summary>Bere rezervace i mimo otevírací dobu?</summary><p>Ano, 24/7. Zákazník se objedná večer i o víkendu, bez telefonu.</p></details>
+    </div>
+
+    <div class="cta-box">
+      <h2>Spočítejte si, kolik vás stojí prázdné hodiny</h2>
+      <p>15 minut nezávazně. Projdeme, jak to u vás chodí, a ukážeme, jak by vám asistent držel diář plný. Bez tlaku.</p>
+      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+    </div>
+
+    <p class="related">Podobné: <a href="/e-mailove-odpovedi">E-mailové odpovědi</a> · <a href="/ai-asistent-pro-fyzioterapeuty">Pro fyzioterapeuty</a> · <a href="/ai-asistent-pro-kadernictvi">Pro kadeřnictví</a></p>
+  </main>
+
+  <footer>
+    <div><a href="/">Úvod</a> · <a href="/#pricing">Ceny</a> · <a href="mailto:info@alsflow.cz">Kontakt</a> · <a href="/o-nas">O nás</a> · <a href="/ochrana_dat">Ochrana dat</a></div>
+    <div style="margin-top:0.8rem">© 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556</div>
+  </footer>
+</body>
+</html>
