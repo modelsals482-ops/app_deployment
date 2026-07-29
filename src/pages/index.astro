@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI asistent pro kadeřníky, fyzioterapeuty a živnostníky | ALSflow</title>
+  <meta name="description" content="ALSflow nastaví AI asistenta pro vaše e-maily, rezervace a zákazníky. Automatizace pro kadeřníky, fyzioterapeuty, veterináře a živnostníky po celé ČR." />
+  <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="google-site-verification" content="B2XvfFz31dM40zT5EARX698iT2YwOeXyUxhLHALLWmo" />
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-CEX6XVFWD7');
+  </script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-CEX6XVFWD7"></script>
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  
+  <meta property="og:title" content="AI asistent pro kadeřníky, fyzioterapeuty a živnostníky | ALSflow" />
+  <meta property="og:description" content="Váš e-mail. Váš kalendář. Váš AI. Nastavíme vše za vás — vy se staráte o klienty." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alsflow.cz" />
+  <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI asistent pro kadeřníky, fyzioterapeuty a živnostníky | ALSflow" />
+  <meta name="twitter:description" content="Nastavíme a provozujeme AI asistenta za vás. Žádná technika, jen spokojení zákazníci." />
+  <meta name="twitter:image" content="https://alsflow.cz/og-image.png" />
+  
+  <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  
+  <link rel="canonical" href="https://alsflow.cz" />
+
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ALSflow",
+    "legalName": "Retail Shops s.r.o.",
+    "url": "https://alsflow.cz",
+    "image": "https://alsflow.cz/og-image.png",
+    "description": "AI asistent pro živnostníky, automatizace e-mailů, rezervací a zákaznické komunikace.",
+    "telephone": "+420770162346",
+    "email": "info@alsflow.cz",
+    "priceRange": "2500-7500 CZK",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dolnoměcholupská 522/12a, Dolní Měcholupy",
+      "addressLocality": "Praha",
+      "postalCode": "102 00",
+      "addressCountry": "CZ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@alsflow.cz",
+      "telephone": "+420770162346",
+      "contactType": "customer service",
+      "availableLanguage": "Czech"
+    },
+    "areaServed": "Praha",
+    "sameAs": [
+      "https://www.instagram.com/als.flow"
+    ]
+  }
+  </script>
+  <script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI automatizace pro malé firmy",
+    "provider": { "@type": "Organization", "name": "ALSflow" },
+    "areaServed": "CZ",
+    "description": "Automatizace e-mailových odpovědí, online rezervací a zpětné vazby pro kadeřníky, fyzioterapeuty, veterináře a zubní ordinace.",
+    "offers": [
+      { "@type": "Offer", "name": "E-mailové odpovědi", "price": "2500", "priceCurrency": "CZK" },
+      { "@type": "Offer", "name": "Rezervace & Připomínky", "price": "4500", "priceCurrency": "CZK" },
+      { "@type": "Offer", "name": "Kompletní balíček", "price": "7500", "priceCurrency": "CZK" }
+    ]
+  }
+  </script>
+  
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/home.css" />
+</head>
+<body>
+
+  <div id="cursorGlow"></div>
+  
+  <div id="cookieBanner" role="region" aria-label="Souhlas s cookies">
+    <p class="cookie-text">
+      Používáme analytické cookies (Google Analytics) ke sledování návštěvnosti webu. Vaše data nesdílíme s třetími stranami pro reklamní účely. Více informací v&nbsp;<a href="ochrana_dat.html">ochraně osobních dat</a>.
+    </p>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-decline" onclick="cookieDecline()">Odmítnout</button>
+      <button class="cookie-btn cookie-accept" onclick="cookieAccept()">Přijmout analytics</button>
+    </div>
+  </div>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="/" onclick="event.preventDefault();window.scrollTo(&#123;top:0,behavior:'smooth'&#125;)">ALS<span>flow</span></a>
+    <ul class="nav-links">
+      <li><a href="#features">Funkce</a></li>
+      <li><a href="#pricing">Ceny</a></li>
+      <li><a href="#how">Jak to funguje</a></li>
+      <li><a href="#demo">Ukázka</a></li>
+    </ul>
+    <button class="nav-cta desktop-cta" onclick="openModal('demo')">Chci svoji nabídku</button>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobilní menu">
+    <ul class="mobile-links">
+      <li><a href="#features" onclick="closeMenu()">Funkce</a></li>
+      <li><a href="#pricing" onclick="closeMenu()">Ceny</a></li>
+      <li><a href="#how" onclick="closeMenu()">Jak to funguje</a></li>
+      <li><a href="#demo" onclick="closeMenu()">Ukázka</a></li>
+    </ul>
+    <button class="mobile-cta" onclick="closeMenu();openModal('demo')">Chci svoji nabídku →</button>
+  </div>
+
+  <section class="hero">
+    <canvas id="particleCanvas"></canvas>
+    <span class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      AI asistent pro&nbsp;<span id="cyclingWord">kadeřníky</span>
+    </span>
+    <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">AI asistent pro živnostníky — automatizace e-mailů, rezervací a zákaznické komunikace</h1>
+    <p class="hero-title">
+      VÁŠ <span class="grad-blue">E-MAIL</span>.<br>
+      VÁŠ <span class="grad-green">KALENDÁŘ</span>.<br>
+      VÁŠ <span class="grad-purple">AI</span>.
+    </p>
+    <p class="hero-sub">
+      Váš telefon zvoní, vy jste u zákazníka. AI odpoví, termín zarezervuje, připomínku pošle. Vy nastavení neřešíte — my se postaráme o vše.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-lg btn-primary-lg" onclick="alsScrollTo('#demo')">Vyzkoušet ukázku</button>
+      <button class="btn-lg btn-ghost-lg" onclick="alsScrollTo('#features')">Jak to funguje →</button>
+    </div>
+    
+    <div class="hero-anim">
+      <div class="alsc-phone">
+        <div class="alsc-top"><span class="alsc-av">K</span><div><div class="alsc-name">Klára</div><div class="alsc-status"><i></i>AI asistent · online</div></div></div>
+        <div class="alsc-body" id="alsc-body"></div>
+      </div>
+    </div>
+    <script is:inline>
+    (function(){
+      var CONVOS=[
+        [["user","Dobrý den, můžu se objednat na příští týden?"],["bot","Jistě! Mám volno v úterý v 10:00 nebo ve středu ve 14:00. Co vám vyhovuje?"],["user","Úterý 10:00 prosím 🙂"],["bot","Hotovo ✅ Potvrzení jsem poslala e-mailem. Den předem přijde připomínka."]],
+        [["user","Kolik stojí dámský střih?"],["bot","Dámský střih od 450 Kč, pánský od 300 Kč. Chcete rovnou najít termín?"],["user","Jasně, tento pátek?"],["bot","V pátek můžu v 16:00. Mám vás zapsat?"]],
+        [["user","Máte volno v sobotu?"],["bot","V sobotu je bohužel plno. Nabízím pátek 16:00 nebo pondělí 9:00 — sedne vám něco?"]],
+        [["user","Potřebuju zrušit zítřejší termín."],["bot","Zrušeno ✅ Kdykoli budete chtít nový termín, stačí napsat. 🙂"]],
+        [["user","Ahoj, děláte i barvení?"],["bot","Ano! Barvení od 800 Kč včetně střihu. Můžu vás objednat?"],["user","Super, příští týden"],["bot","Mám volno ve čtvrtek v 11:00. Zapíšu vás?"]]
+      ];
+      var body=document.getElementById("alsc-body"), host=document.querySelector(".hero-anim");
+      if(!body||!host) return;
+      var timers=[], running=false, order=[];
+      function wait(ms){ return new Promise(function(r){ timers.push(setTimeout(r,ms)); }); }
+      function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
+      function shuffle(){ order=CONVOS.map(function(_,i){return i;}); for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t;} }
+      function add(cls,text){ var d=document.createElement("div"); d.className="alsc-msg "+cls; d.textContent=text; body.appendChild(d); if(body.children.length>5) body.removeChild(body.firstChild); }
+      function typing(){ var d=document.createElement("div"); d.className="alsc-typing"; d.innerHTML="<span></span><span></span><span></span>"; body.appendChild(d); return d; }
+      async function play(){
+        running=true; var idx=0; if(!order.length) shuffle();
+        while(running){
+          var convo=CONVOS[order[idx]]; body.innerHTML="";
+          for(var m=0;m<convo.length && running;m++){
+            var who=convo[m][0], text=convo[m][1];
+            if(who==="bot"){ var t=typing(); await wait(650+Math.min(text.length*14,900)); if(!running)return; t.remove(); }
+            else { await wait(m===0?200:500); if(!running)return; }
+            add(who==="user"?"alsc-user":"alsc-bot", text);
+            await wait(who==="bot"?1300:700); if(!running)return;
+          }
+          await wait(1600); if(!running)return;
+          idx=(idx+1)%order.length; if(idx===0) shuffle();
+        }
+      }
+      function start(){ if(running)return; running=true; play(); }
+      function stop(){ running=false; clearTimers(); }
+      if("IntersectionObserver" in window){
+        new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting && !document.hidden ? start() : stop(); }); },{threshold:.25}).observe(host);
+      } else { start(); }
+      document.addEventListener("visibilitychange", function(){ document.hidden ? stop() : start(); });
+    })();
+    </script>
+  </section>
+
+  <section class="stats reveal">
+    <div class="stat-cell reveal" data-delay="1">
+      <div class="stat-num" style="background:linear-gradient(135deg,#60a5fa,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">
+        &lt;&nbsp;<span class="counter" data-target="2">0</span>&nbsp;min
+      </div>
+      <div class="stat-label">Průměrná doba odpovědi AI</div>
+    </div>
+    <div class="stat-cell reveal" data-delay="2">
+      <div class="stat-num" style="background:linear-gradient(135deg,#4ade80,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">24/7</div>
+      <div class="stat-label">Dostupnost bez přestávky</div>
+    </div>
+    <div class="stat-cell reveal" data-delay="3">
+      <div class="stat-num" style="background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2–3h</div>
+      <div class="stat-label">Ušetřeno denně na komunikaci se zákazníky</div>
+    </div>
+  </section>
+
+  <section class="feature-section reveal" id="features">
+    <div>
+      <span class="feature-tag tag-blue">E-mailové odpovědi</span>
+      <h2 class="feature-title">Vaše schránka,<br><span style="background:linear-gradient(135deg,#60a5fa,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">řízená AI</span></h2>
+      <p class="feature-desc">Zákazník napíše e-mail — AI ho přečte, pochopí kontext a odpoví za vás do 2 minut. Formálně, přesně, v češtině. Vy dostanete kopii a máte přehled.</p>
+      <ul class="feature-bullets bullet-blue">
+        <li>Automatické zpracování e-mailů od zákazníků</li>
+        <li>Personalizované odpovědi ve vašem tónu</li>
+        <li>Funguje přes Gmail, Seznam i firemní mail</li>
+        <li>Plná čeština bez překladů a chyb</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+        <span style="font-size:0.85rem;font-weight:700;">Doručená pošta</span>
+        <span class="ai-badge">3 nové</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem">
+        <div style="padding:0.85rem;background:var(--blue-s);border:1px solid rgba(59,130,246,0.25);border-radius:12px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+            <span style="font-size:0.82rem;font-weight:700;">Kateřina Horáčková</span>
+            <span style="font-size:0.72rem;color:var(--t3)">09:14</span>
+          </div>
+          <div style="font-size:0.78rem;color:#93c5fd">Máte volný termín tento týden?</div>
+          <div style="margin-top:0.75rem;display:flex;gap:0.5rem">
+            <button onclick="showReplyDemo(this)" style="padding:0.3rem 0.7rem;border-radius:7px;font-size:0.72rem;font-weight:700;border:none;background:linear-gradient(180deg,#4e8ff7,#2563eb);color:#fff;cursor:pointer">◆ AI odpověď</button>
+            <button style="padding:0.3rem 0.7rem;border-radius:7px;font-size:0.72rem;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--t2);cursor:pointer">Zobrazit</button>
+          </div>
+        </div>
+        <div id="miniReplyBox" style="display:none;padding:0.85rem;background:var(--green-s);border:1px solid rgba(34,197,94,0.25);border-radius:12px;font-size:0.8rem;line-height:1.6;animation:fadeUp 0.4s ease">
+          <div style="font-size:0.7rem;font-weight:700;color:#86efac;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem">AI Návrh</div>
+          Dobrý den, Kateřino,<br>děkuji za zájem! Ve středu od 10:00 a ve čtvrtek od 14:00 mám volno — hodí se vám některý z termínů?<br><br>S pozdravem
+        </div>
+        <div style="padding:0.85rem;background:var(--surface-h);border:1px solid var(--border);border-radius:12px;opacity:0.7">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem">
+            <span style="font-size:0.82rem;font-weight:700;">Marek Škoda</span>
+            <span style="font-size:0.72rem;color:var(--t3)">08:52</span>
+          </div>
+          <div style="font-size:0.78rem;color:var(--t2)">Potvrzení rezervace — pátek 15:00 ✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section reverse reveal">
+    <div>
+      <span class="feature-tag tag-green">Rezervace & Připomínky</span>
+      <h2 class="feature-title">Rezervace bez<br><span style="background:linear-gradient(135deg,#4ade80,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">telefonování</span></h2>
+      <p class="feature-desc">Zákazník napíše přes WhatsApp nebo váš web — AI zarezervuje termín, potvrdí ho a v den návštěvy pošle připomínku. Vy se probouzíte s plným diářem.</p>
+      <ul class="feature-bullets bullet-green">
+        <li>Online rezervace 24 hodin denně, 7 dní v týdnu</li>
+        <li>Automatické potvrzení a připomínky zákazníkům</li>
+        <li>FAQ bot — ceny, dostupnost, postup — bez vašeho zásahu</li>
+        <li>WhatsApp nebo chat na vašem webu</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <div style="display:flex;flex-direction:column;gap:0.75rem">
+        <div class="mock-bubble bot" style="max-width:100%">Dobrý den! Jsem AI asistent. Jak vám mohu pomoct?</div>
+        <div class="mock-bubble user" style="align-self:flex-end;max-width:75%">Máte volno v pátek odpoledne?</div>
+        <div class="mock-bubble bot" style="max-width:90%">
+          V pátek mám volné tyto termíny:<br>
+          • <strong>14:00</strong><br>
+          • <strong>15:30</strong><br>
+          • <strong>16:45</strong><br>
+          Který vám vyhovuje?
+        </div>
+        <div class="mock-bubble user" style="align-self:flex-end;max-width:75%">14:00 prosím</div>
+        <div class="mock-bubble bot" style="max-width:90%">✓ Rezervováno! Pátek 14:00 potvrzeno. Připomínku vám pošlu ve čtvrtek večer.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section reveal">
+    <div>
+      <span class="feature-tag tag-purple">Zpětná vazba & Opakované rezervace</span>
+      <h2 class="feature-title">Klienti se<br><span style="background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">vrací sami</span></h2>
+      <p class="feature-desc">Po každém dokončeném termínu AI automaticky kontaktuje klienta — poděkuje, zeptá se na spokojenost a nabídne rezervaci dalšího termínu. Vy se nemusíte o nic starat.</p>
+      <ul class="feature-bullets bullet-purple">
+        <li>Automatická zpráva po každé návštěvě</li>
+        <li>Nabídka opakované rezervace ve správný čas</li>
+        <li>Sběr zpětné vazby bez ručního dotazování</li>
+        <li>Funguje přes WhatsApp nebo e-mail</li>
+      </ul>
+    </div>
+    <div class="feat-card">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding:0.85rem;background:var(--purple-s);border:1px solid rgba(168,85,247,0.25);border-radius:12px;">
+        <span style="font-size:1.4rem">🔁</span>
+        <div>
+          <div style="font-size:0.82rem;font-weight:700;">ALSflow AI</div>
+          <div style="font-size:0.74rem;color:var(--t2)">Zpětná vazba · právě teď</div>
+        </div>
+        <span class="ai-badge" style="background:var(--purple-s);color:#d8b4fe;border-color:rgba(168,85,247,0.25);margin-left:auto">⚡ AI</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.55rem">
+        <div style="align-self:flex-start;max-width:80%;padding:0.65rem 0.9rem;background:var(--surface-h);border:1px solid var(--border-h);border-radius:12px 12px 12px 4px;font-size:0.8rem;line-height:1.5;color:var(--t1)">
+          Dobrý den, Kateřino! Jak jste byla spokojená s dnešní návštěvou?
+        </div>
+        <div style="align-self:flex-end;max-width:80%;padding:0.65rem 0.9rem;background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(124,58,237,0.15));border:1px solid rgba(168,85,247,0.3);border-radius:12px 12px 4px 12px;font-size:0.8rem;color:#d8b4fe">
+          ⭐⭐⭐⭐⭐ &nbsp;Výborně, děkuji!
+        </div>
+        <div style="align-self:flex-start;max-width:90%;padding:0.65rem 0.9rem;background:var(--surface-h);border:1px solid var(--border-h);border-radius:12px 12px 12px 4px;font-size:0.8rem;line-height:1.5;color:var(--t1)">
+          Skvělé! Příští termín obvykle rezervujete za 6 týdnů — chcete rovnou zarezervovat?
+        </div>
+        <div style="align-self:flex-end;max-width:80%;padding:0.65rem 0.9rem;background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(124,58,237,0.15));border:1px solid rgba(168,85,247,0.3);border-radius:12px 12px 4px 12px;font-size:0.8rem;color:#d8b4fe">
+          Ano, prosím.
+        </div>
+        <div style="align-self:flex-start;max-width:90%;padding:0.65rem 0.9rem;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);border-radius:12px 12px 12px 4px;font-size:0.8rem;color:#86efac;font-weight:600">
+          ✓ Rezervováno! Úterý 17. 6. v 10:00. Těšíme se na vás.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="built-for reveal" id="personas">
+    <div class="built-for-title">
+      VYTVOŘENO PRO <span style="display:inline-block;width:0.75em;height:0.75em;background:linear-gradient(135deg,#3b82f6,#a855f7);border-radius:0.15em;vertical-align:-0.05em;margin:0 0.05em"></span> ŽIVNOSTNÍKY
+    </div>
+    <p style="color:var(--t2);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.7">Jste u zákazníka. Zákazník píše. AI vyřídí zbytek — bez vašeho zásahu.</p>
+    <div class="built-for-cards">
+      <div class="persona-card reveal" data-delay="1">
+        <div class="persona-icon">🏃</div>
+        <div class="persona-title">Fyzioterapeuti</div>
+        <div class="persona-desc">Méně telefonátů, méně e-mailů — vy se věnujte klientům na lehátku, AI vyřídí zbytek.</div>
+      </div>
+      <div class="persona-card reveal" data-delay="2">
+        <div class="persona-icon">✂️</div>
+        <div class="persona-title">Kadeřníci & salony</div>
+        <div class="persona-desc">Konec zmeškané rezervace. AI přijme objednávku i v sobotu večer, když jste u zákazníka.</div>
+      </div>
+      <div class="persona-card reveal" data-delay="3">
+        <div class="persona-icon">🐾</div>
+        <div class="persona-title">Veterináři</div>
+        <div class="persona-desc">Zákazníci se ptají a rezervují 24/7 — bez vyrušování ordinace nebo noční služby na telefonu.</div>
+      </div>
+      <div class="persona-card reveal" data-delay="4">
+        <div class="persona-icon">🦷</div>
+        <div class="persona-title">Zubní ordinace</div>
+        <div class="persona-desc">AI odpovídá na dotazy, potvrzuje termíny a posílá připomínky. Vaše recepce nikdy nespí.</div>
+      </div>
+    </div>
+    <p style="margin-top:2rem;color:var(--t2);font-size:0.95rem;text-align:center">„A jakýkoliv jiný živnostník, který nechce ztrácet zákazníky kvůli nestíhání."</p>
+  </section>
+
+  <section class="pricing reveal" id="pricing">
+    <div class="section-label">Ceny</div>
+    <h2 class="section-title">Transparentní ceník</h2>
+    <p class="section-sub">Žádné skryté poplatky. Platíte měsíčně, bez závazků. Zrušení kdykoli.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal" style="transition-delay:0s">
+        <div class="pricing-icon">✉️</div>
+        <div class="pricing-name">E-mailové odpovědi</div>
+        <div class="pricing-desc">AI odpovídá na e-maily od zákazníků místo vás.</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,#60a5fa,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2 500 Kč</div>
+        <div class="pricing-period">za měsíc · zahrnuje 1 500 e-mailů</div>
+        <ul class="pricing-features">
+          <li>Automatické odpovědi v češtině</li>
+          <li>Funguje přes Gmail nebo váš mail</li>
+          <li>Váš tón, vaše podpisy</li>
+          <li>Měsíční report aktivit</li>
+          <li>Podpora na WhatsApp</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-ghost" onclick="openModal('email')">Chci E-mailové odpovědi →</button>
+      </div>
+      
+      <div class="pricing-card featured reveal" style="transition-delay:0.1s">
+        <div class="pricing-badge">Nejoblíbenější</div>
+        <div class="pricing-icon">📅</div>
+        <div class="pricing-name">Rezervace & Připomínky</div>
+        <div class="pricing-desc">Rezervace, připomínky a FAQ bot — vše najednou.</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,#4ade80,#16a34a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">4 500 Kč</div>
+        <div class="pricing-period">za měsíc · zahrnuje 750 rezervací</div>
+        <ul class="pricing-features">
+          <li>Rezervace přes WhatsApp nebo váš web</li>
+          <li>Automatické potvrzení termínů</li>
+          <li>Připomínky zákazníkům den předem</li>
+          <li>FAQ bot — ceny, dostupnost, postup</li>
+          <li>Provoz 24 hodin, 7 dní v týdnu</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-primary" onclick="openModal('recepce')">Chci Rezervace & Připomínky →</button>
+      </div>
+      
+      <div class="pricing-card reveal" style="transition-delay:0.2s">
+        <div class="pricing-icon">🔁</div>
+        <div class="pricing-name">Zpětná vazba & Opakované rezervace</div>
+        <div class="pricing-desc">Klienti se vrací sami — AI se postará o zpětnou vazbu i další termín.</div>
+        <div class="pricing-price" style="background:linear-gradient(135deg,#c084fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent">2 500 Kč</div>
+        <div class="pricing-period">za měsíc · neomezený počet zpráv</div>
+        <ul class="pricing-features">
+          <li>Automatická zpráva po každé návštěvě</li>
+          <li>Nabídka opakované rezervace ve správný čas</li>
+          <li>Sběr zpětné vazby bez ručního dotazování</li>
+          <li>Funguje přes WhatsApp nebo e-mail</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-ghost" onclick="openModal('feedback')">Chci Zpětnou vazbu →</button>
+      </div>
+    </div>
+    
+    <div class="pricing-bundle reveal">
+      <div class="pricing-bundle-left">
+        <div class="pricing-bundle-title">Bundle — všechny tři služby dohromady</div>
+        <div class="pricing-bundle-desc">E-mailové odpovědi + Rezervace & Připomínky + Zpětná vazba · Vše co potřebujete pro plný diář</div>
+      </div>
+      <div class="pricing-bundle-price">~7 500 Kč / měsíc</div>
+      <button class="pricing-cta pricing-cta-primary" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('bundle')">Chci celý bundle →</button>
+    </div>
+    <div class="pricing-setup-note">Jednorázové nastavení: <strong>8 000 – 10 000 Kč</strong> · Hotovo do 3 pracovních dnů · Žádná smlouva na dobu neurčitou</div>
+
+    <div class="pricing-custom reveal">
+      <div class="pricing-bundle-left">
+        <div class="pricing-custom-badge">✦ Na míru · nejvyšší hodnota</div>
+        <div class="pricing-bundle-title">Váš byznys se nevejde do balíčku? Postavíme řešení na míru.</div>
+        <div class="pricing-bundle-desc">Custom projekty zvládnou mnohem víc než základní bot — napojení na váš systém, vlastní procesy, více kanálů (web, WhatsApp, e-mail, telefon), integrace a AI přesně pro vás. Od jednoho chytrého automatu po kompletní digitální recepci, která roste s vámi.</div>
+      </div>
+      <button class="pricing-cta pricing-cta-primary" style="white-space:nowrap;padding:0.85rem 1.6rem" onclick="openModal('custom')">Chci nabídku na míru →</button>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how">
+    <div class="section-label">Postup</div>
+    <h2 class="section-title reveal">My nastavíme, AI pracuje</h2>
+    <p class="section-sub reveal">Tři kroky od prvního hovoru po plně automatizovaný provoz.</p>
+    <div class="steps">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon" style="background:var(--blue-s);border:1px solid rgba(59,130,246,0.3)">📞</div>
+        <div class="step-title">Zavoláte nebo napíšete</div>
+        <div class="step-desc">Řeknete nám, jak funguje váš byznys a co vám bere nejvíc času. Žádné technické znalosti nepotřebujete — stačí 15 minut.</div>
+      </div>
+      <div class="step-card reveal" style="transition-delay:0.12s">
+        <div class="step-num">02</div>
+        <div class="step-icon" style="background:var(--green-s);border:1px solid rgba(34,197,94,0.3)">⚙️</div>
+        <div class="step-title">My nastavíme vše za vás</div>
+        <div class="step-desc">Do 3 pracovních dnů nastavíme, napojíme a otestujeme celý systém. Vy nedotknete jediného tlačítka navíc.</div>
+      </div>
+      <div class="step-card reveal" style="transition-delay:0.24s">
+        <div class="step-num">03</div>
+        <div class="step-icon" style="background:var(--purple-s);border:1px solid rgba(168,85,247,0.3)">▶</div>
+        <div class="step-title">AI pracuje za vás 24/7</div>
+        <div class="step-desc">Váš asistent je aktivní od první minuty. Každý měsíc dostanete report — co AI vyřídila a kolik času vám ušetřila.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features reveal" id="o-nas" style="padding-top:5rem;padding-bottom:5rem">
+    <div class="section-label">Kdo jsme</div>
+    <h2 class="section-title reveal">Zakladatel, ne agentura</h2>
+    <p class="section-sub reveal">ALSflow je projekt jednoho člověka, který věří, že malé firmy si zaslouží stejné nástroje jako velké korporace — bez složitosti a bez IT oddělení.</p>
+    <div style="display:flex;justify-content:center;margin-top:2.5rem">
+      <div class="feature-card reveal" style="max-width:520px;text-align:left;display:flex;gap:1.2rem;align-items:flex-start">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-s);border:1px solid rgba(59,130,246,0.3);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">👤</div>
+        <div>
+          <div style="font-weight:700;font-size:1rem;color:var(--t1);margin-bottom:0.3rem">Jakub, zakladatel ALSflow</div>
+          <p style="color:var(--t2);font-size:0.9rem;line-height:1.6">"Sám jsem viděl, jak majitelé malých praxí tráví hodiny denně odpovídáním na stejné zprávy. ALSflow to řeší jednou provždy — nastavím vám to osobně a jsem dostupný, když něco potřebujete."</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal" style="margin-top:4rem;display:none">Co říkají klienti</h2>
+    <div class="features-grid" style="margin-top:2rem;display:none">
+      <div class="feature-card reveal" style="text-align:left">
+        <div style="font-size:1.3rem;margin-bottom:0.8rem;color:var(--amber)">★★★★★</div>
+        <p style="color:var(--t1);font-size:0.92rem;line-height:1.65;margin-bottom:1rem">"Za první týden AI vyřídila přes 40 dotazů na rezervace, aniž bych musela sáhnout na telefon. Zákazníci ani nepoznají rozdíl."</p>
+        <div style="font-weight:600;font-size:0.85rem;color:var(--t2)">Kadeřnický salon, Praha</div>
+      </div>
+      <div class="feature-card reveal" style="text-align:left;transition-delay:0.1s">
+        <div style="font-size:1.3rem;margin-bottom:0.8rem;color:var(--amber)">★★★★★</div>
+        <p style="color:var(--t1);font-size:0.92rem;line-height:1.65;margin-bottom:1rem">"Pacienti dostávají připomínky automaticky a počet nenastoupených termínů klesl o polovinu. Nastavení trvalo tři dny."</p>
+        <div style="font-weight:600;font-size:0.85rem;color:var(--t2)">Fyzioterapeutická ordinace, Brno</div>
+      </div>
+      <div class="feature-card reveal" style="text-align:left;transition-delay:0.2s">
+        <div style="font-size:1.3rem;margin-bottom:0.8rem;color:var(--amber)">★★★★★</div>
+        <p style="color:var(--t1);font-size:0.92rem;line-height:1.65;margin-bottom:1rem">"Konečně se věnuji zvířatům místo e-mailům. Jakub vše nastavil, vysvětlil a je k zastižení, když potřebuji pomoct."</p>
+        <div style="font-weight:600;font-size:0.85rem;color:var(--t2)">Veterinární ordinace, Ostrava</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section reveal" id="demo">
+    <div class="section-label">Interaktivní ukázka</div>
+    <h2 class="section-title">Vyzkoušejte sami</h2>
+    <p class="section-sub">Proklikejte se a zjistěte, jak ALSflow funguje v praxi.</p>
+    <p class="demo-try-hint">Proklikejte si <strong>ukázku</strong> — odpovědi jsou předpřipravené. Chcete si popovídat se <strong>skutečným botem</strong>? <a onclick="toggleChat()" style="color:var(--blue);cursor:pointer;font-weight:600">Otevřít chat →</a></p>
+    <div class="demo-wrapper">
+      <div class="demo-topbar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="demo-tabs">
+          <button class="demo-tab active" onclick="switchDemo('email', this)">✉ E-mailové odpovědi</button>
+          <button class="demo-tab" id="calTabBtn" onclick="switchDemo('cal', this)">📅 Rezervace & Připomínky</button>
+          <button class="demo-tab" onclick="switchDemo('feedback', this)">🔁 Zpětná vazba</button>
+        </div>
+      </div>
+      
+      <div class="demo-pane active" id="pane-email">
+        <div id="demo-emails">
+          <div class="demo-email-row" onclick="selectEmail(this, 0)">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">KH</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Kateřina Horáčková</div>
+              <div class="demo-subj">Máte volný termín tento týden?</div>
+            </div>
+            <div class="demo-actions">
+              <button class="demo-btn demo-btn-primary" onclick="generateReply(event, 0)">◆ AI odpověď</button>
+            </div>
+          </div>
+          <div class="demo-email-row" onclick="selectEmail(this, 1)">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#22c55e,#15803d)">MS</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Marek Škoda</div>
+              <div class="demo-subj">Kolik stojí první návštěva?</div>
+            </div>
+            <div class="demo-actions">
+              <button class="demo-btn demo-btn-primary" onclick="generateReply(event, 1)">◆ AI odpověď</button>
+            </div>
+          </div>
+          <div class="demo-email-row" onclick="selectEmail(this, 2)">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">LP</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Lenka Procházková</div>
+              <div class="demo-subj">Potřebuji přesunout termín z pátku</div>
+            </div>
+            <div class="demo-actions">
+              <button class="demo-btn demo-btn-primary" onclick="generateReply(event, 2)">◆ AI odpověď</button>
+            </div>
+          </div>
+        </div>
+        <div id="aiReplyArea" class="ai-reply-box">
+          <div class="ai-label">◆ AI Návrh</div>
+          <div id="aiReplyText"></div>
+          <div style="display:flex;gap:0.75rem;margin-top:1.1rem">
+            <button class="demo-btn demo-btn-primary" onclick="showSent()">Odeslat ✓</button>
+            <button class="demo-btn demo-btn-ghost" onclick="document.getElementById('aiReplyArea').classList.remove('show')">Zavřít</button>
+          </div>
+        </div>
+        <div id="sentMsg" style="display:none;margin-top:1rem;padding:0.75rem 1rem;background:var(--green-s);border:1px solid rgba(34,197,94,0.3);border-radius:10px;font-size:0.82rem;color:#86efac;animation:fadeUp 0.4s ease">
+          ✓ E-mail byl úspěšně odeslán!
+        </div>
+      </div>
+      
+      <div class="demo-pane" id="pane-cal">
+        <div class="demo-chips">
+          <button class="demo-chip" onclick="sendDemo('Kdy máte volno tento týden?')">Volné termíny</button>
+          <button class="demo-chip" onclick="sendDemo('Zarezervuj mi pátek 14:00')">Rezervace</button>
+          <button class="demo-chip" onclick="sendDemo('Kolik stojí ošetření?')">Ceník</button>
+          <button class="demo-chip" onclick="sendDemo('Chci zrušit termín ve čtvrtek')">Zrušení termínu</button>
+          <button class="demo-chip" onclick="sendDemo('Kde vás najdu?')">Adresa a info</button>
+        </div>
+        <div class="demo-chat-wrap" id="demoChatWrap">
+          <div class="demo-bubble bot">Dobrý den! Jsem AI asistent. Klikněte na návrh nebo napište svůj dotaz.</div>
+        </div>
+        <div class="demo-input-row">
+          <input class="demo-input" id="calInput" placeholder="Napište dotaz zákazníka…" onkeydown="if(event.key==='Enter')sendDemo()" />
+          <button class="demo-send" onclick="sendDemo()">Odeslat →</button>
+        </div>
+        <div style="text-align:center;margin-top:1rem"><button class="demo-btn demo-btn-ghost" onclick="toggleChat()">💬 Tohle je ukázka — vyzkoušet skutečného bota →</button></div>
+      </div>
+      
+      <div class="demo-pane" id="pane-feedback">
+        <div id="demo-feedback-list">
+          <div class="demo-email-row">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">KH</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Kateřina Horáčková</div>
+              <div class="demo-subj">Jak jste byla spokojená s dnešní návštěvou?</div>
+            </div>
+            <div class="demo-actions">
+              <span class="ai-badge">◆ AI zpráva</span>
+            </div>
+          </div>
+          <div class="demo-email-row">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#22c55e,#15803d)">MS</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Marek Škoda</div>
+              <div class="demo-subj">Chcete zarezervovat příští termín?</div>
+            </div>
+            <div class="demo-actions">
+              <span class="ai-badge">◆ AI zpráva</span>
+            </div>
+          </div>
+          <div class="demo-email-row">
+            <div class="demo-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">LP</div>
+            <div class="demo-email-body">
+              <div class="demo-from">Lenka Procházková</div>
+              <div class="demo-subj">Děkujeme za hodnocení! Rezervujeme znovu?</div>
+            </div>
+            <div class="demo-actions">
+              <span class="ai-badge">◆ AI zpráva</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem 1rem;background:var(--green-s);border:1px solid rgba(34,197,94,0.3);border-radius:10px;font-size:0.82rem;color:#86efac">
+          ✓ AI automaticky kontaktuje klienty po každé návštěvě — bez vašeho zásahu.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="get-started reveal">
+    <h2 class="get-started-title">ZAČNĚTE<br>S <span style="background:linear-gradient(135deg,#60a5fa,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">ALSFLOW</span></h2>
+    <p class="get-started-sub">Nastavení do 3 pracovních dnů. Vybíráme klienty ručně — volná kapacita je omezená.</p>
+    <div class="get-started-actions">
+      <button class="btn-lg btn-primary-lg" onclick="openModal('demo')">Chci svoji nabídku →</button>
+      <button class="btn-lg btn-ghost-lg" onclick="alsScrollTo('#pricing')">Zobrazit ceny →</button>
+    </div>
+  </section>
+
+  <section class="trusted reveal">
+    <div class="trusted-label">Postaveno na technologiích, kterým důvěřují největší firmy</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <a class="trust-logo" href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n</a>
+        <a class="trust-logo" href="https://workspace.google.com" target="_blank" rel="noopener noreferrer">Google Workspace</a>
+        <a class="trust-logo" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI</a>
+        <a class="trust-logo" href="https://business.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+        <a class="trust-logo" href="https://railway.app" target="_blank" rel="noopener noreferrer">Railway</a>
+        <a class="trust-logo" href="https://developers.google.com/gmail/api" target="_blank" rel="noopener noreferrer">Gmail API</a>
+        <a class="trust-logo" href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+        <a class="trust-logo" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">Gemini AI</a>
+        <a class="trust-logo" href="https://n8n.io" target="_blank" rel="noopener noreferrer">n8n</a>
+        <a class="trust-logo" href="https://workspace.google.com" target="_blank" rel="noopener noreferrer">Google Workspace</a>
+        <a class="trust-logo" href="https://openai.com" target="_blank" rel="noopener noreferrer">OpenAI</a>
+        <a class="trust-logo" href="https://business.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+        <a class="trust-logo" href="https://railway.app" target="_blank" rel="noopener noreferrer">Railway</a>
+        <a class="trust-logo" href="https://developers.google.com/gmail/api" target="_blank" rel="noopener noreferrer">Gmail API</a>
+        <a class="trust-logo" href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+        <a class="trust-logo" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">Gemini AI</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">ALS<span>flow</span></span>
+    <div class="footer-links">
+      <a href="#features">Funkce</a>
+      <a href="#pricing">Ceny</a>
+      <a href="mailto:info@alsflow.cz">Kontakt</a>
+      <a href="/e-mailove-odpovedi">E-mailové odpovědi</a>
+      <a href="/rezervace-pripominky">Rezervace &amp; Připomínky</a>
+      <a href="/ai-asistent-pro-kadernictvi">Pro kadeřnictví</a>
+      <a href="/ai-asistent-pro-fyzioterapeuty">Pro fyzioterapeuty</a>
+      <a href="/cenik">Ceník</a>
+      <a href="/o-nas">O nás</a>
+      <a href="ochrana_dat.html">Ochrana dat</a>
+    </div>
+    <span class="footer-copy">© 2026 ALSflow · Retail Shops s.r.o. · Dolnoměcholupská 522/12a, 102 00 Praha 10 · IČO: 02512556 · DIČ: CZ02512556 · Všechna práva vyhrazena.</span>
+  </footer>
+
+  <div class="modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalHeadline" data-lenis-prevent>
+      <button class="modal-close" onclick="closeModal()" aria-label="Zavřít">✕</button>
+      <div class="modal-form-inner" id="modalFormInner">
+        <div class="modal-logo">ALS<span>flow</span></div>
+        <h2 class="modal-headline" id="modalHeadline">Připravíme vám nabídku</h2>
+        <p class="modal-sub">Vyplňte pár údajů — ozveme se do 24 hodin s nabídkou šitou přímo pro váš byznys.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="f-name">Jméno a příjmení<span class="req">*</span></label>
+              <input class="form-input" id="f-name" name="name" type="text" placeholder="Jan Novák" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-phone">Telefon</label>
+              <input class="form-input" id="f-phone" name="phone" type="tel" placeholder="+420 777 123 456" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-email">E-mail<span class="req">*</span></label>
+              <input class="form-input" id="f-email" name="email" type="email" placeholder="jan@vasefirma.cz" required />
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="f-city">Město<span class="req">*</span></label>
+              <input class="form-input" id="f-city" name="city" type="text" placeholder="Praha" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-urgency">Kdy chcete začít?<span class="req">*</span></label>
+              <select class="form-select" id="f-urgency" name="urgency" required>
+                <option value="" disabled selected>Vyberte…</option>
+                <option value="asap">Co nejdřív (tento týden)</option>
+                <option value="this_month">Tento měsíc</option>
+                <option value="exploring">Jen se rozhlížím</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="f-biz">Typ podnikání<span class="req">*</span></label>
+              <select class="form-select" id="f-biz" name="business_type" required>
+                <option value="" disabled selected>Vyberte…</option>
+                <option value="salon">Kadeřnictví / salon krásy</option>
+                <option value="vet">Veterinář</option>
+                <option value="dental">Zubní ordinace / lékař</option>
+                <option value="physio">Fyzioterapeut / wellness</option>
+                <option value="freelancer">Freelancer / OSVČ (jiný obor)</option>
+                <option value="small_firm">Malá firma (2–10 lidí)</option>
+                <option value="other">Jiné</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-size">Velikost týmu<span class="req">*</span></label>
+              <select class="form-select" id="f-size" name="team_size" required>
+                <option value="" disabled selected>Vyberte…</option>
+                <option value="solo">Jen já (OSVČ)</option>
+                <option value="2-5">2–5 lidí</option>
+                <option value="6-10">6–10 lidí</option>
+                <option value="10+">10+ lidí</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="f-service">Zájem o službu<span class="req">*</span></label>
+              <select class="form-select" id="f-service" name="service" required>
+                <option value="" disabled selected>Vyberte…</option>
+                <option value="email_bot">E-mailové odpovědi (2 500 Kč/měs)</option>
+                <option value="recepce">Rezervace & Připomínky (4 500 Kč/měs)</option>
+                <option value="feedback">Zpětná vazba & Opakované rezervace (2 500 Kč/měs)</option>
+                <option value="bundle">Bundle — vše (~7 500 Kč/měs)</option>
+                <option value="custom">Bot na míru (cena dle rozsahu)</option>
+                <option value="unsure">Ještě nevím, chci poradit</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-pain">Největší problém<span class="req">*</span></label>
+              <select class="form-select" id="f-pain" name="pain_point" required>
+                <option value="" disabled selected>Vyberte…</option>
+                <option value="bookings">Zmeškané rezervace / pozdní odpovědi</option>
+                <option value="emails">Přehlcení e-maily od zákazníků</option>
+                <option value="docs">Ruční přepisování faktur / dokumentů</option>
+                <option value="combo">Kombinace více problémů</option>
+                <option value="retention">Klienti se nevenují / chybí opakované rezervace</option>
+                <option value="other">Jiné</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-pref">Preferovaný čas kontaktu <span style="color:var(--t3);font-weight:500">(volitelné)</span></label>
+              <select class="form-select" id="f-pref" name="pref_time">
+                <option value="kdykoliv" selected>Kdykoliv</option>
+                <option value="rano">Ráno (9–11)</option>
+                <option value="poledne">Poledne (11–13)</option>
+                <option value="odpoledne">Odpoledne (13–17)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-msg">Zpráva <span style="color:var(--t3);font-weight:500">(volitelné)</span></label>
+              <textarea class="form-textarea" id="f-msg" name="message" placeholder="Popište svůj byznys nebo co vás trápí nejvíc…"></textarea>
+            </div>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="f-gdpr" name="gdpr" required />
+            <label class="form-check-label" for="f-gdpr">
+              Souhlasím se zpracováním osobních údajů dle <a href="ochrana_dat.html" target="_blank">Ochrany dat</a>. Údaje použijeme výhradně pro přípravu vaší nabídky.
+            </label>
+          </div>
+          <!-- honeypot: real users never see or fill this -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+          <!-- Cloudflare Turnstile — anti-spam; token verified server-side in /api/contact -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:1.25rem 0 0.25rem;display:flex;justify-content:center"></div>
+          <button type="submit" class="modal-submit" id="modalSubmit">Odeslat a čekat na nabídku →</button>
+        </form>
+      </div>
+      <div class="modal-success" id="modalSuccess">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Skvělé! Ozveme se vám.</div>
+        <p class="success-sub">Váš dotaz byl odeslán na info@alsflow.cz. Připravíme vám nabídku na míru a ozveme se do <strong>24 hodin</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline src="/js/home.js"></script>
+
+  <!-- Smooth (inertia) scroll — same Lenis config as weloveevents.cz. Self-hosted so it passes the
+       site's CSP (script-src 'self'). Loads in order, so Lenis is defined when the init runs below. -->
+  <script is:inline src="/lenis.min.js"></script>
+  <script is:inline>
+    (function(){
+      "use strict";
+      // alsScrollTo(target): used by hero/CTA buttons so programmatic jumps go through Lenis
+      // (avoids fighting the native smooth-scroll once Lenis owns wheel/touch). Falls back to native.
+      window.alsScrollTo = function(target){
+        var el = typeof target === "string" ? document.querySelector(target) : target;
+        if(!el) return;
+        if(window.__lenis){ window.__lenis.scrollTo(el, { offset: 0, duration: 1.2 }); }
+        else { el.scrollIntoView({ behavior: "smooth" }); }
+      };
+      if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // keep native scroll
+      if(typeof Lenis === "undefined") return; // script failed to load -> silently keep native scroll
+      var lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+      window.__lenis = lenis;
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    })();
+  </script>
+
+  <!-- Chat Widget -->
+  <button class="chat-bubble" id="chatBubble" onclick="toggleChat()" aria-label="Otevřít chat s Klárou">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2z"/></svg>
+    <span class="chat-bubble-badge" id="chatBadge" aria-hidden="true">✦</span>
+  </button>
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat s Klárou z ALSflow" aria-hidden="true">
+    <div class="chat-header">
+      <div class="chat-avatar">K</div>
+      <div class="chat-header-info">
+        <div class="chat-name">Klára z ALSflow</div>
+        <div class="chat-status"><span class="chat-online-dot"></span>Online · AI asistentka</div>
+      </div>
+      <div class="chat-counter" id="chatCounter">0/20</div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Zavřít chat">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble-msg">Dobrý den! Jsem Klára z ALSflow. Ptejte se na ceny, služby nebo jak to u nás funguje, ráda odpovím.</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Napište dotaz…" maxlength="500" autocomplete="off"
+        onkeydown="if(event.key==='Enter'&amp;&amp;!event.shiftKey)&#123;sendChatMessage();event.preventDefault()&#125;" />
+      <button class="chat-send" id="chatSend" onclick="sendChatMessage()" aria-label="Odeslat">→</button>
+    </div>
+  </div>
+<script is:inline>
+(function(){
+  if(!location.hash){return;}
+  function fix(){
+    var t=document.getElementById(location.hash.slice(1));
+    if(!t){return;}
+    if(window.__lenis){window.__lenis.scrollTo(t,{offset:-170,duration:0.9});}
+    else{t.scrollIntoView({block:'start'});}
+  }
+  window.addEventListener('load',function(){setTimeout(fix,450);});
+})();
+</script>
+</body>
+</html>
