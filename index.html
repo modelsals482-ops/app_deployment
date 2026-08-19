@@ -2329,6 +2329,30 @@
         sessionStorage.setItem('als_chat_sid', sid);
       }
       var history = []; var msgCount = 0; var sending = false; var opened = false;
+
+      /* STATIC FLOOR. The live bot is an upgrade, not a dependency. These answers are baked
+         into the page, so an outage degrades the chat to a worse answer, never to no answer.
+         Any reply from the bot overrides them. Keep in sync with prompts.js + cenik.html. */
+      var FALLBACK = [
+        { re: /cen[ay]|stoj|kolik|platb|balic|balíc|balíč/i,
+          a: 'E-mailové odpovědi stojí 2 500 Kč měsíčně, Rezervace a Připomínky 4 500 Kč měsíčně a kompletní balíček přibližně 7 500 Kč měsíčně. Jednorázové nastavení vyjde na 8 000 až 10 000 Kč.' },
+        { re: /jak dlouho|nastaven|spust|hotov|trva|trvá/i,
+          a: 'Nastavení máme hotové do 3 pracovních dnů. Nevážete se žádnou dlouhodobou smlouvou, zrušit můžete kdykoli.' },
+        { re: /co (to )?(del|děl|umi|umí)|k cemu|k čemu|jak to funguje|co nabiz/i,
+          a: 'Stavíme AI asistenty, kteří za vás odpovídají na e-maily zákazníků, domlouvají rezervace a posílají připomínky, nonstop.' },
+        { re: /kader|kadeř|fyzio|veterin|zub|obor|hodi se|hodí se|firm/i,
+          a: 'Asistenty stavíme pro kadeřnictví, fyzioterapie, veterináře, zubní ordinace a další živnostníky a malé firmy.' },
+        { re: /kontakt|mail|telefon|zavolat|schuzk|schůzk|domluv/i,
+          a: 'Napište na info@alsflow.cz nebo vyplňte formulář na této stránce. Ozveme se do 24 hodin v pracovní dny.' }
+      ];
+      function degraded(q) {
+        for (var i = 0; i < FALLBACK.length; i++) {
+          if (FALLBACK[i].re.test(q)) {
+            return FALLBACK[i].a + ' (Chat je teď dočasně omezený, proto odpovídám zjednodušeně. Pro detaily napište na info@alsflow.cz.)';
+          }
+        }
+        return 'Chat je momentálně dočasně nedostupný. Napište nám prosím na info@alsflow.cz nebo vyplňte formulář na této stránce, ozveme se do 24 hodin.';
+      }
       window.toggleChat = function() {
         opened = !opened;
         var panel = document.getElementById('chatPanel');
@@ -2371,15 +2395,15 @@
           headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
           body: JSON.stringify({ message: msg, session_id: sid, history: sendHistory, website: '' })
         })
-        .then(function(r) { return r.json(); })
+        .then(function(r) { if (!r.ok) { throw new Error('http ' + r.status); } return r.json(); })
         .then(function(data) {
           removeTyping();
-          var reply = (data && data.reply) ? String(data.reply) : 'Omlouváme se, zkuste to prosím znovu.';
+          var reply = (data && data.reply) ? String(data.reply) : degraded(msg);
           addMsg('bot', reply);
           history.push({ role: 'model', content: reply });
           if (history.length > 12) history = history.slice(-12);
         })
-        .catch(function() { removeTyping(); addMsg('bot', 'Omlouváme se, momentálně nemohu odpovědět. Napište nám na info@alsflow.cz.'); })
+        .catch(function() { removeTyping(); addMsg('bot', degraded(msg)); })
         .finally(function() {
           sending = false; if(btn) btn.disabled = (msgCount >= MAX); updateCounter();
           if (msgCount >= MAX) addMsg('bot', 'Dosáhli jste limitu zpráv. Kontaktujte nás na info@alsflow.cz nebo využijte formulář.');
