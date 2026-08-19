@@ -20,3 +20,5 @@ jobs:
 
       - name: Check inline JS syntax in HTML files
         run: node .github/scripts/check-js-syntax.js
+      - name: Check fetch() hosts are allowed by CSP connect-src
+        run: node .github/scripts/check-csp-hosts.js
