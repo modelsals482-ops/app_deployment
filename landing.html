@@ -23,6 +23,7 @@
     gtag('config', 'G-CEX6XVFWD7');
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CEX6XVFWD7"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none'; base-uri 'self';" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
@@ -611,6 +612,10 @@
             <label for="f-website">Website</label>
             <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
           </div>
+
+          <!-- Cloudflare Turnstile - anti-spam; token verified server-side in /api/contact -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:1.25rem 0 0.25rem;display:flex;justify-content:center"></div>
+
         <button type="submit" class="submit-btn" id="submitBtn">Odeslat a čekat na nabídku →</button>
         <p class="form-error" id="formError">Něco se pokazilo. Zkuste to prosím znovu nebo nás kontaktujte na <a href="mailto:info@alsflow.cz" style="color:#60a5fa">info@alsflow.cz</a>.</p>
         <p class="form-note">Ozveme se do 24 hodin. Žádný spam, žádné závazky.</p>
@@ -662,15 +667,13 @@
         pain:      document.getElementById('f-pain').value,
         pref_time: document.getElementById('f-pref').value || 'kdykoliv',
         msg:       document.getElementById('f-msg').value || '',
-        source:    'landing'
+        source:    'landing',
+        turnstileToken: (document.querySelector('[name="cf-turnstile-response"]') || {}).value || ''
       };
 
-      fetch('https://primary-production-4f62.up.railway.app/webhook/intake-form', {
+      fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': 'alsflow-intake-2026'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
       .then(function(res) {
@@ -685,6 +688,7 @@
         btn.disabled = false;
         btn.textContent = 'Odeslat a čekat na nabídku →';
         errEl.classList.add('show');
+        if (window.turnstile) window.turnstile.reset(); /* token is single-use - refresh it for the retry */
       });
     });
   </script>
