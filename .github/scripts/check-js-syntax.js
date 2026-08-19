@@ -1,6 +1,8 @@
 const fs = require('fs');
 
-const htmlFiles = ['index.html', 'ochrana_dat.html'];
+// Every page, not a hand-kept list — landing.html carried a broken form for weeks
+// while sitting outside the old two-file list.
+const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
 let hasError = false;
 
 for (const file of htmlFiles) {
