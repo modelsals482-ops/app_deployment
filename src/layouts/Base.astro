@@ -1,0 +1,89 @@
+---
+// The page shell. Everything that was copy-pasted into the <head> of 13 hand-written
+// files now lives here once: charset, viewport, SEO tags, Open Graph, fonts, GA4 and
+// the consent banner.
+//
+// Canonicals are derived from Astro.url, so a page cannot ship pointing at the wrong
+// URL. That was a real risk before: a copy-pasted page carrying the previous page's
+// <link rel="canonical"> is invisible to review and quietly de-indexes the page.
+import Analytics from '../components/Analytics.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Defaults to the page's own URL. Override only to point elsewhere deliberately. */
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  /** Set 'noindex, follow' for pages that should not be indexed (e.g. dekujeme). */
+  robots?: string;
+  /** Loads the Cloudflare Turnstile script. Only pages with a form need it. */
+  turnstile?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://alsflow.cz/og-image.png',
+  robots = 'index, follow',
+  turnstile = false,
+} = Astro.props;
+
+// vercel.json sets cleanUrls, so the canonical URL must be extensionless with no
+// trailing slash: /cenik, not /cenik.html and not /cenik/. build.format is 'file',
+// so Astro.url.pathname carries the .html that has to come back off here.
+//   /cenik.html -> https://alsflow.cz/cenik
+//   /index.html -> https://alsflow.cz
+const cleanPath = Astro.url.pathname
+  .replace(/index\.html$/, '')
+  .replace(/\.html$/, '')
+  .replace(/\/+$/, '');
+const canonicalUrl = canonical ?? `https://alsflow.cz${cleanPath}`;
+---
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content={robots} />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="google-site-verification" content="B2XvfFz31dM40zT5EARX698iT2YwOeXyUxhLHALLWmo" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <Analytics />
+  {turnstile && <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>}
+
+  <!-- Page-specific <head> additions: JSON-LD, extra meta. -->
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+  <CookieBanner />
+</body>
+</html>

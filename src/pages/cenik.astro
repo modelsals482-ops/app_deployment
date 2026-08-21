@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  {
+    "href": "/",
+    "label": "Úvod"
+  },
+  {
+    "href": "/e-mailove-odpovedi",
+    "label": "E-maily"
+  },
+  {
+    "href": "/rezervace-pripominky",
+    "label": "Rezervace"
+  },
+  {
+    "href": "/o-nas",
+    "label": "O nás"
+  },
+  {
+    "href": "mailto:info@alsflow.cz",
+    "label": "Kontakt"
+  },
+  {
+    "href": "/ochrana_dat",
+    "label": "Ochrana dat"
+  }
+];
+---
+
+<Base title={"Ceník AI asistenta — kolik stojí automatizace e-mailů a rezervací | ALSflow"}
+  description={"Transparentní ceník ALSflow: E-mailové odpovědi 2 500 Kč, Rezervace a připomínky 4 500 Kč, Zpětná vazba 2 500 Kč měsíčně. Bundle všech tří 7 500 Kč. Bez závazků, nastavení do 5 dnů."}
+  ogTitle={"Ceník AI asistenta — kolik to stojí | ALSflow"}
+  ogDescription={"Veřejné ceny, žádné skryté poplatky. Od 2 500 Kč měsíčně, bez závazků, nastavení do 5 dnů."}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={"{\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"FAQPage\",\n    \"mainEntity\": [\n      { \"@type\": \"Question\", \"name\": \"Kolik stojí AI asistent od ALSflow?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"E-mailové odpovědi 2 500 Kč měsíčně, Rezervace a připomínky 4 500 Kč měsíčně, Zpětná vazba a opakované rezervace 2 500 Kč měsíčně. Všechny tři služby dohromady (bundle) 7 500 Kč měsíčně. K tomu jednorázové nastavení 8 000–10 000 Kč.\" } },\n      { \"@type\": \"Question\", \"name\": \"Je v ceně DPH?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"ALSflow provozuje Retail Shops s.r.o., plátce DPH. K uvedeným cenám se připočítává DPH podle platné sazby. Přesnou částku vždy uvidíte na nabídce i faktuře.\" } },\n      { \"@type\": \"Question\", \"name\": \"Co je jednorázové nastavení a proč se platí?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Nastavení (8 000–10 000 Kč) pokrývá napojení asistenta na vaše nástroje, naučení vašeho tónu, nastavení odpovědí a otestování. Děláme to za vás a asistent jede do 5 pracovních dnů. Platí se jednou, na začátku.\" } },\n      { \"@type\": \"Question\", \"name\": \"Musím se zavázat na dobu určitou?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Ne. Platí se měsíčně, bez smlouvy na dobu určitou. Zrušit můžete kdykoli. Chceme vás držet výsledkem, ne závazkem.\" } },\n      { \"@type\": \"Question\", \"name\": \"Co když překročím počet e-mailů nebo rezervací v balíčku?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Balíčky mají férové limity (1 500 e-mailů, resp. 750 rezervací měsíčně), které pokryjí většinu malých provozů. Když je pravidelně přerůstáte, domluvíme se na vyšší variantě nebo řešení na míru. Nikdy vás nepřekvapíme skrytým doúčtováním.\" } },\n      { \"@type\": \"Question\", \"name\": \"Jak rychle to začne fungovat?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Asistent běží do 5 pracovních dnů od úvodního 15minutového hovoru. Nastavení řešíme my, vy se nedotknete jediného tlačítka.\" } },\n      { \"@type\": \"Question\", \"name\": \"Můj byznys se do balíčků nevejde. Co s tím?\", \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Postavíme řešení na míru — napojení na váš systém, vlastní procesy, více kanálů (web, WhatsApp, e-mail, telefon). Cenu určíme podle rozsahu. Napište nám a probereme to.\" } }\n    ]\n  }"} />
+  </Fragment>
+  <Header />
+
+  
+
+  <main class="wrap">
+    <div class="crumb"><a href="/">ALSflow</a> / Ceník</div>
+    <section class="hero">
+      <h1>Ceny máme <em>veřejně</em>. Žádné „cena podle potřeb".</h1>
+      <p class="lead">Platíte měsíčně, bez závazků, zrušíte kdykoli. Nastavení do 5 pracovních dnů. Tady je všechno, co za to dostanete.</p>
+    </section>
+
+    <div class="grid">
+      <div class="plan">
+        <div class="ic">✉️</div>
+        <h3>E-mailové odpovědi</h3>
+        <div class="price">2 500 Kč <small>/ měs</small></div>
+        <div class="note">AI odpovídá na e-maily od zákazníků místo vás. Zahrnuje 1 500 e-mailů. <a href="/e-mailove-odpovedi" style="color:var(--blue)">Detail →</a></div>
+      </div>
+      <div class="plan pop">
+        <div class="badge">Nejoblíbenější</div>
+        <div class="ic">📅</div>
+        <h3>Rezervace &amp; Připomínky</h3>
+        <div class="price">4 500 Kč <small>/ měs</small></div>
+        <div class="note">Rezervace, potvrzení, připomínky a FAQ bot. Zahrnuje 750 rezervací. <a href="/rezervace-pripominky" style="color:var(--blue)">Detail →</a></div>
+      </div>
+      <div class="plan">
+        <div class="ic">🔁</div>
+        <h3>Zpětná vazba &amp; Opakované rezervace</h3>
+        <div class="price">2 500 Kč <small>/ měs</small></div>
+        <div class="note">Zpráva po návštěvě, sběr zpětné vazby a nabídka dalšího termínu. Neomezený počet zpráv.</div>
+      </div>
+    </div>
+
+    <div class="bundle">
+      <div>
+        <h3 style="margin:0 0 0.2rem">🎯 Bundle — všechny tři dohromady</h3>
+        <div class="note" style="color:var(--t2);font-size:0.88rem">E-mailové odpovědi + Rezervace &amp; Připomínky + Zpětná vazba. Ušetříte 2 000 Kč měsíčně.</div>
+      </div>
+      <div class="price">7 500 Kč <small style="font-size:0.8rem;font-weight:500;color:var(--t2)">/ měs</small></div>
+    </div>
+
+    <div class="setup">Jednorázové nastavení: <strong>8 000–10 000 Kč</strong> · Hotovo do 5 pracovních dnů · K cenám se připočítává DPH.</div>
+
+    <h2 id="faq">Časté dotazy k ceně</h2>
+    <div class="faq">
+      <details open><summary>Kolik to celkem stojí?</summary><p>E-mailové odpovědi 2 500 Kč/měs, Rezervace a připomínky 4 500 Kč/měs, Zpětná vazba 2 500 Kč/měs. Všechny tři dohromady 7 500 Kč/měs. Jednorázové nastavení 8 000–10 000 Kč.</p></details>
+      <details><summary>Je v ceně DPH?</summary><p>ALSflow provozuje Retail Shops s.r.o., plátce DPH. K uvedeným cenám se připočítává DPH podle platné sazby. Přesnou částku vždy uvidíte na nabídce i faktuře.</p></details>
+      <details><summary>Co je jednorázové nastavení a proč se platí?</summary><p>Pokrývá napojení asistenta na vaše nástroje, naučení vašeho tónu, nastavení odpovědí a otestování. Děláme to za vás, asistent jede do 5 dnů. Platí se jednou, na začátku.</p></details>
+      <details><summary>Musím se zavázat na dobu určitou?</summary><p>Ne. Měsíčně, bez smlouvy na dobu určitou, zrušit kdykoli. Držíme vás výsledkem, ne závazkem.</p></details>
+      <details><summary>Co když překročím limit v balíčku?</summary><p>Limity (1 500 e-mailů / 750 rezervací měsíčně) pokryjí většinu malých provozů. Když je pravidelně přerůstáte, domluvíme vyšší variantu nebo řešení na míru. Žádné skryté doúčtování.</p></details>
+      <details><summary>Jak rychle to začne fungovat?</summary><p>Do 5 pracovních dnů od úvodního 15minutového hovoru. Nastavení řešíme my.</p></details>
+      <details><summary>Můj byznys se do balíčků nevejde. Co s tím?</summary><p>Postavíme řešení na míru — napojení na váš systém, vlastní procesy, víc kanálů. Cenu určíme podle rozsahu. Napište nám.</p></details>
+    </div>
+
+    <div class="cta-box">
+      <h2>Nevíte, který balíček je pro vás?</h2>
+      <p>15 minut nezávazně. Řeknete nám, co vás nejvíc zdržuje, a doporučíme přesně to, co dává smysl. Bez tlaku.</p>
+      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+    </div>
+
+    <p style="text-align:center"><a href="/e-mailove-odpovedi" style="color:var(--blue);text-decoration:none">E-mailové odpovědi</a> &nbsp;·&nbsp; <a href="/rezervace-pripominky" style="color:var(--blue);text-decoration:none">Rezervace &amp; Připomínky</a> &nbsp;·&nbsp; <a href="/o-nas" style="color:var(--blue);text-decoration:none">O nás</a></p>
+  </main>
+
+  
+
+  <Footer links={footerLinks} />
+</Base>
+
+<style is:global>
+.hero{padding:4.5rem 0 1rem;text-align:center}
+h1{font-size:clamp(1.7rem,4.5vw,2.4rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.35rem;font-weight:700;margin:3rem 0 1rem;letter-spacing:-0.01em}
+p{color:var(--t2);margin-bottom:1rem}
+strong{color:var(--t1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.6rem 0}
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;position:relative}
+.plan.pop{border-color:rgba(59,130,246,0.5)}
+.badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:0.72rem;font-weight:700;padding:3px 12px;border-radius:20px}
+.plan .ic{font-size:1.4rem}
+.plan h3{font-size:1.05rem;margin:0.5rem 0 0.3rem}
+.plan .price{font-size:1.8rem;font-weight:800;margin:0.3rem 0}
+.plan .price small{font-size:0.8rem;font-weight:500;color:var(--t2)}
+.plan .note{font-size:0.82rem;color:var(--t2)}
+.bundle{background:linear-gradient(135deg,rgba(59,130,246,0.10),rgba(168,85,247,0.08));border:1px solid var(--border-h);border-radius:16px;padding:1.6rem;margin:1.6rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.bundle .price{font-size:1.6rem;font-weight:800}
+.setup{text-align:center;color:var(--t2);font-size:0.92rem;margin:1rem 0}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;padding:1rem 1.2rem}
+.faq summary{font-weight:600;cursor:pointer;color:var(--t1)}
+.faq p{margin:0.8rem 0 0;font-size:0.93rem}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.2rem 0}
+.cta-box h2{margin:0 0 0.6rem}
+.cta-box p{max-width:480px;margin:0 auto 1.4rem}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
+.btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
+</style>

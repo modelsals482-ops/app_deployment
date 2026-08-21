@@ -2,23 +2,36 @@ name: Validate Site
 
 on:
   push:
-    branches: [main]
+    branches: [main, astro-rewrite]
   pull_request:
     branches: [main]
 
 jobs:
-  validate-js:
-    name: JS Syntax Check
+  validate:
+    name: Build and check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      - name: Check inline JS syntax in HTML files
-        run: node .github/scripts/check-js-syntax.js
+      - name: Install dependencies
+        run: npm ci
+
+      # The build runs first, so a page that fails to compile never reaches the checks
+      # (or the deploy). The checks then run against dist/, because the pages are built
+      # output now rather than .html files at the repo root.
+      - name: Build
+        run: npm run build
+
+      - name: Check inline JS syntax in built pages
+        run: node .github/scripts/check-js-syntax.cjs dist
+
+      # A CSP connect-src mismatch is invisible at build time and only shows up as a
+      # blocked request in a visitor's console. It took the site chat down silently for
+      # over a week. This step is the only thing that catches it before deploy.
       - name: Check fetch() hosts are allowed by CSP connect-src
-        run: node .github/scripts/check-csp-hosts.js
+        run: node .github/scripts/check-csp-hosts.cjs dist

@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  {
+    "href": "/",
+    "label": "Úvod"
+  },
+  {
+    "href": "/#pricing",
+    "label": "Ceny"
+  },
+  {
+    "href": "mailto:info@alsflow.cz",
+    "label": "Kontakt"
+  },
+  {
+    "href": "/ochrana_dat",
+    "label": "Ochrana dat"
+  }
+];
+---
+
+<Base title={"AI asistent pro fyzioterapeuty — méně nenastoupených termínů | ALSflow"}
+  description={"AI asistent pro fyzioterapeutickou ordinaci: automatické připomínky termínů, objednávání pacientů 24/7 a odpovědi na e-maily. Funguje s Google Kalendářem. Od 2 500 Kč měsíčně."}
+  ogDescription={"Automatické připomínky, objednávání pacientů 24/7 a odpovědi na e-maily — zatímco vy terapujete. Funguje s Google Kalendářem."}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={"{\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"Service\",\n    \"name\": \"AI asistent pro fyzioterapeuty\",\n    \"serviceType\": \"AI automatizace připomínek, rezervací a komunikace pro fyzioterapeutické ordinace\",\n    \"description\": \"Plně spravovaný AI asistent pro fyzioterapeuty: automatické připomínky termínů den předem, objednávání pacientů přes WhatsApp nebo web 24/7, odpovědi na e-maily a sběr zpětné vazby po terapii. Funguje s Google Kalendářem i papírovým diářem.\",\n    \"url\": \"https://alsflow.cz/ai-asistent-pro-fyzioterapeuty\",\n    \"areaServed\": \"CZ\",\n    \"inLanguage\": \"cs\",\n    \"provider\": {\n      \"@type\": \"Organization\",\n      \"name\": \"ALSflow\",\n      \"legalName\": \"Retail Shops s.r.o.\",\n      \"url\": \"https://alsflow.cz\",\n      \"email\": \"info@alsflow.cz\"\n    },\n    \"offers\": [\n      { \"@type\": \"Offer\", \"name\": \"Rezervace & Připomínky\", \"price\": \"4500\", \"priceCurrency\": \"CZK\", \"description\": \"Měsíční paušál, zahrnuje 750 rezervací\" },\n      { \"@type\": \"Offer\", \"name\": \"Zpětná vazba & Opakované rezervace\", \"price\": \"2500\", \"priceCurrency\": \"CZK\", \"description\": \"Měsíční paušál, neomezený počet zpráv\" },\n      { \"@type\": \"Offer\", \"name\": \"E-mailové odpovědi\", \"price\": \"2500\", \"priceCurrency\": \"CZK\", \"description\": \"Měsíční paušál, zahrnuje 1 500 e-mailů\" }\n    ]\n  }"} />
+  </Fragment>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={"{\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"FAQPage\",\n    \"mainEntity\": [\n      {\n        \"@type\": \"Question\",\n        \"name\": \"Kolik stojí AI asistent pro fyzioterapeutickou ordinaci?\",\n        \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Rezervace a připomínky stojí 4 500 Kč měsíčně (zahrnuje 750 rezervací). Zpětná vazba s opakovanými rezervacemi 2 500 Kč měsíčně a e-mailové odpovědi 2 500 Kč měsíčně. Všechny tři služby dohromady 7 500 Kč měsíčně. Jednorázové nastavení 8 000–10 000 Kč. Bez závazků.\" }\n      },\n      {\n        \"@type\": \"Question\",\n        \"name\": \"Jak AI asistent snižuje počet nenastoupených termínů?\",\n        \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Každý pacient dostane den před terapií automatickou připomínku e-mailem nebo přes WhatsApp. Pokud se nemůže dostavit, může rovnou odpovědět a přeobjednat se — termín se uvolní pro jiného pacienta místo toho, aby propadl.\" }\n      },\n      {\n        \"@type\": \"Question\",\n        \"name\": \"Funguje asistent s Google Kalendářem?\",\n        \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Ano. Asistent se napojí přímo na váš Google Kalendář — vidí volné termíny, zapisuje nové rezervace a z kalendáře čte podklady pro připomínky. Pokud vedete papírový diář, pomůžeme vám přejít na sdílený kalendář během nastavení.\" }\n      },\n      {\n        \"@type\": \"Question\",\n        \"name\": \"Je to bezpečné z pohledu GDPR?\",\n        \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Ano. S každým klientem uzavíráme zpracovatelskou smlouvu (DPA) dle čl. 28 GDPR. Neukládáme zdravotní dokumentaci pacientů — asistent pracuje pouze s kontakty a termíny potřebnými pro připomínky a rezervace.\" }\n      },\n      {\n        \"@type\": \"Question\",\n        \"name\": \"Jak dlouho trvá nastavení?\",\n        \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Do 5 pracovních dnů od úvodního 15minutového hovoru. Vše nastavíme, napojíme a otestujeme za vás — žádné technické znalosti nepotřebujete.\" }\n      }\n    ]\n  }"} />
+  </Fragment>
+  <Header />
+
+  
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="crumb"><a href="/">ALSflow</a> / AI asistent pro fyzioterapeuty</div>
+      <h1>AI asistent pro fyzioterapeuty — <em>méně nenastoupených termínů</em>, žádné telefony při terapii</h1>
+      <p class="lead">Terapii nejde přerušit kvůli telefonu. Pacienti volají, píší e-maily a někteří na termín prostě zapomenou — a hodina propadne. AI asistent od ALSflow pacienty objedná, termín potvrdí a den předem připomene. Vy máte ruce i hlavu u pacienta.</p>
+    </section>
+
+    <h2>Jak AI asistent sníží počet nenastoupených termínů?</h2>
+    <p>Nenastoupené termíny („no-shows") jsou pro fyzioterapii nejdražší problém — hodina, kterou nikdo nezaplatí a kterou mohl dostat jiný pacient. Většina pacientů přitom nepřijde ne ze zlé vůle, ale protože <strong>zapomněli</strong>. Řešení je jednoduché a nudné: <strong>spolehlivá připomínka den předem</strong>, na kterou jde rovnou odpovědět.</p>
+    <ul class="checks">
+      <li><strong>Automatická připomínka den předem</strong> — e-mailem nebo přes WhatsApp, s datem, časem a adresou.</li>
+      <li><strong>Snadné přeobjednání</strong> — pacient odpoví na připomínku a asistent mu nabídne nový termín. Původní hodina se uvolní, místo aby propadla.</li>
+      <li><strong>Objednávání 24/7</strong> — noví pacienti se objednají přes web nebo WhatsApp i mimo ordinační hodiny.</li>
+      <li><strong>Odpovědi na časté dotazy</strong> — cena, délka terapie, co s sebou, parkování. Bez přerušování vaší práce.</li>
+      <li><strong>Zpráva po terapii</strong> — poděkování, zpětná vazba a ve správný čas připomenutí další návštěvy u dlouhodobých pacientů.</li>
+    </ul>
+
+    <h2>Funguje to s Google Kalendářem?</h2>
+    <p>Ano — a to je záměr. Asistent se napojí <strong>přímo na váš Google Kalendář</strong>: vidí volné termíny, zapisuje rezervace a z kalendáře čte podklady pro připomínky. Nemusíte přecházet na žádný nový rezervační systém ani platit další aplikaci. Pokud dnes vedete papírový diář nebo termíny řešíte po telefonu, pomůžeme vám při nastavení přejít na sdílený kalendář — je to jediná změna, kterou u vás uděláme.</p>
+
+    <h2>Jak to funguje?</h2>
+    <div class="steps">
+      <div class="step"><div><strong>Zavoláte nebo napíšete</strong>Řeknete nám, jak vaše ordinace funguje a co vás zdržuje nejvíc. Stačí 15 minut, žádné technické znalosti.</div></div>
+      <div class="step"><div><strong>My nastavíme vše za vás</strong>Do 5 pracovních dnů napojíme asistenta na váš kalendář a e-mail, nastavíme připomínky a vše otestujeme.</div></div>
+      <div class="step"><div><strong>AI pracuje za vás 24/7</strong>Každý měsíc dostanete report — kolik připomínek odešlo, kolik pacientů se objednalo a kolik času jste ušetřili.</div></div>
+    </div>
+
+    <h2>Kolik to stojí?</h2>
+    <p>Transparentní měsíční paušál, žádné skryté poplatky, <strong>bez závazků</strong> — zrušíte kdykoli.</p>
+    <div class="cards">
+      <div class="card"><h3>📅 Rezervace &amp; Připomínky</h3><div class="price">4 500 Kč <small>/měs</small></div><p>Objednávání přes WhatsApp či web, potvrzení, připomínky den předem, FAQ bot. Zahrnuje 750 rezervací.</p></div>
+      <div class="card"><h3>🔁 Zpětná vazba &amp; Opakované rezervace</h3><div class="price">2 500 Kč <small>/měs</small></div><p>Zpráva po terapii, sběr zpětné vazby a připomenutí další návštěvy.</p></div>
+      <div class="card"><h3>✉️ E-mailové odpovědi</h3><div class="price">2 500 Kč <small>/měs</small></div><p>AI odpovídá na e-maily pacientů místo vás. Zahrnuje 1 500 e-mailů.</p></div>
+    </div>
+    <p>Všechny tři služby dohromady: <strong>7 500 Kč/měsíc</strong>. Jednorázové nastavení 8 000–10 000 Kč, hotovo do 5 pracovních dnů. Pro srovnání: jediný obsazený termín denně navíc obvykle paušál zaplatí. Kompletní ceník <a href="/#pricing" style="color:var(--blue)">na hlavní stránce</a>.</p>
+
+    <h2>A co GDPR a citlivé údaje pacientů?</h2>
+    <p>Bereme to vážně. S každou ordinací uzavíráme <strong>zpracovatelskou smlouvu (DPA) podle čl. 28 GDPR</strong>. Asistent pracuje jen s tím, co pro připomínky a rezervace skutečně potřebuje — jméno, kontakt a termín. <strong>Zdravotní dokumentaci ani anamnézu neukládáme.</strong> Data vaší ordinace nikdy nepoužíváme pro nic jiného a seznam všech zpracovatelů najdete v naší <a href="/ochrana_dat" style="color:var(--blue)">ochraně dat</a>.</p>
+
+    <h2 id="faq">Časté dotazy</h2>
+    <div class="faq">
+      <details><summary>Kolik stojí AI asistent pro fyzioterapeutickou ordinaci?</summary><p>Rezervace a připomínky 4 500 Kč/měs (750 rezervací), zpětná vazba 2 500 Kč/měs, e-mailové odpovědi 2 500 Kč/měs. Vše dohromady 7 500 Kč/měs. Jednorázové nastavení 8 000–10 000 Kč.</p></details>
+      <details><summary>Jak asistent snižuje počet nenastoupených termínů?</summary><p>Připomínkou den předem, na kterou jde rovnou odpovědět a přeobjednat se. Termín se uvolní pro jiného pacienta, místo aby propadl.</p></details>
+      <details><summary>Funguje to s Google Kalendářem?</summary><p>Ano, asistent se napojí přímo na váš Google Kalendář. Papírový diář vám pomůžeme převést při nastavení.</p></details>
+      <details><summary>Je to v souladu s GDPR?</summary><p>Ano — zpracovatelská smlouva (DPA) dle čl. 28 GDPR, žádné ukládání zdravotní dokumentace, evropské servery.</p></details>
+      <details><summary>Jak dlouho trvá nastavení?</summary><p>Do 5 pracovních dnů od úvodního 15minutového hovoru. Vše nastavíme za vás.</p></details>
+    </div>
+
+    <div class="cta-box">
+      <h2>Spočítejte si, kolik vás stojí prázdné hodiny</h2>
+      <p>Nezávazná konzultace zdarma — 15 minut. Projdeme, jak vaše ordinace funguje, a navrhneme řešení přesně na míru.</p>
+      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+    </div>
+
+    <p class="related">Podobné: <a href="/ai-asistent-pro-kadernictvi">AI asistent pro kadeřnictví</a> · <a href="/#demo">Vyzkoušet živou ukázku</a></p>
+  </main>
+
+  
+
+  <Footer links={footerLinks} />
+</Base>
+
+<style is:global>
+.hero{padding:4.5rem 0 2.5rem;text-align:left}
+h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.35rem;font-weight:700;margin:3rem 0 1rem;letter-spacing:-0.01em}
+p{color:var(--t2);margin-bottom:1rem}
+strong{color:var(--t1)}
+ul.checks{list-style:none;margin:1.2rem 0}
+ul.checks li{padding:0.45rem 0 0.45rem 1.9rem;position:relative;color:var(--t2)}
+ul.checks li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin:1.4rem 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+.card h3{font-size:1rem;margin-bottom:0.4rem}
+.card .price{font-size:1.5rem;font-weight:800;margin:0.4rem 0}
+.card .price small{font-size:0.8rem;font-weight:500;color:var(--t2)}
+.card p{font-size:0.88rem;margin:0}
+.steps{counter-reset:step;margin:1.4rem 0}
+.step{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step::before{counter-increment:step;content:"0" counter(step);font-weight:800;color:var(--blue);font-size:1.1rem;flex-shrink:0}
+.step div{color:var(--t2);font-size:0.95rem}
+.step strong{display:block;margin-bottom:0.2rem}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;padding:1rem 1.2rem}
+.faq summary{font-weight:600;cursor:pointer;color:var(--t1)}
+.faq p{margin:0.8rem 0 0;font-size:0.93rem}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(34,197,94,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.5rem 0}
+.cta-box h2{margin:0 0 0.6rem}
+.cta-box p{max-width:480px;margin:0 auto 1.4rem}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
+.btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
+.related{font-size:0.9rem;color:var(--t3);margin:2rem 0}
+.related a{color:var(--blue);text-decoration:none}
+</style>

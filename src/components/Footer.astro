@@ -1,0 +1,44 @@
+---
+// The hand-written site had six near-identical footers that differed only in which
+// links they listed. One component with a links prop replaces all of them.
+//
+// `variant="legal"` is the shorter footer used on the legal pages (dpa, ochrana_dat).
+interface Link { href: string; label: string; }
+interface Props {
+  links?: Link[];
+  variant?: 'default' | 'legal';
+}
+
+const DEFAULT_LINKS: Link[] = [
+  { href: '/', label: 'Úvod' },
+  { href: '/#pricing', label: 'Ceny' },
+  { href: '/e-mailove-odpovedi', label: 'E-maily' },
+  { href: '/rezervace-pripominky', label: 'Rezervace' },
+  { href: '/o-nas', label: 'O nás' },
+  { href: 'mailto:info@alsflow.cz', label: 'Kontakt' },
+  { href: '/ochrana_dat', label: 'Ochrana dat' },
+];
+
+const { links = DEFAULT_LINKS, variant = 'default' } = Astro.props;
+---
+
+{variant === 'legal' ? (
+  <footer>
+    <a class="nav-logo" href="https://alsflow.cz">ALS<span>flow</span></a>
+    <span class="footer-copy">© 2026 ALSflow. Všechna práva vyhrazena.</span>
+  </footer>
+) : (
+  <footer>
+    <div>
+      {links.map((l, i) => (
+        <>
+          {i > 0 && <span aria-hidden="true">·</span>}
+          <a href={l.href}>{l.label}</a>
+        </>
+      ))}
+    </div>
+    <div style="margin-top:0.8rem">
+      © 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556
+    </div>
+  </footer>
+)}

@@ -1,0 +1,57 @@
+---
+// Cookie consent banner plus the consent script.
+//
+// In the hand-written site this existed on only 3 of 13 pages, which is also why
+// GA4 ran on only those 3. Now it ships from the layout, so every page is measured
+// and every page asks first. Styles live in global.css.
+//
+// Analytics stay denied until the visitor accepts: Analytics.astro sets
+// `gtag('consent','default', analytics_storage: 'denied')` in <head>, and nothing
+// here grants it without a click.
+---
+
+<div id="cookieBanner" role="region" aria-label="Souhlas s cookies">
+  <p class="cookie-text">
+    Používáme analytické cookies (Google Analytics) ke sledování návštěvnosti webu.
+    Vaše data nesdílíme s třetími stranami pro reklamní účely. Více informací
+    v&nbsp;<a href="/ochrana_dat">ochraně osobních údajů</a>.
+  </p>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn cookie-decline" id="cookieDecline">Odmítnout</button>
+    <button type="button" class="cookie-btn cookie-accept" id="cookieAccept">Přijmout analytics</button>
+  </div>
+</div>
+
+<script is:inline>
+  /* Block comments only. A // comment inside a minified block once swallowed the
+     rest of the line and threw a SyntaxError that killed this script. */
+  (function () {
+    var banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+    var stored = localStorage.getItem('alsflow_consent');
+
+    if (stored === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    } else if (stored !== 'denied') {
+      setTimeout(function () { banner.classList.add('show'); }, 1400);
+    }
+
+    function accept() {
+      localStorage.setItem('alsflow_consent', 'granted');
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      banner.classList.remove('show');
+    }
+    function decline() {
+      localStorage.setItem('alsflow_consent', 'denied');
+      banner.classList.remove('show');
+    }
+
+    document.getElementById('cookieAccept').addEventListener('click', accept);
+    document.getElementById('cookieDecline').addEventListener('click', decline);
+
+    /* The old pages called these from inline onclick handlers. Kept as globals so
+       any remaining markup that does so keeps working. */
+    window.cookieAccept = accept;
+    window.cookieDecline = decline;
+  })();
+</script>

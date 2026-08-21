@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const footerLinks = [
+  {
+    "href": "/",
+    "label": "Úvod"
+  },
+  {
+    "href": "/#pricing",
+    "label": "Ceny"
+  },
+  {
+    "href": "/e-mailove-odpovedi",
+    "label": "E-maily"
+  },
+  {
+    "href": "/rezervace-pripominky",
+    "label": "Rezervace"
+  },
+  {
+    "href": "mailto:info@alsflow.cz",
+    "label": "Kontakt"
+  },
+  {
+    "href": "/ochrana_dat",
+    "label": "Ochrana dat"
+  }
+];
+---
+
+<Base title={"O nás — zakladatel, ne agentura | ALSflow"}
+  description={"ALSflow je projekt jednoho člověka. Stavím a spravuji AI asistenty pro malé firmy — osobně, srozumitelně a bez techno-žvástů. Za ALSflow stojí Jakub Ryvola."}
+  ogDescription={"ALSflow je projekt jednoho člověka. Osobně nastavím a spravuji AI asistenty pro malé firmy. Bez složitosti, bez IT oddělení."}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={"{\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"AboutPage\",\n    \"url\": \"https://alsflow.cz/o-nas\",\n    \"inLanguage\": \"cs\",\n    \"mainEntity\": {\n      \"@type\": \"Organization\",\n      \"name\": \"ALSflow\",\n      \"legalName\": \"Retail Shops s.r.o.\",\n      \"url\": \"https://alsflow.cz\",\n      \"email\": \"info@alsflow.cz\",\n      \"telephone\": \"+420770162346\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Dolnoměcholupská 522/12a, Dolní Měcholupy\",\n        \"addressLocality\": \"Praha\",\n        \"postalCode\": \"102 00\",\n        \"addressCountry\": \"CZ\"\n      },\n      \"founder\": { \"@type\": \"Person\", \"name\": \"Jakub Ryvola\" },\n      \"description\": \"ALSflow staví a plně spravuje AI asistenty pro české malé firmy, obsluha e-mailů, rezervací, připomínek a opakovaných objednávek.\",\n      \"sameAs\": [\"https://www.instagram.com/als.flow\"]\n    }\n  }"} />
+  </Fragment>
+  <Header />
+
+  
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="crumb"><a href="/">ALSflow</a> / O nás</div>
+      <h1>Zakladatel, <em>ne agentura</em></h1>
+    </section>
+
+    <p>ALSflow je projekt jednoho člověka. Věřím, že malé firmy si zaslouží stejné nástroje jako velké korporace, jen bez složitosti, bez IT oddělení a bez smlouvy na tři roky. Proto ALSflow dělám tak, jak dělám: <strong>nastavím vám to osobně a jsem k zastižení, když něco potřebujete.</strong></p>
+
+    <p>Sám jsem viděl, jak majitelé malých praxí a provozů tráví hodiny denně odpovídáním na ty samé zprávy. Zákazník se ptá na cenu, na volný termín, na to, kde zaparkovat. Vy jste přitom u práce, kvůli které za vámi lidé chodí, a telefon ani mail obsloužit nejde. AI asistent tohle vezme na sebe, aby vám zůstala hlava i ruce na to podstatné.</p>
+
+    <div class="sign">
+      <div class="av">👤</div>
+      <div>
+        <b>Jakub Ryvola</b>
+        <span>zakladatel ALSflow</span>
+      </div>
+    </div>
+
+    <h2>Proč AI a proč zrovna teď</h2>
+    <p>AI je dneska přehypovaná a nepochopená v obou směrech. Jedni čekají, že nahradí celého člověka, druzí ji škrtnou, protože jim jednou nějaký chatbot zdarma odpověděl blbě. Realita je nudnější: <strong>opravdovou překážkou není technologie, ale důvěra.</strong> Firmy se AI nebrání proto, že by nefungovala, ale protože se bojí, že bude na jejich zákazníky působit chladně. Moje práce je ukázat, že nemusí.</p>
+
+    <p>Proto asistent píše česky, vaším tónem, a když si není jistý, radši předá slovo vám, než aby si vymýšlel. Není to robot navíc. Je to to, co byste stejně napsali, jen rychleji a bez toho, aby vám to ujídalo večery.</p>
+
+    <h2>Jak to u nás vypadá</h2>
+    <div class="vals">
+      <div class="val"><h3>Prakticky</h3><p>Žádné buzzwordy. Váš telefon zvoní, vy jste u zákazníka, AI odpoví. Tak jednoduché to je.</p></div>
+      <div class="val"><h3>Transparentně</h3><p>Ceny máme veřejně na webu. Žádné skryté poplatky, žádné „cena podle potřeb".</p></div>
+      <div class="val"><h3>Osobně</h3><p>Jednáte se mnou, ne s call centrem. Nastavím vám to sám a jsem dostupný, když je potřeba.</p></div>
+      <div class="val"><h3>Bez závazků</h3><p>Platíte měsíčně, hotovo do 5 dnů, zrušit můžete kdykoli. Držíme vás výsledkem, ne smlouvou.</p></div>
+    </div>
+
+    <h2>Kdo za ALSflow stojí</h2>
+    <p>ALSflow provozuje <strong>Retail Shops s.r.o.</strong> (IČO 02512556, DIČ CZ02512556), plátce DPH, se sídlem na adrese Dolnoměcholupská 522/12a, Dolní Měcholupy, 102 00 Praha 10. S klienty, kteří pracují s údaji zákazníků, uzavíráme zpracovatelskou smlouvu podle GDPR. Víc o tom, jak nakládáme s daty, najdete v <a href="/ochrana_dat" style="color:var(--blue)">ochraně dat</a>.</p>
+
+    <div class="cta-box">
+      <h2>Dá se to nezávazně probrat</h2>
+      <p>15 minut, řeknete mi, co vás nejvíc zdržuje, a já ukážu, jestli s tím ALSflow umí pomoct. Žádný tlak, žádná technika.</p>
+      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+    </div>
+  </main>
+
+  
+
+  <Footer links={footerLinks} />
+</Base>
+
+<style is:global>
+.hero{padding:4.5rem 0 1rem}
+h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.3rem;font-weight:700;margin:2.6rem 0 0.8rem;letter-spacing:-0.01em}
+p{color:var(--t2);margin-bottom:1.1rem;font-size:1.02rem}
+strong{color:var(--t1)}
+.sign{display:flex;align-items:center;gap:1rem;margin:1.6rem 0;padding:1.3rem;background:var(--surface);border:1px solid var(--border);border-radius:14px}
+.sign .av{width:54px;height:54px;border-radius:50%;background:var(--blue-s,rgba(59,130,246,0.15));border:1px solid rgba(59,130,246,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.sign b{color:var(--t1);display:block}
+.sign span{font-size:0.88rem;color:var(--t2)}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.4rem 0}
+.val{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem}
+.val h3{font-size:1rem;margin-bottom:0.4rem}
+.val p{font-size:0.9rem;margin:0}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.2rem 0}
+.cta-box h2{margin:0 0 0.6rem}
+.cta-box p{max-width:480px;margin:0 auto 1.4rem}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
+.btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
+</style>

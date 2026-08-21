@@ -1,0 +1,19 @@
+---
+// The sticky topbar shared by the six content pages that had a byte-identical one.
+//
+// landing.astro and dekujeme.astro keep their own <header> inline: theirs have no
+// .topbar wrapper and their CSS targets `header > a` directly, so reusing this would
+// silently break their layout. Two one-offs do not justify a variant prop.
+interface Props {
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+const { ctaHref = '/#pricing', ctaLabel = 'Chci svoji nabídku' } = Astro.props;
+---
+
+<header>
+  <div class="topbar">
+    <a class="logo" href="/">ALS<span>flow</span></a>
+    <a class="top-cta" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</header>

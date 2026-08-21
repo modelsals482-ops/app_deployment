@@ -1,0 +1,25 @@
+---
+// GA4 with Consent Mode v2. Goes in <head>, before the gtag loader.
+//
+// analytics_storage starts DENIED and is only granted by CookieBanner.astro after
+// an explicit click, so nothing is measured until the visitor agrees.
+//
+// `is:inline` matters: Astro would otherwise bundle and hoist these, which breaks
+// the ordering gtag needs and moves them out of <head>.
+const GA_ID = 'G-CEX6XVFWD7';
+---
+
+<script is:inline define:vars={{ GA_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+</script>
+<script async is:inline src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>

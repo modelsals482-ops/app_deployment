@@ -1,3 +1,5 @@
+// .cjs because package.json now sets "type": "module" for Astro; this is a plain
+// CommonJS script and Node would otherwise refuse the require() calls.
 // Fails the build when a page fetch()es a host that the CSP connect-src does not allow.
 //
 // Why this exists: on 2026-08-19 the site chat was dead for anyone who opened it.
@@ -13,8 +15,16 @@
 
 const fs = require('fs');
 
-const CONFIG = 'vercel.json';
-const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
+// The pages are built output now, so the directory to scan is an argument; vercel.json
+// still lives at the repo root. An empty directory means the build did not produce
+// anything - fail rather than pass a check that inspected nothing.
+const CONFIG = process.env.VERCEL_JSON || 'vercel.json';
+const dir = process.argv[2] || '.';
+const htmlFiles = fs.readdirSync(dir).filter(f => f.endsWith('.html')).sort();
+if (htmlFiles.length === 0) {
+  console.error(`No .html files in "${dir}" - nothing was checked. Did the build run?`);
+  process.exit(1);
+}
 
 // --- the allowlist, straight out of the deployed header ---------------------
 const vercel = JSON.parse(fs.readFileSync(CONFIG, 'utf8'));
@@ -43,7 +53,7 @@ let hasError = false;
 let checked = 0;
 
 for (const file of htmlFiles) {
-  const html = fs.readFileSync(file, 'utf8');
+  const html = fs.readFileSync(require('path').join(dir, file), 'utf8');
 
   // inline scripts only — external ones are governed by script-src, not this check
   const js = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]

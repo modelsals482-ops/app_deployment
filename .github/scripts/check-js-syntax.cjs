@@ -1,13 +1,26 @@
+// .cjs because package.json now sets "type": "module" for Astro; this is a plain
+// CommonJS script and Node would otherwise refuse the require() calls.
 const fs = require('fs');
 
 // Every page, not a hand-kept list — landing.html carried a broken form for weeks
 // while sitting outside the old two-file list.
-const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
+// Every page, not a hand-kept list - landing.html carried a broken form for weeks
+// while sitting outside the old two-file list.
+//
+// Takes the directory to scan, because the pages are built output now (dist/) rather
+// than files at the repo root. Empty means the build did not run, or ran somewhere
+// else - fail rather than pass a check that inspected nothing.
+const dir = process.argv[2] || '.';
+const htmlFiles = fs.readdirSync(dir).filter(f => f.endsWith('.html')).sort();
+if (htmlFiles.length === 0) {
+  console.error(`No .html files in "${dir}" - nothing was checked. Did the build run?`);
+  process.exit(1);
+}
 let hasError = false;
 
 for (const file of htmlFiles) {
-  if (!fs.existsSync(file)) continue;
-  const html = fs.readFileSync(file, 'utf8');
+  if (!fs.existsSync(require('path').join(dir, file))) continue;
+  const html = fs.readFileSync(require('path').join(dir, file), 'utf8');
   const scriptRegex = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
   let match;
   let blockIndex = 0;
