@@ -1162,6 +1162,45 @@
       opacity: 0;
     }
   
+    /* Modrý podsvit pod značkou, aby plocha nebyla jen černá.
+       Řešeno přes ::before, ať se nemusí měnit markup na dvou místech. */
+    #alsLoader > div {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    #alsLoader > div::before {
+      position: absolute;
+      top: 56%;
+      left: 50%;
+      z-index: 0;
+      width: min(560px, 82vw);
+      height: 230px;
+      content: "";
+      background: radial-gradient(
+        ellipse at center,
+        rgb(59 130 246 / 30%) 0%,
+        rgb(37 99 235 / 14%) 38%,
+        transparent 70%
+      );
+      filter: blur(30px);
+      transform: translate(-50%, -50%);
+      animation: alsGlow 2.6s ease-in-out infinite;
+    }
+
+    /* Značka i linka musí zůstat nad podsvitem. */
+    .als-loader__mark,
+    .als-loader__bar {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes alsGlow {
+      0%, 100% { opacity: 0.72; }
+      50%      { opacity: 1; }
+    }
+
     .als-loader__mark {
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       font-size: clamp(1.9rem, 6vw, 3.1rem);
@@ -1213,6 +1252,7 @@
     @media (prefers-reduced-motion: reduce) {
       .als-loader__mark { opacity: 1; transform: none; animation: none; }
       .als-loader__bar  { display: none; }
+      #alsLoader > div::before { animation: none; }
       #alsLoader { transition-duration: 0.001ms; }
     }
   </style>
@@ -1257,8 +1297,8 @@
         return;
       }
   
-      var MIN = 700;    /* ať to neproblikne na rychlém připojení */
-      var MAX = 2200;   /* pojistka: po této době mizí vždycky */
+      var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
+      var MAX = 2700;   /* pojistka: po této době mizí vždycky */
       var start = Date.now();
       var done = false;
   
