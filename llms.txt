@@ -39,5 +39,6 @@ Shared characteristic: the owner wears many hats, has limited time, is not techn
 
 ## Contact
 
-- Website: https://alsflow.cz
+- Website: https://alsflow.cz (overview page routing to the three service lines)
+- AI assistants: https://alsflow.cz/ai-asistenti
 - Email: info@alsflow.cz

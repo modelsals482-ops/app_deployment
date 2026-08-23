@@ -610,3 +610,175 @@ section[id] { scroll-margin-top: 82px; }
   .reveal { opacity: 1 !important; filter: none !important; transform: none !important; }
   .orb, #cursorGlow, #particleCanvas { display: none !important; }
 }
+
+/* =====================================================================
+   Úvodní rozcestník (index.html)
+   ===================================================================== */
+
+/* plátno se scénou Predictive Arc sedí za obsahem hlavičky */
+#arcCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.home-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 9rem 2rem 5rem;
+  overflow: hidden;
+  text-align: center;
+}
+.home-hero > *:not(#arcCanvas) { position: relative; z-index: 1; }
+
+.home-title {
+  max-width: 15ch;
+  font-size: clamp(2.9rem, 9vw, 8rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.home-sub {
+  max-width: 540px;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--t2);
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+/* pruh s tvrdými fakty pod nadpisem — tohle vyhrává srovnání tří nabídek */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 2.4rem;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.fact {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.85rem;
+  color: var(--t2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+.fact b { font-weight: 800; color: var(--t1); }
+
+/* Nevyplněný údaj. Schválně křiklavé — nesmí se omylem dostat na web. */
+.todo {
+  display: inline-block;
+  padding: 0.05em 0.5em;
+  font-size: 0.92em;
+  font-weight: 700;
+  color: #fbbf24;
+  background: rgb(245 158 11 / 12%);
+  border: 1px dashed rgb(245 158 11 / 55%);
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------
+   Tři pilíře
+   -------------------------------------------------------------------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.pillar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 2rem 2rem;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+}
+.pillar::before {
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 320px;
+  height: 320px;
+  content: '';
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(70px);
+  transition: opacity 0.45s;
+}
+.pillar:hover { background: var(--surface-h); border-color: var(--border-h); box-shadow: 0 26px 70px rgb(0 0 0 / 45%); transform: translateY(-5px); }
+.pillar:hover::before { opacity: 1; }
+.pillar:focus-visible { outline: 2px solid #93c5fd; outline-offset: 4px; }
+.pillar > * { position: relative; }
+
+.pillar-web::before      { background: rgb(59 130 246 / 45%); }
+.pillar-software::before { background: rgb(168 85 247 / 40%); }
+.pillar-ai::before       { background: rgb(34 197 94 / 34%); }
+
+/* značka sekce */
+.pillar-mark {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 1.6rem;
+  border: 1px solid var(--border-h);
+  border-radius: 16px;
+}
+.pillar-mark svg { width: 30px; height: 30px; }
+.pillar-web   .pillar-mark { color: #93c5fd; background: var(--blue-s); border-color: rgb(59 130 246 / 30%); }
+.pillar-software .pillar-mark { color: #d8b4fe; background: var(--purple-s); border-color: rgb(168 85 247 / 30%); }
+.pillar-ai    .pillar-mark { color: #86efac; background: var(--green-s); border-color: rgb(34 197 94 / 30%); }
+
+.pillar-kicker { margin-bottom: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t3); }
+.pillar-name { margin-bottom: 0.8rem; font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; }
+.pillar-desc { flex-grow: 1; margin-bottom: 1.6rem; font-size: 0.92rem; line-height: 1.7; color: var(--t2); }
+.pillar-price { margin-bottom: 1.4rem; font-size: 0.86rem; color: var(--t2); }
+.pillar-price b { font-weight: 800; color: var(--t1); }
+
+.pillar-go { display: inline-flex; gap: 0.5rem; align-items: center; font-size: 0.88rem; font-weight: 700; color: #93c5fd; }
+.pillar-go svg { width: 15px; height: 15px; transition: transform 0.3s; }
+.pillar:hover .pillar-go svg { transform: translateX(4px); }
+.pillar-software .pillar-go { color: #d8b4fe; }
+.pillar-ai .pillar-go { color: #86efac; }
+
+/* --------------------------------------------------------------------
+   Pruh s referencemi
+   -------------------------------------------------------------------- */
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0 0;
+}
+.logo-strip a { display: flex; align-items: center; min-height: 46px; opacity: 0.62; transition: opacity 0.3s; }
+.logo-strip a:hover { opacity: 1; }
+.logo-strip img { max-width: 132px; max-height: 42px; object-fit: contain; }
+
+@media (width <= 900px) {
+  .pillars { grid-template-columns: 1fr; }
+  .home-hero { padding: 7.5rem 1.5rem 4rem; min-height: 88vh; }
+  .logo-strip { gap: 2rem; }
+}
