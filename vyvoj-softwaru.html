@@ -15,14 +15,15 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/site-pages.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Vývoj softwaru na míru",
     "serviceType": "Interní nástroje, administrační rozhraní a napojení systémů",
-    "description": "Vývoj menšího softwaru na míru: administrační panely nad daty, která už firma má, napojení mezi systémy, které spolu nemluví, a interní nástroje nahrazující ruční práci v tabulkách. Včetně provozu a další správy.",
+    "description": "Vývoj menšího softwaru na míru: administrační panely nad daty, která firma už má, napojení mezi systémy, které spolu nemluví, a interní nástroje nahrazující ruční práci v tabulkách. Včetně provozu a další správy.",
     "url": "https://alsflow.cz/vyvoj-softwaru",
     "areaServed": ["CZ", "SK"],
     "inLanguage": "cs",
@@ -36,163 +37,443 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Jak velké zakázky berete?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsme ti správní a řekneme to hned na začátku." }
-      },
-      {
-        "@type": "Question",
-        "name": "Musíme kvůli tomu měnit systém, který používáme?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ne. Skoro vždycky stavíme vedle toho, co už máte, a napojujeme se přes API nebo export. Migrace celého systému je nejdražší a nejrizikovější varianta a navrhujeme ji jen tehdy, když opravdu není jiná cesta." }
-      },
-      {
-        "@type": "Question",
-        "name": "Co když vás budeme potřebovat i za rok?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržíme si nic, čím bychom vás nutili zůstat." }
-      },
-      {
-        "@type": "Question",
-        "name": "Kde data poběží?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Na infrastruktuře vedené na vaše jméno, v Evropské unii. Zpracováváme jen údaje nutné k tomu, aby nástroj fungoval, a k zakázce podepisujeme zpracovatelskou smlouvu podle čl. 28 GDPR." }
-      },
-      {
-        "@type": "Question",
-        "name": "Kolik to stojí?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Cenu určíme až po úvodním hovoru a krátké analýze. Dostanete pevnou částku za dohodnutý rozsah, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Když analýza ukáže, že se nástroj nevyplatí, řekneme to." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Jak velké zakázky berete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsme ti správní a řekneme to hned na začátku."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Musíme kvůli tomu měnit systém, který používáme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ne. Skoro vždycky stavíme vedle toho, co už máte, a napojujeme se přes API nebo export. Migrace celého systému je nejdražší a nejrizikovější varianta a navrhujeme ji jen tehdy, když opravdu není jiná cesta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kdy uvidíme první výsledek?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nejdřív stavíme tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravujeme zbytek — je to levnější než dodat po půl roce něco, co se ukáže jako vedle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co když vás budeme potřebovat i za rok?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržíme si nic, čím bychom vás nutili zůstat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kde data poběží?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Na infrastruktuře vedené na vaše jméno, v Evropské unii. Zpracováváme jen údaje nutné k tomu, aby nástroj fungoval, a k zakázce podepisujeme zpracovatelskou smlouvu podle čl. 28 GDPR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik to stojí?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cenu určíme až po úvodním hovoru a krátké analýze. Dostanete pevnou částku za dohodnutý rozsah, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Když analýza ukáže, že se nástroj nevyplatí, řekneme to."
+      }
+    }
+  ]
+}
   </script>
-  <style>
-    :root{--bg:#08080c;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.18);--t1:#f0f0f3;--t2:#8b8b9e;--t3:#7a7a94;--blue:#3b82f6;--blue-btn:#2563eb;--blue-s:rgba(59,130,246,0.15);--green:#22c55e;--purple:#a855f7;--amber:#f59e0b;--font:'Plus Jakarta Sans',-apple-system,sans-serif}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:var(--bg);color:var(--t1);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:860px;margin:0 auto;padding:0 1.4rem}
-    header{position:sticky;top:0;background:rgba(8,8,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:10}
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;max-width:1100px;margin:0 auto}
-    .logo{font-weight:800;font-size:1.25rem;color:var(--t1);text-decoration:none}
-    .logo span{color:var(--blue)}
-    .top-cta{background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px}
-    .hero{padding:4.5rem 0 2.5rem;text-align:left}
-    .crumb{font-size:0.8rem;color:var(--t3);margin-bottom:1.2rem}
-    .crumb a{color:var(--t2);text-decoration:none}
-    h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
-    h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{color:var(--t2);font-size:1.05rem;margin-top:1.2rem;max-width:640px}
-    h2{font-size:1.35rem;font-weight:700;margin:3rem 0 1rem;letter-spacing:-0.01em}
-    h3{font-size:1.05rem;font-weight:700;margin:2rem 0 0.5rem}
-    p{color:var(--t2);margin-bottom:1rem}
-    strong{color:var(--t1)}
-    ul.checks,ul.crosses{list-style:none;margin:1.2rem 0}
-    ul.checks li,ul.crosses li{padding:0.45rem 0 0.45rem 1.9rem;position:relative;color:var(--t2)}
-    ul.checks li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
-    ul.crosses li::before{content:"✕";position:absolute;left:0;color:var(--amber);font-weight:700}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin:1.4rem 0}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
-    .card h3{font-size:1rem;margin:0 0 0.4rem}
-    .card p{font-size:0.88rem;margin:0}
-    .card .tag{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem}
-    .steps{counter-reset:step;margin:1.4rem 0}
-    .step{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--border)}
-    .step:last-child{border-bottom:none}
-    .step::before{counter-increment:step;content:"0" counter(step);font-weight:800;color:var(--blue);font-size:1.1rem;flex-shrink:0}
-    .step div{color:var(--t2);font-size:0.95rem}
-    .step strong{display:block;margin-bottom:0.2rem}
-    .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;padding:1rem 1.2rem}
-    .faq summary{font-weight:600;cursor:pointer;color:var(--t1)}
-    .faq p{margin:0.8rem 0 0;font-size:0.93rem}
-    .cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.5rem 0}
-    .cta-box h2{margin:0 0 0.6rem}
-    .cta-box p{max-width:480px;margin:0 auto 1.4rem}
-    .btn{display:inline-block;background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
-    .btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
-    .related{font-size:0.9rem;color:var(--t3);margin:2rem 0}
-    .related a,.inline{color:var(--blue);text-decoration:none}
-    footer{border-top:1px solid var(--border);margin-top:4rem;padding:2rem 1.4rem;text-align:center;font-size:0.8rem;color:var(--t3)}
-    footer a{color:var(--t2);text-decoration:none;margin:0 0.6rem}
-  </style>
+
+  <!-- úvodní loader — zdroj a poznámky v alsflow-loader.html -->
+<style>
+  #alsLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: #08080c;
+    opacity: 1;
+    transition: opacity 0.55s ease;
+  }
+
+  #alsLoader[hidden] { display: none; }
+
+  html.als-loading,
+  html.als-loading body { overflow: hidden; }
+
+  #alsLoader.is-out {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* Modrý podsvit pod značkou, aby plocha nebyla jen černá.
+     Řešeno přes ::before, ať se nemusí měnit markup na dvou místech. */
+  #alsLoader > div {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  #alsLoader > div::before {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    z-index: 0;
+    width: min(560px, 82vw);
+    height: 230px;
+    content: "";
+    background: radial-gradient(
+      ellipse at center,
+      rgb(59 130 246 / 30%) 0%,
+      rgb(37 99 235 / 14%) 38%,
+      transparent 70%
+    );
+    filter: blur(30px);
+    transform: translate(-50%, -50%);
+    animation: alsGlow 2.6s ease-in-out infinite;
+  }
+
+  /* Značka i linka musí zůstat nad podsvitem. */
+  .als-loader__mark,
+  .als-loader__bar {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes alsGlow {
+    0%, 100% { opacity: 0.72; }
+    50%      { opacity: 1; }
+  }
+
+  .als-loader__mark {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-size: clamp(1.9rem, 6vw, 3.1rem);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    background: linear-gradient(120deg, #fff 0%, #8b8b9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(9px);
+    animation: alsRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .als-loader__mark span {
+    background: linear-gradient(120deg, #60a5fa, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* vlasová linka, která se pod značkou rozjede zleva doprava */
+  .als-loader__bar {
+    width: clamp(120px, 22vw, 190px);
+    height: 1px;
+    margin-top: 1.4rem;
+    overflow: hidden;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  .als-loader__bar i {
+    display: block;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    animation: alsSweep 1.15s ease-in-out infinite;
+  }
+
+  @keyframes alsRise {
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes alsSweep {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(350%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .als-loader__mark { opacity: 1; transform: none; animation: none; }
+    .als-loader__bar  { display: none; }
+    #alsLoader > div::before { animation: none; }
+    #alsLoader { transition-duration: 0.001ms; }
+  }
+</style>
+
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
 </head>
 <body>
-  <header>
-    <div class="topbar">
-      <a class="logo" href="/">ALS<span>flow</span></a>
-      <a class="top-cta" href="/#pricing">Chci svoji nabídku</a>
-    </div>
-  </header>
-  <main class="wrap">
-    <section class="hero">
-      <div class="crumb"><a href="/">ALSflow</a> / Vývoj softwaru na míru</div>
-      <h1>Software, který <em>zapadne</em> do toho, co už používáte</h1>
-      <p class="lead">Administrační panely, napojení systémů, které spolu nemluví, a interní nástroje místo tabulek přeposílaných e-mailem. Stavíme menší software, který jde nasadit v řádu týdnů — a pak ho provozujeme, aby se o něj nikdo u vás nemusel starat.</p>
-    </section>
+<div id="alsLoader" aria-hidden="true">
+  <div>
+    <div class="als-loader__mark">ALS<span>flow</span></div>
+    <div class="als-loader__bar"><i></i></div>
+  </div>
+</div>
 
-    <h2>Co obvykle řešíme</h2>
-    <div class="cards">
-      <div class="card"><span class="tag">Administrace</span><h3>Panel nad vlastními daty</h3><p>Rozhraní, ve kterém tým spravuje katalog, ceník nebo objednávky, aniž by kdokoli sahal do databáze nebo do sdíleného Excelu.</p></div>
-      <div class="card"><span class="tag">Integrace</span><h3>Propojení dvou systémů</h3><p>Skladový systém, rezervace, účetnictví a web dohromady. Data tečou samy, nikdo je nepřepisuje ručně a nevznikají dvě verze pravdy.</p></div>
-      <div class="card"><span class="tag">Automatizace</span><h3>Nahrazení ruční práce</h3><p>Opakovaná činnost, která někomu bere hodinu denně — vyhodnocení, přeposlání, vygenerování dokladu — se přesune na server.</p></div>
-      <div class="card"><span class="tag">Reporting</span><h3>Přehled, který sedí</h3><p>Jedno místo s čísly, kterým se dá věřit, místo pěti exportů, které si každý slučuje po svém.</p></div>
-    </div>
+<noscript>
+  <style>#alsLoader { display: none; }</style>
+</noscript>
 
-    <h2>Konkrétní příklad</h2>
-    <p>Pro půjčovnu vybavení na akce jsme postavili <strong>administrační panel nad katalogem</strong> a k němu napojení na evidenci dostupnosti. Předtím se dostupnost zjišťovala telefonem a ručně dohledávala v tabulce; po nasazení ji rozhraní ukazuje rovnou u položky a katalog spravuje obsluha sama, bez zásahu vývojáře.</p>
-    <p>Na stejném projektu běží i chatbot, který zákazníkům odpovídá — což je náš původní obor. Právě tohle je nejčastější případ: <strong>zakázka nezačne jako „software", ale jako problém</strong>, a část řešení je rozhraní, část napojení a část automat.</p>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var el = document.getElementById('alsLoader');
 
-    <h2>Jak pracujeme</h2>
-    <div class="steps">
-      <div class="step"><div><strong>Popíšete problém, ne řešení</strong>Nemusíte vědět, jestli chcete panel, integraci nebo skript. Řeknete, co vás zdržuje a kde vznikají chyby.</div></div>
-      <div class="step"><div><strong>Krátká analýza</strong>Podíváme se, co už máte a co má API. Z toho vyjde návrh rozsahu, pevná cena a termín. Když se nástroj nevyplatí, řekneme to.</div></div>
-      <div class="step"><div><strong>První použitelná verze</strong>Nejdřív to, co odstraní největší ruční práci. Používáte ji dřív, než je hotové všechno ostatní, a podle toho, co v provozu vyjde najevo, upravujeme zbytek.</div></div>
-      <div class="step"><div><strong>Nasazení a předání</strong>Zprovozníme, zaškolíme a předáme přístupy. Účty vedeme na vás.</div></div>
-      <div class="step"><div><strong>Provoz</strong>Měsíční paušál za to, že to běží, že se aktualizuje a že máte komu napsat, když je potřeba něco přidat.</div></div>
-    </div>
+    /* Značka se v relaci ukazuje jen jednou. Když ji uživatel už viděl,
+       skript výše nepřidal třídu — loader hned odstraníme. */
+    if (!el || !root.classList.contains('als-loading')) {
+      if (el) el.remove();
+      return;
+    }
 
-    <h2>Jak to stavíme</h2>
-    <ul class="checks">
-      <li><strong>Nejmenší řešení, které problém opravdu vyřeší</strong> — každá vrstva navíc je něco, co se za rok bude muset udržovat. Nejlevnější kód je ten, který jsme nenapsali.</li>
-      <li><strong>Stavíme vedle toho, co máte</strong> — napojení přes API nebo export je levnější a méně rizikové než migrace celého systému.</li>
-      <li><strong>Osobní údaje jen ty nutné</strong> — čím míň jich nástroj drží, tím míň je co chránit a tím jednodušší je celá zakázka i právně.</li>
-      <li><strong>Vše na vaše jméno</strong> — repozitář, hosting, databáze. Zdrojový kód a dokumentaci dostanete.</li>
-      <li><strong>Provoz v EU</strong> — a ke každé zakázce zpracovatelská smlouva podle čl. 28 GDPR.</li>
+    var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
+    var MAX = 2700;   /* pojistka: po této době mizí vždycky */
+    var start = Date.now();
+    var done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+
+      el.classList.add('is-out');
+      root.classList.remove('als-loading');
+
+      /* Po doznění se maže z DOM, aby nezavazel fokusu ani čtečce. */
+      setTimeout(function () { el.remove(); }, 600);
+
+      try { sessionStorage.setItem('als-seen', '1'); } catch (e) {}
+    }
+
+    function ready() {
+      setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
+    }
+
+    if (document.readyState === 'complete') ready();
+    else window.addEventListener('load', ready);
+
+    setTimeout(finish, MAX);
+  })();
+</script>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div id="cursorGlow"></div>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="/">ALS<span>flow</span></a>
+    <ul class="nav-links">
+      <li><a href="/tvorba-webu">Tvorba webu</a></li>
+      <li><a href="/vyvoj-softwaru" aria-current="page">Vývoj softwaru</a></li>
+      <li><a href="/#pricing">AI asistenti</a></li>
+      <li><a href="/o-nas">O nás</a></li>
     </ul>
+    <a class="nav-cta desktop-cta" href="/#pricing">Chci svoji nabídku</a>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <h3>Co nebereme</h3>
-    <ul class="crosses">
-      <li>Mobilní aplikace do App Storu a Google Play.</li>
-      <li>Systémy pro stovky tisíc uživatelů. Na tuhle váhu jsme malí a řekneme to hned.</li>
-      <li>Převzetí cizího projektu bez dokumentace a bez původního autora. Někdy to jde, většinou se to nevyplatí ani jedné straně.</li>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-links">
+      <li><a href="/">Úvod</a></li>
+      <li><a href="/tvorba-webu">Tvorba webu</a></li>
+      <li><a href="/vyvoj-softwaru">Vývoj softwaru</a></li>
+      <li><a href="/#pricing">AI asistenti</a></li>
+      <li><a href="/o-nas">O nás</a></li>
     </ul>
+    <a class="mobile-cta" href="/#pricing">Chci svoji nabídku &rarr;</a>
+  </div>
 
-    <h2>Kolik to stojí</h2>
-    <p>Cenu určíme až po úvodním hovoru a krátké analýze — bez ní by to byl výmysl. Dostanete <strong>pevnou částku za dohodnutý rozsah</strong>, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Analýza je nezávazná a když z ní vyjde, že se nástroj nevyplatí, dozvíte se to.</p>
+  <section class="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="crumb"><a href="/">ALSflow</a> / Vývoj softwaru na míru</div>
+    <span class="hero-eyebrow"><span class="eyebrow-dot"></span>Admin panely &middot; integrace &middot; interní nástroje</span>
+    <h1 class="hero-title">SOFTWARE, KTERÝ<br /><span class="grad-purple">ZAPADNE</span> DO FIRMY.</h1>
+    <p class="hero-sub">Administrační panely, napojení systémů, které spolu nemluví, a interní nástroje místo tabulek přeposílaných e-mailem. Stavíme menší software, který jde nasadit v řádu týdnů — a pak ho provozujeme, aby se o něj u vás nikdo nemusel starat.</p>
+    <div class="hero-actions">
+      <a class="btn-lg btn-primary-lg" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-lg btn-ghost-lg" href="#priklad">Konkrétní příklad</a>
+    </div>
+  </section>
 
-    <h2 id="faq">Časté dotazy</h2>
+  <section class="section" id="co">
+    <div class="section-wide">
+      <div class="section-center">
+        <span class="section-tag tag-purple reveal">Co stavíme</span>
+        <h2 class="section-title reveal">Čtyři věci, které<br />se <span class="grad-purple">opakují</span></h2>
+        <p class="section-lead reveal">Zakázka skoro nikdy nezačne slovem &bdquo;software&ldquo;. Začne tím, že něco zdržuje nebo se v tom dělají chyby.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card reveal"><div class="card-icon">&#128736;</div><h3>Panel nad vlastními daty</h3><p>Rozhraní, ve kterém tým spravuje katalog, ceník nebo objednávky, aniž by kdokoli sahal do databáze nebo do sdíleného Excelu.</p></div>
+        <div class="card reveal" data-delay="1"><div class="card-icon">&#128279;</div><h3>Propojení dvou systémů</h3><p>Sklad, rezervace, účetnictví a web dohromady. Data tečou sama, nikdo je nepřepisuje ručně a nevznikají dvě verze pravdy.</p></div>
+        <div class="card reveal" data-delay="2"><div class="card-icon">&#9881;</div><h3>Nahrazení ruční práce</h3><p>Opakovaná činnost, která někomu bere hodinu denně — vyhodnocení, přeposlání, vygenerování dokladu — se přesune na server.</p></div>
+        <div class="card reveal" data-delay="3"><div class="card-icon">&#128202;</div><h3>Přehled, který sedí</h3><p>Jedno místo s čísly, kterým se dá věřit, místo pěti exportů, které si každý slučuje po svém.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="priklad">
+    <div class="split">
+      <div>
+        <span class="section-tag tag-blue reveal">Konkrétní příklad</span>
+        <h2 class="section-title reveal">Katalog, který<br /><span class="grad-blue">spravuje obsluha</span></h2>
+        <p class="section-lead reveal">Pro půjčovnu vybavení na akce jsme postavili administrační panel nad katalogem a k němu napojení na evidenci dostupnosti. Předtím se dostupnost zjišťovala telefonem a ručně dohledávala v tabulce; teď ji rozhraní ukazuje rovnou u položky a katalog spravuje obsluha sama, bez zásahu vývojáře.</p>
+        <p class="section-lead reveal" data-delay="1" style="margin-top:1.2rem">Na stejném projektu běží i chatbot, který odpovídá zákazníkům — to je náš původní obor. Přesně tak to většinou vypadá: část řešení je rozhraní, část napojení a část automat.</p>
+      </div>
+      <div class="split-visual">
+        <ul class="bullets bullet-blue reveal" data-delay="1">
+          <li><strong>Nejmenší řešení, které problém opravdu vyřeší.</strong> Každá vrstva navíc je něco, co se za rok bude muset udržovat.</li>
+          <li><strong>Stavíme vedle toho, co máte.</strong> Napojení přes API nebo export je levnější a méně rizikové než migrace celého systému.</li>
+          <li><strong>Osobní údaje jen ty nutné.</strong> Čím míň jich nástroj drží, tím jednodušší je celá zakázka i právně.</li>
+          <li><strong>Vše na vaše jméno.</strong> Repozitář, hosting, databáze. Zdrojový kód a dokumentaci dostanete.</li>
+          <li><strong>Provoz v EU</strong> a ke každé zakázce zpracovatelská smlouva podle čl. 28 GDPR.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reference">
+    <div class="section-wide">
+      <div class="section-center">
+        <span class="section-tag tag-green reveal">Reference</span>
+        <h2 class="section-title reveal">Pro koho jsme<br />to už <span class="grad-green">stavěli</span></h2>
+        <p class="section-lead reveal">Včetně jednoho projektu, kterému jsme software rozmluvili — protože ho nepotřeboval.</p>
+      </div>
+      <div class="ref-grid">
+      <a class="ref-card reveal" data-delay="0" href="https://weloveevents.cz" target="_blank" rel="noopener">
+        <span class="ref-mark"><span class="mark-wle" aria-hidden="true"><span class="we">WE</span><span class="lo">LOVE</span><span class="cl">:</span><span class="ev">EVENTS</span></span><span class="visually-hidden">WE LOVE EVENTS</span></span>
+        <span class="ref-role">Půjčovna vybavení</span>
+        <span class="ref-name">Administrační panel</span>
+        <span class="ref-desc">Rozhraní nad katalogem a napojení na evidenci dostupnosti. Katalog spravuje obsluha sama, bez zásahu vývojáře.</span>
+        <span class="ref-link">Otevřít web &rarr;</span>
+      </a>
+      <a class="ref-card reveal" data-delay="1" href="https://gen1.cz" target="_blank" rel="noopener">
+        <span class="ref-mark"><img src="/assets/ref/gen-logo-white.png" alt="Logo hnutí GEN" width="172" height="54" loading="lazy" /></span>
+        <span class="ref-role">Politické hnutí</span>
+        <span class="ref-name">Zrcadlení a formulář</span>
+        <span class="ref-desc">Příspěvky z Facebooku se samy stahují na web a přihlášky chodí e-mailem, aniž by se kdekoli ukládaly.</span>
+        <span class="ref-link">Otevřít web &rarr;</span>
+      </a>
+      <a class="ref-card reveal" data-delay="2" href="https://sekelovaznalec.sk" target="_blank" rel="noopener">
+        <span class="ref-mark"><span class="mark-sekelova">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+              <path d="M3 19.5 20 6l17 13.5" /><path d="M8 21v13h24V21" /><path d="M16.5 34v-8.5h7V34" />
+            </svg>
+            <span>
+              <span class="ms-name">Ing. Dagmar Sekelová</span><br />
+              <span class="ms-role">Znalec</span>
+            </span>
+          </span></span>
+        <span class="ref-role">Znalecké posudky</span>
+        <span class="ref-name">Software nebyl potřeba</span>
+        <span class="ref-desc">Devět stránek, žádný backend, žádná databáze. Doporučili jsme čistě statický web — a ušetřili tím paušál za provoz.</span>
+        <span class="ref-link">Otevřít web &rarr;</span>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="postup">
+    <div class="section-wide">
+      <div class="section-center">
+        <span class="section-tag tag-purple reveal">Postup</span>
+        <h2 class="section-title reveal">Od problému<br />k <span class="grad-purple">nasazení</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>Popíšete problém</h3><p>Nemusíte vědět, jestli chcete panel, integraci nebo skript. Řeknete, co vás zdržuje a kde vznikají chyby.</p></div>
+        <div class="step reveal" data-delay="1"><h3>Krátká analýza</h3><p>Podíváme se, co už máte a co má API. Z toho vyjde návrh rozsahu, pevná cena a termín. Když se nástroj nevyplatí, řekneme to.</p></div>
+        <div class="step reveal" data-delay="2"><h3>První použitelná verze</h3><p>Nejdřív to, co odstraní největší ruční práci. Používáte ji dřív, než je hotové všechno ostatní.</p></div>
+        <div class="step reveal" data-delay="3"><h3>Nasazení a předání</h3><p>Zprovozníme, zaškolíme a předáme přístupy. Účty vedeme na vás.</p></div>
+        <div class="step reveal" data-delay="4"><h3>Provoz</h3><p>Měsíční paušál za to, že to běží, aktualizuje se a máte komu napsat, když je potřeba něco přidat.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cena">
+    <div class="section-narrow">
+      <div class="section-center">
+        <span class="section-tag tag-green reveal">Cena a hranice</span>
+        <h2 class="section-title reveal">Pevný rozsah,<br />pevná <span class="grad-green">cena</span></h2>
+      </div>
+      <div class="prose reveal">
+        <p>Cenu určíme až po úvodním hovoru a krátké analýze — bez ní by to byl výmysl. Dostanete <strong>pevnou částku za dohodnutý rozsah</strong>, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Analýza je nezávazná a když z ní vyjde, že se nástroj nevyplatí, dozvíte se to.</p>
+        <h3>Co nebereme</h3>
+      </div>
+      <ul class="bullets bullet-amber reveal" data-delay="1">
+        <li><strong>Mobilní aplikace</strong> do App Storu a Google Play.</li>
+        <li><strong>Systémy pro stovky tisíc uživatelů.</strong> Na tuhle váhu jsme malí a řekneme to hned.</li>
+        <li><strong>Převzetí cizího projektu</strong> bez dokumentace a bez původního autora. Někdy to jde, většinou se to nevyplatí ani jedné straně.</li>
+      </ul>
+      <div class="callout reveal" data-delay="2">
+        <h3>Nevíte, jestli se to vyplatí?</h3>
+        <p>Právě od toho je ta analýza. Spočítáme, kolik času vám činnost bere dnes, a řekneme rovnou, jestli se nástroj zaplatí — nebo jestli je levnější nechat to být.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-narrow section-center">
+      <span class="section-tag tag-purple reveal">Časté dotazy</span>
+      <h2 class="section-title reveal">Na co se ptáte<br /><span class="grad-purple">nejčastěji</span></h2>
+    </div>
     <div class="faq">
-      <details><summary>Jak velké zakázky berete?</summary><p>Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsme ti správní a řekneme to hned na začátku.</p></details>
-      <details><summary>Musíme kvůli tomu měnit systém, který používáme?</summary><p>Ne. Skoro vždycky stavíme vedle toho, co už máte, a napojujeme se přes API nebo export. Migrace celého systému je nejdražší a nejrizikovější varianta a navrhujeme ji jen tehdy, když opravdu není jiná cesta.</p></details>
-      <details><summary>Co když vás budeme potřebovat i za rok?</summary><p>Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržíme si nic, čím bychom vás nutili zůstat.</p></details>
-      <details><summary>Kde data poběží?</summary><p>Na infrastruktuře vedené na vaše jméno, v Evropské unii. Zpracováváme jen údaje nutné k tomu, aby nástroj fungoval, a k zakázce podepisujeme zpracovatelskou smlouvu podle čl. 28 GDPR.</p></details>
-      <details><summary>Kolik to stojí?</summary><p>Cenu určíme až po úvodním hovoru a krátké analýze. Dostanete pevnou částku za dohodnutý rozsah, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Když analýza ukáže, že se nástroj nevyplatí, řekneme to.</p></details>
+      <details class="reveal" data-delay="0"><summary>Jak velké zakázky berete?</summary><p>Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsme ti správní a řekneme to hned na začátku.</p></details>
+      <details class="reveal" data-delay="1"><summary>Musíme kvůli tomu měnit systém, který používáme?</summary><p>Ne. Skoro vždycky stavíme vedle toho, co už máte, a napojujeme se přes API nebo export. Migrace celého systému je nejdražší a nejrizikovější varianta a navrhujeme ji jen tehdy, když opravdu není jiná cesta.</p></details>
+      <details class="reveal" data-delay="2"><summary>Kdy uvidíme první výsledek?</summary><p>Nejdřív stavíme tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravujeme zbytek — je to levnější než dodat po půl roce něco, co se ukáže jako vedle.</p></details>
+      <details class="reveal" data-delay="3"><summary>Co když vás budeme potřebovat i za rok?</summary><p>Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržíme si nic, čím bychom vás nutili zůstat.</p></details>
+      <details class="reveal" data-delay="4"><summary>Kde data poběží?</summary><p>Na infrastruktuře vedené na vaše jméno, v Evropské unii. Zpracováváme jen údaje nutné k tomu, aby nástroj fungoval, a k zakázce podepisujeme zpracovatelskou smlouvu podle čl. 28 GDPR.</p></details>
+      <details class="reveal" data-delay="4"><summary>Kolik to stojí?</summary><p>Cenu určíme až po úvodním hovoru a krátké analýze. Dostanete pevnou částku za dohodnutý rozsah, ne otevřenou hodinovku, a měsíční paušál za provoz a další úpravy. Když analýza ukáže, že se nástroj nevyplatí, řekneme to.</p></details>
     </div>
+  </section>
 
-    <div class="cta-box">
-      <h2>Zdržuje vás něco, co by měl dělat počítač?</h2>
-      <p>Nezávazný hovor a krátká analýza zdarma. Popíšete problém, my řekneme, jestli se ho vyplatí řešit softwarem — a za kolik.</p>
-      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
-      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+  <section class="get-started">
+    <h2 class="get-started-title reveal">ZDRŽUJE VÁS NĚCO,<br />CO BY MĚL DĚLAT <span class="grad-purple">POČÍTAČ</span>?</h2>
+    <p class="get-started-sub reveal" data-delay="1">Nezávazný hovor a krátká analýza. Popíšete problém, my řekneme, jestli se ho vyplatí řešit softwarem — a za kolik.</p>
+    <div class="get-started-actions reveal" data-delay="2">
+      <a class="btn-lg btn-primary-lg" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-lg btn-ghost-lg" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
     </div>
+  </section>
 
-    <p class="related">Další: <a href="/tvorba-webu">Tvorba webových stránek</a> · <a href="/#pricing">AI asistenti</a> · <a href="/o-nas">O nás</a></p>
-  </main>
 
   <footer>
-    <div><a href="/">Úvod</a> · <a href="/tvorba-webu">Tvorba webu</a> · <a href="/vyvoj-softwaru">Vývoj softwaru</a> · <a href="mailto:info@alsflow.cz">Kontakt</a> · <a href="/ochrana_dat">Ochrana dat</a></div>
-    <div style="margin-top:0.8rem">© 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556</div>
+    <span class="footer-logo">ALS<span>flow</span></span>
+    <div class="footer-links">
+      <a href="/">Úvod</a>
+      <a href="/tvorba-webu">Tvorba webu</a>
+      <a href="/vyvoj-softwaru">Vývoj softwaru</a>
+      <a href="/#pricing">AI asistenti</a>
+      <a href="/cenik">Ceník</a>
+      <a href="/o-nas">O nás</a>
+      <a href="mailto:info@alsflow.cz">Kontakt</a>
+      <a href="/ochrana_dat">Ochrana dat</a>
+    </div>
+    <span class="footer-copy">&copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnoměcholupská 522/12a, 102 00 Praha 10 &middot; IČO: 02512556 &middot; DIČ: CZ02512556</span>
   </footer>
+
+  <script src="/assets/js/site-pages.js" defer></script>
 </body>
 </html>
