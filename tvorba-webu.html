@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tvorba webových stránek — rychlý web bez WordPressu a bez cookie lišty | ALSflow</title>
+  <meta name="description" content="Tvorba webových stránek na míru: ručně psaný web bez redakčního systému, bez pluginů a bez cookie lišty. Návrh, texty, nasazení, doména i průběžná správa." />
+  <link rel="canonical" href="https://alsflow.cz/tvorba-webu" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tvorba webových stránek — rychlý web bez WordPressu a bez cookie lišty | ALSflow" />
+  <meta property="og:description" content="Ručně psaný web bez WordPressu, bez pluginů a bez souhlasové lišty. Načte se okamžitě a není co rozbít." />
+  <meta property="og:url" content="https://alsflow.cz/tvorba-webu" />
+  <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Tvorba webových stránek",
+    "serviceType": "Návrh, vývoj a průběžná správa webových prezentací",
+    "description": "Webové stránky psané ručně v HTML, CSS a JavaScriptu — bez redakčního systému, bez pluginů a bez cookie lišty. Součástí je návrh, texty, nasazení, napojení domény a průběžná správa.",
+    "url": "https://alsflow.cz/tvorba-webu",
+    "areaServed": ["CZ", "SK"],
+    "inLanguage": "cs",
+    "provider": {
+      "@type": "Organization",
+      "name": "ALSflow",
+      "legalName": "Retail Shops s.r.o.",
+      "url": "https://alsflow.cz",
+      "email": "info@alsflow.cz"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Proč nestavíte weby na WordPressu?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Největší část ceny webu nevzniká při stavbě, ale během let, které následují. WordPress znamená jádro, šablonu a pluginy, které je potřeba pravidelně aktualizovat, a každá aktualizace může web rozbít. Ručně psaný web nemá co aktualizovat — soubory leží na serveru a fungují stejně za pět let jako první den." }
+      },
+      {
+        "@type": "Question",
+        "name": "Budu si moci obsah upravovat sám?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Drobné úpravy textů, cen a kontaktů děláme my a jsou součástí správy — napíšete e-mail a změna je většinou hotová týž den. Pokud potřebujete obsah měnit několikrát týdně, řekneme to dopředu a navrhneme řešení, kde budete mít vlastní rozhraní." }
+      },
+      {
+        "@type": "Question",
+        "name": "Potřebuje web lištu se souhlasem s cookies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Naše weby ji nepotřebují, protože žádné cookies neukládají. Písmo je uložené přímo na webu, takže se nenačítá z cizích serverů, a bez měřicích skriptů třetích stran nevzniká nic, k čemu by byl souhlas podle § 89 odst. 3 zákona č. 127/2005 Sb. potřeba. Pokud si měření přejete, doplníme ho i se souhlasovou lištou." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kolik web stojí?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cenu stanovíme až po úvodním hovoru, podle počtu stránek a toho, kolik obsahu je potřeba napsat. Dostanete pevnou částku za celý web, ne hodinovou sazbu, a měsíční paušál za správu. Provoz na Vercelu a Cloudflare je u webů této velikosti zdarma, platíte jen doménu." }
+      },
+      {
+        "@type": "Question",
+        "name": "Komu web patří?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Vám. Doménu i účty vedeme na vaše jméno a zdrojový kód dostanete celý. Kdybyste se s námi rozloučili, web běží dál a převzít ho může kdokoli, kdo umí HTML — nejste vázáni na náš systém ani na naši licenci." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root{--bg:#08080c;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.18);--t1:#f0f0f3;--t2:#8b8b9e;--t3:#7a7a94;--blue:#3b82f6;--blue-btn:#2563eb;--blue-s:rgba(59,130,246,0.15);--green:#22c55e;--purple:#a855f7;--amber:#f59e0b;--font:'Plus Jakarta Sans',-apple-system,sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--t1);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:860px;margin:0 auto;padding:0 1.4rem}
+    header{position:sticky;top:0;background:rgba(8,8,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:10}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;max-width:1100px;margin:0 auto}
+    .logo{font-weight:800;font-size:1.25rem;color:var(--t1);text-decoration:none}
+    .logo span{color:var(--blue)}
+    .top-cta{background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px}
+    .hero{padding:4.5rem 0 2.5rem;text-align:left}
+    .crumb{font-size:0.8rem;color:var(--t3);margin-bottom:1.2rem}
+    .crumb a{color:var(--t2);text-decoration:none}
+    h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
+    h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--t2);font-size:1.05rem;margin-top:1.2rem;max-width:640px}
+    h2{font-size:1.35rem;font-weight:700;margin:3rem 0 1rem;letter-spacing:-0.01em}
+    h3{font-size:1.05rem;font-weight:700;margin:2rem 0 0.5rem}
+    p{color:var(--t2);margin-bottom:1rem}
+    strong{color:var(--t1)}
+    ul.checks,ul.crosses{list-style:none;margin:1.2rem 0}
+    ul.checks li,ul.crosses li{padding:0.45rem 0 0.45rem 1.9rem;position:relative;color:var(--t2)}
+    ul.checks li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+    ul.crosses li::before{content:"✕";position:absolute;left:0;color:var(--amber);font-weight:700}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin:1.4rem 0}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+    .card h3{font-size:1rem;margin:0 0 0.4rem}
+    .card p{font-size:0.88rem;margin:0}
+    .card .tag{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);margin-bottom:0.5rem}
+    .steps{counter-reset:step;margin:1.4rem 0}
+    .step{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--border)}
+    .step:last-child{border-bottom:none}
+    .step::before{counter-increment:step;content:"0" counter(step);font-weight:800;color:var(--blue);font-size:1.1rem;flex-shrink:0}
+    .step div{color:var(--t2);font-size:0.95rem}
+    .step strong{display:block;margin-bottom:0.2rem}
+    .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.7rem;padding:1rem 1.2rem}
+    .faq summary{font-weight:600;cursor:pointer;color:var(--t1)}
+    .faq p{margin:0.8rem 0 0;font-size:0.93rem}
+    .cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.5rem 0}
+    .cta-box h2{margin:0 0 0.6rem}
+    .cta-box p{max-width:480px;margin:0 auto 1.4rem}
+    .btn{display:inline-block;background:var(--blue-btn);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
+    .btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
+    .related{font-size:0.9rem;color:var(--t3);margin:2rem 0}
+    .related a,.inline{color:var(--blue);text-decoration:none}
+    footer{border-top:1px solid var(--border);margin-top:4rem;padding:2rem 1.4rem;text-align:center;font-size:0.8rem;color:var(--t3)}
+    footer a{color:var(--t2);text-decoration:none;margin:0 0.6rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <a class="logo" href="/">ALS<span>flow</span></a>
+      <a class="top-cta" href="/#pricing">Chci svoji nabídku</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <div class="crumb"><a href="/">ALSflow</a> / Tvorba webových stránek</div>
+      <h1>Weby, na kterých <em>není co rozbít</em></h1>
+      <p class="lead">Žádný redakční systém, žádné pluginy, žádná lišta se souhlasem. Píšeme weby ručně v HTML, CSS a JavaScriptu, nasazujeme je na Vercel a dál se o ně staráme. Výsledek se načte okamžitě a za tři roky funguje stejně jako první den.</p>
+    </section>
+
+    <h2>Proč ručně psaný web</h2>
+    <p>Většina ceny webu nevzniká při stavbě, ale během let, která následují. Typický WordPress si žádá aktualizace jádra, šablony a deseti pluginů, hosting s PHP a databází, a jednou za čas někoho, kdo spraví, co se po aktualizaci rozbilo. My tuhle vrstvu jednoduše nemáme.</p>
+    <ul class="checks">
+      <li><strong>Není co aktualizovat</strong> — web jsou statické soubory. Nemá administraci, kterou by šlo prolomit, ani plugin, který přestane být podporovaný.</li>
+      <li><strong>Načte se do půl vteřiny</strong> — žádné dotazy do databáze, žádný PHP runtime. Stránka přijde z nejbližšího uzlu sítě hotová.</li>
+      <li><strong>Bez cookie lišty</strong> — neukládáme žádné cookies a písmo máme uložené přímo na webu, takže se nic nenačítá z cizích serverů. Souhlas není k čemu vybírat.</li>
+      <li><strong>Přístupnost se testuje, ne předpokládá</strong> — kontrast každé dvojice text a pozadí počítáme proti WCAG 2.2 AA. Na každém webu, který jsme zatím postavili, to odhalilo skutečnou chybu.</li>
+      <li><strong>Zdroják je váš</strong> — doménu i účty vedeme na vaše jméno. Nejste na nás uzamknutí.</li>
+    </ul>
+
+    <h3>Co v ceně naopak není</h3>
+    <ul class="crosses">
+      <li>Administrace, do které se přihlásíte a budete si obsah přepisovat sami. Drobné úpravy děláme my — jsou součástí správy.</li>
+      <li>E-shop. Na prodej zboží je lepší hotová platforma a řekneme vám to rovnou.</li>
+      <li>Web o stovkách stránek s denně přibývajícím obsahem. Tam dává redakční systém smysl.</li>
+    </ul>
+
+    <h2>Jak to probíhá</h2>
+    <div class="steps">
+      <div class="step"><div><strong>Úvodní hovor</strong>Řeknete nám, komu má web sloužit a co po něm člověk má udělat — zavolat, objednat se, stáhnout si podklady. Z toho vyjde struktura stránek.</div></div>
+      <div class="step"><div><strong>Návrh k připomínkování</strong>Do týdne dostanete odkaz na fungující web, ne obrázek. Prokliknete si ho na telefonu i na počítači a řeknete, co změnit.</div></div>
+      <div class="step"><div><strong>Texty a fotky</strong>Pokud texty nemáte, napíšeme je my a vy je jen schválíte. Fotky dodáte, nebo je vybereme a ořízneme.</div></div>
+      <div class="step"><div><strong>Nasazení a doména</strong>Web pustíme živě, nastavíme DNS, certifikát a přesměrování. Vy nemusíte řešit nic technického.</div></div>
+      <div class="step"><div><strong>Správa</strong>Změna ceny, nová stránka, jiné otevírací hodiny — napíšete e-mail, my to změníme. Většinou týž den.</div></div>
+    </div>
+
+    <h2>Co jsme postavili</h2>
+    <div class="cards">
+      <div class="card"><span class="tag">Politické hnutí</span><h3>gen1.cz</h3><p>Web hnutí GEN včetně programu, kandidátky a přihlašovacího formuláře. Aktuality se na web zrcadlí z Facebooku samy.</p></div>
+      <div class="card"><span class="tag">Znalecký posudek</span><h3>sekelovaznalec.sk</h3><p>Prezentace soudní znalkyně v odboru stavebnictví — služby, ceník, podklady k obhlídce. Slovensky, devět stránek.</p></div>
+      <div class="card"><span class="tag">Vlastní web</span><h3>alsflow.cz</h3><p>Stránka, na které právě jste. Stejná technologie, stejný postup.</p></div>
+    </div>
+
+    <h2>Na čem to běží</h2>
+    <p>Používáme schválně pořád stejnou sestavu, aby údržba zůstala levná: <strong>HTML, CSS a JavaScript bez build kroku</strong>, písmo uložené jako woff2 přímo na webu, hosting <strong>Vercel</strong>, DNS a certifikát <strong>Cloudflare</strong>. Formuláře posílají e-mail a neukládají nic do žádné databáze — čím míň osobních údajů web drží, tím míň je co chránit.</p>
+    <p>U webu politického hnutí k tomu přibývají povinnosti podle nařízení EU 2024/900 o transparentnosti politické reklamy a čl. 9 GDPR. S tím máme zkušenost a víme, co na web patří.</p>
+
+    <h2>Kolik to stojí</h2>
+    <p>Cenu řekneme až po úvodním hovoru, protože web o čtyřech stránkách a web o dvanácti není táž práce. Dostanete <strong>pevnou částku za celý web</strong>, ne hodinovou sazbu, a k tomu měsíční paušál za správu. Provoz na Vercelu a Cloudflare je u webů této velikosti zdarma — platit budete jen doménu.</p>
+
+    <h2 id="faq">Časté dotazy</h2>
+    <div class="faq">
+      <details><summary>Proč nestavíte weby na WordPressu?</summary><p>Největší část ceny webu nevzniká při stavbě, ale během let, které následují. WordPress znamená jádro, šablonu a pluginy, které je potřeba pravidelně aktualizovat, a každá aktualizace může web rozbít. Ručně psaný web nemá co aktualizovat — soubory leží na serveru a fungují stejně za pět let jako první den.</p></details>
+      <details><summary>Budu si moci obsah upravovat sám?</summary><p>Drobné úpravy textů, cen a kontaktů děláme my a jsou součástí správy — napíšete e-mail a změna je většinou hotová týž den. Pokud potřebujete obsah měnit několikrát týdně, řekneme to dopředu a navrhneme řešení, kde budete mít vlastní rozhraní.</p></details>
+      <details><summary>Potřebuje web lištu se souhlasem s cookies?</summary><p>Naše weby ji nepotřebují, protože žádné cookies neukládají. Písmo je uložené přímo na webu, takže se nenačítá z cizích serverů, a bez měřicích skriptů třetích stran nevzniká nic, k čemu by byl souhlas podle § 89 odst. 3 zákona č. 127/2005 Sb. potřeba. Pokud si měření přejete, doplníme ho i se souhlasovou lištou.</p></details>
+      <details><summary>Kolik web stojí?</summary><p>Cenu stanovíme až po úvodním hovoru, podle počtu stránek a toho, kolik obsahu je potřeba napsat. Dostanete pevnou částku za celý web, ne hodinovou sazbu, a měsíční paušál za správu. Provoz na Vercelu a Cloudflare je u webů této velikosti zdarma, platíte jen doménu.</p></details>
+      <details><summary>Komu web patří?</summary><p>Vám. Doménu i účty vedeme na vaše jméno a zdrojový kód dostanete celý. Kdybyste se s námi rozloučili, web běží dál a převzít ho může kdokoli, kdo umí HTML — nejste vázáni na náš systém ani na naši licenci.</p></details>
+    </div>
+
+    <div class="cta-box">
+      <h2>Máte v hlavě web, který měl dávno stát?</h2>
+      <p>Nezávazná konzultace zdarma. Řeknete nám, co potřebujete, a dostanete pevnou cenu a termín — ne odhad.</p>
+      <a class="btn" href="/#pricing">Chci nezávaznou nabídku</a>
+      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+    </div>
+
+    <p class="related">Další: <a href="/vyvoj-softwaru">Vývoj softwaru na míru</a> · <a href="/#pricing">AI asistenti</a> · <a href="/o-nas">O nás</a></p>
+  </main>
+
+  <footer>
+    <div><a href="/">Úvod</a> · <a href="/tvorba-webu">Tvorba webu</a> · <a href="/vyvoj-softwaru">Vývoj softwaru</a> · <a href="mailto:info@alsflow.cz">Kontakt</a> · <a href="/ochrana_dat">Ochrana dat</a></div>
+    <div style="margin-top:0.8rem">© 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556</div>
+  </footer>
+</body>
+</html>
