@@ -6,7 +6,9 @@
    4. plynulé rolování přes Lenis a kotvy skrz něj
    5. vlna po kliknutí na tlačítko
    6. dosvit uvnitř karty za kurzorem
-   7. rok v patičce
+   8. magnetické tlačítko
+   9. obtažení obvodu tlačítka
+  10. rok v patičce
 
    Prostorová scéna v hlavičce má vlastní soubor (arc3d.js), plošná
    záloha taky (predictive-arc.js). Bez cookies, bez sledování.
@@ -229,8 +231,105 @@
     });
   })();
 
+
   /* ==================================================================
-     7. Rok v patičce
+     8. Magnetické tlačítko
+
+     Posun se předává do vlastních vlastností, samotný pohyb dělá CSS.
+     Rozsah je schválně malý — větší už působí, že tlačítko utíká.
+     ================================================================== */
+  (function () {
+    if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
+
+    document.querySelectorAll(".btn-magnet").forEach(function (btn) {
+      var queued = false, tx = 0, ty = 0;
+
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 14;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * 9;
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () {
+          btn.style.setProperty("--tx", tx.toFixed(2) + "px");
+          btn.style.setProperty("--ty", ty.toFixed(2) + "px");
+          queued = false;
+        });
+      }, { passive: true });
+
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--tx", "0px");
+        btn.style.setProperty("--ty", "0px");
+      });
+    });
+  })();
+
+  /* ==================================================================
+     9. Obtažení obvodu
+
+     Obdélník se kreslí do SVG, které se musí přeměřit podle skutečné
+     velikosti tlačítka — jinak by se linka u širšího nápisu roztáhla.
+     ================================================================== */
+  (function () {
+    var traced = document.querySelectorAll(".btn-trace");
+    if (!traced.length) return;
+
+    var NS = "http://www.w3.org/2000/svg";
+
+    traced.forEach(function (btn) {
+      var svg = document.createElementNS(NS, "svg");
+      svg.setAttribute("class", "edge");
+      svg.setAttribute("aria-hidden", "true");
+      var rect = document.createElementNS(NS, "rect");
+      svg.appendChild(rect);
+      btn.appendChild(svg);
+
+      function measure() {
+        var r = btn.getBoundingClientRect();
+        if (!r.width) return;
+        svg.setAttribute("viewBox", "0 0 " + r.width + " " + r.height);
+        rect.setAttribute("x", "1");
+        rect.setAttribute("y", "1");
+        rect.setAttribute("width", String(r.width - 2));
+        rect.setAttribute("height", String(r.height - 2));
+        rect.setAttribute("rx", "10");
+        var per = 2 * (r.width + r.height);
+        rect.style.setProperty("--per", per);
+        rect.style.strokeDasharray = "8 " + per;
+        btn.style.setProperty("--per", per + "px");
+        /* hodnoty pro stav při najetí musí sedět na skutečný obvod */
+        rect.dataset.per = String(per);
+      }
+
+      measure();
+      if ("ResizeObserver" in window) new ResizeObserver(measure).observe(btn);
+
+      btn.addEventListener("pointerenter", function () {
+        var per = Number(rect.dataset.per) || 200;
+        rect.style.strokeDasharray = per / 2 + " " + per / 2;
+        rect.style.strokeDashoffset = String(-per / 2);
+      });
+      btn.addEventListener("pointerleave", function () {
+        var per = Number(rect.dataset.per) || 200;
+        rect.style.strokeDasharray = "8 " + per;
+        rect.style.strokeDashoffset = "8";
+      });
+    });
+
+    /* Přechod pro obtažení — jeden na celý dokument. */
+    var defs = document.createElementNS(NS, "svg");
+    defs.setAttribute("width", "0");
+    defs.setAttribute("height", "0");
+    defs.setAttribute("aria-hidden", "true");
+    defs.style.position = "absolute";
+    defs.innerHTML = '<defs><linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0%" stop-color="#38dbf5"/><stop offset="50%" stop-color="#5b9dff"/>' +
+      '<stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>';
+    document.body.appendChild(defs);
+  })();
+
+  /* ==================================================================
+     10. Rok v patičce
      ================================================================== */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

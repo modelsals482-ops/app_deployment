@@ -683,3 +683,155 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .rev { opacity: 1 !important; transform: none !important; }
 }
+
+/* =====================================================================
+   Odhalování po slovech (GSAP)
+
+   Nadpis je do doběhnutí skriptu schovaný, aby text neproblikl na
+   svém místě a teprve pak nevyjel. Skript viditelnost vrátí — a když
+   se nenačte, vrátí ji taky, takže nadpis nikdy nezůstane pryč.
+   ===================================================================== */
+.reveal-words { visibility: hidden; }
+
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.12em;   /* jinak se ořízne ocásek u p, y, ř */
+  vertical-align: bottom;
+}
+.word-in { display: inline-block; will-change: transform; transform: translateY(110%); }
+
+/* Přechod v nadpisu je na samotném nadpisu (background-clip: text).
+   Jakmile se text rozseká na slova, jsou to nové prvky — zdědí
+   průhlednou výplň, ale žádné pozadí, takže by zmizela. Přechod proto
+   musí dostat každé slovo zvlášť. Spád je svislý a slova leží na
+   společné účaří, takže výsledek vypadá stejně jako přes celý nadpis. */
+.fade-head .word-in {
+  background: linear-gradient(180deg, #fff 38%, #9a9aa4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Barevné slovo si drží vlastní přechod — musí přebít pravidlo výše. */
+.fade-head .word-in .grad {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-words { visibility: visible !important; }
+  .word-in { transform: none !important; }
+}
+
+/* =====================================================================
+   Tlačítka — každá sekce má jiné chování
+
+   Ukázka toho, co se dá postavit. Základ (.btn) je pořád stejný,
+   varianta jen mění, co se stane při najetí a kliknutí.
+   ===================================================================== */
+
+/* 1. Rozliv — barva se rozlije zleva. Výchozí chování .btn výše. */
+
+/* 2. Magnet — tlačítko se lehce nakloní ke kurzoru.
+      Posun počítá skript do --tx / --ty. */
+.btn-magnet { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s, border-color 0.24s, box-shadow 0.28s; }
+.btn-magnet:hover { transform: translate(var(--tx, 0), var(--ty, 0)); }
+
+/* 3. Výměna nápisu — původní vyjede nahoru, kopie přijede zespodu. */
+.btn-swap { overflow: hidden; }
+.btn-swap .lbl { position: relative; display: inline-block; }
+.btn-swap .lbl span {
+  display: block;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-swap .lbl span:last-child { position: absolute; top: 0; left: 0; transform: translateY(115%); }
+.btn-swap:hover .lbl span:first-child { transform: translateY(-115%); }
+.btn-swap:hover .lbl span:last-child { transform: none; }
+
+/* 4. Obtažení — linka objede obvod tlačítka. */
+.btn-trace { border-color: transparent; }
+.btn-trace .edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.btn-trace .edge rect {
+  fill: none;
+  stroke: url(#edgeGrad);
+  stroke-width: 2;
+  stroke-dasharray: 8 300;
+  stroke-dashoffset: 8;
+  transition: stroke-dasharray 0.62s cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 0.62s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-trace:hover .edge rect { stroke-dasharray: 154 154; stroke-dashoffset: -154; }
+.btn-trace::before { display: none; }
+.btn-trace:hover { color: var(--t1); border-color: transparent; box-shadow: none; }
+
+/* 5. Naplnění zespodu. */
+.btn-fill::before {
+  inset: auto 0 0 0;
+  height: 100%;
+  opacity: 1;
+  transform: translateY(101%);
+  transition: transform 0.44s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-fill:hover::before { transform: none; }
+
+/* 6. Záblesk — světlý pruh přejede přes tlačítko. */
+.btn-shine::after {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  content: '';
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 55%), transparent);
+  pointer-events: none;
+  transform: skewX(-18deg);
+  transition: left 0.62s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-shine:hover::after { left: 115%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-magnet:hover { transform: none; }
+  .btn-swap .lbl span, .btn-trace .edge rect, .btn-fill::before, .btn-shine::after { transition: none; }
+}
+
+/* =====================================================================
+   Scény uvnitř sekcí
+
+   Plátno leží pod obsahem a nikdy nechytá myš. Ztlumené je schválně
+   dost — je to podklad, ne obrázek, a text nad ním musí zůstat čitelný.
+   ===================================================================== */
+.scene-host { position: relative; overflow: hidden; }
+.scene-host > .wrap { position: relative; z-index: 1; }
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 62% 72% at 50% 50%, #000 30%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 72% at 50% 50%, #000 30%, transparent 76%);
+}
+.scene-soft { opacity: 0.32; }
+
+/* Varianta u pravého okraje — text pak sedí vlevo bez rušení. */
+.scene-right {
+  left: auto;
+  width: 62%;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 62% 50%, #000 22%, transparent 74%);
+  mask-image: radial-gradient(ellipse 60% 70% at 62% 50%, #000 22%, transparent 74%);
+}
+
+@media (width <= 1000px) {
+  .scene-right { width: 100%; opacity: 0.34; }
+  .scene { opacity: 0.3; }
+}
