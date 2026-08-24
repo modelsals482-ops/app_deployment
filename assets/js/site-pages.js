@@ -3,7 +3,10 @@
 
    1. navigace: stín po odrolování, rozbalovací panel, mobilní menu
    2. odhalování sekcí při rolování
-   3. rok v patičce
+   4. plynulé rolování přes Lenis a kotvy skrz něj
+   5. vlna po kliknutí na tlačítko
+   6. dosvit uvnitř karty za kurzorem
+   7. rok v patičce
 
    Prostorová scéna v hlavičce má vlastní soubor (arc3d.js), plošná
    záloha taky (predictive-arc.js). Bez cookies, bez sledování.
@@ -136,8 +139,98 @@
     items.forEach(function (el) { io.observe(el); });
   })();
 
+
   /* ==================================================================
-     3. Rok v patičce
+     4. Plynulé rolování (Lenis 1.3.25, uložený v repozitáři)
+
+     Knihovna se načítá jako první, takže když tu není, jen se přeskočí
+     a rolování zůstane nativní. Na dotyku se nezapíná — tam je natívní
+     rolování plynulé samo a zásah do něj působí lepkavě.
+     ================================================================== */
+  var lenis = null;
+  (function () {
+    if (reduced || !window.Lenis) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    lenis = new window.Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    window.__lenis = lenis;   /* stejná úmluva jako na ostatních webech */
+  })();
+
+  /* Kotvy v rámci stránky musí jít přes Lenis, jinak by skočily. */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute("href");
+    if (id === "#") return;
+    var el = document.querySelector(id);
+    if (!el) return;
+
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(el, { offset: -78 });
+    else el.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+
+    el.setAttribute("tabindex", "-1");
+    el.focus({ preventScroll: true });
+  });
+
+  /* ==================================================================
+     5. Vlna po kliknutí na tlačítko
+     ================================================================== */
+  document.addEventListener("pointerdown", function (e) {
+    if (reduced) return;
+    var btn = e.target.closest(".btn");
+    if (!btn) return;
+
+    var r = btn.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2.2;
+    var span = document.createElement("span");
+    span.className = "ripple";
+    span.style.width = span.style.height = size + "px";
+    span.style.left = (e.clientX - r.left - size / 2) + "px";
+    span.style.top = (e.clientY - r.top - size / 2) + "px";
+    btn.appendChild(span);
+    setTimeout(function () { span.remove(); }, 640);
+  });
+
+  /* ==================================================================
+     6. Dosvit uvnitř karty jede za kurzorem
+
+     Souřadnice se předávají do vlastních vlastností, samotný dosvit
+     kreslí CSS — tady se jen počítá pozice.
+     ================================================================== */
+  (function () {
+    if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
+
+    var cards = document.querySelectorAll(".panel-glow");
+    if (!cards.length) return;
+
+    cards.forEach(function (card) {
+      var queued = false, mx = 0, my = 0;
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        mx = e.clientX - r.left;
+        my = e.clientY - r.top;
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () {
+          card.style.setProperty("--mx", mx + "px");
+          card.style.setProperty("--my", my + "px");
+          queued = false;
+        });
+      }, { passive: true });
+    });
+  })();
+
+  /* ==================================================================
+     7. Rok v patičce
      ================================================================== */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());
