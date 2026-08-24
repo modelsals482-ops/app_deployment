@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ALSflow — weby, software a AI asistenti pro malé firmy</title>
-  <meta name="description" content="Weby, menší software na míru a AI asistenti pro české živnostníky a malé firmy. Pevná cena řečená rovnou, rychlá odpověď, provoz zajistíme. Praha." />
+  <meta name="description" content="Weby, software na míru a AI asistenti pro české živnostníky a malé firmy. Pevná cena řečená rovnou, rychlá odpověď, provoz zajistíme. Praha." />
   <link rel="canonical" href="https://alsflow.cz/" />
   <meta name="robots" content="index, follow" />
   <meta property="og:type" content="website" />
@@ -12,24 +12,26 @@
   <meta property="og:description" content="Tři věci, které děláme: weby, software na míru a AI asistenty. Pevná cena, rychlá odpověď." />
   <meta property="og:url" content="https://alsflow.cz/" />
   <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   "name": "ALSflow",
   "legalName": "Retail Shops s.r.o.",
   "url": "https://alsflow.cz",
   "email": "info@alsflow.cz",
-  "description": "ALSflow staví weby, menší software na míru a AI asistenty pro české živnostníky a malé firmy. Pevná cena, rychlá odpověď, provoz zajištěn.",
+  "description": "Weby, software na míru a AI asistenti pro české živnostníky a malé firmy. Pevná cena, rychlá odpověď, provoz zajištěn.",
   "areaServed": [
     "CZ",
     "SK"
   ],
+  "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Dolnoměcholupská 522/12a",
@@ -58,7 +60,7 @@
       "@type": "Offer",
       "itemOffered": {
         "@type": "Service",
-        "name": "AI asistenti pro malé firmy",
+        "name": "AI asistenti",
         "url": "https://alsflow.cz/ai-asistenti"
       }
     }
@@ -250,158 +252,190 @@
   })();
 </script>
 
-  <nav id="navbar">
-    <a class="nav-logo" href="/">ALS<span>flow</span></a>
-    <ul class="nav-links">
-      <li><a href="/tvorba-webu">Weby</a></li>
-      <li><a href="/vyvoj-softwaru">Software</a></li>
-      <li><a href="/ai-asistenti">AI asistenti</a></li>
-      <li><a href="/o-nas">O n&aacute;s</a></li>
-    </ul>
-    <a class="nav-cta desktop-cta" href="#kontakt">Chci nab&iacute;dku</a>
-    <button class="hamburger" id="hamburger" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="/">ALS<span>flow</span></a>
+      <ul class="menu">
+        <li class="has-drop">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
+          <div class="drop">
+            <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
+            <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
+            <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
+            <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
+          </div>
+        </li>
+        <li><a href="/tvorba-webu">Weby</a></li>
+        <li><a href="/vyvoj-softwaru">Software</a></li>
+        <li><a href="/ai-asistenti">AI asistenti</a></li>
+        <li><a href="/o-nas">O n&aacute;s</a></li>
+      </ul>
+      <a class="btn" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <ul class="mobile-links">
-      <li><a href="/tvorba-webu">Weby</a></li>
-      <li><a href="/vyvoj-softwaru">Software</a></li>
-      <li><a href="/ai-asistenti">AI asistenti</a></li>
-      <li><a href="/o-nas">O n&aacute;s</a></li>
-      <li><a href="/cenik">Cen&iacute;k</a></li>
-    </ul>
-    <a class="mobile-cta" href="#kontakt">Chci nab&iacute;dku &rarr;</a>
+  <div class="sheet" id="sheet">
+    <a href="/tvorba-webu">Weby</a>
+    <a href="/vyvoj-softwaru">Software na m&iacute;ru</a>
+    <a href="/ai-asistenti">AI asistenti</a>
+    <a href="/cenik">Cen&iacute;k</a>
+    <a href="/o-nas">O n&aacute;s</a>
+    <a class="btn" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
   </div>
 
-  <section class="home-hero">
-    <canvas id="arcCanvas" aria-hidden="true"></canvas>
-    <h1 class="home-title">WEBY, SOFTWARE A <span class="grad-blue">AI</span>.</h1>
-    <p class="home-sub">Jeden člověk, tři řemesla a pevná cena řečená rovnou. Stavíme pro živnostníky a malé firmy, které nechtějí řešit techniku ani čekat týden na odpověď.</p>
-    <div class="facts">
-      <span class="fact">Odpov&iacute;m do <b class="todo">doplnit</b></span>
-      <span class="fact">Web od <b class="todo">doplnit</b></span>
-      <span class="fact">Pevn&aacute; cena, <b>ne hodinovka</b></span>
-      <span class="fact">Praha, <b>&ccaron;esky</b></span>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span>Praha &middot; voln&aacute; kapacita</span>
+        <h1 class="h-hero fade-head" style="margin-top:1.6rem">Weby, software<br />a AI asistenti</h1>
+        <p class="lead">Jeden &ccaron;lov&ecaron;k, t&rcaron;i &rcaron;emesla a pevn&aacute; cena &rcaron;e&ccaron;en&aacute; rovnou. Stav&iacute;me pro &zcaron;ivnostn&iacute;ky a mal&eacute; firmy, kter&eacute; nechtěj&iacute; &rcaron;e&scaron;it techniku ani &ccaron;ekat t&yacute;den na odpov&ecaron;&dcaron;.</p>
+        <div class="btn-row">
+          <a class="btn" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+          <a class="btn-quiet" href="#co-delame">Co d&ecaron;l&aacute;me <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+        </div>
+        <div class="facts">
+          <span class="fact">Odpov&iacute;m do <b><span class="todo">doplnit</span></b></span>
+          <span class="fact">Web od <b><span class="todo">doplnit</span></b></span>
+          <span class="fact">Pevn&aacute; cena, <b>ne hodinovka</b></span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <canvas id="arc3d" aria-hidden="true"></canvas>
+        <canvas id="arcCanvas" aria-hidden="true"></canvas>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="co-delame">
-    <div class="section-center" style="margin-bottom:1rem">
-      <span class="section-tag tag-blue reveal">Co d&ecaron;l&aacute;me</span>
-      <h2 class="section-title reveal">T&rcaron;i v&ecaron;ci.<br />V&scaron;echny <span class="grad-blue">po&rcaron;&aacute;dn&ecaron;</span>.</h2>
-      <p class="section-lead reveal">Vyberte si, co pot&rcaron;ebujete. Ka&zcaron;d&aacute; sekce m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a uk&aacute;zkami.</p>
-    </div>
-    <div class="pillars" style="margin-top:3rem">
-      <a class="pillar pillar-web reveal" href="/tvorba-webu">
-        <span class="pillar-mark"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="6" width="26" height="20" rx="2.5" /><path d="M3 12h26" />
-          <circle cx="7" cy="9" r="0.9" fill="currentColor" stroke="none" /><circle cx="10.4" cy="9" r="0.9" fill="currentColor" stroke="none" />
-          <path d="M8 17h9M8 21h6" />
-        </svg></span>
-        <span class="pillar-kicker">Weby</span>
-        <span class="pillar-name">Tvorba webov&yacute;ch str&aacute;nek</span>
-        <span class="pillar-desc">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez cookie li&scaron;ty. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</span>
-        <span class="pillar-price">Od <b class="todo">doplnit</b> K&ccaron; &middot; spr&aacute;va <b class="todo">doplnit</b> K&ccaron;/m&ecaron;s</span>
-        <span class="pillar-go">Zjistit v&iacute;c <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-      </a>
-      <a class="pillar pillar-software reveal" href="/vyvoj-softwaru">
-        <span class="pillar-mark"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="26" height="22" rx="2.5" /><path d="M11 5v22M3 11h26" />
-          <path d="M15 15h10M15 19h10M15 23h6" />
-          <path d="M6 16.5l1.6 1.6L6 19.7" />
-        </svg></span>
-        <span class="pillar-kicker">Software</span>
-        <span class="pillar-name">V&yacute;voj na m&iacute;ru</span>
-        <span class="pillar-desc">Administra&ccaron;n&iacute; panely, napojen&iacute; syst&eacute;m&uring;, kter&eacute; spolu nemluv&iacute;, a intern&iacute; n&aacute;stroje m&iacute;sto tabulek. Nasazen&iacute; v &rcaron;&aacute;du t&yacute;dn&uring;.</span>
-        <span class="pillar-price">Od <b class="todo">doplnit</b> K&ccaron; &middot; pevn&yacute; rozsah</span>
-        <span class="pillar-go">Zjistit v&iacute;c <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-      </a>
-      <a class="pillar pillar-ai reveal" href="/ai-asistenti">
-        <span class="pillar-mark"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 8.5A2.5 2.5 0 0 1 7.5 6h17A2.5 2.5 0 0 1 27 8.5v11a2.5 2.5 0 0 1-2.5 2.5H14l-6 4.5V22H7.5A2.5 2.5 0 0 1 5 19.5z" />
-          <path d="M11 14v3M15 11.5v8M19 13v5M23 15v1.5" />
-        </svg></span>
-        <span class="pillar-kicker">AI asistenti</span>
-        <span class="pillar-name">Rezervace a odpov&ecaron;di</span>
-        <span class="pillar-desc">AI odpov&iacute;d&aacute; z&aacute;kazn&iacute;k&uring;m, objedn&aacute;v&aacute; termíny a p&rcaron;ipom&iacute;n&aacute; je. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te.</span>
-        <span class="pillar-price">Od <b>2&nbsp;500 K&ccaron;</b>/m&ecaron;s &middot; bez z&aacute;vazk&uring;</span>
-        <span class="pillar-go">Zjistit v&iacute;c <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-      </a>
+  <section class="sec sec-line" id="co-delame">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Co d&ecaron;l&aacute;me</span>
+        <h2 class="h-sec fade-head">T&rcaron;i v&ecaron;ci. V&scaron;echny po&rcaron;&aacute;dn&ecaron;.</h2>
+        <p class="lead">Ka&zcaron;d&aacute; m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a uk&aacute;zkami toho, co u&zcaron; b&ecaron;&zcaron;&iacute;.</p>
+      </div>
+      <div class="cards-3">
+        <a class="panel rev " href="/tvorba-webu">
+          <div class="panel-pad">
+            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M2.5 9h19"/><path d="M6 12.5h7M6 15.5h4.5"/></svg></span></span>
+            <h3 class="h-sub" style="margin-bottom:0.6rem">Weby</h3>
+            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez cookie li&scaron;ty. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</p>
+            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od <span class="todo">doplnit</span> K&ccaron; &middot; spr&aacute;va <span class="todo">doplnit</span> K&ccaron;/m&ecaron;s</p>
+            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel rev " href="/vyvoj-softwaru">
+          <div class="panel-pad">
+            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/><path d="M12 12h6.5M12 15.5h6.5"/></svg></span></span>
+            <h3 class="h-sub" style="margin-bottom:0.6rem">Software na m&iacute;ru</h3>
+            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Administra&ccaron;n&iacute; panely, napojen&iacute; syst&eacute;m&uring;, kter&eacute; spolu nemluv&iacute;, a intern&iacute; n&aacute;stroje m&iacute;sto tabulek. Nasazen&iacute; v &rcaron;&aacute;du t&yacute;dn&uring;.</p>
+            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od <span class="todo">doplnit</span> K&ccaron; &middot; pevn&yacute; rozsah</p>
+            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel rev " href="/ai-asistenti">
+          <div class="panel-pad">
+            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5A2 2 0 0 1 5.5 4.5h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-4.5 3.2V16.5h-.5a2 2 0 0 1-2-2z"/><path d="M8 9.5v3M11.5 8v6M15 9v4M18 10.5v1"/></svg></span></span>
+            <h3 class="h-sub" style="margin-bottom:0.6rem">AI asistenti</h3>
+            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">AI odpov&iacute;d&aacute; z&aacute;kazn&iacute;k&uring;m, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te.</p>
+            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od <b style="color:var(--t1)">2&nbsp;500 K&ccaron;</b>/m&ecaron;s &middot; bez z&aacute;vazk&uring;</p>
+            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="reference">
-    <div class="section-narrow section-center">
-      <span class="section-tag tag-green reveal">Reference</span>
-      <h2 class="section-title reveal">Pro koho to <span class="grad-green">b&ecaron;&zcaron;&iacute;</span></h2>
-      <p class="section-lead reveal">T&rcaron;i klienti, kter&iacute; z&uring;stali. Ka&zcaron;d&yacute; za n&ecaron;co jin&eacute;ho &mdash; web, software, chatbot.</p>
-    </div>
-    <div class="logo-strip reveal" data-delay="1">
-      <a href="https://gen1.cz" target="_blank" rel="noopener" aria-label="gen1.cz">
-        <img src="/assets/ref/gen-logo-white.png" alt="GEN" width="132" height="42" loading="lazy" />
-      </a>
-      <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener" aria-label="sekelovaznalec.sk">
-        <span class="mark-sekelova">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-            <path d="M3 19.5 20 6l17 13.5" /><path d="M8 21v13h24V21" /><path d="M16.5 34v-8.5h7V34" />
-          </svg>
-          <span>
-            <span class="ms-name">Ing. Dagmar Sekelov&aacute;</span><br />
-            <span class="ms-role">Znalec</span>
+  <section class="sec sec-dark sec-line">
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="eyebrow-label">Reference</span>
+        <h2 class="h-sec fade-head">Pro koho to b&ecaron;&zcaron;&iacute;</h2>
+        <p class="lead lead-center">T&rcaron;i klienti, kte&rcaron;í z&uring;stali. Ka&zcaron;d&yacute; za n&ecaron;co jin&eacute;ho &mdash; web, software, chatbot.</p>
+      </div>
+      <div class="logos rev" data-d="1">
+        <a href="https://gen1.cz" target="_blank" rel="noopener" aria-label="gen1.cz">
+          <img src="/assets/ref/gen-logo-white.png" alt="GEN" width="118" height="36" loading="lazy" />
+        </a>
+        <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener" aria-label="sekelovaznalec.sk">
+          <span class="mk-sek">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+              <path d="M3 19.5 20 6l17 13.5" /><path d="M8 21v13h24V21" /><path d="M16.5 34v-8.5h7V34" />
+            </svg>
+            <span><span class="n">Ing. Dagmar Sekelov&aacute;</span><br /><span class="r">Znalec</span></span>
           </span>
-        </span>
-      </a>
-      <a href="https://weloveevents.cz" target="_blank" rel="noopener" aria-label="weloveevents.cz">
-        <span class="mark-wle" aria-hidden="true"><span class="we">WE</span><span class="lo">LOVE</span><span class="cl">:</span><span class="ev">EVENTS</span></span>
-        <span class="visually-hidden">WE LOVE EVENTS</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="section" id="jak">
-    <div class="split">
-      <div>
-        <span class="section-tag tag-purple reveal">Pro&ccaron; my</span>
-        <h2 class="section-title reveal">Zvednu telefon.<br /><span class="grad-purple">To je cel&eacute;</span>.</h2>
-        <p class="section-lead reveal">Agentura v&aacute;m odpov&iacute; za t&yacute;den a napo&ccaron;&iacute;t&aacute; si hodiny. Tady nap&iacute;&scaron;ete a m&aacute;te odpov&ecaron;&dcaron; do <span class="todo">doplnit</span>. Cenu &rcaron;eknu po prvn&iacute;m hovoru a d&aacute;l se nem&ecaron;n&iacute;.</p>
-      </div>
-      <div class="split-visual">
-        <ul class="bullets bullet-purple reveal" data-delay="1">
-          <li><strong>Jeden dodavatel na v&scaron;echno.</strong> Web, n&aacute;stroj i chatbot od jednoho &ccaron;lov&ecaron;ka, kter&yacute; v&iacute;, jak spolu souvis&iacute;.</li>
-          <li><strong>Pevn&aacute; cena za dohodnut&yacute; rozsah.</strong> &Zcaron;&aacute;dn&aacute; otev&rcaron;en&aacute; hodinovka, &zcaron;&aacute;dn&eacute; p&rcaron;ekvapen&iacute; na faktu&rcaron;e.</li>
-          <li><strong>Provoz je v pau&scaron;&aacute;lu.</strong> Nemus&iacute;te shán&ecaron;t, kdo to bude spravovat &mdash; to jsme po&rcaron;&aacute;d my.</li>
-          <li><strong>V&scaron;echno na va&scaron;e jm&eacute;no.</strong> Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d. Nejste na n&aacute;s uz&aacute;mknut&iacute;.</li>
-        </ul>
+        </a>
+        <a href="https://weloveevents.cz" target="_blank" rel="noopener" aria-label="weloveevents.cz">
+          <span class="mk-wle" aria-hidden="true"><span class="we">WE</span><span class="lo">LOVE</span><span class="cl">:</span><span class="ev">EVENTS</span></span>
+          <span class="vh">WE LOVE EVENTS</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="get-started" id="kontakt">
-    <h2 class="get-started-title reveal">&#344;EKN&#282;TE, CO<br />POT&#344;EBUJETE.</h2>
-    <p class="get-started-sub reveal" data-delay="1">Nez&aacute;vazn&yacute; hovor na &ccaron;tvrt hodiny. Dostanete pevnou cenu a term&iacute;n &mdash; ne odhad.</p>
-    <div class="get-started-actions reveal" data-delay="2">
-      <a class="btn-lg btn-primary-lg" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
-      <a class="btn-lg btn-ghost-lg" href="/cenik">Cel&yacute; cen&iacute;k</a>
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Pro&ccaron; my</span>
+        <h2 class="h-sec fade-head">Zvednu telefon.</h2>
+        <p class="lead">Agentura v&aacute;m odpov&iacute; za t&yacute;den a napo&ccaron;&iacute;t&aacute; si hodiny. Tady nap&iacute;&scaron;ete a m&aacute;te odpov&ecaron;&dcaron; do <span class="todo">doplnit</span>. Cenu &rcaron;eknu po prvn&iacute;m hovoru a d&aacute;l se nem&ecaron;n&iacute;.</p>
+      </div>
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Jeden dodavatel na v&scaron;echno</h3><p>Web, n&aacute;stroj i chatbot od jednoho &ccaron;lov&ecaron;ka, kter&yacute; v&iacute;, jak spolu souvis&iacute;. Nemus&iacute;te sh&aacute;n&ecaron;t t&rcaron;i firmy a p&rcaron;ekl&aacute;dat mezi nimi.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Pevn&aacute; cena za dohodnut&yacute; rozsah</h3><p>&Zcaron;&aacute;dn&aacute; otev&rcaron;en&aacute; hodinovka. &Rcaron;eknu &ccaron;&aacute;stku po prvn&iacute;m hovoru a ta plat&iacute;.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Provoz je v pau&scaron;&aacute;lu</h3><p>Nemus&iacute;te shán&ecaron;t, kdo to bude spravovat. To jsme po&rcaron;&aacute;d my &mdash; drobn&eacute; &uacute;pravy v&ecaron;t&scaron;inou t&yacute;&zcaron; den.</p></div></div>
+        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>V&scaron;echno na va&scaron;e jm&eacute;no</h3><p>Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d i dokumentace. Kdybychom se rozlou&ccaron;ili, b&ecaron;&zcaron;&iacute; to d&aacute;l bez n&aacute;s.</p></div></div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <span class="footer-logo">ALS<span>flow</span></span>
-    <div class="footer-links">
-      <a href="/tvorba-webu">Weby</a>
-      <a href="/vyvoj-softwaru">Software</a>
-      <a href="/ai-asistenti">AI asistenti</a>
-      <a href="/cenik">Cen&iacute;k</a>
-      <a href="/o-nas">O n&aacute;s</a>
-      <a href="mailto:info@alsflow.cz">Kontakt</a>
-      <a href="/ochrana_dat">Ochrana dat</a>
+  <section class="closer">
+    <div class="wrap">
+      <h2 class="h-sec fade-head rev">&Rcaron;ekn&ecaron;te, co pot&rcaron;ebujete.</h2>
+      <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor na &ccaron;tvrt hodiny. Dostanete pevnou cenu a term&iacute;n &mdash; ne odhad.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn" href="mailto:info@alsflow.cz">Napsat na info@alsflow.cz</a>
+        <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
     </div>
-    <span class="footer-copy">&copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102 00 Praha 10 &middot; I&Ccaron;O: 02512556 &middot; DI&Ccaron;: CZ02512556</span>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-in">
+        <div class="foot-col">
+          <a class="brand" href="/" style="font-size:1.15rem">ALS<span>flow</span></a>
+        </div>
+        <div class="foot-col">
+          <h4>Slu&zcaron;by</h4>
+          <a href="/tvorba-webu">Tvorba webu</a>
+          <a href="/vyvoj-softwaru">V&yacute;voj softwaru</a>
+          <a href="/ai-asistenti">AI asistenti</a>
+        </div>
+        <div class="foot-col">
+          <h4>Firma</h4>
+          <a href="/o-nas">O n&aacute;s</a>
+          <a href="/cenik">Cen&iacute;k</a>
+          <a href="/ochrana_dat">Ochrana dat</a>
+        </div>
+        <div class="foot-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+          <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
+          <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener">sekelovaznalec.sk</a>
+        </div>
+      </div>
+      <p class="foot-legal">
+        &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
+        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; Web nepou&zcaron;&iacute;v&aacute; cookies ani n&aacute;stroje t&rcaron;et&iacute;ch stran.
+      </p>
+    </div>
   </footer>
 
-  <script src="/assets/js/predictive-arc.js" defer></script>
   <script src="/assets/js/site-pages.js" defer></script>
+  <script src="/assets/js/arc3d.js" defer></script>
+  <script src="/assets/js/predictive-arc.js" defer></script>
 </body>
 </html>
