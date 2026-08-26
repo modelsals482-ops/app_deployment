@@ -1,0 +1,577 @@
+/* =====================================================================
+   ALSflow — poptávkový formulář
+
+   Navazuje na site-pages.css a flash.css; odsud jsou barvy, písmo i
+   vlasové linky. Tenhle soubor řeší jenom formulář.
+
+   Formulář je na tomhle webu jediná stránka, kde má návštěvník něco
+   udělat, ne jen číst. Podle toho je udělaný: každé pole dá najevo,
+   že ho stroj vzal na vědomí, a je pořád vidět, kolik zbývá.
+
+   Pole je tmavá plocha s vlasovou linkou. Při zaostření se pod ním
+   roztáhne barevná linka od středu a popisek povyskočí nahoru; když
+   je vyplněné, přibude fajfka. Nic z toho není nutné k odeslání —
+   bez CSS i bez skriptu je to pořád obyčejný formulář, který funguje.
+   ===================================================================== */
+
+/* --------------------------------------------------------------------
+   Rám formuláře
+   -------------------------------------------------------------------- */
+.form-card {
+  position: relative;
+  padding: 2.2rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 55%), inset 0 1px 0 rgb(255 255 255 / 6%);
+}
+
+/* Dosvit v rohu karty, ať plocha není jen tmavý obdélník. */
+.form-card::before {
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 70%;
+  height: 90%;
+  content: '';
+  background: radial-gradient(ellipse at center, rgb(91 157 255 / 13%), transparent 65%);
+  pointer-events: none;
+}
+
+.form-card > * { position: relative; }
+
+@media (width <= 620px) {
+  .form-card { padding: 1.4rem; }
+}
+
+/* --------------------------------------------------------------------
+   Ukazatel vyplnění
+
+   Kolik povinných polí je hotových. Skript dopočítá --p; pruh se
+   škáluje, číslo se přepisuje. Je to jediné místo, kde návštěvník
+   vidí, že formulář má konec.
+   -------------------------------------------------------------------- */
+.form-meter {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  margin-bottom: 1.9rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.form-meter .bar {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 7%);
+  border-radius: 3px;
+}
+
+.form-meter .bar i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--grad);
+  box-shadow: 0 0 12px rgb(91 157 255 / 60%);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-meter .num {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: var(--t3);
+  font-variant-numeric: tabular-nums;
+}
+
+.form-meter.done .num { color: var(--green); }
+
+/* --------------------------------------------------------------------
+   Mřížka polí
+   -------------------------------------------------------------------- */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
+.form-grid .wide { grid-column: 1 / -1; }
+
+@media (width <= 620px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------
+   Jedno pole
+
+   Popisek leží v poli a při psaní vyjede nad ně. Drží se to
+   :placeholder-shown, takže to funguje i bez skriptu — proto má každý
+   input placeholder=" " (mezera). U <select> je popisek nahoře vždy,
+   protože select nemá prázdný stav, který by šel takhle chytit.
+   -------------------------------------------------------------------- */
+.field { position: relative; }
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 1.5rem 0.95rem 0.62rem;
+  font-family: var(--font);
+  font-size: 0.92rem;
+  color: var(--t1);
+  background: rgb(255 255 255 / 3.5%);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.24s, background 0.24s, box-shadow 0.28s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field textarea {
+  min-height: 118px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover { border-color: rgb(255 255 255 / 26%); }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  background: rgb(255 255 255 / 6%);
+  border-color: rgb(91 157 255 / 55%);
+  box-shadow: 0 0 0 4px rgb(91 157 255 / 12%);
+}
+
+/* Placeholder se ukáže, až popisek uhne nahoru — jinak by si oba
+   stály v poli přes sebe. */
+.field input::placeholder,
+.field textarea::placeholder { color: transparent; transition: color 0.2s; }
+.field input:focus::placeholder,
+.field textarea:focus::placeholder { color: var(--t3); }
+
+/* popisek */
+/* --t2, ne --t3: popisek leží na projasněném poli, kde má --t3 jen
+   4,4 : 1, a po vyjetí nahoru se navíc zmenší na ~11 px, takže se na
+   něj nevztahuje výjimka pro velký text. */
+.field > label {
+  position: absolute;
+  top: 1.02rem;
+  left: 1rem;
+  font-size: 0.92rem;
+  color: var(--t2);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), color 0.22s;
+}
+
+.field input:focus ~ label,
+.field textarea:focus ~ label,
+.field input:not(:placeholder-shown) ~ label,
+.field textarea:not(:placeholder-shown) ~ label,
+.field select ~ label {
+  transform: translateY(-0.72rem) scale(0.76);
+}
+
+.field input:focus ~ label,
+.field select:focus ~ label,
+.field textarea:focus ~ label { color: var(--blue); }
+
+/* U víceřádkového pole popisek nesmí odjet doprostřed textu. */
+.field textarea ~ label { top: 1.02rem; }
+
+.field .req { margin-left: 2px; color: var(--blue); }
+
+/* Barevná linka, která se pod polem roztáhne od středu ven. */
+.field .line {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0;
+  left: 0.85rem;
+  height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+  pointer-events: none;
+  transform: scaleX(0);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.field input:focus ~ .line,
+.field select:focus ~ .line,
+.field textarea:focus ~ .line { transform: scaleX(1); }
+
+/* Fajfka po vyplnění. Kreslí se obtažením, ne prolnutím — je z toho
+   poznat, že to pole stroj právě teď vzal. */
+.field .tick {
+  position: absolute;
+  top: 1.02rem;
+  right: 0.9rem;
+  width: 15px;
+  height: 15px;
+  color: var(--green);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.7);
+  transition: opacity 0.2s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.field .tick path {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  transition: stroke-dashoffset 0.34s ease 0.06s;
+}
+
+.field.ok .tick { opacity: 1; transform: none; }
+.field.ok .tick path { stroke-dashoffset: 0; }
+
+/* U rozbalovacího pole si fajfka nesmí lézt do šipky. */
+.field.is-select .tick { right: 2.35rem; }
+
+/* šipka rozbalovacího pole */
+.field.is-select::after {
+  position: absolute;
+  top: 1.35rem;
+  right: 1rem;
+  width: 9px;
+  height: 9px;
+  content: '';
+  border-right: 1.6px solid var(--t3);
+  border-bottom: 1.6px solid var(--t3);
+  pointer-events: none;
+  transform: rotate(45deg);
+  transition: transform 0.24s, border-color 0.24s;
+}
+
+.field.is-select:focus-within::after { border-color: var(--blue); transform: rotate(225deg) translate(-2px, -2px); }
+
+.field select { padding-right: 2.4rem; cursor: pointer; }
+/* Nabídka se kreslí systémem, ne stránkou — pozadí se musí říct zvlášť,
+   jinak je na některých systémech bílý text na bílé. */
+.field select option { color: var(--t1); background: #131318; }
+
+/* chybné pole */
+.field.bad input,
+.field.bad select,
+.field.bad textarea {
+  border-color: rgb(248 113 113 / 65%);
+  box-shadow: 0 0 0 4px rgb(248 113 113 / 10%);
+}
+
+.field-note {
+  margin-top: 0.4rem;
+  font-size: 0.76rem;
+  color: #fca5a5;      /* 7,3 : 1 na kartě */
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.field.bad .field-note { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------
+   Postupné nabíhání polí
+
+   Třídu .stagger dává skript, ne značka. Bez skriptu (nebo když se
+   nenačte) tahle pravidla vůbec neplatí a formulář je normálně vidět —
+   je to jediné místo na webu, kde návštěvník něco odesílá, a schovat
+   ho za nenačtený soubor by byla ta nejdražší možná chyba.
+   -------------------------------------------------------------------- */
+.form-grid.stagger .field {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.form-grid.stagger.in .field {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 45ms),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 45ms);
+}
+
+/* --------------------------------------------------------------------
+   Souhlas
+   -------------------------------------------------------------------- */
+.form-consent {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-top: 1.6rem;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--t2);
+}
+
+.form-consent input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.12rem;
+  cursor: pointer;
+  accent-color: #2f6fdd;
+}
+
+.form-consent a { color: var(--blue); }
+
+/* Skryté pole na roboty. Nesmí být display:none — část robotů to
+   pozná a pole přeskočí; tohle ho odsune mimo obraz. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------
+   Odeslání
+
+   Tlačítko má tři stavy a mezi nimi se nepřekresluje — jenom se
+   vymění obsah, takže si šířku drží a stránka pod ním neposkočí.
+   -------------------------------------------------------------------- */
+.form-send {
+  width: 100%;
+  margin-top: 1.7rem;
+  padding-block: 0.95rem;
+  font-size: 0.98rem;
+}
+
+.form-send[disabled] { cursor: progress; opacity: 0.85; }
+.form-send[disabled]:hover { color: #05070d; box-shadow: none; }
+
+.form-send .spin {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgb(5 7 13 / 30%);
+  border-top-color: #05070d;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.form-err {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #fca5a5;
+  text-align: center;
+}
+
+/* Zatřesení po odmítnutí. Krátké a malé — jde o upozornění, ne trest. */
+.shake { animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+/* --------------------------------------------------------------------
+   Hotovo
+
+   Fajfka se obtáhne, kolem ní se rozjede kruh a text najede zespodu.
+   -------------------------------------------------------------------- */
+.form-done {
+  display: none;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.form-done.on { display: block; }
+
+.form-done .ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.7rem;
+}
+
+.form-done .ring::after {
+  position: absolute;
+  inset: -14px;
+  content: '';
+  background: radial-gradient(circle, rgb(74 222 128 / 26%), transparent 66%);
+  border-radius: 50%;
+  animation: burst 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes burst {
+  from { opacity: 0; transform: scale(0.5); }
+  60%  { opacity: 1; }
+  to   { opacity: 0.55; transform: scale(1); }
+}
+
+/* Musí být zúžené na kroužek — .form-done obsahuje i šipku
+   v tlačítku a ta by se roztáhla na 96 px. */
+.form-done .ring svg { position: relative; width: 96px; height: 96px; }
+
+.form-done .circ {
+  fill: none;
+  stroke: rgb(74 222 128 / 55%);
+  stroke-width: 2;
+  stroke-dasharray: 289;
+  stroke-dashoffset: 289;
+  animation: draw 0.75s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.form-done .check {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 42;
+  stroke-dashoffset: 42;
+  animation: draw 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.55s forwards;
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.form-done h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  opacity: 0;
+  animation: doneUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+.form-done p {
+  max-width: 44ch;
+  margin: 1rem auto 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--t2);
+  opacity: 0;
+  animation: doneUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+}
+
+.form-done .btn-row {
+  justify-content: center;
+  opacity: 0;
+  animation: doneUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
+}
+
+@keyframes doneUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------
+   Postranní sloupec — co bude dál a kontakty
+   -------------------------------------------------------------------- */
+.form-side { display: flex; flex-direction: column; gap: 2.4rem; }
+
+.steps { counter-reset: s; border-top: 1px solid var(--line); }
+
+.steps li {
+  position: relative;
+  padding: 1.05rem 0 1.05rem 2.6rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--t2);
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.steps li::before {
+  position: absolute;
+  top: 1.15rem;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  content: counter(s, decimal-leading-zero);
+  counter-increment: s;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.steps b { display: block; color: var(--t1); }
+
+/* Kontaktní karta — jediné místo na webu s adresami. */
+.contact-card {
+  padding: 1.5rem;
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.contact-card h3 {
+  margin-bottom: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.contact-card a {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--t1);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-card a:hover { color: var(--blue); }
+.contact-card a svg { flex-shrink: 0; width: 15px; height: 15px; color: var(--t3); transition: color 0.2s; }
+.contact-card a:hover svg { color: var(--blue); }
+.contact-card .who { display: block; font-size: 0.74rem; font-weight: 400; color: var(--t3); }
+
+.contact-card .addr {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--t3);
+  border-top: 1px solid var(--line);
+}
+
+/* --------------------------------------------------------------------
+   Rozvržení stránky
+   -------------------------------------------------------------------- */
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (width <= 980px) {
+  .form-layout { grid-template-columns: 1fr; gap: 2.6rem; }
+}
+
+/* --------------------------------------------------------------------
+   Omezení pohybu
+   -------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .form-grid.stagger .field { opacity: 1; transform: none; }
+
+  .field > label,
+  .field .line,
+  .field .tick,
+  .field .tick path,
+  .form-meter .bar i { transition: none; }
+
+  .shake { animation: none; }
+
+  .form-done .circ,
+  .form-done .check { animation: none; stroke-dashoffset: 0; }
+  .form-done .ring::after { animation: none; opacity: 0.55; }
+  .form-done h2,
+  .form-done p,
+  .form-done .btn-row { animation: none; opacity: 1; }
+  .form-send .spin { animation-duration: 1.4s; }
+}

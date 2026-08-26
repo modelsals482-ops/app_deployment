@@ -41,4 +41,5 @@ Shared characteristic: the owner wears many hats, has limited time, is not techn
 
 - Website: https://alsflow.cz (overview page routing to the three service lines)
 - AI assistants: https://alsflow.cz/ai-asistenti
-- Email: info@alsflow.cz
+- Enquiry form: https://alsflow.cz/kontakt — the intended way in. Every call-to-action on the site points here; the form asks what the client needs, how soon, and what is slowing them down, and the reply carries a fixed price and a date.
+- Email: ryvola@alsflow.cz (Jakub Ryvola — quotes and new work), info@alsflow.cz (operations, invoices, support). Both are listed only on the contact page.

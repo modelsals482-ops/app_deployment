@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt — nezávazná nabídka | ALSflow</title>
+  <meta name="description" content="Řekněte, co potřebujete. Vyplňte krátký formulář a ozveme se s pevnou cenou a termínem. Weby, software na míru a AI asistenti. Praha." />
+  <link rel="canonical" href="https://alsflow.cz/kontakt" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kontakt — nezávazná nabídka | ALSflow" />
+  <meta property="og:description" content="Krátký formulář, pevná cena a termín. Weby, software na míru a AI asistenti." />
+  <meta property="og:url" content="https://alsflow.cz/kontakt" />
+  <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/site-pages.css" />
+  <link rel="stylesheet" href="/assets/css/flash.css" />
+  <link rel="stylesheet" href="/assets/css/form.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "url": "https://alsflow.cz/kontakt",
+  "mainEntity": {
+    "@type": "ProfessionalService",
+    "name": "ALSflow",
+    "legalName": "Retail Shops s.r.o.",
+    "url": "https://alsflow.cz",
+    "email": "info@alsflow.cz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dolnoměcholupská 522/12a",
+      "postalCode": "102 00",
+      "addressLocality": "Praha 10",
+      "addressCountry": "CZ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "ryvola@alsflow.cz",
+      "areaServed": ["CZ", "SK"],
+      "availableLanguage": ["cs", "sk"]
+    }
+  }
+}
+  </script>
+
+  <!-- úvodní loader — zdroj a poznámky v alsflow-loader.html -->
+<style>
+  #alsLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: #08080c;
+    opacity: 1;
+    transition: opacity 0.55s ease;
+  }
+
+  #alsLoader[hidden] { display: none; }
+
+  html.als-loading,
+  html.als-loading body { overflow: hidden; }
+
+  #alsLoader.is-out {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* Modrý podsvit pod značkou, aby plocha nebyla jen černá.
+     Řešeno přes ::before, ať se nemusí měnit markup na dvou místech. */
+  #alsLoader > div {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  #alsLoader > div::before {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    z-index: 0;
+    width: min(560px, 82vw);
+    height: 230px;
+    content: "";
+    background: radial-gradient(
+      ellipse at center,
+      rgb(59 130 246 / 30%) 0%,
+      rgb(37 99 235 / 14%) 38%,
+      transparent 70%
+    );
+    filter: blur(30px);
+    transform: translate(-50%, -50%);
+    animation: alsGlow 2.6s ease-in-out infinite;
+  }
+
+  /* Značka i linka musí zůstat nad podsvitem. */
+  .als-loader__mark,
+  .als-loader__bar {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes alsGlow {
+    0%, 100% { opacity: 0.72; }
+    50%      { opacity: 1; }
+  }
+
+  .als-loader__mark {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-size: clamp(1.9rem, 6vw, 3.1rem);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    background: linear-gradient(120deg, #fff 0%, #8b8b9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(9px);
+    animation: alsRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .als-loader__mark span {
+    background: linear-gradient(120deg, #60a5fa, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* vlasová linka, která se pod značkou rozjede zleva doprava */
+  .als-loader__bar {
+    width: clamp(120px, 22vw, 190px);
+    height: 1px;
+    margin-top: 1.4rem;
+    overflow: hidden;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  .als-loader__bar i {
+    display: block;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    animation: alsSweep 1.15s ease-in-out infinite;
+  }
+
+  @keyframes alsRise {
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes alsSweep {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(350%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .als-loader__mark { opacity: 1; transform: none; animation: none; }
+    .als-loader__bar  { display: none; }
+    #alsLoader > div::before { animation: none; }
+    #alsLoader { transition-duration: 0.001ms; }
+  }
+</style>
+
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
+</head>
+<body>
+<div id="alsLoader" aria-hidden="true">
+  <div>
+    <div class="als-loader__mark">ALS<span>flow</span></div>
+    <div class="als-loader__bar"><i></i></div>
+  </div>
+</div>
+
+<noscript>
+  <style>#alsLoader { display: none; }</style>
+</noscript>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var el = document.getElementById('alsLoader');
+
+    /* Značka se v relaci ukazuje jen jednou. Když ji uživatel už viděl,
+       skript výše nepřidal třídu — loader hned odstraníme. */
+    if (!el || !root.classList.contains('als-loading')) {
+      if (el) el.remove();
+      return;
+    }
+
+    var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
+    var MAX = 2700;   /* pojistka: po této době mizí vždycky */
+    var start = Date.now();
+    var done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+
+      el.classList.add('is-out');
+      root.classList.remove('als-loading');
+
+      /* Po doznění se maže z DOM, aby nezavazel fokusu ani čtečce. */
+      setTimeout(function () { el.remove(); }, 600);
+
+      try { sessionStorage.setItem('als-seen', '1'); } catch (e) {}
+    }
+
+    function ready() {
+      setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
+    }
+
+    if (document.readyState === 'complete') ready();
+    else window.addEventListener('load', ready);
+
+    setTimeout(finish, MAX);
+  })();
+</script>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="/">ALS<span>flow</span></a>
+      <ul class="menu">
+        <li class="has-drop">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
+          <div class="drop">
+            <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
+            <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
+            <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
+            <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
+          </div>
+        </li>
+        <li><a href="/tvorba-webu">Weby</a></li>
+        <li><a href="/vyvoj-softwaru">Software</a></li>
+        <li><a href="/ai-asistenti">AI asistenti</a></li>
+        <li><a href="/o-nas">O n&aacute;s</a></li>
+        <li><a href="/kontakt" aria-current="page">Kontakt</a></li>
+      </ul>
+      <a class="btn btn-live btn-magnet" href="#formular">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="sheet" id="sheet">
+    <a href="/tvorba-webu">Weby</a>
+    <a href="/vyvoj-softwaru">Software na m&iacute;ru</a>
+    <a href="/ai-asistenti">AI asistenti</a>
+    <a href="/cenik">Cen&iacute;k</a>
+    <a href="/o-nas">O n&aacute;s</a>
+    <a href="/kontakt">Kontakt</a>
+    <a class="btn" href="#formular">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+  </div>
+
+
+  <section class="hero-plain">
+    <canvas class="scene scene-right" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">Kontakt</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">&Rcaron;ekn&ecaron;te, co <span class="grad">pot&rcaron;ebujete</span></h1>
+      <p class="lead">Vypl&ncaron;te p&aacute;r &uacute;daj&uring;. Ozvu se s pevnou cenou a term&iacute;nem &mdash; ne s odhadem a ne s hodinovkou. Kdy&zcaron; se uk&aacute;&zcaron;e, &zcaron;e na to nejsem ten spr&aacute;vn&yacute;, &rcaron;eknu to hned a nebudu v&aacute;m nic prod&aacute;vat.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="formular">
+    <div class="wrap">
+      <div class="form-layout">
+        <div>
+          <div class="form-card" id="formCard">
+            <div class="form-meter">
+              <span class="bar" aria-hidden="true"><i></i></span>
+              <span class="num" aria-live="polite">0 / 5</span>
+            </div>
+
+            <form id="poptavka" novalidate>
+              <div class="form-grid">
+                <div class="field">
+            <input id="f-name" name="name" type="text" placeholder=" " required autocomplete="name" />
+            <label for="f-name">Jm&eacute;no a p&rcaron;&iacute;jmen&iacute;<span class="req">*</span></label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vypl&ncaron;te pros&iacute;m tohle pole.</p>
+          </div>
+          <div class="field">
+            <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email" />
+            <label for="f-email">E-mail<span class="req">*</span></label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Zkontrolujte pros&iacute;m tvar e-mailu.</p>
+          </div>
+          <div class="field">
+            <input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel" />
+            <label for="f-phone">Telefon</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vypl&ncaron;te pros&iacute;m tohle pole.</p>
+          </div>
+          <div class="field">
+            <input id="f-city" name="city" type="text" placeholder=" " autocomplete="address-level2" />
+            <label for="f-city">M&ecaron;sto</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vypl&ncaron;te pros&iacute;m tohle pole.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-service" name="service" required>
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="web">Web &mdash; nov&yacute; nebo p&rcaron;ed&ecaron;lan&yacute;</option>
+            <option value="software">Software na m&iacute;ru</option>
+            <option value="ai">AI asistent</option>
+            <option value="vice">V&iacute;c v&ecaron;c&iacute; dohromady</option>
+            <option value="nevim">Je&scaron;t&ecaron; nev&iacute;m, chci poradit</option>
+            </select>
+            <label for="f-service">Co pot&rcaron;ebujete<span class="req">*</span></label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-urgency" name="urgency" required>
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="asap">Co nejd&rcaron;&iacute;v, tento t&yacute;den</option>
+            <option value="this_month">Tento m&ecaron;s&iacute;c</option>
+            <option value="quarter">Do t&rcaron;&iacute; m&ecaron;s&iacute;c&uring;</option>
+            <option value="exploring">Jen se rozhl&iacute;&zcaron;&iacute;m</option>
+            </select>
+            <label for="f-urgency">Kdy chcete za&ccaron;&iacute;t<span class="req">*</span></label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-biz" name="biz">
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="salon">Kade&rcaron;nictv&iacute;, salon</option>
+            <option value="vet">Veterin&aacute;&rcaron;</option>
+            <option value="dental">Zubn&iacute; ordinace, l&eacute;ka&rcaron;</option>
+            <option value="physio">Fyzio, wellness</option>
+            <option value="shop">Obchod, e-shop</option>
+            <option value="services">&Rcaron;emeslo, slu&zcaron;by</option>
+            <option value="freelancer">Freelancer, OSV&Ccaron;</option>
+            <option value="small_firm">Mal&aacute; firma, 2 a&zcaron; 10 lid&iacute;</option>
+            <option value="other">Jin&eacute;</option>
+            </select>
+            <label for="f-biz">Obor</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-size" name="size">
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="solo">Jen j&aacute;</option>
+            <option value="2-5">2 a&zcaron; 5 lid&iacute;</option>
+            <option value="6-10">6 a&zcaron; 10 lid&iacute;</option>
+            <option value="10+">V&iacute;c ne&zcaron; 10</option>
+            </select>
+            <label for="f-size">Velikost t&yacute;mu</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-pain" name="pain">
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="cas">Ztr&aacute;c&iacute;m &ccaron;as ru&ccaron;n&iacute; prac&iacute;</option>
+            <option value="zmeskane">Nest&iacute;h&aacute;m odpov&iacute;dat, unikaj&iacute; mi zak&aacute;zky</option>
+            <option value="web">Web je zastaral&yacute;, nebo &zcaron;&aacute;dn&yacute; nem&aacute;m</option>
+            <option value="systemy">Syst&eacute;my spolu nemluv&iacute;, p&rcaron;episuju data</option>
+            <option value="tabulky">V&scaron;echno b&ecaron;&zcaron;&iacute; v tabulk&aacute;ch</option>
+            <option value="jine">Jin&eacute;</option>
+            </select>
+            <label for="f-pain">Co v&aacute;s nejv&iacute;c brzd&iacute;</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field is-select">
+            <select id="f-pref" name="pref_time">
+            <option value="kdykoliv" selected>Kdykoliv</option>
+            <option value="rano">R&aacute;no, 9 a&zcaron; 11</option>
+            <option value="poledne">Poledne, 11 a&zcaron; 13</option>
+            <option value="odpoledne">Odpoledne, 13 a&zcaron; 17</option>
+            </select>
+            <label for="f-pref">Kdy se v&aacute;m hod&iacute; zavolat</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+          <div class="field wide">
+            <textarea id="f-msg" name="msg" placeholder=" "></textarea>
+            <label for="f-msg">Chcete n&ecaron;co doplnit?</label>
+            <i class="line" aria-hidden="true"></i>
+          </div>
+              </div>
+
+              <label class="form-consent">
+                <input type="checkbox" name="gdpr" required />
+                <span>Souhlas&iacute;m se zpracov&aacute;n&iacute;m &uacute;daj&uring; pro p&rcaron;&iacute;pravu nab&iacute;dky. Podrobnosti v <a href="/ochrana_dat">ochran&ecaron; dat</a>. Nikam je ned&aacute;v&aacute;me d&aacute;l a nepos&iacute;l&aacute;me &zcaron;&aacute;dn&yacute; newsletter.</span>
+              </label>
+
+              <div class="hp" aria-hidden="true">
+                <label for="f-website">Website</label>
+                <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="dark" style="margin:1.4rem 0 0;display:flex;justify-content:center"></div>
+
+              <button class="btn btn-grad btn-shine form-send" type="submit" id="send">Odeslat popt&aacute;vku</button>
+              <p class="form-err" id="formErr" role="alert" hidden></p>
+            </form>
+          </div>
+
+          <div class="form-done" id="formDone" role="status">
+            <div class="ring">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="circ" cx="50" cy="50" r="46" />
+                <path class="check" d="m31 51 13 13 25-27" />
+              </svg>
+            </div>
+            <h2 class="h-sec fade-head">M&aacute;m to.</h2>
+            <p>Popt&aacute;vka dorazila. Ozvu se na uveden&yacute; e-mail nebo telefon &mdash; v&ecaron;t&scaron;inou t&yacute;&zcaron; den, nejd&eacute;l n&aacute;sleduj&iacute;c&iacute; pracovn&iacute; den. Pokud to sp&ecaron;ch&aacute;, napi&scaron;te rovnou na <a href="mailto:ryvola@alsflow.cz" style="color:var(--blue)">ryvola@alsflow.cz</a>.</p>
+            <div class="btn-row">
+              <a class="btn btn-magnet" href="/">Zp&ecaron;t na &uacute;vod</a>
+              <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="form-side">
+          <div class="rev">
+            <span class="eyebrow-label">Co bude d&aacute;l</span>
+            <ol class="steps">
+              <li><b>Ozvu se</b>V&ecaron;t&scaron;inou t&yacute;&zcaron; den. Kr&aacute;tk&yacute; hovor na &ccaron;tvrt hodiny o tom, co pot&rcaron;ebujete.</li>
+              <li><b>Dostanete cenu a term&iacute;n</b>Pevnou &ccaron;&aacute;stku za dohodnut&yacute; rozsah, ne hodinovku a ne rozp&ecaron;t&iacute;.</li>
+              <li><b>Za&ccaron;neme</b>A&zcaron; to odsouhlas&iacute;te. Do t&eacute; doby v&aacute;s to nic nestoj&iacute; a k ni&ccaron;emu se nev&aacute;&zcaron;ete.</li>
+            </ol>
+          </div>
+
+          <div class="contact-card rev" data-d="1">
+            <h3>Rad&ecaron;ji rovnou e-mailem?</h3>
+            <a href="mailto:ryvola@alsflow.cz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg><span>ryvola@alsflow.cz<span class="who">Jakub Ryvola &mdash; zak&aacute;zky a nab&iacute;dky</span></span></a>
+            <a href="mailto:info@alsflow.cz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg><span>info@alsflow.cz<span class="who">Provoz, faktury, podpora</span></span></a>
+            <p class="addr">
+              Retail Shops s.r.o.<br />
+              Dolnom&ecaron;cholupsk&aacute; 522/12a<br />
+              102&nbsp;00 Praha 10<br />
+              I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-in">
+        <div class="foot-col">
+          <a class="brand" href="/" style="font-size:1.15rem">ALS<span>flow</span></a>
+        </div>
+        <div class="foot-col">
+          <h4>Slu&zcaron;by</h4>
+          <a href="/tvorba-webu">Tvorba webu</a>
+          <a href="/vyvoj-softwaru">V&yacute;voj softwaru</a>
+          <a href="/ai-asistenti">AI asistenti</a>
+        </div>
+        <div class="foot-col">
+          <h4>Firma</h4>
+          <a href="/o-nas">O n&aacute;s</a>
+          <a href="/cenik">Cen&iacute;k</a>
+          <a href="/kontakt">Kontakt</a>
+          <a href="/ochrana_dat">Ochrana dat</a>
+        </div>
+        <div class="foot-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+          <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
+          <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener">sekelovaznalec.sk</a>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
+      <p class="foot-legal">
+        &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
+        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; Web nepou&zcaron;&iacute;v&aacute; cookies ani n&aacute;stroje t&rcaron;et&iacute;ch stran.
+      </p>
+    </div>
+  </footer>
+
+  <script src="/lenis.min.js" defer></script>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/reveal.js" defer></script>
+  <script src="/assets/vendor/three.r128.min.js" defer></script>
+  <script src="/assets/js/scenes.js" defer></script>
+  <script src="/assets/js/site-pages.js" defer></script>
+  <script src="/assets/js/flash.js" defer></script>
+  <script src="/assets/js/form.js" defer></script>
+</body>
+</html>

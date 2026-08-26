@@ -401,6 +401,25 @@ a.panel.tilt:hover {
    svítí víc než uvnitř sekcí. */
 .hero-plain > .scene { opacity: 0.85; }
 
+/* Tmavý spád zleva pod textem. Úvodní stránka ho má na .hero-stage;
+   podstránky ho do teď neměly a scéna prosvítala skrz nadpis i text.
+   ::after se kreslí až za všemi potomky, takže leží nad scénou a pod
+   .wrap, který má z-index 1. */
+.hero-plain::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(96deg, #000 0%, #000 26%, rgb(0 0 0 / 84%) 42%, rgb(0 0 0 / 36%) 62%, transparent 82%);
+}
+
+@media (width <= 1000px) {
+  .hero-plain::after {
+    background: linear-gradient(180deg, rgb(0 0 0 / 62%) 0%, rgb(0 0 0 / 88%) 48%, #000 90%);
+  }
+}
+
 /* Plátno s částicovou sítí — leží nad aurorou, pod textem. */
 #particles {
   position: absolute;
