@@ -111,13 +111,21 @@
   ].join("\n");
 
   /* Barva se po délce oblouku přelévá mezi dvěma odstíny, ke konci
-     výseče slábne, aby prstenec nekončil useknutě. Sčítá se aditivně. */
+     výseče slábne, aby prstenec nekončil useknutě. Sčítá se aditivně.
+
+     Přibyly dvě věci, kvůli kterým je pohyb vidět:
+
+     uHead  Po oblouku objíždí světelný impuls s doznívající stopou.
+            Samotné otáčení souměrného prstence oko nepozná — nemá se
+            čeho chytit. Impuls je ten bod, který se dá sledovat.
+     uReveal  Při načtení se prstenec nakreslí od jednoho konce ke
+            druhému. Stránka tím začne pohybem, ne hotovým obrázkem. */
   var FS = [
     "precision mediump float;",
     "varying vec3 vN, vW;",
     "varying vec2 vUv;",
     "uniform vec3 uEye, uLight, uColA, uColB;",
-    "uniform float uGain;",
+    "uniform float uGain, uHead, uReveal;",
     "void main() {",
     "  vec3 N = normalize(vN);",
     "  vec3 V = normalize(uEye - vW);",
@@ -128,10 +136,23 @@
     "  float rim = pow(1.0 - max(dot(N, V), 0.0), 2.2);",
     /* konce výseče doběhnou do ztracena */
     "  float ends = smoothstep(0.0, 0.13, vUv.x) * smoothstep(1.0, 0.87, vUv.x);",
+    /* nakreslení při startu */
+    "  float grow = 1.0 - smoothstep(uReveal, uReveal + 0.10, vUv.x);",
     "  vec3 base = mix(uColA, uColB, vUv.x);",
     "  vec3 col = base * (0.16 + diff * 0.55 + rim * 0.85)",
     "           + vec3(1.0) * spec * 0.6;",
-    "  gl_FragColor = vec4(col * uGain * ends, 1.0);",
+    /* Vzdálenost od hlavy impulsu, po nejkratší cestě přes konec
+       oblouku — jinak by impuls u vUv.x = 1 skokem zmizel. */
+    "  float d = vUv.x - uHead;",
+    "  d -= floor(d + 0.5);",
+    /* Míchá se aditivně přes šest prstenců, takže v překryvech se
+       jasy sčítají — impuls je proto schválně úzký a spíš bledě modrý
+       než bílý. Silnější verze překryvy vybílila a barva zmizela. */
+    "  float head = exp(-d * d * 850.0);",
+    "  float tail = exp(-d * d * 90.0) * step(d, 0.0) * 0.30;",
+    "  col += vec3(0.72, 0.88, 1.0) * head * 1.20",
+    "       + mix(uColA, uColB, 0.5) * tail;",
+    "  gl_FragColor = vec4(col * uGain * ends * grow, 1.0);",
     "}",
   ].join("\n");
 
@@ -171,7 +192,7 @@
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, geo.idx, gl.STATIC_DRAW);
 
   var U = {};
-  ["uProj","uView","uModel","uNrm","uEye","uLight","uColA","uColB","uGain"].forEach(function (n) {
+  ["uProj","uView","uModel","uNrm","uEye","uLight","uColA","uColB","uGain","uHead","uReveal"].forEach(function (n) {
     U[n] = gl.getUniformLocation(prog, n);
   });
 
@@ -181,14 +202,23 @@
   gl.disable(gl.DEPTH_TEST);
   gl.clearColor(0, 0, 0, 0);
 
-  /* Prstence: měřítko, náklon, rychlost, dvojice barev, jas. */
+  /* Prstence: měřítko, náklon, rychlost otáčení, rychlost impulsu,
+     dvojice barev, jas.
+
+     Otáčení bylo dřív 0,05 až 0,21 rad/s — jedna otáčka za 30 sekund
+     až dvě minuty. Měřitelně se to hýbalo, ale nikdo si toho nevšiml.
+     Teď je to zhruba trojnásobek, tedy otáčka za 10 až 20 sekund, což
+     už je pohyb, kterého si oko všimne, a pořád ne kolotoč.
+
+     pul  Kolikrát za sekundu impuls objede oblouk. Prvočíselně
+          rozházené, aby se prstence nesrovnaly do jednoho rytmu. */
   var RINGS = [
-    { s: 1.30, tilt: 0.00, spin:  0.130, a: [0.16, 0.42, 1.00], b: [0.55, 0.30, 0.98], gain: 1.00 },
-    { s: 1.05, tilt: 0.68, spin: -0.098, a: [0.10, 0.72, 0.98], b: [0.20, 0.40, 1.00], gain: 0.88 },
-    { s: 1.62, tilt: -0.52, spin:  0.074, a: [0.62, 0.26, 0.96], b: [0.14, 0.48, 1.00], gain: 0.70 },
-    { s: 0.80, tilt: 1.22, spin: -0.168, a: [0.24, 0.86, 0.94], b: [0.42, 0.36, 1.00], gain: 0.82 },
-    { s: 1.95, tilt: 0.34, spin:  0.052, a: [0.30, 0.22, 0.90], b: [0.10, 0.60, 1.00], gain: 0.45 },
-    { s: 0.58, tilt: -1.05, spin:  0.210, a: [0.70, 0.40, 1.00], b: [0.30, 0.80, 1.00], gain: 0.62 },
+    { s: 1.30, tilt: 0.00, spin:  0.390, pul: 0.23, a: [0.16, 0.42, 1.00], b: [0.55, 0.30, 0.98], gain: 1.00 },
+    { s: 1.05, tilt: 0.68, spin: -0.295, pul: 0.31, a: [0.10, 0.72, 0.98], b: [0.20, 0.40, 1.00], gain: 0.88 },
+    { s: 1.62, tilt: -0.52, spin:  0.222, pul: 0.17, a: [0.62, 0.26, 0.96], b: [0.14, 0.48, 1.00], gain: 0.70 },
+    { s: 0.80, tilt: 1.22, spin: -0.505, pul: 0.41, a: [0.24, 0.86, 0.94], b: [0.42, 0.36, 1.00], gain: 0.82 },
+    { s: 1.95, tilt: 0.34, spin:  0.156, pul: 0.13, a: [0.30, 0.22, 0.90], b: [0.10, 0.60, 1.00], gain: 0.45 },
+    { s: 0.58, tilt: -1.05, spin:  0.630, pul: 0.53, a: [0.70, 0.40, 1.00], b: [0.30, 0.80, 1.00], gain: 0.62 },
   ];
   if (coarse) RINGS.length = 3;
 
@@ -218,28 +248,42 @@
     ptr.x += (ptr.tx - ptr.x) * 0.05;
     ptr.y += (ptr.ty - ptr.y) * 0.05;
 
+    /* Vlastní pomalý obchoz kamery. Bez něj se scéna hýbe jen tomu,
+       kdo drží myš nad stránkou — na dotyku a při prvním pohledu
+       stála. Přičítá se k ukazateli, takže myš pořád vede. */
+    var camX = ptr.x + Math.sin(time * 0.17) * 0.42;
+    var camY = ptr.y + Math.sin(time * 0.11 + 1.3) * 0.24;
+
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    var view = multiply(rotY(-ptr.x * 0.2), translate(shiftX, 0, -eyeZ));
-    view = multiply(rotX(ptr.y * 0.14), view);
+    var view = multiply(rotY(-camX * 0.2), translate(shiftX, 0, -eyeZ));
+    view = multiply(rotX(camY * 0.14), view);
 
     gl.uniformMatrix4fv(U.uProj, false, proj);
     gl.uniformMatrix4fv(U.uView, false, view);
-    gl.uniform3f(U.uEye, -shiftX + ptr.x * 0.6, ptr.y * 0.4, eyeZ);
+    gl.uniform3f(U.uEye, -shiftX + camX * 0.6, camY * 0.4, eyeZ);
     gl.uniform3f(U.uLight, 2.4, 3.0, 2.6);
 
     for (var i = 0; i < RINGS.length; i++) {
       var r = RINGS[i];
       var m = multiply(rotZ(time * r.spin + i * 1.31), rotX(0.5 + r.tilt));
       m = multiply(rotY(time * r.spin * 0.55 + i * 0.8), m);
-      for (var k = 0; k < 12; k++) m[k] *= r.s;
+
+      /* Poloměr lehce pulzuje — prstence se tím rozjíždějí a zase
+         stahují k sobě, takže se sestava nikdy nezastaví v jednom tvaru. */
+      var puff = r.s * (1 + 0.045 * Math.sin(time * 0.43 + i * 1.7));
+      for (var k = 0; k < 12; k++) m[k] *= puff;
 
       gl.uniformMatrix4fv(U.uModel, false, m);
       gl.uniformMatrix3fv(U.uNrm, false, normalMat(m));
       gl.uniform3fv(U.uColA, r.a);
       gl.uniform3fv(U.uColB, r.b);
-      /* jas lehce dýchá, každý prstenec ve své fázi */
-      gl.uniform1f(U.uGain, r.gain * (0.86 + 0.14 * Math.sin(time * 0.5 + i)));
+      /* jas dýchá, každý prstenec ve své fázi */
+      gl.uniform1f(U.uGain, r.gain * (0.80 + 0.20 * Math.sin(time * 0.9 + i)));
+      /* hlava impulsu objíždí oblouk dokola */
+      gl.uniform1f(U.uHead, (time * r.pul + i * 0.37) % 1);
+      /* nakreslení při startu, prstence po sobě */
+      gl.uniform1f(U.uReveal, Math.min(1, Math.max(0, (time - i * 0.13) / 0.95)));
       gl.drawElements(gl.TRIANGLES, geo.idx.length, gl.UNSIGNED_SHORT, 0);
     }
   }
@@ -247,11 +291,26 @@
   /* ==================================================================
      Běh
      ================================================================== */
-  var rafId = null, running = false, t0 = 0;
+  var rafId = null, running = false, t0 = 0, wait0 = 0;
+
+  /* Hodiny scény se pouštějí, až zmizí úvodní loader. Nakreslení
+     prstenců trvá zhruba sekundu a půl a loader je přes celou plochu —
+     bez tohohle by celý nájezd proběhl za ním a nikdo by ho neviděl.
+     Když loader vůbec nebyl (druhá návštěva v relaci), třída chybí a
+     scéna se rozjede rovnou. Pojistka po 3,5 s pro případ, že by
+     třída z jakéhokoli důvodu zůstala viset. */
+  function covered(now) {
+    if (!document.documentElement.classList.contains("als-loading")) return false;
+    if (!wait0) wait0 = now;
+    return now - wait0 < 3500;
+  }
 
   function loop(now) {
     if (!running) return;
-    if (!t0) t0 = now;
+    if (!t0) {
+      if (covered(now)) { rafId = requestAnimationFrame(loop); return; }
+      t0 = now;
+    }
     draw((now - t0) / 1000);
     rafId = requestAnimationFrame(loop);
   }
