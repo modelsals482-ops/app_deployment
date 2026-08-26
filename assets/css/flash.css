@@ -1,0 +1,849 @@
+/* =====================================================================
+   ALSflow — vrstva „flash"
+
+   Doplněk k site-pages.css. Kostra, typografie a rozvržení zůstávají
+   podle předlohy resend.com — černá plocha, vlasové linky, hodně
+   prázdna. Tenhle soubor přidává jenom pohyb, hloubku a barvu.
+
+   Barvy a několik hotových prvků jsou přenesené z původního webu
+   o chatbotech (ai-asistenti.html): modrá rodina #3b82f6 / #60a5fa /
+   #2563eb, fialová #a855f7, zelená #22c55e, plovoucí rozmazané koule,
+   dosvit za kurzorem, běžící pás a bublinová ukázka konverzace.
+
+   Pravidla, která tu platí:
+     - nic z toho nesmí zhoršit čitelnost textu; všechny plochy pod
+       textem drží pod 6 % krytí,
+     - všechno těžké se zastavuje mimo obraz (řeší flash.js),
+     - „omezit pohyb" vypíná pohyb, ne barvu — stránka pak vypadá
+       jako jeden statický snímek, ne jako holá kostra.
+   ===================================================================== */
+
+:root {
+  /* Paleta z původního webu o chatbotech. --blue / --violet / --cyan
+     v site-pages.css zůstávají; tohle je sytější rodina pro plochy,
+     které nenesou text (koule, dosvity, tlačítka, ukázka chatu). */
+  --b-500: #3b82f6;
+  --b-400: #60a5fa;
+  --b-600: #2563eb;
+  --b-450: #4e8ff7;
+  --p-500: #a855f7;
+  --p-400: #c084fc;
+  --g-500: #22c55e;
+  --g-400: #4ade80;
+
+  /* Přechod, který se sám vlní — dvojnásobná šířka, posouvá se pozadí. */
+  --grad-live: linear-gradient(110deg, #38dbf5, #5b9dff, #a78bfa, #5b9dff, #38dbf5);
+  /* Původní web měl v tomhle přechodu #4e8ff7. Bílý nápis na něm má
+     3,2 : 1, což je pod AA — proto je světlý konec ztmavený na #2f6fdd
+     (4,7 : 1). Tmavý konec #2563eb dává 5,2 : 1. */
+  --grad-cta: linear-gradient(135deg, #2f6fdd, #2563eb, #2f6fdd);
+}
+
+/* =====================================================================
+   1. Vrstvy na pozadí
+
+   Pořadí odspodu: koule (z-index 0) → zrno (2) → dosvit u kurzoru (3).
+   Obsah stránky sedí nad tím na z-index 1 a výš.
+   ===================================================================== */
+
+/* Koule jsou fixní, takže se při rolování nehýbou s obsahem a plocha
+   pod dlouhou stránkou nikdy nevyjde jako mrtvá čerň. */
+.orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.orbs i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(120px);
+  will-change: transform;
+}
+
+/* Krytí je schválně nízké. Po rozmazání na 120 px z 13 % barvy zbyde
+   na ploše kolem 2 %, což je přesně ten rozdíl mezi „černá“ a
+   „černá, ve které se něco děje“. */
+.orbs .o1 {
+  top: -14%;
+  left: -10%;
+  width: 620px;
+  height: 620px;
+  background: rgb(59 130 246 / 15%);
+  animation: orbA 22s ease-in-out infinite;
+}
+
+.orbs .o2 {
+  right: -8%;
+  bottom: -16%;
+  width: 720px;
+  height: 720px;
+  background: rgb(168 85 247 / 11%);
+  animation: orbB 28s ease-in-out infinite;
+}
+
+.orbs .o3 {
+  top: 38%;
+  right: 12%;
+  width: 420px;
+  height: 420px;
+  background: rgb(56 219 245 / 9%);
+  animation: orbA 19s ease-in-out infinite reverse;
+}
+
+.orbs .o4 {
+  bottom: 8%;
+  left: 18%;
+  width: 380px;
+  height: 380px;
+  background: rgb(34 197 94 / 7%);
+  animation: orbB 24s ease-in-out infinite;
+}
+
+@keyframes orbA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30%      { transform: translate(52px, -34px) scale(1.08); }
+  65%      { transform: translate(-28px, 24px) scale(0.93); }
+}
+
+@keyframes orbB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35%      { transform: translate(-44px, 30px) scale(1.12); }
+  70%      { transform: translate(34px, -22px) scale(0.9); }
+}
+
+/* Jemné zrno přes celou plochu. Na velkých spádech (koule, aurora)
+   rozbíjí pruhování, které jinak na tmavém pozadí vidět je, a plocha
+   pak nepůsobí jako plochý přechod z generátoru. */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 2;
+  width: 200%;
+  height: 200%;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainShift 8s steps(6) infinite;
+}
+
+/* Posun po krocích — plynulý posun by vypadal jako klouzající tapeta,
+   skokový jako film. */
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  16%  { transform: translate(-3%, 2%); }
+  33%  { transform: translate(2%, -3%); }
+  50%  { transform: translate(-2%, -2%); }
+  66%  { transform: translate(3%, 1%); }
+  83%  { transform: translate(-1%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Dosvit, který jde za kurzorem. Převzato z původního webu; tady je
+   větší a míchá se aditivně, takže projasní, co je pod ním, a nikdy
+   nic nezastíní. */
+#cursorGlow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 760px;
+  height: 760px;
+  background: radial-gradient(circle, rgb(91 157 255 / 7%) 0%, rgb(167 139 250 / 3%) 42%, transparent 66%);
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
+  transition: transform 0.16s ease-out;
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cursorGlow { display: none; }
+}
+
+/* Obsah nad vrstvami pozadí. */
+body > header,
+body > main,
+body > section,
+body > footer,
+body > .sheet { position: relative; z-index: 4; }
+
+/* =====================================================================
+   2. Ukazatel odrolování
+
+   Vlasová linka pod hlavičkou. Šířku dopočítává skript do --p.
+   ===================================================================== */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
+}
+
+.progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--grad);
+  box-shadow: 0 0 14px rgb(91 157 255 / 55%);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+}
+
+/* =====================================================================
+   3. Živý text
+
+   Přechod v barevných slovech se pomalu vlní. Pozadí je dvakrát širší
+   než text, takže se posunem nikdy neukáže okraj.
+   ===================================================================== */
+/* Zkratka `background` shazuje background-clip zpátky na border-box —
+   a protože se tenhle soubor načítá až za site-pages.css, zmizel by
+   text a zbyl barevný obdélník. Proto background-image, ne background,
+   a ořez je tu radši zopakovaný. */
+.grad,
+.fade-head .word-in .grad {
+  background-image: var(--grad-live);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradFlow 9s linear infinite;
+}
+
+@keyframes gradFlow {
+  from { background-position: 0% 50%; }
+  to   { background-position: -260% 50%; }
+}
+
+/* Nadpis dostane po odhalení jeden přejezd světla. Maska je na
+   samotném textu, takže se leskne písmo, ne obdélník kolem něj. */
+.h-hero.reveal-words .word-in,
+.h-sec.reveal-words .word-in { position: relative; }
+
+/* Podtržení, které doběhne pod barevným slovem. */
+.grad-underline {
+  position: relative;
+  white-space: nowrap;
+}
+
+.grad-underline::after {
+  position: absolute;
+  bottom: -0.12em;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  content: '';
+  background: var(--grad);
+  border-radius: 2px;
+  opacity: 0.85;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+
+.in .grad-underline::after,
+.grad-underline.in::after { transform: none; }
+
+/* Zelená tečka u „volná kapacita" tepe — z původního webu. */
+.eyebrow .dot {
+  animation: dotPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 7px var(--green); }
+  50%      { transform: scale(1.45); box-shadow: 0 0 18px var(--green); }
+}
+
+/* =====================================================================
+   4. Karty — hloubka
+
+   Náklon počítá skript do --rx / --ry, samotný pohyb dělá CSS.
+   Rozsah je malý; větší náklon vypadá jako hračka, ne jako produkt.
+   ===================================================================== */
+/* a.panel:hover v site-pages.css má vyšší váhu a jinak by náklon
+   přebil vlastním translateY — proto je tu i selektor s :hover. */
+.tilt,
+a.panel.tilt:hover {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ly, 0px));
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tilt.is-live { transition: transform 0.08s linear; }
+
+/* Odlesk, který přejede přes kartu podle toho, kde je kurzor. */
+.panel-glow::after { z-index: 3; }
+
+.panel-sheen > .sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: '';
+  background: linear-gradient(
+    var(--sa, 120deg),
+    transparent 38%,
+    rgb(255 255 255 / 7%) 50%,
+    transparent 62%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.panel-sheen:hover > .sheen { opacity: 1; }
+
+/* Otáčející se barevný obrys. Kuželový přechod se točí pod maskou,
+   takže je vidět jen proužek na hraně karty. Vyhrazeno pro jednu
+   kartu v sekci — na všech naráz by to byla světelná show. */
+.panel-ring { border-color: transparent; }
+
+/* inset:0, ne -1px — karta s overflow:hidden (třeba ukázka chatu) by
+   přesah oříznula a z obrysu by zbyly tři strany. */
+.panel-ring::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: '';
+  background: conic-gradient(
+    from var(--ring, 0deg),
+    transparent 0deg,
+    #38dbf5 40deg,
+    #5b9dff 90deg,
+    #a78bfa 140deg,
+    transparent 200deg,
+    transparent 360deg
+  );
+  border-radius: inherit;
+  opacity: 0.75;
+  animation: ringSpin 6s linear infinite;
+}
+
+/* Vnitřek karty leží nad obrysem a zakryje ho všude kromě hrany. */
+.panel-ring::after {
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  content: '';
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+  border-radius: inherit;
+}
+
+.panel-ring > * { position: relative; z-index: 2; }
+
+@keyframes ringSpin {
+  to { --ring: 360deg; }
+}
+
+/* Bez @property se vlastní vlastnost animovat nedá — prohlížeč neví,
+   že je to úhel. Tohle mu to řekne; kde to neumí, obrys prostě stojí
+   a zůstane z něj statický barevný proužek. */
+@property --ring {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* =====================================================================
+   5. Aurora v hlavičce
+
+   Dva rozmazané kuželové spády, které se otáčejí proti sobě. Leží pod
+   prostorovou scénou a dělají hlavičce barevný základ, aby scéna
+   nevisela v prázdnu.
+   ===================================================================== */
+.aurora {
+  position: absolute;
+  inset: -30% -10%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 72%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 72%);
+}
+
+.aurora i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.aurora .a1 {
+  background: conic-gradient(from 0deg at 42% 46%, rgb(56 219 245 / 16%), transparent 28%, rgb(91 157 255 / 20%) 55%, transparent 78%, rgb(56 219 245 / 16%));
+  animation: auroraSpin 34s linear infinite;
+}
+
+.aurora .a2 {
+  background: conic-gradient(from 180deg at 62% 54%, rgb(167 139 250 / 18%), transparent 32%, rgb(37 99 235 / 16%) 60%, transparent 84%, rgb(167 139 250 / 18%));
+  animation: auroraSpin 46s linear infinite reverse;
+}
+
+@keyframes auroraSpin {
+  to { transform: rotate(360deg) scale(1.08); }
+}
+
+/* Hlavičky podstránek nemají scénu, takže aurora visí přímo v sekci.
+   Bez position/overflow by přetekla přes celou stránku. */
+.hero-plain { position: relative; overflow: hidden; }
+.hero-plain > .wrap { position: relative; z-index: 1; }
+.hero-plain > .aurora { opacity: 0.42; }
+
+/* V hlavičce je scéna hlavní obraz, ne podklad pod textem — proto
+   svítí víc než uvnitř sekcí. */
+.hero-plain > .scene { opacity: 0.85; }
+
+/* Plátno s částicovou sítí — leží nad aurorou, pod textem. */
+#particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   6. Světelná linka na hraně sekce
+
+   Vlasová linka mezi sekcemi dostane jeden pomalý přejezd světla.
+   Odlišuje předěl, aniž by přibyl další rámeček.
+   ===================================================================== */
+.sec-line { position: relative; }
+
+.sec-line::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent 0%, rgb(91 157 255 / 0%) 20%, rgb(147 197 253 / 85%) 50%, rgb(91 157 255 / 0%) 80%, transparent 100%);
+  background-size: 42% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  animation: lineSweep 7s ease-in-out infinite;
+}
+
+@keyframes lineSweep {
+  0%       { background-position: -45% 0; opacity: 0; }
+  12%      { opacity: 1; }
+  88%      { opacity: 1; }
+  100%     { background-position: 145% 0; opacity: 0; }
+}
+
+/* .sec-dark už má vlastní ::before s dosvitem — u ní se linka kreslí
+   na obalu, jinak by se pravidla přebila. */
+.sec-dark.sec-line::before {
+  top: -30%;
+  left: 50%;
+  width: 120%;
+  height: 90%;
+  background: radial-gradient(ellipse at center, rgb(91 157 255 / 11%), transparent 62%);
+  animation: none;
+  transform: translateX(-50%);
+}
+
+/* =====================================================================
+   7. Pás s čísly
+
+   Tři údaje na vlasových linkách. Číslo naskočí odpočtem, jednotka
+   zůstane stát — z původního webu, jen v tišší úpravě.
+   ===================================================================== */
+.stat-band {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-cell {
+  position: relative;
+  padding: 2.6rem 1.6rem;
+  overflow: hidden;
+  text-align: center;
+  transition: background 0.35s;
+}
+
+.stat-cell + .stat-cell { border-left: 1px solid var(--line); }
+.stat-cell:hover { background: rgb(255 255 255 / 2.5%); }
+
+/* Dosvit, který se rozsvítí pod číslem při najetí. */
+.stat-cell::after {
+  position: absolute;
+  bottom: -60%;
+  left: 50%;
+  width: 70%;
+  height: 100%;
+  content: '';
+  background: radial-gradient(ellipse at center, rgb(91 157 255 / 22%), transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  transform: translateX(-50%);
+}
+
+.stat-cell:hover::after { opacity: 1; }
+
+.stat-num {
+  display: block;
+  font-size: clamp(2.4rem, 5.2vw, 3.9rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  background-image: var(--grad-live);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradFlow 9s linear infinite;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--t2);
+}
+
+@media (width <= 760px) {
+  .stat-band { grid-template-columns: 1fr; }
+  .stat-cell + .stat-cell { border-top: 1px solid var(--line); border-left: 0; }
+  .stat-cell { padding: 1.9rem 1.2rem; }
+}
+
+/* =====================================================================
+   8. Běžící pás
+
+   Přenesené z původního webu. Stopa je v obsahu dvakrát a posouvá se
+   o polovinu, takže napojení není vidět. Okraje mizí pod maskou.
+   ===================================================================== */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+.marquee-track span {
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--t3);
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+
+.marquee-track span:hover { color: var(--t1); }
+.marquee-track span svg { width: 15px; height: 15px; color: var(--blue); opacity: 0.75; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =====================================================================
+   9. Ukázka konverzace
+
+   Bubliny, odznak „AI" a tři tečky psaní jsou přenesené z původního
+   webu o chatbotech. Nová je jen obálka — okno s vlasovou linkou,
+   které sedí do téhle stránky.
+   ===================================================================== */
+.chat-demo {
+  position: relative;
+  max-width: 440px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--card-2), var(--card));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 30px 70px rgb(0 0 0 / 55%), inset 0 1px 0 rgb(255 255 255 / 7%);
+}
+
+.chat-top {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chat-top .av {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #4e8ff7, #2563eb);
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgb(37 99 235 / 45%);
+}
+
+.chat-top .who { font-size: 0.85rem; font-weight: 700; }
+
+.chat-top .live {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 0.1rem;
+  font-size: 0.72rem;
+  color: var(--t3);
+}
+
+.chat-top .live::before {
+  width: 6px;
+  height: 6px;
+  content: '';
+  background: var(--g-500);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--g-500);
+  animation: dotPulse 2.2s ease-in-out infinite;
+}
+
+.chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem;
+}
+
+.chat-row { display: flex; }
+.chat-row.me { justify-content: flex-end; }
+
+.chat-row .msg {
+  max-width: 82%;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateY(9px);
+}
+
+/* Bubliny naskakují po sobě, jakmile se ukázka dostane do obrazu.
+   Třídu .on dává skript — bez skriptu je vidět celá konverzace. */
+.chat-demo.on .chat-row .msg { animation: msgIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.chat-demo.on .chat-row:nth-child(1) .msg { animation-delay: 0.05s; }
+.chat-demo.on .chat-row:nth-child(2) .msg { animation-delay: 0.75s; }
+.chat-demo.on .chat-row:nth-child(3) .msg { animation-delay: 1.5s; }
+.chat-demo.on .chat-row:nth-child(4) .msg { animation-delay: 2.2s; }
+.chat-demo.on .chat-row:nth-child(5) .msg { animation-delay: 2.95s; }
+
+@keyframes msgIn {
+  to { opacity: 1; transform: none; }
+}
+
+.chat-row.me .msg {
+  color: #cfe1ff;
+  background: linear-gradient(135deg, rgb(59 130 246 / 24%), rgb(37 99 235 / 16%));
+  border: 1px solid rgb(59 130 246 / 32%);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-row.bot .msg {
+  color: var(--t1);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid var(--line-2);
+  border-bottom-left-radius: 4px;
+}
+
+.ai-badge {
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: center;
+  margin-left: auto;
+  padding: 0.16rem 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--b-400);
+  text-transform: uppercase;
+  background: rgb(59 130 246 / 12%);
+  border: 1px solid rgb(59 130 246 / 30%);
+  border-radius: 100px;
+}
+
+.typing { display: inline-flex; gap: 4px; padding: 0.2rem 0; }
+
+.typing i {
+  width: 5px;
+  height: 5px;
+  background: var(--t2);
+  border-radius: 50%;
+  animation: blink 1.35s ease-in-out infinite;
+}
+
+.typing i:nth-child(2) { animation-delay: 0.2s; }
+.typing i:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40%           { opacity: 1; }
+}
+
+/* =====================================================================
+   10. Dvousloupec s ukázkou
+   ===================================================================== */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (width <= 1000px) {
+  .split { grid-template-columns: 1fr; gap: 2.6rem; }
+  .chat-demo { max-width: 100%; }
+}
+
+/* =====================================================================
+   11. Hlavní tlačítko v hlavičce
+
+   Přechod se pomalu vlní a při najetí se z prostředka rozevře světlý
+   kruh. Obojí je z původního webu.
+   ===================================================================== */
+.btn-live {
+  color: #fff;
+  background: var(--grad-cta);
+  background-size: 200% 200%;
+  border-color: transparent;
+  box-shadow: 0 2px 16px rgb(59 130 246 / 38%);
+  animation: ctaShift 5s ease infinite;
+}
+
+.btn-live::before { display: none; }
+
+/* Předloha rozevírala z prostředka světlý bílý kruh. Bílý nápis na
+   projasněné modré má ale 3,5 : 1 — pod AA. Kruh proto přináší rovnou
+   firemní přechod a nápis s ním ztmavne, stejně jako u ostatních
+   tlačítek na webu (tmavá na tyrkysové 12,1 : 1). Vyjde to nakonec
+   výrazněji než původní bílý závoj. */
+.btn-live::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--grad);
+  border-radius: inherit;
+  clip-path: circle(0% at 50% 50%);
+  pointer-events: none;
+  transition: clip-path 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-live:hover::after { clip-path: circle(150% at 50% 50%); }
+
+.btn-live:hover {
+  color: #05070d;
+  border-color: transparent;
+  box-shadow: 0 6px 32px rgb(91 157 255 / 58%);
+}
+
+@keyframes ctaShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* =====================================================================
+   12. Obří značka v patičce
+
+   Wordmark přes celou šířku, seříznutý spodní hranou. Přechod je
+   na písmu, ne na obdélníku za ním.
+   ===================================================================== */
+.foot-mark {
+  margin-top: 3.5rem;
+  overflow: hidden;
+  line-height: 0.78;
+  user-select: none;
+}
+
+/* Wordmark je opticky spodní hrana patičky — právní řádek pod ním
+   nepotřebuje ještě jednou celý odstup. */
+.foot-mark + .foot-legal { margin-top: 1.4rem; }
+
+.foot-mark span {
+  display: block;
+  font-size: clamp(4rem, 19vw, 17rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  text-align: center;
+  white-space: nowrap;
+  background: linear-gradient(180deg, rgb(255 255 255 / 14%) 0%, rgb(91 157 255 / 10%) 55%, transparent 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =====================================================================
+   13. Odhalování — silnější nástup
+
+   .rev v site-pages.css zůstává; tohle je varianta pro velké bloky,
+   které mají přijet s měřítkem.
+   ===================================================================== */
+.rev-pop {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(38px) scale(0.965);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s ease;
+}
+
+.rev-pop.in { opacity: 1; filter: blur(0); transform: none; }
+.rev-pop[data-d="1"] { transition-delay: 0.1s; }
+.rev-pop[data-d="2"] { transition-delay: 0.2s; }
+
+/* =====================================================================
+   14. Omezení pohybu
+
+   Vypíná se pohyb, ne barva. Koule, aurora i přechody zůstanou stát
+   na hezkém místě — stránka pak vypadá jako jeden snímek.
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .orbs i,
+  .grain,
+  .aurora i,
+  .marquee-track,
+  .grad,
+  .stat-num,
+  .btn-live,
+  .eyebrow .dot,
+  .chat-top .live::before,
+  .typing i,
+  .panel-ring::before,
+  .sec-line::before {
+    animation: none !important;
+  }
+
+  .grain { display: none; }
+  #cursorGlow { display: none; }
+  .progress i { transform: none; }
+  .chat-demo .chat-row .msg { opacity: 1; transform: none; }
+  .grad-underline::after { transform: none; }
+  .rev-pop { opacity: 1; filter: none; transform: none; }
+}

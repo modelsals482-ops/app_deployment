@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
+  <link rel="stylesheet" href="/assets/css/flash.css" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -286,7 +287,7 @@
         <li><a href="/ai-asistenti">AI asistenti</a></li>
         <li><a href="/o-nas">O n&aacute;s</a></li>
       </ul>
-      <a class="btn btn-grad btn-magnet" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <a class="btn btn-live btn-magnet" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
       <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
         <span></span><span></span><span></span>
       </button>
@@ -303,6 +304,8 @@
   </div>
 
   <section class="hero-plain">
+    <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap">
       <span class="eyebrow-label">Tvorba webov&yacute;ch str&aacute;nek</span>
       <h1 class="h-hero fade-head reveal-words" style="max-width:14ch">Web, kter&yacute; <span class="grad">nezest&aacute;rne</span></h1>
@@ -330,7 +333,7 @@
       </div>
       <div class="cards-2">
         <div class="rev">
-          <a class="panel panel-glow" href="https://gen1.cz" target="_blank" rel="noopener">
+          <a class="panel panel-glow panel-sheen tilt" href="https://gen1.cz" target="_blank" rel="noopener">
             <div class="panel-media"><img src="/assets/ref/gen1-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu gen1.cz" width="1080" height="675" loading="lazy" /></div>
           </a>
           <div class="panel-foot">
@@ -340,7 +343,7 @@
           </div>
         </div>
         <div class="rev" data-d="1">
-          <a class="panel panel-glow" href="https://sekelovaznalec.sk" target="_blank" rel="noopener">
+          <a class="panel panel-glow panel-sheen tilt" href="https://sekelovaznalec.sk" target="_blank" rel="noopener">
             <div class="panel-media"><img src="/assets/ref/sekelova-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu sekelovaznalec.sk" width="1080" height="675" loading="lazy" /></div>
           </a>
           <div class="panel-foot">
@@ -361,9 +364,9 @@
         <p class="lead">Kdybychom ka&zcaron;d&yacute; web stav&ecaron;li jinak, byla by &uacute;dr&zcaron;ba t&rcaron;&iacute; web&uring; trojn&aacute;sobn&aacute; pr&aacute;ce. Takhle je to jeden postup a jedno m&iacute;sto, kde se oprav&iacute; chyba pro v&scaron;echny.</p>
       </div>
       <div class="cards-3">
-        <div class="panel panel-pad panel-glow rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Bez build kroku</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">HTML, CSS a JavaScript. &Zcaron;&aacute;dn&yacute; Node, &zcaron;&aacute;dn&aacute; kompilace, nic, co za dva roky p&rcaron;estane j&iacute;t spustit.</p></div>
-        <div class="panel panel-pad panel-glow rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Nulov&aacute; data</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Formul&aacute;&rcaron;e pos&iacute;laj&iacute; e-mail a neukl&aacute;daj&iacute; nic do datab&aacute;ze. &Ccaron;&iacute;m m&iacute;&ncaron; osobn&iacute;ch &uacute;daj&uring; web dr&zcaron;&iacute;, t&iacute;m m&iacute;&ncaron; je co chr&aacute;nit.</p></div>
-        <div class="panel panel-pad panel-glow rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">M&ecaron;&rcaron;en&aacute; p&rcaron;&iacute;stupnost</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Kontrast ka&zcaron;d&eacute; dvojice text a pozad&iacute; po&ccaron;&iacute;t&aacute;me proti WCAG&nbsp;2.2&nbsp;AA. Na ka&zcaron;d&eacute;m webu to zat&iacute;m odhalilo skute&ccaron;nou chybu.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Bez build kroku</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">HTML, CSS a JavaScript. &Zcaron;&aacute;dn&yacute; Node, &zcaron;&aacute;dn&aacute; kompilace, nic, co za dva roky p&rcaron;estane j&iacute;t spustit.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Nulov&aacute; data</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Formul&aacute;&rcaron;e pos&iacute;laj&iacute; e-mail a neukl&aacute;daj&iacute; nic do datab&aacute;ze. &Ccaron;&iacute;m m&iacute;&ncaron; osobn&iacute;ch &uacute;daj&uring; web dr&zcaron;&iacute;, t&iacute;m m&iacute;&ncaron; je co chr&aacute;nit.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">M&ecaron;&rcaron;en&aacute; p&rcaron;&iacute;stupnost</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Kontrast ka&zcaron;d&eacute; dvojice text a pozad&iacute; po&ccaron;&iacute;t&aacute;me proti WCAG&nbsp;2.2&nbsp;AA. Na ka&zcaron;d&eacute;m webu to zat&iacute;m odhalilo skute&ccaron;nou chybu.</p></div>
       </div>
     </div>
   </section>
@@ -440,6 +443,8 @@
           <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener">sekelovaznalec.sk</a>
         </div>
       </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
       <p class="foot-legal">
         &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
         I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; Web nepou&zcaron;&iacute;v&aacute; cookies ani n&aacute;stroje t&rcaron;et&iacute;ch stran.
@@ -454,5 +459,6 @@
   <script src="/assets/vendor/three.r128.min.js" defer></script>
   <script src="/assets/js/scenes.js" defer></script>
   <script src="/assets/js/site-pages.js" defer></script>
+  <script src="/assets/js/flash.js" defer></script>
 </body>
 </html>

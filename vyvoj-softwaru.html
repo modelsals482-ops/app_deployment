@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
+  <link rel="stylesheet" href="/assets/css/flash.css" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -294,7 +295,7 @@
         <li><a href="/ai-asistenti">AI asistenti</a></li>
         <li><a href="/o-nas">O n&aacute;s</a></li>
       </ul>
-      <a class="btn btn-grad btn-magnet" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <a class="btn btn-live btn-magnet" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
       <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
         <span></span><span></span><span></span>
       </button>
@@ -311,6 +312,8 @@
   </div>
 
   <section class="hero-plain">
+    <canvas class="scene scene-right" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap">
       <span class="eyebrow-label">V&yacute;voj softwaru na m&iacute;ru</span>
       <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">N&aacute;stroj m&iacute;sto <span class="grad">tabulky</span></h1>
@@ -336,10 +339,10 @@
         <p class="lead">Zak&aacute;zka skoro nikdy neza&ccaron;ne slovem &bdquo;software&ldquo;. Za&ccaron;ne t&iacute;m, &zcaron;e n&ecaron;co zdr&zcaron;uje nebo se v tom d&ecaron;laj&iacute; chyby.</p>
       </div>
       <div class="cards-2">
-        <div class="panel panel-pad panel-glow rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Panel nad vlastn&iacute;mi daty</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Rozhran&iacute;, ve kter&eacute;m t&yacute;m spravuje katalog, cen&iacute;k nebo objedn&aacute;vky, ani&zcaron; by kdokoli sahal do datab&aacute;ze nebo do sd&iacute;len&eacute;ho Excelu.</p></div>
-        <div class="panel panel-pad panel-glow rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4 4 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7"/><path d="M14 10.5a4 4 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.7-1.7"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Propojen&iacute; dvou syst&eacute;m&uring;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Sklad, rezervace, &uacute;&ccaron;etnictv&iacute; a web dohromady. Data te&ccaron;ou sama, nikdo je nep&rcaron;episuje ru&ccaron;n&ecaron; a nevznikaj&iacute; dv&ecaron; verze pravdy.</p></div>
-        <div class="panel panel-pad panel-glow rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Nahrazen&iacute; ru&ccaron;n&iacute; pr&aacute;ce</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Opakovan&aacute; &ccaron;innost, kter&aacute; n&ecaron;komu bere hodinu denn&ecaron; &mdash; vyhodnocen&iacute;, p&rcaron;eposl&aacute;n&iacute;, vygenerov&aacute;n&iacute; dokladu &mdash; se p&rcaron;esune na server.</p></div>
-        <div class="panel panel-pad panel-glow rev" data-d="3"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M7 17V11M12 17V5M17 17v-8"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">P&rcaron;ehled, kter&yacute; sed&iacute;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Jedno m&iacute;sto s &ccaron;&iacute;sly, kter&yacute;m se d&aacute; v&ecaron;&rcaron;it, m&iacute;sto p&ecaron;ti export&uring;, kter&eacute; si ka&zcaron;d&yacute; slu&ccaron;uje po sv&eacute;m.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Panel nad vlastn&iacute;mi daty</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Rozhran&iacute;, ve kter&eacute;m t&yacute;m spravuje katalog, cen&iacute;k nebo objedn&aacute;vky, ani&zcaron; by kdokoli sahal do datab&aacute;ze nebo do sd&iacute;len&eacute;ho Excelu.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4 4 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7"/><path d="M14 10.5a4 4 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.7-1.7"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Propojen&iacute; dvou syst&eacute;m&uring;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Sklad, rezervace, &uacute;&ccaron;etnictv&iacute; a web dohromady. Data te&ccaron;ou sama, nikdo je nep&rcaron;episuje ru&ccaron;n&ecaron; a nevznikaj&iacute; dv&ecaron; verze pravdy.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Nahrazen&iacute; ru&ccaron;n&iacute; pr&aacute;ce</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Opakovan&aacute; &ccaron;innost, kter&aacute; n&ecaron;komu bere hodinu denn&ecaron; &mdash; vyhodnocen&iacute;, p&rcaron;eposl&aacute;n&iacute;, vygenerov&aacute;n&iacute; dokladu &mdash; se p&rcaron;esune na server.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M7 17V11M12 17V5M17 17v-8"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">P&rcaron;ehled, kter&yacute; sed&iacute;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Jedno m&iacute;sto s &ccaron;&iacute;sly, kter&yacute;m se d&aacute; v&ecaron;&rcaron;it, m&iacute;sto p&ecaron;ti export&uring;, kter&eacute; si ka&zcaron;d&yacute; slu&ccaron;uje po sv&eacute;m.</p></div>
       </div>
     </div>
   </section>
@@ -434,6 +437,8 @@
           <a href="https://sekelovaznalec.sk" target="_blank" rel="noopener">sekelovaznalec.sk</a>
         </div>
       </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
       <p class="foot-legal">
         &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
         I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; Web nepou&zcaron;&iacute;v&aacute; cookies ani n&aacute;stroje t&rcaron;et&iacute;ch stran.
@@ -448,5 +453,6 @@
   <script src="/assets/vendor/three.r128.min.js" defer></script>
   <script src="/assets/js/scenes.js" defer></script>
   <script src="/assets/js/site-pages.js" defer></script>
+  <script src="/assets/js/flash.js" defer></script>
 </body>
 </html>
