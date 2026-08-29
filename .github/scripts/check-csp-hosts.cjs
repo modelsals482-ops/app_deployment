@@ -21,9 +21,22 @@ const fs = require('fs');
 const path = require('path');
 
 const CONFIG = 'vercel.json';
-const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
+// Kde hledat. Po prechodu na Astro uz v korenu zadne .html nejsou - kontrolovat
+// se musi vydany vystup (dist/), jinak skript nenajde nic a tvari se, ze je
+// vsechno v poradku. Prazdny nalez je proto chyba, ne uspech.
+const ROOT = process.argv[2] || '.';
+if (!fs.existsSync(ROOT)) {
+  console.error(`Slozka ${ROOT} neexistuje. Spustte nejdriv build.`);
+  process.exit(1);
+}
+const htmlFiles = fs.readdirSync(ROOT).filter(f => f.endsWith('.html')).sort()
+  .map(f => path.join(ROOT, f));
+if (htmlFiles.length === 0) {
+  console.error(`V ${ROOT} nejsou zadne .html soubory - to je chyba, ne uspech.`);
+  process.exit(1);
+}
 
-const JS_DIR = path.join('assets', 'js');
+const JS_DIR = path.join(ROOT, 'assets', 'js');
 const jsFiles = fs.existsSync(JS_DIR)
   ? fs.readdirSync(JS_DIR).filter(f => f.endsWith('.js')).sort().map(f => path.join(JS_DIR, f))
   : [];

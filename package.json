@@ -1,0 +1,14 @@
+{
+  "name": "alsflow-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "node .github/scripts/check-js-syntax.cjs dist && node .github/scripts/check-csp-hosts.cjs dist"
+  },
+  "devDependencies": {
+    "astro": "^5.14.1"
+  }
+}

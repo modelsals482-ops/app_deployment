@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt — nezávazná nabídka | ALSflow</title>
-  <meta name="description" content="Řekněte, co potřebujete. Vyplňte krátký formulář a ozveme se s pevnou cenou a termínem. Weby, software na míru a AI asistenti. Praha." />
-  <link rel="canonical" href="https://alsflow.cz/kontakt" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kontakt — nezávazná nabídka | ALSflow" />
-  <meta property="og:description" content="Krátký formulář, pevná cena a termín. Weby, software na míru a AI asistenti." />
-  <meta property="og:url" content="https://alsflow.cz/kontakt" />
-  <meta property="og:image" content="https://alsflow.cz/og-image.png" />
-  <meta name="theme-color" content="#000000" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/site-pages.css" />
-  <link rel="stylesheet" href="/assets/css/flash.css" />
+---
+import Base from "../layouts/Base.astro";
+---
+<Base
+  title="Kontakt — nezávazná nabídka | ALSflow"
+  description="Řekněte, co potřebujete. Vyplňte krátký formulář a ozveme se s pevnou cenou a termínem. Weby, software na míru a AI asistenti. Praha."
+  canonical="https://alsflow.cz/kontakt"
+  ogDescription="Krátký formulář, pevná cena a termín. Weby, software na míru a AI asistenti."
+  current="/kontakt"
+  cta="#formular"
+>
+  <Fragment slot="head">
   <link rel="stylesheet" href="/assets/css/form.css" />
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="application/ld+json">
@@ -49,125 +40,7 @@
   }
 }
   </script>
-
   <!-- úvodní loader — zdroj a poznámky v alsflow-loader.html -->
-<style>
-  #alsLoader {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: grid;
-    place-items: center;
-    background: #08080c;
-    opacity: 1;
-    transition: opacity 0.55s ease;
-  }
-
-  #alsLoader[hidden] { display: none; }
-
-  html.als-loading,
-  html.als-loading body { overflow: hidden; }
-
-  #alsLoader.is-out {
-    pointer-events: none;
-    opacity: 0;
-  }
-
-  /* Modrý podsvit pod značkou, aby plocha nebyla jen černá.
-     Řešeno přes ::before, ať se nemusí měnit markup na dvou místech. */
-  #alsLoader > div {
-    position: relative;
-    display: grid;
-    place-items: center;
-  }
-
-  #alsLoader > div::before {
-    position: absolute;
-    top: 56%;
-    left: 50%;
-    z-index: 0;
-    width: min(560px, 82vw);
-    height: 230px;
-    content: "";
-    background: radial-gradient(
-      ellipse at center,
-      rgb(59 130 246 / 30%) 0%,
-      rgb(37 99 235 / 14%) 38%,
-      transparent 70%
-    );
-    filter: blur(30px);
-    transform: translate(-50%, -50%);
-    animation: alsGlow 2.6s ease-in-out infinite;
-  }
-
-  /* Značka i linka musí zůstat nad podsvitem. */
-  .als-loader__mark,
-  .als-loader__bar {
-    position: relative;
-    z-index: 1;
-  }
-
-  @keyframes alsGlow {
-    0%, 100% { opacity: 0.72; }
-    50%      { opacity: 1; }
-  }
-
-  .als-loader__mark {
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    font-size: clamp(1.9rem, 6vw, 3.1rem);
-    font-weight: 900;
-    letter-spacing: -0.045em;
-    line-height: 1;
-    background: linear-gradient(120deg, #fff 0%, #8b8b9e 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0;
-    transform: translateY(9px);
-    animation: alsRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .als-loader__mark span {
-    background: linear-gradient(120deg, #60a5fa, #2563eb);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* vlasová linka, která se pod značkou rozjede zleva doprava */
-  .als-loader__bar {
-    width: clamp(120px, 22vw, 190px);
-    height: 1px;
-    margin-top: 1.4rem;
-    overflow: hidden;
-    background: rgb(255 255 255 / 8%);
-  }
-
-  .als-loader__bar i {
-    display: block;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-    animation: alsSweep 1.15s ease-in-out infinite;
-  }
-
-  @keyframes alsRise {
-    to { opacity: 1; transform: none; }
-  }
-
-  @keyframes alsSweep {
-    from { transform: translateX(-100%); }
-    to   { transform: translateX(350%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .als-loader__mark { opacity: 1; transform: none; animation: none; }
-    .als-loader__bar  { display: none; }
-    #alsLoader > div::before { animation: none; }
-    #alsLoader { transition-duration: 0.001ms; }
-  }
-</style>
-
 <script>
   /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
@@ -180,86 +53,7 @@
     document.documentElement.classList.add('als-loading');
   })();
 </script>
-</head>
-<body>
-<div id="alsLoader" aria-hidden="true">
-  <div>
-    <div class="als-loader__mark">ALS<span>flow</span></div>
-    <div class="als-loader__bar"><i></i></div>
-  </div>
-</div>
-
-<noscript>
-  <style>#alsLoader { display: none; }</style>
-</noscript>
-
-<script>
-  (function () {
-    var root = document.documentElement;
-    var el = document.getElementById('alsLoader');
-
-    /* Značka se v relaci ukazuje jen jednou. Když ji uživatel už viděl,
-       skript výše nepřidal třídu — loader hned odstraníme. */
-    if (!el || !root.classList.contains('als-loading')) {
-      if (el) el.remove();
-      return;
-    }
-
-    var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
-    var MAX = 2700;   /* pojistka: po této době mizí vždycky */
-    var start = Date.now();
-    var done = false;
-
-    function finish() {
-      if (done) return;
-      done = true;
-
-      el.classList.add('is-out');
-      root.classList.remove('als-loading');
-
-      /* Po doznění se maže z DOM, aby nezavazel fokusu ani čtečce. */
-      setTimeout(function () { el.remove(); }, 600);
-
-      try { sessionStorage.setItem('als-seen', '1'); } catch (e) {}
-    }
-
-    function ready() {
-      setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
-    }
-
-    if (document.readyState === 'complete') ready();
-    else window.addEventListener('load', ready);
-
-    setTimeout(finish, MAX);
-  })();
-</script>
-
-  <header class="nav">
-    <div class="nav-in">
-      <a class="brand" href="/">ALS<span>flow</span></a>
-      <ul class="menu">
-        <li class="has-drop">
-          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
-          <div class="drop">
-            <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
-            <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
-            <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
-            <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
-          </div>
-        </li>
-        <li><a href="/tvorba-webu">Weby</a></li>
-        <li><a href="/vyvoj-softwaru">Software</a></li>
-        <li><a href="/ai-asistenti">AI asistenti</a></li>
-        <li><a href="/o-nas">O n&aacute;s</a></li>
-        <li><a href="/kontakt" aria-current="page">Kontakt</a></li>
-      </ul>
-      <a class="btn btn-live btn-magnet" href="#formular">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
-      <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
+  </Fragment>
   <div class="sheet" id="sheet">
     <a href="/tvorba-webu">Weby</a>
     <a href="/vyvoj-softwaru">Software na m&iacute;ru</a>
@@ -472,49 +266,9 @@
     </div>
   </section>
 
-  <footer class="foot">
-    <div class="wrap">
-      <div class="foot-in">
-        <div class="foot-col">
-          <a class="brand" href="/" style="font-size:1.15rem">ALS<span>flow</span></a>
-        </div>
-        <div class="foot-col">
-          <h4>Slu&zcaron;by</h4>
-          <a href="/tvorba-webu">Tvorba webu</a>
-          <a href="/vyvoj-softwaru">V&yacute;voj softwaru</a>
-          <a href="/ai-asistenti">AI asistenti</a>
-        </div>
-        <div class="foot-col">
-          <h4>Firma</h4>
-          <a href="/o-nas">O n&aacute;s</a>
-          <a href="/cenik">Cen&iacute;k</a>
-          <a href="/kontakt">Kontakt</a>
-          <a href="/ochrana_dat">Ochrana dat</a>
-        </div>
-        <div class="foot-col">
-          <h4>Kontakt</h4>
-          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>
-          <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
-          <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
-        </div>
-      </div>
-      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
-
-      <p class="foot-legal">
-        &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
-        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; M&ecaron;&rcaron;en&iacute; nasazujeme jen tam, kde ho klient chce.
-      </p>
-    </div>
-  </footer>
-
-  <script src="/lenis.min.js" defer></script>
-  <script src="/assets/vendor/gsap.min.js" defer></script>
-  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="/assets/js/reveal.js" defer></script>
-  <script src="/assets/vendor/three.r128.min.js" defer></script>
-  <script src="/assets/js/scenes.js" defer></script>
-  <script src="/assets/js/site-pages.js" defer></script>
-  <script src="/assets/js/flash.js" defer></script>
+  
+  <Fragment slot="tail">
   <script src="/assets/js/form.js" defer></script>
-</body>
-</html>
+  </Fragment>
+
+</Base>

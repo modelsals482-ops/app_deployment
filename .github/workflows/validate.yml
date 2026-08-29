@@ -2,13 +2,13 @@ name: Validate Site
 
 on:
   push:
-    branches: [main]
+    branches: [main, preview, astro]
   pull_request:
-    branches: [main]
+    branches: [main, preview]
 
 jobs:
-  validate-js:
-    name: JS Syntax Check
+  validate:
+    name: Build a kontroly
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,8 +17,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
-      - name: Check inline JS syntax in HTML files
-        run: node .github/scripts/check-js-syntax.js
+      - name: Install dependencies
+        run: npm ci
+
+      # Kontroluje se vydany vystup, ne zdroj. Po prechodu na Astro uz v korenu
+      # zadne .html nejsou a skript, ktery hleda v korenu, by nenasel nic a prosel.
+      - name: Build
+        run: npm run build
+
+      - name: Check inline JS syntax in built pages
+        run: node .github/scripts/check-js-syntax.cjs dist
+
       - name: Check fetch() hosts are allowed by CSP connect-src
-        run: node .github/scripts/check-csp-hosts.js
+        run: node .github/scripts/check-csp-hosts.cjs dist
