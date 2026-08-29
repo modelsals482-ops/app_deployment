@@ -1930,7 +1930,7 @@
       <div class="modal-form-inner" id="modalFormInner">
         <div class="modal-logo">ALS<span>flow</span></div>
         <h2 class="modal-headline" id="modalHeadline">Připravíme vám nabídku</h2>
-        <p class="modal-sub">Vyplňte pár údajů - ozveme se do 24 hodin s nabídkou šitou přímo pro váš byznys.</p>
+        <p class="modal-sub">Vyplňte pár údajů - ozveme se do 48 hodin v pracovní dny a nabídneme termín hovoru.</p>
         <form id="contactForm" novalidate>
           <div class="form-row two-col">
             <div class="form-group">
@@ -2050,7 +2050,7 @@
       <div class="modal-success" id="modalSuccess">
         <div class="success-icon">✓</div>
         <div class="success-title">Skvělé! Ozveme se vám.</div>
-        <p class="success-sub">Váš dotaz byl odeslán na info@alsflow.cz. Připravíme vám nabídku na míru a ozveme se do <strong>24 hodin</strong>.</p>
+        <p class="success-sub">Váš dotaz byl odeslán na info@alsflow.cz. Připravíme vám nabídku na míru a ozveme se do <strong>48 hodin</strong> v pracovní dny.</p>
       </div>
     </div>
   </div>
@@ -2530,7 +2530,7 @@
         { re: /kader|kadeř|fyzio|veterin|zub|obor|hodi se|hodí se|firm/i,
           a: 'Asistenty stavíme pro kadeřnictví, fyzioterapie, veterináře, zubní ordinace a další živnostníky a malé firmy.' },
         { re: /kontakt|mail|telefon|zavolat|schuzk|schůzk|domluv/i,
-          a: 'Napište na info@alsflow.cz nebo vyplňte formulář na této stránce. Ozveme se do 24 hodin v pracovní dny.' }
+          a: 'Napište na info@alsflow.cz nebo vyplňte formulář na této stránce. Ozveme se do 48 hodin v pracovní dny a nabídneme termín hovoru.' }
       ];
       function degraded(q) {
         for (var i = 0; i < FALLBACK.length; i++) {
@@ -2538,7 +2538,7 @@
             return FALLBACK[i].a + ' (Chat je teď dočasně omezený, proto odpovídám zjednodušeně. Pro detaily napište na info@alsflow.cz.)';
           }
         }
-        return 'Chat je momentálně dočasně nedostupný. Napište nám prosím na info@alsflow.cz nebo vyplňte formulář na této stránce, ozveme se do 24 hodin.';
+        return 'Chat je momentálně dočasně nedostupný. Napište nám prosím na info@alsflow.cz nebo vyplňte formulář na této stránce, ozveme se do 48 hodin v pracovní dny.';
       }
       window.toggleChat = function() {
         opened = !opened;
