@@ -2,10 +2,32 @@
 // Website contact form -> Resend email to Jakub. Replaces the n8n intake webhook.
 // Env (set in Vercel project settings): RESEND_API_KEY (required),
 //   CONTACT_TO (default ryvola@alsflow.cz), RESEND_FROM (default "ALSflow <info@alsflow.cz>").
+// Klíče z /kontakt jsou přidané vedle původních, ne místo nich: na
+// /api/contact pořád posílá i landing.html se starou sadou hodnot a
+// neznámý klíč by v e-mailu skončil jako holý řetězec.
 const LABELS = {
-  urgency: { asap: 'Co nejdřív (tento týden)', this_month: 'Tento měsíc', exploring: 'Jen se rozhlížím' },
-  biz: { salon: 'Kadeřnictví/salon', vet: 'Veterinář', dental: 'Zubní/lékař', physio: 'Fyzio/wellness', freelancer: 'Freelancer/OSVČ', small_firm: 'Malá firma', other: 'Jiné' },
-  service: { email_bot: 'E-mailové odpovědi', recepce: 'Rezervace & Připomínky', feedback: 'Zpětná vazba', bundle: 'Bundle', custom: 'Bot na míru', unsure: 'Chce poradit' },
+  urgency: {
+    asap: 'Co nejdřív (tento týden)', this_month: 'Tento měsíc',
+    quarter: 'Do tří měsíců', exploring: 'Jen se rozhlížím',
+  },
+  biz: {
+    salon: 'Kadeřnictví/salon', vet: 'Veterinář', dental: 'Zubní/lékař',
+    physio: 'Fyzio/wellness', shop: 'Obchod/e-shop', services: 'Řemeslo/služby',
+    freelancer: 'Freelancer/OSVČ', small_firm: 'Malá firma', other: 'Jiné',
+  },
+  service: {
+    // /kontakt — tři řemesla
+    web: 'WEB (nový nebo předělaný)', software: 'SOFTWARE na míru', ai: 'AI ASISTENT',
+    vice: 'Víc věcí dohromady', nevim: 'Neví, chce poradit',
+    // starší stránky s nabídkou chatbotů
+    email_bot: 'E-mailové odpovědi', recepce: 'Rezervace & Připomínky',
+    feedback: 'Zpětná vazba', bundle: 'Bundle', custom: 'Bot na míru', unsure: 'Chce poradit',
+  },
+  pain: {
+    cas: 'Ztrácí čas ruční prací', zmeskane: 'Nestíhá odpovídat, unikají zakázky',
+    web: 'Zastaralý nebo žádný web', systemy: 'Systémy spolu nemluví',
+    tabulky: 'Všechno běží v tabulkách', jine: 'Jiné',
+  },
 };
 const L = (f, v) => (LABELS[f] && LABELS[f][v]) || v || '—';
 
@@ -44,7 +66,7 @@ module.exports = async function handler(req, res) {
     `Začít:    ${L('urgency', b.urgency)}`,
     `Obor:     ${L('biz', b.biz)}   (tým: ${b.size || '—'})`,
     `Služba:   ${L('service', b.service)}`,
-    `Problém:  ${b.pain || '—'}`,
+    `Problém:  ${L('pain', b.pain)}`,
     `Kdy volat:${b.pref_time || 'kdykoliv'}`, '',
     `Zpráva:   ${b.msg || '—'}`,
   ].join('\n');

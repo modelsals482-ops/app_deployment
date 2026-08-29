@@ -536,12 +536,23 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    Seznamy
    -------------------------------------------------------------------- */
 .list { display: flex; flex-direction: column; gap: 1.05rem; list-style: none; }
-.list li { display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.95rem; line-height: 1.6; color: var(--t2); }
+
+/* Odrážka visí mimo text, řádek sám flex není. Dřív byl a každý
+   <strong> uvnitř věty se stal samostatnou položkou flexu — nabral
+   mezeru z gapu a na úzké obrazovce se z něj stal vlastní sloupec. */
+.list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--t2);
+}
 .list li::before {
-  flex-shrink: 0;
+  position: absolute;
+  top: 0.62rem;
+  left: 0;
   width: 6px;
   height: 6px;
-  margin-top: 0.62rem;
   content: '';
   background: var(--grad);
   border-radius: 50%;
@@ -740,16 +751,19 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .btn-magnet { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s, border-color 0.24s, box-shadow 0.28s; }
 .btn-magnet:hover { transform: translate(var(--tx, 0), var(--ty, 0)); }
 
-/* 3. Výměna nápisu — původní vyjede nahoru, kopie přijede zespodu. */
+/* 3. Výměna nápisu — původní vyjede nahoru, kopie přijede zespodu.
+      Kopie musí čekat odsunutá o výšku řádku (top:100%), ne o procenta
+      vlastní výšky přes transform: tlačítko je vyšší než řádek textu,
+      takže se druhý nápis odsunul jen o kousek a koukal zpod toho
+      prvního. Ořez je proto i na .lbl. */
 .btn-swap { overflow: hidden; }
-.btn-swap .lbl { position: relative; display: inline-block; }
+.btn-swap .lbl { position: relative; display: inline-block; overflow: hidden; }
 .btn-swap .lbl span {
   display: block;
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.btn-swap .lbl span:last-child { position: absolute; top: 0; left: 0; transform: translateY(115%); }
-.btn-swap:hover .lbl span:first-child { transform: translateY(-115%); }
-.btn-swap:hover .lbl span:last-child { transform: none; }
+.btn-swap .lbl span:last-child { position: absolute; top: 100%; left: 0; }
+.btn-swap:hover .lbl span { transform: translateY(-100%); }
 
 /* 4. Obtažení — linka objede obvod tlačítka. */
 .btn-trace { border-color: transparent; }

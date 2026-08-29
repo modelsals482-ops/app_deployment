@@ -3,133 +3,401 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O nás — zakladatel, ne agentura | ALSflow</title>
-  <meta name="description" content="ALSflow je projekt jednoho člověka. Stavím a spravuji AI asistenty pro malé firmy — osobně, srozumitelně a bez techno-žvástů. Za ALSflow stojí Jakub Ryvola." />
+  <title>O nás — jeden člověk, tři řemesla | ALSflow</title>
+  <meta name="description" content="ALSflow je projekt jednoho člověka. Weby, software na míru a AI asistenti pro malé firmy — jednáte se mnou, ne s call centrem. Praha." />
   <link rel="canonical" href="https://alsflow.cz/o-nas" />
   <meta name="robots" content="index, follow" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="O nás — zakladatel, ne agentura | ALSflow" />
-  <meta property="og:description" content="ALSflow je projekt jednoho člověka. Osobně nastavím a spravuji AI asistenty pro malé firmy. Bez složitosti, bez IT oddělení." />
+  <meta property="og:title" content="O nás — jeden člověk, tři řemesla | ALSflow" />
+  <meta property="og:description" content="Projekt jednoho člověka. Weby, software na míru a AI asistenti pro malé firmy." />
   <meta property="og:url" content="https://alsflow.cz/o-nas" />
   <meta property="og:image" content="https://alsflow.cz/og-image.png" />
+  <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/site-pages.css" />
+  <link rel="stylesheet" href="/assets/css/flash.css" />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "url": "https://alsflow.cz/o-nas",
-    "inLanguage": "cs",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "ALSflow",
-      "legalName": "Retail Shops s.r.o.",
-      "url": "https://alsflow.cz",
-      "email": "info@alsflow.cz",
-      "telephone": "+420770162346",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dolnoměcholupská 522/12a, Dolní Měcholupy",
-        "addressLocality": "Praha",
-        "postalCode": "102 00",
-        "addressCountry": "CZ"
-      },
-      "founder": { "@type": "Person", "name": "Jakub Ryvola" },
-      "description": "ALSflow staví a plně spravuje AI asistenty pro české malé firmy, obsluha e-mailů, rezervací, připomínek a opakovaných objednávek.",
-      "sameAs": ["https://www.instagram.com/als.flow"]
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "url": "https://alsflow.cz/o-nas",
+  "mainEntity": {
+    "@type": "ProfessionalService",
+    "name": "ALSflow",
+    "legalName": "Retail Shops s.r.o.",
+    "url": "https://alsflow.cz",
+    "email": "info@alsflow.cz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dolnoměcholupská 522/12a",
+      "postalCode": "102 00",
+      "addressLocality": "Praha 10",
+      "addressCountry": "CZ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "ryvola@alsflow.cz",
+      "areaServed": ["CZ", "SK"],
+      "availableLanguage": ["cs", "sk"]
     }
   }
+}
   </script>
-  <style>
-    :root{--bg:#08080c;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.18);--t1:#f0f0f3;--t2:#8b8b9e;--t3:#4a4a60;--blue:#3b82f6;--green:#22c55e;--purple:#a855f7;--amber:#f59e0b;--font:'Plus Jakarta Sans',-apple-system,sans-serif}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:var(--bg);color:var(--t1);font-family:var(--font);line-height:1.7;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:760px;margin:0 auto;padding:0 1.4rem}
-    header{position:sticky;top:0;background:rgba(8,8,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:10}
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;max-width:1100px;margin:0 auto}
-    .logo{font-weight:800;font-size:1.25rem;color:var(--t1);text-decoration:none}
-    .logo span{color:var(--blue)}
-    .top-cta{background:var(--blue);color:#fff;text-decoration:none;font-weight:700;font-size:0.85rem;padding:0.55rem 1.1rem;border-radius:8px}
-    .hero{padding:4.5rem 0 1rem}
-    .crumb{font-size:0.8rem;color:var(--t3);margin-bottom:1.2rem}
-    .crumb a{color:var(--t2);text-decoration:none}
-    h1{font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:800;line-height:1.25;letter-spacing:-0.02em}
-    h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-    h2{font-size:1.3rem;font-weight:700;margin:2.6rem 0 0.8rem;letter-spacing:-0.01em}
-    p{color:var(--t2);margin-bottom:1.1rem;font-size:1.02rem}
-    strong{color:var(--t1)}
-    .sign{display:flex;align-items:center;gap:1rem;margin:1.6rem 0;padding:1.3rem;background:var(--surface);border:1px solid var(--border);border-radius:14px}
-    .sign .av{width:54px;height:54px;border-radius:50%;background:var(--blue-s,rgba(59,130,246,0.15));border:1px solid rgba(59,130,246,0.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
-    .sign b{color:var(--t1);display:block}
-    .sign span{font-size:0.88rem;color:var(--t2)}
-    .vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.4rem 0}
-    .val{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem}
-    .val h3{font-size:1rem;margin-bottom:0.4rem}
-    .val p{font-size:0.9rem;margin:0}
-    .cta-box{background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.10));border:1px solid var(--border-h);border-radius:18px;padding:2.2rem;text-align:center;margin:3.2rem 0}
-    .cta-box h2{margin:0 0 0.6rem}
-    .cta-box p{max-width:480px;margin:0 auto 1.4rem}
-    .btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:0.85rem 1.8rem;border-radius:10px}
-    .btn-ghost{display:inline-block;color:var(--t2);text-decoration:none;font-weight:600;padding:0.85rem 1.2rem}
-    footer{border-top:1px solid var(--border);margin-top:4rem;padding:2rem 1.4rem;text-align:center;font-size:0.8rem;color:var(--t3)}
-    footer a{color:var(--t2);text-decoration:none;margin:0 0.6rem}
-  </style>
+
+  <!-- úvodní loader — zdroj a poznámky v alsflow-loader.html -->
+<style>
+  #alsLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: #08080c;
+    opacity: 1;
+    transition: opacity 0.55s ease;
+  }
+
+  #alsLoader[hidden] { display: none; }
+
+  html.als-loading,
+  html.als-loading body { overflow: hidden; }
+
+  #alsLoader.is-out {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  /* Modrý podsvit pod značkou, aby plocha nebyla jen černá.
+     Řešeno přes ::before, ať se nemusí měnit markup na dvou místech. */
+  #alsLoader > div {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+
+  #alsLoader > div::before {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    z-index: 0;
+    width: min(560px, 82vw);
+    height: 230px;
+    content: "";
+    background: radial-gradient(
+      ellipse at center,
+      rgb(59 130 246 / 30%) 0%,
+      rgb(37 99 235 / 14%) 38%,
+      transparent 70%
+    );
+    filter: blur(30px);
+    transform: translate(-50%, -50%);
+    animation: alsGlow 2.6s ease-in-out infinite;
+  }
+
+  /* Značka i linka musí zůstat nad podsvitem. */
+  .als-loader__mark,
+  .als-loader__bar {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes alsGlow {
+    0%, 100% { opacity: 0.72; }
+    50%      { opacity: 1; }
+  }
+
+  .als-loader__mark {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-size: clamp(1.9rem, 6vw, 3.1rem);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    background: linear-gradient(120deg, #fff 0%, #8b8b9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(9px);
+    animation: alsRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .als-loader__mark span {
+    background: linear-gradient(120deg, #60a5fa, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* vlasová linka, která se pod značkou rozjede zleva doprava */
+  .als-loader__bar {
+    width: clamp(120px, 22vw, 190px);
+    height: 1px;
+    margin-top: 1.4rem;
+    overflow: hidden;
+    background: rgb(255 255 255 / 8%);
+  }
+
+  .als-loader__bar i {
+    display: block;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+    animation: alsSweep 1.15s ease-in-out infinite;
+  }
+
+  @keyframes alsRise {
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes alsSweep {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(350%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .als-loader__mark { opacity: 1; transform: none; animation: none; }
+    .als-loader__bar  { display: none; }
+    #alsLoader > div::before { animation: none; }
+    #alsLoader { transition-duration: 0.001ms; }
+  }
+</style>
+
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
 </head>
 <body>
-  <header>
-    <div class="topbar">
-      <a class="logo" href="/">ALS<span>flow</span></a>
-      <a class="top-cta" href="/ai-asistenti#pricing">Chci svoji nabídku</a>
+<div id="alsLoader" aria-hidden="true">
+  <div>
+    <div class="als-loader__mark">ALS<span>flow</span></div>
+    <div class="als-loader__bar"><i></i></div>
+  </div>
+</div>
+
+<noscript>
+  <style>#alsLoader { display: none; }</style>
+</noscript>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var el = document.getElementById('alsLoader');
+
+    /* Značka se v relaci ukazuje jen jednou. Když ji uživatel už viděl,
+       skript výše nepřidal třídu — loader hned odstraníme. */
+    if (!el || !root.classList.contains('als-loading')) {
+      if (el) el.remove();
+      return;
+    }
+
+    var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
+    var MAX = 2700;   /* pojistka: po této době mizí vždycky */
+    var start = Date.now();
+    var done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+
+      el.classList.add('is-out');
+      root.classList.remove('als-loading');
+
+      /* Po doznění se maže z DOM, aby nezavazel fokusu ani čtečce. */
+      setTimeout(function () { el.remove(); }, 600);
+
+      try { sessionStorage.setItem('als-seen', '1'); } catch (e) {}
+    }
+
+    function ready() {
+      setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
+    }
+
+    if (document.readyState === 'complete') ready();
+    else window.addEventListener('load', ready);
+
+    setTimeout(finish, MAX);
+  })();
+</script>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="/">ALS<span>flow</span></a>
+      <ul class="menu">
+        <li class="has-drop">
+          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
+          <div class="drop">
+            <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
+            <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
+            <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
+            <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
+          </div>
+        </li>
+        <li><a href="/tvorba-webu">Weby</a></li>
+        <li><a href="/vyvoj-softwaru">Software</a></li>
+        <li><a href="/ai-asistenti">AI asistenti</a></li>
+        <li><a href="/o-nas" aria-current="page">O n&aacute;s</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+      </ul>
+      <a class="btn btn-live btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
-
-  <main class="wrap">
-    <section class="hero">
-      <div class="crumb"><a href="/">ALSflow</a> / O nás</div>
-      <h1>Zakladatel, <em>ne agentura</em></h1>
-    </section>
-
-    <p>ALSflow je projekt jednoho člověka. Věřím, že malé firmy si zaslouží stejné nástroje jako velké korporace, jen bez složitosti, bez IT oddělení a bez smlouvy na tři roky. Proto ALSflow dělám tak, jak dělám: <strong>nastavím vám to osobně a jsem k zastižení, když něco potřebujete.</strong></p>
-
-    <p>Sám jsem viděl, jak majitelé malých praxí a provozů tráví hodiny denně odpovídáním na ty samé zprávy. Zákazník se ptá na cenu, na volný termín, na to, kde zaparkovat. Vy jste přitom u práce, kvůli které za vámi lidé chodí, a telefon ani mail obsloužit nejde. AI asistent tohle vezme na sebe, aby vám zůstala hlava i ruce na to podstatné.</p>
-
-    <div class="sign">
-      <div class="av">👤</div>
-      <div>
-        <b>Jakub Ryvola</b>
-        <span>zakladatel ALSflow</span>
+<main>
+  <section class="hero-plain">
+    <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">O n&aacute;s</span>
+      <h1 class="h-hero fade-head reveal-words">Zakladatel, <span class="grad">ne agentura</span></h1>
+      <p class="lead">ALSflow je projekt jednoho &ccaron;lov&ecaron;ka. Mal&aacute; firma si zaslou&zcaron;&iacute; stejn&eacute; n&aacute;stroje jako velk&aacute; korporace, jen bez slo&zcaron;itosti, bez IT odd&ecaron;len&iacute; a bez smlouvy na t&rcaron;i roky. Proto to d&ecaron;l&aacute;m tak, jak to d&ecaron;l&aacute;m: <strong>nastav&iacute;m v&aacute;m to osobn&ecaron; a jsem k zasti&zcaron;en&iacute;, kdy&zcaron; n&ecaron;co pot&rcaron;ebujete.</strong></p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+        <a class="btn btn-quiet" href="/tvorba-webu">Pod&iacute;vat se na pr&aacute;ci</a>
       </div>
     </div>
+  </section>
 
-    <h2>Proč AI a proč zrovna teď</h2>
-    <p>AI je dneska přehypovaná a nepochopená v obou směrech. Jedni čekají, že nahradí celého člověka, druzí ji škrtnou, protože jim jednou nějaký chatbot zdarma odpověděl blbě. Realita je nudnější: <strong>opravdovou překážkou není technologie, ale důvěra.</strong> Firmy se AI nebrání proto, že by nefungovala, ale protože se bojí, že bude na jejich zákazníky působit chladně. Moje práce je ukázat, že nemusí.</p>
-
-    <p>Proto asistent píše česky, vaším tónem, a když si není jistý, radši předá slovo vám, než aby si vymýšlel. Není to robot navíc. Je to to, co byste stejně napsali, jen rychleji a bez toho, aby vám to ujídalo večery.</p>
-
-    <h2>Jak to u nás vypadá</h2>
-    <div class="vals">
-      <div class="val"><h3>Prakticky</h3><p>Žádné buzzwordy. Váš telefon zvoní, vy jste u zákazníka, AI odpoví. Tak jednoduché to je.</p></div>
-      <div class="val"><h3>Transparentně</h3><p>Ceny máme veřejně na webu. Žádné skryté poplatky, žádné „cena podle potřeb".</p></div>
-      <div class="val"><h3>Osobně</h3><p>Jednáte se mnou, ne s call centrem. Nastavím vám to sám a jsem dostupný, když je potřeba.</p></div>
-      <div class="val"><h3>Bez závazků</h3><p>Platíte měsíčně, hotovo do 5 dnů, zrušit můžete kdykoli. Držíme vás výsledkem, ne smlouvou.</p></div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Pro&ccaron; to d&ecaron;l&aacute;m</span>
+        <h2 class="h-sec fade-head reveal-words">Skute&ccaron;nou p&rcaron;ek&aacute;&zcaron;kou nen&iacute; technika, ale <span class="grad">d&uring;v&ecaron;ra</span></h2>
+        <p class="lead">Vid&ecaron;l jsem, kolik &ccaron;asu majitel&uring;m mal&yacute;ch provoz&uring; se&zcaron;ere odpov&iacute;d&aacute;n&iacute; na ty sam&eacute; zpr&aacute;vy, p&rcaron;episov&aacute;n&iacute; do tabulek a web, kter&yacute; nikdo neaktualizoval dva roky. Nen&iacute; to pr&aacute;ce, kv&uring;li kter&eacute; za v&aacute;mi lid&eacute; chod&iacute;.</p>
+      </div>
+      <div class="cards-2">
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev">
+          <h3>Prakticky</h3>
+          <p>&Zcaron;&aacute;dn&eacute; buzzwordy. &Rcaron;eknete, co v&aacute;s zdr&zcaron;uje, a j&aacute; &rcaron;eknu, jestli se to vyplat&iacute; &rcaron;e&scaron;it &mdash; a kdy&zcaron; ne, taky to &rcaron;eknu.</p>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
+          <h3>Pevn&aacute; cena za dohodnut&yacute; rozsah</h3>
+          <p>&Zcaron;&aacute;dn&aacute; otev&rcaron;en&aacute; hodinovka. Cena za to, na &ccaron;em jsme se domluvili, plat&iacute;. Kdy&zcaron; si vymysl&iacute;te n&ecaron;co nav&iacute;c, &rcaron;eknu cenu t&eacute; zm&ecaron;ny p&rcaron;edem.</p>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2">
+          <h3>Osobn&ecaron;</h3>
+          <p>Jedn&aacute;te se mnou, ne s call centrem. Nastav&iacute;m to s&aacute;m a odpov&iacute;m do 48 hodin v pracovn&iacute; dny.</p>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3">
+          <h3>Bez z&aacute;vazk&uring;</h3>
+          <p>U asistent&uring; plat&iacute;te m&ecaron;s&iacute;&ccaron;n&ecaron; a zru&scaron;&iacute;te kdykoli. Dom&eacute;na, &uacute;&ccaron;ty i zdrojov&yacute; k&oacute;d jsou v&zcaron;dycky na va&scaron;e jm&eacute;no.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <h2>Kdo za ALSflow stojí</h2>
-    <p>ALSflow provozuje <strong>Retail Shops s.r.o.</strong> (IČO 02512556, DIČ CZ02512556), plátce DPH, se sídlem na adrese Dolnoměcholupská 522/12a, Dolní Měcholupy, 102 00 Praha 10. S klienty, kteří pracují s údaji zákazníků, uzavíráme zpracovatelskou smlouvu podle GDPR. Víc o tom, jak nakládáme s daty, najdete v <a href="/ochrana_dat" style="color:var(--blue)">ochraně dat</a>.</p>
-
-    <div class="cta-box">
-      <h2>Dá se to nezávazně probrat</h2>
-      <p>15 minut, řeknete mi, co vás nejvíc zdržuje, a já ukážu, jestli s tím ALSflow umí pomoct. Žádný tlak, žádná technika.</p>
-      <a class="btn" href="/ai-asistenti#pricing">Chci nezávaznou nabídku</a>
-      <a class="btn-ghost" href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+  <section class="sec scene-host">
+    <canvas class="scene scene-soft" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">T&rcaron;i &rcaron;emesla</span>
+        <h2 class="h-sec fade-head reveal-words">Weby, software a <span class="grad">AI asistenti</span></h2>
+        <p class="lead">Za&ccaron;alo to asistenty. Weby a software p&rcaron;ibyly proto, &zcaron;e si o n&ecaron; klienti &rcaron;ekli &mdash; a proto&zcaron;e spolu souvis&iacute;: kdo v&aacute;m postavil web, v&iacute;, kam m&aacute; s&aacute;hnout, kdy&zcaron; k n&ecaron;mu m&aacute; p&rcaron;ipojit n&aacute;stroj.</p>
+      </div>
+      <div class="cards-2">
+        <a class="panel panel-pad panel-glow panel-sheen tilt rev" href="/tvorba-webu">
+          <h3>Weby</h3>
+          <p>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu. Postav&iacute;m, nasad&iacute;m a d&aacute;l se star&aacute;m.</p>
+          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+        </a>
+        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1" href="/vyvoj-softwaru">
+          <h3>Software na m&iacute;ru</h3>
+          <p>Administra&ccaron;n&iacute; panely, napojen&iacute; syst&eacute;m&uring;, kter&eacute; spolu nemluv&iacute;, a n&aacute;stroje m&iacute;sto tabulek.</p>
+          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+        </a>
+        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2" href="/ai-asistenti">
+          <h3>AI asistenti</h3>
+          <p>Asistent p&iacute;&scaron;e &ccaron;esky a va&scaron;&iacute;m t&oacute;nem. Kdy&zcaron; si nen&iacute; jist&yacute;, rad&scaron;i p&rcaron;ed&aacute; slovo v&aacute;m, ne&zcaron; aby si vym&yacute;&scaron;lel.</p>
+          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+        </a>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3">
+          <h3>Co ned&ecaron;l&aacute;m</h3>
+          <p>E-shopy, mobiln&iacute; aplikace do App Store a syst&eacute;my pro statis&iacute;ce u&zcaron;ivatel&uring;. &Rcaron;eknu to hned na za&ccaron;&aacute;tku, ne po m&ecaron;s&iacute;ci.</p>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <div><a href="/">Úvod</a> · <a href="/ai-asistenti#pricing">Ceny</a> · <a href="/e-mailove-odpovedi">E-maily</a> · <a href="/rezervace-pripominky">Rezervace</a> · <a href="mailto:info@alsflow.cz">Kontakt</a> · <a href="/ochrana_dat">Ochrana dat</a></div>
-    <div style="margin-top:0.8rem">© 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556</div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Kdo za t&iacute;m stoj&iacute;</span>
+        <h2 class="h-sec fade-head reveal-words">Jakub Ryvola</h2>
+        <p class="lead">ALSflow provozuje <strong>Retail Shops s.r.o.</strong> (I&Ccaron;O 02512556, DI&Ccaron; CZ02512556), pl&aacute;tce DPH, se s&iacute;dlem Dolnom&ecaron;cholupsk&aacute; 522/12a, Doln&iacute; M&ecaron;cholupy, 102 00 Praha 10. S klienty, kte&rcaron;&iacute; pracuj&iacute; s &uacute;daji z&aacute;kazn&iacute;k&uring;, uzav&iacute;r&aacute;me zpracovatelskou smlouvu podle GDPR. V&iacute;c v <a href="/ochrana_dat">ochran&ecaron; dat</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">D&aacute; se to <span class="grad">nez&aacute;vazn&ecaron; probrat</span></h2>
+        <p class="lead">Patn&aacute;ct minut. &Rcaron;eknete, co v&aacute;s nejv&iacute;c zdr&zcaron;uje, a j&aacute; &rcaron;eknu, jestli s t&iacute;m um&iacute;m pomoct. &Zcaron;&aacute;dn&yacute; tlak, &zcaron;&aacute;dn&aacute; technika.</p>
+        <div class="btn-row">
+          <a class="btn btn-grad btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+          <a class="btn btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+    <div class="wrap">
+      <div class="foot-in">
+        <div class="foot-col">
+          <a class="brand" href="/" style="font-size:1.15rem">ALS<span>flow</span></a>
+        </div>
+        <div class="foot-col">
+          <h4>Slu&zcaron;by</h4>
+          <a href="/tvorba-webu">Tvorba webu</a>
+          <a href="/vyvoj-softwaru">V&yacute;voj softwaru</a>
+          <a href="/ai-asistenti">AI asistenti</a>
+        </div>
+        <div class="foot-col">
+          <h4>Firma</h4>
+          <a href="/o-nas">O n&aacute;s</a>
+          <a href="/cenik">Cen&iacute;k</a>
+          <a href="/kontakt">Kontakt</a>
+          <a href="/ochrana_dat">Ochrana dat</a>
+        </div>
+        <div class="foot-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+          <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
+          <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
+      <p class="foot-legal">
+        &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
+        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; M&ecaron;&rcaron;en&iacute; nasazujeme jen tam, kde ho klient chce.
+      </p>
+    </div>
   </footer>
+
+  <script src="/lenis.min.js" defer></script>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/reveal.js" defer></script>
+  <script src="/assets/vendor/three.r128.min.js" defer></script>
+  <script src="/assets/js/scenes.js" defer></script>
+  <script src="/assets/js/site-pages.js" defer></script>
+  <script src="/assets/js/flash.js" defer></script>
 </body>
 </html>

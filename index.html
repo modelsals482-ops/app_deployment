@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
+  <link rel="stylesheet" href="/assets/css/flash.css" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -262,6 +263,7 @@
             <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
             <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
             <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
+            <a href="/kontakt"><b>Kontakt</b><small>Nez&aacute;vazn&aacute; popt&aacute;vka, ozvu se t&yacute;&zcaron; den</small></a>
             <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
           </div>
         </li>
@@ -269,8 +271,9 @@
         <li><a href="/vyvoj-softwaru">Software</a></li>
         <li><a href="/ai-asistenti">AI asistenti</a></li>
         <li><a href="/o-nas">O n&aacute;s</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
       </ul>
-      <a class="btn btn-grad btn-magnet" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      <a class="btn btn-live btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
       <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
         <span></span><span></span><span></span>
       </button>
@@ -283,11 +286,13 @@
     <a href="/ai-asistenti">AI asistenti</a>
     <a href="/cenik">Cen&iacute;k</a>
     <a href="/o-nas">O n&aacute;s</a>
-    <a class="btn" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+    <a href="/kontakt">Kontakt</a>
+    <a class="btn" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
   </div>
 
   <section class="hero">
     <div class="hero-stage">
+      <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
       <canvas id="arc3d" aria-hidden="true"></canvas>
       <canvas id="arcCanvas" aria-hidden="true"></canvas>
     </div>
@@ -297,13 +302,33 @@
         <h1 class="h-hero fade-head reveal-words" style="margin-top:1.6rem">Weby, software<br />a <span class="grad">AI asistenti</span></h1>
         <p class="lead">Jeden &ccaron;lov&ecaron;k, t&rcaron;i &rcaron;emesla a pevn&aacute; cena &rcaron;e&ccaron;en&aacute; rovnou. Stav&iacute;me pro &zcaron;ivnostn&iacute;ky a mal&eacute; firmy, kter&eacute; nechtěj&iacute; &rcaron;e&scaron;it techniku ani &ccaron;ekat t&yacute;den na odpov&ecaron;&dcaron;.</p>
         <div class="btn-row">
-          <a class="btn btn-grad btn-shine" href="mailto:info@alsflow.cz">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+          <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
           <a class="btn btn-magnet" href="#co-delame">Co d&ecaron;l&aacute;me <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
         </div>
         <div class="facts">
           <span class="fact">Odpov&iacute;m do <b>48 hodin</b> v pracovn&iacute; dny</span>
           <span class="fact">Web od <b><span class="todo">doplnit</span></b></span>
           <span class="fact">Pevn&aacute; cena, <b>ne hodinovka</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="stats-sec">
+    <div class="wrap">
+      <div class="stat-band">
+        <div class="stat-cell rev">
+          <span class="stat-num" data-count="3">3</span>
+          <span class="stat-label">&rcaron;emesla pod jednou st&rcaron;echou &mdash; web, software, AI asistent</span>
+        </div>
+        <div class="stat-cell rev" data-d="1">
+          <span class="stat-num" data-count="5">5</span>
+          <span class="stat-label">pracovn&iacute;ch dn&uring;, ne&zcaron; asistent poprv&eacute; odpov&iacute; za v&aacute;s</span>
+        </div>
+        <div class="stat-cell rev" data-d="2">
+          <span class="stat-num" data-count="0">0</span>
+          <span class="stat-label">cookies, souhlas&uring; a n&aacute;stroj&uring; t&rcaron;et&iacute;ch stran na na&scaron;ich webech</span>
         </div>
       </div>
     </div>
@@ -317,16 +342,16 @@
         <p class="lead">Ka&zcaron;d&aacute; m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a uk&aacute;zkami toho, co u&zcaron; b&ecaron;&zcaron;&iacute;.</p>
       </div>
       <div class="cards-3">
-        <a class="panel panel-glow rev " href="/tvorba-webu">
+        <a class="panel panel-glow panel-sheen tilt rev " href="/tvorba-webu">
           <div class="panel-pad">
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M2.5 9h19"/><path d="M6 12.5h7M6 15.5h4.5"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">Weby</h3>
-            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez cookie li&scaron;ty. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</p>
+            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez plugin&uring;, kter&eacute; je pot&rcaron;eba aktualizovat. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</p>
             <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od <span class="todo">doplnit</span> K&ccaron; &middot; spr&aacute;va <span class="todo">doplnit</span> K&ccaron;/m&ecaron;s</p>
             <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
           </div>
         </a>
-        <a class="panel panel-glow rev " href="/vyvoj-softwaru">
+        <a class="panel panel-glow panel-sheen tilt rev " href="/vyvoj-softwaru">
           <div class="panel-pad">
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/><path d="M12 12h6.5M12 15.5h6.5"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">Software na m&iacute;ru</h3>
@@ -335,7 +360,7 @@
             <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
           </div>
         </a>
-        <a class="panel panel-glow rev " href="/ai-asistenti">
+        <a class="panel panel-glow panel-sheen tilt rev " href="/ai-asistenti">
           <div class="panel-pad">
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5A2 2 0 0 1 5.5 4.5h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-4.5 3.2V16.5h-.5a2 2 0 0 1-2-2z"/><path d="M8 9.5v3M11.5 8v6M15 9v4M18 10.5v1"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">AI asistenti</h3>
@@ -347,6 +372,44 @@
       </div>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
         <a class="btn btn-swap" href="/cenik"><span class="lbl"><span>Cel&yacute; cen&iacute;k</span><span>Cel&yacute; cen&iacute;k</span></span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sec sec-line" id="zive">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow-label">&Zcaron;iv&ecaron;</span>
+          <h2 class="h-sec fade-head reveal-words">Z&aacute;kazn&iacute;k p&iacute;&scaron;e. <span class="grad">Asistent odpov&iacute;d&aacute;.</span></h2>
+          <p class="lead">Ptaj&iacute; se po&rcaron;&aacute;d na to sam&eacute; &mdash; kdy m&aacute;te volno, kolik to stoj&iacute;, kde se d&aacute; zaparkovat. Asistent odpov&iacute;d&aacute; va&scaron;&iacute;m t&oacute;nem a z va&scaron;ich podklad&uring;, term&iacute;n zap&iacute;&scaron;e do kalend&aacute;&rcaron;e a den p&rcaron;edem ho p&rcaron;ipomene.</p>
+          <ul class="list" style="margin-top:2.1rem">
+            <li><strong>Odpov&iacute;d&aacute; i v deset ve&ccaron;er.</strong> Kdy&zcaron; m&aacute;te ruce v pr&aacute;ci, z&aacute;kazn&iacute;k ne&ccaron;ek&aacute; do r&aacute;na.</li>
+            <li><strong>B&ecaron;&zcaron;&iacute; tam, kde u&zcaron; jste.</strong> WhatsApp, e-mail i chat na webu, kter&yacute; m&aacute;te.</li>
+            <li><strong>Nevym&yacute;&scaron;l&iacute; si.</strong> Kdy&zcaron; si nev&iacute; rady, po&scaron;le dotaz rovnou v&aacute;m.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-fill" href="/ai-asistenti">Jak asistent funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+          </div>
+        </div>
+        <div class="chat-demo panel-ring rev-pop" data-d="1">
+          <div class="chat-top">
+            <span class="av">AI</span>
+            <div>
+              <div class="who">Asistent kade&rcaron;nictv&iacute;</div>
+              <div class="live">odpov&iacute;d&aacute; obvykle do minuty</div>
+            </div>
+            <span class="ai-badge">AI</span>
+          </div>
+          <div class="chat-body">
+            <div class="chat-row me"><span class="msg">Dobr&yacute; den, m&aacute;te volno v p&aacute;tek odpoledne?</span></div>
+            <div class="chat-row bot"><span class="msg">Dobr&yacute; den! V p&aacute;tek je volno ve 14:30 a v 16:00. Kter&yacute; term&iacute;n v&aacute;m sed&iacute; l&iacute;p?</span></div>
+            <div class="chat-row me"><span class="msg">To v 16:00, pros&iacute;m.</span></div>
+            <div class="chat-row bot"><span class="msg">Zaps&aacute;no na p&aacute;tek 16:00. Den p&rcaron;edem po&scaron;lu p&rcaron;ipom&iacute;nku SMS.</span></div>
+            <div class="chat-row bot"><span class="msg"><span class="typing" aria-hidden="true"><i></i><i></i><i></i></span><span class="vh">Asistent p&iacute;&scaron;e dal&scaron;&iacute; odpov&ecaron;&dcaron;.</span></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -382,6 +445,16 @@
     </div>
   </section>
 
+
+  <section class="sec-line" style="padding:3.4rem 0">
+    <div class="wrap">
+      <span class="eyebrow-label" style="text-align:center">Postaven&eacute; na n&aacute;stroj&iacute;ch, kter&eacute; zn&aacute;te</span>
+      <div class="marquee rev">
+        <div class="marquee-track"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>n8n</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>OpenAI</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Railway</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>n8n</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>OpenAI</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Railway</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="sec sec-line scene-host">
     <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
     <div class="wrap">
@@ -397,7 +470,7 @@
         <div class="row rev" data-d="3"><span class="num">04</span><div><h3>V&scaron;echno na va&scaron;e jm&eacute;no</h3><p>Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d i dokumentace. Kdybychom se rozlou&ccaron;ili, b&ecaron;&zcaron;&iacute; to d&aacute;l bez n&aacute;s.</p></div></div>
       </div>
       <div class="btn-row rev" data-d="4">
-        <a class="btn btn-fill" href="mailto:info@alsflow.cz">Napsat rovnou</a>
+        <a class="btn btn-fill" href="/kontakt">Nap&iacute;&scaron;te mi</a>
       </div>
     </div>
   </section>
@@ -407,7 +480,7 @@
       <h2 class="h-sec fade-head reveal-words">&Rcaron;ekn&ecaron;te, co pot&rcaron;ebujete.</h2>
       <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor na &ccaron;tvrt hodiny. Dostanete pevnou cenu a term&iacute;n &mdash; ne odhad.</p>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
-        <a class="btn btn-grad btn-shine" href="mailto:info@alsflow.cz">Napsat na info@alsflow.cz</a>
+        <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
         <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
       </div>
     </div>
@@ -429,18 +502,21 @@
           <h4>Firma</h4>
           <a href="/o-nas">O n&aacute;s</a>
           <a href="/cenik">Cen&iacute;k</a>
+          <a href="/kontakt">Kontakt</a>
           <a href="/ochrana_dat">Ochrana dat</a>
         </div>
         <div class="foot-col">
           <h4>Kontakt</h4>
-          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>
+          <a href="/kontakt">Kontakt a nab&iacute;dka</a>
           <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
           <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
         </div>
       </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
       <p class="foot-legal">
         &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
-        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; Web nepou&zcaron;&iacute;v&aacute; cookies ani n&aacute;stroje t&rcaron;et&iacute;ch stran.
+        I&Ccaron;O 02512556 &middot; DI&Ccaron; CZ02512556 &middot; M&ecaron;&rcaron;en&iacute; nasazujeme jen tam, kde ho klient chce.
       </p>
     </div>
   </footer>
@@ -454,5 +530,6 @@
   <script src="/assets/js/site-pages.js" defer></script>
   <script src="/assets/js/arc3d.js" defer></script>
   <script src="/assets/js/predictive-arc.js" defer></script>
+  <script src="/assets/js/flash.js" defer></script>
 </body>
 </html>

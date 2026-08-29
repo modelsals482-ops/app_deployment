@@ -14,12 +14,12 @@ ALSflow builds and manages three products for Czech small businesses:
 
 ## Websites and custom software
 
-- **Tvorba webu (Websites)** — https://alsflow.cz/tvorba-webu — hand-written HTML/CSS/JS sites with no CMS, no plugins, no build step and no cookie banner (fonts are self-hosted, nothing is loaded from third-party servers). Hosted on Vercel with Cloudflare DNS. Contrast is verified against WCAG 2.2 AA before launch. Includes design, copywriting, deployment, domain setup and ongoing maintenance. Fixed price per site plus a monthly maintenance fee; quoted after an initial call. Built so far: gen1.cz (political movement GEN), sekelovaznalec.sk (Slovak expert witness in construction), alsflow.cz.
+- **Tvorba webu (Websites)** — https://alsflow.cz/tvorba-webu — hand-written HTML/CSS/JS sites with no CMS, no plugins, no build step and no cookie banner (fonts are self-hosted, nothing is loaded from third-party servers). Hosted on Vercel with Cloudflare DNS. Contrast is verified against WCAG 2.2 AA before launch. Includes design, copywriting, deployment, domain setup and ongoing maintenance. Fixed price per site plus a monthly maintenance fee; quoted after an initial call. Built so far: gen1.cz (political movement GEN), znalecsekelova.sk (Slovak expert witness in construction), alsflow.cz.
 - **Vývoj softwaru (Custom software)** — https://alsflow.cz/vyvoj-softwaru — small custom tools deployable in weeks: admin panels over the client's own data, integrations between systems that do not talk to each other, automation replacing manual spreadsheet work, and reporting. Built alongside existing systems via API rather than by migrating them. Fixed price for an agreed scope plus a monthly fee for running it. Source code, accounts and documentation belong to the client; data runs in the EU under an Art. 28 GDPR processing agreement.
 
 Does NOT do: e-shops, mobile apps for the App Store or Google Play, systems for hundreds of thousands of users, or taking over undocumented legacy projects.
 
-One-time setup: 8,000–10,000 CZK, live within 3 working days. Monthly billing, no long-term contract, cancel anytime.
+One-time setup: 8,000–10,000 CZK, live within 5 to 7 working days. Monthly billing, no long-term contract, cancel anytime.
 
 ## Who ALSflow serves
 
@@ -41,4 +41,5 @@ Shared characteristic: the owner wears many hats, has limited time, is not techn
 
 - Website: https://alsflow.cz (overview page routing to the three service lines)
 - AI assistants: https://alsflow.cz/ai-asistenti
-- Email: info@alsflow.cz
+- Enquiry form: https://alsflow.cz/kontakt — the intended way in. Every call-to-action on the site points here; the form asks what the client needs, how soon, and what is slowing them down, and the reply carries a fixed price and a date.
+- Email: ryvola@alsflow.cz (Jakub Ryvola — quotes and new work), info@alsflow.cz (operations, invoices, support). Both are listed only on the contact page.

@@ -247,8 +247,11 @@
         camera.updateProjectionMatrix();
       },
       tick: function (t) {
-        group.rotation.y = t * 0.13;
-        group.rotation.x = t * 0.06;
+        /* Dvojnásobek proti první verzi — otáčka za 24 s místo 48 s.
+           Na podstránkách je koule od téhle úpravy hlavní obraz
+           hlavičky, ne podklad sekce, a v tempu na podklad stála. */
+        group.rotation.y = t * 0.26;
+        group.rotation.x = t * 0.11;
       },
     };
   }

@@ -7,14 +7,26 @@
 // the only symptom was in a visitor's console. A CSP mismatch is invisible to every
 // check that does not load a real page, so it needs its own check.
 //
-// Scope: fetch() with an absolute URL, either inline or via a nearby const. Relative
-// URLs ('/api/contact') are covered by 'self' and skipped. XHR/sendBeacon are not
-// used on this site; add them here if that changes.
+// Scope: fetch() with an absolute URL, either inline in a page or in one of our own
+// script files, resolved directly or via a nearby const. Relative URLs
+// ('/api/contact') are covered by 'self' and skipped. XHR/sendBeacon are not used on
+// this site; add them here if that changes.
+//
+// Both places are checked on purpose. The chat webhook used to live in an inline
+// block and moved to assets/js/chat-widget.js; had this script kept looking only at
+// inline scripts, that move would have quietly dropped the one call it exists to
+// guard, and the next repoint would have failed exactly the same silent way.
 
 const fs = require('fs');
+const path = require('path');
 
 const CONFIG = 'vercel.json';
 const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
+
+const JS_DIR = path.join('assets', 'js');
+const jsFiles = fs.existsSync(JS_DIR)
+  ? fs.readdirSync(JS_DIR).filter(f => f.endsWith('.js')).sort().map(f => path.join(JS_DIR, f))
+  : [];
 
 // --- the allowlist, straight out of the deployed header ---------------------
 const vercel = JSON.parse(fs.readFileSync(CONFIG, 'utf8'));
@@ -42,15 +54,23 @@ console.log(`connect-src allows: ${[...allowed].join(', ') || '(nothing beyond s
 let hasError = false;
 let checked = 0;
 
+// [file, javascript] for every place a fetch() of ours can live
+const sources = [];
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
-
-  // inline scripts only — external ones are governed by script-src, not this check
-  const js = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
+  const inline = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
     .filter(m => !/\bsrc\s*=/i.test(m[1]))
     .map(m => m[2])
     .join('\n');
-  if (!js) continue;
+  if (inline) sources.push([file, inline]);
+}
+
+for (const file of jsFiles) {
+  sources.push([file, fs.readFileSync(file, 'utf8')]);
+}
+
+for (const [file, js] of sources) {
 
   // const NAME = 'https://...'  — so `fetch(WEBHOOK, {...})` resolves
   const vars = {};

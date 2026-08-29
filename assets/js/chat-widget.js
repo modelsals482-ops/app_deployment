@@ -1,0 +1,136 @@
+/* =====================================================================
+   ALSflow — chat s Klárou
+
+   Živý bot běží na vlastní instanci (n8n na Railway) a volá se přes
+   webhook. Přeneseno beze změny logiky ze staré verze stránky; jediné,
+   co se změnilo, je, že to už není vlepené v HTML.
+
+   Klíč v hlavičce není tajemství a ani se tak nechová — je to jen
+   hrubé síto proti tomu, aby webhook mohl mlátit kdokoli odkudkoli.
+   Skutečné limity a ověření sedí na serveru.
+
+   Adresa webhooku musí zůstat v connect-src v vercel.json. Když se
+   přepíše tady a tam ne, prohlížeč každý požadavek zablokuje ještě
+   před odesláním a chat je němý, aniž by cokoli spadlo — přesně tohle
+   se stalo 19. 8. 2026, proto to hlídá i .github/scripts.
+   ===================================================================== */
+/* -- CHAT WIDGET JS -- */
+(function() {
+  var WEBHOOK = 'https://alsflow-chat.alsflow.cz/webhook/alsflow-chat';
+  var API_KEY = 'alsflow-chat-2026';
+  var MAX = 20;
+  var sid = sessionStorage.getItem('als_chat_sid');
+  if (!sid) {
+    sid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    sessionStorage.setItem('als_chat_sid', sid);
+  }
+  var history = []; var msgCount = 0; var sending = false; var opened = false;
+
+  /* STATIC FLOOR. The live bot is an upgrade, not a dependency. These answers are baked
+     into the page, so an outage degrades the chat to a worse answer, never to no answer.
+     Any reply from the bot overrides them. Keep in sync with prompts.js + cenik.html. */
+  var FALLBACK = [
+    { re: /cen[ay]|stoj|kolik|platb|balic|balíc|balíč/i,
+      a: 'E-mailové odpovědi stojí 2 500 Kč měsíčně, Rezervace a Připomínky 4 500 Kč měsíčně a kompletní balíček přibližně 7 500 Kč měsíčně. Jednorázové nastavení vyjde na 8 000 až 10 000 Kč.' },
+    { re: /jak dlouho|nastaven|spust|hotov|trva|trvá/i,
+      a: 'Nastavení máme hotové do 5 pracovních dnů. Nevážete se žádnou dlouhodobou smlouvou, zrušit můžete kdykoli.' },
+    { re: /co.{0,15}(del|děl|umi|umí)|k cemu|k čemu|jak to funguje|co (nabiz|nabíz)|na co je|k čemu/i,
+      a: 'Stavíme AI asistenty, kteří za vás odpovídají na e-maily zákazníků, domlouvají rezervace a posílají připomínky, nonstop.' },
+    { re: /kader|kadeř|fyzio|veterin|zub|obor|hodi se|hodí se|firm/i,
+      a: 'Asistenty stavíme pro kadeřnictví, fyzioterapie, veterináře, zubní ordinace a další živnostníky a malé firmy.' },
+    { re: /kontakt|mail|telefon|zavolat|schuzk|schůzk|domluv/i,
+      a: 'Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt. Ozvu se většinou týž den.' }
+  ];
+  function degraded(q) {
+    for (var i = 0; i < FALLBACK.length; i++) {
+      if (FALLBACK[i].re.test(q)) {
+        return FALLBACK[i].a + ' (Chat je teď dočasně omezený, proto odpovídám zjednodušeně. Pro detaily napište na info@alsflow.cz.)';
+      }
+    }
+    return 'Chat je teď dočasně nedostupný. Napište prosím na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.';
+  }
+  window.toggleChat = function() {
+    opened = !opened;
+    var panel = document.getElementById('chatPanel');
+    var badge = document.getElementById('chatBadge');
+    if (panel) panel.classList.toggle('open', opened);
+    if (panel) panel.setAttribute('aria-hidden', String(!opened));
+    if (opened && badge) badge.style.display = 'none';
+    if (opened) setTimeout(function() { var i = document.getElementById('chatInput'); if(i) i.focus(); }, 300);
+  };
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function addMsg(role, text) {
+    var wrap = document.getElementById('chatMessages'); if (!wrap) return;
+    var div = document.createElement('div'); div.className = 'chat-msg ' + role;
+    var bub = document.createElement('div'); bub.className = 'chat-bubble-msg';
+    bub.innerHTML = esc(text).replace(/\n/g,'<br>');
+    div.appendChild(bub); wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
+  }
+  function addTyping() {
+    var wrap = document.getElementById('chatMessages'); if (!wrap) return;
+    var div = document.createElement('div'); div.className = 'chat-msg bot'; div.id = 'chatTyping';
+    div.innerHTML = '<div class="chat-bubble-msg"><span class="chat-typing-dots"><span></span><span></span><span></span></span></div>';
+    wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
+  }
+  function removeTyping() { var t = document.getElementById('chatTyping'); if(t) t.remove(); }
+  function updateCounter() { var el = document.getElementById('chatCounter'); if(el) el.textContent = msgCount + '/' + MAX; }
+  window.sendChatMessage = function() {
+    if (sending || msgCount >= MAX) return;
+    var input = document.getElementById('chatInput');
+    var msg = input ? input.value.trim() : ''; if (!msg) return;
+    if (input) input.value = '';
+    msgCount++; updateCounter(); addMsg('user', msg);
+    var sendHistory = history.slice();
+    history.push({ role: 'user', content: msg });
+    if (history.length > 12) history = history.slice(-12);
+    sending = true;
+    var btn = document.getElementById('chatSend'); if(btn) btn.disabled = true;
+    addTyping();
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
+      body: JSON.stringify({ message: msg, session_id: sid, history: sendHistory, website: '' })
+    })
+    .then(function(r) { if (!r.ok) { throw new Error('http ' + r.status); } return r.json(); })
+    .then(function(data) {
+      removeTyping();
+      var reply = (data && data.reply) ? String(data.reply) : degraded(msg);
+      addMsg('bot', reply);
+      history.push({ role: 'model', content: reply });
+      if (history.length > 12) history = history.slice(-12);
+    })
+    .catch(function() { removeTyping(); addMsg('bot', degraded(msg)); })
+    .finally(function() {
+      sending = false; if(btn) btn.disabled = (msgCount >= MAX); updateCounter();
+      if (msgCount >= MAX) addMsg('bot', 'Dosáhli jste limitu zpráv. Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.');
+    });
+  };
+
+  /* Dřív se tyhle tři věci volaly z onclick/onkeydown přímo ve značce.
+     Nová stránka je má tady, aby značka zůstala čistá a chat se dal
+     přenést na jinou stránku beze změny HTML. */
+  (function () {
+    var open = document.getElementById('chatBubble');
+    var close = document.getElementById('chatClose');
+    var send = document.getElementById('chatSend');
+    var input = document.getElementById('chatInput');
+
+    if (open) open.addEventListener('click', window.toggleChat);
+    if (close) close.addEventListener('click', window.toggleChat);
+    if (send) send.addEventListener('click', window.sendChatMessage);
+    if (input) input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); window.sendChatMessage(); }
+    });
+
+    /* Escape zavírá panel, když je otevřený — dialog bez klávesnicové
+       cesty ven je past pro každého, kdo nepoužívá myš. */
+    document.addEventListener('keydown', function (e) {
+      var panel = document.getElementById('chatPanel');
+      if (e.key !== 'Escape' || !panel || !panel.classList.contains('open')) return;
+      window.toggleChat();
+      if (open) open.focus();
+    });
+  })();
+})();
