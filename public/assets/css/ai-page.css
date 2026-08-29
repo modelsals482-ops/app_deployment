@@ -382,41 +382,85 @@
 /* =====================================================================
    Chat vpravo dole
    ===================================================================== */
+/* Otevírací tlačítko chatu. Byl to malý modrý kroužek s vlastním přechodem,
+   takže na webu působil cize a přehlédnutelně. Teď je to pilulka se jménem,
+   nese hlavní přechod webu (--grad) a zelenou tečku, která tady znamená
+   totéž co jinde: „ano, tohle platí" — někdo je na příjmu. */
 .chat-open {
   position: fixed;
   right: 1.5rem;
   bottom: 1.5rem;
   z-index: 950;
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  height: 60px;
+  padding: 0 1.4rem 0 1.1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #06070a;
   cursor: pointer;
-  background: linear-gradient(135deg, #2f6fdd, #2563eb);
+  background: var(--grad, linear-gradient(110deg, #38dbf5, #5b9dff 42%, #a78bfa));
   border: 0;
-  border-radius: 50%;
-  box-shadow: 0 6px 26px rgb(37 99 235 / 50%);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 999px;
+  box-shadow: 0 10px 34px rgb(56 219 245 / 26%), 0 2px 10px rgb(0 0 0 / 45%);
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s;
 }
 
-.chat-open:hover { box-shadow: 0 8px 34px rgb(37 99 235 / 68%); transform: scale(1.07); }
-.chat-open svg { width: 25px; height: 25px; fill: #fff; pointer-events: none; }
+.chat-open:hover,
+.chat-open:focus-visible {
+  box-shadow: 0 14px 44px rgb(91 157 255 / 40%), 0 3px 12px rgb(0 0 0 / 50%);
+  transform: translateY(-2px);
+}
+.chat-open svg { width: 22px; height: 22px; fill: #06070a; pointer-events: none; }
 
-.chat-open .badge {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #fff;
-  background: var(--g-500);
-  border: 2px solid #000;
+.chat-open__label { pointer-events: none; white-space: nowrap; }
+
+/* Zelená tečka = jsem na příjmu. Stejná úloha jako u „volná kapacita". */
+.chat-open__dot {
+  width: 9px;
+  height: 9px;
+  background: #15803d;
   border-radius: 50%;
-  animation: dotPulse 2.2s ease-in-out infinite;
+  box-shadow: 0 0 0 3px rgb(21 128 61 / 25%);
+}
+
+/* Na úzkém displeji jen kolečko — pilulka by tam ukrojila půl obrazovky. */
+@media (max-width: 520px) {
+  .chat-open { width: 58px; height: 58px; padding: 0; justify-content: center; }
+  .chat-open__label, .chat-open__dot { display: none; }
+  .chat-open svg { width: 24px; height: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-open { transition: none; }
+  .chat-open:hover, .chat-open:focus-visible { transform: none; }
+}
+
+/* Odznáček visel na kraji kolečka. Na pilulce nemá co dělat a zelenou tečku
+   uvnitř by jen zdvojoval — necháváme ho jen na úzkém displeji, kde se
+   z tlačítka stane kolečko a tečka se schová. */
+.chat-open .badge { display: none; }
+
+@media (max-width: 520px) {
+  .chat-open { position: fixed; }
+  .chat-open .badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #fff;
+    background: #15803d;
+    border: 2px solid #000;
+    border-radius: 50%;
+    animation: dotPulse 2.2s ease-in-out infinite;
+  }
 }
 
 .chat-panel {

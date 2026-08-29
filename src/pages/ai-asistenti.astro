@@ -95,7 +95,7 @@ import Base from "../layouts/Base.astro";
       </div>
       <div class="facts">
         <span class="fact">Od <b>2&nbsp;500 K&ccaron;</b>/m&ecaron;s</span>
-        <span class="fact">Spu&scaron;t&ecaron;n&iacute; do <b>5 pracovn&iacute;ch dn&uring;</b></span>
+        <span class="fact">Spu&scaron;t&ecaron;n&iacute; do <b>5 a&zcaron; 7 pracovn&iacute;ch dn&uring;</b></span>
         <span class="fact">Bez z&aacute;vazku, <b>zru&scaron;&iacute;te kdykoli</b></span>
       </div>
     </div>
@@ -249,7 +249,7 @@ import Base from "../layouts/Base.astro";
       <div class="price-line" style="margin-top:2.5rem">
         <div><div class="k">V&scaron;echno dohromady</div><div class="v">7&nbsp;500 K&ccaron;/m&ecaron;s</div></div>
         <div><div class="k">Jednor&aacute;zov&eacute; nastaven&iacute;</div><div class="v">8&ndash;10&nbsp;000 K&ccaron;</div></div>
-        <div><div class="k">Spu&scaron;t&ecaron;n&iacute;</div><div class="v">do 5 pracovn&iacute;ch dn&uring;</div></div>
+        <div><div class="k">Spu&scaron;t&ecaron;n&iacute;</div><div class="v">do 5 a&zcaron; 7 pracovn&iacute;ch dn&uring;</div></div>
       </div>
       <div class="btn-row">
         <a class="btn btn-fill" href="/kontakt">Chci nez&aacute;vaznou nab&iacute;dku <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
@@ -365,8 +365,10 @@ import Base from "../layouts/Base.astro";
 
   
   <Fragment slot="tail">
-  <button class="chat-open" id="chatBubble" type="button" aria-label="Otev&rcaron;&iacute;t chat">
+  <button class="chat-open" id="chatBubble" type="button" aria-label="Otev&rcaron;&iacute;t chat s Kl&aacute;rou">
+    <span class="chat-open__dot" aria-hidden="true"></span>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+    <span class="chat-open__label">Zeptejte se Kl&aacute;ry</span>
     <span class="badge" id="chatBadge" aria-hidden="true">&#10022;</span>
   </button>
   <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat s Kl&aacute;rou z ALSflow" aria-hidden="true" data-lenis-prevent>

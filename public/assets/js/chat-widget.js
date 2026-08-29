@@ -30,18 +30,24 @@
 
   /* STATIC FLOOR. The live bot is an upgrade, not a dependency. These answers are baked
      into the page, so an outage degrades the chat to a worse answer, never to no answer.
-     Any reply from the bot overrides them. Keep in sync with prompts.js + cenik.html. */
+     Any reply from the bot overrides them. Keep in sync with prompts.js (node-bots/services/alsflow-klara) + cenik. */
   var FALLBACK = [
     { re: /cen[ay]|stoj|kolik|platb|balic|balíc|balíč/i,
-      a: 'E-mailové odpovědi stojí 2 500 Kč měsíčně, Rezervace a Připomínky 4 500 Kč měsíčně a kompletní balíček přibližně 7 500 Kč měsíčně. Jednorázové nastavení vyjde na 8 000 až 10 000 Kč.' },
-    { re: /jak dlouho|nastaven|spust|hotov|trva|trvá/i,
-      a: 'Nastavení máme hotové do 5 pracovních dnů. Nevážete se žádnou dlouhodobou smlouvou, zrušit můžete kdykoli.' },
-    { re: /co.{0,15}(del|děl|umi|umí)|k cemu|k čemu|jak to funguje|co (nabiz|nabíz)|na co je|k čemu/i,
-      a: 'Stavíme AI asistenty, kteří za vás odpovídají na e-maily zákazníků, domlouvají rezervace a posílají připomínky, nonstop.' },
+      a: 'U asistentů: E-mailové odpovědi 2 500 Kč měsíčně, Rezervace a připomínky 4 500 Kč měsíčně, všechny tři služby 7 500 Kč měsíčně, jednorázové nastavení 8 000 až 10 000 Kč. Cenu webu nebo softwaru řekneme po úvodním hovoru, je pevná za dohodnutý rozsah.' },
+    { re: /web|stránk|stranky|wordpress|doména|domena|hosting/i,
+      a: 'Weby píšeme ručně, bez redakčního systému a bez pluginů. Web bývá živý do 6 až 10 pracovních dnů a průběžně vidíte rozpracovanou verzi. Víc na alsflow.cz/tvorba-webu.' },
+    { re: /software|aplikac|panel|integrac|api|propoj|tabulk|excel|nástroj|nastroj/i,
+      a: 'Stavíme menší nástroje na míru: administrační panely, propojení systémů, které spolu nemluví, a náhradu ručního přepisování do tabulek. Termín i cena vyjdou z krátké analýzy. Víc na alsflow.cz/vyvoj-softwaru.' },
+    { re: /jak dlouho|nastaven|spust|hotov|trva|trvá|termín|termin/i,
+      a: 'Asistenta nasadíme do 5 až 7 pracovních dnů, web bývá živý do 6 až 10 pracovních dnů. U softwaru se termín domlouvá podle rozsahu.' },
+    { re: /co.{0,15}(del|děl|umi|umí)|k cemu|k čemu|jak to funguje|co (nabiz|nabíz)|na co je/i,
+      a: 'ALSflow dělá tři věci: weby, menší software na míru a AI asistenty, kteří za vás odpovídají zákazníkům a domlouvají termíny.' },
     { re: /kader|kadeř|fyzio|veterin|zub|obor|hodi se|hodí se|firm/i,
-      a: 'Asistenty stavíme pro kadeřnictví, fyzioterapie, veterináře, zubní ordinace a další živnostníky a malé firmy.' },
+      a: 'Asistenty stavíme pro kadeřnictví, fyzioterapie, veterináře, zubní ordinace a další živnostníky. Weby a nástroje děláme pro kohokoli, kdo je potřebuje.' },
+    { re: /kde (najdu|je)|ceník|cenik|reference|ochran|kontakt na|stránk[ay] s/i,
+      a: 'Ceník je na alsflow.cz/cenik, kontaktní formulář na alsflow.cz/kontakt a o nás na alsflow.cz/o-nas.' },
     { re: /kontakt|mail|telefon|zavolat|schuzk|schůzk|domluv/i,
-      a: 'Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt. Ozvu se většinou týž den.' }
+      a: 'Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt. Odpovídáme do 48 hodin v pracovní dny a rovnou nabídneme termín hovoru.' }
   ];
   function degraded(q) {
     for (var i = 0; i < FALLBACK.length; i++) {
