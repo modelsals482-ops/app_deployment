@@ -164,3 +164,23 @@ These have each already cost a real failure. Full list in the n8n repo's
 node .github/scripts/check-js-syntax.js
 node .github/scripts/check-csp-hosts.js
 ```
+
+
+---
+
+## 5. Az bude web hotovy (zamerne odlozeno)
+
+### [ ] 5.1 Klara na kazdou stranku
+
+Chatovaci widget uz existuje (`assets/js/chat-widget.js`) a bezi na VPS jako
+`alsflow-klara`, ale je jen na `/ai-asistenti`. Az bude web hotovy, presunout
+volani widgetu do `src/layouts/Base.astro` (jedno misto, vsechny stranky).
+
+**Nestaci ho jen pridat.** Klara ted zna produkty, ne rozlozeni webu. Aby umela
+navigovat, potrebuje do systemoveho promptu mapu stranek: co je na `/tvorba-webu`,
+co na `/vyvoj-softwaru`, co na `/ai-asistenti`, kde je cenik, kde kontakt, a kdy
+ma misto odpovedi poslat odkaz. To je zmena v `node-bots/`, ne na webu.
+
+Poradi: nejdriv dokoncit web (cast 1), pak doplnit mapu do promptu, pak zapnout
+widget vsude. Obracene poradi znamena, ze bude posilat lidi na stranky, ktere
+se jeste meni.

@@ -18,6 +18,7 @@ export interface Props {
   ogDescription?: string;
   current?: string;
   cta?: string;
+  robots?: string;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   ogDescription = description,
   current = "",
   cta = "/kontakt",
+  robots = "index, follow",
 } = Astro.props;
 
 /* aria-current patri jen na aktivni polozku; jinde musi atribut uplne zmizet,
@@ -39,7 +41,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={robots} />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://alsflow.cz/og-image.png" />
   <meta name="theme-color" content="#000000" />
@@ -49,7 +51,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
   <link rel="stylesheet" href="/assets/css/flash.css" />
-  <!-- úvodní loader — zdroj a poznámky v alsflow-loader.html -->
+  <!-- úvodní loader — jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
 <style>
   #alsLoader {
     position: fixed;
@@ -211,8 +213,8 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       return;
     }
 
-    var MIN = 1200;   /* ať to neproblikne a značka je chvíli vidět */
-    var MAX = 2700;   /* pojistka: po této době mizí vždycky */
+    var MIN = 900;    /* ať to neproblikne a značka je chvíli vidět */
+    var MAX = 4000;   /* pojistka: po této době mizí vždycky, i kdyby scéna nedojela */
     var start = Date.now();
     var done = false;
 
@@ -229,8 +231,47 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       try { sessionStorage.setItem('als-seen', '1'); } catch (e) {}
     }
 
+    /* Loader nemá mizet po pevně daném čase, ale až když je opravdu na co se
+       dívat. Jinak návštěvník chytí přesně to, čemu se loader má vyhnout:
+       první vteřinu, kdy se kompilují shadery a scéna běží na pár snímcích.
+
+       Čeká se na tři věci a bere se ta poslední z nich:
+         1. window.load  — dojely i vendorované knihovny (Three, GSAP)
+         2. fonts.ready  — text se hned po odkrytí nepřepíše jiným řezem
+         3. dva po sobě jdoucí snímky pod 50 ms — hlavní vlákno už není
+            ucpané, takže animace poběží plynule
+
+       Ta třetí podmínka je tu schválně místo signálu ze scenes.js: nemusí
+       o ní žádná scéna vědět, měří se rovnou to, co návštěvník uvidí.
+
+       MAX je nepřekročitelný. Čekat na dokonalost na pomalé lince znamená
+       koukat na loader deset vteřin a odejít — to je horší než trhaná
+       animace. Stránka je bez scény použitelná, odhalování textu selhává
+       otevřeně, takže se nic neztratí. */
+    function smoothFrames(cb) {
+      if (!window.requestAnimationFrame) return cb();
+      var last = 0, good = 0;
+      (function tick(now) {
+        if (last && now - last < 50) good++; else good = 0;
+        last = now;
+        if (good >= 2 || done) cb();
+        else requestAnimationFrame(tick);
+      })(0);
+    }
+
     function ready() {
-      setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
+      var waited = 0, need = 2;
+      function step() {
+        if (++waited < need) return;
+        smoothFrames(function () {
+          setTimeout(finish, Math.max(0, MIN - (Date.now() - start)));
+        });
+      }
+
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(step, step);
+      else step();
+
+      step();   /* window.load už proběhl, tohle je jeho hlas */
     }
 
     if (document.readyState === 'complete') ready();
