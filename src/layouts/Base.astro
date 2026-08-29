@@ -288,12 +288,24 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       <ul class="menu">
         <li class="has-drop">
           <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
-          <div class="drop">
-            <a href="/tvorba-webu"><b>Weby</b><small>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu</small></a>
-            <a href="/vyvoj-softwaru"><b>Software na m&iacute;ru</b><small>Admin panely, integrace, intern&iacute; n&aacute;stroje</small></a>
-            <a href="/ai-asistenti"><b>AI asistenti</b><small>Rezervace, p&rcaron;ipom&iacute;nky, odpov&ecaron;di z&aacute;kazn&iacute;k&uring;m</small></a>
-            <a href="/kontakt"><b>Kontakt</b><small>Nez&aacute;vazn&aacute; popt&aacute;vka, odpov&iacute;m do 48 hodin</small></a>
-            <a href="/cenik"><b>Cen&iacute;k</b><small>Co co stoj&iacute; a co je v pau&scaron;&aacute;lu</small></a>
+          <!-- Rozbalovací menu nesmí být druhý výpis těch samých položek, které
+               jsou vedle v liště. Vede se od toho, co člověka trápí, k tomu,
+               co s tím uděláme, a rovnou říká termín. -->
+          <div class="drop drop--pick">
+            <span class="drop__hint">Co v&aacute;s zdr&zcaron;uje?</span>
+            <a href="/tvorba-webu">
+              <b>&bdquo;Nem&aacute;m web, nebo se za n&ecaron;j styd&iacute;m.&ldquo;</b>
+              <small>Ru&ccaron;n&ecaron; psan&yacute; web bez syst&eacute;mu, kter&yacute; se aktualizuje. <em>&zcaron;iv&yacute; do 6&ndash;10 prac. dn&iacute;</em></small>
+            </a>
+            <a href="/vyvoj-softwaru">
+              <b>&bdquo;P&rcaron;episujeme &uacute;daje mezi tabulkami.&ldquo;</b>
+              <small>Panel nad va&scaron;imi daty nebo propojen&iacute; dvou syst&eacute;m&uring;. <em>term&iacute;n podle rozsahu</em></small>
+            </a>
+            <a href="/ai-asistenti">
+              <b>&bdquo;Nest&iacute;h&aacute;m odpov&iacute;dat z&aacute;kazn&iacute;k&uring;m.&ldquo;</b>
+              <small>Asistent objedn&aacute;v&aacute;, p&rcaron;ipom&iacute;n&aacute; a odpov&iacute;d&aacute; za v&aacute;s. <em>nasazen&iacute; do 5&ndash;7 prac. dn&iacute;</em></small>
+            </a>
+            <a class="drop__all" href="/cenik">Nev&iacute;te? Za&ccaron;n&ecaron;te cen&iacute;kem &rarr;</a>
           </div>
         </li>
         <li><a href="/tvorba-webu" aria-current={cur("/tvorba-webu")}>Weby</a></li>

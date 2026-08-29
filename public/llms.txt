@@ -1,45 +1,92 @@
 # ALSflow
 
-> ALSflow is a Czech studio with three lines of work: AI assistants for small businesses, hand-written websites, and small custom software (admin panels, integrations, internal tools). It deploys and fully manages AI assistants for small businesses — handling customer emails, appointment booking, reminders, and repeat-booking follow-ups. The client pays a fixed monthly fee and never touches the infrastructure. Operated by Retail Shops s.r.o. (IČO 02512556), Czech Republic.
+> ALSflow is a one-person Czech studio in Prague with three lines of work, sold and priced
+> separately: **websites**, **small custom software**, and **AI assistants**. Fixed price for an
+> agreed scope, stated up front, with a reply to any enquiry within 48 hours on working days.
+> Operated by Retail Shops s.r.o. (IČO 02512556, VAT CZ02512556), Dolnoměcholupská 522/12a,
+> 102 00 Praha 10, Czech Republic. Contact: info@alsflow.cz
 
-## What ALSflow does
+## The three lines of work
 
-ALSflow builds and manages three products for Czech small businesses:
+### 1. Websites — https://alsflow.cz/tvorba-webu
+Hand-written HTML, CSS and JavaScript. No CMS, no plugins, nothing that has to be updated every
+month and can break when it is. Includes design, copywriting, deployment, domain and DNS setup,
+and ongoing maintenance. Hosted on Vercel with Cloudflare DNS. Text and contrast are checked
+against WCAG 2.2 AA before launch. Live in 6 to 10 working days from the initial call; the client
+gets a link to the work in progress along the way. Small edits during maintenance are done within
+2 working days.
 
-- **E-mailové odpovědi (AI Email Replies)** — AI reads and answers customer emails in Czech, in the client's own tone, via Gmail or any existing mailbox. Includes 1,500 emails and a monthly activity report. 2,500 CZK/month.
-- **Rezervace & Připomínky (Bookings & Reminders)** — 24/7 booking via WhatsApp or the client's website, automatic appointment confirmations, day-before reminders, and an FAQ bot for prices and availability. Includes 750 bookings. 4,500 CZK/month.
-- **Zpětná vazba & Opakované rezervace (Feedback & Repeat Bookings)** — automatic post-visit message, feedback collection, and a well-timed repeat-booking offer, via WhatsApp or email. Unlimited messages. 2,500 CZK/month.
-- **Bundle** — all three services together: 7,500 CZK/month.
-- **Na míru (Custom)** — custom-built automation (multi-channel, system integrations, full digital reception), priced per project.
+Measurement is the client's decision, not a fixed policy: a presentation site can run with no
+tracking at all, in which case no consent banner is needed; an e-shop or booking system normally
+wants analytics, which is set up together with a correctly configured consent banner.
 
-## Websites and custom software
+Built so far: gen1.cz (political movement GEN, 11 pages, news editor behind Cloudflare Access),
+znalecsekelova.sk (Slovak court expert in construction, 8 pages, Slovak), alsflow.cz.
 
-- **Tvorba webu (Websites)** — https://alsflow.cz/tvorba-webu — hand-written HTML/CSS/JS sites with no CMS, no plugins, no build step and no cookie banner (fonts are self-hosted, nothing is loaded from third-party servers). Hosted on Vercel with Cloudflare DNS. Contrast is verified against WCAG 2.2 AA before launch. Includes design, copywriting, deployment, domain setup and ongoing maintenance. Fixed price per site plus a monthly maintenance fee; quoted after an initial call. Built so far: gen1.cz (political movement GEN), znalecsekelova.sk (Slovak expert witness in construction), alsflow.cz.
-- **Vývoj softwaru (Custom software)** — https://alsflow.cz/vyvoj-softwaru — small custom tools deployable in weeks: admin panels over the client's own data, integrations between systems that do not talk to each other, automation replacing manual spreadsheet work, and reporting. Built alongside existing systems via API rather than by migrating them. Fixed price for an agreed scope plus a monthly fee for running it. Source code, accounts and documentation belong to the client; data runs in the EU under an Art. 28 GDPR processing agreement.
+### 2. Custom software — https://alsflow.cz/vyvoj-softwaru
+Small tools one developer can deploy in weeks, not months: admin panels over data the client
+already has, integrations between systems that do not talk to each other, automation replacing
+manual spreadsheet work, and reporting. Built alongside existing systems through an API or an
+export rather than by migrating them. A short analysis produces the scope and a fixed price for
+that scope; the deadline is agreed per project size. Source code, accounts and documentation
+belong to the client. Data runs in the EU under an Art. 28 GDPR processing agreement.
 
-Does NOT do: e-shops, mobile apps for the App Store or Google Play, systems for hundreds of thousands of users, or taking over undocumented legacy projects.
+Delivered so far: the catalogue admin panel and availability integration for WE LOVE EVENTS,
+a Prague AV and event rental company.
 
-One-time setup: 8,000–10,000 CZK, live within 5 to 7 working days. Monthly billing, no long-term contract, cancel anytime.
+### 3. AI assistants — https://alsflow.cz/ai-asistenti
+An assistant that answers customers, takes bookings and sends reminders, in Czech and in the
+client's own tone, running on the channels the client already uses (e-mail, WhatsApp, their
+website). When it is not sure, it hands over to a human rather than inventing an answer.
+Setup takes 5 to 7 working days. Monthly billing, no long-term contract, cancel anytime.
 
-## Who ALSflow serves
+- **E-mailové odpovědi** — https://alsflow.cz/e-mailove-odpovedi — the assistant reads and answers
+  customer e-mail. Includes 1,500 e-mails and a monthly activity report. 2,500 CZK/month.
+- **Rezervace a připomínky** — https://alsflow.cz/rezervace-pripominky — booking around the clock,
+  confirmations, and a reminder the day before. Includes 750 bookings. 4,500 CZK/month.
+- **Zpětná vazba a opakované rezervace** — a message after the visit, feedback, and a well-timed
+  offer to book again. Unlimited messages. 2,500 CZK/month.
+- **All three together** — 7,500 CZK/month.
+- **Custom** — multi-channel assistants and system integrations, priced per project.
 
-Primary: appointment-based local businesses in Prague and major Czech cities (Brno, Ostrava, Plzeň, Liberec) — physiotherapists, hair and beauty salons, veterinary clinics, dentists, wellness studios.
+One-time setup for an assistant: 8,000–10,000 CZK.
 
-Secondary: freelancers and small firms (2–10 people) with high administrative burden.
+Industry pages: https://alsflow.cz/ai-asistent-pro-fyzioterapeuty ·
+https://alsflow.cz/ai-asistent-pro-kadernictvi
 
-Shared characteristic: the owner wears many hats, has limited time, is not technical, and loses bookings to missed calls or slow email replies.
+## Who buys what
 
-## Why ALSflow
+- **Websites** — sole traders, small firms and organisations that need a presentation site that
+  will still work in two years and that somebody else keeps running. Includes clients outside
+  Prague and in Slovakia.
+- **Custom software** — small firms losing hours to retyping between systems or to a shared
+  spreadsheet nobody trusts.
+- **AI assistants** — appointment-based local businesses, mostly in Prague: physiotherapists,
+  hair and beauty salons, veterinary clinics, dentists, wellness studios. The owner works with
+  their hands, cannot get to the phone, and loses bookings to missed calls and slow replies.
 
-- Cheaper than hiring a receptionist (15,000–25,000 CZK/month)
-- Fully managed — the client never touches the system
-- Czech language, Prague-based, personal service from the founder
-- Available 24/7
-- Works with existing tools (Gmail, WhatsApp, existing website) — no app install required
+## How ALSflow works
 
-## Contact
+- **Fixed price for an agreed scope.** No open hourly billing. If the client asks for something
+  extra mid-project, the price of that change is given before the work starts.
+- **A reply within 48 hours on working days**, with a proposed time for a call.
+- **One person.** The client deals with Jakub Ryvola directly, not an account manager.
+- **Everything in the client's name** — domain, accounts, source code, documentation. Leaving
+  does not break anything.
 
-- Website: https://alsflow.cz (overview page routing to the three service lines)
-- AI assistants: https://alsflow.cz/ai-asistenti
-- Enquiry form: https://alsflow.cz/kontakt — the intended way in. Every call-to-action on the site points here; the form asks what the client needs, how soon, and what is slowing them down, and the reply carries a fixed price and a date.
-- Email: ryvola@alsflow.cz (Jakub Ryvola — quotes and new work), info@alsflow.cz (operations, invoices, support). Both are listed only on the contact page.
+## Does not do
+
+E-shops, mobile apps for the App Store or Google Play, systems for hundreds of thousands of
+users, and taking over undocumented legacy projects. This is said at the first call, not after
+a month.
+
+## Pages
+
+- https://alsflow.cz/ — what ALSflow does, all three lines
+- https://alsflow.cz/tvorba-webu — websites
+- https://alsflow.cz/vyvoj-softwaru — custom software
+- https://alsflow.cz/ai-asistenti — AI assistants
+- https://alsflow.cz/cenik — full price list
+- https://alsflow.cz/o-nas — who is behind it
+- https://alsflow.cz/kontakt — enquiry form
+- https://alsflow.cz/ochrana_dat — privacy policy
