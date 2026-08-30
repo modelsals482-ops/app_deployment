@@ -60,6 +60,57 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
+  <!-- KALKULAČKA -->
+  <section class="sec" id="kalkulacka">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Spo&ccaron;&iacute;tejte si to</span>
+        <h2 class="h-sec fade-head reveal-words">Kolik to bude <span class="grad">u v&aacute;s</span></h2>
+        <p class="lead">Za&scaron;krt&aacute;te, co pot&rcaron;ebujete. Po&ccaron;&iacute;t&aacute; se rovnou tady
+          v prohl&iacute;&zcaron;e&ccaron;i, nic se nikam neodes&iacute;l&aacute;.</p>
+      </div>
+
+      <form class="calc" id="calc" novalidate>
+        <div class="calc__cols">
+          <fieldset class="calc__group">
+            <legend>Web</legend>
+            <label class="calc__opt"><input type="radio" name="web" value="0" checked /><span>Web nepot&rcaron;ebuju</span><b></b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="14900" /><span>Jednostr&aacute;nkov&yacute;</span><b>14&nbsp;900</b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="24900" /><span>Prezenta&ccaron;n&iacute; do 8 str&aacute;nek</span><b>24&nbsp;900</b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="34900" /><span>V&ecaron;t&scaron;&iacute;, od</span><b>34&nbsp;900</b></label>
+            <label class="calc__opt calc__opt--sub" data-needs-web><input type="checkbox" id="sprava" /><span>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va</span><b>990&nbsp;/m&ecaron;s</b></label>
+          </fieldset>
+
+          <fieldset class="calc__group">
+            <legend>AI asistenti</legend>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>E-mailov&eacute; odpov&ecaron;di</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="4500" /><span>Rezervace a p&rcaron;ipom&iacute;nky</span><b>4&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>Zp&ecaron;tn&aacute; vazba</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <p class="calc__note" id="bundleNote" hidden>V&scaron;echny t&rcaron;i dohromady vych&aacute;z&iacute; na
+              7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s &mdash; zapo&ccaron;&iacute;t&aacute;no.</p>
+          </fieldset>
+        </div>
+
+        <div class="calc__out" aria-live="polite">
+          <div class="calc__cell">
+            <div class="k">Jednor&aacute;zov&ecaron;</div>
+            <div class="v"><span id="once">0</span>&nbsp;K&ccaron;</div>
+            <div class="calc__sub" id="onceNote">nastaven&iacute; asistenta se p&rcaron;i&ccaron;te po hovoru</div>
+          </div>
+          <div class="calc__cell">
+            <div class="k">M&ecaron;s&iacute;&ccaron;n&ecaron;</div>
+            <div class="v"><span id="month">0</span>&nbsp;K&ccaron;</div>
+            <div class="calc__sub">bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli</div>
+          </div>
+        </div>
+
+        <p class="calc__foot">Ceny jsou bez DPH. Software se sem nepo&ccaron;&iacute;t&aacute; &mdash; jeho cena
+          vyjde a&zcaron; z anal&yacute;zy. <a href="/kontakt">Po&scaron;lete popt&aacute;vku</a> a &rcaron;eknu
+          p&rcaron;esn&eacute; &ccaron;&iacute;slo.</p>
+      </form>
+    </div>
+  </section>
+
   <!-- WEBY -->
   <section class="sec sec-line" id="weby">
     <div class="wrap">
@@ -70,29 +121,50 @@ import Base from "../layouts/Base.astro";
           Web b&yacute;v&aacute; &zcaron;iv&yacute; do 6 a&zcaron; 10 pracovn&iacute;ch dn&uring; a rozpracovanou verzi
           vid&iacute;te pr&uring;b&ecaron;&zcaron;n&ecaron;.</p>
       </div>
-      <div class="rows">
-        <div class="row"><div class="num">01</div><div>
-          <h3>Jednostr&aacute;nkov&yacute; web &mdash; 14&nbsp;900&nbsp;K&ccaron;</h3>
-          <p>Vizitka: kdo jste, co d&ecaron;l&aacute;te, jak se ozvat. Jedna str&aacute;nka, kontaktn&iacute; formul&aacute;&rcaron;.</p>
-        </div></div>
-        <div class="row"><div class="num">02</div><div>
-          <h3>Prezenta&ccaron;n&iacute; web do osmi str&aacute;nek &mdash; 24&nbsp;900&nbsp;K&ccaron;</h3>
-          <p>Slu&zcaron;by, cen&iacute;k, kontakt, formul&aacute;&rcaron;. Takhle jsou postaven&eacute;
-            <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a> a
-            <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>.</p>
-        </div></div>
-        <div class="row"><div class="num">03</div><div>
-          <h3>V&ecaron;t&scaron;&iacute; web &mdash; od 34&nbsp;900&nbsp;K&ccaron;</h3>
-          <p>Dev&ecaron;t a v&iacute;c str&aacute;nek, dva jazyky, v&iacute;c formul&aacute;&rcaron;&uring;.
-            Cenu &rcaron;eknu po hovoru, kdy&zcaron; bude jasn&aacute; struktura.</p>
-        </div></div>
-        <div class="row"><div class="num">04</div><div>
-          <h3>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va &mdash; 990&nbsp;K&ccaron;/m&ecaron;s</h3>
-          <p>Hosting, dom&eacute;na, certifik&aacute;t a drobn&eacute; &uacute;pravy text&uring;, cen a kontakt&uring;
-            do dvou pracovn&iacute;ch dn&uring; &mdash; zhruba do p&uring;l hodiny pr&aacute;ce m&ecaron;s&iacute;&ccaron;n&ecaron;.
-            V&ecaron;t&scaron;&iacute; zm&ecaron;ny nacen&iacute;m zvl&aacute;&scaron;&tcaron;, v&zcaron;dycky p&rcaron;edem.
-            Bez z&aacute;vazku.</p>
-        </div></div>
+      <div class="cards-2 tiers">
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev tier">
+          <span class="tier__tag">Vizitka</span>
+          <h3>Jednostr&aacute;nkov&yacute; web</h3>
+          <div class="tier__price">14&nbsp;900&nbsp;K&ccaron;<small>jednor&aacute;zov&ecaron;</small></div>
+          <ul class="tier__list">
+            <li>Jedna str&aacute;nka: kdo jste, co d&ecaron;l&aacute;te, jak se ozvat</li>
+            <li>Kontaktn&iacute; formul&aacute;&rcaron;</li>
+            <li>N&aacute;vrh, texty, nasazen&iacute; i dom&eacute;na</li>
+            <li>&Zcaron;iv&yacute; do 6 a&zcaron; 10 pracovn&iacute;ch dn&uring;</li>
+          </ul>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev tier is-best" data-d="1">
+          <span class="tier__tag">Nej&ccaron;ast&ecaron;ji</span>
+          <h3>Prezenta&ccaron;n&iacute; web</h3>
+          <div class="tier__price">24&nbsp;900&nbsp;K&ccaron;<small>jednor&aacute;zov&ecaron;</small></div>
+          <ul class="tier__list">
+            <li>A&zcaron; osm str&aacute;nek: slu&zcaron;by, cen&iacute;k, kontakt</li>
+            <li>V&scaron;echno z men&scaron;&iacute; varianty</li>
+            <li>Takhle jsou postaven&eacute; <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a> a <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a></li>
+            <li>&Zcaron;iv&yacute; do 6 a&zcaron; 10 pracovn&iacute;ch dn&uring;</li>
+          </ul>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev tier" data-d="2">
+          <span class="tier__tag">V&ecaron;t&scaron;&iacute; projekt</span>
+          <h3>Web na m&iacute;ru</h3>
+          <div class="tier__price">od 34&nbsp;900&nbsp;K&ccaron;<small>jednor&aacute;zov&ecaron;</small></div>
+          <ul class="tier__list">
+            <li>Dev&ecaron;t a v&iacute;c str&aacute;nek</li>
+            <li>Dva jazyky, v&iacute;c formul&aacute;&rcaron;&uring;</li>
+            <li>Cenu &rcaron;eknu po hovoru, kdy&zcaron; bude jasn&aacute; struktura</li>
+          </ul>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev tier tier--sub" data-d="3">
+          <span class="tier__tag">K ka&zcaron;d&eacute;mu webu</span>
+          <h3>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va</h3>
+          <div class="tier__price">990&nbsp;K&ccaron;<small>/ m&ecaron;s&iacute;&ccaron;n&ecaron;</small></div>
+          <ul class="tier__list">
+            <li>Hosting, dom&eacute;na, certifik&aacute;t</li>
+            <li>Drobn&eacute; &uacute;pravy text&uring;, cen a kontakt&uring; do dvou pracovn&iacute;ch dn&uring;</li>
+            <li>Zhruba do p&uring;l hodiny pr&aacute;ce m&ecaron;s&iacute;&ccaron;n&ecaron;; v&ecaron;t&scaron;&iacute; zm&ecaron;ny nacen&iacute;m p&rcaron;edem</li>
+            <li>Bez z&aacute;vazku</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -161,57 +233,6 @@ import Base from "../layouts/Base.astro";
             U&scaron;et&rcaron;&iacute;te 2&nbsp;000&nbsp;K&ccaron; m&ecaron;s&iacute;&ccaron;n&ecaron;.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- KALKULAČKA -->
-  <section class="sec" id="kalkulacka">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow-label">Spo&ccaron;&iacute;tejte si to</span>
-        <h2 class="h-sec fade-head reveal-words">Kolik to bude <span class="grad">u v&aacute;s</span></h2>
-        <p class="lead">Za&scaron;krt&aacute;te, co pot&rcaron;ebujete. Po&ccaron;&iacute;t&aacute; se rovnou tady
-          v prohl&iacute;&zcaron;e&ccaron;i, nic se nikam neodes&iacute;l&aacute;.</p>
-      </div>
-
-      <form class="calc" id="calc" novalidate>
-        <div class="calc__cols">
-          <fieldset class="calc__group">
-            <legend>Web</legend>
-            <label class="calc__opt"><input type="radio" name="web" value="0" checked /><span>Web nepot&rcaron;ebuju</span><b></b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="14900" /><span>Jednostr&aacute;nkov&yacute;</span><b>14&nbsp;900</b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="24900" /><span>Prezenta&ccaron;n&iacute; do 8 str&aacute;nek</span><b>24&nbsp;900</b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="34900" /><span>V&ecaron;t&scaron;&iacute;, od</span><b>34&nbsp;900</b></label>
-            <label class="calc__opt calc__opt--sub" data-needs-web><input type="checkbox" id="sprava" /><span>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va</span><b>990&nbsp;/m&ecaron;s</b></label>
-          </fieldset>
-
-          <fieldset class="calc__group">
-            <legend>AI asistenti</legend>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>E-mailov&eacute; odpov&ecaron;di</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="4500" /><span>Rezervace a p&rcaron;ipom&iacute;nky</span><b>4&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>Zp&ecaron;tn&aacute; vazba</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <p class="calc__note" id="bundleNote" hidden>V&scaron;echny t&rcaron;i dohromady vych&aacute;z&iacute; na
-              7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s &mdash; zapo&ccaron;&iacute;t&aacute;no.</p>
-          </fieldset>
-        </div>
-
-        <div class="calc__out" aria-live="polite">
-          <div class="calc__cell">
-            <div class="k">Jednor&aacute;zov&ecaron;</div>
-            <div class="v"><span id="once">0</span>&nbsp;K&ccaron;</div>
-            <div class="calc__sub" id="onceNote">nastaven&iacute; asistenta se p&rcaron;i&ccaron;te po hovoru</div>
-          </div>
-          <div class="calc__cell">
-            <div class="k">M&ecaron;s&iacute;&ccaron;n&ecaron;</div>
-            <div class="v"><span id="month">0</span>&nbsp;K&ccaron;</div>
-            <div class="calc__sub">bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli</div>
-          </div>
-        </div>
-
-        <p class="calc__foot">Ceny jsou bez DPH. Software se sem nepo&ccaron;&iacute;t&aacute; &mdash; jeho cena
-          vyjde a&zcaron; z anal&yacute;zy. <a href="/kontakt">Po&scaron;lete popt&aacute;vku</a> a &rcaron;eknu
-          p&rcaron;esn&eacute; &ccaron;&iacute;slo.</p>
-      </form>
     </div>
   </section>
 
@@ -317,6 +338,39 @@ import Base from "../layouts/Base.astro";
       .faq-list summary::before { content: '+ '; color: var(--green); }
       .faq-list details[open] summary::before { content: '\\2212 '; }
       .faq-list p { max-width: 68ch; margin-top: 0.6rem; font-size: 0.92rem; color: var(--t2); }
+
+      /* Tarify. Cena je to první, co má člověk vidět — proto je hned pod
+         názvem, ne schovaná v odstavci. */
+      .tiers { align-items: start; }
+      .tier { display: flex; flex-direction: column; }
+      .tier__tag {
+        display: inline-block; align-self: flex-start; padding: 0.2rem 0.6rem;
+        margin-bottom: 0.85rem; font-size: 0.68rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--t2);
+        border: 1px solid var(--line-2); border-radius: 999px;
+      }
+      .tier h3 { margin-bottom: 0.35rem; }
+      .tier__price {
+        display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline;
+        margin-bottom: 1rem; font-size: 1.75rem; font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        background: var(--grad); -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tier__price small {
+        font-size: 0.78rem; font-weight: 500; color: var(--t3);
+        -webkit-text-fill-color: var(--t3);
+      }
+      .tier__list { padding: 0; margin: 0; list-style: none; }
+      .tier__list li {
+        position: relative; padding-left: 1.35rem; margin-bottom: 0.5rem;
+        font-size: 0.9rem; line-height: 1.55; color: var(--t2);
+      }
+      .tier__list li::before {
+        position: absolute; left: 0; content: '¹3'; color: var(--green); font-size: 0.85rem;
+      }
+      .tier.is-best { border-color: rgb(74 222 128 / 35%); }
+      .tier--sub .tier__price { background: none; -webkit-text-fill-color: var(--t1); color: var(--t1); }
 
       .panel.is-best { border-color: rgb(74 222 128 / 35%); }
     </style>

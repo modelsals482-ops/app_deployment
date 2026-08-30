@@ -904,3 +904,76 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
 .drop__all:hover { color: var(--t1); }
 
+/* Ikony v patičce. Dost velké na to, aby se do nich dalo trefit prstem
+   (44 px je spodní hranice doporučená WCAG pro cíl dotyku). */
+.foot-social { display: flex; gap: 0.35rem; margin-top: 0.9rem; }
+.foot-social a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--t2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.foot-social svg { width: 19px; height: 19px; }
+.foot-social a:hover,
+.foot-social a:focus-visible {
+  color: var(--t1);
+  background: rgb(255 255 255 / 5%);
+  border-color: var(--line-2);
+}
+
+/* --------------------------------------------------------------------
+   Tři pilíře na úvodní stránce
+
+   Každý dostane vlastní barvu, aby se od sebe daly rozeznat na první
+   pohled a aby stálo za to projít je všechny — ne tři stejné šedé
+   obdélníky vedle sebe. Barvy jsou ty, které web už používá: modrá,
+   fialová a zelená.
+
+   Nese to jen obrys, ikona a šipka. Text zůstává bílý, protože barevný
+   text na černé by u zelené a fialové neprošel kontrastem.
+   -------------------------------------------------------------------- */
+.pillar { position: relative; --tone: var(--blue); }
+.pillar--blue { --tone: #5b9dff; }
+.pillar--violet { --tone: #a78bfa; }
+.pillar--green { --tone: #4ade80; }
+
+.pillar { border-color: rgb(255 255 255 / 12%); }
+.pillar .box { color: var(--tone); border-color: color-mix(in srgb, var(--tone) 38%, transparent); }
+.pillar .box svg { stroke: var(--tone); }
+.pillar .arrow { color: var(--tone); }
+
+/* Proužek nahoře — jediné plné použití barvy, aby karta nekřičela. */
+.pillar::before {
+  position: absolute;
+  top: 0;
+  right: 1.4rem;
+  left: 1.4rem;
+  height: 2px;
+  content: '';
+  background: var(--tone);
+  border-radius: 0 0 2px 2px;
+  opacity: 0.55;
+  transition: opacity 0.25s, left 0.35s cubic-bezier(0.22,1,0.36,1), right 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.pillar:hover::before,
+.pillar:focus-within::before { right: 0.6rem; left: 0.6rem; opacity: 1; }
+
+.pillar:hover,
+.pillar:focus-within {
+  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
+  box-shadow: 0 18px 50px color-mix(in srgb, var(--tone) 14%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar::before { transition: opacity 0.2s; }
+  .pillar:hover::before, .pillar:focus-within::before { right: 1.4rem; left: 1.4rem; }
+}
+
+.foot-report { margin-top: 1.4rem; font-size: 0.82rem; color: var(--t3); }
+.foot-report a { color: var(--t2); border-bottom: 1px solid var(--line-2); }
+.foot-report a:hover, .foot-report a:focus-visible { color: var(--t1); border-bottom-color: currentColor; }
+

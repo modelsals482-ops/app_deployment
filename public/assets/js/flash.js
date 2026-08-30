@@ -80,12 +80,10 @@
 
     var COUNT = coarse ? 26 : 68;
     var MAX_DIST = 148;
-    var MOUSE_R = 130;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     var w = 0, h = 0;
     var pts = [];
-    var mouse = { x: null, y: null };
 
     function size() {
       var box = stage.getBoundingClientRect();
@@ -120,15 +118,6 @@
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
 
-        if (mouse.x !== null) {
-          var mx = p.x - mouse.x, my = p.y - mouse.y;
-          var md = Math.sqrt(mx * mx + my * my);
-          if (md < MOUSE_R && md > 0) {
-            var f = (MOUSE_R - md) / MOUSE_R;
-            p.x += (mx / md) * f * 1.7;
-            p.y += (my / md) * f * 1.7;
-          }
-        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -170,14 +159,11 @@
 
     window.addEventListener("resize", throttled(function () { size(); seed(); }));
 
-    if (fine) {
-      document.addEventListener("pointermove", function (e) {
-        var box = stage.getBoundingClientRect();
-        mouse.x = e.clientX - box.left;
-        mouse.y = e.clientY - box.top;
-      }, { passive: true });
-      document.addEventListener("pointerleave", function () { mouse.x = mouse.y = null; });
-    }
+    /* Hvězdné pozadí schválně nereaguje na myš. Efekt byl za hlavním obloukem
+       stejně sotva vidět a stál dvě věci na horké cestě: čtení rozměrů prvku
+       při každém pohybu kurzoru (vynucený přepočet rozvržení) a výpočet
+       vzdálenosti pro každý bod v každém snímku. Na kurzor reaguje jenom
+       hlavní 3D oblouk v arc3d.js — ten je vidět a stojí to za to. */
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) {

@@ -346,9 +346,29 @@ const cur = (href: string) => (href === current ? "page" : undefined);
           <a href="/kontakt">Kontakt a nab&iacute;dka</a>
           <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
           <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
+          <div class="foot-social">
+            <a href="mailto:info@alsflow.cz" aria-label="Napsat na info@alsflow.cz" title="info@alsflow.cz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" /><path d="m3 6.5 9 6.5 9-6.5" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/als.flow/" target="_blank" rel="noopener" aria-label="ALSflow na Instagramu" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
+      <p class="foot-report">
+        <!-- Odkaz, ne formulář: nahlásit chybu má jít i tehdy, když je rozbité
+             zrovna to, co by formulář potřeboval. Adresa stránky a prohlížeč
+             se doplní samy, aby to nemusel opisovat. -->
+        Na&scaron;li jste chybu?
+        <a id="reportBug" href="mailto:info@alsflow.cz?subject=Chyba%20na%20webu">Nahlaste ji</a>
+      </p>
 
       <p class="foot-legal">
         &copy; <span data-year>2026</span> ALSflow &middot; Retail Shops s.r.o. &middot; Dolnom&ecaron;cholupsk&aacute; 522/12a, 102&nbsp;00 Praha 10<br />
@@ -365,6 +385,29 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <script src="/assets/js/site-pages.js" defer></script>
   <script src="/assets/js/flash.js" defer></script>
 <slot name="tail" />
+
+  <script>
+    /* Předvyplní adresu stránky a prohlížeč, ať to nikdo neopisuje ručně.
+       Bez JavaScriptu odkaz pořád funguje, jen s prázdným tělem. */
+    (function () {
+      var a = document.getElementById("reportBug");
+      if (!a) return;
+      /* Řádky se skládají přes String.fromCharCode(10), ne přes zpětné lomítko:
+         když se tenhle soubor generuje skriptem, escape sekvence se cestou
+         snadno spolkne a ze string literálu zbude nedokončený řádek. */
+      var NL = String.fromCharCode(10);
+      var body = [
+        "Co se stalo:", "", "",
+        "-- nevyplňujte, pomáhá to při hledání --",
+        "Stránka: " + location.href,
+        "Prohlížeč: " + navigator.userAgent,
+        "Okno: " + window.innerWidth + "x" + window.innerHeight
+      ].join(NL);
+      a.href = "mailto:info@alsflow.cz?subject=" +
+        encodeURIComponent("Chyba na webu — " + location.pathname) +
+        "&body=" + encodeURIComponent(body);
+    })();
+  </script>
   <!-- Klára. V obalu, takže je na každé stránce: umí odpovědět na dotaz
        i navigovat po webu. Načítá se až po zbytku stránky (defer) a bez
        JavaScriptu se nezobrazí vůbec — nic, co by chybělo. -->
