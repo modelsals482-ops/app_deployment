@@ -514,9 +514,161 @@
     };
   }
 
+
+  /* ==================================================================
+     Bodovy rastr (dotmatrix)
+
+     Prevzato z Originkitu (React + OGL) a prepsano do three.js, ktere uz
+     se na strance vozi. Plocha se rozdeli na ctvercove bunky, uprostred
+     kazde se vyhodnoti simplexovy sum a podle jasu se nakresli tecka:
+     svetlo velka, tma zadna. Sum se v case posouva, takze rastrem
+     prochazi vlna.
+
+     Proti predloze bez mezikroku pres texturu. Predloha sum vyrenderuje
+     do render targetu a pak ho cte ve stredu bunky, jenze presne ten
+     stred si umime spocitat rovnou. Jeden pruchod misto dvou.
+     ================================================================== */
+  function dotmatrix(renderer) {
+    var scene = new THREE.Scene();
+    /* Fullscreen quad: kamera nic nepromita, geometrie uz je v clip space. */
+    var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    var mat = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      /* fwidth() je ve WebGL 1 az v rozsireni, bez tohohle se shader nesestavi. */
+      extensions: { derivatives: true },
+      uniforms: {
+        uTime: { value: 0 },
+        uResolution: { value: new THREE.Vector2(1, 1) },
+        uCell: { value: 13 },
+        uFrequency: { value: 3.2 },
+        uSpeed: { value: 0.22 },
+        uBias: { value: -0.05 },
+        uGamma: { value: 1.2 },
+        uColA: { value: new THREE.Color(0x38dbf5) },
+        uColB: { value: new THREE.Color(0x5b9dff) },
+        uColC: { value: new THREE.Color(0xa78bfa) },
+      },
+      vertexShader: [
+        "varying vec2 vUv;",
+        "void main() {",
+        "  vUv = uv;",
+        "  gl_Position = vec4(position.xy, 0.0, 1.0);",
+        "}",
+      ].join("\n"),
+      fragmentShader: [
+        "precision highp float;",
+        "uniform float uTime, uCell, uFrequency, uSpeed, uBias, uGamma;",
+        "uniform vec2 uResolution;",
+        "uniform vec3 uColA, uColB, uColC;",
+
+        /* Ashimuv simplexovy sum, stejny jako v predloze. */
+        "vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }",
+        "vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }",
+        "vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }",
+        "vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }",
+        "float snoise(vec3 v) {",
+        "  const vec2 C = vec2(1.0/6.0, 1.0/3.0);",
+        "  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);",
+        "  vec3 i = floor(v + dot(v, C.yyy));",
+        "  vec3 x0 = v - i + dot(i, C.xxx);",
+        "  vec3 g = step(x0.yzx, x0.xyz);",
+        "  vec3 l = 1.0 - g;",
+        "  vec3 i1 = min(g.xyz, l.zxy);",
+        "  vec3 i2 = max(g.xyz, l.zxy);",
+        "  vec3 x1 = x0 - i1 + C.xxx;",
+        "  vec3 x2 = x0 - i2 + C.yyy;",
+        "  vec3 x3 = x0 - D.yyy;",
+        "  i = mod289(i);",
+        "  vec4 p = permute(permute(permute(",
+        "             i.z + vec4(0.0, i1.z, i2.z, 1.0))",
+        "           + i.y + vec4(0.0, i1.y, i2.y, 1.0))",
+        "           + i.x + vec4(0.0, i1.x, i2.x, 1.0));",
+        "  float n_ = 0.142857142857;",
+        "  vec3 ns = n_ * D.wyz - D.xzx;",
+        "  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);",
+        "  vec4 x_ = floor(j * ns.z);",
+        "  vec4 y_ = floor(j - 7.0 * x_);",
+        "  vec4 x = x_ * ns.x + ns.yyyy;",
+        "  vec4 y = y_ * ns.x + ns.yyyy;",
+        "  vec4 h = 1.0 - abs(x) - abs(y);",
+        "  vec4 b0 = vec4(x.xy, y.xy);",
+        "  vec4 b1 = vec4(x.zw, y.zw);",
+        "  vec4 s0 = floor(b0) * 2.0 + 1.0;",
+        "  vec4 s1 = floor(b1) * 2.0 + 1.0;",
+        "  vec4 sh = -step(h, vec4(0.0));",
+        "  vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;",
+        "  vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;",
+        "  vec3 p0 = vec3(a0.xy, h.x);",
+        "  vec3 p1 = vec3(a0.zw, h.y);",
+        "  vec3 p2 = vec3(a1.xy, h.z);",
+        "  vec3 p3 = vec3(a1.zw, h.w);",
+        "  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));",
+        "  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;",
+        "  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);",
+        "  m = m * m;",
+        "  return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));",
+        "}",
+
+        "void main() {",
+        "  float cell = max(uCell, 1.0);",
+        "  vec2 pix = gl_FragCoord.xy;",
+
+        /* Stred bunky, ve kterem se sum vyhodnoti. Cela bunka pak sdili
+           jednu hodnotu, proto to vypada jako rastr a ne jako mlha. */
+        "  vec2 cellIdx = floor(pix / cell);",
+        "  vec2 center = (cellIdx + 0.5) * cell;",
+        "  vec2 uvC = center / uResolution;",
+
+        /* Pomer stran, aby bunky nebyly na sirokem monitoru natazene. */
+        "  float aspect = uResolution.x / max(uResolution.y, 1.0);",
+        "  vec2 nUv = (uvC - 0.5) * vec2(aspect, 1.0) + 0.5;",
+
+        "  float n = abs(snoise(vec3(nUv * uFrequency, uTime * uSpeed)));",
+        "  float gray = pow(clamp(n, 0.0001, 1.0), uGamma);",
+
+        /* Ke krajum rastr rredne, jinak by plocha koncila ostrou hranou. */
+        "  vec2 d = abs(uvC - 0.5) * 2.0;",
+        "  float edge = (1.0 - smoothstep(0.55, 1.0, d.x)) * (1.0 - smoothstep(0.55, 1.0, d.y));",
+
+        "  float k = clamp(gray + uBias, 0.0, 1.0);",
+        "  float radius = k * 0.5;",
+
+        /* Antialiasing na hrane tecky, aby nebyla zubata. */
+        "  vec2 cellUv = fract(pix / cell) - 0.5;",
+        "  float dist = length(cellUv);",
+        "  float aa = fwidth(dist) + 1e-4;",
+        "  float mark = 1.0 - smoothstep(radius - aa, radius + aa, dist);",
+
+        /* Rampa pres tri barvy ALSflow misto duhy z predlohy. */
+        "  vec3 col = k < 0.5 ? mix(uColA, uColB, k * 2.0)",
+        "                     : mix(uColB, uColC, (k - 0.5) * 2.0);",
+
+        "  gl_FragColor = vec4(col, mark * edge * 0.85);",
+        "}",
+      ].join("\n"),
+    });
+
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+
+    return {
+      scene: scene,
+      camera: camera,
+      resize: function (w, h) {
+        /* gl_FragCoord je v pixelech kresliciho bufferu, ne v CSS pixelech. */
+        var dpr = renderer.getPixelRatio();
+        mat.uniforms.uResolution.value.set(w * dpr, h * dpr);
+        mat.uniforms.uCell.value = (coarse ? 11 : 13) * dpr;
+      },
+      tick: function (t) { mat.uniforms.uTime.value = t; },
+    };
+  }
+
   var KINDS = {
     halftone: halftone, lines: lines,
     weave: weave, rings: rings, cubes: cubes, flow: flow,
+    dotmatrix: dotmatrix,
   };
 
   document.querySelectorAll("canvas[data-scene]").forEach(function (c) {
