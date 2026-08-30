@@ -256,7 +256,268 @@
     };
   }
 
-  var KINDS = { halftone: halftone, lines: lines };
+
+  /* ==================================================================
+     Vlnici se sit
+
+     Rovina dratenoho modelu, kterou prebiha vlna. Vyska se pocita
+     v shaderu, takze procesor po startu nedela nic. Barva jde podle
+     vysky, hrebeny jsou svetlejsi.
+     ================================================================== */
+  function weave(renderer) {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(52, 1, 0.1, 100);
+    camera.position.set(0, 3.2, 7.6);
+    camera.lookAt(0, 0, 0);
+
+    var seg = coarse ? 26 : 44;
+    var geo = new THREE.PlaneGeometry(12, 12, seg, seg);
+    geo.rotateX(-Math.PI / 2);
+
+    var mat = new THREE.ShaderMaterial({
+      wireframe: true,
+      transparent: true,
+      depthWrite: false,
+      uniforms: {
+        time: { value: 0 },
+        colA: { value: new THREE.Color(0x5b9dff) },
+        colB: { value: new THREE.Color(0x38dbf5) },
+      },
+      vertexShader: [
+        "uniform float time;",
+        "varying float vH;",
+        "void main() {",
+        "  vec3 p = position;",
+        "  float d = length(p.xz);",
+        "  p.y = sin(d * 1.1 - time * 1.5) * 0.42 * smoothstep(7.0, 1.0, d);",
+        "  p.y += sin(p.x * 0.6 + time * 0.7) * 0.12;",
+        "  vH = p.y;",
+        "  gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);",
+        "}",
+      ].join("\n"),
+      fragmentShader: [
+        "precision mediump float;",
+        "uniform vec3 colA, colB;",
+        "varying float vH;",
+        "void main() {",
+        "  float k = clamp(vH * 1.4 + 0.5, 0.0, 1.0);",
+        "  gl_FragColor = vec4(mix(colA, colB, k), 0.14 + k * 0.34);",
+        "}",
+      ].join("\n"),
+    });
+
+    scene.add(new THREE.Mesh(geo, mat));
+
+    return {
+      scene: scene,
+      camera: camera,
+      resize: function (w, h) { camera.aspect = w / h; camera.updateProjectionMatrix(); },
+      tick: function (t) { mat.uniforms.time.value = t; },
+    };
+  }
+
+  /* ==================================================================
+     Soustredne prstence
+
+     Pet kruznic naklonenych proti sobe, kazda se otaci jinou rychlosti.
+     Nic se nepocita, jen se otaci, takze je to ze vsech scen nejlevnejsi.
+     ================================================================== */
+  function rings(renderer) {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+    camera.position.z = 6;
+
+    var group = new THREE.Group();
+    scene.add(group);
+
+    var tones = [0x38dbf5, 0x5b9dff, 0xa78bfa, 0x5b9dff, 0x38dbf5];
+    var parts = [];
+    var steps = coarse ? 64 : 110;
+
+    /* Obloucky, ne cele kruznice. Uplny kruh se pri otaceni kolem vlastni osy
+       nijak nezmeni, takze by animace nebyla videt vubec. Mezera z nej udela
+       tvar, na kterem je otaceni patrne. */
+    var spans = [0.62, 0.78, 0.45, 0.7, 0.55];
+
+    for (var i = 0; i < 5; i++) {
+      var r = 1.15 + i * 0.62;
+      var pts = [];
+      for (var j = 0; j <= steps; j++) {
+        var a = (j / steps) * Math.PI * 2 * spans[i];
+        pts.push(Math.cos(a) * r, Math.sin(a) * r, 0);
+      }
+      var g = new THREE.BufferGeometry();
+      g.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
+      var ring = new THREE.Line(g, new THREE.LineBasicMaterial({
+        color: tones[i], transparent: true, opacity: 0.62 - i * 0.06,
+      }));
+      /* Mirny sklon, at se prstence prekryvaji. Vetsi uhel je stavel na hranu
+         a zbyla z nich usecka. */
+      ring.rotation.x = i * 0.13;
+      group.add(ring);
+      parts.push({ mesh: ring, speed: 0.12 + i * 0.055, dir: i % 2 ? -1 : 1 });
+    }
+
+    /* Cely stoh nakloneny, aby to byly elipsy a ne soustredne kruhy. */
+    group.rotation.x = 0.62;
+
+    return {
+      scene: scene,
+      camera: camera,
+      resize: function (w, h) { camera.aspect = w / h; camera.updateProjectionMatrix(); },
+      tick: function (t) {
+        group.rotation.x = 0.62 + Math.sin(t * 0.13) * 0.16;
+        group.rotation.z = Math.sin(t * 0.09) * 0.12;
+        parts.forEach(function (p) {
+          p.mesh.rotation.z = t * p.speed * p.dir;
+        });
+      },
+    };
+  }
+
+  /* ==================================================================
+     Mrizka krychli
+
+     Prostorova obdoba rastru tecek: vlna bezi od stredu ven, ale misto
+     velikosti tecky meni velikost krychlicky. Jedna InstancedMesh,
+     takze i par set krychli je jedno vykresleni.
+     ================================================================== */
+  function cubes(renderer) {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    camera.position.set(0, 4.2, 10.2);
+    camera.lookAt(0, 0, 0);
+
+    var n = coarse ? 9 : 13;
+    var step = 0.62;
+
+    var mesh = new THREE.InstancedMesh(
+      new THREE.BoxGeometry(0.3, 0.3, 0.3),
+      new THREE.MeshBasicMaterial({ color: 0x5b9dff, transparent: true, opacity: 0.55 }),
+      n * n
+    );
+    scene.add(mesh);
+
+    var cells = [];
+    var half = (n - 1) / 2;
+    for (var x = 0; x < n; x++) {
+      for (var z = 0; z < n; z++) {
+        var px = (x - half) * step;
+        var pz = (z - half) * step;
+        cells.push({ x: px, z: pz, d: Math.sqrt(px * px + pz * pz) });
+      }
+    }
+
+    var m = new THREE.Matrix4();
+    var q = new THREE.Quaternion();
+    var v = new THREE.Vector3();
+    var sc = new THREE.Vector3();
+    var axis = new THREE.Vector3(0, 1, 0);
+
+    return {
+      scene: scene,
+      camera: camera,
+      resize: function (w, h) { camera.aspect = w / h; camera.updateProjectionMatrix(); },
+      tick: function (t) {
+        for (var i = 0; i < cells.length; i++) {
+          var c = cells[i];
+          var amp = Math.sin(c.d * 1.5 - t * 2.0) * 0.5 + 0.5;
+          amp *= Math.max(0, 1 - c.d / 5.2);
+          v.set(c.x, amp * 0.9, c.z);
+          q.setFromAxisAngle(axis, t * 0.3 + c.d * 0.2);
+          sc.setScalar(0.35 + amp * 1.15);
+          m.compose(v, q, sc);
+          mesh.setMatrixAt(i, m);
+        }
+        mesh.instanceMatrix.needsUpdate = true;
+        mesh.rotation.y = Math.sin(t * 0.1) * 0.3;
+      },
+    };
+  }
+
+  /* ==================================================================
+     Proud castic
+
+     Body stoupaji po sroubovici vzhuru a nahore se vrati dolu. Pohyb
+     pocita shader z indexu bodu, na procesoru se kazdy snimek nemeni nic.
+     ================================================================== */
+  function flow(renderer) {
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(58, 1, 0.1, 100);
+    camera.position.z = 6.2;
+
+    var count = coarse ? 420 : 900;
+    var seed = new Float32Array(count * 3);
+    for (var i = 0; i < count; i++) {
+      seed[i * 3] = Math.random();              /* faze po vysce */
+      seed[i * 3 + 1] = Math.random() * 6.283;  /* uhel */
+      seed[i * 3 + 2] = 0.5 + Math.random();    /* polomer */
+    }
+
+    var geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(seed, 3));
+
+    var mat = new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      uniforms: {
+        time: { value: 0 },
+        dpr: { value: renderer.getPixelRatio() },
+        colA: { value: new THREE.Color(0x38dbf5) },
+        colB: { value: new THREE.Color(0xa78bfa) },
+      },
+      vertexShader: [
+        "uniform float time;",
+        "uniform float dpr;",
+        "varying float vK;",
+        "void main() {",
+        "  float k = fract(position.x + time * 0.055);",
+        "  float ang = position.y + k * 2.4;",
+        "  float rad = position.z * (0.7 + k * 1.5);",
+        "  vec3 p = vec3(cos(ang) * rad, k * 7.0 - 3.5, sin(ang) * rad);",
+        "  vK = k;",
+        "  vec4 mv = modelViewMatrix * vec4(p, 1.0);",
+        "  gl_PointSize = (2.6 + (1.0 - k) * 3.0) * dpr * (5.0 / -mv.z);",
+        "  gl_Position = projectionMatrix * mv;",
+        "}",
+      ].join("\n"),
+      fragmentShader: [
+        "precision mediump float;",
+        "uniform vec3 colA, colB;",
+        "varying float vK;",
+        "void main() {",
+        "  vec2 c = gl_PointCoord - vec2(0.5);",
+        "  float d = length(c);",
+        "  if (d > 0.5) discard;",
+        "  float a = smoothstep(0.5, 0.1, d);",
+        "  a *= smoothstep(0.0, 0.12, vK) * smoothstep(1.0, 0.75, vK);",
+        "  gl_FragColor = vec4(mix(colA, colB, vK), a * 0.75);",
+        "}",
+      ].join("\n"),
+    });
+
+    var pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+
+    return {
+      scene: scene,
+      camera: camera,
+      resize: function (w, h) {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        mat.uniforms.dpr.value = renderer.getPixelRatio();
+      },
+      tick: function (t) {
+        mat.uniforms.time.value = t;
+        pts.rotation.y = t * 0.12;
+      },
+    };
+  }
+
+  var KINDS = {
+    halftone: halftone, lines: lines,
+    weave: weave, rings: rings, cubes: cubes, flow: flow,
+  };
 
   document.querySelectorAll("canvas[data-scene]").forEach(function (c) {
     var build = KINDS[c.dataset.scene];

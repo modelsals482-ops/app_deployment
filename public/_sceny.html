@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Sceny na pozadi &mdash; interni nahled</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #08080c; --card: #121216; --line: rgb(255 255 255 / 9%);
+    --t1: #f4f4f6; --t2: #a1a1ab; --t3: #6e6e78;
+    --cyan: #38dbf5; --blue: #5b9dff; --violet: #a78bfa; --green: #4ade80;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2.5rem 1.5rem 5rem;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--t1); background: var(--bg);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 { margin: 0 0 0.4rem; font-size: 1.6rem; letter-spacing: -0.03em; }
+  .sub { margin: 0 0 2.5rem; max-width: 62ch; font-size: 0.92rem; line-height: 1.6; color: var(--t2); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.4rem; }
+  figure { margin: 0; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+  .stage { position: relative; height: 260px; background: radial-gradient(90% 70% at 50% 30%, #0e0e14, #08080c); }
+  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  figcaption { padding: 0.95rem 1.1rem 1.15rem; border-top: 1px solid var(--line); }
+  .name { display: flex; gap: 0.55rem; align-items: baseline; }
+  .name b { font-size: 0.98rem; }
+  .name code { font-size: 0.74rem; color: var(--cyan); }
+  .name .tag {
+    margin-left: auto; padding: 0.15rem 0.5rem; font-size: 0.68rem; font-weight: 600;
+    color: var(--t3); border: 1px solid var(--line); border-radius: 999px;
+  }
+  .why { margin: 0.4rem 0 0; font-size: 0.82rem; line-height: 1.55; color: var(--t2); }
+  .note { margin-top: 2.5rem; padding: 1.1rem 1.3rem; font-size: 0.85rem; line-height: 1.6;
+          color: var(--t2); background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+  .note b { color: var(--t1); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sceny na pozadi</h1>
+  <p class="sub">Vsech sest, ktere jsou ted v <code>scenes.js</code>. Prvni dve uz na webu bezi,
+    zbyle ctyri jsou nove a zatim je nikde nepouzivam. Napis, ktere chces a na kterou stranku,
+    zbytek smazu, aby se nevozily zbytecne.</p>
+
+  <div class="grid">
+    <figure>
+      <div class="stage"><canvas data-scene="halftone" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Rastr tecek</b> <code>halftone</code> <span class="tag">bezi</span></div>
+        <p class="why">Ctverecky od stredu ven. Tenhle se ti libi. Ted je na uvodni, kontaktu,
+          o nas a vsech trech podstrankach.</p>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage"><canvas data-scene="lines" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Sit na kouli</b> <code>lines</code> <span class="tag">bezi</span></div>
+        <p class="why">Body na kouli spojene useckami. Ted na ceniku, uvodni a podstrankach.</p>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage"><canvas data-scene="weave" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Vlnici se sit</b> <code>weave</code> <span class="tag">nove</span></div>
+        <p class="why">Dratena rovina, kterou prebiha vlna od stredu. Sedla by na
+          <b>Tvorbu webu</b>: vypada jako rozlozena stranka.</p>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage"><canvas data-scene="cubes" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Mrizka krychli</b> <code>cubes</code> <span class="tag">nove</span></div>
+        <p class="why">Prostorova verze rastru, ktery se ti libi: stejna vlna od stredu,
+          ale misto tecek rostou krychlicky. Sedla by na <b>Vyvoj softwaru</b>.</p>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage"><canvas data-scene="flow" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Proud castic</b> <code>flow</code> <span class="tag">nove</span></div>
+        <p class="why">Body stoupaji po sroubovici vzhuru. Sedla by na
+          <b>AI asistenty</b>: vypada to jako neco, co bez prestani neco zpracovava.</p>
+      </figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage"><canvas data-scene="rings" aria-hidden="true"></canvas></div>
+      <figcaption>
+        <div class="name"><b>Soustredne prstence</b> <code>rings</code> <span class="tag">nove</span></div>
+        <p class="why">Pet kruznic, kazda se otaci jinak. Ze vsech scen nejlevnejsi.
+          Sedla by na <b>Cenik</b> nebo <b>O nas</b>, kde ma pozadi jen tise dychat.</p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <p class="note"><b>Pozn.:</b> tahle stranka je jen interni nahled, ma <code>noindex</code>
+    a nevede na ni zadny odkaz. Az si vyberes, sceny priradim strankam a ty nevybrane
+    ze <code>scenes.js</code> smazu.</p>
+</div>
+
+<script src="/assets/vendor/three.r128.min.js"></script>
+<script src="/assets/js/scenes.js"></script>
+</body>
+</html>
