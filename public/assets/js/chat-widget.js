@@ -80,6 +80,7 @@
     { path: '/o-nas',           label: 'O nás',            re: /o-nas|o n[áa]s|kdo (za|jsme)/i },
     { path: '/e-mailove-odpovedi',   label: 'E-mailové odpovědi',  re: /e-mailove-odpovedi|e-mailov[ée] odpov/i },
     { path: '/rezervace-pripominky', label: 'Rezervace a připomínky', re: /rezervace-pripominky|rezervac|p[řr]ipom[íi]nk/i },
+    { path: '/zpetna-vazba',    label: 'Zpětná vazba',    re: /zpetna-vazba|zp[ěe]tn[áa] vazb|recenz|hodnocen/i },
     { path: '/ochrana_dat',     label: 'Ochrana dat',      re: /ochrana_dat|ochran[aě] (osobn[íi]ch )?[úu]daj|gdpr/i }
   ];
 

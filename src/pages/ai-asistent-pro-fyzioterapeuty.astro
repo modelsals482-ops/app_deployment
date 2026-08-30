@@ -1,0 +1,238 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base
+  title="AI asistent pro fyzioterapeuty: objednávání | ALSflow"
+  description="Objednávání pacientů nonstop, připomínka den předem a odpovědi na e-maily. Funguje s Google Kalendářem. Od 2 500 Kč měsíčně."
+  canonical="https://alsflow.cz/ai-asistent-pro-fyzioterapeuty"
+  ogTitle="AI asistent pro fyzioterapeuty"
+  ogDescription="Méně nenastoupených termínů a žádné telefony při terapii. Od 2 500 Kč měsíčně."
+  current="/ai-asistenti"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI asistent pro fyzioterapeuty",
+  "serviceType": "Automatické objednávání a připomínky termínů pro fyzioterapeutické praxe",
+  "description": "Asistent objedná pacienty přes web nebo WhatsApp, zapíše termín do Google Kalendáře a den předem ho připomene. Zdravotní dokumentaci neukládá.",
+  "areaServed": { "@type": "Country", "name": "Česká republika" },
+  "provider": {
+    "@type": "Organization",
+    "name": "ALSflow",
+    "legalName": "Retail Shops s.r.o.",
+    "url": "https://alsflow.cz"
+  },
+  "offers": [
+    { "@type": "Offer", "name": "Rezervace a připomínky", "price": "4500", "priceCurrency": "CZK" },
+    { "@type": "Offer", "name": "Zpětná vazba a opakované rezervace", "price": "2500", "priceCurrency": "CZK" },
+    { "@type": "Offer", "name": "E-mailové odpovědi", "price": "2500", "priceCurrency": "CZK" }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kolik stojí AI asistent pro fyzioterapeutickou ordinaci?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Rezervace a připomínky stojí 4 500 Kč měsíčně a zahrnují 750 rezervací. Zpětná vazba s opakovanými rezervacemi 2 500 Kč měsíčně, e-mailové odpovědi 2 500 Kč měsíčně. Všechny tři dohromady 7 500 Kč měsíčně. Bez závazku, zrušíte kdykoli." }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak AI asistent snižuje počet nenastoupených termínů?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Každý pacient dostane den před terapií automatickou připomínku e-mailem nebo přes WhatsApp. Pokud se nemůže dostavit, může rovnou odpovědět a přeobjednat se. Termín se uvolní pro jiného pacienta místo toho, aby propadl." }
+    },
+    {
+      "@type": "Question",
+      "name": "Funguje asistent s Google Kalendářem?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ano. Asistent se napojí přímo na váš Google Kalendář: vidí volné termíny, zapisuje nové rezervace a z kalendáře čte podklady pro připomínky. Pokud vedete papírový diář, pomůžeme vám přejít na sdílený kalendář při nastavení." }
+    },
+    {
+      "@type": "Question",
+      "name": "Je to bezpečné z pohledu GDPR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "S každým klientem uzavíráme zpracovatelskou smlouvu (DPA) dle čl. 28 GDPR. Neukládáme zdravotní dokumentaci pacientů. Asistent pracuje pouze s kontakty a termíny potřebnými pro připomínky a rezervace." }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak dlouho trvá nastavení?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Do 5 až 7 pracovních dnů od úvodního patnáctiminutového hovoru. Vše nastavíme, napojíme a otestujeme za vás, žádné technické znalosti nepotřebujete." }
+    }
+  ]
+}
+  </script>
+  </Fragment>
+
+  <section class="hero hero-plain">
+    <canvas class="scene scene-right" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">Pro fyzioterapeuty</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:17ch">Méně prázdných hodin, <span class="grad">žádné telefony</span> při terapii</h1>
+      <p class="lead">Terapii nejde přerušit kvůli telefonu. Pacienti volají, píší e-maily a někteří na termín
+        prostě zapomenou, a hodina propadne. Asistent pacienty objedná, termín potvrdí a den předem
+        připomene. Vy máte ruce i hlavu u práce.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Nezávazná nabídka</a>
+        <a class="btn btn-quiet" href="/cenik">Ceník</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CO TO RESI -->
+  <section class="sec sec-line scene-host" id="co-to-resi">
+    <canvas class="scene scene-soft" data-scene="lines" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Co to řeší</span>
+        <h2 class="h-sec fade-head reveal-words">Nenastoupený termín je <span class="grad">nejdražší hodina</span> v týdnu</h2>
+        <p class="lead">Nikdo ji nezaplatí a mohl ji dostat jiný pacient. Většina lidí přitom nepřijde
+          ne ze zlé vůle, ale protože zapomněli.</p>
+      </div>
+
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Připomínka den předem</h3><p>E-mailem nebo přes WhatsApp, s datem, časem a adresou. Na připomínku jde rovnou odpovědět.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Přeobjednání bez telefonu</h3><p>Pacient odpoví na připomínku a asistent mu nabídne nový termín. Původní hodina se uvolní, místo aby propadla.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Objednávání nonstop</h3><p>Noví pacienti se objednají přes web nebo WhatsApp i mimo ordinační hodiny.</p></div></div>
+        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Odpovědi na časté dotazy</h3><p>Cena, délka terapie, co s sebou, parkování. Bez přerušování vaší práce.</p></div></div>
+        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Zpráva po terapii</h3><p>Poděkování, zpětná vazba a ve správný čas připomenutí další návštěvy u dlouhodobých pacientů.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KALENDAR -->
+  <section class="sec sec-dark sec-line" id="kalendar">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Napojení</span>
+        <h2 class="h-sec fade-head reveal-words">Píše rovnou do <span class="grad">vašeho kalendáře</span></h2>
+        <p class="lead">Asistent se napojí přímo na Google Kalendář: vidí volné termíny, zapisuje nové
+          rezervace a čte z něj podklady pro připomínky. Žádný další systém, do kterého byste se museli
+          učit. Pokud vedete papírový diář, převod na sdílený kalendář uděláme při nastavení, je to
+          jediná změna, která vás čeká.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK TO PROBIHA -->
+  <section class="sec sec-line" id="jak">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Jak to probíhá</span>
+        <h2 class="h-sec fade-head reveal-words">Tři kroky, <span class="grad">nic technického</span></h2>
+      </div>
+      <div class="cards-3">
+        <div class="panel panel-pad panel-glow rev">
+          <h3>1. Patnáct minut hovoru</h3>
+          <p>Řeknete, jak ordinace funguje a co vám bere nejvíc času.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="1">
+          <h3>2. Nastavíme to za vás</h3>
+          <p>Do 5 až 7 pracovních dnů napojíme kalendář, připravíme texty a všechno otestujeme.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="2">
+          <h3>3. Běží to samo</h3>
+          <p>Každý měsíc dostanete přehled: kolik připomínek odešlo a kolik pacientů se objednalo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GDPR -->
+  <section class="sec sec-dark sec-line" id="gdpr">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Údaje pacientů</span>
+        <h2 class="h-sec fade-head reveal-words">Zdravotní dokumentaci <span class="grad">neukládáme</span></h2>
+        <p class="lead">S každým klientem uzavíráme zpracovatelskou smlouvu podle čl. 28 GDPR.
+          Asistent pracuje jen s tím, co pro připomínky a rezervace opravdu potřebuje: jméno, kontakt
+          a termín. Anamnézu ani zdravotní dokumentaci nikam neukládá a data vaší ordinace nikdy
+          nepoužíváme k ničemu jinému. Podrobnosti jsou v <a href="/ochrana_dat">ochraně dat</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENY -->
+  <section class="sec sec-line" id="ceny">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Kolik to stojí</span>
+        <h2 class="h-sec fade-head reveal-words">Měsíčně, <span class="grad">bez závazku</span></h2>
+        <p class="lead">Každou část můžete mít samostatně, nebo všechny dohromady.</p>
+      </div>
+      <div class="cards-3">
+        <div class="panel panel-pad panel-glow rev">
+          <h3>Rezervace a připomínky</h3>
+          <p class="price-big">4 500 Kč <span>/ měsíc</span></p>
+          <p>Objednávání přes web i WhatsApp, zápis do kalendáře, připomínka den předem. Zahrnuto 750 rezervací.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="1">
+          <h3>Zpětná vazba</h3>
+          <p class="price-big">2 500 Kč <span>/ měsíc</span></p>
+          <p>Dotaz po návštěvě, návrh odpovědi na recenzi a pozvánka na další termín.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="2">
+          <h3>E-mailové odpovědi</h3>
+          <p class="price-big">2 500 Kč <span>/ měsíc</span></p>
+          <p>Asistent čte poštu, odpovídá na běžné dotazy a co nezná, předá vám.</p>
+        </div>
+      </div>
+      <p class="lead rev" data-d="3" style="margin-top:1.6rem">Všechny tři dohromady <b>7 500 Kč měsíčně</b>.
+        Jednorázové nastavení 8 až 10 000 Kč. Zrušit můžete kdykoli.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec-dark sec-line" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Časté dotazy</span>
+        <h2 class="h-sec fade-head reveal-words">Na co se ptáte</h2>
+      </div>
+      <div class="faq">
+        <details class="rev"><summary>Kolik to stojí?</summary><p>Rezervace a připomínky 4 500 Kč měsíčně (zahrnuje 750 rezervací), zpětná vazba 2 500 Kč a e-mailové odpovědi 2 500 Kč. Všechno dohromady 7 500 Kč měsíčně. Bez závazku, zrušíte kdykoli.</p></details>
+        <details class="rev" data-d="1"><summary>Jak to sníží počet nenastoupených termínů?</summary><p>Každý pacient dostane den před terapií automatickou připomínku e-mailem nebo přes WhatsApp. Pokud se nemůže dostavit, odpoví rovnou na ni a přeobjedná se. Termín se uvolní pro jiného pacienta místo toho, aby propadl.</p></details>
+        <details class="rev" data-d="2"><summary>Funguje to s Google Kalendářem?</summary><p>Ano, a je to záměr. Asistent se napojí přímo na váš kalendář: vidí volné termíny, zapisuje rezervace a čte z něj podklady pro připomínky. Pokud vedete papírový diář, převod uděláme při nastavení.</p></details>
+        <details class="rev" data-d="3"><summary>Je to v souladu s GDPR?</summary><p>Ano. Zpracovatelská smlouva podle čl. 28 GDPR, žádné ukládání zdravotní dokumentace, evropské servery. Asistent pracuje jen se jménem, kontaktem a termínem.</p></details>
+        <details class="rev" data-d="4"><summary>Jak dlouho trvá nastavení?</summary><p>Do 5 až 7 pracovních dnů od úvodního patnáctiminutového hovoru. Nastavíme, napojíme a otestujeme všechno za vás.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="text-align:center">
+      <h2 class="h-sec fade-head reveal-words">Spočítejme si, kolik vás stojí <span class="grad">prázdné hodiny</span></h2>
+      <p class="lead lead-center rev" data-d="1">Nezávazný hovor na čtvrt hodiny. Projdeme, jak ordinace
+        funguje, a řeknu pevnou cenu a termín.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Nezávazná nabídka</a>
+        <a class="btn btn-quiet" href="/ai-asistenti">Všichni asistenti</a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="tail">
+  <style>
+    .price-big {
+      margin: 0.6rem 0 0.5rem;
+      font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .price-big span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--t3);
+      -webkit-text-fill-color: var(--t3);
+    }
+  </style>
+  </Fragment>
+</Base>

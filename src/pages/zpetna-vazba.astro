@@ -1,0 +1,213 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base
+  title="Zpětná vazba a opakované rezervace | ALSflow"
+  description="Asistent se po návštěvě zeptá na spokojenost, připraví odpověď na recenzi a ve správný čas pozve zákazníka zpátky. 2 500 Kč měsíčně, bez závazku."
+  canonical="https://alsflow.cz/zpetna-vazba"
+  ogTitle="Zpětná vazba a opakované rezervace"
+  ogDescription="Dotaz po návštěvě, návrh odpovědi na recenzi a pozvánka na další termín. 2 500 Kč měsíčně."
+  current="/ai-asistenti"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Zpětná vazba a opakované rezervace",
+  "serviceType": "Automatický sběr zpětné vazby a pozvánky na opakovanou návštěvu pro malé firmy",
+  "description": "Asistent se po návštěvě zeptá zákazníka na spokojenost, připraví návrh odpovědi na veřejnou recenzi a ve správný čas pošle pozvánku na další termín.",
+  "areaServed": { "@type": "Country", "name": "Česká republika" },
+  "provider": {
+    "@type": "Organization",
+    "name": "ALSflow",
+    "legalName": "Retail Shops s.r.o.",
+    "url": "https://alsflow.cz"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "2500",
+    "priceCurrency": "CZK",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": "2500",
+      "priceCurrency": "CZK",
+      "unitCode": "MON"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kolik zpětná vazba stojí?",
+      "acceptedAnswer": { "@type": "Answer", "text": "2 500 Kč měsíčně. Samostatně, nebo dohromady s rezervacemi a e-mailovými odpověďmi za 7 500 Kč měsíčně. Bez závazku, zrušíte kdykoli." }
+    },
+    {
+      "@type": "Question",
+      "name": "Odpovídá asistent na recenze sám za mě?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ne. Asistent odpověď připraví a pošle vám ji ke schválení. Odeslat ji můžete jedním kliknutím, upravit, nebo zahodit. Pod veřejnou recenzí nikdy nic nezveřejní bez vás." }
+    },
+    {
+      "@type": "Question",
+      "name": "Nebude to zákazníky obtěžovat?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Jde o jednu zprávu po návštěvě a případně jednu pozvánku, když se blíží obvyklý interval další návštěvy. Kdo neodpoví, druhou připomínku nedostane. Frekvenci si nastavíte a kdykoli změníte." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kde se berou termíny pro pozvánku?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Z vašeho sdíleného Google Kalendáře, stejně jako u rezervací a připomínek. Asistent vidí, kdy zákazník naposledy byl, a podle obvyklého intervalu vašeho oboru navrhne, kdy se ozvat." }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak dlouho trvá nastavení?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Do 5 až 7 pracovních dnů od úvodního patnáctiminutového hovoru. Napojení, texty i testování řešíme my." }
+    }
+  ]
+}
+  </script>
+  </Fragment>
+
+  <section class="hero hero-plain">
+    <canvas class="scene scene-right" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">AI asistent</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Zpětná vazba a <span class="grad">opakované rezervace</span></h1>
+      <p class="lead">Získat nového zákazníka stojí mnohonásobně víc než pozvat zpátky toho, kdo už
+        u vás byl. Asistent se po návštěvě zeptá na spokojenost, připraví odpověď na veřejnou recenzi
+        a ve správný čas pošle pozvánku na další termín.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Nezávazná nabídka</a>
+        <a class="btn btn-quiet" href="/cenik">Ceník</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CO DELA -->
+  <section class="sec sec-line scene-host" id="co-dela">
+    <canvas class="scene scene-soft" data-scene="lines" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Co za vás udělá</span>
+        <h2 class="h-sec fade-head reveal-words">Tři věci, na které <span class="grad">nikdy nezbyde čas</span></h2>
+        <p class="lead">Ne proto, že by nebyly důležité. Proto, že se dějí až potom, co zákazník odejde.</p>
+      </div>
+
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Dotaz po návštěvě</h3><p>Krátká zpráva den nebo dva po návštěvě: bylo všechno v pořádku? Kdo odpoví nespokojeně, dozvíte se to vy jako první, ne až z veřejné recenze.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Návrh odpovědi na recenzi</h3><p>Když někdo napíše hodnocení, asistent připraví odpověď vaším tónem a pošle vám ji ke schválení. Odeslat, upravit, nebo zahodit. Sám nezveřejní nic.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Pozvánka na další termín</h3><p>Podle toho, kdy byl zákazník naposledy, a podle obvyklého intervalu ve vašem oboru. Ne dřív a ne po roce, kdy už si našel někoho jiného.</p></div></div>
+        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Měsíční přehled</h3><p>Kolik lidí odpovědělo, jak hodnotili a kolik se jich vrátilo. Na jedné stránce.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROC TO RESIT -->
+  <section class="sec sec-dark sec-line" id="proc">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Proč to řešit</span>
+        <h2 class="h-sec fade-head reveal-words">Nespokojený zákazník <span class="grad">většinou nic neřekne</span></h2>
+        <p class="lead">Prostě už nepřijde. A když něco řekne, bývá to rovnou veřejně a vy se o tom
+          dozvíte poslední. Soukromý dotaz hned po návštěvě dává prostor to spravit dřív, než se z toho
+          stane hodnocení, které si přečte každý další zájemce. Druhá věc je návrat: zákazník, který
+          u vás byl a odešel spokojený, se vrátí, pokud si na vás vzpomene ve chvíli, kdy tu službu
+          zase potřebuje. Přesně na tu chvíli je pozvánka.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK TO PROBIHA -->
+  <section class="sec sec-line" id="jak">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Jak to probíhá</span>
+        <h2 class="h-sec fade-head reveal-words">Tři kroky, <span class="grad">nic technického</span></h2>
+      </div>
+      <div class="cards-3">
+        <div class="panel panel-pad panel-glow rev">
+          <h3>1. Patnáct minut hovoru</h3>
+          <p>Řeknete, jak často se u vás lidé obvykle vracejí a jakým tónem s nimi mluvíte.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="1">
+          <h3>2. Nastavíme to za vás</h3>
+          <p>Do 5 až 7 pracovních dnů napojíme kalendář, připravíme texty zpráv a otestujeme je.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="2">
+          <h3>3. Běží to samo</h3>
+          <p>Odpovědi na recenze vám chodí ke schválení. Zbytek se děje bez vás.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENA -->
+  <section class="sec sec-dark sec-line" id="cena">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Kolik to stojí</span>
+        <h2 class="h-sec fade-head reveal-words">2 500 Kč měsíčně, <span class="grad">bez závazku</span></h2>
+        <p class="lead">Můžete ji mít samostatně, nebo dohromady s dalšími dvěma asistenty za
+          7 500 Kč měsíčně. Jednorázové nastavení 8 až 10 000 Kč. Zrušit lze kdykoli, bez výpovědní lhůty.</p>
+        <div class="btn-row">
+          <a class="btn btn-grad btn-magnet" href="/kontakt">Chci tenhle</a>
+          <a class="btn btn-quiet" href="/cenik">Celý ceník</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DALSI ASISTENTI -->
+  <section class="sec sec-line" id="dalsi">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Další asistenti</span>
+        <h2 class="h-sec fade-head reveal-words">Tenhle je <span class="grad">jeden ze tří</span></h2>
+      </div>
+      <div class="cards-2">
+        <a class="panel panel-pad panel-glow rev" href="/e-mailove-odpovedi">
+          <h3>E-mailové odpovědi</h3>
+          <p>Asistent čte poštu, odpovídá na běžné dotazy a co nezná, předá vám. 2 500 Kč měsíčně.</p>
+        </a>
+        <a class="panel panel-pad panel-glow rev" data-d="1" href="/rezervace-pripominky">
+          <h3>Rezervace a připomínky</h3>
+          <p>Objednává termíny do vašeho kalendáře a den předem je připomíná. 4 500 Kč měsíčně.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec-dark sec-line" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Časté dotazy</span>
+        <h2 class="h-sec fade-head reveal-words">Na co se ptáte</h2>
+      </div>
+      <div class="faq">
+        <details class="rev"><summary>Kolik to stojí?</summary><p>2 500 Kč měsíčně samostatně, nebo dohromady s rezervacemi a e-mailovými odpověďmi za 7 500 Kč měsíčně. Jednorázové nastavení 8 až 10 000 Kč. Bez závazku, zrušíte kdykoli.</p></details>
+        <details class="rev" data-d="1"><summary>Odpovídá asistent na recenze sám za mě?</summary><p>Ne. Připraví návrh a pošle vám ho ke schválení. Odeslat můžete jedním kliknutím, upravit, nebo zahodit. Pod veřejnou recenzí nikdy nic nezveřejní bez vás.</p></details>
+        <details class="rev" data-d="2"><summary>Nebude to zákazníky obtěžovat?</summary><p>Jde o jednu zprávu po návštěvě a případně jednu pozvánku, když se blíží obvyklý interval další návštěvy. Kdo neodpoví, druhou připomínku nedostane. Frekvenci si nastavíte a kdykoli změníte.</p></details>
+        <details class="rev" data-d="3"><summary>Kde se berou termíny pro pozvánku?</summary><p>Z vašeho sdíleného Google Kalendáře, stejně jako u rezervací. Asistent vidí, kdy zákazník naposledy byl, a podle obvyklého intervalu navrhne, kdy se ozvat.</p></details>
+        <details class="rev" data-d="4"><summary>Jak dlouho trvá nastavení?</summary><p>Do 5 až 7 pracovních dnů od úvodního patnáctiminutového hovoru. Napojení, texty i testování řešíme my.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="text-align:center">
+      <h2 class="h-sec fade-head reveal-words">Kolik zákazníků se k vám <span class="grad">nevrátilo</span>?</h2>
+      <p class="lead lead-center rev" data-d="1">Nezávazný hovor na čtvrt hodiny. Dostanete pevnou cenu
+        a termín, ne odhad.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Nezávazná nabídka</a>
+        <a class="btn btn-quiet" href="/ai-asistenti">Všichni asistenti</a>
+      </div>
+    </div>
+  </section>
+</Base>
