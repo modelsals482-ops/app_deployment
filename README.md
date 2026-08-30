@@ -5,6 +5,53 @@ Provozuje Retail Shops s.r.o., IČO 02512556.
 
 ---
 
+## Vetve: kde se pracuje a kde se spousti
+
+**Na `main` se nic nezkousi.** `main` je produkce, jde rovnou na alsflow.cz, a kazdy
+push tam muze rozbit zivy web. Neni na to zadny mezikrok.
+
+```
+preview   sem jde vsechna prace          -> app-deployment-git-preview-als-incs-projects.vercel.app
+main      jen odsouhlasene zmeny         -> alsflow.cz
+```
+
+Postup:
+
+```bash
+git checkout preview          # veskera prace sem
+# ... zmeny, npm run build, kontroly ...
+git push origin preview       # Vercel sam postavi nahled
+```
+
+Nahled je vzdy na stejne adrese, ukazuje spicku vetve `preview`:
+
+    https://app-deployment-git-preview-als-incs-projects.vercel.app
+
+Az to na nahledu sedi, teprve pak:
+
+```bash
+git checkout main
+git merge --ff-only preview
+git push origin main
+```
+
+`--ff-only` je zamerne. Kdyz to odmitne, znamena to, ze main mezitim dostal neco,
+co preview nema, a je potreba to nejdriv srovnat, ne prejet.
+
+### Nez se cokoli slouci do main
+
+1. `npx astro build` projde
+2. `node .github/scripts/check-js-syntax.cjs dist` projde
+3. `node .github/scripts/check-csp-hosts.cjs dist` projde
+4. stranka je videt na nahledu a vypada, jak ma
+5. u tvrzeni o klientech: overit, ze to tak opravdu je
+
+Bod 5 neni formalita. 2026-08-30 se na produkci dostala karta, ktera tvrdila, ze jsme
+postavili web We Love Events. Nepostavili, delali jsme e-shop a asistenta. Slo to ven
+bez toho, aby to Jakub predtim videl, a muselo se to stahovat z ziveho webu.
+
+---
+
 ## Jak to běží
 
 **Astro se statickým výstupem.** Do prohlížeče nejde žádný JavaScript navíc oproti tomu,
