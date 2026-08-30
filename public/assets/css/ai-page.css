@@ -544,6 +544,10 @@
 .chat-msg { display: flex; }
 .chat-msg.user { justify-content: flex-end; }
 
+/* Bublina a tlačítka pod ní jsou sourozenci ve flexu — bez tohohle je flex
+   postaví vedle sebe a z tlačítka zbude úzký sloupec vedle textu. */
+.chat-msg.bot { flex-direction: column; align-items: flex-start; }
+
 .chat-bubble-msg {
   max-width: 84%;
   padding: 0.62rem 0.9rem;
