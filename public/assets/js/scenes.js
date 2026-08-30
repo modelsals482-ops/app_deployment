@@ -662,7 +662,7 @@
         /* gl_FragCoord je v pixelech kresliciho bufferu, ne v CSS pixelech. */
         var dpr = renderer.getPixelRatio();
         mat.uniforms.uResolution.value.set(w * dpr, h * dpr);
-        mat.uniforms.uCell.value = (coarse ? 11 : 13) * dpr;
+        mat.uniforms.uCell.value = (coarse ? 4 : 5) * dpr;
       },
       tick: function (t) { mat.uniforms.uTime.value = t; },
     };
