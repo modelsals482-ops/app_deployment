@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base
-  title="Kontakt — nezávazná nabídka | ALSflow"
+  title="Kontakt: nezávazná nabídka | ALSflow"
   description="Řekněte, co potřebujete. Vyplňte krátký formulář a ozveme se s pevnou cenou a termínem. Weby, software na míru a AI asistenti. Praha."
   canonical="https://alsflow.cz/kontakt"
   ogDescription="Krátký formulář, pevná cena a termín. Weby, software na míru a AI asistenti."
@@ -40,15 +40,15 @@ import Base from "../layouts/Base.astro";
   }
 }
   </script>
-  <!-- úvodní loader — jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
 <script>
-  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
     try {
       if (sessionStorage.getItem('als-seen')) return;
     } catch (e) {
-      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
     }
     document.documentElement.classList.add('als-loading');
   })();
@@ -62,7 +62,7 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <span class="eyebrow-label">Kontakt</span>
       <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">&Rcaron;ekn&ecaron;te, co <span class="grad">pot&rcaron;ebujete</span></h1>
-      <p class="lead">Vypl&ncaron;te p&aacute;r &uacute;daj&uring;. Ozvu se s pevnou cenou a term&iacute;nem &mdash; ne s odhadem a ne s hodinovkou. Kdy&zcaron; se uk&aacute;&zcaron;e, &zcaron;e na to nejsem ten spr&aacute;vn&yacute;, &rcaron;eknu to hned a nebudu v&aacute;m nic prod&aacute;vat.</p>
+      <p class="lead">Vypl&ncaron;te p&aacute;r &uacute;daj&uring;. Ozvu se s pevnou cenou a term&iacute;nem, ne s odhadem a ne s hodinovkou. Kdy&zcaron; se uk&aacute;&zcaron;e, &zcaron;e na to nejsem ten spr&aacute;vn&yacute;, &rcaron;eknu to hned a nebudu v&aacute;m nic prod&aacute;vat.</p>
     </div>
   </section>
 
@@ -77,8 +77,6 @@ import Base from "../layouts/Base.astro";
             </div>
 
             <form id="poptavka" novalidate>
-              <p class="form-legend">Pole s hv&ecaron;zdi&ccaron;kou <span class="req" aria-hidden="true">*</span> jsou povinn&aacute;.
-                Ostatn&iacute; vypl&ncaron;ovat nemus&iacute;te, klidn&ecaron; je p&rcaron;esko&ccaron;te.</p>
               <div class="form-grid">
                 <div class="field">
             <input id="f-name" name="name" type="text" placeholder=" " required autocomplete="name" />
@@ -97,7 +95,7 @@ import Base from "../layouts/Base.astro";
           <div class="field is-select">
             <select id="f-service" name="service" required>
             <option value="" disabled selected>Vyberte&hellip;</option>
-            <option value="web">Web &mdash; nov&yacute; nebo p&rcaron;ed&ecaron;lan&yacute;</option>
+            <option value="web">Web: nov&yacute; nebo p&rcaron;ed&ecaron;lan&yacute;</option>
             <option value="software">Software na m&iacute;ru</option>
             <option value="ai">AI asistent</option>
             <option value="vice">V&iacute;c v&ecaron;c&iacute; dohromady</option>
@@ -121,7 +119,6 @@ import Base from "../layouts/Base.astro";
             <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
             <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
           </div>
-          <div class="form-split" aria-hidden="true"></div>
           <div class="field">
             <input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel" />
             <label for="f-phone">Telefon</label>
@@ -194,6 +191,7 @@ import Base from "../layouts/Base.astro";
             <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
             <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
           </div>
+          <p class="form-legend">Pole s hv&ecaron;zdi&ccaron;kou <span class="req" aria-hidden="true">*</span> jsou povinn&aacute;. Ostatn&iacute; vypl&ncaron;ovat nemus&iacute;te, klidn&ecaron; je p&rcaron;esko&ccaron;te.</p>
           <div class="field wide">
             <textarea id="f-msg" name="msg" placeholder=" "></textarea>
             <label for="f-msg">Chcete n&ecaron;co doplnit?</label>
@@ -226,7 +224,7 @@ import Base from "../layouts/Base.astro";
               </svg>
             </div>
             <h2 class="h-sec fade-head">M&aacute;m to.</h2>
-            <p>Popt&aacute;vka dorazila. Ozvu se na uveden&yacute; e-mail nebo telefon &mdash; v&ecaron;t&scaron;inou do 48 hodin, nejd&eacute;l n&aacute;sleduj&iacute;c&iacute; pracovn&iacute; den. Pokud to sp&ecaron;ch&aacute;, napi&scaron;te rovnou na <a href="mailto:ryvola@alsflow.cz" style="color:var(--blue)">ryvola@alsflow.cz</a>.</p>
+            <p>Popt&aacute;vka dorazila. Ozvu se na uveden&yacute; e-mail nebo telefon, v&ecaron;t&scaron;inou do 48 hodin, nejd&eacute;l n&aacute;sleduj&iacute;c&iacute; pracovn&iacute; den. Pokud to sp&ecaron;ch&aacute;, napi&scaron;te rovnou na <a href="mailto:ryvola@alsflow.cz" style="color:var(--blue)">ryvola@alsflow.cz</a>.</p>
             <div class="btn-row">
               <a class="btn btn-magnet" href="/">Zp&ecaron;t na &uacute;vod</a>
               <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
@@ -246,7 +244,7 @@ import Base from "../layouts/Base.astro";
 
           <div class="contact-card rev" data-d="1">
             <h3>Rad&ecaron;ji rovnou e-mailem?</h3>
-            <a href="mailto:ryvola@alsflow.cz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg><span>ryvola@alsflow.cz<span class="who">Jakub Ryvola &mdash; zak&aacute;zky a nab&iacute;dky</span></span></a>
+            <a href="mailto:ryvola@alsflow.cz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg><span>ryvola@alsflow.cz<span class="who">Jakub Ryvola: zak&aacute;zky a nab&iacute;dky</span></span></a>
             <a href="mailto:info@alsflow.cz"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4 6-4"/></svg><span>info@alsflow.cz<span class="who">Provoz, faktury, podpora</span></span></a>
             <p class="addr">
               Retail Shops s.r.o.<br />

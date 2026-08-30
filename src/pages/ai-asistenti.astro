@@ -3,9 +3,9 @@ import Base from "../layouts/Base.astro";
 ---
 <Base
   title="AI asistenti pro malé firmy a živnostníky | ALSflow"
-  description="Asistent odpovídá zákazníkům, objednává termíny a připomíná je — česky a vaším tónem. Od 2 500 Kč měsíčně, nasazení do 5 až 7 dnů."
+  description="Asistent odpovídá zákazníkům, objednává termíny a připomíná je, česky a vaším tónem. Od 2 500 Kč měsíčně, nasazení do 5 až 7 dnů."
   canonical="https://alsflow.cz/ai-asistenti"
-  ogDescription="Váš e-mail. Váš kalendář. Váš AI. Nastavíme vše za vás — vy se staráte o klienty."
+  ogDescription="Váš e-mail. Váš kalendář. Váš AI. Nastavíme vše za vás, vy se staráte o klienty."
   current="/ai-asistenti"
 >
   <Fragment slot="head">
@@ -56,15 +56,15 @@ import Base from "../layouts/Base.astro";
     ]
   }
   </script>
-  <!-- úvodní loader — jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
 <script>
-  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
     try {
       if (sessionStorage.getItem('als-seen')) return;
     } catch (e) {
-      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
     }
     document.documentElement.classList.add('als-loading');
   })();
@@ -78,7 +78,7 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <span class="eyebrow"><span class="dot"></span>AI asistent pro&nbsp;<b id="cyclingWord" style="color:var(--blue);transition:opacity .26s,transform .26s;display:inline-block;font-weight:600">kade&rcaron;nictv&iacute;</b></span>
       <h1 class="h-hero fade-head reveal-words" style="margin-top:1.6rem;max-width:16ch">Z&aacute;kazn&iacute;k p&iacute;&scaron;e. <span class="grad">Asistent odpov&iacute;d&aacute;.</span></h1>
-      <p class="lead">Odpov&iacute;d&aacute; na dotazy, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je &mdash; v&aacute;&scaron;&iacute;m t&oacute;nem a z va&scaron;ich podklad&uring;. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te. Nastaven&iacute; d&ecaron;l&aacute;me my, vy se ni&ccaron;eho nedotknete.</p>
+      <p class="lead">Odpov&iacute;d&aacute; na dotazy, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je, v&aacute;&scaron;&iacute;m t&oacute;nem a z va&scaron;ich podklad&uring;. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te. Nastaven&iacute; d&ecaron;l&aacute;me my, vy se ni&ccaron;eho nedotknete.</p>
       <div class="btn-row">
         <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
         <a class="btn btn-magnet" href="#ukazka">Vyzkou&scaron;et &zcaron;iv&ecaron; <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
@@ -133,7 +133,7 @@ import Base from "../layouts/Base.astro";
       <div class="sec-head center">
         <span class="eyebrow-label">Interaktivn&iacute; uk&aacute;zka</span>
         <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">te&dcaron;</span></h2>
-        <p class="lead lead-center">Klikejte, pi&scaron;te, zkou&scaron;ejte. Odpov&ecaron;di v uk&aacute;zce jsou p&rcaron;ipraven&eacute; dop&rcaron;edu &mdash; skute&ccaron;n&yacute; asistent sed&iacute; v chatu vpravo dole a odpov&iacute;d&aacute; na cokoli.</p>
+        <p class="lead lead-center">Klikejte, pi&scaron;te, zkou&scaron;ejte. Odpov&ecaron;di v uk&aacute;zce jsou p&rcaron;ipraven&eacute; dop&rcaron;edu. Skute&ccaron;n&yacute; asistent sed&iacute; v chatu vpravo dole a odpov&iacute;d&aacute; na cokoli.</p>
       </div>
 
       <div class="demo-frame rev-pop" id="demo">
@@ -158,7 +158,7 @@ import Base from "../layouts/Base.astro";
               </div>
             </div>
           </div>
-          <p class="note-ok" id="replySent" hidden>Odesl&aacute;no. Skute&ccaron;n&yacute; asistent to zvl&aacute;dne bez kliknut&iacute; &mdash; tohle je jen uk&aacute;zka.</p>
+          <p class="note-ok" id="replySent" hidden>Odesl&aacute;no. Skute&ccaron;n&yacute; asistent to zvl&aacute;dne bez kliknut&iacute;. Tohle je jen uk&aacute;zka.</p>
         </div>
 
         <div class="demo-pane" id="pane-cal">
@@ -329,7 +329,7 @@ import Base from "../layouts/Base.astro";
         <div>
           <span class="eyebrow-label">Kdo za t&iacute;m stoj&iacute;</span>
           <h2 class="h-sec fade-head reveal-words">Zakladatel, <span class="grad">ne agentura</span></h2>
-          <p class="lead">ALSflow je pr&aacute;ce jednoho &ccaron;lov&ecaron;ka. Nastav&iacute;m v&aacute;m to osobn&ecaron; a jsem k zasti&zcaron;en&iacute;, kdy&zcaron; n&ecaron;co pot&rcaron;ebujete &mdash; nebudete se prokous&aacute;vat p&rcaron;es podporu ani &ccaron;ekat na voln&yacute; t&yacute;m.</p>
+          <p class="lead">ALSflow je pr&aacute;ce jednoho &ccaron;lov&ecaron;ka. Nastav&iacute;m v&aacute;m to osobn&ecaron; a jsem k zasti&zcaron;en&iacute;, kdy&zcaron; n&ecaron;co pot&rcaron;ebujete. Nebudete se prokous&aacute;vat p&rcaron;es podporu ani &ccaron;ekat na voln&yacute; t&yacute;m.</p>
           <div class="btn-row">
             <a class="btn btn-magnet" href="/o-nas">V&iacute;c o n&aacute;s <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
           </div>

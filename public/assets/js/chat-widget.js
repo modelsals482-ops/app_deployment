@@ -1,17 +1,17 @@
 /* =====================================================================
-   ALSflow — chat s Klárou
+   ALSflow - chat s Klárou
 
    Živý bot běží na vlastní instanci (n8n na Railway) a volá se přes
    webhook. Přeneseno beze změny logiky ze staré verze stránky; jediné,
    co se změnilo, je, že to už není vlepené v HTML.
 
-   Klíč v hlavičce není tajemství a ani se tak nechová — je to jen
+   Klíč v hlavičce není tajemství a ani se tak nechová - je to jen
    hrubé síto proti tomu, aby webhook mohl mlátit kdokoli odkudkoli.
    Skutečné limity a ověření sedí na serveru.
 
    Adresa webhooku musí zůstat v connect-src v vercel.json. Když se
    přepíše tady a tam ne, prohlížeč každý požadavek zablokuje ještě
-   před odesláním a chat je němý, aniž by cokoli spadlo — přesně tohle
+   před odesláním a chat je němý, aniž by cokoli spadlo - přesně tohle
    se stalo 19. 8. 2026, proto to hlídá i .github/scripts.
    ===================================================================== */
 /* -- CHAT WIDGET JS -- */
@@ -83,7 +83,7 @@
     { path: '/ochrana_dat',     label: 'Ochrana dat',      re: /ochrana_dat|ochran[aě] (osobn[íi]ch )?[úu]daj|gdpr/i }
   ];
 
-  /* Bere jen stránky, které Klára opravdu zmínila — nejdřív podle konkrétní
+  /* Bere jen stránky, které Klára opravdu zmínila - nejdřív podle konkrétní
      adresy v textu, teprve pak podle tématu. Nikdy víc než dvě, ať se z bubliny
      nestane rozcestník. Na stránku, kde návštěvník právě je, se neodkazuje. */
   function suggest(text) {
@@ -178,7 +178,7 @@
       if (e.key === 'Enter') { e.preventDefault(); window.sendChatMessage(); }
     });
 
-    /* Escape zavírá panel, když je otevřený — dialog bez klávesnicové
+    /* Escape zavírá panel, když je otevřený - dialog bez klávesnicové
        cesty ven je past pro každého, kdo nepoužívá myš. */
     document.addEventListener('keydown', function (e) {
       var panel = document.getElementById('chatPanel');

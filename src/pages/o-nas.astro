@@ -2,8 +2,8 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base
-  title="O nás — jeden člověk, tři řemesla | ALSflow"
-  description="ALSflow je projekt jednoho člověka. Weby, software na míru a AI asistenti pro malé firmy — jednáte se mnou, ne s call centrem. Praha."
+  title="O nás: jeden člověk, tři řemesla | ALSflow"
+  description="ALSflow je projekt jednoho člověka. Weby, software na míru a AI asistenti pro malé firmy, jednáte se mnou, ne s call centrem. Praha."
   canonical="https://alsflow.cz/o-nas"
   ogDescription="Projekt jednoho člověka. Weby, software na míru a AI asistenti pro malé firmy."
   current="/o-nas"
@@ -37,15 +37,15 @@ import Base from "../layouts/Base.astro";
   }
 }
   </script>
-  <!-- úvodní loader — jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
 <script>
-  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
     try {
       if (sessionStorage.getItem('als-seen')) return;
     } catch (e) {
-      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
     }
     document.documentElement.classList.add('als-loading');
   })();
@@ -76,7 +76,7 @@ import Base from "../layouts/Base.astro";
       <div class="cards-2">
         <div class="panel panel-pad panel-glow panel-sheen tilt rev">
           <h3>Prakticky</h3>
-          <p>&Zcaron;&aacute;dn&eacute; buzzwordy. &Rcaron;eknete, co v&aacute;s zdr&zcaron;uje, a j&aacute; &rcaron;eknu, jestli se to vyplat&iacute; &rcaron;e&scaron;it &mdash; a kdy&zcaron; ne, taky to &rcaron;eknu.</p>
+          <p>&Zcaron;&aacute;dn&eacute; buzzwordy. &Rcaron;eknete, co v&aacute;s zdr&zcaron;uje, a j&aacute; &rcaron;eknu, jestli se to vyplat&iacute; &rcaron;e&scaron;it, a kdy&zcaron; ne, taky to &rcaron;eknu.</p>
         </div>
         <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
           <h3>Pevn&aacute; cena za dohodnut&yacute; rozsah</h3>
@@ -100,7 +100,7 @@ import Base from "../layouts/Base.astro";
       <div class="sec-head">
         <span class="eyebrow-label">T&rcaron;i &rcaron;emesla</span>
         <h2 class="h-sec fade-head reveal-words">Weby, software a <span class="grad">AI asistenti</span></h2>
-        <p class="lead">Za&ccaron;alo to asistenty. Weby a software p&rcaron;ibyly proto, &zcaron;e si o n&ecaron; klienti &rcaron;ekli &mdash; a proto&zcaron;e spolu souvis&iacute;: kdo v&aacute;m postavil web, v&iacute;, kam m&aacute; s&aacute;hnout, kdy&zcaron; k n&ecaron;mu m&aacute; p&rcaron;ipojit n&aacute;stroj.</p>
+        <p class="lead">Za&ccaron;alo to asistenty. Weby a software p&rcaron;ibyly proto, &zcaron;e si o n&ecaron; klienti &rcaron;ekli, a proto&zcaron;e spolu souvis&iacute;: kdo v&aacute;m postavil web, v&iacute;, kam m&aacute; s&aacute;hnout, kdy&zcaron; k n&ecaron;mu m&aacute; p&rcaron;ipojit n&aacute;stroj.</p>
       </div>
       <div class="cards-2">
         <a class="panel panel-pad panel-glow panel-sheen tilt rev" href="/tvorba-webu">

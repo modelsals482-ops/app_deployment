@@ -1,5 +1,5 @@
 /* =====================================================================
-   Odhalování textu po slovech — GSAP + ScrollTrigger
+   Odhalování textu po slovech - GSAP + ScrollTrigger
 
    Převzato z dodané předlohy: každé slovo se zabalí do obálky s
    overflow:hidden a vyjede zespodu. Doplněno oproti předloze:
@@ -47,7 +47,7 @@
   }
 
   targets.forEach(function (el) {
-    /* Původní podoba nadpisu. Po doběhnutí ji vrátíme zpátky — viz onComplete. */
+    /* Původní podoba nadpisu. Po doběhnutí ji vrátíme zpátky - viz onComplete. */
     var original = el.innerHTML;
 
     var parts = split(el);
@@ -73,7 +73,7 @@
       mask.appendChild(inner);
       holder.appendChild(mask);
 
-      /* Mezera se nevkládá před interpunkci — jinak by se tečka za
+      /* Mezera se nevkládá před interpunkci - jinak by se tečka za
          barevným slovem odsunula na vlastní pozici. */
       var next = parts[i + 1];
       var punct = next && !next.br && /^[.,!?:;)\u2026]/.test(next.text || "");
@@ -102,14 +102,14 @@
          Rozsekaný nadpis je pro prohlížeč nesrovnatelně dražší než obyčejný
          text: každé slovo je vlastní inline-block s maskou přes overflow,
          s transformem a s vlastním přechodem ořezaným na text
-         (background-clip). Na jedné stránce jich takhle zůstávaly desítky —
+         (background-clip). Na jedné stránce jich takhle zůstávaly desítky -
          a přesně na téhle kombinaci vznikají při rolování otisky
          předchozího vykreslení, které Jakub hlásil jako dvakrát vytištěný
          nadpis.
 
          Po doběhnutí už k ničemu nejsou. Nadpis je zpátky jeden prvek
          s jedním přechodem, tedy přesně to, co by tam bylo bez skriptu.
-         Zmizí tím i pomocná kopie pro čtečky — původní text je zpět. */
+         Zmizí tím i pomocná kopie pro čtečky - původní text je zpět. */
       onComplete: function () { el.innerHTML = original; },
     });
   });

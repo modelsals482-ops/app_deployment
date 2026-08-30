@@ -1,4 +1,4 @@
-# alsflow.cz — ALSflow (Retail Shops s.r.o., IČO 02512556)
+# alsflow.cz - ALSflow (Retail Shops s.r.o., IČO 02512556)
 # Weby, software na míru a AI asistenti pro malé firmy.
 
 User-agent: *
@@ -10,7 +10,7 @@ Disallow: /api/
 # POZOR: stránky, které nemají být ve výsledcích hledání (dekujeme, landing,
 # onboarding, dpa, 404), se tady ZÁMĚRNĚ nezakazují. Mají v hlavičce noindex
 # a robot ho musí mít možnost přečíst. Kdyby se sem přidal Disallow, robot
-# stránku nestáhne, noindex nikdy neuvidí — a adresu klidně zaindexuje jen
+# stránku nestáhne, noindex nikdy neuvidí, a adresu klidně zaindexuje jen
 # podle odkazů, které na ni vedou. Zákaz procházení a zákaz indexace jsou
 # dvě různé věci a kombinovat je na jedné stránce je chyba.
 

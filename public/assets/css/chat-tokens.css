@@ -1,7 +1,7 @@
 /* Jen proměnné, které potřebuje chatovací widget (assets/css/ai-page.css).
    Existuje proto, aby se na starší stránky nemusel načítat celý site-pages.css:
    ten totiž nese i pravidla pro body a typografii a měnil těmhle stránkám
-   pozadí z #08080c na černou. Tady nejsou žádná pravidla, jen hodnoty —
+   pozadí z #08080c na černou. Tady nejsou žádná pravidla, jen hodnoty -
    nemá co přebít.
 
    Musí zůstat v souladu s :root v site-pages.css. */

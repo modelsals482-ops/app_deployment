@@ -1,5 +1,5 @@
 /* =====================================================================
-   ALSflow — chování samostatných stránek
+   ALSflow - chování samostatných stránek
 
    1. navigace: stín po odrolování, rozbalovací panel, mobilní menu
    2. odhalování sekcí při rolování
@@ -19,7 +19,7 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ==================================================================
-     1a. Navigace — pozadí ztmavne, jakmile se odroluje
+     1a. Navigace - pozadí ztmavne, jakmile se odroluje
      ================================================================== */
   (function () {
     var nav = document.querySelector(".nav");
@@ -38,7 +38,7 @@
      1b. Rozbalovací panel
 
      Myš ho otevře najetím, jako v předloze. Klávesnice a dotyk kliknutím
-     — samotné :hover by položku na dotykovém displeji nešlo otevřít
+     - samotné :hover by položku na dotykovém displeji nešlo otevřít
      a z klávesnice by byla nedosažitelná úplně.
      ================================================================== */
   (function () {
@@ -70,7 +70,7 @@
       });
 
       /* Krátká prodleva, ať panel nezmizí při přejezdu mezi tlačítkem
-         a panelem — mezi nimi je mezera. */
+         a panelem - mezi nimi je mezera. */
       li.addEventListener("mouseleave", function () {
         if (!fine.matches) return;
         timer = setTimeout(function () { open(false); }, 140);
@@ -107,7 +107,7 @@
     var restoreY = 0;
 
     /* Zamek patri na <html>, ne na <body>. `body { overflow: hidden }` na iOS
-       pozici nezamkne — jen z body udela vlastni rolovaci kontejner a stranka
+       pozici nezamkne - jen z body udela vlastni rolovaci kontejner a stranka
        vyskoci na zacatek. Presne to se delo: menu se otevrelo, ale obrazovka
        skocila nahoru a vypadalo to, ze se nestalo nic. */
     function set(open) {
@@ -154,7 +154,7 @@
      4. Plynulé rolování (Lenis 1.3.25, uložený v repozitáři)
 
      Knihovna se načítá jako první, takže když tu není, jen se přeskočí
-     a rolování zůstane nativní. Na dotyku se nezapíná — tam je natívní
+     a rolování zůstane nativní. Na dotyku se nezapíná - tam je natívní
      rolování plynulé samo a zásah do něj působí lepkavě.
      ================================================================== */
   var lenis = null;
@@ -214,7 +214,7 @@
      6. Dosvit uvnitř karty jede za kurzorem
 
      Souřadnice se předávají do vlastních vlastností, samotný dosvit
-     kreslí CSS — tady se jen počítá pozice.
+     kreslí CSS - tady se jen počítá pozice.
      ================================================================== */
   (function () {
     if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
@@ -244,7 +244,7 @@
      8. Magnetické tlačítko
 
      Posun se předává do vlastních vlastností, samotný pohyb dělá CSS.
-     Rozsah je schválně malý — větší už působí, že tlačítko utíká.
+     Rozsah je schválně malý - větší už působí, že tlačítko utíká.
      ================================================================== */
   (function () {
     if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
@@ -276,7 +276,7 @@
      9. Obtažení obvodu
 
      Obdélník se kreslí do SVG, které se musí přeměřit podle skutečné
-     velikosti tlačítka — jinak by se linka u širšího nápisu roztáhla.
+     velikosti tlačítka - jinak by se linka u širšího nápisu roztáhla.
      ================================================================== */
   (function () {
     var traced = document.querySelectorAll(".btn-trace");
@@ -324,7 +324,7 @@
       });
     });
 
-    /* Přechod pro obtažení — jeden na celý dokument. */
+    /* Přechod pro obtažení - jeden na celý dokument. */
     var defs = document.createElementNS(NS, "svg");
     defs.setAttribute("width", "0");
     defs.setAttribute("height", "0");

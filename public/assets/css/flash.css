@@ -1,8 +1,8 @@
 /* =====================================================================
-   ALSflow — vrstva „flash"
+   ALSflow - vrstva „flash"
 
    Doplněk k site-pages.css. Kostra, typografie a rozvržení zůstávají
-   podle předlohy resend.com — černá plocha, vlasové linky, hodně
+   podle předlohy resend.com - černá plocha, vlasové linky, hodně
    prázdna. Tenhle soubor přidává jenom pohyb, hloubku a barvu.
 
    Barvy a několik hotových prvků jsou přenesené z původního webu
@@ -14,7 +14,7 @@
      - nic z toho nesmí zhoršit čitelnost textu; všechny plochy pod
        textem drží pod 6 % krytí,
      - všechno těžké se zastavuje mimo obraz (řeší flash.js),
-     - „omezit pohyb" vypíná pohyb, ne barvu — stránka pak vypadá
+     - „omezit pohyb" vypíná pohyb, ne barvu - stránka pak vypadá
        jako jeden statický snímek, ne jako holá kostra.
    ===================================================================== */
 
@@ -31,10 +31,10 @@
   --g-500: #22c55e;
   --g-400: #4ade80;
 
-  /* Přechod, který se sám vlní — dvojnásobná šířka, posouvá se pozadí. */
+  /* Přechod, který se sám vlní - dvojnásobná šířka, posouvá se pozadí. */
   --grad-live: linear-gradient(110deg, #38dbf5, #5b9dff, #a78bfa, #5b9dff, #38dbf5);
   /* Původní web měl v tomhle přechodu #4e8ff7. Bílý nápis na něm má
-     3,2 : 1, což je pod AA — proto je světlý konec ztmavený na #2f6fdd
+     3,2 : 1, což je pod AA - proto je světlý konec ztmavený na #2f6fdd
      (4,7 : 1). Tmavý konec #2563eb dává 5,2 : 1. */
   --grad-cta: linear-gradient(135deg, #2f6fdd, #2563eb, #2f6fdd);
 }
@@ -131,7 +131,7 @@
   animation: grainShift 8s steps(6) infinite;
 }
 
-/* Posun po krocích — plynulý posun by vypadal jako klouzající tapeta,
+/* Posun po krocích - plynulý posun by vypadal jako klouzající tapeta,
    skokový jako film. */
 @keyframes grainShift {
   0%   { transform: translate(0, 0); }
@@ -170,7 +170,7 @@
 
    Mobilní menu (.sheet) sem NEPATŘÍ. Selektor `body > .sheet` je
    specifičtější než `.sheet` v site-pages.css a přebíjel mu
-   `position: fixed` na `relative` — panel se pak vykreslil vevnitř
+   `position: fixed` na `relative` - panel se pak vykreslil vevnitř
    stránky místo přes ni a vypadalo to, že se hamburger vůbec neotvírá.
    Vlastní z-index 55 ho nad vrstvy pozadí zvedne i bez tohohle. */
 body > header,
@@ -209,7 +209,7 @@ body > footer { position: relative; z-index: 4; }
    Přechod v barevných slovech se pomalu vlní. Pozadí je dvakrát širší
    než text, takže se posunem nikdy neukáže okraj.
    ===================================================================== */
-/* Zkratka `background` shazuje background-clip zpátky na border-box —
+/* Zkratka `background` shazuje background-clip zpátky na border-box -
    a protože se tenhle soubor načítá až za site-pages.css, zmizel by
    text a zbyl barevný obdélník. Proto background-image, ne background,
    a ořez je tu radši zopakovaný. */
@@ -257,7 +257,7 @@ body > footer { position: relative; z-index: 4; }
 .in .grad-underline::after,
 .grad-underline.in::after { transform: none; }
 
-/* Zelená tečka u „volná kapacita" tepe — z původního webu. */
+/* Zelená tečka u „volná kapacita" tepe - z původního webu. */
 .eyebrow .dot {
   animation: dotPulse 2.2s ease-in-out infinite;
 }
@@ -268,13 +268,13 @@ body > footer { position: relative; z-index: 4; }
 }
 
 /* =====================================================================
-   4. Karty — hloubka
+   4. Karty - hloubka
 
    Náklon počítá skript do --rx / --ry, samotný pohyb dělá CSS.
    Rozsah je malý; větší náklon vypadá jako hračka, ne jako produkt.
    ===================================================================== */
 /* a.panel:hover v site-pages.css má vyšší váhu a jinak by náklon
-   přebil vlastním translateY — proto je tu i selektor s :hover. */
+   přebil vlastním translateY - proto je tu i selektor s :hover. */
 .tilt,
 a.panel.tilt:hover {
   transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ly, 0px));
@@ -308,10 +308,10 @@ a.panel.tilt:hover {
 
 /* Otáčející se barevný obrys. Kuželový přechod se točí pod maskou,
    takže je vidět jen proužek na hraně karty. Vyhrazeno pro jednu
-   kartu v sekci — na všech naráz by to byla světelná show. */
+   kartu v sekci - na všech naráz by to byla světelná show. */
 .panel-ring { border-color: transparent; }
 
-/* inset:0, ne -1px — karta s overflow:hidden (třeba ukázka chatu) by
+/* inset:0, ne -1px - karta s overflow:hidden (třeba ukázka chatu) by
    přesah oříznula a z obrysu by zbyly tři strany. */
 .panel-ring::before {
   position: absolute;
@@ -348,7 +348,7 @@ a.panel.tilt:hover {
   to { --ring: 360deg; }
 }
 
-/* Bez @property se vlastní vlastnost animovat nedá — prohlížeč neví,
+/* Bez @property se vlastní vlastnost animovat nedá - prohlížeč neví,
    že je to úhel. Tohle mu to řekne; kde to neumí, obrys prostě stojí
    a zůstane z něj statický barevný proužek. */
 @property --ring {
@@ -402,7 +402,7 @@ a.panel.tilt:hover {
 .hero-plain > .wrap { position: relative; z-index: 1; }
 .hero-plain > .aurora { opacity: 0.42; }
 
-/* V hlavičce je scéna hlavní obraz, ne podklad pod textem — proto
+/* V hlavičce je scéna hlavní obraz, ne podklad pod textem - proto
    svítí víc než uvnitř sekcí. */
 .hero-plain > .scene { opacity: 0.85; }
 
@@ -425,7 +425,7 @@ a.panel.tilt:hover {
   }
 }
 
-/* Plátno s částicovou sítí — leží nad aurorou, pod textem. */
+/* Plátno s částicovou sítí - leží nad aurorou, pod textem. */
 #particles {
   position: absolute;
   inset: 0;
@@ -465,7 +465,7 @@ a.panel.tilt:hover {
   100%     { background-position: 145% 0; opacity: 0; }
 }
 
-/* .sec-dark už má vlastní ::before s dosvitem — u ní se linka kreslí
+/* .sec-dark už má vlastní ::before s dosvitem - u ní se linka kreslí
    na obalu, jinak by se pravidla přebila. */
 .sec-dark.sec-line::before {
   top: -30%;
@@ -481,7 +481,7 @@ a.panel.tilt:hover {
    7. Pás s čísly
 
    Tři údaje na vlasových linkách. Číslo naskočí odpočtem, jednotka
-   zůstane stát — z původního webu, jen v tišší úpravě.
+   zůstane stát - z původního webu, jen v tišší úpravě.
    ===================================================================== */
 .stat-band {
   display: grid;
@@ -592,7 +592,7 @@ a.panel.tilt:hover {
    9. Ukázka konverzace
 
    Bubliny, odznak „AI" a tři tečky psaní jsou přenesené z původního
-   webu o chatbotech. Nová je jen obálka — okno s vlasovou linkou,
+   webu o chatbotech. Nová je jen obálka - okno s vlasovou linkou,
    které sedí do téhle stránky.
    ===================================================================== */
 .chat-demo {
@@ -669,7 +669,7 @@ a.panel.tilt:hover {
 }
 
 /* Bubliny naskakují po sobě, jakmile se ukázka dostane do obrazu.
-   Třídu .on dává skript — bez skriptu je vidět celá konverzace. */
+   Třídu .on dává skript - bez skriptu je vidět celá konverzace. */
 .chat-demo.on .chat-row .msg { animation: msgIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .chat-demo.on .chat-row:nth-child(1) .msg { animation-delay: 0.05s; }
 .chat-demo.on .chat-row:nth-child(2) .msg { animation-delay: 0.75s; }
@@ -763,7 +763,7 @@ a.panel.tilt:hover {
 .btn-live::before { display: none; }
 
 /* Předloha rozevírala z prostředka světlý bílý kruh. Bílý nápis na
-   projasněné modré má ale 3,5 : 1 — pod AA. Kruh proto přináší rovnou
+   projasněné modré má ale 3,5 : 1 - pod AA. Kruh proto přináší rovnou
    firemní přechod a nápis s ním ztmavne, stejně jako u ostatních
    tlačítek na webu (tmavá na tyrkysové 12,1 : 1). Vyjde to nakonec
    výrazněji než původní bílý závoj. */
@@ -805,7 +805,7 @@ a.panel.tilt:hover {
   user-select: none;
 }
 
-/* Wordmark je opticky spodní hrana patičky — právní řádek pod ním
+/* Wordmark je opticky spodní hrana patičky - právní řádek pod ním
    nepotřebuje ještě jednou celý odstup. */
 .foot-mark + .foot-legal { margin-top: 1.4rem; }
 
@@ -823,7 +823,7 @@ a.panel.tilt:hover {
 }
 
 /* =====================================================================
-   13. Odhalování — silnější nástup
+   13. Odhalování - silnější nástup
 
    .rev v site-pages.css zůstává; tohle je varianta pro velké bloky,
    které mají přijet s měřítkem.
@@ -846,7 +846,7 @@ a.panel.tilt:hover {
    14. Omezení pohybu
 
    Vypíná se pohyb, ne barva. Koule, aurora i přechody zůstanou stát
-   na hezkém místě — stránka pak vypadá jako jeden snímek.
+   na hezkém místě - stránka pak vypadá jako jeden snímek.
    ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .orbs i,

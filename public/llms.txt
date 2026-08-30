@@ -8,7 +8,7 @@
 
 ## The three lines of work
 
-### 1. Websites — https://alsflow.cz/tvorba-webu
+### 1. Websites - https://alsflow.cz/tvorba-webu
 Hand-written HTML, CSS and JavaScript. No CMS, no plugins, nothing that has to be updated every
 month and can break when it is. Includes design, copywriting, deployment, domain and DNS setup,
 and ongoing maintenance. Hosted on Vercel with Cloudflare DNS. Text and contrast are checked
@@ -23,7 +23,7 @@ wants analytics, which is set up together with a correctly configured consent ba
 Built so far: gen1.cz (political movement GEN, 11 pages, news editor behind Cloudflare Access),
 znalecsekelova.sk (Slovak court expert in construction, 8 pages, Slovak), alsflow.cz.
 
-### 2. Custom software — https://alsflow.cz/vyvoj-softwaru
+### 2. Custom software - https://alsflow.cz/vyvoj-softwaru
 Small tools one developer can deploy in weeks, not months: admin panels over data the client
 already has, integrations between systems that do not talk to each other, automation replacing
 manual spreadsheet work, and reporting. Built alongside existing systems through an API or an
@@ -34,20 +34,20 @@ belong to the client. Data runs in the EU under an Art. 28 GDPR processing agree
 Delivered so far: the catalogue admin panel and availability integration for WE LOVE EVENTS,
 a Prague AV and event rental company.
 
-### 3. AI assistants — https://alsflow.cz/ai-asistenti
+### 3. AI assistants - https://alsflow.cz/ai-asistenti
 An assistant that answers customers, takes bookings and sends reminders, in Czech and in the
 client's own tone, running on the channels the client already uses (e-mail, WhatsApp, their
 website). When it is not sure, it hands over to a human rather than inventing an answer.
 Setup takes 5 to 7 working days. Monthly billing, no long-term contract, cancel anytime.
 
-- **E-mailové odpovědi** — https://alsflow.cz/e-mailove-odpovedi — the assistant reads and answers
+- **E-mailové odpovědi** - https://alsflow.cz/e-mailove-odpovedi - the assistant reads and answers
   customer e-mail. Includes 1,500 e-mails and a monthly activity report. 2,500 CZK/month.
-- **Rezervace a připomínky** — https://alsflow.cz/rezervace-pripominky — booking around the clock,
+- **Rezervace a připomínky** - https://alsflow.cz/rezervace-pripominky - booking around the clock,
   confirmations, and a reminder the day before. Includes 750 bookings. 4,500 CZK/month.
-- **Zpětná vazba a opakované rezervace** — a message after the visit, feedback, and a well-timed
+- **Zpětná vazba a opakované rezervace** - a message after the visit, feedback, and a well-timed
   offer to book again. Unlimited messages. 2,500 CZK/month.
-- **All three together** — 7,500 CZK/month.
-- **Custom** — multi-channel assistants and system integrations, priced per project.
+- **All three together** - 7,500 CZK/month.
+- **Custom** - multi-channel assistants and system integrations, priced per project.
 
 One-time setup for an assistant: 8,000–10,000 CZK.
 
@@ -56,12 +56,12 @@ https://alsflow.cz/ai-asistent-pro-kadernictvi
 
 ## Who buys what
 
-- **Websites** — sole traders, small firms and organisations that need a presentation site that
+- **Websites** - sole traders, small firms and organisations that need a presentation site that
   will still work in two years and that somebody else keeps running. Includes clients outside
   Prague and in Slovakia.
-- **Custom software** — small firms losing hours to retyping between systems or to a shared
+- **Custom software** - small firms losing hours to retyping between systems or to a shared
   spreadsheet nobody trusts.
-- **AI assistants** — appointment-based local businesses, mostly in Prague: physiotherapists,
+- **AI assistants** - appointment-based local businesses, mostly in Prague: physiotherapists,
   hair and beauty salons, veterinary clinics, dentists, wellness studios. The owner works with
   their hands, cannot get to the phone, and loses bookings to missed calls and slow replies.
 
@@ -71,7 +71,7 @@ https://alsflow.cz/ai-asistent-pro-kadernictvi
   extra mid-project, the price of that change is given before the work starts.
 - **A reply within 48 hours on working days**, with a proposed time for a call.
 - **One person.** The client deals with Jakub Ryvola directly, not an account manager.
-- **Everything in the client's name** — domain, accounts, source code, documentation. Leaving
+- **Everything in the client's name** - domain, accounts, source code, documentation. Leaving
   does not break anything.
 
 ## Does not do
@@ -82,11 +82,11 @@ a month.
 
 ## Pages
 
-- https://alsflow.cz/ — what ALSflow does, all three lines
-- https://alsflow.cz/tvorba-webu — websites
-- https://alsflow.cz/vyvoj-softwaru — custom software
-- https://alsflow.cz/ai-asistenti — AI assistants
-- https://alsflow.cz/cenik — full price list
-- https://alsflow.cz/o-nas — who is behind it
-- https://alsflow.cz/kontakt — enquiry form
-- https://alsflow.cz/ochrana_dat — privacy policy
+- https://alsflow.cz/ - what ALSflow does, all three lines
+- https://alsflow.cz/tvorba-webu - websites
+- https://alsflow.cz/vyvoj-softwaru - custom software
+- https://alsflow.cz/ai-asistenti - AI assistants
+- https://alsflow.cz/cenik - full price list
+- https://alsflow.cz/o-nas - who is behind it
+- https://alsflow.cz/kontakt - enquiry form
+- https://alsflow.cz/ochrana_dat - privacy policy

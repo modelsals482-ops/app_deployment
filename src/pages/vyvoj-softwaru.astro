@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 ---
 <Base
-  title="Vývoj softwaru na míru — admin panely a integrace | ALSflow"
+  title="Vývoj softwaru na míru: admin panely a integrace | ALSflow"
   description="Menší software na míru: administrační panely, napojení systémů, které spolu nemluví, a interní nástroje místo tabulek. Pevná cena, nasazení v týdnech."
   canonical="https://alsflow.cz/vyvoj-softwaru"
   ogDescription="Admin panely, integrace a interní nástroje. Pevná cena za rozsah, nasazení v řádu týdnů."
@@ -42,7 +42,7 @@ import Base from "../layouts/Base.astro";
           "name": "Jak velk&eacute; zak&aacute;zky berete?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsem ten správný a řeknu to hned na začátku."
+            "text": "Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců: administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsem ten správný a řeknu to hned na začátku."
           }
         },
         {
@@ -58,7 +58,7 @@ import Base from "../layouts/Base.astro";
           "name": "Kdy uvid&iacute;me prvn&iacute; v&yacute;sledek?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Nejdřív stavím tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravuji zbytek — je to levnější než dodat po půl roce něco, co se ukáže jako vedle."
+            "text": "Nejdřív stavím tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravuji zbytek, je to levnější než dodat po půl roce něco, co se ukáže jako vedle."
           }
         },
         {
@@ -66,7 +66,7 @@ import Base from "../layouts/Base.astro";
           "name": "Co kdy&zcaron; v&aacute;s budeme pot&rcaron;ebovat i za rok?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržím si nic, čím bychom vás nutili zůstat."
+            "text": "Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci, nedržím si nic, čím bychom vás nutili zůstat."
           }
         },
         {
@@ -82,15 +82,15 @@ import Base from "../layouts/Base.astro";
   ]
 }
   </script>
-  <!-- úvodní loader — jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
 <script>
-  /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
     try {
       if (sessionStorage.getItem('als-seen')) return;
     } catch (e) {
-      /* privátní okno nebo zakázané úložiště — loader prostě ukážeme */
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
     }
     document.documentElement.classList.add('als-loading');
   })();
@@ -127,7 +127,7 @@ import Base from "../layouts/Base.astro";
       <div class="cards-2">
         <div class="panel panel-pad panel-glow panel-sheen tilt rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Panel nad vlastn&iacute;mi daty</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Rozhran&iacute;, ve kter&eacute;m t&yacute;m spravuje katalog, cen&iacute;k nebo objedn&aacute;vky, ani&zcaron; by kdokoli sahal do datab&aacute;ze nebo do sd&iacute;len&eacute;ho Excelu.</p></div>
         <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4 4 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7"/><path d="M14 10.5a4 4 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.7-1.7"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Propojen&iacute; dvou syst&eacute;m&uring;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Sklad, rezervace, &uacute;&ccaron;etnictv&iacute; a web dohromady. Data te&ccaron;ou sama, nikdo je nep&rcaron;episuje ru&ccaron;n&ecaron; a nevznikaj&iacute; dv&ecaron; verze pravdy.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Nahrazen&iacute; ru&ccaron;n&iacute; pr&aacute;ce</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Opakovan&aacute; &ccaron;innost, kter&aacute; n&ecaron;komu bere hodinu denn&ecaron; &mdash; vyhodnocen&iacute;, p&rcaron;eposl&aacute;n&iacute;, vygenerov&aacute;n&iacute; dokladu &mdash; se p&rcaron;esune na server.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">Nahrazen&iacute; ru&ccaron;n&iacute; pr&aacute;ce</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Opakovan&aacute; &ccaron;innost, kter&aacute; n&ecaron;komu bere hodinu denn&ecaron; (vyhodnocen&iacute;, p&rcaron;eposl&aacute;n&iacute;, vygenerov&aacute;n&iacute; dokladu) se p&rcaron;esune na server.</p></div>
         <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M7 17V11M12 17V5M17 17v-8"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1.02rem">P&rcaron;ehled, kter&yacute; sed&iacute;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Jedno m&iacute;sto s &ccaron;&iacute;sly, kter&yacute;m se d&aacute; v&ecaron;&rcaron;it, m&iacute;sto p&ecaron;ti export&uring;, kter&eacute; si ka&zcaron;d&yacute; slu&ccaron;uje po sv&eacute;m.</p></div>
       </div>
     </div>
@@ -178,10 +178,10 @@ import Base from "../layouts/Base.astro";
         <h2 class="h-sec fade-head reveal-words">Na co se pt&aacute;te</h2>
       </div>
       <div class="faq">
-        <details class="rev" data-d="0"><summary>Jak velk&eacute; zak&aacute;zky berete?</summary><p>Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců — administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsem ten správný a řeknu to hned na začátku.</p></details>
+        <details class="rev" data-d="0"><summary>Jak velk&eacute; zak&aacute;zky berete?</summary><p>Nástroje, které zvládne jeden vývojář nasadit v řádu týdnů, ne měsíců: administrační panel, napojení dvou systémů, nástroj, který nahradí ruční přepisování do tabulky. Na bankovní systém nebo aplikaci pro sto tisíc uživatelů nejsem ten správný a řeknu to hned na začátku.</p></details>
         <details class="rev" data-d="1"><summary>Mus&iacute;me kv&uring;li tomu m&ecaron;nit syst&eacute;m, kter&yacute; pou&zcaron;&iacute;v&aacute;me?</summary><p>Ne. Skoro vždycky stavím vedle toho, co už máte, a napojuji se přes API nebo export. Migrace celého systému je nejdražší a nejrizikovější varianta a navrhuji ji jen tehdy, když opravdu není jiná cesta.</p></details>
-        <details class="rev" data-d="2"><summary>Kdy uvid&iacute;me prvn&iacute; v&yacute;sledek?</summary><p>Nejdřív stavím tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravuji zbytek — je to levnější než dodat po půl roce něco, co se ukáže jako vedle.</p></details>
-        <details class="rev" data-d="3"><summary>Co kdy&zcaron; v&aacute;s budeme pot&rcaron;ebovat i za rok?</summary><p>Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci — nedržím si nic, čím bychom vás nutili zůstat.</p></details>
+        <details class="rev" data-d="2"><summary>Kdy uvid&iacute;me prvn&iacute; v&yacute;sledek?</summary><p>Nejdřív stavím tu část, která odstraní největší ruční práci, a tu používáte dřív, než je hotové všechno ostatní. Podle toho, co v provozu vyjde najevo, pak upravuji zbytek, je to levnější než dodat po půl roce něco, co se ukáže jako vedle.</p></details>
+        <details class="rev" data-d="3"><summary>Co kdy&zcaron; v&aacute;s budeme pot&rcaron;ebovat i za rok?</summary><p>Provoz a další úpravy jsou měsíční paušál podle toho, jak velký nástroj je. Když se rozhodnete pokračovat sami, dostanete zdrojový kód, přístupy i dokumentaci, nedržím si nic, čím bychom vás nutili zůstat.</p></details>
         <details class="rev" data-d="4"><summary>Kde data pob&ecaron;&zcaron;&iacute;?</summary><p>Na infrastruktuře vedené na vaše jméno, v Evropské unii. Zpracovávám jen údaje nutné k tomu, aby nástroj fungoval. Kde jde o osobní údaje, patří k zakázce zpracovatelská smlouva podle čl. 28 GDPR.</p></details>
       </div>
     </div>
@@ -190,7 +190,7 @@ import Base from "../layouts/Base.astro";
   <section class="closer">
     <div class="wrap">
       <h2 class="h-sec fade-head reveal-words">Zdr&zcaron;uje v&aacute;s n&ecaron;co, co by m&ecaron;l d&ecaron;lat po&ccaron;&iacute;ta&ccaron;?</h2>
-      <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor a kr&aacute;tk&aacute; anal&yacute;za. &Rcaron;eknu, jestli se to vyplat&iacute; &rcaron;e&scaron;it softwarem &mdash; a za kolik.</p>
+      <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor a kr&aacute;tk&aacute; anal&yacute;za. &Rcaron;eknu, jestli se to vyplat&iacute; &rcaron;e&scaron;it softwarem, a za kolik.</p>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
         <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
         <a class="btn-quiet" href="/tvorba-webu">Tvorba webu <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>

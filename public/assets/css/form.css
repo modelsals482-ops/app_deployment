@@ -1,5 +1,5 @@
 /* =====================================================================
-   ALSflow — poptávkový formulář
+   ALSflow - poptávkový formulář
 
    Navazuje na site-pages.css a flash.css; odsud jsou barvy, písmo i
    vlasové linky. Tenhle soubor řeší jenom formulář.
@@ -10,7 +10,7 @@
 
    Pole je tmavá plocha s vlasovou linkou. Při zaostření se pod ním
    roztáhne barevná linka od středu a popisek povyskočí nahoru; když
-   je vyplněné, přibude fajfka. Nic z toho není nutné k odeslání —
+   je vyplněné, přibude fajfka. Nic z toho není nutné k odeslání -
    bez CSS i bez skriptu je to pořád obyčejný formulář, který funguje.
    ===================================================================== */
 
@@ -106,7 +106,7 @@
    Jedno pole
 
    Popisek leží v poli a při psaní vyjede nad ně. Drží se to
-   :placeholder-shown, takže to funguje i bez skriptu — proto má každý
+   :placeholder-shown, takže to funguje i bez skriptu - proto má každý
    input placeholder=" " (mezera). U <select> je popisek nahoře vždy,
    protože select nemá prázdný stav, který by šel takhle chytit.
    -------------------------------------------------------------------- */
@@ -147,7 +147,7 @@
   box-shadow: 0 0 0 4px rgb(91 157 255 / 12%);
 }
 
-/* Placeholder se ukáže, až popisek uhne nahoru — jinak by si oba
+/* Placeholder se ukáže, až popisek uhne nahoru - jinak by si oba
    stály v poli přes sebe. */
 .field input::placeholder,
 .field textarea::placeholder { color: transparent; transition: color 0.2s; }
@@ -204,7 +204,7 @@
 .field select:focus ~ .line,
 .field textarea:focus ~ .line { transform: scaleX(1); }
 
-/* Fajfka po vyplnění. Kreslí se obtažením, ne prolnutím — je z toho
+/* Fajfka po vyplnění. Kreslí se obtažením, ne prolnutím - je z toho
    poznat, že to pole stroj právě teď vzal. */
 .field .tick {
   position: absolute;
@@ -249,7 +249,7 @@
 .field.is-select:focus-within::after { border-color: var(--blue); transform: rotate(225deg) translate(-2px, -2px); }
 
 .field select { padding-right: 2.4rem; cursor: pointer; }
-/* Nabídka se kreslí systémem, ne stránkou — pozadí se musí říct zvlášť,
+/* Nabídka se kreslí systémem, ne stránkou - pozadí se musí říct zvlášť,
    jinak je na některých systémech bílý text na bílé. */
 .field select option { color: var(--t1); background: #131318; }
 
@@ -276,7 +276,7 @@
    Postupné nabíhání polí
 
    Třídu .stagger dává skript, ne značka. Bez skriptu (nebo když se
-   nenačte) tahle pravidla vůbec neplatí a formulář je normálně vidět —
+   nenačte) tahle pravidla vůbec neplatí a formulář je normálně vidět -
    je to jediné místo na webu, kde návštěvník něco odesílá, a schovat
    ho za nenačtený soubor by byla ta nejdražší možná chyba.
    -------------------------------------------------------------------- */
@@ -317,7 +317,7 @@
 
 .form-consent a { color: var(--blue); }
 
-/* Skryté pole na roboty. Nesmí být display:none — část robotů to
+/* Skryté pole na roboty. Nesmí být display:none - část robotů to
    pozná a pole přeskočí; tohle ho odsune mimo obraz. */
 .hp {
   position: absolute;
@@ -330,7 +330,7 @@
 /* --------------------------------------------------------------------
    Odeslání
 
-   Tlačítko má tři stavy a mezi nimi se nepřekresluje — jenom se
+   Tlačítko má tři stavy a mezi nimi se nepřekresluje - jenom se
    vymění obsah, takže si šířku drží a stránka pod ním neposkočí.
    -------------------------------------------------------------------- */
 .form-send {
@@ -362,7 +362,7 @@
   text-align: center;
 }
 
-/* Zatřesení po odmítnutí. Krátké a malé — jde o upozornění, ne trest. */
+/* Zatřesení po odmítnutí. Krátké a malé - jde o upozornění, ne trest. */
 .shake { animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97); }
 
 @keyframes shake {
@@ -409,7 +409,7 @@
   to   { opacity: 0.55; transform: scale(1); }
 }
 
-/* Musí být zúžené na kroužek — .form-done obsahuje i šipku
+/* Musí být zúžené na kroužek - .form-done obsahuje i šipku
    v tlačítku a ta by se roztáhla na 96 px. */
 .form-done .ring svg { position: relative; width: 96px; height: 96px; }
 
@@ -463,7 +463,7 @@
 }
 
 /* --------------------------------------------------------------------
-   Postranní sloupec — co bude dál a kontakty
+   Postranní sloupec - co bude dál a kontakty
    -------------------------------------------------------------------- */
 .form-side { display: flex; flex-direction: column; gap: 2.4rem; }
 
@@ -495,7 +495,7 @@
 
 .steps b { display: block; color: var(--t1); }
 
-/* Kontaktní karta — jediné místo na webu s adresami. */
+/* Kontaktní karta - jediné místo na webu s adresami. */
 .contact-card {
   padding: 1.5rem;
   background: linear-gradient(180deg, var(--card-2), var(--card));
@@ -576,32 +576,20 @@
   .form-send .spin { animation-duration: 1.4s; }
 }
 
-/* Předěl mezi povinnými a nepovinnými poli. Povinná jsou nahoře pohromadě,
-   aby ukazatel postupu odpovídal tomu, co člověk zrovna dělá — dřív byla
-   rozházená (1, 2, 5, 6) a ukazatel se hýbal, pak stál, bez viditelného důvodu. */
-.form-split {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 0.9rem;
-  align-items: center;
-  margin: 0.5rem 0 0.2rem;
-}
-.form-split::before,
-.form-split::after {
-  flex: 1;
-  height: 1px;
-  content: '';
-  background: var(--line);
-}
-.form-split span {
-  font-size: 0.76rem;
-  color: var(--t3);
-  text-align: center;
-}
+/* Vysvětlivka k hvězdičkám. Sedí v mřížce přes oba sloupce, hned nad
+   textovým polem, takže je poslední, co člověk před odesláním přečte.
 
-/* Vysvětlivka k hvězdičkám. Nad formulářem, ne uprostřed něj. */
+   Povinná pole jsou nahoře pohromadě, aby ukazatel postupu odpovídal tomu,
+   co člověk zrovna dělá. Dřív byla rozházená (1, 2, 5, 6) a ukazatel se
+   hýbal, pak stál, bez viditelného důvodu.
+
+   Předěl, který tu stával mezi povinnými a nepovinnými poli, je pryč. Byl to
+   jediný prvek uprostřed mřížky přes celý řádek, a když se jeho
+   grid-column: 1 / -1 neuplatnilo, zabral jednu buňku a odsunul celý zbytek
+   formuláře o jedno pole. */
 .form-legend {
-  margin: 0 0 1.1rem;
+  grid-column: 1 / -1;
+  margin: 0.4rem 0 0;
   font-size: 0.8rem;
   line-height: 1.5;
   color: var(--t3);

@@ -16,7 +16,7 @@ const LABELS = {
     freelancer: 'Freelancer/OSVČ', small_firm: 'Malá firma', other: 'Jiné',
   },
   service: {
-    // /kontakt — tři řemesla
+    // /kontakt - tři řemesla
     web: 'WEB (nový nebo předělaný)', software: 'SOFTWARE na míru', ai: 'AI ASISTENT',
     vice: 'Víc věcí dohromady', nevim: 'Neví, chce poradit',
     // starší stránky s nabídkou chatbotů
@@ -29,7 +29,7 @@ const LABELS = {
     tabulky: 'Všechno běží v tabulkách', jine: 'Jiné',
   },
 };
-const L = (f, v) => (LABELS[f] && LABELS[f][v]) || v || '—';
+const L = (f, v) => (LABELS[f] && LABELS[f][v]) || v || '-';
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method' });
@@ -37,7 +37,7 @@ module.exports = async function handler(req, res) {
   if (b.website) return res.status(200).json({ ok: true });          // honeypot -> silently drop
   if (!b.name || !b.email) return res.status(400).json({ error: 'missing name/email' });
 
-  // Cloudflare Turnstile — if a secret is configured, the token must verify or we reject (no email sent).
+  // Cloudflare Turnstile - if a secret is configured, the token must verify or we reject (no email sent).
   const tsSecret = process.env.TURNSTILE_SECRET_KEY;
   if (tsSecret) {
     const ip = req.headers['cf-connecting-ip'] || (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
@@ -61,21 +61,21 @@ module.exports = async function handler(req, res) {
     `Nová poptávka z alsflow.cz`, '',
     `Jméno:    ${b.name}`,
     `E-mail:   ${b.email}`,
-    `Telefon:  ${b.phone || '—'}`,
-    `Město:    ${b.city || '—'}`,
+    `Telefon:  ${b.phone || '-'}`,
+    `Město:    ${b.city || '-'}`,
     `Začít:    ${L('urgency', b.urgency)}`,
-    `Obor:     ${L('biz', b.biz)}   (tým: ${b.size || '—'})`,
+    `Obor:     ${L('biz', b.biz)}   (tým: ${b.size || '-'})`,
     `Služba:   ${L('service', b.service)}`,
     `Problém:  ${L('pain', b.pain)}`,
     `Kdy volat:${b.pref_time || 'kdykoliv'}`, '',
-    `Zpráva:   ${b.msg || '—'}`,
+    `Zpráva:   ${b.msg || '-'}`,
   ].join('\n');
 
   try {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-      body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka — ${b.name}`, text }),
+      body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka: ${b.name}`, text }),
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
     return res.status(200).json({ ok: true });

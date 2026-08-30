@@ -1,13 +1,13 @@
 /* =====================================================================
-   ALSflow — chování vrstvy „flash"
+   ALSflow - chování vrstvy „flash"
 
    Doplněk k site-pages.js. Nic z toho není potřeba k tomu, aby se
-   stránka dala přečíst nebo proklikat — bez skriptu zůstane černá
+   stránka dala přečíst nebo proklikat - bez skriptu zůstane černá
    stránka s přechody a funkčním obsahem.
 
    Obsah:
      1. vrstvy pozadí (koule, zrno, dosvit u kurzoru, ukazatel rolování)
-     2. částicová síť v hlavičce — přenesená z původního webu o chatbotech
+     2. částicová síť v hlavičce - přenesená z původního webu o chatbotech
      3. dosvit u kurzoru
      4. ukazatel odrolování
      5. náklon karet a odlesk podle kurzoru
@@ -25,7 +25,7 @@
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var coarse = window.matchMedia("(pointer: coarse)").matches;
 
-  /* Malá pomůcka — jeden rAF na sérii událostí, ne jeden na každou. */
+  /* Malá pomůcka - jeden rAF na sérii událostí, ne jeden na každou. */
   function throttled(fn) {
     var queued = false;
     return function () {
@@ -38,7 +38,7 @@
   /* ==================================================================
      1. Vrstvy pozadí
 
-     Vkládají se skriptem, ne značkou na každé stránce — je to čistá
+     Vkládají se skriptem, ne značkou na každé stránce - je to čistá
      dekorace a osm prázdných divů v každém souboru by byl jen šum.
      ================================================================== */
   (function () {
@@ -125,7 +125,7 @@
         ctx.fill();
       }
 
-      /* Spojnice se kreslí v modré, ne v bílé jako v předloze — na
+      /* Spojnice se kreslí v modré, ne v bílé jako v předloze - na
          téhle stránce je modrá jediný akcent a bílá síť by soupeřila
          s textem hlavičky. */
       for (i = 0; i < pts.length; i++) {
@@ -163,7 +163,7 @@
        stejně sotva vidět a stál dvě věci na horké cestě: čtení rozměrů prvku
        při každém pohybu kurzoru (vynucený přepočet rozvržení) a výpočet
        vzdálenosti pro každý bod v každém snímku. Na kurzor reaguje jenom
-       hlavní 3D oblouk v arc3d.js — ten je vidět a stojí to za to. */
+       hlavní 3D oblouk v arc3d.js - ten je vidět a stojí to za to. */
 
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (es) {
@@ -196,7 +196,7 @@
   /* ==================================================================
      4. Ukazatel odrolování
 
-     Šířka jde přes scaleX v CSS, ne přes width — měnit šířku znamená
+     Šířka jde přes scaleX v CSS, ne přes width - měnit šířku znamená
      přepočítat rozvržení při každém posunu kolečka.
      ================================================================== */
   (function () {
@@ -227,7 +227,7 @@
     if (!cards.length) return;
 
     cards.forEach(function (card) {
-      /* Odlesk potřebuje vlastní prvek — ::before i ::after už jsou
+      /* Odlesk potřebuje vlastní prvek - ::before i ::after už jsou
          na kartě zabrané dosvitem a barevným obrysem. */
       if (card.classList.contains("panel-sheen") && !card.querySelector(":scope > .sheen")) {
         var sheen = document.createElement("span");
@@ -276,7 +276,7 @@
   /* ==================================================================
      6. Odpočet čísel
 
-     Odpočet běží přes rAF, ne přes setInterval — jinak se na pomalém
+     Odpočet běží přes rAF, ne přes setInterval - jinak se na pomalém
      zařízení rozchází s obrazem. Číslo se formátuje česky (mezera
      mezi tisíci) a text se nastaví i na konci, aby vždycky seděl.
      ================================================================== */
@@ -304,7 +304,7 @@
         function frame(t) {
           if (t0 === null) t0 = t;
           var k = Math.min(1, (t - t0) / dur);
-          /* zpomalení na konci — číslo dojede, ne dosekne */
+          /* zpomalení na konci - číslo dojede, ne dosekne */
           var e2 = 1 - Math.pow(1 - k, 3);
           el.textContent = fmt(Math.round(target * e2));
           if (k < 1) requestAnimationFrame(frame);
@@ -374,7 +374,7 @@
      8. Paralaxa hlavičky
 
      Text hlavičky se při rolování posune o kus pomaleji než stránka
-     a slábne. Scéna za ním zůstává — jinak by se hlavička rozpadla
+     a slábne. Scéna za ním zůstává - jinak by se hlavička rozpadla
      na dvě rychlosti a bylo by to znát.
      ================================================================== */
   (function () {
@@ -397,7 +397,7 @@
   /* ==================================================================
      9. Podtržení pod barevným slovem
 
-     Rozjede se, až je nadpis v obraze — jinak by doběhlo dřív, než na
+     Rozjede se, až je nadpis v obraze - jinak by doběhlo dřív, než na
      něj někdo dojede.
      ================================================================== */
   (function () {

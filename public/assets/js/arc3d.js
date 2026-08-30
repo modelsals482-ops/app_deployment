@@ -1,5 +1,5 @@
 /* =====================================================================
-   Predictive Arc — prostorová scéna přes celou hlavičku
+   Predictive Arc - prostorová scéna přes celou hlavičku
 
    Syrové WebGL, bez knihovny. Prstence (výseče anuloidu) se rozbíhají
    ze společné osy, každý má vlastní barvu z modro-fialovo-tyrkysového
@@ -10,7 +10,7 @@
    vnitřní dosvit. Bylo to na tmavé ploše moc potichu.
 
    Aditivní míchání znamená, že se scéna nikdy nekreslí tmavší než
-   pozadí — proto je pod textem čitelná i bez masky.
+   pozadí - proto je pod textem čitelná i bez masky.
 
    Když prohlížeč WebGL nedá, soubor tiše skončí a zůstane plošná
    varianta (predictive-arc.js).
@@ -64,7 +64,7 @@
   function normalMat(m) { return new Float32Array([m[0],m[1],m[2], m[4],m[5],m[6], m[8],m[9],m[10]]); }
 
   /* ==================================================================
-     Geometrie — výseč anuloidu
+     Geometrie - výseč anuloidu
      ================================================================== */
   function torusArc(R, r, sweep, segU, segV) {
     var pos = [], nrm = [], uv = [], idx = [];
@@ -116,7 +116,7 @@
      Přibyly dvě věci, kvůli kterým je pohyb vidět:
 
      uHead  Po oblouku objíždí světelný impuls s doznívající stopou.
-            Samotné otáčení souměrného prstence oko nepozná — nemá se
+            Samotné otáčení souměrného prstence oko nepozná - nemá se
             čeho chytit. Impuls je ten bod, který se dá sledovat.
      uReveal  Při načtení se prstenec nakreslí od jednoho konce ke
             druhému. Stránka tím začne pohybem, ne hotovým obrázkem. */
@@ -142,11 +142,11 @@
     "  vec3 col = base * (0.16 + diff * 0.55 + rim * 0.85)",
     "           + vec3(1.0) * spec * 0.6;",
     /* Vzdálenost od hlavy impulsu, po nejkratší cestě přes konec
-       oblouku — jinak by impuls u vUv.x = 1 skokem zmizel. */
+       oblouku - jinak by impuls u vUv.x = 1 skokem zmizel. */
     "  float d = vUv.x - uHead;",
     "  d -= floor(d + 0.5);",
     /* Míchá se aditivně přes šest prstenců, takže v překryvech se
-       jasy sčítají — impuls je proto schválně úzký a spíš bledě modrý
+       jasy sčítají - impuls je proto schválně úzký a spíš bledě modrý
        než bílý. Silnější verze překryvy vybílila a barva zmizela. */
     "  float head = exp(-d * d * 850.0);",
     "  float tail = exp(-d * d * 90.0) * step(d, 0.0) * 0.30;",
@@ -196,7 +196,7 @@
     U[n] = gl.getUniformLocation(prog, n);
   });
 
-  /* Aditivní míchání — překryvy se rozsvítí, nic se nezatmí. */
+  /* Aditivní míchání - překryvy se rozsvítí, nic se nezatmí. */
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
   gl.disable(gl.DEPTH_TEST);
@@ -205,7 +205,7 @@
   /* Prstence: měřítko, náklon, rychlost otáčení, rychlost impulsu,
      dvojice barev, jas.
 
-     Otáčení bylo dřív 0,05 až 0,21 rad/s — jedna otáčka za 30 sekund
+     Otáčení bylo dřív 0,05 až 0,21 rad/s - jedna otáčka za 30 sekund
      až dvě minuty. Měřitelně se to hýbalo, ale nikdo si toho nevšiml.
      Teď je to zhruba trojnásobek, tedy otáčka za 10 až 20 sekund, což
      už je pohyb, kterého si oko všimne, a pořád ne kolotoč.
@@ -249,7 +249,7 @@
     ptr.y += (ptr.ty - ptr.y) * 0.05;
 
     /* Vlastní pomalý obchoz kamery. Bez něj se scéna hýbe jen tomu,
-       kdo drží myš nad stránkou — na dotyku a při prvním pohledu
+       kdo drží myš nad stránkou - na dotyku a při prvním pohledu
        stála. Přičítá se k ukazateli, takže myš pořád vede. */
     var camX = ptr.x + Math.sin(time * 0.17) * 0.42;
     var camY = ptr.y + Math.sin(time * 0.11 + 1.3) * 0.24;
@@ -269,7 +269,7 @@
       var m = multiply(rotZ(time * r.spin + i * 1.31), rotX(0.5 + r.tilt));
       m = multiply(rotY(time * r.spin * 0.55 + i * 0.8), m);
 
-      /* Poloměr lehce pulzuje — prstence se tím rozjíždějí a zase
+      /* Poloměr lehce pulzuje - prstence se tím rozjíždějí a zase
          stahují k sobě, takže se sestava nikdy nezastaví v jednom tvaru. */
       var puff = r.s * (1 + 0.045 * Math.sin(time * 0.43 + i * 1.7));
       for (var k = 0; k < 12; k++) m[k] *= puff;
@@ -294,7 +294,7 @@
   var rafId = null, running = false, t0 = 0, wait0 = 0;
 
   /* Hodiny scény se pouštějí, až zmizí úvodní loader. Nakreslení
-     prstenců trvá zhruba sekundu a půl a loader je přes celou plochu —
+     prstenců trvá zhruba sekundu a půl a loader je přes celou plochu -
      bez tohohle by celý nájezd proběhl za ním a nikdo by ho neviděl.
      Když loader vůbec nebyl (druhá návštěva v relaci), třída chybí a
      scéna se rozjede rovnou. Pojistka po 3,5 s pro případ, že by
@@ -328,10 +328,10 @@
   });
 
   /* Oblouk na myš nereaguje. Naklánění za kurzorem znamenalo přepočítat
-     scénu při každém pohybu — na slabším stroji to bylo znát a samotný
+     scénu při každém pohybu - na slabším stroji to bylo znát a samotný
      efekt si skoro nikdo nevšiml. Scéna se hýbe sama, to stačí. */
 
-  /* Kontext se může ztratit (uspání, přepnutí GPU) — bez tohohle by
+  /* Kontext se může ztratit (uspání, přepnutí GPU) - bez tohohle by
      plátno zůstalo prázdné až do reloadu. */
   canvas.addEventListener("webglcontextlost", function (e) { e.preventDefault(); stop(); });
   canvas.addEventListener("webglcontextrestored", function () { resize(); start(); });

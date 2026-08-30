@@ -1,15 +1,15 @@
 /* =====================================================================
-   ALSflow — chování poptávkového formuláře
+   ALSflow - chování poptávkového formuláře
 
    Formulář funguje i bez tohohle souboru: je to obyčejný <form>
    s required atributy, který prohlížeč zkontroluje sám a odešle na
-   /api/contact. Skript přidává jen to, co dělá vyplňování snesitelným —
+   /api/contact. Skript přidává jen to, co dělá vyplňování snesitelným -
    fajfky, ukazatel postupu, hlášky u konkrétního pole a odeslání bez
    překreslení stránky.
 
    Co skript nedělá: nekontroluje nic, na čem by závisela bezpečnost.
    Honeypot, Turnstile i kontrola povinných údajů běží znovu na serveru
-   (api/contact.js) — tady jde čistě o to, co vidí člověk.
+   (api/contact.js) - tady jde čistě o to, co vidí člověk.
    ===================================================================== */
 (function () {
   "use strict";
@@ -27,7 +27,7 @@
      Co je vyplněné
 
      „Hotové" pole je takové, které něco obsahuje a prohlížeč ho bere.
-     U nepovinných polí se fajfka ukazuje taky — je to zpětná vazba,
+     U nepovinných polí se fajfka ukazuje taky - je to zpětná vazba,
      ne známkování.
      ================================================================== */
   function control(f) { return f.querySelector("input, select, textarea"); }
@@ -47,7 +47,7 @@
   /* ==================================================================
      Ukazatel postupu
 
-     Počítá jen povinná pole plus souhlas — jinak by lišta nikdy
+     Počítá jen povinná pole plus souhlas - jinak by lišta nikdy
      nedojela na konec a slibovala by víc práce, než je potřeba.
      ================================================================== */
   function required() {
@@ -160,7 +160,7 @@
     e.preventDefault();
     if (errBox) errBox.hidden = true;
 
-    /* Nejdřív ať se vyjádří prohlížeč — zná typy polí líp než my. */
+    /* Nejdřív ať se vyjádří prohlížeč - zná typy polí líp než my. */
     if (!form.checkValidity()) {
       fields.forEach(function (f) {
         var el = control(f);
@@ -211,7 +211,7 @@
           done.classList.add("on");
           done.setAttribute("tabindex", "-1");
           done.focus({ preventScroll: true });
-          /* Potvrzení musí být vidět celé — po odeslání je člověk
+          /* Potvrzení musí být vidět celé - po odeslání je člověk
              většinou dole u tlačítka. */
           if (window.__lenis) window.__lenis.scrollTo(done, { offset: -110 });
           else done.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
@@ -221,7 +221,7 @@
         busy(false);
         shake(btn);
         fail("Odeslání se nepovedlo. Zkuste to prosím znovu, nebo napište přímo na info@alsflow.cz.");
-        /* Turnstile token je jednorázový — bez obnovení by druhý pokus
+        /* Turnstile token je jednorázový - bez obnovení by druhý pokus
            spadl na serveru, i kdyby už bylo všechno v pořádku. */
         if (window.turnstile) window.turnstile.reset();
       });

@@ -1,10 +1,10 @@
 /* =====================================================================
-   ALSflow — designový systém samostatných stránek
+   ALSflow - designový systém samostatných stránek
    (/, /tvorba-webu, /vyvoj-softwaru)
 
    Směr podle předlohy resend.com: černá plocha, vlasové linky místo
    rámečků, tlumená tlačítka, nadpis s přechodem z bílé do šedé, hodně
-   prázdna. Barvy a písmo zůstávají ALSflow — modrá jako jediný akcent,
+   prázdna. Barvy a písmo zůstávají ALSflow - modrá jako jediný akcent,
    Plus Jakarta Sans.
 
    Proti dřívější verzi ubylo: barevné koule na pozadí, svítící modrá
@@ -26,7 +26,7 @@
   --line: rgb(255 255 255 / 9%);
   --line-2: rgb(255 255 255 / 16%);
 
-  /* text — všechny prověřené na černé, hodnoty u tokenů */
+  /* text - všechny prověřené na černé, hodnoty u tokenů */
   --t1: #f4f4f6;            /* 18,9 : 1 */
   --t2: #a1a1aa;            /* 8,4 : 1 */
   --t3: #7e7e8a;            /* 5,2 : 1 */
@@ -36,14 +36,14 @@
   --blue-dim: rgb(91 157 255 / 12%);
   --violet: #a78bfa;        /* 8,3 : 1 */
   --cyan: #38dbf5;          /* 11,4 : 1 */
-  /* Zelená má na webu jednu úlohu: znamená „ano, tohle platí“ — volná
+  /* Zelená má na webu jednu úlohu: znamená „ano, tohle platí“ - volná
      kapacita, co je v paušálu, hotový krok, odeslaný formulář. Nikdy není
      jen ozdoba, jinak by konkurovala přechodu. 12,1 : 1 na černé. */
   --green: #4ade80;
   --green-dim: rgb(74 222 128 / 14%);
   --amber: #fbbf24;
 
-  /* Přechody. Jeden zdroj pravdy — používají je nadpisy, tlačítka,
+  /* Přechody. Jeden zdroj pravdy - používají je nadpisy, tlačítka,
      obrysy karet i dosvity za sekcemi, takže se barvy nerozjedou. */
   --grad: linear-gradient(110deg, #38dbf5 0%, #5b9dff 42%, #a78bfa 100%);
   --grad-soft: linear-gradient(110deg, rgb(56 219 245 / 16%), rgb(91 157 255 / 16%), rgb(167 139 250 / 16%));
@@ -58,7 +58,7 @@
 }
 
 /* overflow-x na html, ne na body, a `clip` místo `hidden`.
-   `hidden` na body z něj udělá vlastní rolovací kontejner — na iOS se pak
+   `hidden` na body z něj udělá vlastní rolovací kontejner - na iOS se pak
    rolování chová divně nebo se úplně zasekne. `clip` obsah taky ořízne,
    ale žádný kontejner nevytváří. `hidden` zůstává jako záloha pro starší
    prohlížeče, `clip` ho o řádek níž přebije tam, kde je podporovaný. */
@@ -78,7 +78,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* width:100% je kvůli hlavičce — .wrap je tam potomek flexu a bez něj
+/* width:100% je kvůli hlavičce - .wrap je tam potomek flexu a bez něj
    se smrskne na obsah, takže by text neseděl na svislici s logem. */
 .wrap { width: 100%; max-width: var(--page); margin: 0 auto; padding-inline: var(--gutter); }
 
@@ -149,7 +149,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
 }
 
 /* --------------------------------------------------------------------
-   Tlačítka — tlumená, ne svítící
+   Tlačítka - tlumená, ne svítící
    -------------------------------------------------------------------- */
 .btn {
   position: relative;
@@ -188,7 +188,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
 .btn:hover::before { opacity: 1; transform: none; }
 
 /* Text musí při najetí ztmavnout. Bílá na tyrkysové má 1,5 : 1, tmavá
-   na téže ploše 12,1 : 1 — bez tohohle by nápis na tlačítku zmizel. */
+   na téže ploše 12,1 : 1 - bez tohohle by nápis na tlačítku zmizel. */
 .btn:hover {
   color: #05070d;
   border-color: transparent;
@@ -282,7 +282,7 @@ a:hover > .arrow { transform: translateX(3px); }
 .menu .caret { width: 11px; height: 11px; transition: transform 0.22s; }
 .menu > li.open .caret { transform: rotate(180deg); }
 
-/* Rozbalovací panel — otvírá se najetím myší, stejně jako v předloze.
+/* Rozbalovací panel - otvírá se najetím myší, stejně jako v předloze.
    Klávesnice a dotyk ho otevřou kliknutím, o to se stará skript. */
 .drop {
   position: absolute;
@@ -344,7 +344,7 @@ a:hover > .arrow { transform: translateX(3px); }
   border-bottom: 1px solid var(--line);
 }
 /* `.sheet a` je specifičtější než `.btn` a přepsalo mu odsazení na
-   `1.05rem 0` — text pak začínal přesně na rámečku a vypadal uříznutě.
+   `1.05rem 0` - text pak začínal přesně na rámečku a vypadal uříznutě.
    Tlačítku proto rozměry vracíme sem, kde specificitou vyhraje. */
 .sheet .btn {
   display: flex;
@@ -358,7 +358,7 @@ a:hover > .arrow { transform: translateX(3px); }
    Hlavička stránky
    -------------------------------------------------------------------- */
 /* Hlavička úvodní stránky. Scéna běží přes celou plochu za textem,
-   ne v pravém sloupci — v úzkém sloupci byla skoro k nepřehlédnutí. */
+   ne v pravém sloupci - v úzkém sloupci byla skoro k nepřehlédnutí. */
 .hero {
   position: relative;
   display: flex;
@@ -413,7 +413,7 @@ a:hover > .arrow { transform: translateX(3px); }
 }
 .fact b { font-weight: 700; color: var(--t1); }
 
-/* Nevyplněný údaj. Schválně křiklavé — nesmí projít na produkci. */
+/* Nevyplněný údaj. Schválně křiklavé - nesmí projít na produkci. */
 .todo {
   display: inline-block;
   padding: 0.02em 0.45em;
@@ -448,7 +448,7 @@ a:hover > .arrow { transform: translateX(3px); }
 .sec-head.center { margin-inline: auto; text-align: center; }
 
 /* --------------------------------------------------------------------
-   Karty — obsah uvnitř, popisek pod ní (jako v předloze)
+   Karty - obsah uvnitř, popisek pod ní (jako v předloze)
    -------------------------------------------------------------------- */
 .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -463,12 +463,12 @@ a:hover > .arrow { transform: translateX(3px); }
 }
 .panel-pad { padding: 1.75rem; }
 .panel-media { padding: 1.4rem; }
-/* Snímek se ořízne odshora na pevný poměr — jinak by karta s delší
+/* Snímek se ořízne odshora na pevný poměr - jinak by karta s delší
    stránkou byla dvakrát vyšší než ta vedle ní. */
 .panel-media img {
   display: block;
   width: 100%;
-  /* height:auto musí být — atribut height v HTML je pro prohlížeč
+  /* height:auto musí být - atribut height v HTML je pro prohlížeč
      definitivní rozměr a aspect-ratio by se jinak vůbec neuplatnil. */
   height: auto;
   aspect-ratio: 16 / 10;
@@ -479,7 +479,7 @@ a:hover > .arrow { transform: translateX(3px); }
 }
 
 .panel-foot { padding: 1.5rem 0.25rem 0; }
-/* Rozměr ikony nesmí viset na rodiči — jinak se stejná ikona v jiné
+/* Rozměr ikony nesmí viset na rodiči - jinak se stejná ikona v jiné
    kartě roztáhne přes celou šířku. */
 .ico { display: block; flex-shrink: 0; width: 19px; height: 19px; color: var(--t2); }
 .panel-foot .ico { margin-bottom: 0.8rem; }
@@ -560,7 +560,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .list { display: flex; flex-direction: column; gap: 1.05rem; list-style: none; }
 
 /* Odrážka visí mimo text, řádek sám flex není. Dřív byl a každý
-   <strong> uvnitř věty se stal samostatnou položkou flexu — nabral
+   <strong> uvnitř věty se stal samostatnou položkou flexu - nabral
    mezeru z gapu a na úzké obrazovce se z něj stal vlastní sloupec. */
 .list li {
   position: relative;
@@ -586,7 +586,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 /* řádkový výpis s vlasovou linkou */
 .rows { border-top: 1px solid var(--line); }
 /* Číslovaný výpis kroků. Nic z toho není odkaz, takže se při najetí nesmí
-   posouvat ani podtrhávat — pohyb i podtržení slibují, že se dá kliknout,
+   posouvat ani podtrhávat - pohyb i podtržení slibují, že se dá kliknout,
    a člověk pak klikne a nic se nestane. Nahlásili to dva lidé nezávisle.
    Místo toho se rozsvítí svislá linka vlevo a číslo kroku: čtenář vidí,
    kde je, a nic se netváří jako tlačítko. */
@@ -630,7 +630,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .row p { max-width: 60ch; font-size: 0.92rem; line-height: 1.65; color: var(--t2); }
 
 /* --------------------------------------------------------------------
-   Reference — logotypy klientů
+   Reference - logotypy klientů
    -------------------------------------------------------------------- */
 .logos { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; justify-content: center; }
 .logos a { display: flex; align-items: center; min-height: 40px; opacity: 0.5; transition: opacity 0.3s; }
@@ -682,7 +682,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .foot-legal { margin-top: 3rem; padding-top: 1.75rem; font-size: 0.78rem; line-height: 1.7; color: var(--t3); border-top: 1px solid var(--line); }
 
 /* --------------------------------------------------------------------
-   Odhalování při rolování — jemnější než dřív
+   Odhalování při rolování - jemnější než dřív
    -------------------------------------------------------------------- */
 .rev {
   opacity: 0;
@@ -736,7 +736,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    Odhalování po slovech (GSAP)
 
    Nadpis je do doběhnutí skriptu schovaný, aby text neproblikl na
-   svém místě a teprve pak nevyjel. Skript viditelnost vrátí — a když
+   svém místě a teprve pak nevyjel. Skript viditelnost vrátí - a když
    se nenačte, vrátí ji taky, takže nadpis nikdy nezůstane pryč.
    ===================================================================== */
 .reveal-words { visibility: hidden; }
@@ -746,7 +746,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   overflow: hidden;
 
   /* Nadpisy mají line-height 1.06, takže obsahový box je nižší než písmo.
-     Ocásek u „y" nebo háček nad „Č" z něj vyčuhují a maska je ořízne —
+     Ocásek u „y" nebo háček nad „Č" z něj vyčuhují a maska je ořízne -
      0.12em zdola bylo přesně na hranici. Vypodložíme masku na obě strany
      a stejnou hodnotu ubereme na marginu, aby se rozvržení nezměnilo. */
   padding: 0.22em 0 0.24em;
@@ -757,11 +757,11 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 /* Bez will-change: transform. Držel každé slovo natrvalo ve vlastní
    kompoziční vrstvě i dávno po doběhnutí animace, a ve spojení s
    background-clip: text po něm při rolování zpátky zůstával otisk
-   předchozího vykreslení — nadpis pak vypadal jako vytištěný dvakrát. */
+   předchozího vykreslení - nadpis pak vypadal jako vytištěný dvakrát. */
 .word-in { display: inline-block; transform: translateY(110%); }
 
 /* Přechod v nadpisu je na samotném nadpisu (background-clip: text).
-   Jakmile se text rozseká na slova, jsou to nové prvky — zdědí
+   Jakmile se text rozseká na slova, jsou to nové prvky - zdědí
    průhlednou výplň, ale žádné pozadí, takže by zmizela. Přechod proto
    musí dostat každé slovo zvlášť. Spád je svislý a slova leží na
    společné účaří, takže výsledek vypadá stejně jako přes celý nadpis. */
@@ -772,7 +772,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   -webkit-text-fill-color: transparent;
 }
 
-/* Barevné slovo si drží vlastní přechod — musí přebít pravidlo výše. */
+/* Barevné slovo si drží vlastní přechod - musí přebít pravidlo výše. */
 .fade-head .word-in .grad {
   background: var(--grad);
   -webkit-background-clip: text;
@@ -786,20 +786,20 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
 
 /* =====================================================================
-   Tlačítka — každá sekce má jiné chování
+   Tlačítka - každá sekce má jiné chování
 
    Ukázka toho, co se dá postavit. Základ (.btn) je pořád stejný,
    varianta jen mění, co se stane při najetí a kliknutí.
    ===================================================================== */
 
-/* 1. Rozliv — barva se rozlije zleva. Výchozí chování .btn výše. */
+/* 1. Rozliv - barva se rozlije zleva. Výchozí chování .btn výše. */
 
-/* 2. Magnet — tlačítko se lehce nakloní ke kurzoru.
+/* 2. Magnet - tlačítko se lehce nakloní ke kurzoru.
       Posun počítá skript do --tx / --ty. */
 .btn-magnet { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s, border-color 0.24s, box-shadow 0.28s; }
 .btn-magnet:hover { transform: translate(var(--tx, 0), var(--ty, 0)); }
 
-/* 3. Výměna nápisu — původní vyjede nahoru, kopie přijede zespodu.
+/* 3. Výměna nápisu - původní vyjede nahoru, kopie přijede zespodu.
       Kopie musí čekat odsunutá o výšku řádku (top:100%), ne o procenta
       vlastní výšky přes transform: tlačítko je vyšší než řádek textu,
       takže se druhý nápis odsunul jen o kousek a koukal zpod toho
@@ -813,7 +813,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .btn-swap .lbl span:last-child { position: absolute; top: 100%; left: 0; }
 .btn-swap:hover .lbl span { transform: translateY(-100%); }
 
-/* 4. Obtažení — linka objede obvod tlačítka. */
+/* 4. Obtažení - linka objede obvod tlačítka. */
 .btn-trace { border-color: transparent; }
 .btn-trace .edge {
   position: absolute;
@@ -842,7 +842,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
 .btn-fill:hover::before { transform: none; }
 
-/* 6. Záblesk — světlý pruh přejede přes tlačítko. */
+/* 6. Záblesk - světlý pruh přejede přes tlačítko. */
 .btn-shine::after {
   position: absolute;
   top: 0;
@@ -866,7 +866,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    Scény uvnitř sekcí
 
    Plátno leží pod obsahem a nikdy nechytá myš. Ztlumené je schválně
-   dost — je to podklad, ne obrázek, a text nad ním musí zůstat čitelný.
+   dost - je to podklad, ne obrázek, a text nad ním musí zůstat čitelný.
    ===================================================================== */
 .scene-host { position: relative; overflow: hidden; }
 .scene-host > .wrap { position: relative; z-index: 1; }
@@ -884,7 +884,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
 .scene-soft { opacity: 0.32; }
 
-/* Varianta u pravého okraje — text pak sedí vlevo bez rušení. */
+/* Varianta u pravého okraje - text pak sedí vlevo bez rušení. */
 .scene-right {
   left: auto;
   width: 62%;
@@ -904,9 +904,9 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   .row .num { transition: none; }
 }
 
-/* Rozcestník v hlavičce — vede od potíže k řešení, ne seznam stránek znovu.
+/* Rozcestník v hlavičce - vede od potíže k řešení, ne seznam stránek znovu.
    Jeden sloupec: každá položka je věta, kterou má člověk přečíst, ne dlaždice.
-   (.drop je mřížka 1fr 1fr — tady se musí přebít, jinak se text rozseká.) */
+   (.drop je mřížka 1fr 1fr - tady se musí přebít, jinak se text rozseká.) */
 .drop--pick {
   display: block;
   width: min(24rem, 92vw);
@@ -958,7 +958,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    Tři pilíře na úvodní stránce
 
    Každý dostane vlastní barvu, aby se od sebe daly rozeznat na první
-   pohled a aby stálo za to projít je všechny — ne tři stejné šedé
+   pohled a aby stálo za to projít je všechny - ne tři stejné šedé
    obdélníky vedle sebe. Barvy jsou ty, které web už používá: modrá,
    fialová a zelená.
 
@@ -981,7 +981,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar .box svg { stroke: var(--tone); }
 .pillar .arrow { color: var(--tone); }
 
-/* Proužek nahoře — jediné plné použití barvy, aby karta nekřičela. */
+/* Proužek nahoře - jediné plné použití barvy, aby karta nekřičela. */
 .pillar::before {
   position: absolute;
   top: 0;
@@ -997,7 +997,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar:hover::before,
 .pillar:focus-within::before { right: 0.6rem; left: 0.6rem; opacity: 1; }
 
-/* Karta má vypadat, že se nad tou barvou vznáší — proto barevný dosvit
+/* Karta má vypadat, že se nad tou barvou vznáší - proto barevný dosvit
    pod ní, ne jen obrys kolem. */
 .pillar { box-shadow: 0 14px 40px color-mix(in srgb, var(--tone) 10%, transparent); }
 .pillar:hover,

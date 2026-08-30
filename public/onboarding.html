@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Onboarding — nastavení vašeho AI asistenta | ALSflow</title>
+  <title>Onboarding: nastavení vašeho AI asistenta | ALSflow</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -194,10 +194,10 @@
   <div class="page-wrap">
     <div class="page-label">Vítejte v ALSflow</div>
     <h1 class="page-title">Pojďme nastavit <span class="grad">vašeho AI asistenta</span></h1>
-    <p class="page-sub">Těší nás, že do toho jdete s námi! 🎉 Tenhle formulář nám pomůže nastavit vašeho asistenta přesně na míru — ať mluví jako vy a zná vaše podnikání. Zabere cca 10 minut a nemusíte umět nic technického.</p>
+    <p class="page-sub">Těší nás, že do toho jdete s námi! 🎉 Tenhle formulář nám pomůže nastavit vašeho asistenta přesně na míru, ať mluví jako vy a zná vaše podnikání. Zabere cca 10 minut a nemusíte umět nic technického.</p>
     <div class="intro-card">
       <span class="intro-emoji">👋</span>
-      <p>Nebojte se — <strong>nemusíte být technici</strong>. Vyplňte, co víte, a zbytek doladíme společně. Všechno vám nastavím a otestuji osobně a jsem tu, kdykoliv budete něco potřebovat. Čím víc nám o sobě řeknete, tím lépe bude váš asistent odpovídat vašim zákazníkům.<span class="sig">— Jakub, zakladatel ALSflow</span></p>
+      <p>Nebojte se, <strong>nemusíte být technici</strong>. Vyplňte, co víte, a zbytek doladíme společně. Všechno vám nastavím a otestuji osobně a jsem tu, kdykoliv budete něco potřebovat. Čím víc nám o sobě řeknete, tím lépe bude váš asistent odpovídat vašim zákazníkům.<span class="sig">Jakub, zakladatel ALSflow</span></p>
     </div>
 
     <div class="form-card" id="formCard">
@@ -259,7 +259,7 @@
           <div class="form-row two-col">
             <div class="form-group">
               <label class="form-label" for="f-jmeno-asistenta">Jméno asistenta <span style="color:var(--t3);font-weight:500">(volitelné)</span></label>
-              <input class="form-input" id="f-jmeno-asistenta" type="text" placeholder="např. Lucie — necháme na vás" />
+              <input class="form-input" id="f-jmeno-asistenta" type="text" placeholder="např. Lucie, necháme na vás" />
             </div>
             <div class="form-group">
               <label class="form-label" for="f-ton">Tón komunikace<span class="req">*</span></label>
@@ -299,7 +299,7 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="f-sluzby">Hlavní služby a ceny<span class="req">*</span></label>
-              <textarea class="form-textarea" id="f-sluzby" placeholder="Vypište hlavní služby a jejich ceny — bot na to bude odpovídat zákazníkům." required></textarea>
+              <textarea class="form-textarea" id="f-sluzby" placeholder="Vypište hlavní služby a jejich ceny, bot na to bude odpovídat zákazníkům." required></textarea>
             </div>
           </div>
           <div class="form-row">
@@ -324,7 +324,7 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="f-email-schranka">E-mailová schránka <span style="color:var(--t3);font-weight:500">(pro e-mailový bot)</span></label>
-              <input class="form-input" id="f-email-schranka" type="text" placeholder="např. Gmail — info@vasefirma.cz" />
+              <input class="form-input" id="f-email-schranka" type="text" placeholder="např. Gmail: info@vasefirma.cz" />
             </div>
           </div>
           <div class="form-row two-col">
@@ -354,7 +354,7 @@
             <input type="text" id="f-website" tabindex="-1" autocomplete="off" />
           </div>
 
-          <!-- Cloudflare Turnstile — anti-spam; token verified server-side in /api/onboarding -->
+          <!-- Cloudflare Turnstile - anti-spam; token verified server-side in /api/onboarding -->
           <div class="cf-turnstile" data-sitekey="0x4AAAAAAD2dJqPN10PUmbD9" data-theme="auto" style="margin:0.5rem 0 1rem;display:flex;justify-content:center"></div>
           <button type="submit" class="submit-btn" id="submitBtn">Odeslat formulář →</button>
           <p id="formError" style="display:none"></p>
@@ -454,12 +454,12 @@
       .catch(function() {
         btn.disabled = false;
         btn.textContent = 'Odeslat formulář →';
-        if (window.turnstile) window.turnstile.reset(); // token is single-use — refresh for retry
+        if (window.turnstile) window.turnstile.reset(); // token is single-use - refresh for retry
         errEl.textContent = 'Odeslání se nepovedlo. Zkuste to prosím znovu, nebo použijte tlačítko níže a pošlete nám formulář e-mailem.';
         errEl.style.display = 'block';
         var fb = document.getElementById('fallbackLink');
         fb.classList.add('urgent');
-        fb.textContent = 'Odeslání selhalo — pošlete formulář e-mailem →';
+        fb.textContent = 'Odeslání selhalo, pošlete formulář e-mailem →';
         fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });

@@ -1,16 +1,16 @@
 /* =====================================================================
-   ALSflow — interaktivní ukázky na stránce AI asistentů
+   ALSflow - interaktivní ukázky na stránce AI asistentů
 
    Tři ukázky, na kterých si návštěvník může sáhnout na to, co kupuje:
-     1. schránka — vybere e-mail, nechá si vygenerovat odpověď
-     2. recepce — napíše dotaz, dostane odpověď z připravené sady
-     3. zpětná vazba — projde hodnocení a odpovědi na ně
+     1. schránka - vybere e-mail, nechá si vygenerovat odpověď
+     2. recepce - napíše dotaz, dostane odpověď z připravené sady
+     3. zpětná vazba - projde hodnocení a odpovědi na ně
 
    Odpovědi jsou natvrdo v tomhle souboru. Je to ukázka, ne živý bot:
    živý bot sedí v chatu vpravo dole (chat-widget.js) a ten volá server.
 
    Obsluha je delegovaná přes data- atributy, ne přes onclick ve
-   značce — značka pak zůstane čitelná a přibývání ukázek neznamená
+   značce - značka pak zůstane čitelná a přibývání ukázek neznamená
    sahat do HTML i do skriptu zároveň.
    ===================================================================== */
 (function () {
@@ -21,7 +21,7 @@
   /* ==================================================================
      1. Střídání oboru v nadřádku
 
-     Slovo se prostřídá, ne nadpis — nadpis rozsekává reveal.js na
+     Slovo se prostřídá, ne nadpis - nadpis rozsekává reveal.js na
      slova a měnit mu obsah pod rukama by ho rozbilo.
      ================================================================== */
   (function () {
@@ -63,12 +63,12 @@
   }
 
   /* ==================================================================
-     3. Schránka — vygenerovaná odpověď
+     3. Schránka - vygenerovaná odpověď
      ================================================================== */
   var REPLIES = [
-    "Dobr&yacute; den, Kate&rcaron;ino,<br><br>d&ecaron;kuji za z&aacute;jem. Ve st&rcaron;edu od 10:00 a ve &ccaron;tvrtek od 14:00 m&aacute;m volno &mdash; hod&iacute; se v&aacute;m n&ecaron;kter&yacute; z term&iacute;n&uring;? Potvr&dcaron;te pros&iacute;m a po&scaron;lu v&aacute;m potvrzen&iacute;.<br><br>S pozdravem",
+    "Dobr&yacute; den, Kate&rcaron;ino,<br><br>d&ecaron;kuji za z&aacute;jem. Ve st&rcaron;edu od 10:00 a ve &ccaron;tvrtek od 14:00 m&aacute;m volno: hod&iacute; se v&aacute;m n&ecaron;kter&yacute; z term&iacute;n&uring;? Potvr&dcaron;te pros&iacute;m a po&scaron;lu v&aacute;m potvrzen&iacute;.<br><br>S pozdravem",
     "Dobr&yacute; den, Marku,<br><br>prvn&iacute; n&aacute;v&scaron;t&ecaron;va stoj&iacute; 850 K&ccaron; a trv&aacute; p&rcaron;ibli&zcaron;n&ecaron; 45 minut. Zahrnuje vstupn&iacute; konzultaci a o&scaron;et&rcaron;en&iacute;. Chcete rovnou napl&aacute;novat term&iacute;n?<br><br>S pozdravem",
-    "Dobr&yacute; den, Lenko,<br><br>samoz&rcaron;ejm&ecaron;, term&iacute;n p&rcaron;esuneme. V p&rcaron;&iacute;&scaron;t&iacute;m t&yacute;dnu m&aacute;m volno v pond&ecaron;l&iacute; v 10:00 nebo v &uacute;ter&yacute; v 15:00 &mdash; co v&aacute;m vyhovuje v&iacute;c?<br><br>S pozdravem",
+    "Dobr&yacute; den, Lenko,<br><br>samoz&rcaron;ejm&ecaron;, term&iacute;n p&rcaron;esuneme. V p&rcaron;&iacute;&scaron;t&iacute;m t&yacute;dnu m&aacute;m volno v pond&ecaron;l&iacute; v 10:00 nebo v &uacute;ter&yacute; v 15:00. Co v&aacute;m vyhovuje v&iacute;c?<br><br>S pozdravem",
   ];
 
   function pickMail(row) {
@@ -87,7 +87,7 @@
     if (sent) sent.hidden = true;
     area.classList.remove("on");
 
-    /* Krátká prodleva, ať je vidět, že odpověď někdo psal — bez ní se
+    /* Krátká prodleva, ať je vidět, že odpověď někdo psal - bez ní se
        jen skokem vymění obsah a nevypadá to jako práce stroje. */
     setTimeout(function () {
       text.innerHTML = REPLIES[idx] || REPLIES[0];
@@ -96,7 +96,7 @@
   }
 
   /* ==================================================================
-     4. Recepce — dotaz a odpověď
+     4. Recepce - dotaz a odpověď
      ================================================================== */
   var ANSWERS = {
     "Kdy m&aacute;te volno tento t&yacute;den?":
@@ -106,12 +106,12 @@
     "Kolik stoj&iacute; o&scaron;et&rcaron;en&iacute;?":
       "Cen&iacute;k:<br>&bull; Z&aacute;kladn&iacute; o&scaron;et&rcaron;en&iacute;: <b>850 K&ccaron;</b>, 45 minut<br>&bull; Prodlou&zcaron;en&eacute; o&scaron;et&rcaron;en&iacute;: <b>1 200 K&ccaron;</b>, 75 minut<br>&bull; Prvn&iacute; n&aacute;v&scaron;t&ecaron;va se vstupn&iacute; konzultac&iacute;: <b>950 K&ccaron;</b>",
     "Chci zru&scaron;it term&iacute;n ve &ccaron;tvrtek":
-      "Zru&scaron;eno &mdash; v&aacute;&scaron; <b>&ccaron;tvrte&ccaron;n&iacute; term&iacute;n</b> je pry&ccaron;. Chcete rovnou naj&iacute;t n&aacute;hradn&iacute;?",
+      "Zru&scaron;eno, v&aacute;&scaron; <b>&ccaron;tvrte&ccaron;n&iacute; term&iacute;n</b> je pry&ccaron;. Chcete rovnou naj&iacute;t n&aacute;hradn&iacute;?",
     "Kde v&aacute;s najdu?":
       "Najdete n&aacute;s na adrese <b>M&aacute;nesova 12, Praha 2</b>. MHD: metro N&aacute;m&ecaron;st&iacute; M&iacute;ru, v&yacute;stup A. Parkov&aacute;n&iacute; na ulici.",
   };
 
-  var MISS = "Na tohle m&aacute; uk&aacute;zka jen p&rcaron;ipraven&eacute; odpov&ecaron;di. Skute&ccaron;n&yacute; asistent odpov&iacute; na cokoli &mdash; zkuste chat vpravo dole.";
+  var MISS = "Na tohle m&aacute; uk&aacute;zka jen p&rcaron;ipraven&eacute; odpov&ecaron;di. Skute&ccaron;n&yacute; asistent odpov&iacute; na cokoli. Zkuste chat vpravo dole.";
 
   function ask(raw) {
     var wrap = document.getElementById("askWrap");
@@ -141,7 +141,7 @@
     }, reduced ? 0 : 820);
   }
 
-  /* Text z pole je čistý Unicode, klíče v tabulce jsou s entitami —
+  /* Text z pole je čistý Unicode, klíče v tabulce jsou s entitami -
      tohle je srovná na společný tvar. */
   var decoder = document.createElement("textarea");
   function htmlKey(plain) {

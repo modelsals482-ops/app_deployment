@@ -1,5 +1,5 @@
 /* =====================================================================
-   Predictive Arc — pozadí úvodní stránky
+   Predictive Arc - pozadí úvodní stránky
 
    Volná adaptace scény Predictive Arc z ThreeUI (varianta amber-halftone).
    Předloha běží na Three.js r128 a je laděná do jantarové; tady je to
@@ -10,7 +10,7 @@
 
    Co scéna dělá:
      Ze společného ohniska se rozbíhají soustředné oblouky. Každý roste,
-     u vnějšího okraje slábne a rozpadá se do rastru teček — halftone.
+     u vnějšího okraje slábne a rozpadá se do rastru teček - halftone.
      Před nimi běží jeden světlý „predikční" oblouk s tečkovanou stopou,
      která ukazuje, kudy poletí. Ohnisko se pomalu stěhuje za myší.
 
@@ -37,9 +37,9 @@
   var SPREAD = 1.55;               /* jak široký výsek oblouky zabírají, v radiánech */
   var DOT_STEP = coarse ? 12 : 8;  /* rozteč teček po oblouku v pixelech */
 
-  var COL_CORE = [96, 165, 250];   /* #60a5fa — základní modrá */
-  var COL_LEAD = [147, 197, 253];  /* #93c5fd — predikční oblouk */
-  var COL_FAR = [168, 85, 247];    /* #a855f7 — fialová na vzdálených obloucích */
+  var COL_CORE = [96, 165, 250];   /* #60a5fa - základní modrá */
+  var COL_LEAD = [147, 197, 253];  /* #93c5fd - predikční oblouk */
+  var COL_FAR = [168, 85, 247];    /* #a855f7 - fialová na vzdálených obloucích */
 
   /* ------------------------------------------------------------------
      Rozměry
@@ -216,7 +216,7 @@
 
   if (!coarse && !reduced) {
     window.addEventListener("mousemove", function (e) {
-      /* Ohnisko se za myší jen přitahuje, nesedí přesně na ní — jinak by
+      /* Ohnisko se za myší jen přitahuje, nesedí přesně na ní - jinak by
          scéna poskakovala. */
       target.x = W * -0.05 + (e.clientX - W / 2) * 0.12;
       target.y = H * 1.18 + (e.clientY - H / 2) * 0.05;

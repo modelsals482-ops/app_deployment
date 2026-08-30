@@ -1,11 +1,11 @@
 /* =====================================================================
-   ALSflow — stránka AI asistentů
+   ALSflow - stránka AI asistentů
 
    Navazuje na site-pages.css + flash.css. Odsud jsou jenom součástky,
    které jinde na webu nejsou: interaktivní ukázky, ceníkové karty
    a chat vpravo dole.
 
-   Stará verze téhle stránky měla vlastní designový systém — 55 kB
+   Stará verze téhle stránky měla vlastní designový systém - 55 kB
    stylů v hlavičce, vlastní barvy, vlastní tlačítka, vlastní patičku.
    Vypadala jako web jiné firmy. Tenhle soubor je z ní to, co za
    přenesení stálo, přepsané do tokenů zbytku webu.
@@ -106,7 +106,7 @@
   white-space: nowrap;
 }
 
-/* Tlačítko u řádku nesmí uskočit — proto flex-shrink: 0. */
+/* Tlačítko u řádku nesmí uskočit - proto flex-shrink: 0. */
 .mail-go {
   flex-shrink: 0;
   padding: 0.42rem 0.8rem;
@@ -316,7 +316,7 @@
 
 /* Zvýrazněná karta.
 
-   Nepoužívá .panel-ring z flash.css — ten si kreslí kuželový obrys
+   Nepoužívá .panel-ring z flash.css - ten si kreslí kuželový obrys
    přes ::before a podklad přes ::after, jenže obojí má na .panel už
    obsazené (dosvit za kurzorem a maskovaný barevný obrys). Když se
    třídy složily, ::after zdědil masku a nulové krytí od .panel, přestal
@@ -385,7 +385,7 @@
 /* Otevírací tlačítko chatu. Byl to malý modrý kroužek s vlastním přechodem,
    takže na webu působil cize a přehlédnutelně. Teď je to pilulka se jménem,
    nese hlavní přechod webu (--grad) a zelenou tečku, která tady znamená
-   totéž co jinde: „ano, tohle platí" — někdo je na příjmu. */
+   totéž co jinde: „ano, tohle platí" - někdo je na příjmu. */
 .chat-open {
   position: fixed;
   right: 1.5rem;
@@ -426,7 +426,7 @@
   box-shadow: 0 0 0 3px rgb(21 128 61 / 25%);
 }
 
-/* Na úzkém displeji jen kolečko — pilulka by tam ukrojila půl obrazovky. */
+/* Na úzkém displeji jen kolečko - pilulka by tam ukrojila půl obrazovky. */
 @media (max-width: 520px) {
   .chat-open { width: 58px; height: 58px; padding: 0; justify-content: center; }
   .chat-open__label, .chat-open__dot { display: none; }
@@ -439,7 +439,7 @@
 }
 
 /* Odznáček visel na kraji kolečka. Na pilulce nemá co dělat a zelenou tečku
-   uvnitř by jen zdvojoval — necháváme ho jen na úzkém displeji, kde se
+   uvnitř by jen zdvojoval - necháváme ho jen na úzkém displeji, kde se
    z tlačítka stane kolečko a tečka se schová. */
 .chat-open .badge { display: none; }
 
@@ -544,7 +544,7 @@
 .chat-msg { display: flex; }
 .chat-msg.user { justify-content: flex-end; }
 
-/* Bublina a tlačítka pod ní jsou sourozenci ve flexu — bez tohohle je flex
+/* Bublina a tlačítka pod ní jsou sourozenci ve flexu - bez tohohle je flex
    postaví vedle sebe a z tlačítka zbude úzký sloupec vedle textu. */
 .chat-msg.bot { flex-direction: column; align-items: flex-start; }
 
@@ -571,7 +571,7 @@
   border-bottom-left-radius: 4px;
 }
 
-/* Skript vkládá tři tečky pod vlastním názvem — musí vypadat stejně
+/* Skript vkládá tři tečky pod vlastním názvem - musí vypadat stejně
    jako .typing ve flash.css. */
 .chat-typing-dots { display: inline-flex; gap: 4px; padding: 0.2rem 0; }
 .chat-typing-dots span {
@@ -631,7 +631,7 @@
   .price-card.is-top::after { animation: none; }
 }
 
-/* Tlačítka pod Klářinou odpovědí — vedou na stránku, kterou zmínila. */
+/* Tlačítka pod Klářinou odpovědí - vedou na stránku, kterou zmínila. */
 /* Pevná výška a `flex: 1 1 0`, ne obtékání podle délky textu. Bez toho se
    z delšího názvu stal úzký sloupec s textem po jednom písmenu. Jedno
    tlačítko zabere celou šířku, dvě se rozdělí napůl vedle sebe. */

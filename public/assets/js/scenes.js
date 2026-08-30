@@ -1,5 +1,5 @@
 /* =====================================================================
-   Scény na pozadí — Three.js r128
+   Scény na pozadí - Three.js r128
 
    Přeneseno z dodané předlohy (Aegis / Remixed Bento), přebarveno do
    palety ALSflow a doplněné o to, co předloha neřešila: zastavení mimo
@@ -10,7 +10,7 @@
      lines     koule z bodů propojených úsečkami, pomalu se otáčí
 
    Knihovna je uložená v repozitáři (assets/vendor/three.r128.min.js),
-   ne z CDN — hlavička Content-Security-Policy má script-src 'self'
+   ne z CDN - hlavička Content-Security-Policy má script-src 'self'
    a cizí skript by prohlížeč odmítl.
 
    Použití: <canvas data-scene="halftone"></canvas>
@@ -247,7 +247,7 @@
         camera.updateProjectionMatrix();
       },
       tick: function (t) {
-        /* Dvojnásobek proti první verzi — otáčka za 24 s místo 48 s.
+        /* Dvojnásobek proti první verzi - otáčka za 24 s místo 48 s.
            Na podstránkách je koule od téhle úpravy hlavní obraz
            hlavičky, ne podklad sekce, a v tempu na podklad stála. */
         group.rotation.y = t * 0.26;
