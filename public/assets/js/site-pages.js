@@ -106,17 +106,46 @@
 
     var restoreY = 0;
 
-    /* Zamek patri na <html>, ne na <body>. `body { overflow: hidden }` na iOS
-       pozici nezamkne - jen z body udela vlastni rolovaci kontejner a stranka
-       vyskoci na zacatek. Presne to se delo: menu se otevrelo, ale obrazovka
-       skocila nahoru a vypadalo to, ze se nestalo nic. */
+    /* Zamek rolovani, ktery funguje i v Safari na iPhonu.
+
+       Zkouseli jsme uz dve jednodussi varianty a obe tam selhaly:
+       `body { overflow: hidden }` z body udela vlastni rolovaci kontejner a
+       stranka vyskoci na zacatek; `html { overflow: hidden }` Safari jako
+       zamek vubec nebere a jen prepocita vizualni viewport, takze obraz
+       poskocil a panel se objevil mimo obrazovku.
+
+       Tohle je jedina varianta, ktera na iOS drzi: body se odsune nahoru
+       presne o tolik, o kolik je stranka odrolovana, a stane se fixed. Pro
+       oko se nic nezmeni, ale rolovat uz neni co. Pri zavreni pozici vratime. */
     function set(open) {
-      if (open) restoreY = window.scrollY;
+      var body = document.body;
+
+      if (open) {
+        restoreY = window.scrollY;
+        body.style.position = "fixed";
+        body.style.top = -restoreY + "px";
+        body.style.left = "0";
+        body.style.right = "0";
+        body.style.width = "100%";
+      } else {
+        body.style.position = "";
+        body.style.top = "";
+        body.style.left = "";
+        body.style.right = "";
+        body.style.width = "";
+        /* Instantne, ne plynule: <html> ma scroll-behavior: smooth, takze
+           by se navrat na puvodni misto animoval a bylo by videt, jak
+           stranka po zavreni menu jeste chvili doklouzava. */
+        try {
+          window.scrollTo({ top: restoreY, behavior: "instant" });
+        } catch (e) {
+          window.scrollTo(0, restoreY);
+        }
+      }
+
       sheet.classList.toggle("open", open);
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", String(open));
-      document.documentElement.style.overflow = open ? "hidden" : "";
-      if (!open) window.scrollTo(0, restoreY);
     }
 
     burger.addEventListener("click", function () { set(!sheet.classList.contains("open")); });

@@ -325,11 +325,30 @@ a:hover > .arrow { transform: translateX(3px); }
 
 .sheet {
   position: fixed;
-  inset: 62px 0 0;
+  top: 62px;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 55;
   display: none;
-  padding: 1.5rem var(--gutter) 2.5rem;
+
+  /* Vyska podle *dynamickeho* viewportu, ne velkeho. Safari na iPhonu kresli
+     pres spodek stranky svou listu; pri `inset: ... 0` panel koncil pod ni a
+     posledni prvek, tedy tlacitko Nezavazna nabidka, byl uriznuty.
+     `100dvh` pocita s tim, ze lista tam je. `100vh` zustava jako zaloha pro
+     prohlizece, ktere dvh neznaji. */
+  height: calc(100vh - 62px);
+  height: calc(100dvh - 62px);
+
+  padding: 1.5rem var(--gutter);
+
+  /* A jeste odstup pod posledni polozku, aby se dala pohodlne trefit prstem
+     i na telefonech s gestovou listou. */
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   background: rgb(0 0 0 / 97%);
   backdrop-filter: blur(20px);
 }
