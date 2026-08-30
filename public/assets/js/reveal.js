@@ -47,6 +47,9 @@
   }
 
   targets.forEach(function (el) {
+    /* Původní podoba nadpisu. Po doběhnutí ji vrátíme zpátky — viz onComplete. */
+    var original = el.innerHTML;
+
     var parts = split(el);
     if (!parts.length) { el.style.visibility = "visible"; return; }
 
@@ -93,6 +96,21 @@
       duration: 0.85,
       ease: "power4.out",
       stagger: 0.045,
+
+      /* Jakmile animace doběhne, vrátíme nadpis do původní podoby.
+
+         Rozsekaný nadpis je pro prohlížeč nesrovnatelně dražší než obyčejný
+         text: každé slovo je vlastní inline-block s maskou přes overflow,
+         s transformem a s vlastním přechodem ořezaným na text
+         (background-clip). Na jedné stránce jich takhle zůstávaly desítky —
+         a přesně na téhle kombinaci vznikají při rolování otisky
+         předchozího vykreslení, které Jakub hlásil jako dvakrát vytištěný
+         nadpis.
+
+         Po doběhnutí už k ničemu nejsou. Nadpis je zpátky jeden prvek
+         s jedním přechodem, tedy přesně to, co by tam bylo bez skriptu.
+         Zmizí tím i pomocná kopie pro čtečky — původní text je zpět. */
+      onComplete: function () { el.innerHTML = original; },
     });
   });
 })();
