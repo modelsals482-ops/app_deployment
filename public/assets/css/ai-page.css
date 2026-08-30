@@ -475,8 +475,8 @@
   overflow: hidden;
   background: linear-gradient(180deg, #121218, var(--card));
   border: 1px solid var(--line-2);
-  border-radius: 18px;
-  box-shadow: 0 30px 80px rgb(0 0 0 / 70%);
+  border-radius: var(--r-card, 20px);
+  box-shadow: 0 30px 80px rgb(0 0 0 / 70%), inset 0 1px 0 rgb(255 255 255 / 8%);
   opacity: 0;
   pointer-events: none;
   transform: translateY(14px) scale(0.97);
@@ -501,8 +501,8 @@
   height: 32px;
   font-size: 0.72rem;
   font-weight: 800;
-  color: #fff;
-  background: linear-gradient(135deg, #2f6fdd, #2563eb);
+  color: #06070a;
+  background: var(--grad);
   border-radius: 50%;
 }
 
@@ -512,9 +512,9 @@
   width: 6px;
   height: 6px;
   content: '';
-  background: var(--g-500);
+  background: var(--green, #4ade80);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--g-500);
+  box-shadow: 0 0 8px var(--green, #4ade80);
 }
 
 .chat-count { margin-left: auto; font-family: var(--mono); font-size: 0.68rem; color: var(--t3); }
@@ -554,9 +554,9 @@
 }
 
 .chat-msg.user .chat-bubble-msg {
-  color: #cfe1ff;
-  background: linear-gradient(135deg, rgb(59 130 246 / 24%), rgb(37 99 235 / 16%));
-  border: 1px solid rgb(59 130 246 / 32%);
+  color: var(--t1);
+  background: var(--grad-soft);
+  border: 1px solid rgb(91 157 255 / 30%);
   border-bottom-right-radius: 4px;
 }
 

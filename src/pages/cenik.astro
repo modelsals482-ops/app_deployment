@@ -1,0 +1,399 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base
+  title="Ceník — weby, software a AI asistenti | ALSflow"
+  description="Co co stojí a co je v paušálu. Web od 14 900 Kč, správa 990 Kč měsíčně, software od 24 900 Kč, AI asistenti od 2 500 Kč měsíčně. Bez závazku."
+  canonical="https://alsflow.cz/cenik"
+  current="/cenik"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "OfferCatalog",
+      "name": "Ceník ALSflow",
+      "url": "https://alsflow.cz/cenik",
+      "provider": {
+        "@type": "Organization",
+        "name": "ALSflow",
+        "legalName": "Retail Shops s.r.o.",
+        "url": "https://alsflow.cz",
+        "email": "info@alsflow.cz"
+      },
+      "itemListElement": [
+        { "@type": "Offer", "name": "Jednostránkový web", "priceCurrency": "CZK", "price": "14900",
+          "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Prezentační web do osmi stránek", "priceCurrency": "CZK", "price": "24900",
+          "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Měsíční správa webu", "priceCurrency": "CZK", "price": "990",
+          "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Software na míru", "priceCurrency": "CZK", "price": "24900",
+          "url": "https://alsflow.cz/vyvoj-softwaru" },
+        { "@type": "Offer", "name": "E-mailové odpovědi", "priceCurrency": "CZK", "price": "2500",
+          "url": "https://alsflow.cz/e-mailove-odpovedi" },
+        { "@type": "Offer", "name": "Rezervace a připomínky", "priceCurrency": "CZK", "price": "4500",
+          "url": "https://alsflow.cz/rezervace-pripominky" },
+        { "@type": "Offer", "name": "Zpětná vazba a opakované rezervace", "priceCurrency": "CZK", "price": "2500" }
+      ]
+    })} />
+  </Fragment>
+
+  <section class="hero-plain">
+    <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">Cen&iacute;k</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Ceny <span class="grad">rovnou</span>, ne po hovoru</h1>
+      <p class="lead">Pevn&aacute; cena za dohodnut&yacute; rozsah. Kdy&zcaron; si v pr&uring;b&ecaron;hu vymysl&iacute;te
+        n&ecaron;co nav&iacute;c, cenu t&eacute; zm&ecaron;ny &rcaron;eknu p&rcaron;edem &mdash; ale to, na &ccaron;em
+        jsme se domluvili, se nem&ecaron;n&iacute;.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-magnet" href="#kalkulacka">Spo&ccaron;&iacute;tat</a>
+        <a class="btn btn-quiet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+      </div>
+      <div class="facts">
+        <div><div class="k">Web od</div><div class="v">14&nbsp;900&nbsp;K&ccaron;</div></div>
+        <div><div class="k">Spr&aacute;va</div><div class="v">990&nbsp;K&ccaron;/m&ecaron;s</div></div>
+        <div><div class="k">Asistent od</div><div class="v">2&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</div></div>
+        <div><div class="k">Odpov&iacute;m do</div><div class="v">48 hodin</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBY -->
+  <section class="sec sec-line" id="weby">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Weby</span>
+        <h2 class="h-sec fade-head reveal-words">Jednor&aacute;zov&aacute; cena, pak <span class="grad">drobn&yacute; pau&scaron;&aacute;l</span></h2>
+        <p class="lead">V cen&ecaron; je n&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i certifik&aacute;t.
+          Web b&yacute;v&aacute; &zcaron;iv&yacute; do 6 a&zcaron; 10 pracovn&iacute;ch dn&uring; a rozpracovanou verzi
+          vid&iacute;te pr&uring;b&ecaron;&zcaron;n&ecaron;.</p>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="num">01</div><div>
+          <h3>Jednostr&aacute;nkov&yacute; web &mdash; 14&nbsp;900&nbsp;K&ccaron;</h3>
+          <p>Vizitka: kdo jste, co d&ecaron;l&aacute;te, jak se ozvat. Jedna str&aacute;nka, kontaktn&iacute; formul&aacute;&rcaron;.</p>
+        </div></div>
+        <div class="row"><div class="num">02</div><div>
+          <h3>Prezenta&ccaron;n&iacute; web do osmi str&aacute;nek &mdash; 24&nbsp;900&nbsp;K&ccaron;</h3>
+          <p>Slu&zcaron;by, cen&iacute;k, kontakt, formul&aacute;&rcaron;. Takhle jsou postaven&eacute;
+            <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a> a
+            <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>.</p>
+        </div></div>
+        <div class="row"><div class="num">03</div><div>
+          <h3>V&ecaron;t&scaron;&iacute; web &mdash; od 34&nbsp;900&nbsp;K&ccaron;</h3>
+          <p>Dev&ecaron;t a v&iacute;c str&aacute;nek, dva jazyky, v&iacute;c formul&aacute;&rcaron;&uring;.
+            Cenu &rcaron;eknu po hovoru, kdy&zcaron; bude jasn&aacute; struktura.</p>
+        </div></div>
+        <div class="row"><div class="num">04</div><div>
+          <h3>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va &mdash; 990&nbsp;K&ccaron;/m&ecaron;s</h3>
+          <p>Hosting, dom&eacute;na, certifik&aacute;t a drobn&eacute; &uacute;pravy text&uring;, cen a kontakt&uring;
+            do dvou pracovn&iacute;ch dn&uring; &mdash; zhruba do p&uring;l hodiny pr&aacute;ce m&ecaron;s&iacute;&ccaron;n&ecaron;.
+            V&ecaron;t&scaron;&iacute; zm&ecaron;ny nacen&iacute;m zvl&aacute;&scaron;&tcaron;, v&zcaron;dycky p&rcaron;edem.
+            Bez z&aacute;vazku.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE -->
+  <section class="sec" id="software">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Software na m&iacute;ru</span>
+        <h2 class="h-sec fade-head reveal-words">Cena vyjde <span class="grad">z anal&yacute;zy</span></h2>
+        <p class="lead">Tady nem&aacute; smysl d&ecaron;lat cen&iacute;k dop&rcaron;edu &mdash; administra&ccaron;n&iacute;
+          panel a propojen&iacute; dvou syst&eacute;m&uring; se li&scaron;&iacute; des&iacute;tkami hodin. &Uacute;vodn&iacute;
+          anal&yacute;za je zdarma a vyjde z n&iacute; rozsah, pevn&aacute; cena za n&ecaron;j a term&iacute;n podle velikosti
+          zak&aacute;zky. Kdy&zcaron; se n&aacute;stroj nevyplat&iacute;, &rcaron;eknu to.</p>
+      </div>
+      <div class="cards-2">
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev">
+          <h3>od 24&nbsp;900&nbsp;K&ccaron;</h3>
+          <p>Nejmen&scaron;&iacute; u&zcaron;ite&ccaron;n&yacute; n&aacute;stroj &mdash; jeden panel, jeden export,
+            jedna &uacute;loha, kter&aacute; do te&dcaron; jela ru&ccaron;n&ecaron;.</p>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
+          <h3>b&ecaron;&zcaron;n&ecaron; 25&ndash;80 tis. K&ccaron;</h3>
+          <p>Rozsah, kter&yacute; se ve skute&ccaron;nosti objedn&aacute;v&aacute; nej&ccaron;ast&ecaron;ji: panel nad
+            daty plus napojen&iacute; na to, co u&zcaron; m&aacute;te.</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:1.6rem">Provoz a dal&scaron;&iacute; &uacute;pravy jsou m&ecaron;s&iacute;&ccaron;n&iacute;
+        pau&scaron;&aacute;l podle velikosti n&aacute;stroje. Zdrojov&yacute; k&oacute;d, p&rcaron;&iacute;stupy
+        i dokumentace jsou va&scaron;e.
+        <a class="arrow" href="/vyvoj-softwaru">Jak to prob&iacute;h&aacute; &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- AI ASISTENTI -->
+  <section class="sec sec-line" id="asistenti">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">AI asistenti</span>
+        <h2 class="h-sec fade-head reveal-words">M&ecaron;s&iacute;&ccaron;n&ecaron;, <span class="grad">bez z&aacute;vazku</span></h2>
+        <p class="lead">Jednor&aacute;zov&eacute; nastaven&iacute; 8&nbsp;000 a&zcaron; 10&nbsp;000&nbsp;K&ccaron;,
+          asistent jede do 5 a&zcaron; 7 pracovn&iacute;ch dn&uring;. Zru&scaron;it m&uring;&zcaron;ete kdykoli.</p>
+      </div>
+      <div class="cards-2">
+        <a class="panel panel-pad panel-glow panel-sheen tilt rev" href="/e-mailove-odpovedi">
+          <h3>E-mailov&eacute; odpov&ecaron;di</h3>
+          <p><b>2&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</b> &middot; zahrnuje 1&nbsp;500 e-mail&uring;.
+            Asistent odpov&iacute;d&aacute; na z&aacute;kaznick&eacute; e-maily &ccaron;esky a va&scaron;&iacute;m t&oacute;nem.</p>
+          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+        </a>
+        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1" href="/rezervace-pripominky">
+          <h3>Rezervace a p&rcaron;ipom&iacute;nky</h3>
+          <p><b>4&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</b> &middot; zahrnuje 750 rezervac&iacute;.
+            Objedn&aacute;n&iacute; nonstop, potvrzen&iacute; term&iacute;nu a p&rcaron;ipom&iacute;nka den p&rcaron;edem.</p>
+          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+        </a>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2">
+          <h3>Zp&ecaron;tn&aacute; vazba a opakovan&eacute; rezervace</h3>
+          <p><b>2&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</b> &middot; neomezen&yacute; po&ccaron;et zpr&aacute;v.
+            Zpr&aacute;va po n&aacute;v&scaron;t&ecaron;v&ecaron;, sb&ecaron;r zp&ecaron;tn&eacute; vazby a nab&iacute;dka
+            dal&scaron;&iacute;ho term&iacute;nu.</p>
+        </div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev is-best" data-d="3">
+          <h3>V&scaron;echny t&rcaron;i dohromady</h3>
+          <p><b>7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</b> &middot; m&iacute;sto 9&nbsp;500&nbsp;K&ccaron;.
+            U&scaron;et&rcaron;&iacute;te 2&nbsp;000&nbsp;K&ccaron; m&ecaron;s&iacute;&ccaron;n&ecaron;.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KALKULAČKA -->
+  <section class="sec" id="kalkulacka">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Spo&ccaron;&iacute;tejte si to</span>
+        <h2 class="h-sec fade-head reveal-words">Kolik to bude <span class="grad">u v&aacute;s</span></h2>
+        <p class="lead">Za&scaron;krt&aacute;te, co pot&rcaron;ebujete. Po&ccaron;&iacute;t&aacute; se rovnou tady
+          v prohl&iacute;&zcaron;e&ccaron;i, nic se nikam neodes&iacute;l&aacute;.</p>
+      </div>
+
+      <form class="calc" id="calc" novalidate>
+        <div class="calc__cols">
+          <fieldset class="calc__group">
+            <legend>Web</legend>
+            <label class="calc__opt"><input type="radio" name="web" value="0" checked /><span>Web nepot&rcaron;ebuju</span><b></b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="14900" /><span>Jednostr&aacute;nkov&yacute;</span><b>14&nbsp;900</b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="24900" /><span>Prezenta&ccaron;n&iacute; do 8 str&aacute;nek</span><b>24&nbsp;900</b></label>
+            <label class="calc__opt"><input type="radio" name="web" value="34900" /><span>V&ecaron;t&scaron;&iacute;, od</span><b>34&nbsp;900</b></label>
+            <label class="calc__opt calc__opt--sub" data-needs-web><input type="checkbox" id="sprava" /><span>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va</span><b>990&nbsp;/m&ecaron;s</b></label>
+          </fieldset>
+
+          <fieldset class="calc__group">
+            <legend>AI asistenti</legend>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>E-mailov&eacute; odpov&ecaron;di</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="4500" /><span>Rezervace a p&rcaron;ipom&iacute;nky</span><b>4&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>Zp&ecaron;tn&aacute; vazba</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
+            <p class="calc__note" id="bundleNote" hidden>V&scaron;echny t&rcaron;i dohromady vych&aacute;z&iacute; na
+              7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s &mdash; zapo&ccaron;&iacute;t&aacute;no.</p>
+          </fieldset>
+        </div>
+
+        <div class="calc__out" aria-live="polite">
+          <div class="calc__cell">
+            <div class="k">Jednor&aacute;zov&ecaron;</div>
+            <div class="v"><span id="once">0</span>&nbsp;K&ccaron;</div>
+            <div class="calc__sub" id="onceNote">nastaven&iacute; asistenta se p&rcaron;i&ccaron;te po hovoru</div>
+          </div>
+          <div class="calc__cell">
+            <div class="k">M&ecaron;s&iacute;&ccaron;n&ecaron;</div>
+            <div class="v"><span id="month">0</span>&nbsp;K&ccaron;</div>
+            <div class="calc__sub">bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli</div>
+          </div>
+        </div>
+
+        <p class="calc__foot">Ceny jsou bez DPH. Software se sem nepo&ccaron;&iacute;t&aacute; &mdash; jeho cena
+          vyjde a&zcaron; z anal&yacute;zy. <a href="/kontakt">Po&scaron;lete popt&aacute;vku</a> a &rcaron;eknu
+          p&rcaron;esn&eacute; &ccaron;&iacute;slo.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec-line" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">&Ccaron;ast&eacute; dotazy</span>
+        <h2 class="h-sec fade-head reveal-words">Na co se pt&aacute;te</h2>
+      </div>
+      <div class="faq-list">
+        <details class="rev"><summary>Je v cen&aacute;ch DPH?</summary><p>Nen&iacute;. ALSflow provozuje
+          Retail Shops s.r.o., pl&aacute;tce DPH, takže se k uveden&yacute;m cen&aacute;m p&rcaron;ipo&ccaron;&iacute;t&aacute;
+          DPH podle platn&eacute; sazby. P&rcaron;esnou &ccaron;&aacute;stku uvid&iacute;te na nab&iacute;dce i na faktu&rcaron;e.</p></details>
+        <details class="rev" data-d="1"><summary>Co kdy&zcaron; si v pr&uring;b&ecaron;hu vymysl&iacute;m n&ecaron;co nav&iacute;c?</summary>
+          <p>&Rcaron;eknu cenu t&eacute; zm&ecaron;ny p&rcaron;edem a vy se rozhodnete. Cena za to, na &ccaron;em
+          jsme se domluvili, se t&iacute;m nem&ecaron;n&iacute; &mdash; to je cel&yacute; smysl pevn&eacute; ceny.</p></details>
+        <details class="rev" data-d="2"><summary>Co je jednor&aacute;zov&eacute; nastaven&iacute; asistenta?</summary>
+          <p>Napojen&iacute; na va&scaron;e n&aacute;stroje, nau&ccaron;en&iacute; va&scaron;eho t&oacute;nu, nastaven&iacute;
+          odpov&ecaron;d&iacute; a otestov&aacute;n&iacute;. D&ecaron;l&aacute;m to za v&aacute;s, asistent jede do 5 a&zcaron; 7
+          pracovn&iacute;ch dn&uring;. Plat&iacute; se jednou, na za&ccaron;&aacute;tku.</p></details>
+        <details class="rev" data-d="3"><summary>Mus&iacute;m se zav&aacute;zat na dobu ur&ccaron;itou?</summary>
+          <p>Ne. M&ecaron;s&iacute;&ccaron;n&ecaron;, bez smlouvy na dobu ur&ccaron;itou, zru&scaron;it kdykoli.</p></details>
+        <details class="rev" data-d="4"><summary>Co kdy&zcaron; p&rcaron;ekro&ccaron;&iacute;m limit v bal&iacute;&ccaron;ku?</summary>
+          <p>Limity 1&nbsp;500 e-mail&uring; a 750 rezervac&iacute; m&ecaron;s&iacute;&ccaron;n&ecaron; pokryj&iacute;
+          v&ecaron;t&scaron;inu mal&yacute;ch provoz&uring;. Kdy&zcaron; je pravideln&ecaron; p&rcaron;er&uring;st&aacute;te,
+          domluv&iacute;me vy&scaron;&scaron;&iacute; variantu. &Zcaron;&aacute;dn&eacute; skryt&eacute; dou&ccaron;tov&aacute;n&iacute;.</p></details>
+        <details class="rev" data-d="5"><summary>Pro&ccaron; nen&iacute; u softwaru pevn&yacute; cen&iacute;k?</summary>
+          <p>Proto&zcaron;e by lhal. Administra&ccaron;n&iacute; panel a propojen&iacute; dvou syst&eacute;m&uring; se
+          li&scaron;&iacute; des&iacute;tkami hodin pr&aacute;ce. Rad&scaron;i &rcaron;eknu &ccaron;&iacute;slo, kter&eacute;
+          plat&iacute;, po kr&aacute;tk&eacute; anal&yacute;ze.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Nev&iacute;te, co z toho <span class="grad">pot&rcaron;ebujete</span>?</h2>
+        <p class="lead">Patn&aacute;ct minut nez&aacute;vazn&ecaron;. &Rcaron;eknete, co v&aacute;s nejv&iacute;c
+          zdr&zcaron;uje, a j&aacute; &rcaron;eknu, co d&aacute;v&aacute; smysl &mdash; i kdy&zcaron; to nakonec nebude
+          nic ode m&ecaron;.</p>
+        <div class="btn-row">
+          <a class="btn btn-grad btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+          <a class="btn btn-quiet" href="/o-nas">Kdo za t&iacute;m stoj&iacute;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="tail">
+    <style>
+      .calc { max-width: 62rem; margin: 0 auto; }
+      .calc__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      @media (max-width: 760px) { .calc__cols { grid-template-columns: 1fr; } }
+
+      .calc__group {
+        padding: 1.25rem; margin: 0; border: 1px solid var(--line-2);
+        border-radius: var(--r-card, 20px); background: var(--card);
+      }
+      .calc__group legend {
+        padding: 0 0.5rem; font-size: 0.7rem; letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--t3);
+      }
+      .calc__opt {
+        display: flex; gap: 0.7rem; align-items: center; padding: 0.55rem 0.2rem;
+        cursor: pointer; border-bottom: 1px solid var(--line);
+      }
+      .calc__opt:last-of-type { border-bottom: 0; }
+      .calc__opt span { flex: 1; font-size: 0.92rem; }
+      .calc__opt b { font-variant-numeric: tabular-nums; font-size: 0.86rem; color: var(--t2); }
+      .calc__opt input { accent-color: #5b9dff; width: 1.05rem; height: 1.05rem; }
+      .calc__opt--sub { padding-left: 1.6rem; opacity: 0.45; pointer-events: none; }
+      .calc__opt--sub.is-on { opacity: 1; pointer-events: auto; }
+
+      .calc__note { margin: 0.7rem 0 0; font-size: 0.82rem; color: var(--green); }
+
+      .calc__out {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.25rem;
+      }
+      @media (max-width: 560px) { .calc__out { grid-template-columns: 1fr; } }
+      .calc__cell {
+        padding: 1.4rem; border: 1px solid var(--line-2); border-radius: var(--r-card, 20px);
+        background: linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);
+      }
+      .calc__cell .k {
+        font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--t3);
+      }
+      .calc__cell .v {
+        margin-top: 0.35rem; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800;
+        font-variant-numeric: tabular-nums; background: var(--grad);
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      }
+      .calc__sub { margin-top: 0.35rem; font-size: 0.78rem; color: var(--t3); }
+      .calc__foot { margin-top: 1.1rem; font-size: 0.85rem; color: var(--t2); }
+      .calc__foot a { color: var(--t1); }
+
+      .faq-list details {
+        padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+      }
+      .faq-list summary { font-weight: 600; cursor: pointer; list-style: none; }
+      .faq-list summary::-webkit-details-marker { display: none; }
+      .faq-list summary::before { content: '+ '; color: var(--green); }
+      .faq-list details[open] summary::before { content: '\\2212 '; }
+      .faq-list p { max-width: 68ch; margin-top: 0.6rem; font-size: 0.92rem; color: var(--t2); }
+
+      .panel.is-best { border-color: rgb(74 222 128 / 35%); }
+    </style>
+
+    <script>
+      /* Kalkulačka. Počítá se v prohlížeči, nic se nikam neodesílá.
+         Čísla se při změně přepočítají plynule — je to jediná animace, kterou
+         tahle stránka má, a slouží k tomu, aby si člověk změny všiml. */
+      (function () {
+        var form = document.getElementById("calc");
+        if (!form) return;
+
+        var onceEl = document.getElementById("once");
+        var monthEl = document.getElementById("month");
+        var onceNote = document.getElementById("onceNote");
+        var bundleNote = document.getElementById("bundleNote");
+        var spravaWrap = form.querySelector("[data-needs-web]");
+        var sprava = document.getElementById("sprava");
+
+        var BUNDLE = 7500;          /* všechny tři služby dohromady */
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function fmt(n) {
+          return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        /* Plynulý přechod mezi dvěma částkami. Bez knihovny, a když si někdo
+           vypnul pohyb, číslo se prostě přepíše. */
+        function animate(el, to) {
+          var from = parseInt((el.textContent || "0").replace(/\D/g, ""), 10) || 0;
+          if (reduced || from === to) { el.textContent = fmt(to); return; }
+          if (el._raf) cancelAnimationFrame(el._raf);
+          var t0 = performance.now(), dur = 420;
+          (function step(now) {
+            var p = Math.min(1, (now - t0) / dur);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = fmt(Math.round(from + (to - from) * eased));
+            if (p < 1) el._raf = requestAnimationFrame(step);
+          })(t0);
+        }
+
+        function recalc() {
+          var web = parseInt(form.querySelector('input[name="web"]:checked').value, 10) || 0;
+
+          /* Správa dává smysl jen k webu. Když web není, políčko se zhasne
+             a odškrtne, ať se nezapočítá potichu. */
+          if (web > 0) {
+            spravaWrap.classList.add("is-on");
+          } else {
+            spravaWrap.classList.remove("is-on");
+            sprava.checked = false;
+          }
+
+          var ai = [].slice.call(form.querySelectorAll(".ai:checked"));
+          var aiSum = ai.reduce(function (a, i) { return a + parseInt(i.value, 10); }, 0);
+          var all = ai.length === 3;
+          if (all) aiSum = BUNDLE;         /* balíček je levnější než součet */
+          bundleNote.hidden = !all;
+
+          var month = aiSum + (sprava.checked ? 990 : 0);
+          var once = web;
+
+          /* Nastavení asistenta je rozpětí, ne jedno číslo — nesmí se tvářit
+             jako přesná částka, tak se jen připomene textem. */
+          onceNote.hidden = ai.length === 0;
+          onceNote.textContent = ai.length
+            ? "k tomu jednorázové nastavení asistenta 8 000 až 10 000 Kč"
+            : "";
+
+          animate(onceEl, once);
+          animate(monthEl, month);
+        }
+
+        form.addEventListener("change", recalc);
+        form.addEventListener("submit", function (e) { e.preventDefault(); });
+        recalc();
+      })();
+    </script>
+  </Fragment>
+</Base>

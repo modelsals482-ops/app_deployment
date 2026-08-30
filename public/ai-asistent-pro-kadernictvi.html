@@ -187,5 +187,30 @@
     <div><a href="/">Úvod</a> · <a href="/ai-asistenti#pricing">Ceny</a> · <a href="/kontakt">Kontakt</a> · <a href="/ochrana_dat">Ochrana dat</a></div>
     <div style="margin-top:0.8rem">© 2026 ALSflow · Retail Shops s.r.o. · IČO: 02512556 · DIČ: CZ02512556</div>
   </footer>
+<!-- Klara -->
+<link rel="stylesheet" href="/assets/css/chat-tokens.css" />
+<link rel="stylesheet" href="/assets/css/ai-page.css" />
+<button class="chat-open" id="chatBubble" type="button" aria-label="Otev&rcaron;&iacute;t chat s Kl&aacute;rou">
+  <span class="chat-open__dot" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+  <span class="chat-open__label">Zeptejte se Kl&aacute;ry</span>
+  <span class="badge" id="chatBadge" aria-hidden="true">&#10022;</span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat s Kl&aacute;rou z ALSflow" aria-hidden="true">
+  <div class="chat-head">
+    <span class="av">K</span>
+    <div><div class="who">Kl&aacute;ra</div><div class="live">odpov&iacute;d&aacute; obvykle do minuty</div></div>
+    <span class="chat-count" id="chatCounter">0/20</span>
+    <button class="chat-x" id="chatClose" type="button" aria-label="Zav&rcaron;&iacute;t chat">&times;</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot"><div class="chat-bubble-msg">Dobr&yacute; den. Zeptejte se na ceny, na to, co d&ecaron;l&aacute;me, nebo &rcaron;ekn&ecaron;te, co hled&aacute;te &mdash; nasm&ecaron;ruju v&aacute;s na spr&aacute;vnou str&aacute;nku.</div></div>
+  </div>
+  <div class="chat-bar">
+    <input id="chatInput" type="text" placeholder="Napi&scaron;te dotaz&hellip;" maxlength="500" autocomplete="off" aria-label="Zpr&aacute;va do chatu" />
+    <button id="chatSend" type="button" aria-label="Odeslat">&rarr;</button>
+  </div>
+</div>
+<script src="/assets/js/chat-widget.js" defer></script>
 </body>
 </html>
