@@ -241,10 +241,16 @@ a:hover > .arrow { transform: translateX(3px); }
   z-index: 60;
   background: rgb(0 0 0 / 62%);
   border-bottom: 1px solid transparent;
+  -webkit-backdrop-filter: blur(16px);   /* Safari bez prefixu nerozostri */
   backdrop-filter: blur(16px);
   transition: background 0.3s, border-color 0.3s;
 }
 .nav.scrolled { background: rgb(0 0 0 / 88%); border-bottom-color: var(--line); }
+
+/* Dokud je otevřené menu, hlavička musí krýt. Sama o sobě by zprůhlednila:
+   zámek rolování dá body position: fixed, scrollY spadne na nulu a třída
+   .scrolled se odebere. */
+.nav.menu-open { background: var(--bg); border-bottom-color: var(--line); }
 
 .nav-in {
   display: flex;
@@ -349,7 +355,10 @@ a:hover > .arrow { transform: translateX(3px); }
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  background: rgb(0 0 0 / 97%);
+  /* Neprůsvitně. Dřív tu byla tři procenta průhlednosti pro rozostření pod
+     panelem, jenže bez něj skrz něj prosvítal obsah stránky. */
+  background: var(--bg);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
 .sheet.open { display: block; }
@@ -406,7 +415,7 @@ a:hover > .arrow { transform: translateX(3px); }
   background: linear-gradient(96deg, #000 0%, #000 30%, rgb(0 0 0 / 82%) 44%, rgb(0 0 0 / 34%) 62%, transparent 84%);
 }
 
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
   .hero-stage::after {
     background: linear-gradient(180deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 86%) 46%, #000 88%);
   }
@@ -723,7 +732,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 /* --------------------------------------------------------------------
    Menší obrazovky
    -------------------------------------------------------------------- */
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
   .menu, .nav .btn { display: none; }
   .burger { display: flex; }
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -735,7 +744,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   .logos { gap: 2rem; }
 }
 
-@media (width <= 560px) {
+@media (max-width: 560px) {
   .btn-row { flex-direction: column; align-items: stretch; }
   .btn, .btn-quiet { justify-content: center; width: 100%; }
   .row { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -912,7 +921,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   mask-image: radial-gradient(ellipse 60% 70% at 62% 50%, #000 22%, transparent 74%);
 }
 
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
   .scene-right { width: 100%; opacity: 0.34; }
   .scene { opacity: 0.3; }
 }
@@ -991,12 +1000,15 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
 .pillar {
   border-width: 2px;
+  /* Zaloha pro Safari pod 16.2, ktere color-mix() nezna a deklaraci zahodi. */
+  border-color: rgb(255 255 255 / 16%);
   border-color: color-mix(in srgb, var(--tone) 34%, transparent);
   background:
     radial-gradient(120% 90% at 50% -20%, color-mix(in srgb, var(--tone) 15%, transparent), transparent 62%),
     var(--card);
 }
-.pillar .box { color: var(--tone); border-color: color-mix(in srgb, var(--tone) 38%, transparent); }
+.pillar .box { color: var(--tone); border-color: rgb(255 255 255 / 18%); }
+.pillar .box { border-color: color-mix(in srgb, var(--tone) 38%, transparent); }
 .pillar .box svg { stroke: var(--tone); }
 .pillar .arrow { color: var(--tone); }
 
@@ -1021,6 +1033,7 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar { box-shadow: 0 14px 40px color-mix(in srgb, var(--tone) 10%, transparent); }
 .pillar:hover,
 .pillar:focus-within {
+  border-color: rgb(255 255 255 / 30%);
   border-color: color-mix(in srgb, var(--tone) 62%, transparent);
   box-shadow: 0 26px 66px color-mix(in srgb, var(--tone) 22%, transparent);
 }

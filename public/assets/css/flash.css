@@ -430,7 +430,7 @@ a.panel.tilt:hover {
   background: linear-gradient(96deg, #000 0%, #000 26%, rgb(0 0 0 / 84%) 42%, rgb(0 0 0 / 36%) 62%, transparent 82%);
 }
 
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
   .hero-plain::after {
     background: linear-gradient(180deg, rgb(0 0 0 / 62%) 0%, rgb(0 0 0 / 88%) 48%, #000 90%);
   }
@@ -551,7 +551,7 @@ a.panel.tilt:hover {
   color: var(--t2);
 }
 
-@media (width <= 760px) {
+@media (max-width: 760px) {
   .stat-band { grid-template-columns: 1fr; }
   .stat-cell + .stat-cell { border-top: 1px solid var(--line); border-left: 0; }
   .stat-cell { padding: 1.9rem 1.2rem; }
@@ -751,7 +751,7 @@ a.panel.tilt:hover {
   align-items: center;
 }
 
-@media (width <= 1000px) {
+@media (max-width: 1000px) {
   .split { grid-template-columns: 1fr; gap: 2.6rem; }
   .chat-demo { max-width: 100%; }
 }

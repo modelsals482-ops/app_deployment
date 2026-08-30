@@ -302,15 +302,15 @@
    webu, kde jich je do řádku víc. */
 .cards-4 { grid-template-columns: repeat(4, 1fr); }
 
-@media (width <= 1180px) { .cards-4 { grid-template-columns: repeat(2, 1fr); } }
-@media (width <= 620px)  { .cards-4 { grid-template-columns: 1fr; } }
+@media (max-width: 1180px) { .cards-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .cards-4 { grid-template-columns: 1fr; } }
 
 /* =====================================================================
    Ceník
    ===================================================================== */
 .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: start; }
 
-@media (width <= 1000px) { .price-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1000px) { .price-grid { grid-template-columns: 1fr; } }
 
 .price-card { position: relative; padding: 1.9rem 1.6rem; }
 
@@ -615,7 +615,7 @@
 
 .chat-bar button[disabled] { cursor: not-allowed; opacity: 0.45; }
 
-@media (width <= 560px) {
+@media (max-width: 560px) {
   .chat-panel { right: 0.75rem; bottom: 5rem; width: calc(100vw - 1.5rem); }
   .chat-open { right: 1rem; bottom: 1rem; }
 }

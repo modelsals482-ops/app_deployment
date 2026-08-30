@@ -146,6 +146,12 @@
       sheet.classList.toggle("open", open);
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", String(open));
+
+      /* Hlavicka si sve tmave pozadi zapina podle scrollY, ktere ale pri
+         zamceni rolovani spadne na nulu. Bez tohohle by prave ve chvili
+         otevreni menu zprusvitnela a prosvital by skrz ni obsah stranky. */
+      var nav = document.querySelector(".nav");
+      if (nav) nav.classList.toggle("menu-open", open);
     }
 
     burger.addEventListener("click", function () { set(!sheet.classList.contains("open")); });

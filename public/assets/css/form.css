@@ -41,7 +41,7 @@
 
 .form-card > * { position: relative; }
 
-@media (width <= 620px) {
+@media (max-width: 620px) {
   .form-card { padding: 1.4rem; }
 }
 
@@ -98,7 +98,7 @@
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
 .form-grid .wide { grid-column: 1 / -1; }
 
-@media (width <= 620px) {
+@media (max-width: 620px) {
   .form-grid { grid-template-columns: 1fr; }
 }
 
@@ -549,7 +549,7 @@
   align-items: start;
 }
 
-@media (width <= 980px) {
+@media (max-width: 980px) {
   .form-layout { grid-template-columns: 1fr; gap: 2.6rem; }
 }
 
