@@ -406,6 +406,17 @@ a.panel.tilt:hover {
    svítí víc než uvnitř sekcí. */
 .hero-plain > .scene { opacity: 0.85; }
 
+/* Varianta pres celou plochu. Bez oválné masky a v plné sytosti, pro scény,
+   které nemají jen tiše dýchat na kraji, ale nést celou hlavičku.
+   Musí stát až za pravidlem výše, obě mají stejnou specificitu. */
+.scene.scene-wide {
+  left: 0;
+  width: 100%;
+  opacity: 1;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 /* Tmavý spád zleva pod textem. Úvodní stránka ho má na .hero-stage;
    podstránky ho do teď neměly a scéna prosvítala skrz nadpis i text.
    ::after se kreslí až za všemi potomky, takže leží nad scénou a pod

@@ -546,7 +546,7 @@
            ma dychat, ne poutat pozornost. */
         uCell: { value: 13 },
         uFrequency: { value: 1.9 },
-        uSpeed: { value: 0.11 },
+        uSpeed: { value: 0.18 },
         uBias: { value: -0.05 },
         uGamma: { value: 1.2 },
         uColA: { value: new THREE.Color(0x38dbf5) },
@@ -633,7 +633,7 @@
 
         /* Ke krajum rastr rredne, jinak by plocha koncila ostrou hranou. */
         "  vec2 d = abs(uvC - 0.5) * 2.0;",
-        "  float edge = (1.0 - smoothstep(0.55, 1.0, d.x)) * (1.0 - smoothstep(0.55, 1.0, d.y));",
+        "  float edge = (1.0 - smoothstep(0.86, 1.0, d.x)) * (1.0 - smoothstep(0.86, 1.0, d.y));",
 
         "  float k = clamp(gray + uBias, 0.0, 1.0);",
         "  float radius = k * 0.5;",
@@ -648,7 +648,7 @@
         "  vec3 col = k < 0.5 ? mix(uColA, uColB, k * 2.0)",
         "                     : mix(uColB, uColC, (k - 0.5) * 2.0);",
 
-        "  gl_FragColor = vec4(col, mark * edge * 0.85);",
+        "  gl_FragColor = vec4(col, mark * edge);",
         "}",
       ].join("\n"),
     });
