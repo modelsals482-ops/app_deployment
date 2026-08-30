@@ -67,12 +67,60 @@
     if (opened) setTimeout(function() { var i = document.getElementById('chatInput'); if(i) i.focus(); }, 300);
   };
   function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* Stránky, na které Klára smí odkázat. Seznam je natvrdo schválně: odpověď
+     je výstup modelu, a kdyby si cestu vymyslel, obecný linkovač by udělal
+     tlačítko na 404. Takhle může vzniknout jen odkaz na stránku, která existuje. */
+  var PAGES = [
+    { path: '/cenik',           label: 'Ceník',            re: /cen[íi]k|kolik (to )?stoj|cena|ceny/i },
+    { path: '/kontakt',         label: 'Nezávazná nabídka', re: /kontakt|popt[áa]vk|nab[íi]dk|ozvat|napsat|formul[áa][řr]/i },
+    { path: '/tvorba-webu',     label: 'Tvorba webu',      re: /tvorba-webu|\bweb(y|u|em)?\b|str[áa]nk/i },
+    { path: '/vyvoj-softwaru',  label: 'Vývoj softwaru',   re: /vyvoj-softwaru|software|n[áa]stroj|panel|integrac/i },
+    { path: '/ai-asistenti',    label: 'AI asistenti',     re: /ai-asistenti|asistent/i },
+    { path: '/o-nas',           label: 'O nás',            re: /o-nas|o n[áa]s|kdo (za|jsme)/i },
+    { path: '/e-mailove-odpovedi',   label: 'E-mailové odpovědi',  re: /e-mailove-odpovedi|e-mailov[ée] odpov/i },
+    { path: '/rezervace-pripominky', label: 'Rezervace a připomínky', re: /rezervace-pripominky|rezervac|p[řr]ipom[íi]nk/i },
+    { path: '/ochrana_dat',     label: 'Ochrana dat',      re: /ochrana_dat|ochran[aě] (osobn[íi]ch )?[úu]daj|gdpr/i }
+  ];
+
+  /* Bere jen stránky, které Klára opravdu zmínila — nejdřív podle konkrétní
+     adresy v textu, teprve pak podle tématu. Nikdy víc než dvě, ať se z bubliny
+     nestane rozcestník. Na stránku, kde návštěvník právě je, se neodkazuje. */
+  function suggest(text) {
+    var here = location.pathname.replace(/\.html$/, '') || '/';
+    var byPath = [], byTopic = [];
+    PAGES.forEach(function (pg) {
+      if (pg.path === here) return;
+      if (text.indexOf(pg.path) !== -1) byPath.push(pg);
+      else if (pg.re.test(text)) byTopic.push(pg);
+    });
+    return byPath.concat(byTopic).slice(0, 2);
+  }
+
   function addMsg(role, text) {
     var wrap = document.getElementById('chatMessages'); if (!wrap) return;
     var div = document.createElement('div'); div.className = 'chat-msg ' + role;
     var bub = document.createElement('div'); bub.className = 'chat-bubble-msg';
     bub.innerHTML = esc(text).replace(/\n/g,'<br>');
-    div.appendChild(bub); wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
+    div.appendChild(bub);
+
+    if (role === 'bot') {
+      var picks = suggest(text);
+      if (picks.length) {
+        var row = document.createElement('div');
+        row.className = 'chat-actions';
+        picks.forEach(function (pg) {
+          var a = document.createElement('a');
+          a.className = 'chat-action';
+          a.href = pg.path;                 /* z pevného seznamu, ne z odpovědi */
+          a.textContent = pg.label;
+          row.appendChild(a);
+        });
+        div.appendChild(row);
+      }
+    }
+
+    wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
   }
   function addTyping() {
     var wrap = document.getElementById('chatMessages'); if (!wrap) return;

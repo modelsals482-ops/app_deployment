@@ -626,3 +626,23 @@
   .price-card .cost b,
   .price-card.is-top::after { animation: none; }
 }
+
+/* Tlačítka pod Klářinou odpovědí — vedou na stránku, kterou zmínila. */
+.chat-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0 0; }
+.chat-action {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--t1);
+  text-decoration: none;
+  background: var(--grad-soft);
+  border: 1px solid rgb(91 157 255 / 34%);
+  border-radius: 999px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.chat-action::after { content: ' →'; }
+.chat-action:hover, .chat-action:focus-visible {
+  background: rgb(255 255 255 / 8%);
+  border-color: rgb(91 157 255 / 62%);
+}
+
