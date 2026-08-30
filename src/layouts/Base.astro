@@ -170,7 +170,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   }
 </style>
 
-<script>
+<script is:inline>
   /* Běží co nejdřív, ještě před vykreslením obsahu — jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
@@ -202,7 +202,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <style>#alsLoader { display: none; }</style>
 </noscript>
 
-<script>
+<script is:inline>
   (function () {
     var root = document.documentElement;
     var el = document.getElementById('alsLoader');
@@ -327,6 +327,18 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       <div class="foot-in">
         <div class="foot-col">
           <a class="brand" href="/" style="font-size:1.15rem">ALS<span>flow</span></a>
+          <div class="foot-social">
+            <a href="mailto:info@alsflow.cz" aria-label="Napsat na info@alsflow.cz" title="info@alsflow.cz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" /><path d="m3 6.5 9 6.5 9-6.5" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/als.flow/" target="_blank" rel="noopener" aria-label="ALSflow na Instagramu" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="foot-col">
           <h4>Slu&zcaron;by</h4>
@@ -346,18 +358,6 @@ const cur = (href: string) => (href === current ? "page" : undefined);
           <a href="/kontakt">Kontakt a nab&iacute;dka</a>
           <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
           <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
-          <div class="foot-social">
-            <a href="mailto:info@alsflow.cz" aria-label="Napsat na info@alsflow.cz" title="info@alsflow.cz">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" /><path d="m3 6.5 9 6.5 9-6.5" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/als.flow/" target="_blank" rel="noopener" aria-label="ALSflow na Instagramu" title="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
       <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
@@ -386,7 +386,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <script src="/assets/js/flash.js" defer></script>
 <slot name="tail" />
 
-  <script>
+  <script is:inline>
     /* Předvyplní adresu stránky a prohlížeč, ať to nikdo neopisuje ručně.
        Bez JavaScriptu odkaz pořád funguje, jen s prázdným tělem. */
     (function () {

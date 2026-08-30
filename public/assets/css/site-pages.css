@@ -57,7 +57,17 @@
   --r-tile: 14px;
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* overflow-x na html, ne na body, a `clip` místo `hidden`.
+   `hidden` na body z něj udělá vlastní rolovací kontejner — na iOS se pak
+   rolování chová divně nebo se úplně zasekne. `clip` obsah taky ořízne,
+   ale žádný kontejner nevytváří. `hidden` zůstává jako záloha pro starší
+   prohlížeče, `clip` ho o řádek níž přebije tam, kde je podporovaný. */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 
 body {
   font-family: var(--font);
@@ -65,7 +75,6 @@ body {
   line-height: 1.6;
   color: var(--t1);
   background: var(--bg);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -941,7 +950,13 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar--violet { --tone: #a78bfa; }
 .pillar--green { --tone: #4ade80; }
 
-.pillar { border-color: rgb(255 255 255 / 12%); }
+.pillar {
+  border-width: 2px;
+  border-color: color-mix(in srgb, var(--tone) 34%, transparent);
+  background:
+    radial-gradient(120% 90% at 50% -20%, color-mix(in srgb, var(--tone) 15%, transparent), transparent 62%),
+    var(--card);
+}
 .pillar .box { color: var(--tone); border-color: color-mix(in srgb, var(--tone) 38%, transparent); }
 .pillar .box svg { stroke: var(--tone); }
 .pillar .arrow { color: var(--tone); }
@@ -962,10 +977,21 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar:hover::before,
 .pillar:focus-within::before { right: 0.6rem; left: 0.6rem; opacity: 1; }
 
+/* Karta má vypadat, že se nad tou barvou vznáší — proto barevný dosvit
+   pod ní, ne jen obrys kolem. */
+.pillar { box-shadow: 0 14px 40px color-mix(in srgb, var(--tone) 10%, transparent); }
 .pillar:hover,
 .pillar:focus-within {
-  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
-  box-shadow: 0 18px 50px color-mix(in srgb, var(--tone) 14%, transparent);
+  border-color: color-mix(in srgb, var(--tone) 62%, transparent);
+  box-shadow: 0 26px 66px color-mix(in srgb, var(--tone) 22%, transparent);
+}
+@media (min-width: 861px) {
+  .pillar { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.25s, box-shadow 0.3s; }
+  .pillar:hover, .pillar:focus-within { transform: translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pillar { transition: border-color 0.2s, box-shadow 0.2s; }
+  .pillar:hover, .pillar:focus-within { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

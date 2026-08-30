@@ -327,12 +327,9 @@
     requestAnimationFrame(function () { resize(); if (reduced) draw(6); queued = false; });
   });
 
-  if (!coarse && !reduced) {
-    window.addEventListener("mousemove", function (e) {
-      ptr.tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ptr.ty = (e.clientY / window.innerHeight - 0.5) * 2;
-    }, { passive: true });
-  }
+  /* Oblouk na myš nereaguje. Naklánění za kurzorem znamenalo přepočítat
+     scénu při každém pohybu — na slabším stroji to bylo znát a samotný
+     efekt si skoro nikdo nevšiml. Scéna se hýbe sama, to stačí. */
 
   /* Kontext se může ztratit (uspání, přepnutí GPU) — bez tohohle by
      plátno zůstalo prázdné až do reloadu. */
