@@ -541,9 +541,12 @@
       uniforms: {
         uTime: { value: 0 },
         uResolution: { value: new THREE.Vector2(1, 1) },
+        /* uFrequency = jak drobny je vzor: vys = vic malych skvrn.
+           uSpeed = jak rychle se vlna posouva. Obe zamerne nizko, pozadi
+           ma dychat, ne poutat pozornost. */
         uCell: { value: 13 },
-        uFrequency: { value: 3.2 },
-        uSpeed: { value: 0.22 },
+        uFrequency: { value: 1.9 },
+        uSpeed: { value: 0.11 },
         uBias: { value: -0.05 },
         uGamma: { value: 1.2 },
         uColA: { value: new THREE.Color(0x38dbf5) },
