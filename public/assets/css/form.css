@@ -599,3 +599,12 @@
   text-align: center;
 }
 
+/* Vysvětlivka k hvězdičkám. Nad formulářem, ne uprostřed něj. */
+.form-legend {
+  margin: 0 0 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--t3);
+}
+.form-legend .req { color: var(--blue); }  /* stejná barva jako hvězdičky v popiscích */
+

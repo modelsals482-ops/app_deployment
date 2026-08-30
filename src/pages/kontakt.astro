@@ -77,6 +77,8 @@ import Base from "../layouts/Base.astro";
             </div>
 
             <form id="poptavka" novalidate>
+              <p class="form-legend">Pole s hv&ecaron;zdi&ccaron;kou <span class="req" aria-hidden="true">*</span> jsou povinn&aacute;.
+                Ostatn&iacute; vypl&ncaron;ovat nemus&iacute;te &mdash; klidn&ecaron; je p&rcaron;esko&ccaron;te.</p>
               <div class="form-grid">
                 <div class="field">
             <input id="f-name" name="name" type="text" placeholder=" " required autocomplete="name" />
@@ -119,9 +121,7 @@ import Base from "../layouts/Base.astro";
             <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
             <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
           </div>
-          <div class="form-split">
-            <span>Nepovinn&eacute; &mdash; pom&uring;&zcaron;e mi to l&iacute;p odhadnout, ale klidn&ecaron; p&rcaron;esko&ccaron;te</span>
-          </div>
+          <div class="form-split" aria-hidden="true"></div>
           <div class="field">
             <input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel" />
             <label for="f-phone">Telefon</label>
