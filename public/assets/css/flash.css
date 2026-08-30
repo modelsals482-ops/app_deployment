@@ -166,12 +166,17 @@
   #cursorGlow { display: none; }
 }
 
-/* Obsah nad vrstvami pozadí. */
+/* Obsah nad vrstvami pozadí.
+
+   Mobilní menu (.sheet) sem NEPATŘÍ. Selektor `body > .sheet` je
+   specifičtější než `.sheet` v site-pages.css a přebíjel mu
+   `position: fixed` na `relative` — panel se pak vykreslil vevnitř
+   stránky místo přes ni a vypadalo to, že se hamburger vůbec neotvírá.
+   Vlastní z-index 55 ho nad vrstvy pozadí zvedne i bez tohohle. */
 body > header,
 body > main,
 body > section,
-body > footer,
-body > .sheet { position: relative; z-index: 4; }
+body > footer { position: relative; z-index: 4; }
 
 /* =====================================================================
    2. Ukazatel odrolování

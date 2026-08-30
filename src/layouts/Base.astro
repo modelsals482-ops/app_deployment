@@ -321,6 +321,17 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       </button>
     </div>
   </header>
+  <!-- Mobilni menu. Patri do obalu, ne do jednotlivych stranek: driv
+       existovalo jen v peti z nich a jinde hamburger nemel co otevrit. -->
+  <div class="sheet" id="sheet">
+    <a href="/tvorba-webu">Weby</a>
+    <a href="/vyvoj-softwaru">Software na m&iacute;ru</a>
+    <a href="/ai-asistenti">AI asistenti</a>
+    <a href="/cenik">Cen&iacute;k</a>
+    <a href="/o-nas">O n&aacute;s</a>
+    <a href="/kontakt">Kontakt</a>
+    <a class="btn" href={cta}>Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+  </div>
   <slot />
 <footer class="foot">
     <div class="wrap">

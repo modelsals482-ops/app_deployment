@@ -343,7 +343,16 @@ a:hover > .arrow { transform: translateX(3px); }
   text-decoration: none;
   border-bottom: 1px solid var(--line);
 }
-.sheet .btn { width: 100%; margin-top: 1.6rem; }
+/* `.sheet a` je specifičtější než `.btn` a přepsalo mu odsazení na
+   `1.05rem 0` — text pak začínal přesně na rámečku a vypadal uříznutě.
+   Tlačítku proto rozměry vracíme sem, kde specificitou vyhraje. */
+.sheet .btn {
+  display: flex;
+  width: 100%;
+  padding: 0.95rem 1.35rem;
+  margin-top: 1.6rem;
+  border: 1px solid var(--line-2);
+}
 
 /* --------------------------------------------------------------------
    Hlavička stránky
@@ -735,10 +744,21 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .word-mask {
   display: inline-block;
   overflow: hidden;
-  padding-bottom: 0.12em;   /* jinak se ořízne ocásek u p, y, ř */
+
+  /* Nadpisy mají line-height 1.06, takže obsahový box je nižší než písmo.
+     Ocásek u „y" nebo háček nad „Č" z něj vyčuhují a maska je ořízne —
+     0.12em zdola bylo přesně na hranici. Vypodložíme masku na obě strany
+     a stejnou hodnotu ubereme na marginu, aby se rozvržení nezměnilo. */
+  padding: 0.22em 0 0.24em;
+  margin: -0.22em 0 -0.24em;
   vertical-align: bottom;
 }
-.word-in { display: inline-block; will-change: transform; transform: translateY(110%); }
+
+/* Bez will-change: transform. Držel každé slovo natrvalo ve vlastní
+   kompoziční vrstvě i dávno po doběhnutí animace, a ve spojení s
+   background-clip: text po něm při rolování zpátky zůstával otisk
+   předchozího vykreslení — nadpis pak vypadal jako vytištěný dvakrát. */
+.word-in { display: inline-block; transform: translateY(110%); }
 
 /* Přechod v nadpisu je na samotném nadpisu (background-clip: text).
    Jakmile se text rozseká na slova, jsou to nové prvky — zdědí

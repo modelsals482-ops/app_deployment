@@ -104,11 +104,19 @@
     var sheet = document.getElementById("sheet");
     if (!burger || !sheet) return;
 
+    var restoreY = 0;
+
+    /* Zamek patri na <html>, ne na <body>. `body { overflow: hidden }` na iOS
+       pozici nezamkne — jen z body udela vlastni rolovaci kontejner a stranka
+       vyskoci na zacatek. Presne to se delo: menu se otevrelo, ale obrazovka
+       skocila nahoru a vypadalo to, ze se nestalo nic. */
     function set(open) {
+      if (open) restoreY = window.scrollY;
       sheet.classList.toggle("open", open);
       burger.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", String(open));
-      document.body.style.overflow = open ? "hidden" : "";
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      if (!open) window.scrollTo(0, restoreY);
     }
 
     burger.addEventListener("click", function () { set(!sheet.classList.contains("open")); });
