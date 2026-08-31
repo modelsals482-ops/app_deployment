@@ -1008,6 +1008,50 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .pillar .box svg { stroke: var(--tone); }
 .pillar .arrow { color: var(--tone); }
 
+/* Obíhající světlo uvnitř pilíře.
+
+   Kuželovitý přechod v barvě pilíře, rozostřený a pomalu otáčený. Leží pod
+   obsahem karty, takže z něj po okrajích prosvítá jen měkká záře, která
+   objíždí dokola. Každý pilíř má jiné zpoždění, aby nesvítily zároveň.
+
+   Bez JavaScriptu a bez @property: to Safari umí až od 16.4 a tady na něm
+   nic nestojí, otáčí se prostě celý prvek. */
+.pillar { overflow: hidden; }
+
+.pillar-glow {
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  pointer-events: none;
+  content: '';
+  background: conic-gradient(from 0deg, transparent 0deg, var(--tone) 38deg, transparent 108deg, transparent 360deg);
+  opacity: 0.22;
+  filter: blur(30px);
+  animation: pillarSpin 13s linear infinite;
+}
+.pillar--violet .pillar-glow { animation-delay: -4.3s; }
+.pillar--green .pillar-glow  { animation-delay: -8.6s; }
+
+/* Obsah musí ležet nad světlem, jinak by ho překrylo. */
+.pillar .panel-pad { position: relative; z-index: 1; }
+
+/* Při najetí světlo zesílí a zrychlí. */
+.pillar:hover .pillar-glow,
+.pillar:focus-visible .pillar-glow { opacity: 0.4; animation-duration: 6s; }
+
+@keyframes pillarSpin { to { transform: rotate(360deg); } }
+
+/* Ikona dostane vlastní dosvit v barvě pilíře. */
+.pillar .box {
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.35s;
+}
+.pillar:hover .box { box-shadow: 0 0 26px -6px var(--tone); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-glow { animation: none; }
+}
+
 /* Proužek nahoře - jediné plné použití barvy, aby karta nekřičela. */
 .pillar::before {
   position: absolute;
