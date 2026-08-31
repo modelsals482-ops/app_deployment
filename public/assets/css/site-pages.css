@@ -670,10 +670,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .mk-sek .n { font-size: 0.8rem; font-weight: 500; }
 .mk-sek .r { font-size: 0.52rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #c99a4e; }
 
-.mk-wle { display: inline-flex; align-items: center; font-family: Anton, 'Arial Narrow', var(--font); font-size: 26px; line-height: 1; white-space: nowrap; }
-.mk-wle .we { color: #19e1ff; } .mk-wle .lo { color: #ff1f9c; } .mk-wle .cl { margin-left: 1px; color: #fff; }
-.mk-wle .ev { margin-left: 3px; font-family: var(--font); font-size: 8px; font-weight: 800; letter-spacing: 0.12em; color: #fff; text-transform: uppercase; writing-mode: vertical-rl; }
-
 /* --------------------------------------------------------------------
    Cena a časté dotazy
    -------------------------------------------------------------------- */
