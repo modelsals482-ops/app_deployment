@@ -171,6 +171,82 @@ const cur = (href: string) => (href === current ? "page" : undefined);
 </style>
 
 <script is:inline>
+  /* =================================================================
+     Výkonnostní stupeň. Musí běžet PŘED vším ostatním, protože podle
+     něj se rozhoduje, co se vůbec stáhne.
+
+     Web váží 820 kB JavaScriptu a 603 kB z toho je Three.js pro scény
+     na pozadí. Na slabém telefonu není problém ani tak vykreslování
+     jako rozparsování a zkompilování těch 600 kB, a než je hotové,
+     stránka nejde ani rolovat. Proto se na slabém zařízení nestahuje
+     vůbec.
+
+     Tři stupně, zapisují se na <html data-vykon>:
+       plny       všechno včetně 3D scén
+       snizeny    bez Three.js a bez scén, animace textu zůstávají
+       minimalni  jen obsah; žádné animace, žádné rozmazané pozadí
+
+     Nikdy se nevypíná obsah, jen ozdoby. Nejhorší stupeň je pořád celý
+     web, jen stojí.
+     ================================================================= */
+  (function () {
+    var d = document.documentElement;
+
+    function stupen() {
+      try {
+        var mm = window.matchMedia;
+
+        /* Uživatel si o klid řekl sám. Nic dalšího neřešíme. */
+        if (mm && mm("(prefers-reduced-motion: reduce)").matches) return "minimalni";
+
+        /* Režim úspory dat: 600 kB knihovny na pozadí je přesně to, co
+           tím uživatel odmítá. */
+        var c = navigator.connection;
+        if (c) {
+          if (c.saveData) return "minimalni";
+          if (/(^|-)2g$/.test(c.effectiveType || "")) return "minimalni";
+          if (c.effectiveType === "3g") return "snizeny";
+        }
+
+        /* deviceMemory hlásí jen Chromium a zaokrouhluje dolů na 0.25,
+           0.5, 1, 2, 4, 8. Dvě GB a míň je slabý telefon. */
+        var mem = navigator.deviceMemory;
+        if (typeof mem === "number" && mem <= 2) return "minimalni";
+
+        var jader = navigator.hardwareConcurrency;
+        if (typeof jader === "number" && jader <= 2) return "minimalni";
+        if (typeof mem === "number" && mem <= 4) return "snizeny";
+        if (typeof jader === "number" && jader <= 4) return "snizeny";
+
+        /* Bez WebGL by scény stejně nenaběhly, jen by se marně stáhly.
+           Kontext hned zahazujeme, ať nedržíme GPU zbytečně. */
+        var cv = document.createElement("canvas");
+        var gl = cv.getContext("webgl") || cv.getContext("experimental-webgl");
+        if (!gl) return "snizeny";
+        var ztrata = gl.getExtension("WEBGL_lose_context");
+        if (ztrata) ztrata.loseContext();
+
+        return "plny";
+      } catch (e) {
+        /* Když detekce spadne, radši méně efektů než rozbitá stránka. */
+        return "snizeny";
+      }
+    }
+
+    var s = stupen();
+
+    /* Ruční přepnutí pro testování: ?vykon=minimalni */
+    try {
+      var vynuceno = new URLSearchParams(location.search).get("vykon");
+      if (vynuceno === "plny" || vynuceno === "snizeny" || vynuceno === "minimalni") s = vynuceno;
+    } catch (e) {}
+
+    d.setAttribute("data-vykon", s);
+    window.__vykon = s;
+  })();
+</script>
+
+<script is:inline>
   /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
      naskočil až na chvíli hotovou stránku a probliklo by to. */
   (function () {
@@ -389,14 +465,79 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       </p>
     </div>
   </footer>
-  <script src="/lenis.min.js" defer></script>
-  <script src="/assets/vendor/gsap.min.js" defer></script>
-  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="/assets/js/reveal.js" defer></script>
-  <script src="/assets/vendor/three.r128.min.js" defer></script>
-  <script src="/assets/js/scenes.js" defer></script>
+  <!-- Vždycky: chování stránky, ne ozdoby. -->
   <script src="/assets/js/site-pages.js" defer></script>
-  <script src="/assets/js/flash.js" defer></script>
+
+  <!-- Ozdoby podle výkonnostního stupně. Injektujeme skripty ručně místo
+       pevných značek skriptu, protože pevná značka se stáhne vždycky, i když
+       by ji skript pak nepoužil. Tady jde právě o to nestáhnout je.
+       `defer` se u vloženého skriptu neuplatní, proto async=false, což
+       zachová pořadí: Three.js dřív než scenes.js, GSAP dřív než reveal.js. -->
+  <script is:inline>
+    (function () {
+      var stupen = document.documentElement.getAttribute("data-vykon") || "snizeny";
+      if (stupen === "minimalni") return;   /* jen obsah, nic dalšího */
+
+      var soubory = [
+        "/lenis.min.js",                    /* plynulé rolování, samo se vypne na dotyku */
+        "/assets/vendor/gsap.min.js",
+        "/assets/vendor/ScrollTrigger.min.js",
+        "/assets/js/reveal.js",             /* bez GSAPu jen zviditelní text */
+        "/assets/js/flash.js",
+      ];
+
+      /* 603 kB Three.js plus scény jen tam, kde to stroj utáhne. */
+      if (stupen === "plny") {
+        soubory.splice(4, 0, "/assets/vendor/three.r128.min.js", "/assets/js/scenes.js");
+      }
+
+      soubory.forEach(function (src) {
+        var el = document.createElement("script");
+        el.src = src;
+        el.async = false;
+        document.head.appendChild(el);
+      });
+
+      /* ---------------------------------------------------------------
+         Hlídač snímků.
+
+         Odhad podle deviceMemory a počtu jader se plete oběma směry:
+         hlásí je jen Chromium, zaokrouhluje a nic neví o tom, jak je na
+         tom GPU nebo co zrovna běží na pozadí. Tady se proto změří, jak
+         se stránka doopravdy hýbe, a když je to špatné, stupeň se sníží
+         za běhu. CSS pak scény schová, IntersectionObserver ve scenes.js
+         si toho všimne a smyčku zastaví.
+
+         Měří se až po `load`, aby se do toho nepočítalo stahování,
+         a jen u plného stupně: níž už není co vypínat.
+         --------------------------------------------------------------- */
+      if (stupen !== "plny") return;
+
+      window.addEventListener("load", function () {
+        var snimky = 0;
+        var start = performance.now();
+
+        function tik(t) {
+          snimky++;
+          if (t - start < 1200) { requestAnimationFrame(tik); return; }
+
+          var fps = (snimky * 1000) / (t - start);
+          var novy = fps < 24 ? "minimalni" : fps < 40 ? "snizeny" : null;
+          if (!novy) return;
+
+          document.documentElement.setAttribute("data-vykon", novy);
+          window.__vykon = novy;
+          if (window.__lenis && novy === "minimalni") window.__lenis.destroy();
+        }
+
+        /* Dvě otočky navíc, ať se neměří první snímek po nasazení stránky,
+           který je pomalý vždycky. */
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function (t) { start = t; requestAnimationFrame(tik); });
+        });
+      });
+    })();
+  </script>
 <slot name="tail" />
 
   <script is:inline>

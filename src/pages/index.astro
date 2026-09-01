@@ -272,8 +272,21 @@ import Base from "../layouts/Base.astro";
 
   
   <Fragment slot="tail">
-  <script src="/assets/js/arc3d.js" defer></script>
-  <script src="/assets/js/predictive-arc.js" defer></script>
+  <!-- Oblouk v hlavičce je vlastní WebGL, ne Three.js, takže je malý (24 kB),
+       ale na slabém telefonu je to pořád GPU práce u každého snímku a hlavička
+       je první, co člověk uvidí a chce odrolovat. V minimálním stupni se proto
+       nenačítá vůbec; hlavička zůstane s plochým pozadím a textem. -->
+  <script is:inline>
+    (function () {
+      if (document.documentElement.getAttribute("data-vykon") === "minimalni") return;
+      ["/assets/js/arc3d.js", "/assets/js/predictive-arc.js"].forEach(function (src) {
+        var el = document.createElement("script");
+        el.src = src;
+        el.async = false;
+        document.head.appendChild(el);
+      });
+    })();
+  </script>
   </Fragment>
 
 </Base>
