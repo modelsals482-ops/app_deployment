@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+// Destination of the /dakuji redirect in vercel.json and the landing page after the contact form.
+// noindex: it is a confirmation screen, not a page anyone should reach from a search result.
+---
+<Base
+  title="Děkujeme | ALSflow"
+  description="Váš dotaz dorazil. Ozveme se do 48 hodin v pracovní dny."
+  canonical="https://alsflow.cz/dekujeme"
+  ogTitle="Děkujeme"
+  ogDescription="Váš dotaz dorazil. Ozveme se do 48 hodin v pracovní dny."
+  current=""
+  robots="noindex, follow"
+>
+  <section class="hero hero-plain">
+    <canvas class="scene scene-right" data-scene="halftone" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">Odesláno</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Máme to. <span class="grad">Ozveme se vám.</span></h1>
+      <p class="lead">Váš dotaz dorazil na info@alsflow.cz. Připravíme nabídku na míru a ozveme se
+        do 48 hodin v pracovní dny.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/">Zpět na úvod</a>
+        <a class="btn btn-quiet" href="/reference">Co už jsme postavili</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="dal">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">Co se stane dál</span>
+        <h2 class="h-sec fade-head reveal-words">Tři kroky, <span class="grad">a první je na nás</span></h2>
+      </div>
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Přečteme si to</h3><p>Připravíme nabídku přesně pro váš obor, ne obecný ceník.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Do 48 hodin se ozveme</h3><p>V pracovní dny. Napíšeme a nabídneme termín krátkého hovoru, patnáct minut stačí.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Nastavíme to za vás</h3><p>Po schválení do 5 až 7 pracovních dnů u asistentů, do 6 až 10 u webu. Vy nic neřešíte.</p></div></div>
+      </div>
+    </div>
+  </section>
+</Base>

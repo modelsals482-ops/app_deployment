@@ -1095,3 +1095,21 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .foot-report a { color: var(--t2); border-bottom: 1px solid var(--line-2); }
 .foot-report a:hover, .foot-report a:focus-visible { color: var(--t1); border-bottom-color: currentColor; }
 
+
+/* Long-form legal copy (/ochrana_dat and any future terms page). The rest of the site is short
+   blocks inside .sec-head, so paragraphs and lists had nowhere to live. Reuses the same tokens as
+   .lead, only wider and with list styling, because legal text is read, not skimmed. */
+.prose {
+  max-width: 68ch;
+  margin-top: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--t2);
+}
+.prose > * + * { margin-top: 1rem; }
+.prose strong { color: var(--t1); font-weight: 600; }
+.prose a { color: var(--blue); text-underline-offset: 3px; }
+.prose ul, .prose ol { padding-left: 1.35rem; }
+.prose li + li { margin-top: 0.6rem; }
+.prose li::marker { color: var(--t3); }
+.prose em { color: var(--t3); font-style: normal; font-size: 0.94em; }

@@ -1,0 +1,216 @@
+---
+import Base from "../layouts/Base.astro";
+// URL stays /ochrana_dat on purpose: it is linked from the footer of every page and from
+// outreach e-mails. Renaming it would mean a redirect and a re-crawl for nothing.
+---
+<Base
+  title="Ochrana osobních údajů | ALSflow"
+  description="Jak ALSflow nakládá s údaji z kontaktního formuláře: jaké údaje sbíráme, proč, jak dlouho je držíme, komu je předáváme a jaká máte práva."
+  canonical="https://alsflow.cz/ochrana_dat"
+  ogTitle="Ochrana osobních údajů"
+  ogDescription="Jaké údaje sbíráme, proč, jak dlouho je držíme a jaká máte práva."
+  current="/ochrana_dat"
+>
+  <section class="hero hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <span class="eyebrow-label">Právní informace</span>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:18ch">Ochrana <span class="grad">osobních údajů</span></h1>
+      <p class="lead">Co se stane s údaji, které nám přes formulář svěříte. Poslední aktualizace
+        25. května 2026.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="spravce">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">01</span>
+        <h2 class="h-sec fade-head reveal-words">Správce osobních údajů</h2>
+      </div>
+      <div class="prose rev">
+        <p>Správcem vašich osobních údajů je provozovatel služby <strong>ALSflow</strong>, obchodní
+          značka společnosti Retail Shops s.r.o., IČO 02512556, DIČ CZ02512556, se sídlem
+          Dolnoměcholupská 522/12a, 102 00 Praha 10.</p>
+        <p>Veškerá komunikace ohledně ochrany osobních údajů probíhá na adrese
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="jake-udaje">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">02</span>
+        <h2 class="h-sec fade-head reveal-words">Jaké údaje zpracováváme</h2>
+      </div>
+      <div class="prose rev">
+        <p>Zpracováváme pouze údaje, které nám dobrovolně poskytnete prostřednictvím kontaktního
+          formuláře na webu:</p>
+        <ul>
+          <li><strong>Identifikační údaje:</strong> jméno a příjmení</li>
+          <li><strong>Kontaktní údaje:</strong> e-mailová adresa, telefonní číslo (volitelné)</li>
+          <li><strong>Obchodní údaje:</strong> typ podnikání, velikost týmu, zájem o službu, popis největšího problému</li>
+          <li><strong>Volný text:</strong> obsah zprávy, pokud ji vyplníte</li>
+        </ul>
+        <p>Nepožadujeme rodná čísla, čísla dokladů, bankovní spojení ani jakékoli citlivé osobní
+          údaje ve smyslu čl. 9 GDPR.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="ucel">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">03</span>
+        <h2 class="h-sec fade-head reveal-words">Účel a právní základ</h2>
+      </div>
+      <div class="prose rev">
+        <p>Vaše údaje zpracováváme výhradně pro tyto účely:</p>
+        <ul>
+          <li><strong>Příprava individuální nabídky</strong>: odpověď na váš dotaz a zaslání obchodní
+            nabídky přizpůsobené vašemu byznysu.<br>
+            <em>Právní základ: souhlas subjektu údajů (čl. 6 odst. 1 písm. a) GDPR)</em></li>
+          <li><strong>Obchodní komunikace</strong>: navazující komunikace v rámci poptávkového procesu,
+            nejdéle do uzavření nebo odmítnutí obchodního vztahu.<br>
+            <em>Právní základ: oprávněný zájem správce (čl. 6 odst. 1 písm. f) GDPR)</em></li>
+        </ul>
+        <p>Vaše údaje <strong>nikdy</strong> neprodáváme třetím stranám, nepoužíváme pro reklamní sítě
+          ani je nesdílíme nad rámec uvedených účelů.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="doba">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">04</span>
+        <h2 class="h-sec fade-head reveal-words">Doba uchování</h2>
+      </div>
+      <div class="prose rev">
+        <p>Vaše údaje uchováváme po dobu nezbytně nutnou k naplnění účelu zpracování:</p>
+        <ul>
+          <li>Pokud se nestanete naším klientem: <strong>maximálně 12 měsíců</strong> od posledního
+            kontaktu, poté údaje mažeme.</li>
+          <li>Pokud se stanete naším klientem: po dobu trvání smluvního vztahu a následně
+            <strong>5 let</strong> z důvodu případných daňových a účetních povinností.</li>
+        </ul>
+        <p>Svůj souhlas můžete kdykoli odvolat, viz sekce <a href="#kontakt">Kontakt a stížnosti</a>.
+          Po odvolání souhlasu údaje smažeme bez zbytečného odkladu, nejpozději do 30 dnů.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="prijemci">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">05</span>
+        <h2 class="h-sec fade-head reveal-words">Příjemci a zpracovatelé</h2>
+      </div>
+      <div class="prose rev">
+        <p>K vašim údajům má přístup výhradně správce (ALSflow). Pro provoz technické infrastruktury
+          využíváme tyto zpracovatele:</p>
+        <ul>
+          <li><strong>Vercel Inc.</strong> (USA): hosting webu alsflow.cz a zpracování odeslaných
+            formulářů. Přenos do USA na základě EU-US Data Privacy Framework.</li>
+          <li><strong>WebGlobe, s.r.o.</strong> (ČR): hosting serverové infrastruktury chatbotů
+            a databáze.</li>
+          <li><strong>Cloudflare, Inc.</strong> (USA): CDN, DNS a ochrana proti spamu a botům
+            (Turnstile), zpracování IP adresy. Přenos do USA na základě EU-US Data Privacy Framework.</li>
+          <li><strong>Resend</strong> (USA): odesílání transakčních a notifikačních e-mailů. Přenos
+            do USA na základě standardních smluvních doložek EU.</li>
+          <li><strong>Seznam.cz, a.s.</strong> (ČR): provoz e-mailové schránky info@alsflow.cz.</li>
+          <li><strong>Google LLC</strong> (USA): e-mailová komunikace (Gmail), analytika webu
+            (Google Analytics, aktivuje se pouze po vašem souhlasu) a AI model (Gemini) pro chatbota.
+            Přenos do USA na základě EU-US Data Privacy Framework.</li>
+        </ul>
+        <p>Se všemi zpracovateli jsou uzavřeny smlouvy o zpracování osobních údajů dle požadavků
+          čl. 28 GDPR.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="prava">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">06</span>
+        <h2 class="h-sec fade-head reveal-words">Vaše práva</h2>
+      </div>
+      <div class="prose rev">
+        <p>Jako subjekt údajů máte podle GDPR tato práva:</p>
+        <ul>
+          <li><strong>Právo na přístup.</strong> Můžete požádat o potvrzení, zda zpracováváme vaše
+            osobní údaje, a o kopii těchto údajů.</li>
+          <li><strong>Právo na opravu.</strong> Máte právo požádat o opravu nepřesných nebo doplnění
+            neúplných osobních údajů.</li>
+          <li><strong>Právo na výmaz.</strong> Na požádání vaše údaje smažeme, pokud to nebrání
+            splnění zákonné povinnosti.</li>
+          <li><strong>Právo na omezení.</strong> Můžete požádat o omezení zpracování, například pokud
+            napadnete přesnost svých údajů.</li>
+          <li><strong>Právo na přenositelnost.</strong> Údaje zpracovávané automatizovaně na základě
+            souhlasu vám poskytneme ve strukturovaném formátu (JSON nebo CSV).</li>
+          <li><strong>Právo vznést námitku.</strong> Můžete kdykoli vznést námitku proti zpracování
+            na základě oprávněného zájmu.</li>
+          <li><strong>Právo odvolat souhlas.</strong> Souhlas udělený při vyplnění formuláře můžete
+            kdykoli odvolat, bez dopadu na dřívější zákonné zpracování.</li>
+          <li><strong>Právo podat stížnost</strong> u dozorového úřadu, kterým je
+            <strong>ÚOOÚ</strong> (Úřad pro ochranu osobních údajů),
+            <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a>.</li>
+        </ul>
+        <p>Svá práva uplatněte na <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>. Na vaši žádost
+          odpovíme do <strong>30 dnů</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="cookies">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">07</span>
+        <h2 class="h-sec fade-head reveal-words">Soubory cookie</h2>
+      </div>
+      <div class="prose rev">
+        <p>Web <strong>alsflow.cz</strong> používá službu <strong>Google Analytics</strong>
+          (Google LLC, USA) ke sledování návštěvnosti a analýze chování na webu. Tato data nám
+          pomáhají pochopit, o které produkty a funkce máte zájem.</p>
+        <p>Google Analytics aktivujeme <strong>pouze s vaším souhlasem</strong>. Při první návštěvě
+          webu se zobrazí lišta, ve které souhlas potvrdíte tlačítkem „Přijmout analytics", nebo jej
+          odmítnete tlačítkem „Odmítnout". Dokud souhlas neudělíte, jsou veškerá analytická úložiště
+          ve výchozím stavu zakázána.</p>
+        <p>Google Analytics zpracovává zejména:</p>
+        <ul>
+          <li>anonymizovanou IP adresu</li>
+          <li>zobrazené stránky a délku návštěvy</li>
+          <li>typ zařízení a prohlížeče</li>
+          <li>zdroj návštěvy (odkaz, vyhledávač, přímá návštěva)</li>
+        </ul>
+        <p>Data jsou zpracovávána na serverech Google (USA) na základě EU-US Data Privacy Framework.
+          Více informací:
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+          Souhlas s analytics můžete kdykoli odvolat smazáním cookies v nastavení prohlížeče.</p>
+        <p>Stránka také načítá písma přes Google Fonts API, při tom může dojít k přenosu IP adresy
+          na servery Google. Tento přenos je technicky nezbytný pro zobrazení webu a neprobíhá při
+          něm žádné ukládání cookies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="kontakt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow-label">08</span>
+        <h2 class="h-sec fade-head reveal-words">Kontakt a stížnosti</h2>
+      </div>
+      <div class="prose rev">
+        <p>Veškeré žádosti týkající se ochrany osobních údajů zasílejte na
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>. Odpovíme do 30 dnů od obdržení
+          žádosti.</p>
+        <p>Pokud nejste spokojeni s naší reakcí, máte právo obrátit se na dozorový úřad:</p>
+        <ul>
+          <li><strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>
+            Pplk. Sochora 27, 170 00 Praha 7<br>
+            <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
