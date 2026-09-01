@@ -233,13 +233,30 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       }
     }
 
-    var s = stupen();
+    var PLATNE = { plny: 1, snizeny: 1, minimalni: 1 };
+    var s = null;
 
-    /* Ruční přepnutí pro testování: ?vykon=minimalni */
+    /* Ruční přepnutí: ?vykon=minimalni. Uloží se na celou návštěvu, takže
+       platí i na dalších stránkách a nemusí se psát do každé adresy. */
     try {
       var vynuceno = new URLSearchParams(location.search).get("vykon");
-      if (vynuceno === "plny" || vynuceno === "snizeny" || vynuceno === "minimalni") s = vynuceno;
+      if (vynuceno && PLATNE[vynuceno]) {
+        s = vynuceno;
+        sessionStorage.setItem("als-vykon", s);
+      }
     } catch (e) {}
+
+    /* Stupeň z dřívější stránky téže návštěvy. Díky tomu se měří jednou
+       a pak už je web od první milisekundy takový, jaký na tohle zařízení
+       patří - žádné přepínání uprostřed čtení. */
+    if (!s) {
+      try {
+        var ulozeny = sessionStorage.getItem("als-vykon");
+        if (ulozeny && PLATNE[ulozeny]) s = ulozeny;
+      } catch (e) {}
+    }
+
+    if (!s) s = stupen();
 
     d.setAttribute("data-vykon", s);
     window.__vykon = s;
@@ -525,9 +542,11 @@ const cur = (href: string) => (href === current ? "page" : undefined);
           var novy = fps < 24 ? "minimalni" : fps < 40 ? "snizeny" : null;
           if (!novy) return;
 
-          document.documentElement.setAttribute("data-vykon", novy);
-          window.__vykon = novy;
-          if (window.__lenis && novy === "minimalni") window.__lenis.destroy();
+          /* Stránku, na které člověk zrovna je, NEPŘEPÍNÁME. Zmizelé pozadí
+             a zastavené nadpisy uprostřed čtení jsou vidět víc než pár
+             ušetřených snímků. Zápis se projeví na další stránce, kde už
+             se těch 600 kB ani nestáhne. */
+          try { sessionStorage.setItem("als-vykon", novy); } catch (e) {}
         }
 
         /* Dvě otočky navíc, ať se neměří první snímek po nasazení stránky,

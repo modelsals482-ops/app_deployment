@@ -35,8 +35,22 @@
     el.childNodes.forEach(function (node) {
       if (node.nodeType === 1 && node.tagName === "BR") { parts.push({ br: true }); return; }
       if (node.nodeType === 1) {
-        /* vnořený prvek (například barevné slovo) bereme vcelku */
-        parts.push({ html: node.outerHTML, text: node.textContent });
+        /* Vnořený prvek (typicky <span class="grad">) se musí rozsekat na
+           slova stejně jako obyčejný text. Kdyby se vzal vcelku, byl by to
+           jeden inline-block, který se nemůže zalomit - celá barevná fráze
+           by spadla na další řádek, a po doběhnutí animace, kdy se nadpis
+           vrátí do původní podoby, by se text přeskládal a slova by viditelně
+           poskočila. Přesně to Jakub hlásil na „Kdo odpoví první, ten...".
+
+           Přechod tím netrpí: je svislý a slova stojí na společné účaří,
+           takže po slovech vypadá stejně jako přes celou frázi (viz
+           poznámka u .word-in v site-pages.css). */
+        var slova = String(node.textContent).split(/\s+/).filter(Boolean);
+        slova.forEach(function (w) {
+          var klon = node.cloneNode(false);   /* jen obal, bez obsahu */
+          klon.textContent = w;
+          parts.push({ html: klon.outerHTML, text: w });
+        });
         return;
       }
       String(node.textContent).split(/\s+/).forEach(function (w) {
