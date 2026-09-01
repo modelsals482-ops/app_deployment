@@ -7,7 +7,7 @@ Allow: /
 # Serverless funkce nejsou obsah pro čtenáře.
 Disallow: /api/
 
-# POZOR: stránky, které nemají být ve výsledcích hledání (dekujeme, landing,
+# POZOR: stránky, které nemají být ve výsledcích hledání (dekujeme,
 # onboarding, dpa, 404), se tady ZÁMĚRNĚ nezakazují. Mají v hlavičce noindex
 # a robot ho musí mít možnost přečíst. Kdyby se sem přidal Disallow, robot
 # stránku nestáhne, noindex nikdy neuvidí, a adresu klidně zaindexuje jen
