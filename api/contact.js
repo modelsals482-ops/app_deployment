@@ -78,9 +78,61 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka: ${b.name}`, text }),
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
+
+    // Potvrzení odesílateli. Až PO úspěšném odeslání poptávky a v samostatném
+    // try/catch: kdyby potvrzení selhalo, poptávka je doručená a nesmí kvůli tomu
+    // spadnout celý požadavek. Člověk by pak formulář odeslal znovu a Jakub by měl
+    // stejný lead dvakrát.
+    //
+    // Cíl je vždy jen adresa, kterou odesílatel sám vyplnil, takže z toho nejde
+    // udělat rozesílač. Formulář navíc chrání Turnstile.
+    await sendConfirmation({ key, from, replyTo: to, b }).catch((e) =>
+      console.error('contact confirmation failed (lead byl doručen):', e.message));
+
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error('contact send failed:', e.message);
     return res.status(500).json({ error: 'send' });
   }
 };
+
+// Potvrzení pro člověka, který formulář odeslal. Prostý text, žádné obrázky ani
+// sledovací pixely: stejný přístup jako u zbytku webu, a taky se to spolehlivěji
+// doručí. Shrnutí toho, co poslal, je tam schválně - má tím doklad, co odešlo.
+async function sendConfirmation({ key, from, replyTo, b }) {
+  const text = [
+    `Dobrý den, ${b.name},`, '',
+    'děkuji za zprávu, dorazila mi v pořádku.',
+    'Ozvu se vám do 48 hodin v pracovní dny, na e-mail nebo telefon, který jste uvedl(a).',
+    '',
+    'Co bude dál:',
+    '1. Přečtu si, co potřebujete, a projdu si váš web, pokud nějaký máte.',
+    '2. Napíšu vám a nabídnu krátký hovor, patnáct minut stačí.',
+    '3. Z hovoru vyjde pevná cena a termín. Ne odhad.',
+    '',
+    'Kdyby to bylo mezitím naléhavé, pište rovnou na ryvola@alsflow.cz.',
+    '',
+    'Pro vaši evidenci posílám, co dorazilo:',
+    `  Jméno:   ${b.name}`,
+    `  E-mail:  ${b.email}`,
+    `  Telefon: ${b.phone || '-'}`,
+    `  Služba:  ${L('service', b.service)}`,
+    b.msg ? `  Zpráva:  ${b.msg}` : null,
+    '',
+    'Jakub Ryvola',
+    'ALSflow · alsflow.cz',
+  ].filter((line) => line !== null).join('\n');
+
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+    body: JSON.stringify({
+      from,
+      to: b.email,
+      reply_to: replyTo,
+      subject: 'Máme vaši poptávku - ozvu se do 48 hodin',
+      text,
+    }),
+  });
+  if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
+}
