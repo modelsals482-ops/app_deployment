@@ -562,7 +562,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 /* --------------------------------------------------------------------
    Dlaždice v řadě (jako řada jazyků v předloze)
    -------------------------------------------------------------------- */
-.tiles { display: flex; flex-wrap: wrap; gap: 1.1rem; justify-content: center; margin-top: 2.6rem; }
 .tile { width: 92px; text-align: center; }
 .tile .box {
   display: grid;
@@ -608,7 +607,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   border-radius: 50%;
   box-shadow: 0 0 10px rgb(91 157 255 / 55%);
 }
-.list.muted li::before { background: var(--t3); }
 .list strong { color: var(--t1); }
 
 /* řádkový výpis s vlasovou linkou */
@@ -731,8 +729,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 @media (max-width: 1000px) {
   .menu, .nav .btn { display: none; }
   .burger { display: flex; }
-  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero-visual { min-height: 320px; order: -1; }
   .cards-2, .cards-3 { grid-template-columns: 1fr; }
   .sec { padding: 4.5rem 0; }
   .hero { padding: 7rem 0 4rem; }

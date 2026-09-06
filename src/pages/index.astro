@@ -279,7 +279,23 @@ import Base from "../layouts/Base.astro";
   <script is:inline>
     (function () {
       if (document.documentElement.getAttribute("data-vykon") === "minimalni") return;
-      ["/assets/js/arc3d.js", "/assets/js/predictive-arc.js"].forEach(function (src) {
+      /* predictive-arc je plosna zaloha pro stroje bez WebGL. Jakmile nabehne
+         verze na WebGL, CSS ji stejne schova (#arc3d[data-on="1"] ~ #arcCanvas),
+         takze na drtive vetsine zarizeni se stahovala a inicializovala pro nic.
+         Stahujeme ji proto jen tam, kde WebGL opravdu neni. */
+      var maWebGL = (function () {
+        try {
+          var cv = document.createElement("canvas");
+          var gl = cv.getContext("webgl") || cv.getContext("experimental-webgl");
+          if (!gl) return false;
+          var z = gl.getExtension("WEBGL_lose_context");
+          if (z) z.loseContext();
+          return true;
+        } catch (e) { return false; }
+      })();
+
+      var soubory = maWebGL ? ["/assets/js/arc3d.js"] : ["/assets/js/predictive-arc.js"];
+      soubory.forEach(function (src) {
         var el = document.createElement("script");
         el.src = src;
         el.async = false;
