@@ -125,6 +125,39 @@
   })();
 
   /* ==================================================================
+     Podrobnosti na vyžádání
+
+     Výchozí formulář je krátký: e-mail a zpráva. Zbytek si rozbalí ten,
+     kdo přesně ví, co chce. Nic ve skryté části není required, takže
+     zavřený formulář jde odeslat - a ukazatel postupu počítá dál jen
+     ta tři povinná pole.
+     ================================================================== */
+  (function () {
+    var moreBtn = document.getElementById("moreBtn");
+    var more = document.getElementById("formMore");
+    if (!moreBtn || !more) return;
+
+    var openLabel = moreBtn.querySelector("[data-more-open]");
+    var closeLabel = moreBtn.querySelector("[data-more-close]");
+
+    moreBtn.addEventListener("click", function () {
+      var opening = more.hidden;
+      more.hidden = !opening;
+      moreBtn.setAttribute("aria-expanded", opening ? "true" : "false");
+      if (openLabel) openLabel.hidden = opening;
+      if (closeLabel) closeLabel.hidden = !opening;
+
+      /* Po rozbalení patří pozornost do prvního nového pole, jinak
+         kurzor zůstane na tlačítku a klávesnice pokračuje jinde. */
+      if (opening) {
+        var first = more.querySelector("input, select, textarea");
+        if (first) first.focus();
+      }
+      sync();
+    });
+  })();
+
+  /* ==================================================================
      Odeslání
      ================================================================== */
   var LABEL = btn ? btn.innerHTML : "";

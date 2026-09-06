@@ -35,7 +35,10 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method' });
   const b = req.body || {};
   if (b.website) return res.status(200).json({ ok: true });          // honeypot -> silently drop
-  if (!b.name || !b.email) return res.status(400).json({ error: 'missing name/email' });
+  // Povinné je jen to, bez čeho nejde odpovědět. Jméno je nepovinné, protože
+  // krátký formulář ho nesbírá - doptat se na ně v odpovědi je levnější než
+  // ztratit poptávku na políčku navíc.
+  if (!b.email || !b.msg) return res.status(400).json({ error: 'missing email/msg' });
 
   // Cloudflare Turnstile - if a secret is configured, the token must verify or we reject (no email sent).
   const tsSecret = process.env.TURNSTILE_SECRET_KEY;
@@ -59,7 +62,7 @@ module.exports = async function handler(req, res) {
 
   const text = [
     `Nová poptávka z alsflow.cz`, '',
-    `Jméno:    ${b.name}`,
+    `Jméno:    ${b.name || '-'}`,
     `E-mail:   ${b.email}`,
     `Telefon:  ${b.phone || '-'}`,
     `Město:    ${b.city || '-'}`,
@@ -75,7 +78,7 @@ module.exports = async function handler(req, res) {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-      body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka: ${b.name}`, text }),
+      body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka: ${b.name || b.email}`, text }),
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
 
@@ -101,7 +104,7 @@ module.exports = async function handler(req, res) {
 // doručí. Shrnutí toho, co poslal, je tam schválně - má tím doklad, co odešlo.
 async function sendConfirmation({ key, from, replyTo, b }) {
   const text = [
-    `Dobrý den, ${b.name},`, '',
+    b.name ? `Dobrý den, ${b.name},` : 'Dobrý den,', '',
     'děkuji za zprávu, dorazila mi v pořádku.',
     'Ozvu se vám do 48 hodin v pracovní dny, na e-mail nebo telefon, který jste uvedl(a).',
     '',
@@ -113,7 +116,7 @@ async function sendConfirmation({ key, from, replyTo, b }) {
     'Kdyby to bylo mezitím naléhavé, pište rovnou na ryvola@alsflow.cz.',
     '',
     'Pro vaši evidenci posílám, co dorazilo:',
-    `  Jméno:   ${b.name}`,
+    b.name ? `  Jméno:   ${b.name}` : null,
     `  E-mail:  ${b.email}`,
     `  Telefon: ${b.phone || '-'}`,
     `  Služba:  ${L('service', b.service)}`,
