@@ -531,12 +531,18 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       if (stupen !== "plny") return;
 
       window.addEventListener("load", function () {
+        /* Neměřit hned. `load` padne ve chvíli, kdy prohlížeč teprve rozparsoval
+           a kompiluje 800 kB skriptů a staví první snímky - i rychlý počítač má
+           v tu chvíli propad. Kdo měřil tady, označil za slabé i výkonné stroje,
+           uložil si to na celou návštěvu a člověk pak koukal na web bez animací,
+           dokud nezavřel panel. Dvě sekundy klidu to oddělí. */
+        setTimeout(function () {
         var snimky = 0;
         var start = performance.now();
 
         function tik(t) {
           snimky++;
-          if (t - start < 1200) { requestAnimationFrame(tik); return; }
+          if (t - start < 2000) { requestAnimationFrame(tik); return; }
 
           var fps = (snimky * 1000) / (t - start);
           var novy = fps < 24 ? "minimalni" : fps < 40 ? "snizeny" : null;
@@ -554,6 +560,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         requestAnimationFrame(function () {
           requestAnimationFrame(function (t) { start = t; requestAnimationFrame(tik); });
         });
+        }, 2000);
       });
     })();
   </script>
