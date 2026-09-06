@@ -32,3 +32,9 @@ jobs:
 
       - name: Check fetch() hosts are allowed by CSP connect-src
         run: node .github/scripts/check-csp-hosts.cjs dist
+
+      # Potvrzovaci e-maily se posilaji az po uspesnem odeslani leadu a nesmi
+      # shodit pozadavek, kdyz selzou. Na to je test, protoze rozdil je videt
+      # az na produkci: lead by prisel dvakrat.
+      - name: Test confirmation emails
+        run: node test/onboarding-confirmation.cjs

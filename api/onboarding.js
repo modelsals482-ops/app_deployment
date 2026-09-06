@@ -50,9 +50,67 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({ from, to, reply_to: b.email, subject: `Onboarding: ${b.firma || b.email}`, text }),
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
+
+    // Potvrzení odesílateli. Až PO úspěšném odeslání a v samostatném try/catch:
+    // kdyby potvrzení selhalo, onboarding je doručený a nesmí kvůli tomu spadnout
+    // celý požadavek. Klient by formulář vyplnil znovu a přišel by dvakrát.
+    //
+    // Cíl je vždy jen adresa, kterou klient sám vyplnil, takže z toho nejde udělat
+    // rozesílač. Formulář navíc chrání Turnstile.
+    await sendConfirmation({ key, from, replyTo: to, b }).catch((e) =>
+      console.error('onboarding confirmation failed (formular byl dorucen):', e.message));
+
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error('onboarding send failed:', e.message);
     return res.status(500).json({ error: 'send' });
   }
 };
+
+// Potvrzení pro klienta, který onboarding odeslal. Prostý text, žádné obrázky ani
+// sledovací pixely, stejně jako u poptávky.
+//
+// Vypisují se jen vyplněná pole, ne celá šablona: onboarding má osmnáct položek
+// a většina jich zůstane prázdná, takže seznam samých pomlček by byl k ničemu.
+//
+// Souhlas s DPA je tam schválně a s datem. Je to clickwrap, takže klient má mít
+// vlastní písemný doklad o tom, s čím a kdy souhlasil, ne jen my v e-mailu.
+async function sendConfirmation({ key, from, replyTo, b }) {
+  const vyplnene = Object.keys(LABELS)
+    .filter((k) => b[k])
+    .map((k) => `  ${(LABELS[k] + ':').padEnd(20)} ${b[k]}`);
+
+  const text = [
+    b.kontaktni_osoba ? `Dobrý den, ${b.kontaktni_osoba},` : 'Dobrý den,', '',
+    'děkuji, onboarding formulář dorazil v pořádku.',
+    'Ozvu se vám do 48 hodin v pracovní dny na e-mail, který jste uvedl(a).',
+    '',
+    'Co bude dál:',
+    '1. Projdu si, co jste vyplnili, a ozvu se s tím, co ještě potřebuju doplnit.',
+    '2. Podle toho vám postavím asistenta a pošlu odkaz, kde si ho vyzkoušíte.',
+    '3. Spustíme ho až ve chvíli, kdy vám bude sedět, co odpovídá.',
+    '',
+    'Kdyby cokoli hořelo, pište rovnou na ryvola@alsflow.cz.',
+    '',
+    'Pro vaši evidenci posílám, co dorazilo:',
+    ...vyplnene,
+    '',
+    `  Souhlas se zpracováním údajů (DPA): udělen ${new Date().toLocaleDateString('cs-CZ')}`,
+    '',
+    'Jakub Ryvola',
+    'ALSflow · alsflow.cz',
+  ].join('\n');
+
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+    body: JSON.stringify({
+      from,
+      to: b.email,
+      reply_to: replyTo,
+      subject: 'Máme váš onboarding - ozvu se do 48 hodin',
+      text,
+    }),
+  });
+  if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
+}
