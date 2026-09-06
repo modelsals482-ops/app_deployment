@@ -771,7 +771,12 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
 .word-mask {
   display: inline-block;
-  overflow: hidden;
+  /* Maska existuje proto, aby slovo nebylo videt, dokud nevyjede ZESPODU.
+     Musi tedy zakryvat jen dolni hranu. overflow:hidden ale orezava i
+     nahore, a carka nad "I" nebo hacek nad "C" u velkych pismen sahaji
+     vys nez vyska verzalek - presne ty se usekavaly.
+     clip-path orizne jen dole a nahore necha otevreno. */
+  clip-path: inset(-1em 0 0 0);
 
   /* Nadpisy mají line-height 1.06, takže obsahový box je nižší než písmo.
      Ocásek u „y" nebo háček nad „Č" z něj vyčuhují a maska je ořízne -
