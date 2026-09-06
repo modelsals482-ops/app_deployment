@@ -38,3 +38,8 @@ jobs:
       # az na produkci: lead by prisel dvakrat.
       - name: Test confirmation emails
         run: node test/onboarding-confirmation.cjs
+
+      # Odsazeni u nadpisu je jediny duvod, proc carky a hacky nejsou usekle.
+      # Kdyby ho nekdo smazal, build i stranka projdou a chybi jen par pixelu.
+      - name: Check headings have room for Czech diacritics
+        run: node .github/scripts/check-diacritics-room.cjs dist

@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "node .github/scripts/check-js-syntax.cjs dist && node .github/scripts/check-csp-hosts.cjs dist"
+    "check": "node .github/scripts/check-js-syntax.cjs dist && node .github/scripts/check-csp-hosts.cjs dist && node .github/scripts/check-diacritics-room.cjs dist"
   },
   "devDependencies": {
     "astro": "^5.14.1"

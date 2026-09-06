@@ -103,14 +103,35 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
 
-  /* background-clip: text ořízne přechod na tvar písmen, ale malovat může jen
-     uvnitř svého pozadí. Řádkový box je při line-height 1.06 nižší než skutečné
-     písmo, takže čárka nad "í" a háček nad "ě" trčí ven a zůstanou průhledné -
-     přesně ten pruh, kde barva "nedojde až nahoru".
-     Svislé odsazení pozadí zvětší, u řádkového prvku ale nemění výšku řádku,
-     takže se rozvržení nehne. */
-  padding-block: 0.2em;
+/* =====================================================================
+   Místo na čárky a háčky
+
+   `background-clip: text` ořízne přechod na tvar písmen, ale malovat smí
+   jen uvnitř svého pozadí, a pozadí končí na hranici boxu. Ten je při
+   line-height 1.06 nižší než samotné písmo: půlka prokladu vychází na
+   (1.06 - 1.267) / 2 = -0.103em, takže vršek čárky nad "í" a háčku nad "ě"
+   leží nad boxem a zůstane průhledný. To je přesně ten pruh, kde barva
+   "nedojde až nahoru".
+
+   Platí to pro KAŽDÝ prvek, který si přechod ořezává na text, ne jen pro
+   ten, na kterém si toho člověk všimne. Proto jedno pravidlo pro všechny
+   tři: nadpis sám, jednotlivá slova po rozsekání (reveal.js) i barevné
+   slovo. Dřív ho měl jen `.grad`, a v nadpisech se pořád usekávalo.
+
+   Odsazení pozadí zvětší, záporný margin stejnou hodnotu zase ubere,
+   takže se rozvržení nehne. 0.16em je asi jeden a půl násobek toho, co je
+   potřeba, aby se tam vešlo i písmeno s vyšší diakritikou.
+
+   Pozor: `.fade-head` se dvakrát v projektu píše i s vlastním
+   `style="margin-top:..."`. Tam je odsazení potřeba odečíst ručně,
+   protože zápis v atributu přebije margin odsud. */
+.fade-head,
+.fade-head .word-in,
+.grad {
+  padding-block: 0.16em;
+  margin-block: -0.16em;
 }
 
 .h-hero { font-size: clamp(2.9rem, 7.2vw, 5.6rem); }
