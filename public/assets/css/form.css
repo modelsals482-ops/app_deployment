@@ -596,3 +596,45 @@
 }
 .form-legend .req { color: var(--blue); }  /* stejná barva jako hvězdičky v popiscích */
 
+/* --------------------------------------------------------------------
+   Podrobnosti na vyžádání
+
+   Výchozí formulář je krátký: e-mail a zpráva. Kdo přesně ví, co chce,
+   si zbytek polí rozbalí. Ve skryté části nesmí být nic required -
+   prohlížeč by odmítl odeslat formulář a neukázal by, na čem to vázne,
+   protože to pole není vidět.
+   -------------------------------------------------------------------- */
+.form-more {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.form-more[hidden] { display: none; }
+.form-more .wide,
+.form-more .form-legend { grid-column: 1 / -1; }
+
+@media (max-width: 620px) {
+  .form-more { grid-template-columns: 1fr; }
+}
+
+.form-expand { display: flex; }
+
+.form-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-more-btn .arrow { transition: transform 0.25s ease; }
+.form-more-btn[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .form-more-btn .arrow { transition: none; }
+}
