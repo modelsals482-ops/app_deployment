@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
   // Povinné je jen to, bez čeho nejde odpovědět. Jméno je nepovinné, protože
   // krátký formulář ho nesbírá - doptat se na ně v odpovědi je levnější než
   // ztratit poptávku na políčku navíc.
-  if (!b.email || !b.msg) return res.status(400).json({ error: 'missing email/msg' });
+  if (!b.email || !b.msg || !b.service) return res.status(400).json({ error: 'missing email/msg/service' });
 
   // Cloudflare Turnstile - if a secret is configured, the token must verify or we reject (no email sent).
   const tsSecret = process.env.TURNSTILE_SECRET_KEY;
