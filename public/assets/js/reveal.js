@@ -124,6 +124,10 @@
          Po doběhnutí už k ničemu nejsou. Nadpis je zpátky jeden prvek
          s jedním přechodem, tedy přesně to, co by tam bylo bez skriptu.
          Zmizí tím i pomocná kopie pro čtečky - původní text je zpět. */
+      /* Pojistku spoustime az ve chvili, kdy animace opravdu zacne. Kdyby
+         se merilo od nacteni stranky, nadpisy pod prehybem by se dorovnaly
+         driv, nez k nim clovek dorolovat - a neanimovaly by se vubec. */
+      onStart: function () { setTimeout(hotovo, 2500); },
       onComplete: function () { hotovo(); },
     });
 
@@ -145,6 +149,5 @@
       dokonceno = true;
       el.innerHTML = original;
     }
-    setTimeout(hotovo, 2500);
   });
 })();
