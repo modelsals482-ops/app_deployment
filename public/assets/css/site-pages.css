@@ -132,6 +132,22 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
 .grad {
   padding-block: 0.16em;
   margin-block: -0.16em;
+
+  /* Nadpis se casto zalomi doprostred barevneho slova. Ve vychozim stavu
+     (box-decoration-break: slice) prohlizec spocita pozadi pro CELY
+     neprerusny box a pak ho rozkroji - druhy radek tim dostane jinou cast
+     prechodu, nez na kterou ma. Pri background-size: 260% je ten rozdil
+     videt. `clone` da kazdemu radku vlastni pozadi vcetne odsazeni. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  /* Zmereno ve fontu (hmtx vs obrys glyfu): jediny cesky znak, ktery
+     presahuje svou sirku, je "r s hackem", a to o 0.026 em vpravo. Slov
+     koncicich na -r je v cestine dost (lekar, kuchar, tvar), takze jim
+     tady davame 0.04 em navic a stejne ubereme na marginu, aby se
+     mezislovni mezera nezmenila. */
+  padding-inline: 0.04em;
+  margin-inline: -0.04em;
 }
 
 .h-hero { font-size: clamp(2.9rem, 7.2vw, 5.6rem); }
