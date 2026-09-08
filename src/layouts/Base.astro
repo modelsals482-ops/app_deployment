@@ -213,8 +213,20 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         var mem = navigator.deviceMemory;
         if (typeof mem === "number" && mem <= 2) return "minimalni";
 
+        /* Pocet jader sam o sobe uz na "minimalni" neposila.
+
+           Prohlizece se zapnutou ochranou proti otiskovani prohlizece
+           (Brave, Safari, Firefox v prisnem rezimu) tuhle hodnotu zamerne
+           zkresluji a bezne hlasi 2 i na osmijadru. Stroj pak dostal
+           stupen bez jedine animace, aniz by k tomu byl duvod - presne to
+           Jakub videl v beznem okne Brave, zatimco v anonymnim okne
+           animace bezely.
+
+           Snizeny stupen porad vypne to drahe (Three.js a sceny), ale
+           animace textu nechá bezet. Kdyz je zarizeni opravdu slabe,
+           chytne ho deviceMemory nebo mereni nize. */
         var jader = navigator.hardwareConcurrency;
-        if (typeof jader === "number" && jader <= 2) return "minimalni";
+        if (typeof jader === "number" && jader <= 2) return "snizeny";
         if (typeof mem === "number" && mem <= 4) return "snizeny";
         if (typeof jader === "number" && jader <= 4) return "snizeny";
 

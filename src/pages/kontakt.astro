@@ -85,7 +85,21 @@ import Base from "../layouts/Base.astro";
             <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
             <p class="field-note">Zkontrolujte pros&iacute;m tvar e-mailu.</p>
           </div>
-          <div class="field wide">
+          <div class="field is-select">
+            <select id="f-service" name="service">
+            <option value="" disabled selected>Vyberte&hellip;</option>
+            <option value="web">Web: nov&yacute; nebo p&rcaron;ed&ecaron;lan&yacute;</option>
+            <option value="software">Software na m&iacute;ru</option>
+            <option value="ai">AI asistent</option>
+            <option value="vice">V&iacute;c v&ecaron;c&iacute; dohromady</option>
+            <option value="nevim">Je&scaron;t&ecaron; nev&iacute;m, chci poradit</option>
+            </select>
+            <label for="f-service">Co pot&rcaron;ebujete</label>
+            <i class="line" aria-hidden="true"></i>
+            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
+            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
+          </div>
+                    <div class="field wide">
             <textarea id="f-msg" name="msg" placeholder=" " required></textarea>
             <label for="f-msg">S &ccaron;&iacute;m m&uring;&zcaron;u pomoct?<span class="req">*</span></label>
             <p class="field-note">Napi&scaron;te pros&iacute;m aspo&ncaron; v&ecaron;tu.</p>
@@ -106,21 +120,7 @@ import Base from "../layouts/Base.astro";
             <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
             <p class="field-note">Vypl&ncaron;te pros&iacute;m tohle pole.</p>
           </div>
-          <div class="field is-select">
-            <select id="f-service" name="service">
-            <option value="" disabled selected>Vyberte&hellip;</option>
-            <option value="web">Web: nov&yacute; nebo p&rcaron;ed&ecaron;lan&yacute;</option>
-            <option value="software">Software na m&iacute;ru</option>
-            <option value="ai">AI asistent</option>
-            <option value="vice">V&iacute;c v&ecaron;c&iacute; dohromady</option>
-            <option value="nevim">Je&scaron;t&ecaron; nev&iacute;m, chci poradit</option>
-            </select>
-            <label for="f-service">Co pot&rcaron;ebujete</label>
-            <i class="line" aria-hidden="true"></i>
-            <svg class="tick" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2.5 8.5 3.5 3.5 7.5-8"/></svg>
-            <p class="field-note">Vyberte pros&iacute;m jednu mo&zcaron;nost.</p>
-          </div>
-          <div class="field is-select">
+                    <div class="field is-select">
             <select id="f-urgency" name="urgency">
             <option value="" disabled selected>Vyberte&hellip;</option>
             <option value="asap">Co nejd&rcaron;&iacute;v, tento t&yacute;den</option>

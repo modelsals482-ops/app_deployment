@@ -124,7 +124,27 @@
          Po doběhnutí už k ničemu nejsou. Nadpis je zpátky jeden prvek
          s jedním přechodem, tedy přesně to, co by tam bylo bez skriptu.
          Zmizí tím i pomocná kopie pro čtečky - původní text je zpět. */
-      onComplete: function () { el.innerHTML = original; },
+      onComplete: function () { hotovo(); },
     });
+
+    /* POJISTKA.
+
+       Tween bezi na requestAnimationFrame. Kdyz rAF vypadne - zalozka jde
+       na pozadi zrovna ve chvili, kdy se spousti odhalovani, prohlizec
+       skrti snimky, nebo se GSAP z jakehokoli duvodu nedobehne - slova
+       zustanou stat uprostred cesty. A protoze maska orezava spodni hranu,
+       je z nadpisu videt jen horni prouzek pismen: presne to, co Jakub
+       hlasi jako "useknutou barvu". Bez pojistky uz z toho stavu neni cesta
+       ven, dokud clovek stranku neobnovi.
+
+       Po dvou sekundach od spusteni tedy nadpis dorovname natvrdo. Stejny
+       vzorec uz v kodu je u formulare (form.js, IntersectionObserver). */
+    var dokonceno = false;
+    function hotovo() {
+      if (dokonceno) return;
+      dokonceno = true;
+      el.innerHTML = original;
+    }
+    setTimeout(hotovo, 2500);
   });
 })();
