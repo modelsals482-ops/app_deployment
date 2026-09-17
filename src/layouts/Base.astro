@@ -168,6 +168,33 @@ const cur = (href: string) => (href === current ? "page" : undefined);
     #alsLoader > div::before { animation: none; }
     #alsLoader { transition-duration: 0.001ms; }
   }
+
+  /* Cookie lišta. Karta vlevo dole, ať nekoliduje s Klárou vpravo dole.
+     Schválně přepínaná třídou, ne atributem [hidden] - ten se na display:flex
+     containeru neuplatní, viz poznámka u news formuláře v client-admin. */
+  .cookie-banner {
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 400;
+    display: none;
+    flex-direction: column;
+    gap: 0.9rem;
+    width: min(360px, calc(100vw - 2.5rem));
+    padding: 1.25rem 1.35rem;
+    background: var(--card, #0c0c11);
+    border: 1px solid var(--line-2);
+    border-radius: var(--r-card, 20px);
+    box-shadow: 0 20px 60px rgb(0 0 0 / 45%);
+  }
+  .cookie-banner.is-visible { display: flex; }
+  .cookie-banner p { margin: 0; font-size: 0.86rem; line-height: 1.55; color: var(--t2); }
+  .cookie-banner p a { color: var(--t1); }
+  .cookie-banner__row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .cookie-banner__row .btn { flex: 1; padding: 0.6rem 1rem; font-size: 0.85rem; white-space: nowrap; }
+  @media (max-width: 480px) {
+    .cookie-banner { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; width: auto; }
+  }
 </style>
 
 <script is:inline>
@@ -600,6 +627,60 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         "&body=" + encodeURIComponent(body);
     })();
   </script>
+  <!-- Cookie lišta + Google Analytics. GA se stahuje a inicializuje jen
+       po souhlasu, nikdy dřív - to je to, co ochrana_dat slibuje. Volba
+       (granted/denied) se pamatuje v localStorage, ať se lišta neptá znovu. -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Souhlas s analytick&yacute;mi cookies">
+    <p>Pou&zcaron;&iacute;v&aacute;me Google Analytics ke sledov&aacute;n&iacute; n&aacute;v&scaron;t&ecaron;vnosti. Podrobnosti v <a href="/ochrana_dat">ochran&ecaron; dat</a>.</p>
+    <div class="cookie-banner__row">
+      <button class="btn btn-quiet" type="button" id="cookieDeny">Odm&iacute;tnout</button>
+      <button class="btn btn-grad btn-shine" type="button" id="cookieAccept">P&rcaron;ijmout analytics</button>
+    </div>
+  </div>
+  <script is:inline>
+    (function () {
+      var GA_ID = "G-XXXXXXXXXX"; /* TODO: nahradit skutečným Measurement ID z analytics.google.com */
+      var KEY = "als-consent";
+
+      function loadGA() {
+        if (window.__gaLoaded || GA_ID.indexOf("XXXX") !== -1) return;
+        window.__gaLoaded = true;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", GA_ID);
+      }
+
+      var consent = null;
+      try { consent = localStorage.getItem(KEY); } catch (e) {}
+
+      var banner = document.getElementById("cookieBanner");
+      if (consent === "granted") {
+        loadGA();
+      } else if (consent !== "denied" && banner) {
+        banner.classList.add("is-visible");
+      }
+
+      var accept = document.getElementById("cookieAccept");
+      var deny = document.getElementById("cookieDeny");
+
+      if (accept) accept.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, "granted"); } catch (e) {}
+        loadGA();
+        if (banner) banner.classList.remove("is-visible");
+      });
+
+      if (deny) deny.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, "denied"); } catch (e) {}
+        if (banner) banner.classList.remove("is-visible");
+      });
+    })();
+  </script>
+
   <!-- Klára. V obalu, takže je na každé stránce: umí odpovědět na dotaz
        i navigovat po webu. Načítá se až po zbytku stránky (defer) a bez
        JavaScriptu se nezobrazí vůbec - nic, co by chybělo. -->
