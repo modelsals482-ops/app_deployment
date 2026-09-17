@@ -46,9 +46,12 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <meta property="og:image" content="https://alsflow.cz/og-image.png?v=2" />
   <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <!-- Pismo lezi na nasem serveru (viz @font-face v site-pages.css), takze
+       tady staci rict prohlizeci, aby ho nacetl hned, a ne az kdyz na nej
+       narazi v CSS. Ceska stranka vzdy potrebuje oba rezy: latin i latin-ext.
+       Anton se driv nacital z Google, ale v zadnem CSS se nepouzival. -->
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/site-pages.css" />
   <link rel="stylesheet" href="/assets/css/flash.css" />
   <link rel="stylesheet" href="/assets/css/ai-page.css" />
