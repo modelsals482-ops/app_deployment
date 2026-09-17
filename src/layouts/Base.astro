@@ -67,6 +67,11 @@ const cur = (href: string) => (href === current ? "page" : undefined);
 
   #alsLoader[hidden] { display: none; }
 
+  /* Loader zamyka rolovani. Bez rezervovaneho zlabu by se po jeho zmizeni
+     vratil posuvnik, stranka by se zuzila o jeho sirku a vsechno by
+     poskocilo do strany (merene: 0,012 CLS na kazde strance). */
+  html { scrollbar-gutter: stable; }
+
   html.als-loading,
   html.als-loading body { overflow: hidden; }
 

@@ -41,13 +41,15 @@
     var api = build(renderer);
     if (!api) return;
 
+    /* Meri se platno, ne jeho rodic, a rozmer se nepretlacuje inline stylem.
+       Puvodne se bralo rodicovske pole a pak se zapsalo width/height 100 %,
+       cimz se po nacteni prebilo .scene-right (62 %): platno preskocilo z 62 %
+       na celou sirku a delalo to 0,34 CLS na /tvorba-webu. Velikost urcuje CSS,
+       tady se jen dorovnava kreslici plocha. */
     function resize() {
-      var box = canvas.parentElement || canvas;
-      var w = Math.max(1, box.clientWidth);
-      var h = Math.max(1, box.clientHeight);
+      var w = Math.max(1, canvas.clientWidth);
+      var h = Math.max(1, canvas.clientHeight);
       renderer.setSize(w, h, false);
-      canvas.style.width = "100%";
-      canvas.style.height = "100%";
       api.resize(w, h);
     }
 
@@ -59,7 +61,7 @@
     });
 
     if ("ResizeObserver" in window) {
-      new ResizeObserver(function () { resize(); }).observe(canvas.parentElement || canvas);
+      new ResizeObserver(function () { resize(); }).observe(canvas);
     }
 
     resize();
