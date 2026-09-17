@@ -17,7 +17,7 @@ import Base from "../layouts/Base.astro";
       <span class="eyebrow-label">Právní informace</span>
       <h1 class="h-hero fade-head reveal-words" style="max-width:18ch">Ochrana <span class="grad">osobních údajů</span></h1>
       <p class="lead">Co se stane s údaji, které nám přes formulář svěříte. Poslední aktualizace
-        25. května 2026.</p>
+        17. září 2026.</p>
     </div>
   </section>
 
@@ -44,13 +44,12 @@ import Base from "../layouts/Base.astro";
         <h2 class="h-sec fade-head reveal-words">Jaké údaje zpracováváme</h2>
       </div>
       <div class="prose rev">
-        <p>Zpracováváme pouze údaje, které nám dobrovolně poskytnete prostřednictvím kontaktního
-          formuláře na webu:</p>
+        <p>Zpracováváme údaje, které nám dobrovolně poskytnete přes kontaktní formulář, onboardingový formulář nebo chat s asistentkou Klárou:</p>
         <ul>
           <li><strong>Identifikační údaje:</strong> jméno a příjmení</li>
           <li><strong>Kontaktní údaje:</strong> e-mailová adresa, telefonní číslo (volitelné)</li>
           <li><strong>Obchodní údaje:</strong> typ podnikání, velikost týmu, zájem o službu, popis největšího problému</li>
-          <li><strong>Volný text:</strong> obsah zprávy, pokud ji vyplníte</li>
+          <li><strong>Volný text:</strong> obsah zprávy ve formuláři nebo v chatu</li>
         </ul>
         <p>Nepožadujeme rodná čísla, čísla dokladů, bankovní spojení ani jakékoli citlivé osobní
           údaje ve smyslu čl. 9 GDPR.</p>
@@ -173,7 +172,7 @@ import Base from "../layouts/Base.astro";
           (Google LLC, USA) ke sledování návštěvnosti a analýze chování na webu. Tato data nám
           pomáhají pochopit, o které produkty a funkce máte zájem.</p>
         <p>Google Analytics aktivujeme <strong>pouze s vaším souhlasem</strong>. Při první návštěvě
-          webu se zobrazí lišta, ve které souhlas potvrdíte tlačítkem „Přijmout analytics", nebo jej
+          webu se zobrazí lišta, ve které souhlas potvrdíte tlačítkem „Přijmout měření", nebo jej
           odmítnete tlačítkem „Odmítnout". Dokud souhlas neudělíte, jsou veškerá analytická úložiště
           ve výchozím stavu zakázána.</p>
         <p>Google Analytics zpracovává zejména:</p>
@@ -186,10 +185,8 @@ import Base from "../layouts/Base.astro";
         <p>Data jsou zpracovávána na serverech Google (USA) na základě EU-US Data Privacy Framework.
           Více informací:
           <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
-          Souhlas s analytics můžete kdykoli odvolat smazáním cookies v nastavení prohlížeče.</p>
-        <p>Stránka také načítá písma přes Google Fonts API, při tom může dojít k přenosu IP adresy
-          na servery Google. Tento přenos je technicky nezbytný pro zobrazení webu a neprobíhá při
-          něm žádné ukládání cookies.</p>
+          Souhlas s měřením můžete kdykoli změnit nebo odvolat: <button type="button" class="btn btn-quiet" id="consentReset">Změnit souhlas s měřením</button></p>
+        <p>Stránka také načítá písma přes Google Fonts API, při tom se na servery Google přenáší IP adresa. Neukládají se při tom žádné cookies.</p>
       </div>
     </div>
   </section>

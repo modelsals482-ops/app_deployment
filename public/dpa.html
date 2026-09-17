@@ -216,7 +216,7 @@
     <p class="page-updated">DPA dle čl. 28 GDPR · Verze 1.0 · Platná od 2. července 2026</p>
 
     <div class="draft-banner">
-      <strong>Stav: pracovní návrh.</strong> Text vychází z běžné praxe zpracovatelských smluv a doporučujeme jeho právní kontrolu u větších nebo citlivějších zakázek. Tato smlouva se týká zpracování osobních údajů <strong>vašich zákazníků</strong> prostřednictvím AI asistenta ALSflow, nikoli vašich vlastních údajů jako zájemce o službu (to upravuje samostatná <a href="/ochrana_dat">Ochrana osobních údajů</a>).
+      Text vychází z běžné praxe zpracovatelských smluv a doporučujeme jeho právní kontrolu u větších nebo citlivějších zakázek. Tato smlouva se týká zpracování osobních údajů <strong>vašich zákazníků</strong> prostřednictvím AI asistenta ALSflow, nikoli vašich vlastních údajů jako zájemce o službu (to upravuje samostatná <a href="/ochrana_dat">Ochrana osobních údajů</a>).
     </div>
 
     <div class="toc">
@@ -240,7 +240,7 @@
       <h2>Smluvní strany</h2>
       <div class="highlight-box">
         <strong>Zpracovatel</strong><br>
-        ALSflow (Jakub), obchodní značka společnosti Retail Shops s.r.o., IČO 02512556, DIČ CZ02512556, se sídlem Dolnoměcholupská 522/12a, 102 00 Praha 10<br>
+        ALSflow, obchodní značka společnosti Retail Shops s.r.o., IČO 02512556, DIČ CZ02512556, se sídlem Dolnoměcholupská 522/12a, 102 00 Praha 10<br>
         IČO: 02512556 · DIČ: CZ02512556<br>
         E-mail: <a href="mailto:info@alsflow.cz">info@alsflow.cz</a> · Web: alsflow.cz
       </div>
@@ -253,7 +253,7 @@
     <div class="section" id="ucel">
       <span class="section-num">02</span>
       <h2>Předmět a účel zpracování</h2>
-      <p>Zpracovatel zpracovává osobní údaje zákazníků Správce výhradně za účelem provozu AI asistenta objednaného Správcem, například rezervačního bota, e-mailového bota nebo extrakce dokumentů. Konkrétně jde o vedení konverzace se zákazníky Správce, správu rezervací a připomínek, zodpovídání dotazů a předávání eskalací Správci.</p>
+      <p>Zpracovatel zpracovává osobní údaje zákazníků Správce výhradně za účelem provozu AI asistenta objednaného Správcem, například asistenta pro rezervace, e-mailové odpovědi nebo zpětnou vazbu. Konkrétně jde o vedení konverzace se zákazníky Správce, správu rezervací a připomínek, zodpovídání dotazů a předávání eskalací Správci.</p>
     </div>
 
     <div class="section" id="udaje">
@@ -264,7 +264,7 @@
       <ul>
         <li>Identifikační a kontaktní údaje: jméno, e-mail, telefon</li>
         <li>Obsah konverzace se zákazníkem, případně termíny rezervací</li>
-        <li>Technické údaje: IP adresa (pouze pro omezení zneužití a rate limiting)</li>
+        <li>Technické údaje: IP adresa (pouze pro ochranu před zneužitím a omezení počtu požadavků)</li>
       </ul>
       <p>Zpracovatel záměrně nezpracovává zvláštní kategorie osobních údajů (čl. 9 GDPR, např. údaje o zdraví). Pokud Správce nebo jeho zákazníci takové údaje do konverzace přesto zadají, děje se tak na vlastní odpovědnost Správce. Zpracovatel doporučuje ve svém provozu takové údaje nesbírat prostřednictvím AI asistenta.</p>
     </div>
@@ -291,7 +291,8 @@
       <h2>Subzpracovatelé</h2>
       <p>Zpracovatel využívá pro provoz služby tyto subzpracovatele:</p>
       <ul>
-        <li><strong>Railway</strong>: hosting serverové infrastruktury (n8n + databáze). Přenos do USA na základě standardních smluvních doložek (SCC).</li>
+        <li><strong>WebGlobe, s.r.o.</strong> (ČR): hosting serverové infrastruktury asistentů a databáze.</li>
+              <li><strong>Cloudflare, Inc.</strong> (USA): DNS, CDN a ochrana proti zneužití. Přenos na základě EU–US Data Privacy Framework.</li>
         <li><strong>Google (Gemini API)</strong>: AI model pro vedení konverzace. Přenos na základě EU–US Data Privacy Framework / SCC.</li>
         <li><strong>Google (Gmail) nebo Resend</strong>: odesílání e-mailů, dle zvoleného produktu a nastavení. Přenos na základě EU–US Data Privacy Framework / SCC.</li>
       </ul>
@@ -303,7 +304,7 @@
       <h2>Technická a organizační opatření</h2>
       <ul>
         <li>Přístup k systému chráněn API klíči a samostatnými přihlašovacími údaji pro každého klienta.</li>
-        <li>Konverzační historie zákazníků jednotlivých Správců je vzájemně izolovaná (vlastní identifikátor relace na klienta), údaje se mezi klienty nesdílí.</li>
+        <li>Konverzační historie zákazníků jednotlivých Správců je vzájemně izolovaná (vlastní identifikátor relace na klienta), údaje se mezi klienty nesdílejí.</li>
         <li>Žádné přístupové klíče v prostém textu, veškerá komunikace probíhá šifrovaně (HTTPS/TLS).</li>
         <li>Přístup k databázi je omezen pouze na Zpracovatele.</li>
       </ul>
@@ -333,7 +334,7 @@
       </div>
       <p>Subjekty údajů, jejichž práva jsou touto smlouvou dotčena, se mohou obrátit i přímo na Správce (klienta, u kterého AI asistenta používaly), případně na dozorový úřad:</p>
       <ul>
-        <li><strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>Pplk. Sochora 27, 170 00 Praha 7<br>Web: <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a></li>
+        <li><strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>Pplk. Sochora 27, 170 00 Praha 7<br>Web: <a href="https://uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a></li>
       </ul>
     </div>
 
