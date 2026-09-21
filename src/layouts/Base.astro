@@ -270,6 +270,23 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         var cv = document.createElement("canvas");
         var gl = cv.getContext("webgl") || cv.getContext("experimental-webgl");
         if (!gl) return "snizeny";
+
+        /* WebGL bez grafické karty. Chrome ho umí emulovat na procesoru
+           (SwiftShader, na Linuxu llvmpipe), takže test výše projde, ale
+           scéna pak jede na CPU a zablokuje stránku na sekundy. Přesně tak
+           dopadal PageSpeed: podle toho, jestli testovací stroj dostal GPU,
+           ukazoval /tvorba-webu jednou 94, jindy 56 s 2,4 s zablokovaného
+           vlákna. Hlídač snímků níž by to chytil, ale až 2 s po načtení,
+           kdy je škoda hotová. Týká se i virtuálních strojů a firemních
+           notebooků se zakázanou akcelerací. */
+        var info = gl.getExtension("WEBGL_debug_renderer_info");
+        var gpu = String(gl.getParameter(info ? info.UNMASKED_RENDERER_WEBGL : gl.RENDERER) || "");
+        if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(gpu)) {
+          var z = gl.getExtension("WEBGL_lose_context");
+          if (z) z.loseContext();
+          return "snizeny";
+        }
+
         var ztrata = gl.getExtension("WEBGL_lose_context");
         if (ztrata) ztrata.loseContext();
 
