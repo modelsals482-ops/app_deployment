@@ -149,7 +149,9 @@ jinak by konkurovala přechodu.
 | Větev | Co to je |
 |---|---|
 | `main` | co běží na alsflow.cz |
-| `astro` | přepis na Astro + redesign, čeká na ceny |
+| `preview` | sem jde všechna práce, vlastní náhledová adresa (viz výš) |
+
+Větev `astro` už neexistuje: redesign se sloučil do `main` 29. 8. 2026.
 
 Značky `archiv/*` uchovávají věci, které už nikam nevedou, ale mají se dát dohledat:
 
