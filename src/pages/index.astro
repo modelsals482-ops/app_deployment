@@ -269,7 +269,8 @@ import Base from "../layouts/Base.astro";
       /* predictive-arc je plosna zaloha pro stroje bez WebGL. Jakmile nabehne
          verze na WebGL, CSS ji stejne schova (#arc3d[data-on="1"] ~ #arcCanvas),
          takze na drtive vetsine zarizeni se stahovala a inicializovala pro nic.
-         Stahujeme ji proto jen tam, kde WebGL opravdu neni. */
+         Stahujeme ji proto jen tam, kde WebGL neni, nebo kde stupen vykonu neni
+         "plny" (snizeny = zadne 3D, stejne pravidlo jako scenes.js). */
       var maWebGL = (function () {
         try {
           var cv = document.createElement("canvas");
@@ -281,7 +282,8 @@ import Base from "../layouts/Base.astro";
         } catch (e) { return false; }
       })();
 
-      var soubory = maWebGL ? ["/assets/js/arc3d.js"] : ["/assets/js/predictive-arc.js"];
+      var plny = document.documentElement.getAttribute("data-vykon") === "plny";
+      var soubory = maWebGL && plny ? ["/assets/js/arc3d.js"] : ["/assets/js/predictive-arc.js"];
       soubory.forEach(function (src) {
         var el = document.createElement("script");
         el.src = src;

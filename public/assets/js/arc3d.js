@@ -228,7 +228,7 @@
   var ptr = { x: 0, y: 0, tx: 0, ty: 0 };
 
   function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     W = canvas.clientWidth; H = canvas.clientHeight;
     if (!W || !H) return;
     canvas.width = Math.round(W * dpr);
