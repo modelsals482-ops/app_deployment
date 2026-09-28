@@ -445,7 +445,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       <a class="brand" href="/">ALS<span>flow</span></a>
       <ul class="menu">
         <li class="has-drop">
-          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;me <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
+          <button type="button" aria-expanded="false" aria-haspopup="true">Co d&ecaron;l&aacute;m <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
           <!-- Rozbalovací menu nesmí být druhý výpis těch samých položek, které
                jsou vedle v liště. Vede se od toho, co člověka trápí, k tomu,
                co s tím uděláme, a rovnou říká termín. -->
@@ -453,7 +453,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
             <span class="drop__hint">Co v&aacute;s zdr&zcaron;uje?</span>
             <a href="/tvorba-webu">
               <b>&bdquo;Pot&rcaron;ebuju web, na kter&yacute; m&uring;&zcaron;u odk&aacute;zat.&ldquo;</b>
-              <small>Ručně psaný web bez redakčního systému, který je potřeba aktualizovat. <em>&zcaron;iv&yacute; do 6&ndash;10 prac. dn&iacute;</em></small>
+              <small>Ručně psaný web. Žádný redakční systém, který byste museli aktualizovat. <em>&zcaron;iv&yacute; do 6&ndash;10 prac. dn&iacute;</em></small>
             </a>
             <a href="/vyvoj-softwaru">
               <b>&bdquo;P&rcaron;episujeme &uacute;daje mezi tabulkami.&ldquo;</b>
@@ -470,7 +470,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         <li><a href="/vyvoj-softwaru" aria-current={cur("/vyvoj-softwaru")}>Software</a></li>
         <li><a href="/ai-asistenti" aria-current={cur("/ai-asistenti")}>AI asistenti</a></li>
         <li><a href="/reference" aria-current={cur("/reference")}>Reference</a></li>
-        <li><a href="/o-nas" aria-current={cur("/o-nas")}>O n&aacute;s</a></li>
+        <li><a href="/o-nas" aria-current={cur("/o-nas")}>O mn&ecaron;</a></li>
         <li><a href="/kontakt" aria-current={cur("/kontakt")}>Kontakt</a></li>
       </ul>
       <a class="btn btn-live btn-magnet" href={cta}>Nez&aacute;vazn&aacute; nab&iacute;dka</a>
@@ -487,7 +487,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
     <a href="/ai-asistenti">AI asistenti</a>
     <a href="/cenik">Cen&iacute;k</a>
     <a href="/reference">Reference</a>
-    <a href="/o-nas">O n&aacute;s</a>
+    <a href="/o-nas">O mn&ecaron;</a>
     <a href="/kontakt">Kontakt</a>
     <a class="btn" href={cta}>Nez&aacute;vazn&aacute; nab&iacute;dka</a>
   </div>
@@ -521,7 +521,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         </div>
         <div class="foot-col">
           <h4>Firma</h4>
-          <a href="/o-nas">O n&aacute;s</a>
+          <a href="/o-nas">O mn&ecaron;</a>
           <a href="/cenik">Cen&iacute;k</a>
           <a href="/kontakt">Kontakt</a>
           <a href="/ochrana_dat">Ochrana dat</a>
@@ -721,12 +721,12 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat s Kl&aacute;rou z ALSflow" aria-hidden="true" data-lenis-prevent>
     <div class="chat-head">
       <span class="av">K</span>
-      <div><div class="who">Kl&aacute;ra</div><div class="live">odpov&iacute;d&aacute; obvykle do minuty</div></div>
-      <span class="chat-count" id="chatCounter">0/20</span>
+      <div><div class="who">Kl&aacute;ra</div><div class="live">automatick&yacute; asistent, odpov&iacute; hned</div></div>
+      <span class="chat-count" title="Po&ccaron;et zpr&aacute;v v tomto chatu, nejv&yacute;&scaron; 20"><span id="chatCounter">0/20</span> zpr&aacute;v</span>
       <button class="chat-x" id="chatClose" type="button" aria-label="Zav&rcaron;&iacute;t chat">&times;</button>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="chat-msg bot"><div class="chat-bubble-msg">Dobr&yacute; den. Zeptejte se na ceny, na to, co d&ecaron;l&aacute;me, nebo &rcaron;ekn&ecaron;te, co hled&aacute;te. Nasm&ecaron;ruju v&aacute;s na spr&aacute;vnou str&aacute;nku.</div></div>
+      <div class="chat-msg bot"><div class="chat-bubble-msg">Dobr&yacute; den, jsem automatick&yacute; asistent ALSflow. Zeptejte se na ceny, na to, co ALSflow d&ecaron;l&aacute;, nebo &rcaron;ekn&ecaron;te, co hled&aacute;te. Nasm&ecaron;ruju v&aacute;s na spr&aacute;vnou str&aacute;nku.</div></div>
     </div>
     <div class="chat-bar">
       <input id="chatInput" type="text" placeholder="Napi&scaron;te dotaz&hellip;" maxlength="500" autocomplete="off" aria-label="Zpr&aacute;va do chatu" />
