@@ -196,35 +196,10 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
 }
 .lead-center { margin-inline: auto; }
 
-.eyebrow {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  padding: 0.4rem 0.9rem 0.4rem 0.75rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--t2);
-  background: linear-gradient(180deg, rgb(255 255 255 / 6%), rgb(255 255 255 / 2%));
-  border: 1px solid var(--line);
-  border-radius: 100px;
-}
-.eyebrow .dot {
-  width: 6px;
-  height: 6px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 7px var(--green);
-}
-.eyebrow-label {
-  display: block;
-  margin-bottom: 1.1rem;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--t3);
-}
+/* Odkazy v textu v barvach webu, ne vychozi modra a fialova prohlizece.
+   :where drzi nizkou vahu, takze .prose a dalsi pravidla s tridou vyhraji. */
+:where(p, li) a:not([class]) { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; transition: color 0.2s, text-decoration-color 0.2s; }
+:where(p, li) a:not([class]):hover { color: var(--blue); text-decoration-color: currentColor; }
 
 /* --------------------------------------------------------------------
    Tlačítka - tlumená, ne svítící
@@ -1055,119 +1030,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
   color: var(--t1);
   background: rgb(255 255 255 / 5%);
   border-color: var(--line-2);
-}
-
-/* --------------------------------------------------------------------
-   Tři pilíře na úvodní stránce
-
-   Každý dostane vlastní barvu, aby se od sebe daly rozeznat na první
-   pohled a aby stálo za to projít je všechny - ne tři stejné šedé
-   obdélníky vedle sebe. Barvy jsou ty, které web už používá: modrá,
-   fialová a zelená.
-
-   Nese to jen obrys, ikona a šipka. Text zůstává bílý, protože barevný
-   text na černé by u zelené a fialové neprošel kontrastem.
-   -------------------------------------------------------------------- */
-.pillar { position: relative; --tone: var(--blue); }
-.pillar--blue { --tone: #5b9dff; }
-.pillar--violet { --tone: #a78bfa; }
-.pillar--green { --tone: #4ade80; }
-
-.pillar {
-  border-width: 2px;
-  /* Zaloha pro Safari pod 16.2, ktere color-mix() nezna a deklaraci zahodi. */
-  border-color: rgb(255 255 255 / 16%);
-  border-color: color-mix(in srgb, var(--tone) 34%, transparent);
-  background:
-    radial-gradient(120% 90% at 50% -20%, color-mix(in srgb, var(--tone) 15%, transparent), transparent 62%),
-    var(--card);
-}
-.pillar .box { color: var(--tone); border-color: rgb(255 255 255 / 18%); }
-.pillar .box { border-color: color-mix(in srgb, var(--tone) 38%, transparent); }
-.pillar .box svg { stroke: var(--tone); }
-.pillar .arrow { color: var(--tone); }
-
-/* Obíhající světlo uvnitř pilíře.
-
-   Kuželovitý přechod v barvě pilíře, rozostřený a pomalu otáčený. Leží pod
-   obsahem karty, takže z něj po okrajích prosvítá jen měkká záře, která
-   objíždí dokola. Každý pilíř má jiné zpoždění, aby nesvítily zároveň.
-
-   Bez JavaScriptu a bez @property: to Safari umí až od 16.4 a tady na něm
-   nic nestojí, otáčí se prostě celý prvek. */
-.pillar { overflow: hidden; }
-
-.pillar-glow {
-  position: absolute;
-  inset: -45%;
-  z-index: 0;
-  pointer-events: none;
-  content: '';
-  background: conic-gradient(from 0deg, transparent 0deg, var(--tone) 38deg, transparent 108deg, transparent 360deg);
-  opacity: 0.22;
-  filter: blur(30px);
-  animation: pillarSpin 13s linear infinite;
-}
-.pillar--violet .pillar-glow { animation-delay: -4.3s; }
-.pillar--green .pillar-glow  { animation-delay: -8.6s; }
-
-/* Obsah musí ležet nad světlem, jinak by ho překrylo. */
-.pillar .panel-pad { position: relative; z-index: 1; }
-
-/* Při najetí světlo zesílí a zrychlí. */
-.pillar:hover .pillar-glow,
-.pillar:focus-visible .pillar-glow { opacity: 0.4; animation-duration: 6s; }
-
-@keyframes pillarSpin { to { transform: rotate(360deg); } }
-
-/* Ikona dostane vlastní dosvit v barvě pilíře. */
-.pillar .box {
-  box-shadow: 0 0 0 0 transparent;
-  transition: box-shadow 0.35s;
-}
-.pillar:hover .box { box-shadow: 0 0 26px -6px var(--tone); }
-
-@media (prefers-reduced-motion: reduce) {
-  .pillar-glow { animation: none; }
-}
-
-/* Proužek nahoře - jediné plné použití barvy, aby karta nekřičela. */
-.pillar::before {
-  position: absolute;
-  top: 0;
-  right: 1.4rem;
-  left: 1.4rem;
-  height: 2px;
-  content: '';
-  background: var(--tone);
-  border-radius: 0 0 2px 2px;
-  opacity: 0.55;
-  transition: opacity 0.25s, left 0.35s cubic-bezier(0.22,1,0.36,1), right 0.35s cubic-bezier(0.22,1,0.36,1);
-}
-.pillar:hover::before,
-.pillar:focus-within::before { right: 0.6rem; left: 0.6rem; opacity: 1; }
-
-/* Karta má vypadat, že se nad tou barvou vznáší - proto barevný dosvit
-   pod ní, ne jen obrys kolem. */
-.pillar { box-shadow: 0 14px 40px color-mix(in srgb, var(--tone) 10%, transparent); }
-.pillar:hover,
-.pillar:focus-within {
-  border-color: rgb(255 255 255 / 30%);
-  border-color: color-mix(in srgb, var(--tone) 62%, transparent);
-  box-shadow: 0 26px 66px color-mix(in srgb, var(--tone) 22%, transparent);
-}
-@media (min-width: 861px) {
-  .pillar { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.25s, box-shadow 0.3s; }
-  .pillar:hover, .pillar:focus-within { transform: translateY(-6px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .pillar { transition: border-color 0.2s, box-shadow 0.2s; }
-  .pillar:hover, .pillar:focus-within { transform: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pillar::before { transition: opacity 0.2s; }
-  .pillar:hover::before, .pillar:focus-within::before { right: 1.4rem; left: 1.4rem; }
 }
 
 .foot-report { margin-top: 1.4rem; font-size: 0.82rem; color: var(--t3); }

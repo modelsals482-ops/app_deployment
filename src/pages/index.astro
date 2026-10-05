@@ -79,8 +79,8 @@ import Base from "../layouts/Base.astro";
       <canvas id="arc3d" aria-hidden="true"></canvas>
       <canvas id="arcCanvas" aria-hidden="true"></canvas>
     </div>
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
+    <div class="wrap">
+      <div class="hero-copy hero-copy--wide">
         <h1 class="h-hero fade-head reveal-words">Každý měsíc uvidíte <span class="grad">v&nbsp;číslech</span>, co vám to přineslo</h1>
         <p class="lead">Stavím weby, software a AI asistenty pro živnostníky a malé firmy. Sám, osobně, a všechno je na vaše jméno.</p>
         <div class="btn-row">
@@ -93,7 +93,16 @@ import Base from "../layouts/Base.astro";
           <span class="fact">Asistent od <b>2&nbsp;500&nbsp;Kč</b>/měs</span>
         </div>
       </div>
-      <div class="rev" data-d="2">
+    </div>
+  </section>
+
+  <section class="sec report-sec">
+    <div class="wrap split report-split">
+      <div>
+        <h2 class="h-sec fade-head reveal-words">Jednou za měsíc <span class="grad">přehled</span></h2>
+        <p class="lead">Kolik lidí přišlo na web, kolikrát vám zavolali, kolik poslali poptávek a kolik termínů zapsal asistent. Ať vidíte, co vám to přináší, a nemusíte to odhadovat.</p>
+      </div>
+      <div class="rev" data-d="1">
         <div class="panel report">
           <div class="report-top"><span><b>Měsíční přehled</b> · září</span><span class="pill">Ukázka</span></div>
           <ul class="report-rows">
@@ -102,12 +111,11 @@ import Base from "../layouts/Base.astro";
             <li><span class="k">Poptávky z formuláře</span><span class="d">+3</span><span class="v" data-count="9">9</span></li>
             <li><span class="k">Rezervace přes asistenta</span><span class="d">+11</span><span class="v" data-count="46">46</span></li>
           </ul>
-          <p class="report-note">Ukázková čísla. Takový přehled ke svému webu nebo asistentovi dostanete každý měsíc.</p>
+          <p class="report-note">Ukázková čísla.</p>
         </div>
       </div>
     </div>
   </section>
-
 
   <section class="sec" style="padding-top:0">
     <nav class="wrap paths" aria-label="Co vás zdržuje">
@@ -125,39 +133,27 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-line" id="co-delame">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">T&rcaron;i v&ecaron;ci. V&scaron;echny <span class="grad">po&rcaron;&aacute;dn&ecaron;</span>.</h2>
-        <p class="lead">Ke každé píšu do nabídky termín, kdy bude hotová, a cenu, od které se začíná. Přesnou cenu domluvíme podle rozsahu, nezávazně.</p>
+        <h2 class="h-sec fade-head reveal-words">Co pro vás postavím</h2>
+        <p class="lead">Do každé nabídky píšu termín a přesnou cenu. Tady vidíte, od kolika se začíná.</p>
       </div>
-      <div class="cards-3">
-        <a class="panel panel-glow panel-sheen tilt rev pillar pillar--blue" href="/tvorba-webu">
-          <span class="pillar-glow" aria-hidden="true"></span>
-          <div class="panel-pad">
-            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M2.5 9h19"/><path d="M6 12.5h7M6 15.5h4.5"/></svg></span></span>
-            <h3 class="h-sub" style="margin-bottom:0.6rem">Weby</h3>
-            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez plugin&uring;, kter&eacute; je pot&rcaron;eba aktualizovat. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</p>
-            <p class="pillar-meta"><span>živý do <b>6-10 dnů</b></span><span>od <b>14&nbsp;900&nbsp;Kč</b> · správa 990&nbsp;Kč/měs</span></p>
-            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+      <div class="svcs">
+        <a class="svc rev" href="/tvorba-webu">
+          <h3>Weby</h3>
+          <p>Ručně psaný web bez redakčního systému a bez pluginů, které je potřeba aktualizovat. Návrh, texty, nasazení, doména i průběžná správa.</p>
+          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 6-10 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 14&nbsp;900&nbsp;Kč, správa 990&nbsp;Kč/měs</dd></div></dl>
+          <span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-glow panel-sheen tilt rev pillar pillar--violet" href="/vyvoj-softwaru">
-          <span class="pillar-glow" aria-hidden="true"></span>
-          <div class="panel-pad">
-            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/><path d="M12 12h6.5M12 15.5h6.5"/></svg></span></span>
-            <h3 class="h-sub" style="margin-bottom:0.6rem">Software na m&iacute;ru</h3>
-            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Administra&ccaron;n&iacute; panely, propojen&iacute; systémů, které spolu dnes nekomunikují, a intern&iacute; n&aacute;stroje m&iacute;sto tabulek. Nasazen&iacute; v &rcaron;&aacute;du t&yacute;dn&uring;.</p>
-            <p class="pillar-meta"><span>termín <b>podle rozsahu</b></span><span>od <b>24&nbsp;900&nbsp;Kč</b></span></p>
-            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc rev" data-d="1" href="/vyvoj-softwaru">
+          <h3>Software na míru</h3>
+          <p>Administrace, propojení systémů, které spolu dnes nekomunikují, a interní nástroje místo tabulek.</p>
+          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>podle rozsahu, obvykle týdny</dd></div><div><dt>Cena</dt><dd>od 24&nbsp;900&nbsp;Kč</dd></div></dl>
+          <span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-glow panel-sheen tilt rev pillar pillar--green" href="/ai-asistenti">
-          <span class="pillar-glow" aria-hidden="true"></span>
-          <div class="panel-pad">
-            <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5A2 2 0 0 1 5.5 4.5h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-4.5 3.2V16.5h-.5a2 2 0 0 1-2-2z"/><path d="M8 9.5v3M11.5 8v6M15 9v4M18 10.5v1"/></svg></span></span>
-            <h3 class="h-sub" style="margin-bottom:0.6rem">AI asistenti</h3>
-            <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">AI odpov&iacute;d&aacute; z&aacute;kazn&iacute;k&uring;m, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te.</p>
-            <p class="pillar-meta"><span>běží do <b>5-7 dnů</b></span><span>od <b>2&nbsp;500&nbsp;Kč</b>/měs · bez závazků</span></p>
-            <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc rev" data-d="2" href="/ai-asistenti">
+          <h3>AI asistenti</h3>
+          <p>Asistent odpovídá zákazníkům, zapisuje termíny a připomíná je. Na WhatsAppu, e-mailu nebo webu, které už máte.</p>
+          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 5-7 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 2&nbsp;500&nbsp;Kč/měs, bez závazků</dd></div></dl>
+          <span class="svc-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
@@ -201,15 +197,14 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <div class="split">
         <div>
-          <h2 class="h-sec fade-head reveal-words">Zakladatel, <span class="grad">ne agentura</span></h2>
-          <p class="lead">ALSflow je práce jednoho člověka. Web, software i asistenta vám postavím a nastavím osobně a jsem k zastižení, kdy&zcaron; n&ecaron;co pot&rcaron;ebujete. Nebudete se prokous&aacute;vat p&rcaron;es podporu ani &ccaron;ekat na voln&yacute; t&yacute;m.</p>
+          <h2 class="h-sec fade-head reveal-words">Jakub Ryvola</h2>
+          <p class="lead">Zakladatel ALSflow, ne agentura. Web, software i asistenta vám postavím sám a jsem k zastižení, když něco potřebujete. Nepíšete na podporu a nečekáte, až bude mít tým čas.</p>
           <div class="btn-row">
             <a class="btn btn-magnet" href="/o-nas">V&iacute;c o mn&ecaron; <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
           </div>
         </div>
         <div class="panel panel-pad panel-glow panel-sheen rev-pop">
-          <p style="font-size:1.02rem;line-height:1.75;color:var(--t1)">&bdquo;Za&ccaron;al jsem u asistent&uring;, kte&rcaron;&iacute; odpov&iacute;daj&iacute; za majitele mal&yacute;ch provoz&uring;. Pak se uk&aacute;zalo, &zcaron;e ta sam&aacute; ru&ccaron;n&iacute; pr&aacute;ce le&zcaron;&iacute; i jinde: ve webu, na kter&eacute;m z&aacute;kazn&iacute;k nenajde, co hled&aacute;, a v tabulk&aacute;ch, kter&eacute; n&ecaron;kdo ka&zcaron;d&yacute; t&yacute;den p&rcaron;episuje ru&ccaron;n&ecaron;. Proto dnes stav&iacute;m web, software i asistenta. Aby to spolu dr&zcaron;elo a vy u toho nemuseli sed&ecaron;t.&ldquo;</p>
-          <p style="margin-top:1.4rem;font-size:0.85rem;color:var(--t3)">Jakub Ryvola &middot; zakladatel ALSflow</p>
+          <blockquote class="quote">&bdquo;Začínal jsem s AI asistenty, kteří za majitele malých provozů odpovídají zákazníkům. Brzy jsem ale viděl, že stejná zbytečná práce je i jinde: na webu, kde zákazník nenajde, co hledá, a v tabulkách, které někdo každý týden ručně přepisuje. Proto dnes stavím weby, software i asistenty a starám se, aby spolu fungovaly.&ldquo;</blockquote>
         </div>
       </div>
     </div>
@@ -220,7 +215,7 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Co už <span class="grad">běží</span></h2>
-        <p class="lead">Žádné vymyšlené reference. Tohle je postavené, spuštěné a dál to spravuji.</p>
+        <p class="lead">Projekty, které jsem postavil nebo spravuji.</p>
       </div>
       <ul class="runs">
         <li class="rev"><h3>We Love Events<small>event agentura, Praha</small></h3><p>Katalog rentalu techniky. Poptávky z&nbsp;košíku padají rovnou do administrace a týmu přijde e-mail. Weby weloveevents.cz a weloveproduction.cz spravuji.</p><span class="st soon">Veřejně brzy</span></li>

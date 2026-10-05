@@ -261,11 +261,6 @@ body > footer { position: relative; z-index: 4; }
 .in .grad-underline::after,
 .grad-underline.in::after { transform: none; }
 
-/* Zelená tečka u „volná kapacita" tepe - z původního webu. */
-.eyebrow .dot {
-  animation: dotPulse 2.2s ease-in-out infinite;
-}
-
 @keyframes dotPulse {
   0%, 100% { transform: scale(1); box-shadow: 0 0 7px var(--green); }
   50%      { transform: scale(1.45); box-shadow: 0 0 18px var(--green); }
@@ -873,7 +868,6 @@ a.panel.tilt:hover {
   .grad,
   .stat-num,
   .btn-live,
-  .eyebrow .dot,
   .chat-top .live::before,
   .typing i,
   .panel-ring::before,

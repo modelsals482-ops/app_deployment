@@ -76,8 +76,7 @@ import Base from "../layouts/Base.astro";
     <canvas class="scene scene-right" data-scene="dotmatrix" aria-hidden="true"></canvas>
     <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span>AI asistent pro&nbsp;<b id="cyclingWord" style="color:var(--blue);transition:opacity .26s,transform .26s;display:inline-block;font-weight:600">kade&rcaron;nictv&iacute;</b></span>
-      <h1 class="h-hero fade-head reveal-words" style="margin-top:calc(1.6rem - 0.16em);max-width:16ch">Z&aacute;kazn&iacute;k p&iacute;&scaron;e. <span class="grad">Asistent odpov&iacute;d&aacute;.</span></h1>
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Z&aacute;kazn&iacute;k p&iacute;&scaron;e. <span class="grad">Asistent odpov&iacute;d&aacute;.</span></h1>
       <p class="lead">Odpov&iacute;d&aacute; na dotazy, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je, vaším tónem a z va&scaron;ich podklad&uring;. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te. Nastaven&iacute; d&ecaron;l&aacute;m j&aacute;, vy nemusíte nic nastavovat.</p>
       <div class="btn-row">
         <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
@@ -91,37 +90,23 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
-  <section class="stats-sec">
-    <div class="wrap">
-      <div class="stat-band">
-        <div class="stat-cell rev"><span class="stat-num" data-count="24">24</span><span class="stat-label">hodin denn&ecaron;, v&ccaron;etn&ecaron; v&iacute;kend&uring; a sv&aacute;tk&uring;</span></div>
-        <div class="stat-cell rev" data-d="1"><span class="stat-num" data-count="7">7</span><span class="stat-label">pracovních dnů nejdéle od hovoru ke spuštění</span></div>
-        <div class="stat-cell rev" data-d="2"><span class="stat-num" data-count="0">0</span><span class="stat-label">nov&yacute;ch aplikac&iacute;, kter&eacute; se mus&iacute;te u&ccaron;it</span></div>
-      </div>
-    </div>
-  </section>
-
   <section class="sec sec-line">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Co asistent d&ecaron;l&aacute;</span>
-        <h2 class="h-sec fade-head reveal-words">T&rcaron;i v&ecaron;ci, kter&eacute; v&aacute;m berou <span class="grad">nejv&iacute;c &ccaron;asu</span></h2>
+        <h2 class="h-sec fade-head reveal-words">Kde v&aacute;m ute&ccaron;e <span class="grad">nejv&iacute;c &ccaron;asu</span></h2>
         <p class="lead">Ka&zcaron;dou z nich m&uring;&zcaron;ete m&iacute;t samostatn&ecaron;, nebo v&scaron;echny dohromady.</p>
       </div>
       <div class="cards-3">
         <div class="panel panel-pad panel-glow panel-sheen tilt rev">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
-          <h3 style="margin:0.9rem 0 0.45rem;font-size:1.05rem">Schr&aacute;nka, kterou nemus&iacute;te &ccaron;&iacute;st</h3>
+          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Schr&aacute;nka, kterou nemus&iacute;te &ccaron;&iacute;st</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Asistent p&rcaron;e&ccaron;te dotaz, nap&iacute;&scaron;e odpov&ecaron;&dcaron; a po&scaron;le ji. Když si není jistý, e-mail vám přepošle.</p>
         </div>
         <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="m9 14.5 2 2 4-4"/></svg>
-          <h3 style="margin:0.9rem 0 0.45rem;font-size:1.05rem">Rezervace bez telefonov&aacute;n&iacute;</h3>
+          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Rezervace bez telefonov&aacute;n&iacute;</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Nab&iacute;dne voln&eacute; term&iacute;ny, zap&iacute;&scaron;e je do va&scaron;eho kalend&aacute;&rcaron;e a den p&rcaron;edem po&scaron;le p&rcaron;ipom&iacute;nku. P&rcaron;esun i zru&scaron;en&iacute; zvl&aacute;dne s&aacute;m.</p>
         </div>
         <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2">
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg>
-          <h3 style="margin:0.9rem 0 0.45rem;font-size:1.05rem">Klienti, kte&rcaron;&iacute; se vrac&iacute;</h3>
+          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Klienti, kte&rcaron;&iacute; se vrac&iacute;</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Po n&aacute;v&scaron;t&ecaron;v&ecaron; se zept&aacute; na spokojenost, navrhne odpov&ecaron;&dcaron; na recenzi a pozve na dal&scaron;&iacute; term&iacute;n.</p>
         </div>
       </div>
@@ -131,7 +116,6 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-dark sec-line" id="ukazka">
     <div class="wrap">
       <div class="sec-head center">
-        <span class="eyebrow-label">Interaktivn&iacute; uk&aacute;zka</span>
         <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">te&dcaron;</span></h2>
         <p class="lead lead-center">Klikejte, pi&scaron;te, zkou&scaron;ejte. Odpov&ecaron;di v uk&aacute;zce jsou p&rcaron;ipraven&eacute; dop&rcaron;edu. Skutečnou asistentku Kláru najdete v chatu vpravo dole a zeptat se jí můžete na cokoli o ALSflow.</p>
       </div>
@@ -191,7 +175,6 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-line" id="cenik">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Cen&iacute;k</span>
         <h2 class="h-sec fade-head reveal-words">Veřejné <span class="grad">ceny</span>.</h2>
         <p class="lead">M&ecaron;s&iacute;&ccaron;n&ecaron;, bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli. K cen&aacute;m se p&rcaron;ipo&ccaron;&iacute;t&aacute;v&aacute; DPH.</p>
       </div>
@@ -251,15 +234,14 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-line" id="pro-koho">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Pro koho</span>
-        <h2 class="h-sec fade-head reveal-words">Jste u z&aacute;kazn&iacute;ka. <span class="grad">Z&aacute;kazn&iacute;k p&iacute;&scaron;e.</span></h2>
+        <h2 class="h-sec fade-head reveal-words">Pro koho asistenta <span class="grad">stavím</span></h2>
         <p class="lead">Nej&ccaron;ast&ecaron;ji to &rcaron;e&scaron;&iacute; provozy, kde majitel pracuje rukama a k telefonu se nedostane.</p>
       </div>
       <div class="cards-3 cards-4">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M8 20.5v-4l-1.5-2.5 1-3.5h5l1 3.5L12 16.5v4"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Fyzioterapeuti</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">M&iacute;&ncaron; telefon&aacute;t&uring; a m&iacute;&ncaron; e-mail&uring;. Vy se v&ecaron;nujete klientovi na leh&aacute;tku, zbytek vy&rcaron;&iacute;d&iacute; asistent.</p></div>
-          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 4.5 17 15M17.5 4.5 7 15"/><circle cx="5.5" cy="17.5" r="2.6"/><circle cx="18.5" cy="17.5" r="2.6"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Kade&rcaron;nictv&iacute; a salony</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Žádné zmeškané rezervace. Asistent p&rcaron;ijme objedn&aacute;vku i v sobotu ve&ccaron;er, kdy&zcaron; jste u z&aacute;kazn&iacute;ka.</p></div>
-          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 12.5c-1.4 0-2.5-1.3-2.5-3s1.1-3 2.5-3 2 1.3 2 3-.6 3-2 3z"/><path d="M18.5 12.5c1.4 0 2.5-1.3 2.5-3s-1.1-3-2.5-3-2 1.3-2 3 .6 3 2 3z"/><path d="M12 21c-2.5 0-4.5-1.6-4.5-3.6 0-2.4 2-4.4 4.5-4.4s4.5 2 4.5 4.4C16.5 19.4 14.5 21 12 21z"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Veterin&aacute;&rcaron;i</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Zákazníci se ptají a rezervuj&iacute; kdykoli, ani&zcaron; by vyru&scaron;ovali ordinaci nebo no&ccaron;n&iacute; slu&zcaron;bu.</p></div>
-          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5c1.5-2 5-2.5 6.3 0 1.2 2.2.2 6-1.3 9-.8 1.6-2 2.2-2.7 1-.6-1-.8-2.5-2.3-2.5s-1.7 1.5-2.3 2.5c-.7 1.2-1.9.6-2.7-1-1.5-3-2.5-6.8-1.3-9 1.3-2.5 4.8-2 6.3 0z"/></svg><h3 style="margin:0.9rem 0 0.45rem;font-size:1rem">Zubn&iacute; ordinace</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Asistent odpov&iacute;d&aacute; na dotazy, potvrzuje term&iacute;ny a pos&iacute;l&aacute; p&rcaron;ipom&iacute;nky. Recepce, kter&aacute; nikdy nesp&iacute;.</p></div>
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><h3 style="margin:0 0 0.45rem;font-size:1rem">Fyzioterapeuti</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">M&iacute;&ncaron; telefon&aacute;t&uring; a m&iacute;&ncaron; e-mail&uring;. Vy se v&ecaron;nujete klientovi na leh&aacute;tku, zbytek vy&rcaron;&iacute;d&iacute; asistent.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><h3 style="margin:0 0 0.45rem;font-size:1rem">Kade&rcaron;nictv&iacute; a salony</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Žádné zmeškané rezervace. Asistent p&rcaron;ijme objedn&aacute;vku i v sobotu ve&ccaron;er, kdy&zcaron; jste u z&aacute;kazn&iacute;ka.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><h3 style="margin:0 0 0.45rem;font-size:1rem">Veterin&aacute;&rcaron;i</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Zákazníci se ptají a rezervuj&iacute; kdykoli, ani&zcaron; by vyru&scaron;ovali ordinaci nebo no&ccaron;n&iacute; slu&zcaron;bu.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3"><h3 style="margin:0 0 0.45rem;font-size:1rem">Zubn&iacute; ordinace</h3><p style="font-size:0.89rem;line-height:1.6;color:var(--t2)">Asistent odpov&iacute;d&aacute; na dotazy, potvrzuje term&iacute;ny a pos&iacute;l&aacute; p&rcaron;ipom&iacute;nky. Recepce, kter&aacute; nikdy nesp&iacute;.</p></div>
       </div>
       <p class="lead" style="margin-top:2rem">A jak&yacute;koli dal&scaron;&iacute; &zcaron;ivnostn&iacute;k, kter&yacute; nechce p&rcaron;ich&aacute;zet o z&aacute;kazn&iacute;ky proto, &zcaron;e nest&iacute;h&aacute; odpov&iacute;dat.</p>
     </div>
@@ -270,7 +252,6 @@ import Base from "../layouts/Base.astro";
   <section class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Podrobn&ecaron;ji</span>
         <h2 class="h-sec fade-head reveal-words">Co asistent <span class="grad">dok&aacute;&zcaron;e</span></h2>
         <p class="lead">Ka&zcaron;d&aacute; slu&zcaron;ba m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a t&iacute;m, co je v pau&scaron;&aacute;lu.</p>
       </div>
@@ -306,7 +287,6 @@ import Base from "../layouts/Base.astro";
 
   <section class="sec-line" style="padding:3.4rem 0">
     <div class="wrap">
-      <span class="eyebrow-label" style="text-align:center">B&ecaron;&zcaron;&iacute; na tom, co u&zcaron; m&aacute;te</span>
       <div class="marquee rev">
         <div class="marquee-track"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gmail</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Outlook</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Kalend&aacute;&rcaron;</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gmail</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Outlook</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Kalend&aacute;&rcaron;</span></div>
       </div>
@@ -317,7 +297,6 @@ import Base from "../layouts/Base.astro";
     <canvas class="scene" data-scene="halftone" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Postup</span>
         <h2 class="h-sec fade-head reveal-words">Nastav&iacute;m to <span class="grad">za v&aacute;s</span></h2>
         <p class="lead">T&rcaron;i kroky od prvn&iacute;ho hovoru po provoz. Technick&eacute; znalosti nepot&rcaron;ebujete &zcaron;&aacute;dn&eacute;.</p>
       </div>
@@ -333,7 +312,6 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <div class="split">
         <div>
-          <span class="eyebrow-label">Ukázka rozhovoru</span>
           <h2 class="h-sec fade-head reveal-words">Termín zapsaný <span class="grad">během minuty</span></h2>
           <p class="lead">Ptaj&iacute; se po&rcaron;&aacute;d na to sam&eacute;: kdy m&aacute;te volno, kolik to stoj&iacute;, kde se d&aacute; zaparkovat. Asistent odpov&iacute;d&aacute; va&scaron;&iacute;m t&oacute;nem a z va&scaron;ich podklad&uring;, term&iacute;n zap&iacute;&scaron;e do kalend&aacute;&rcaron;e a den p&rcaron;edem ho p&rcaron;ipomene.</p>
           <ul class="list" style="margin-top:2.1rem">
