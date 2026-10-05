@@ -1,0 +1,102 @@
+/* Titulni strana: nove casti (mesicni prehled, rozcestnik, ukazka asistenta,
+   co uz bezi, postup, caste otazky). Jen tokeny a komponenty ze site-pages.css,
+   zadna nova barva ani pismo. Prechod zustava jen na jednom slove v nadpisu. */
+
+/* ---- 1. hlavicka: tvrzeni vlevo, mesicni prehled vpravo ---- */
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.hero-grid .hero-copy { max-width: none; }
+.hero-grid .h-hero { font-size: clamp(2.6rem, 5.4vw, 4.6rem); text-wrap: balance; }
+
+.report { padding: 1.4rem 1.5rem 1.2rem; }
+.report-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
+.report-top b { font-size: 0.95rem; font-weight: 700; color: var(--t1); }
+.report-top span { font-size: 0.82rem; color: var(--t3); }
+.pill { display: inline-flex; padding: 0.22rem 0.6rem; font-size: 0.74rem; font-weight: 600; color: var(--t2); border: 1px solid var(--line-2); border-radius: 100px; }
+.report-rows { list-style: none; margin: 0; padding: 0; }
+.report-rows li { display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: baseline; padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+.report-rows li:last-child { border-bottom: 0; }
+.report-rows .k { font-size: 0.95rem; color: var(--t2); }
+.report-rows .d { font-size: 0.82rem; font-weight: 600; color: var(--green); }
+.report-rows .v { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; color: var(--t1); font-variant-numeric: tabular-nums; min-width: 2.2ch; text-align: right; }
+.report-note { margin: 0.9rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--t3); }
+
+/* ---- 2. rozcestnik podle toho, co cloveka trapi ---- */
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.path { display: block; text-decoration: none; color: inherit; }
+.path h3 { display: flex; align-items: center; gap: 0.6rem; font-size: clamp(1.35rem, 2.2vw, 1.7rem); margin-bottom: 0.6rem; }
+.path h3 svg { flex: none; width: 1.05em; height: 1.05em; color: var(--blue); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+.path:hover h3 svg { transform: translateX(6px); }
+.path p { font-size: 0.98rem; line-height: 1.6; color: var(--t2); margin: 0; }
+.path p b { color: var(--t1); font-weight: 700; }
+
+/* ---- 3. pilire: termin a cena na jednom radku ---- */
+.pillar-meta { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0 0 1.4rem; font-size: 0.86rem; color: var(--t2); }
+.pillar-meta b { color: var(--t1); font-weight: 700; }
+
+/* ---- 4. ukazka asistenta ---- */
+.demo { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.25rem; align-items: stretch; }
+.inbox { display: grid; gap: 0.75rem; align-content: start; }
+.mail { display: block; width: 100%; padding: 1rem 1.15rem; text-align: left; font: inherit; color: var(--t1); cursor: pointer; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-tile); transition: border-color 0.2s, background 0.2s, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.mail small { display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.8rem; color: var(--t3); }
+.mail span { font-size: 0.98rem; line-height: 1.5; }
+.mail:hover { border-color: var(--line-2); transform: translateX(4px); }
+.mail[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-dim); }
+.agent { display: flex; flex-direction: column; padding: 0; }
+.agent-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--line); }
+.agent-top b { font-size: 0.95rem; }
+.steps { list-style: none; margin: 0; padding: 0.4rem 1.4rem; flex: 1; }
+.steps li { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
+.steps li:last-child { border-bottom: 0; }
+.steps .lbl { font-size: 0.82rem; font-weight: 600; color: var(--t3); }
+.steps .val { font-size: 0.98rem; line-height: 1.55; color: var(--t1); min-height: 1.55em; }
+.steps .val.typing::after { content: ''; display: inline-block; width: 0.45em; height: 1.05em; margin-left: 2px; vertical-align: -0.15em; background: var(--blue); animation: caretBlink 1s steps(2) infinite; }
+@keyframes caretBlink { 50% { opacity: 0; } }
+.agent-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.9rem 1.4rem; border-top: 1px solid var(--line); }
+.status { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.8rem; font-size: 0.85rem; font-weight: 700; color: var(--t2); border: 1px solid var(--line-2); border-radius: 100px; }
+.status.ok { color: var(--green); border-color: rgb(74 222 128 / 40%); }
+.status.fw { color: var(--amber); border-color: rgb(251 191 36 / 40%); }
+.link-btn { background: none; border: 0; padding: 0.3rem 0; font: inherit; font-size: 0.88rem; font-weight: 600; color: var(--t2); cursor: pointer; }
+.link-btn:hover { color: var(--t1); }
+.small-note { margin: 1.1rem 0 0; font-size: 0.85rem; color: var(--t3); }
+
+/* ---- 5. co uz bezi ---- */
+.runs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.runs li { display: grid; grid-template-columns: 15rem 1fr 9rem; gap: 1.5rem; align-items: baseline; padding: 1.35rem 0; border-bottom: 1px solid var(--line); }
+.runs h3 { font-size: 1.15rem; margin: 0; }
+.runs h3 small { display: block; margin-top: 0.3rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0; color: var(--t3); }
+.runs p { margin: 0; font-size: 0.96rem; line-height: 1.6; color: var(--t2); }
+.runs .st { text-align: right; font-size: 0.9rem; font-weight: 600; }
+.runs .st a { color: var(--blue); }
+.runs .st.soon { color: var(--t3); }
+
+/* ---- 6. caste otazky ---- */
+.faq { max-width: 860px; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.15rem 0; font-size: 1.08rem; font-weight: 700; letter-spacing: -0.02em; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary svg { flex: none; width: 18px; height: 18px; color: var(--t3); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.faq details[open] summary svg { transform: rotate(45deg); color: var(--t1); }
+.faq summary:hover { color: var(--blue); }
+.faq p { margin: 0 0 1.2rem; max-width: 66ch; font-size: 0.98rem; line-height: 1.65; color: var(--t2); }
+
+@media (max-width: 980px) {
+  .hero-grid, .demo { grid-template-columns: 1fr; }
+  .runs li { grid-template-columns: 1fr; gap: 0.45rem; }
+  .runs .st { text-align: left; }
+}
+@media (max-width: 680px) {
+  .paths { grid-template-columns: 1fr; }
+  .steps li { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mail:hover { transform: none; }
+  .steps .val.typing::after { animation: none; }
+}
+
+/* Proc ja: body bez cisel, poradi tu nic neznamena */
+.rows-plain .row { grid-template-columns: 1fr; }
+
+/* odkazy v textu v barvach webu, ne vychozi modra prohlizece */
+.small-note a, #co-delame p a, .faq p a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
+.small-note a:hover, #co-delame p a:hover, .faq p a:hover { color: var(--blue); }
+.report-note { padding-top: 0.9rem; border-top: 1px solid var(--line); }

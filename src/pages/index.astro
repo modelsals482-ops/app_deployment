@@ -70,6 +70,7 @@ import Base from "../layouts/Base.astro";
     document.documentElement.classList.add('als-loading');
   })();
 </script>
+  <link rel="stylesheet" href="/assets/css/home.css" />
   </Fragment>
 
   <section class="hero">
@@ -78,50 +79,54 @@ import Base from "../layouts/Base.astro";
       <canvas id="arc3d" aria-hidden="true"></canvas>
       <canvas id="arcCanvas" aria-hidden="true"></canvas>
     </div>
-    <div class="wrap">
+    <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow"><span class="dot"></span>Praha &middot; voln&aacute; kapacita</span>
-        <h1 class="h-hero fade-head reveal-words" style="margin-top:calc(1.6rem - 0.16em)">Weby, software<br />a <span class="grad">AI asistenti</span></h1>
-        <p class="lead">Jeden člověk, tři řemesla a jeden kontakt na všechno. Stavím pro živnostníky a mal&eacute; firmy, kter&eacute; nechtěj&iacute; &rcaron;e&scaron;it techniku ani &ccaron;ekat t&yacute;den na odpov&ecaron;&dcaron;.</p>
+        <h1 class="h-hero fade-head reveal-words">Každý měsíc uvidíte <span class="grad">v&nbsp;číslech</span>, co vám to přineslo</h1>
+        <p class="lead">Stavím weby, software a AI asistenty pro živnostníky a malé firmy. Sám, osobně, a všechno je na vaše jméno.</p>
         <div class="btn-row">
-          <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
-          <a class="btn btn-magnet" href="#co-delame">Co d&ecaron;l&aacute;m <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+          <a class="btn btn-grad btn-shine" href="/kontakt">Domluvit 15min hovor</a>
+          <a class="btn btn-magnet" href="#ukazka">Vyzkoušet asistenta <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
         </div>
         <div class="facts">
-          <span class="fact">Odpov&iacute;m do <b>48 hodin</b> v pracovn&iacute; dny</span>
-          <span class="fact">Web od <b>14&nbsp;900&nbsp;K&ccaron;</b></span>
-          <span class="fact">Samostatně i <b>v balíčku</b></span>
+          <span class="fact">Odpovím do <b>48 hodin</b> v pracovní dny</span>
+          <span class="fact">Web od <b>14&nbsp;900&nbsp;Kč</b></span>
+          <span class="fact">Asistent od <b>2&nbsp;500&nbsp;Kč</b>/měs</span>
+        </div>
+      </div>
+      <div class="rev" data-d="2">
+        <div class="panel report">
+          <div class="report-top"><span><b>Měsíční přehled</b> · září</span><span class="pill">Ukázka</span></div>
+          <ul class="report-rows">
+            <li><span class="k">Návštěvy webu</span><span class="d">+18 %</span><span class="v" data-count="412">412</span></li>
+            <li><span class="k">Kliknutí na telefon</span><span class="d">+6</span><span class="v" data-count="37">37</span></li>
+            <li><span class="k">Poptávky z formuláře</span><span class="d">+3</span><span class="v" data-count="9">9</span></li>
+            <li><span class="k">Rezervace přes asistenta</span><span class="d">+11</span><span class="v" data-count="46">46</span></li>
+          </ul>
+          <p class="report-note">Ukázková čísla. Takový přehled ke svému webu nebo asistentovi dostanete každý měsíc.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <section class="stats-sec">
-    <div class="wrap">
-      <div class="stat-band">
-        <div class="stat-cell rev">
-          <span class="stat-num" data-count="3">3</span>
-          <span class="stat-label">&rcaron;emesla pod jednou st&rcaron;echou: web, software, AI asistent</span>
-        </div>
-        <div class="stat-cell rev" data-d="1">
-          <span class="stat-num" data-count="7">7</span>
-          <span class="stat-label">pracovních dnů nejdéle, než asistent poprvé odpoví za vás</span>
-        </div>
-        <div class="stat-cell rev" data-d="2">
-          <span class="stat-num" data-count="0">0</span>
-          <span class="stat-label">plugin&uring;, kter&eacute; je pot&rcaron;eba aktualizovat a kter&eacute; se p&rcaron;i tom rozb&iacute;jej&iacute;</span>
-        </div>
-      </div>
-    </div>
+  <section class="sec" style="padding-top:0">
+    <nav class="wrap paths" aria-label="Co vás zdržuje">
+      <a class="panel panel-glow panel-sheen panel-pad path rev" href="/tvorba-webu">
+        <h3>Mám provozovnu a nestíhám telefon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></h3>
+        <p><b>Web a AI asistenti.</b> Zákazník vás najde a asistent odpoví i zapíše termín, zatímco pracujete.</p>
+      </a>
+      <a class="panel panel-glow panel-sheen panel-pad path rev" data-d="1" href="/vyvoj-softwaru">
+        <h3>Ztrácím čas v tabulkách <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></h3>
+        <p><b>Software na míru.</b> Jeden panel nebo propojení dvou systémů místo přepisování údajů mezi tabulkami a e-maily.</p>
+      </a>
+    </nav>
   </section>
 
   <section class="sec sec-line" id="co-delame">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Co d&ecaron;l&aacute;m</span>
         <h2 class="h-sec fade-head reveal-words">T&rcaron;i v&ecaron;ci. V&scaron;echny <span class="grad">po&rcaron;&aacute;dn&ecaron;</span>.</h2>
-        <p class="lead">Ka&zcaron;d&aacute; m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a uk&aacute;zkami toho, co u&zcaron; b&ecaron;&zcaron;&iacute;.</p>
+        <p class="lead">Ke každé píšu do nabídky termín, kdy bude hotová, a cenu, od které se začíná. Přesnou cenu domluvíme podle rozsahu, nezávazně.</p>
       </div>
       <div class="cards-3">
         <a class="panel panel-glow panel-sheen tilt rev pillar pillar--blue" href="/tvorba-webu">
@@ -130,7 +135,7 @@ import Base from "../layouts/Base.astro";
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M2.5 9h19"/><path d="M6 12.5h7M6 15.5h4.5"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">Weby</h3>
             <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Ru&ccaron;n&ecaron; psan&yacute; web bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez plugin&uring;, kter&eacute; je pot&rcaron;eba aktualizovat. N&aacute;vrh, texty, nasazen&iacute;, dom&eacute;na i pr&uring;b&ecaron;&zcaron;n&aacute; spr&aacute;va.</p>
-            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od 14&nbsp;900&nbsp;K&ccaron; &middot; spr&aacute;va 990&nbsp;K&ccaron;/m&ecaron;s</p>
+            <p class="pillar-meta"><span>živý do <b>6-10 dnů</b></span><span>od <b>14&nbsp;900&nbsp;Kč</b> · správa 990&nbsp;Kč/měs</span></p>
             <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
           </div>
         </a>
@@ -140,7 +145,7 @@ import Base from "../layouts/Base.astro";
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><path d="M9 3.5v17M2.5 8h19"/><path d="M12 12h6.5M12 15.5h6.5"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">Software na m&iacute;ru</h3>
             <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">Administra&ccaron;n&iacute; panely, propojen&iacute; systémů, které spolu dnes nekomunikují, a intern&iacute; n&aacute;stroje m&iacute;sto tabulek. Nasazen&iacute; v &rcaron;&aacute;du t&yacute;dn&uring;.</p>
-            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od 24&nbsp;900&nbsp;K&ccaron; &middot; podle rozsahu</p>
+            <p class="pillar-meta"><span>termín <b>podle rozsahu</b></span><span>od <b>24&nbsp;900&nbsp;Kč</b></span></p>
             <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
           </div>
         </a>
@@ -150,7 +155,7 @@ import Base from "../layouts/Base.astro";
             <span class="tile" style="width:auto"><span class="box" style="margin:0 0 1.3rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5A2 2 0 0 1 5.5 4.5h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-4.5 3.2V16.5h-.5a2 2 0 0 1-2-2z"/><path d="M8 9.5v3M11.5 8v6M15 9v4M18 10.5v1"/></svg></span></span>
             <h3 class="h-sub" style="margin-bottom:0.6rem">AI asistenti</h3>
             <p style="font-size:0.92rem;line-height:1.65;color:var(--t2);margin-bottom:1.4rem">AI odpov&iacute;d&aacute; z&aacute;kazn&iacute;k&uring;m, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te.</p>
-            <p style="font-size:0.85rem;color:var(--t2);margin-bottom:1.5rem">Od <b style="color:var(--t1)">2&nbsp;500 K&ccaron;</b>/m&ecaron;s &middot; bez z&aacute;vazk&uring;</p>
+            <p class="pillar-meta"><span>běží do <b>5-7 dnů</b></span><span>od <b>2&nbsp;500&nbsp;Kč</b>/měs · bez závazků</span></p>
             <span class="btn-quiet" style="padding-left:0">Zjistit v&iacute;c <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
           </div>
         </a>
@@ -161,16 +166,41 @@ import Base from "../layouts/Base.astro";
       <!-- Tri hotovi asistenti viseli jen na /ai-asistenti, z titulni strany
            na ne nevedla zadna cesta. Radka je zamerne tiche pismo, hlavni
            rozcestnik zustavaji tri karty vyse. -->
-      <p class="rev" data-d="3" style="margin-top:1.6rem;text-align:center;font-size:0.88rem;color:var(--t3)">Hotov&iacute; asistenti: <a href="/e-mailove-odpovedi">E-mailov&eacute; odpov&ecaron;di</a> &middot; <a href="/rezervace-pripominky">Rezervace a p&rcaron;ipom&iacute;nky</a> &middot; <a href="/zpetna-vazba">Zp&ecaron;tn&aacute; vazba</a></p>
+      <p class="rev" data-d="3" style="margin-top:1.6rem;text-align:center;font-size:0.88rem;color:var(--t3)">Asistenti: <a href="/e-mailove-odpovedi">E-mailov&eacute; odpov&ecaron;di</a> &middot; <a href="/rezervace-pripominky">Rezervace a p&rcaron;ipom&iacute;nky</a> &middot; <a href="/zpetna-vazba">Zp&ecaron;tn&aacute; vazba</a> (připravuji)</p>
     </div>
   </section>
 
+
+  <section class="sec sec-line" id="ukazka">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Vyzkoušejte si <span class="grad">asistenta</span></h2>
+        <p class="lead">Je neděle večer a vy máte volno. Klikněte na zprávu, která přišla do salonu, a uvidíte, co s&nbsp;ní asistent udělá.</p>
+      </div>
+      <div class="demo rev" id="demo">
+        <div class="inbox">
+          <button class="mail" type="button" data-k="sobota" aria-pressed="false"><small><span>Zákaznice</span><span>21:40</span></small><span>Dobrý den, máte v sobotu volno na barvení?</span></button>
+          <button class="mail" type="button" data-k="cena" aria-pressed="false"><small><span>Zákazník</span><span>22:05</span></small><span>Kolik u vás stojí střih a vousy?</span></button>
+          <button class="mail" type="button" data-k="reklamace" aria-pressed="false"><small><span>Zákaznice</span><span>22:30</span></small><span>Minule mi barva nechytla tak, jak jsme se domluvily. Co s tím?</span></button>
+        </div>
+        <div class="panel agent">
+          <div class="agent-top"><b>Asistent ukázkového salonu</b><span class="pill">Nic se neodesílá</span></div>
+          <ul class="steps" aria-live="polite">
+            <li><span class="lbl">Přišlo</span><span class="val" data-v="in">Vyberte zprávu vlevo.</span></li>
+            <li><span class="lbl">Co udělá</span><span class="val" data-v="does"></span></li>
+            <li><span class="lbl">Odpověď</span><span class="val" data-v="out"></span></li>
+          </ul>
+          <div class="agent-foot"><span class="status">Čeká</span><button class="link-btn" type="button">Znovu</button></div>
+        </div>
+      </div>
+      <p class="small-note">Asistent se zákazníkům vždy představí jako AI. Co neumí, předá vám.</p>
+    </div>
+  </section>
 
   <section class="sec sec-line">
     <div class="wrap">
       <div class="split">
         <div>
-          <span class="eyebrow-label">Kdo za t&iacute;m stoj&iacute;</span>
           <h2 class="h-sec fade-head reveal-words">Zakladatel, <span class="grad">ne agentura</span></h2>
           <p class="lead">ALSflow je práce jednoho člověka. Web, software i asistenta vám postavím a nastavím osobně a jsem k zastižení, kdy&zcaron; n&ecaron;co pot&rcaron;ebujete. Nebudete se prokous&aacute;vat p&rcaron;es podporu ani &ccaron;ekat na voln&yacute; t&yacute;m.</p>
           <div class="btn-row">
@@ -188,39 +218,41 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-dark sec-line scene-host">
     <canvas class="scene" data-scene="halftone" aria-hidden="true"></canvas>
     <div class="wrap">
-      <div class="sec-head center">
-        <span class="eyebrow-label">Reference</span>
-        <h2 class="h-sec fade-head reveal-words">Pro koho to <span class="grad">funguje</span></h2>
-        <p class="lead lead-center">Tři klienti, pro které dál pracuji: dva weby a software pro event agenturu.</p>
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Co už <span class="grad">běží</span></h2>
+        <p class="lead">Žádné vymyšlené reference. Tohle je postavené, spuštěné a dál to spravuji.</p>
       </div>
-      <div class="logos rev" data-d="1">
-        <a href="https://gen1.cz" target="_blank" rel="noopener" aria-label="gen1.cz">
-          <img src="/assets/ref/gen-logo-white.png" alt="GEN" width="118" height="36" loading="lazy" />
-        </a>
-        <a href="https://znalecsekelova.sk" target="_blank" rel="noopener" aria-label="znalecsekelova.sk">
-          <span class="mk-sek">
-            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-              <path d="M3 19.5 20 6l17 13.5" /><path d="M8 21v13h24V21" /><path d="M16.5 34v-8.5h7V34" />
-            </svg>
-            <span><span class="n">Ing. Dagmar Sekelov&aacute;</span><br /><span class="r">Znalkyně</span></span>
-          </span>
-        </a>
-        <a href="https://weloveevents.cz" target="_blank" rel="noopener" aria-label="weloveevents.cz">
-          <img src="/assets/ref/wle-logo.png" alt="WE LOVE EVENTS" width="118" height="36" loading="lazy" />
-        </a>
-      </div>
-      <div class="btn-row rev" data-d="2" style="justify-content:center">
-        <a class="btn btn-trace" href="/tvorba-webu">Podívat se na weby</a>
-      </div>
+      <ul class="runs">
+        <li class="rev"><h3>We Love Events<small>event agentura, Praha</small></h3><p>Katalog rentalu techniky. Poptávky z&nbsp;košíku padají rovnou do administrace a týmu přijde e-mail. Weby weloveevents.cz a weloveproduction.cz spravuji.</p><span class="st soon">Veřejně brzy</span></li>
+        <li class="rev" data-d="1"><h3>GEN<small>politické hnutí</small></h3><p>Web s&nbsp;vlastní editací aktualit, kterou si hnutí spravuje samo.</p><span class="st"><a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a></span></li>
+        <li class="rev" data-d="2"><h3>Ing. Dagmar Sekelová<small>soudní znalkyně</small></h3><p>Web soudní znalkyně ve slovenštině.</p><span class="st"><a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a></span></li>
+      </ul>
+      <p class="small-note rev">A&nbsp;na tomhle webu vám odpoví Klára, můj AI asistent, vpravo dole. <a href="/reference">Všechny reference</a></p>
     </div>
   </section>
 
 
   <section class="sec-line" style="padding:3.4rem 0">
     <div class="wrap">
-      <span class="eyebrow-label" style="text-align:center">Postavené na ověřených nástrojích</span>
+      <p class="small-note" style="text-align:center;margin:0 0 1rem">Postavené na ověřených nástrojích</p>
       <div class="marquee rev">
         <div class="marquee-track"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Jak to <span class="grad">probíhá</span></h2>
+        <p class="lead">Od vás potřebuju čtvrt hodiny a pár odpovědí. Zbytek je na mně.</p>
+      </div>
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Hovor, čtvrt hodiny</h3><p>Řeknete, co vás zdržuje. Stačí telefon.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Návrh a cena</h3><p>Pošlu, co postavím a za kolik. Nezávazně.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Náhled během stavby</h3><p>Vidíte rozpracovanou verzi na odkazu a říkáte, co upravit.</p></div></div>
+        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Spuštění</h3><p>Web do 6-10 pracovních dnů na vaší doméně. Asistent běží do 5-7 pracovních dnů.</p></div></div>
+        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Každý měsíc čísla</h3><p>Přehled návštěv, telefonátů a poptávek, ať vidíte, co vám to přináší.</p></div></div>
       </div>
     </div>
   </section>
@@ -229,19 +261,33 @@ import Base from "../layouts/Base.astro";
     <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow-label">Pro&ccaron; j&aacute;</span>
         <h2 class="h-sec fade-head reveal-words">Zvednu <span class="grad">telefon</span>.</h2>
         <p class="lead">Nepíšete si s call centrem, ale s člověkem, který na zakázce sám pracuje. Ozvu se do 48 hodin v pracovní dny. Cenu domluvíme spolu podle toho, co potřebujete, a když v průběhu přibude něco navíc, řeknu cenu té změny předem.</p>
       </div>
-      <div class="rows">
-        <div class="row rev"><span class="num">01</span><div><h3>Jeden dodavatel na v&scaron;echno</h3><p>Web, n&aacute;stroj i chatbot od jednoho &ccaron;lov&ecaron;ka, kter&yacute; v&iacute;, jak spolu souvis&iacute;. Nemus&iacute;te sh&aacute;n&ecaron;t t&rcaron;i firmy a p&rcaron;ekl&aacute;dat mezi nimi.</p></div></div>
-        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Cena podle toho, co opravdu potřebujete</h3><p>Web, asistent, nebo obojí v balíčku. Cenu domluvíme spolu, až víme, co a v jakém rozsahu řešíte. Nezávazně.</p></div></div>
-        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Provoz je v pau&scaron;&aacute;lu</h3><p>Nemus&iacute;te shán&ecaron;t, kdo to bude spravovat. To jsem pořád já. Drobn&eacute; &uacute;pravy v&ecaron;t&scaron;inou do 48 hodin.</p></div></div>
-        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>V&scaron;echno na va&scaron;e jm&eacute;no</h3><p>Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d i dokumentace. Kdybychom se rozlou&ccaron;ili, běží to dál beze mě.</p></div></div>
+      <div class="rows rows-plain">
+        <div class="row rev"><div><h3>Jeden dodavatel na v&scaron;echno</h3><p>Web, n&aacute;stroj i chatbot od jednoho &ccaron;lov&ecaron;ka, kter&yacute; v&iacute;, jak spolu souvis&iacute;. Nemus&iacute;te sh&aacute;n&ecaron;t t&rcaron;i firmy a p&rcaron;ekl&aacute;dat mezi nimi.</p></div></div>
+        <div class="row rev" data-d="1"><div><h3>Cena podle toho, co opravdu potřebujete</h3><p>Web, asistent, nebo obojí v balíčku. Cenu domluvíme spolu, až víme, co a v jakém rozsahu řešíte. Nezávazně.</p></div></div>
+        <div class="row rev" data-d="2"><div><h3>Provoz je v pau&scaron;&aacute;lu</h3><p>Nemus&iacute;te shán&ecaron;t, kdo to bude spravovat. To jsem pořád já. Drobn&eacute; &uacute;pravy v&ecaron;t&scaron;inou do 48 hodin.</p></div></div>
+        <div class="row rev" data-d="3"><div><h3>V&scaron;echno na va&scaron;e jm&eacute;no</h3><p>Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d i dokumentace. Kdybychom se rozlou&ccaron;ili, běží to dál beze mě.</p></div></div>
       </div>
       <div class="btn-row rev" data-d="4">
         <a class="btn btn-fill" href="/kontakt">Napište mi</a>
         <a class="btn btn-magnet" href="tel:+420770162346">+420 770 162 346</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Na co se lidé <span class="grad">ptají</span></h2>
+      </div>
+      <div class="faq rev">
+        <details><summary>Nemám texty</summary><p>Texty napíšu já z&nbsp;toho, co mi řeknete. Vy je jen projdete a opravíte, co nesedí.</p></details>
+        <details><summary>Nemám na to čas</summary><p>Stačí čtvrthodinový hovor. Rozpracovanou verzi vám pošlu na odkaz a vy jen řeknete, co upravit.</p></details>
+        <details><summary>Co když spolu skončíme</summary><p>Doména, účty, zdrojový kód i dokumentace jsou na vaše jméno. Web i asistent běží dál beze mě a převezme je kdokoli jiný.</p></details>
+        <details><summary>Pozná zákazník, že odpovídá AI</summary><p>Ano. Asistent se vždy představí jako AI asistent. Co neví nebo co je citlivé, předá vám.</p></details>
+        <details><summary>Kolik to bude stát</summary><p>Web od 14&nbsp;900&nbsp;Kč, asistent od 2&nbsp;500&nbsp;Kč měsíčně, software od 24&nbsp;900&nbsp;Kč. Přesnou cenu domluvíme podle rozsahu, samostatně nebo v&nbsp;balíčku, nezávazně. <a href="/cenik">Celý ceník</a></p></details>
       </div>
     </div>
   </section>
@@ -251,7 +297,7 @@ import Base from "../layouts/Base.astro";
       <h2 class="h-sec fade-head reveal-words">&Rcaron;ekn&ecaron;te, co pot&rcaron;ebujete.</h2>
       <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor na &ccaron;tvrt hodiny. Probereme, co potřebujete, a navrhnu řešení i cenu.</p>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
-        <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+        <a class="btn btn-grad btn-shine" href="/kontakt">Domluvit 15min hovor</a>
         <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
       </div>
     </div>
@@ -292,6 +338,7 @@ import Base from "../layouts/Base.astro";
       });
     })();
   </script>
+  <script src="/assets/js/home.js" defer></script>
   </Fragment>
 
 </Base>
