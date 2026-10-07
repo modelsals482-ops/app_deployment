@@ -1,4 +1,4 @@
-# alsflow.cz - ALSflow (Retail Shops s.r.o., IČO 02512556)
+# alsflow.cz - ALSflow (Jakub Ryvola, IČO 30112702)
 # Weby, software na míru a AI asistenti pro malé firmy.
 
 User-agent: *

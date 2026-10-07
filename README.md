@@ -1,7 +1,7 @@
 # alsflow.cz
 
 Web ALSflow — weby, software na míru a AI asistenti pro malé firmy.
-Provozuje Retail Shops s.r.o., IČO 02512556.
+Provozuje Jakub Ryvola, IČO 30112702 (neplátce DPH).
 
 ---
 
