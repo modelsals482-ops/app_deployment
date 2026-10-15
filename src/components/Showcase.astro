@@ -18,7 +18,7 @@ interface Props {
   dark?: boolean;
   rect?: boolean;
 }
-const { id, side, title, who, color, main, second, phone, bubbles = [], dark = false, rect = false } = Astro.props;
+const { id, side, title, who, color, main, second, phone, bubbles = [], dark = false, rect = true } = Astro.props;
 const from = side === "l" ? "from-l" : "from-r";
 const back = side === "l" ? "from-r" : "from-l";
 ---

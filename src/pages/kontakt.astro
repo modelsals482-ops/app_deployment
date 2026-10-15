@@ -57,8 +57,11 @@ import Base from "../layouts/Base.astro";
   </Fragment>
 
 
-  <section class="hero-plain">
+  <section class="hero-plain kontakt-hero">
     <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <!-- Svítící prstence z úvodní stránky (16. 10.): jen v pravé části
+         hlavičky, text vlevo nepřekrývají. Na úzké obrazovce se schovají. -->
+    <canvas id="arc3d" class="kontakt-arc" data-center aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">&Rcaron;ekn&ecaron;te, co <span class="grad">pot&rcaron;ebujete</span></h1>
       <p class="lead">Vypl&ncaron;te p&aacute;r &uacute;daj&uring;. Ozvu se do 48 hodin a probereme, co a jak potřebujete. Kdy&zcaron; se uk&aacute;&zcaron;e, &zcaron;e na to nejsem ten spr&aacute;vn&yacute;, &rcaron;eknu to hned a nebudu v&aacute;m nic prod&aacute;vat.</p>
@@ -270,6 +273,12 @@ import Base from "../layouts/Base.astro";
   
   <Fragment slot="tail">
   <script src="/assets/js/form.js" defer></script>
+  <script src="/assets/js/arc3d.js" defer></script>
+  <style>
+    .kontakt-arc { position: absolute; top: 0; right: 0; z-index: 0; width: 46%; height: 100%; pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
+    @media (max-width: 900px) { .kontakt-arc { display: none; } }
+  </style>
   </Fragment>
 
 </Base>

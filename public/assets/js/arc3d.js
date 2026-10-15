@@ -241,7 +241,7 @@
 
     /* Na šířku sedí text vlevo, scéna se odsune doprava, ať si
        nekonkurují. Na výšku se skládají pod sebe, tam zůstane na střed. */
-    shiftX = W / H > 1.15 ? 1.05 : 0;
+    shiftX = canvas.hasAttribute("data-center") ? 0 : W / H > 1.15 ? 1.05 : 0;
   }
 
   function draw(time) {

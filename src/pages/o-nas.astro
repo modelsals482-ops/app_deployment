@@ -261,9 +261,34 @@ import Base from "../layouts/Base.astro";
     .isl-split { grid-template-columns: 1fr; }
     .isl-thread { display: none; }
   }
-  @media (max-width: 560px) {
-    .islands > section > .wrap { border-radius: 24px; }
-    .isl-bub { font-size: 0.8rem; padding: 0.55rem 0.85rem; }
+  /* Telefon (16. 10.): ostrovy byly moc velké a bubliny na hranách
+     sousedních ostrovů do sebe narážely. Tady je bublina štítek nahoře
+     v ostrově, ne volně na hraně, a všechno je o stupeň menší. */
+  @media (max-width: 640px) {
+    .islands { padding-top: 6rem; }
+    .islands > section { margin-bottom: 2.4rem; }
+    .islands > section > .wrap { padding: 1.4rem 1.15rem 1.5rem; border-radius: 22px; }
+    .isl-bub { position: relative; inset: auto !important; display: inline-block; margin: 0 0 0.9rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; }
+    .islands .h-hero { font-size: 2.5rem; }
+    .islands .h-sec { font-size: 1.85rem; }
+    .islands .lead { font-size: 1rem; line-height: 1.6; }
+    .isl-role { margin-bottom: 1rem; font-size: 1.15rem; }
+    .islands .btn-row { margin-top: 1.2rem; }
+    .isl-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1.5rem; padding-top: 1.1rem; }
+    .isl-stats div { min-width: 0; }
+    .isl-stats dt { font-size: 1.55rem; }
+    .isl-stats dd { font-size: 0.72rem; line-height: 1.35; }
+    .islands .sec-head p[style] { font-size: 0.76rem !important; }
+    .isl-split { gap: 1.2rem; }
+    .isl-pings span, .isl-pings em { padding: 0.5rem 0.8rem; font-size: 0.84rem; }
+    .islands .sec-head + .cards-2 { margin-top: 1.3rem; }
+    .islands .cards-2 { gap: 0.7rem; }
+    .islands .panel-pad { padding: 1.05rem 1.1rem; }
+    .islands .panel h3 { font-size: 1rem; }
+    .islands .panel p { font-size: 0.88rem; }
+    .isl-marq { margin-bottom: 2rem; }
+    .isl-marq span { font-size: 1.9rem; gap: 1.6rem; }
+    .isl-marq .marquee-track { gap: 1.6rem; }
   }
 </style>
 <script>

@@ -51,8 +51,9 @@
 /* Bubliny jednou "vyskočí", když sekce přiletí, a pak stojí. Dřív se
    vznášely pořád dokola a to stálo víc výkonu než všechno ostatní. */
 .proj-media.in .bub { transform: none; opacity: 1; }
-/* Varianta: obdélníky ve tvaru tlačítek (zkouška na GEN, 15. 10.). */
-.proj--rect .bub { width: auto; max-width: 13rem; aspect-ratio: auto; padding: 0.75rem 1.05rem; font-size: 0.9rem; text-align: left; border-radius: 11px; }
+/* Obdélníky ve tvaru tlačítek. Od 16. 10. výchozí u všech projektů
+   (Jakub: "every bubble into the rectangle, slightly bigger"). */
+.proj--rect .bub { width: auto; max-width: 15rem; aspect-ratio: auto; padding: 0.85rem 1.2rem; font-size: 1rem; text-align: left; border-radius: 12px; }
 .bub--ghost { color: var(--t1); background: rgb(12 12 16 / 88%); border: 1px solid var(--bc); }
 
 /* Příchod ze strany. Minimální stupeň a omezený pohyb to vypnou přes
@@ -79,6 +80,7 @@ html:not(.als-loading) .ref-hero-in { animation: ref-in 0.9s cubic-bezier(0.16, 
   .proj--l .proj-media, .proj--r .proj-media, .proj--l .proj-copy, .proj--r .proj-copy { grid-column: 1; grid-row: auto; margin-top: 0; }
   .proj-media { aspect-ratio: 16 / 13; }
   .bub { --s: 6.4rem !important; font-size: 0.74rem; padding: 0.6rem; }
+  .proj--rect .bub { max-width: 11.5rem; padding: 0.6rem 0.85rem; font-size: 0.82rem; }
 }
 @media (max-width: 560px) {
   .ref-hero { padding: 6.5rem 0 1.5rem; }

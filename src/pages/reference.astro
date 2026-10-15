@@ -132,6 +132,13 @@ import Showcase from "../components/Showcase.astro";
     .cv-u { justify-self: end; max-width: 78%; color: var(--t1); background: #1d1d23; border: 1px solid var(--line-2); border-bottom-right-radius: 6px; }
     .cv-a { max-width: 90%; color: #05070d; background: var(--cyan); border-bottom-left-radius: 6px; }
     .cv-tag { justify-self: end; font-size: 0.72rem; color: var(--t3); }
+    /* Na telefonu chat zakrýval skoro celý snímek webu (16. 10.). */
+    @media (max-width: 560px) {
+      .chatviz { right: 3%; bottom: 4%; gap: 0.4rem; width: 56%; }
+      .cv { padding: 0.5rem 0.7rem; font-size: 0.7rem; border-radius: 12px; }
+      .cv b { font-size: 0.6rem; }
+      .cv:nth-of-type(3), .cv-tag { display: none; }
+    }
     .ref-big { max-width: 54rem; }
     .ref-big h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
     .ref-big > p { margin-top: 0.7rem; color: var(--t2); }
