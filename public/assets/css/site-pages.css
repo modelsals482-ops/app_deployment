@@ -161,7 +161,6 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.06; }
    `style="margin-top:..."`. Tam je odsazení potřeba odečíst ručně,
    protože zápis v atributu přebije margin odsud. */
 .fade-head,
-.fade-head .word-in,
 .grad {
   padding-block: 0.16em;
   margin-block: -0.16em;
@@ -750,14 +749,13 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    -------------------------------------------------------------------- */
 .rev {
   opacity: 0;
-  filter: blur(6px);
   transform: translateY(26px);
   transition:
     opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
     transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.85s ease;
 }
-.rev.in { opacity: 1; filter: blur(0); transform: none; }
+.rev.in { opacity: 1; transform: none; }
 .rev[data-d="1"] { transition-delay: 0.09s; }
 .rev[data-d="2"] { transition-delay: 0.18s; }
 .rev[data-d="3"] { transition-delay: 0.27s; }
@@ -795,62 +793,13 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 }
 
 /* =====================================================================
-   Odhalování po slovech (GSAP)
-
-   Nadpis je do doběhnutí skriptu schovaný, aby text neproblikl na
-   svém místě a teprve pak nevyjel. Skript viditelnost vrátí - a když
-   se nenačte, vrátí ji taky, takže nadpis nikdy nezůstane pryč.
+   Odhalování nadpisů (reveal.js): celý nadpis jednou vyjede, když
+   vjede do obrazu. Dřív po slovech s maskami - viz komentář v reveal.js,
+   proč to padlo. Bez .rw-wait je nadpis normálně vidět.
    ===================================================================== */
-.reveal-words { visibility: hidden; }
-
-.word-mask {
-  display: inline-block;
-  /* Maska existuje proto, aby slovo nebylo videt, dokud nevyjede ZESPODU.
-     Musi tedy zakryvat jen dolni hranu. overflow:hidden ale orezava i
-     nahore, a carka nad "I" nebo hacek nad "C" u velkych pismen sahaji
-     vys nez vyska verzalek - presne ty se usekavaly.
-     clip-path orizne jen dole a nahore necha otevreno. */
-  clip-path: inset(-1em 0 0 0);
-
-  /* Nadpisy mají line-height 1.06, takže obsahový box je nižší než písmo.
-     Ocásek u „y" nebo háček nad „Č" z něj vyčuhují a maska je ořízne -
-     0.12em zdola bylo přesně na hranici. Vypodložíme masku na obě strany
-     a stejnou hodnotu ubereme na marginu, aby se rozvržení nezměnilo. */
-  padding: 0.22em 0 0.24em;
-  margin: -0.22em 0 -0.24em;
-  vertical-align: bottom;
-}
-
-/* Bez will-change: transform. Držel každé slovo natrvalo ve vlastní
-   kompoziční vrstvě i dávno po doběhnutí animace, a ve spojení s
-   background-clip: text po něm při rolování zpátky zůstával otisk
-   předchozího vykreslení - nadpis pak vypadal jako vytištěný dvakrát. */
-.word-in { display: inline-block; transform: translateY(110%); }
-
-/* Přechod v nadpisu je na samotném nadpisu (background-clip: text).
-   Jakmile se text rozseká na slova, jsou to nové prvky - zdědí
-   průhlednou výplň, ale žádné pozadí, takže by zmizela. Přechod proto
-   musí dostat každé slovo zvlášť. Spád je svislý a slova leží na
-   společné účaří, takže výsledek vypadá stejně jako přes celý nadpis. */
-.fade-head .word-in {
-  background: linear-gradient(180deg, #fff 38%, #9a9aa4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Barevné slovo si drží vlastní přechod - musí přebít pravidlo výše. */
-.fade-head .word-in .grad {
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-words { visibility: visible !important; }
-  .word-in { transform: none !important; }
-}
+.reveal-words { transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-words.rw-wait { opacity: 0; transform: translateY(18px); }
+@media (prefers-reduced-motion: reduce) { .reveal-words.rw-wait { opacity: 1; transform: none; } }
 
 /* =====================================================================
    Tlačítka - každá sekce má jiné chování

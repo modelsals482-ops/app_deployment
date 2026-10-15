@@ -18,7 +18,7 @@ const CSS = path.join(process.argv[2] || 'dist', 'assets/css/site-pages.css');
 // Kolik odsazeni je potreba: pulka zaporneho prokladu, tedy
 // (1.267 - 1.06) / 2 = 0.104em. Nize uz se diakritika useka.
 const MIN_EM = 0.104;
-const MUST_HAVE = ['.fade-head', '.fade-head .word-in', '.grad'];
+const MUST_HAVE = ['.fade-head', '.grad'];   /* .word-in zmizel s odhalováním po slovech (15. 10. 2026) */
 
 const css = fs.readFileSync(CSS, 'utf8');
 

@@ -190,24 +190,13 @@ body > footer { position: relative; z-index: 4; }
    a protože se tenhle soubor načítá až za site-pages.css, zmizel by
    text a zbyl barevný obdélník. Proto background-image, ne background,
    a ořez je tu radši zopakovaný. */
-.grad,
-.fade-head .word-in .grad {
+.grad {
   background-image: var(--grad-live);
   background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-@keyframes gradFlow {
-  from { background-position: 0% 50%; }
-  to   { background-position: -260% 50%; }
-}
-
-/* Nadpis dostane po odhalení jeden přejezd světla. Maska je na
-   samotném textu, takže se leskne písmo, ne obdélník kolem něj. */
-.h-hero.reveal-words .word-in,
-.h-sec.reveal-words .word-in { position: relative; }
 
 /* Podtržení, které doběhne pod barevným slovem. */
 .grad-underline {

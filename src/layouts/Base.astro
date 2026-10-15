@@ -556,7 +556,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
        pevných značek skriptu, protože pevná značka se stáhne vždycky, i když
        by ji skript pak nepoužil. Tady jde právě o to nestáhnout je.
        `defer` se u vloženého skriptu neuplatní, proto async=false, což
-       zachová pořadí: Three.js dřív než scenes.js, GSAP dřív než reveal.js. -->
+       zachová pořadí: Three.js dřív než scenes.js. -->
   <script is:inline>
     (function () {
       var stupen = document.documentElement.getAttribute("data-vykon") || "snizeny";
@@ -564,15 +564,13 @@ const cur = (href: string) => (href === current ? "page" : undefined);
 
       var soubory = [
         "/lenis.min.js",                    /* plynulé rolování, samo se vypne na dotyku */
-        "/assets/vendor/gsap.min.js",
-        "/assets/vendor/ScrollTrigger.min.js",
-        "/assets/js/reveal.js",             /* bez GSAPu jen zviditelní text */
+        "/assets/js/reveal.js",             /* nadpisy jednou vyjedou, bez GSAPu (15. 10.) */
         "/assets/js/flash.js",
       ];
 
       /* 603 kB Three.js plus scény jen tam, kde to stroj utáhne. */
       if (stupen === "plny") {
-        soubory.splice(4, 0, "/assets/vendor/three.r128.min.js", "/assets/js/scenes.js");
+        soubory.splice(2, 0, "/assets/vendor/three.r128.min.js", "/assets/js/scenes.js");   /* před flash.js */
       }
 
       soubory.forEach(function (src) {
