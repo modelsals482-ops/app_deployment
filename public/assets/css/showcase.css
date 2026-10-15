@@ -1,0 +1,75 @@
+/* ====================================================================
+   Projekty (Showcase.astro): každý projekt je vlastní sekce, snímky
+   leží přes sebe nakřivo a přiletí ze strany, bubliny s fakty je
+   přesahují. Záměrně nerovné: text je proti snímkům posunutý nahoru
+   nebo dolů, aby stránka nevypadala jako tabulka karet.
+   ==================================================================== */
+.proj { overflow: hidden; overflow: clip; }
+.proj + .proj { padding-top: 2rem; }
+.proj-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: center; }
+.proj--l .proj-media { grid-column: 1 / span 7; }
+.proj--l .proj-copy { grid-column: 9 / span 4; margin-top: 7rem; }
+.proj--r .proj-media { grid-column: 6 / span 7; grid-row: 1; }
+.proj--r .proj-copy { grid-column: 1 / span 4; grid-row: 1; margin-top: -5rem; }
+
+.proj-copy .h-sec { margin: 0; font-size: clamp(2rem, 3.6vw, 3rem); }
+.proj-who { margin: 0.5rem 0 0; font-size: 0.88rem; letter-spacing: 0.01em; color: var(--c); }
+.proj-copy > p:not(.proj-who) { margin: 1.1rem 0 0; font-size: 1rem; line-height: 1.65; color: var(--t2); }
+.proj-copy .ref-mine { margin-top: 1.2rem; padding-top: 0.9rem; font-size: 0.88rem; border-top: 1px solid var(--line); }
+.proj-copy .ref-mine b { color: var(--green); }
+.proj-copy .ref-mine .ref-not { color: var(--t3); }
+.proj-copy .btn-row { margin-top: 1.6rem; }
+.proj-facts { margin: 1.3rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.45rem; }
+.proj-facts li { position: relative; padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.5; color: var(--t2); }
+.proj-facts li::before { position: absolute; top: 0.62em; left: 0.1rem; width: 0.5rem; height: 1px; content: ""; background: var(--c); }
+.proj-pill { display: inline-block; margin-top: 1.4rem; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; color: var(--c); border: 1px solid var(--c); border-radius: 999px; }
+
+/* Snímky: hlavní okno, vnitřní stránka přes jeho roh, mobil dole. */
+.proj-media { position: relative; aspect-ratio: 16 / 12.5; }
+.pm { position: absolute; margin: 0; overflow: hidden; background: #0b0b0d; border: 1px solid var(--line-2); border-radius: 14px;
+  box-shadow: 0 34px 80px rgb(0 0 0 / 60%), 0 8px 20px rgb(0 0 0 / 40%); }
+.pm img { display: block; width: 100%; height: auto; }
+.pm-bar { display: flex; gap: 6px; align-items: center; height: 28px; padding: 0 12px; font-size: 0.72rem; color: var(--t3); background: #141417; border-bottom: 1px solid var(--line); }
+.pm-bar i { width: 8px; height: 8px; background: #2c2c33; border-radius: 50%; }
+.pm-bar b { margin-left: 10px; overflow: hidden; font-weight: 500; white-space: nowrap; text-overflow: ellipsis; }
+.pm-main { top: 0; z-index: 1; width: 80%; transform: rotate(-1.5deg); }
+.pm-second { top: 38%; z-index: 2; width: 58%; transform: rotate(2.5deg); }
+.pm-phone { bottom: 0; z-index: 3; width: 21%; border: 6px solid #1b1b20; border-radius: 26px; transform: rotate(-4deg); }
+.proj--l .pm-main { left: 0; }
+.proj--l .pm-second { right: 0; }
+.proj--l .pm-phone { left: 6%; }
+.proj--r .pm-main { right: 0; transform: rotate(1.5deg); }
+.proj--r .pm-second { left: 0; transform: rotate(-2.5deg); }
+.proj--r .pm-phone { right: 6%; transform: rotate(4deg); }
+
+/* Bubliny s fakty: plné barvy značky, tmavý text (kontrast 7,7-12 : 1). */
+.bub { position: absolute; z-index: 4; display: grid; place-items: center; width: var(--s); aspect-ratio: 1; padding: 0.9rem;
+  font-size: 0.86rem; font-weight: 700; line-height: 1.2; color: #05070d; text-align: center; letter-spacing: -0.01em;
+  background: var(--bc); border-radius: 50%; box-shadow: 0 18px 44px rgb(0 0 0 / 50%);
+  animation: bob 7s ease-in-out infinite; animation-delay: calc(var(--i) * -2.1s); }
+.bub--ghost { color: var(--t1); background: rgb(12 12 16 / 88%); border: 1px solid var(--bc); }
+@keyframes bob { 50% { transform: translateY(-10px) rotate(3deg); } }
+
+/* Příchod ze strany. Minimální stupeň a omezený pohyb to vypnou přes
+   pravidla pro .rev v site-pages.css. */
+.proj .rev.from-l { transform: translate3d(-14vw, 0, 0) rotate(-3deg); }
+.proj .rev.from-r { transform: translate3d(14vw, 0, 0) rotate(3deg); }
+.proj .rev.from-l.in, .proj .rev.from-r.in { transform: none; }
+.proj .rev { transition-duration: 0.9s, 1.3s, 0.9s; }
+
+@media (max-width: 980px) {
+  .proj-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+  .proj--l .proj-media, .proj--r .proj-media, .proj--l .proj-copy, .proj--r .proj-copy { grid-column: 1; grid-row: auto; margin-top: 0; }
+  .proj-media { aspect-ratio: 16 / 13; }
+  .bub { --s: 6.4rem !important; font-size: 0.74rem; padding: 0.6rem; }
+}
+@media (max-width: 560px) {
+  .proj-media { aspect-ratio: 16 / 15; }
+  .pm-second { width: 66%; top: 44%; }
+  .pm-phone { width: 26%; }
+  .bub:nth-of-type(n+3) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bub { animation: none; }
+}
+[data-vykon="minimalni"] .bub { animation: none; }

@@ -57,11 +57,6 @@ a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
 .svc-act-alt a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
 .svc-act-alt a:hover { color: var(--blue); }
 
-/* Plné barevné tlačítko služby. Tmavý text: na tyrkysové 12 : 1,
-   na modré 7,7 : 1, na fialové 8,3 : 1. */
-.btn-svc { color: #05070d; background: var(--c); border-color: transparent; }
-.btn-svc::before { background: rgb(255 255 255 / 22%); }
-.btn-svc:hover { color: #05070d; box-shadow: 0 10px 28px rgb(0 0 0 / 45%); transform: translateY(-1px); }
 
 /* citace zakladatele: jmeno je v nadpisu, pod citaci uz neni podpis */
 .quote { margin: 0; font-size: 1.08rem; line-height: 1.75; color: var(--t1); }

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Showcase from "../components/Showcase.astro";
 ---
 <Base
   title="Reference: co u&zcaron; b&ecaron;&zcaron;&iacute; | ALSflow"
@@ -20,6 +21,7 @@ import Base from "../layouts/Base.astro";
   "isPartOf": { "@type": "WebSite", "url": "https://alsflow.cz" }
 }
   </script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
   </Fragment>
 
   <section class="hero hero-plain">
@@ -32,91 +34,63 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
-  <!-- WEBY -->
-  <section class="sec sec-line scene-host" id="weby">
-    <canvas class="scene scene-soft" data-scene="dotmatrix" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Dva weby <span class="grad">od za&ccaron;&aacute;tku do konce</span></h2>
-        <p class="lead">N&aacute;vrh, texty, k&oacute;d, nasazen&iacute; i dom&eacute;na. Oba d&aacute;l spravuju.</p>
-      </div>
+  <Showcase id="gen" side="l" color="violet" title="gen1.cz" who="Politické hnutí · Praha 1"
+    main={{ src: "/assets/ref/gen1-desktop.jpg", alt: "Úvodní stránka webu gen1.cz", label: "gen1.cz", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/gen1-kandidati.webp", alt: "Stránka s kandidáty na gen1.cz", label: "gen1.cz/kandidati" }}
+    phone={{ src: "/assets/ref/gen1-m.webp", alt: "gen1.cz na mobilu" }}
+    bubbles={[
+      { text: "Aktuality si píšou sami", c: "violet", at: "top:-6%; right:14%" },
+      { text: "Celý web", c: "cyan", at: "top:28%; right:-3%", size: "6.6rem" },
+      { text: "Volby 2026", c: "violet", at: "bottom:4%; left:30%", size: "7.2rem", ghost: true }
+    ]}>
+    <p>Program, kandidátka, přihláška do hnutí a stránka do Senátu. Aktuality si hnutí píše samo přes vlastní editor, bez redakčního systému. Součástí je i povinné označení volební agitace.</p>
+    <p class="ref-mine"><b>Moje:</b> celý web, od návrhu po spuštění. Dál ho spravuji.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://gen1.cz" target="_blank" rel="noopener">Otevřít gen1.cz</a></div>
+  </Showcase>
 
-      <div class="cards-2">
-        <div class="rev">
-          <a class="panel panel-glow panel-sheen tilt" href="https://gen1.cz" target="_blank" rel="noopener">
-            <div class="panel-media"><img src="/assets/ref/gen1-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu gen1.cz" width="1080" height="675" loading="lazy" /></div>
-          </a>
-          <div class="panel-foot">
-            <h3>gen1.cz</h3>
-            <p class="ref-who">Politick&eacute; hnut&iacute; &middot; Praha 1</p>
-            <p>Program, kandidátka a přihláška do hnutí.
-              Aktuality si hnut&iacute; p&iacute;&scaron;e samo p&rcaron;es vlastn&iacute; editor, bez redak&ccaron;n&iacute;ho syst&eacute;mu.
-              Sou&ccaron;&aacute;st&iacute; je i povinn&eacute; ozna&ccaron;en&iacute; volebn&iacute; agitace.</p>
-            <p class="ref-mine"><b>Moje:</b> cel&yacute; web.</p>
-          </div>
-        </div>
+  <Showcase id="sekelova" side="r" color="amber" title="znalecsekelova.sk" who="Soudní znalkyně · Slovensko"
+    main={{ src: "/assets/ref/sekelova-desktop.jpg", alt: "Úvodní stránka webu znalecsekelova.sk", label: "znalecsekelova.sk", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/sek-sluzby.webp", alt: "Stránka Služby na znalecsekelova.sk", label: "znalecsekelova.sk/sluzby" }}
+    phone={{ src: "/assets/ref/sek-m.webp", alt: "znalecsekelova.sk na mobilu" }}
+    bubbles={[
+      { text: "Slovensky", c: "amber", at: "top:-5%; left:12%", size: "7rem" },
+      { text: "Kresby přímo v SVG", c: "cyan", at: "top:30%; left:-3%" },
+      { text: "8 stránek", c: "amber", at: "bottom:6%; right:30%", size: "6.6rem", ghost: true }
+    ]}>
+    <p>Osm stránek slovensky: služby, ceník, podklady k obhlídce. Kresby jsou vlastní, dělané přímo v SVG, a stránka plynule roluje.</p>
+    <p class="ref-mine"><b>Moje:</b> celý web, od návrhu po spuštění. Dál ho spravuji.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Otevřít znalecsekelova.sk</a></div>
+  </Showcase>
 
-        <div class="rev" data-d="1">
-          <a class="panel panel-glow panel-sheen tilt" href="https://znalecsekelova.sk" target="_blank" rel="noopener">
-            <div class="panel-media"><img src="/assets/ref/sekelova-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu znalecsekelova.sk" width="1080" height="675" loading="lazy" /></div>
-          </a>
-          <div class="panel-foot">
-            <h3>znalecsekelova.sk</h3>
-            <p class="ref-who">Soudn&iacute; znalkyn&ecaron; &middot; Slovensko</p>
-            <p>Osm str&aacute;nek slovensky: slu&zcaron;by, cen&iacute;k, podklady k obhl&iacute;dce.
-              Kresby jsou vlastn&iacute;, d&ecaron;lan&eacute; p&rcaron;&iacute;mo v SVG. Plynulé rolování.</p>
-            <p class="ref-mine"><b>Moje:</b> cel&yacute; web.</p>
-          </div>
-        </div>
-      </div>
+  <Showcase id="software" side="l" color="blue" dark title="We Love Events" who="Rental techniky · event agentura, Praha"
+    main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky We Love Events", label: "weloveproduction.cz/rental" }}
+    second={{ src: "/assets/ref/wle-cat.webp", alt: "Kategorie Reproduktory v katalogu rentalu", label: "rental/zvuk/reproduktory" }}
+    bubbles={[
+      { text: "346 položek", c: "blue", at: "top:-6%; right:16%", size: "7.4rem" },
+      { text: "Košík rovnou do administrace", c: "cyan", at: "top:34%; right:-3%" },
+      { text: "CZ i EN", c: "violet", at: "bottom:2%; left:14%", size: "6.4rem", ghost: true }
+    ]}>
+    <p>Katalog techniky s košíkem. Zákazník si naklikává sestavu a odešle ji jedním tlačítkem. Poptávka padá rovnou do administrace, kde katalog spravuje obsluha sama.</p>
+    <p class="ref-mine"><b>Moje:</b> rental, košík a administrace katalogu.
+      <b class="ref-not">Není moje:</b> samotný web weloveevents.cz, ten stavěl někdo přede mnou. Dnes spravuji oba weby klienta.</p>
+    <span class="proj-pill">Veřejně brzy</span>
+  </Showcase>
+
+  <Showcase id="alsflow" side="r" color="cyan" title="Klára" who="AI asistentka přímo na tomhle webu"
+    main={{ src: "/assets/ref/als-home.webp", alt: "Úvodní stránka alsflow.cz s Klárou v rohu", label: "alsflow.cz" }}
+    bubbles={[
+      { text: "Představí se jako AI", c: "cyan", at: "top:-6%; left:10%" },
+      { text: "Česky", c: "violet", at: "bottom:4%; left:-2%", size: "6.2rem", ghost: true }
+    ]}>
+    <div class="chatviz" slot="media" aria-label="Ukázka konverzace s Klárou">
+      <p class="cv cv-u">Kolik stojí web pro kadeřnictví?</p>
+      <p class="cv cv-a"><b>Klára · AI</b>Web začíná od 14 900 Kč. Přesnou cenu vám Jakub pošle do 48 hodin. Mám mu předat kontakt?</p>
+      <p class="cv cv-u">Jo, klidně.</p>
+      <span class="cv-tag">Ukázka</span>
     </div>
-  </section>
-
-  <!-- SOFTWARE A ASISTENTI -->
-  <section class="sec sec-dark sec-line" id="software">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Placená zakázka pro <span class="grad">klienta</span></h2>
-        <p class="lead">Tady u&zcaron; nejde o web, ale o to, co na n&ecaron;m b&ecaron;&zcaron;&iacute;.</p>
-      </div>
-
-      <div class="panel panel-pad panel-glow rev ref-big">
-        <h3>We Love Events</h3>
-        <p class="ref-who">Event agentura a technick&aacute; produkce &middot; Praha</p>
-
-        <p>Pra&zcaron;sk&aacute; agentura, kter&aacute; d&ecaron;l&aacute; produkci akc&iacute; a p&uring;j&ccaron;uje ozvu&ccaron;en&iacute;,
-          sv&ecaron;tla, LED st&ecaron;ny a p&oacute;dia. Web u&zcaron; m&ecaron;li. Chyb&ecaron;lo jim to, co na n&ecaron;m m&aacute; d&ecaron;lat pr&aacute;ci.</p>
-
-        <ul class="ref-list">
-          <li>
-            <b>Rental</b>
-            <span>Katalog techniky, ko&scaron;&iacute;k a popt&aacute;vkov&yacute; formul&aacute;&rcaron;. Z&aacute;kazn&iacute;k si naklik&aacute;
-              sestavu a ode&scaron;le ji jedn&iacute;m tla&ccaron;&iacute;tkem, m&iacute;sto aby psal e-mail se seznamem.
-              &Ccaron;esky i anglicky.</span>
-          </li>
-        </ul>
-
-        <p class="ref-mine"><b>Moje:</b> rental str&aacute;nka.
-          <b class="ref-not">Nen&iacute; moje:</b> samotn&yacute; web weloveevents.cz, ten stav&ecaron;l n&ecaron;kdo p&rcaron;ede mnou.
-          Dnes spravuji oba weby klienta, weloveevents.cz i weloveproduction.cz.</p>
-
-        <a class="btn btn-quiet" href="https://weloveproduction.cz/rental" target="_blank" rel="noopener">Otev&rcaron;&iacute;t rental str&aacute;nku &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TENHLE WEB -->
-  <section class="sec sec-line" id="alsflow">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Kl&aacute;ra sed&iacute; <span class="grad">vpravo dole</span></h2>
-        <p class="lead">alsflow.cz je taky uk&aacute;zka. Postaven&yacute; stejn&ecaron; jako to, co prod&aacute;v&aacute;m:
-          ru&ccaron;n&ecaron; psan&yacute;, bez redak&ccaron;n&iacute;ho syst&eacute;mu, bez plugin&uring;. Kl&aacute;ra v rohu je
-          ten sam&yacute; asistent, jak&eacute;ho stav&iacute;m klient&uring;m, jen napln&ecaron;n&yacute; podklady o ALSflow.
-          M&uring;&zcaron;ete si ji rovnou vyzkou&scaron;et.</p>
-      </div>
-    </div>
-  </section>
+    <p>alsflow.cz je taky ukázka: ručně psaný, bez redakčního systému. Klára v pravém dolním rohu je stejný asistent, jakého stavím klientům, jen naplněný podklady o ALSflow.</p>
+    <div class="btn-row"><button class="btn btn-svc" type="button" data-open-chat>Zeptat se Kláry</button></div>
+  </Showcase>
 
   <section class="sec sec-dark">
     <div class="wrap" style="text-align:center">
@@ -152,6 +126,12 @@ import Base from "../layouts/Base.astro";
     .ref-mine b { color: var(--green); }
     .ref-mine .ref-not { color: var(--t3); }
 
+    .chatviz { position: absolute; right: 4%; bottom: 6%; z-index: 5; display: grid; gap: 0.6rem; width: min(64%, 23rem); }
+    .cv { margin: 0; padding: 0.8rem 1rem; font-size: 0.9rem; line-height: 1.45; border-radius: 18px; box-shadow: 0 16px 40px rgb(0 0 0 / 55%); }
+    .cv b { display: block; margin-bottom: 0.2rem; font-size: 0.72rem; font-weight: 700; color: #05070d; opacity: 0.75; }
+    .cv-u { justify-self: end; max-width: 78%; color: var(--t1); background: #1d1d23; border: 1px solid var(--line-2); border-bottom-right-radius: 6px; }
+    .cv-a { max-width: 90%; color: #05070d; background: var(--cyan); border-bottom-left-radius: 6px; }
+    .cv-tag { justify-self: end; font-size: 0.72rem; color: var(--t3); }
     .ref-big { max-width: 54rem; }
     .ref-big h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
     .ref-big > p { margin-top: 0.7rem; color: var(--t2); }
@@ -177,5 +157,10 @@ import Base from "../layouts/Base.astro";
     }
     .ref-big .btn { margin-top: 1.5rem; }
   </style>
+  <script>
+    document.querySelectorAll("[data-open-chat]").forEach(function (b) {
+      b.addEventListener("click", function () { if (window.toggleChat) window.toggleChat(); });
+    });
+  </script>
   </Fragment>
 </Base>

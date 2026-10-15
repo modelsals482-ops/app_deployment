@@ -52,10 +52,9 @@ import Base from "../layouts/Base.astro";
   })();
 </script>
   </Fragment>
-<main>
+<div class="isl-bg" aria-hidden="true"></div>
+<main class="islands">
   <section class="hero-plain">
-    <canvas class="scene scene-right" data-scene="dotmatrix" aria-hidden="true"></canvas>
-    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap">
       <h1 class="h-hero fade-head reveal-words">Jakub Ryvola</h1>
       <p class="lead">Zakladatel ALSflow, ne agentura. Malá firma potřebuje stejné nástroje jako velká, jen bez IT oddělení a bez smlouvy na tři roky. Proto <strong>všechno nastavuji osobně a jsem k zastižení, když něco potřebujete.</strong></p>
@@ -83,19 +82,19 @@ import Base from "../layouts/Base.astro";
         <p class="lead">Odpovídání na pořád stejné zprávy, přepisování do tabulek, web, který dva roky nikdo neaktualizoval. To všechno jde vyřešit tak, aby vám zbyl čas na práci, kterou děláte rádi.</p>
       </div>
       <div class="cards-2">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev">
+        <div class="panel panel-pad panel-sheen tilt rev">
           <h3>Prakticky</h3>
           <p>Žádné cizí pojmy. Řeknete, co vás zdržuje, a já na rovinu řeknu, jestli se to vyplatí řešit.</p>
         </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
+        <div class="panel panel-pad panel-sheen tilt rev" data-d="1">
           <h3>Cena podle rozsahu, ne podle šablony</h3>
           <p>Samostatně, v balíčku, nebo na míru. Cenu domluvíme spolu, až víme, co opravdu potřebujete. Kdy&zcaron; si vymysl&iacute;te n&ecaron;co nav&iacute;c, &rcaron;eknu cenu t&eacute; zm&ecaron;ny p&rcaron;edem.</p>
         </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2">
+        <div class="panel panel-pad panel-sheen tilt rev" data-d="2">
           <h3>Osobn&ecaron;</h3>
           <p>Jedn&aacute;te se mnou, ne s call centrem. Nastav&iacute;m to s&aacute;m a odpov&iacute;m do 48 hodin v pracovn&iacute; dny.</p>
         </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3">
+        <div class="panel panel-pad panel-sheen tilt rev" data-d="3">
           <h3>Bez z&aacute;vazk&uring;</h3>
           <p>U asistent&uring; plat&iacute;te m&ecaron;s&iacute;&ccaron;n&ecaron; a zru&scaron;&iacute;te kdykoli. Dom&eacute;na, &uacute;&ccaron;ty i zdrojov&yacute; k&oacute;d jsou v&zcaron;dycky na va&scaron;e jm&eacute;no.</p>
         </div>
@@ -104,29 +103,28 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec scene-host">
-    <canvas class="scene scene-soft" data-scene="halftone" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Weby, software a <span class="grad">AI asistenti</span></h2>
         <p class="lead">Začalo to AI asistenty. Postupně mě ale začalo naplňovat stavět weby, které fungují a na které je radost se dívat. A protože spolu všechno souvisí, přibyl i software: kdo stavěl web, ví, jak k němu připojit další nástroj.</p>
       </div>
       <div class="cards-2">
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" href="/tvorba-webu">
+        <a class="panel panel-pad panel-sheen tilt rev" href="/tvorba-webu" style="--c: var(--cyan)">
           <h3>Weby</h3>
           <p>Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu. Postav&iacute;m, nasad&iacute;m a d&aacute;l se star&aacute;m. Spravuji i e-shopy a doplním do nich, co potřebujete.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="isl-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1" href="/vyvoj-softwaru">
+        <a class="panel panel-pad panel-sheen tilt rev" data-d="1" href="/vyvoj-softwaru" style="--c: var(--blue)">
           <h3>Software na m&iacute;ru</h3>
           <p>Administra&ccaron;n&iacute; panely, propojen&iacute; systémů, které spolu dnes nekomunikují, a n&aacute;stroje m&iacute;sto tabulek.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="isl-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2" href="/ai-asistenti">
+        <a class="panel panel-pad panel-sheen tilt rev" data-d="2" href="/ai-asistenti" style="--c: var(--violet)">
           <h3>AI asistenti</h3>
           <p>Asistent p&iacute;&scaron;e &ccaron;esky a va&scaron;&iacute;m t&oacute;nem. Kdy&zcaron; si nen&iacute; jist&yacute;, rad&scaron;i p&rcaron;ed&aacute; slovo v&aacute;m, ne&zcaron; aby si vym&yacute;&scaron;lel.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="isl-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3">
+        <div class="panel panel-pad rev isl-not" data-d="3">
           <h3>Co ned&ecaron;l&aacute;m</h3>
           <p>Mobiln&iacute; aplikace do App Store a syst&eacute;my pro statis&iacute;ce u&zcaron;ivatel&uring;. &Rcaron;eknu to hned na za&ccaron;&aacute;tku, ne po m&ecaron;s&iacute;ci.</p>
         </div>
@@ -147,4 +145,38 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 </main>
+
+<style>
+  /* Pokus 15. 10.: ostrovy. Pozadí stojí, obsah se po něm posouvá jako
+     samostatné ostrovy. Jen na téhle stránce. */
+  .isl-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(42rem 30rem at 12% 18%, rgb(56 219 245 / 9%), transparent 70%),
+      radial-gradient(40rem 32rem at 88% 78%, rgb(167 139 250 / 11%), transparent 70%),
+      radial-gradient(rgb(255 255 255 / 7%) 1px, transparent 1.3px) 0 0 / 26px 26px,
+      #040406; }
+  .islands { position: relative; z-index: 1; padding: 7.5rem 0 3rem; }
+  .islands > section { margin: 0 0 clamp(2.2rem, 6vw, 4.5rem); padding: 0 !important; background: none !important; }
+  .islands > section::before, .islands > section::after { display: none !important; }
+  .islands > section > .wrap { max-width: min(1060px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1.8rem, 4.5vw, 3.6rem);
+    background: rgb(11 11 14 / 95%); border: 1px solid var(--line-2); border-radius: 32px;
+    box-shadow: 0 40px 90px rgb(0 0 0 / 62%), 0 2px 0 rgb(255 255 255 / 4%) inset; }
+  .islands .sec-head { margin-bottom: 0; }
+  .islands .sec-head + .cards-2 { margin-top: 2rem; }
+  .islands .panel h3 { margin: 0 0 0.55rem; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .islands .panel p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--t2); }
+  .islands a.panel { display: flex; flex-direction: column; }
+  .islands a.panel h3::before { display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.55rem; vertical-align: 0.12em; content: ""; background: var(--c); border-radius: 50%; }
+  .isl-more { margin-top: auto; padding-top: 1rem; font-size: 0.9rem; font-weight: 600; color: var(--c); }
+  .isl-not { background: none; border-style: dashed; }
+  .isl-not h3 { color: var(--t2); }
+  @media (min-width: 1100px) {
+    .islands > section:nth-of-type(odd) > .wrap { transform: translateX(-4vw); }
+    .islands > section:nth-of-type(even) > .wrap { transform: translateX(4vw); }
+    .islands > section:nth-of-type(2) > .wrap, .islands > section:nth-of-type(5) > .wrap { max-width: 880px; }
+  }
+  @media (max-width: 560px) {
+    .islands > section > .wrap { border-radius: 24px; }
+  }
+</style>
 </Base>

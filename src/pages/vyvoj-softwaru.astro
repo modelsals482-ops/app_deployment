@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Showcase from "../components/Showcase.astro";
 ---
 <Base
   title="Vývoj softwaru na míru: admin panely a integrace | ALSflow"
@@ -96,6 +97,9 @@ import Base from "../layouts/Base.astro";
     document.documentElement.classList.add('als-loading');
   })();
 </script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
+  <link rel="stylesheet" href="/assets/css/autopilot.css" />
+  <script src="/assets/js/autopilot.js" defer></script>
   </Fragment>
 
   <section class="hero-plain">
@@ -117,37 +121,95 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="co-udela">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Kde software ušetří <span class="grad">nejvíc práce</span></h2>
-        <p class="lead">Zak&aacute;zka skoro nikdy neza&ccaron;ne slovem &bdquo;software&ldquo;. Za&ccaron;ne t&iacute;m, &zcaron;e n&ecaron;co zdr&zcaron;uje nebo se v tom d&ecaron;laj&iacute; chyby.</p>
+        <h2 class="h-sec fade-head reveal-words">Co software udělá <span class="grad">za vás</span></h2>
+        <p class="lead">Zakázka skoro nikdy nezačne slovem „software“. Začne tím, že něco zdržuje nebo se v tom dělají chyby. Klikněte a podívejte se, jak to vypadá, když to dělá počítač.</p>
       </div>
-      <div class="cards-2">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><h3 style="margin:0 0 0.45rem;font-size:1.02rem">Panel nad vlastn&iacute;mi daty</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Rozhran&iacute;, ve kter&eacute;m t&yacute;m spravuje katalog, cen&iacute;k nebo objedn&aacute;vky, ani&zcaron; by kdokoli sahal do datab&aacute;ze nebo do sd&iacute;len&eacute;ho Excelu.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><h3 style="margin:0 0 0.45rem;font-size:1.02rem">Propojen&iacute; dvou syst&eacute;m&uring;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Sklad, rezervace, &uacute;&ccaron;etnictv&iacute; a web dohromady. Data te&ccaron;ou sama, nikdo je nep&rcaron;episuje ru&ccaron;n&ecaron; a nevznikaj&iacute; dv&ecaron; verze pravdy.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><h3 style="margin:0 0 0.45rem;font-size:1.02rem">Nahrazen&iacute; ru&ccaron;n&iacute; pr&aacute;ce</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Opakovan&aacute; &ccaron;innost, kter&aacute; n&ecaron;komu bere hodinu denn&ecaron; (vyhodnocen&iacute;, p&rcaron;eposl&aacute;n&iacute;, vygenerov&aacute;n&iacute; dokladu) se p&rcaron;esune na server.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3"><h3 style="margin:0 0 0.45rem;font-size:1.02rem">P&rcaron;ehled, kter&yacute; sed&iacute;</h3><p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Jedno m&iacute;sto s &ccaron;&iacute;sly, kter&yacute;m se d&aacute; v&ecaron;&rcaron;it, m&iacute;sto p&ecaron;ti export&uring;, kter&eacute; si ka&zcaron;d&yacute; slu&ccaron;uje po sv&eacute;m.</p></div>
+
+      <div class="ap rev" data-ap>
+        <div class="ap-tabs" role="tablist" aria-label="Co software udělá">
+          <button class="ap-tab" role="tab" id="ap-t1" aria-controls="ap-p1" aria-selected="true" style="--c: var(--cyan)"><b>Panel nad vlastními daty</b><span>Tým spravuje katalog, ceník nebo objednávky bez Excelu.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t2" aria-controls="ap-p2" aria-selected="false" tabindex="-1" style="--c: var(--blue)"><b>Propojení systémů</b><span>Web, sklad a účetnictví si data předají samy.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t3" aria-controls="ap-p3" aria-selected="false" tabindex="-1" style="--c: var(--violet)"><b>Konec ruční práce</b><span>Z e-mailu je za vteřinu vyplněný doklad.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t4" aria-controls="ap-p4" aria-selected="false" tabindex="-1" style="--c: var(--green)"><b>Přehled, který sedí</b><span>Jedno místo s čísly místo pěti exportů.</span><i class="ap-prog" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="ap-win">
+          <div class="ap-bar" aria-hidden="true"><i></i><i></i><i></i><b>vas-nastroj.cz</b><span class="ap-tag">Ukázka</span></div>
+
+          <div class="ap-panel is-on" role="tabpanel" id="ap-p1" aria-labelledby="ap-t1">
+            <table class="ap-table">
+              <thead><tr><th>Položka</th><th>Stav</th><th>Kusů</th></tr></thead>
+              <tbody>
+                <tr><td>Reproduktor 12"</td><td><span class="pill ok">Skladem</span></td><td>8</td></tr>
+                <tr class="ap-hit"><td>LED stěna 3×2 m</td><td><span class="pill swap"><span>Půjčeno</span><span>Skladem</span></span></td><td><span class="num-swap"><span>0</span><span>4</span></span></td></tr>
+                <tr><td>Mixážní pult</td><td><span class="pill ok">Skladem</span></td><td>3</td></tr>
+                <tr><td>Světelný most</td><td><span class="pill out">Půjčeno</span></td><td>0</td></tr>
+              </tbody>
+            </table>
+            <span class="ap-cursor" aria-hidden="true"></span>
+            <span class="ap-toast">Uloženo. Web už ukazuje „Skladem“.</span>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p2" aria-labelledby="ap-t2" hidden>
+            <div class="ap-flow">
+              <div class="node n1"><b>Web</b><span>Objednávka #1042</span></div>
+              <div class="node n2"><b>Sklad</b><span>Odepsáno 2 ks</span></div>
+              <div class="node n3"><b>Účetnictví</b><span>Faktura vystavena</span></div>
+              <svg class="wires" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M150 130 C 230 130, 230 60, 300 60"/><path d="M300 60 C 370 60, 370 200, 450 200"/></svg>
+              <span class="packet p1" aria-hidden="true"></span><span class="packet p2" aria-hidden="true"></span>
+            </div>
+            <p class="ap-note">Nikdo nic nepřepisuje, nevznikají dvě verze pravdy.</p>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p3" aria-labelledby="ap-t3" hidden>
+            <div class="ap-mail">
+              <div class="mail-card"><b>Poptávka z webu</b><span>Dobrý den, potřebuji 2× reproduktor a mixpult na 14. 11. Jana Nováková</span></div>
+              <div class="mail-arrow" aria-hidden="true"></div>
+              <dl class="mail-form">
+                <div><dt>Zákazník</dt><dd><span class="type">Jana Nováková</span></dd></div>
+                <div><dt>Položky</dt><dd><span class="type">2× reproduktor, 1× mixpult</span></dd></div>
+                <div><dt>Termín</dt><dd><span class="type">14. 11. 2026</span></dd></div>
+              </dl>
+              <span class="mail-done">Doklad.pdf je hotový</span>
+            </div>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p4" aria-labelledby="ap-t4" hidden>
+            <div class="ap-kpis">
+              <div><span>Poptávky</span><b data-to="128">128</b></div>
+              <div><span>Vyřízeno</span><b data-to="96" data-suf=" %">96 %</b></div>
+              <div><span>Ušetřeno</span><b data-to="31" data-suf=" h">31 h</b></div>
+            </div>
+            <div class="ap-chart" aria-hidden="true">
+              <i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:47%"></i><i style="--h:66%"></i><i style="--h:71%"></i><i style="--h:88%"></i>
+            </div>
+            <p class="ap-note">Ukázková čísla.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec sec-dark sec-line scene-host" id="priklad">
-    <canvas class="scene scene-right" data-scene="dotmatrix" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Katalog, kter&yacute; spravuje <span class="grad">obsluha</span></h2>
-        <p class="lead">Pro rental str&aacute;nku event agentury jsem postavil administra&ccaron;n&iacute; panel nad katalogem a napojen&iacute; na evidenci dostupnosti. P&rcaron;edt&iacute;m se dostupnost zji&scaron;&tcaron;ovala telefonem a ru&ccaron;n&ecaron; dohled&aacute;vala v tabulce; te&dcaron; ji rozhran&iacute; ukazuje rovnou u polo&zcaron;ky a katalog spravuje obsluha sama, bez z&aacute;sahu v&yacute;voj&aacute;&rcaron;e.</p>
-      </div>
-      <ul class="list rev" style="max-width:62ch">
-        <li><strong>Nejmen&scaron;&iacute; &rcaron;e&scaron;en&iacute;, kter&eacute; probl&eacute;m opravdu vy&rcaron;e&scaron;&iacute;.</strong> Ka&zcaron;d&aacute; vrstva nav&iacute;c je n&ecaron;co, co se za rok bude muset udr&zcaron;ovat.</li>
-        <li><strong>Stav&iacute;m vedle toho, co m&aacute;te.</strong> Napojen&iacute; p&rcaron;es API nebo export je levn&ecaron;j&scaron;&iacute; a m&eacute;n&ecaron; rizikov&eacute; ne&zcaron; migrace cel&eacute;ho syst&eacute;mu.</li>
-        <li><strong>Osobn&iacute; &uacute;daje jen ty nutn&eacute;.</strong> &Ccaron;&iacute;m m&iacute;&ncaron; jich n&aacute;stroj dr&zcaron;&iacute;, t&iacute;m jednodu&scaron;&scaron;&iacute; je cel&aacute; zak&aacute;zka i pr&aacute;vn&ecaron;.</li>
-        <li><strong>V&scaron;echno na va&scaron;e jm&eacute;no.</strong> Zdrojový kód a dokumentaci dostanete vždy. Repozitář, hosting i databázi můžete mít vedené na sebe.</li>
-        <li><strong>Provoz v Evropsk&eacute; unii.</strong> Kde n&aacute;stroj pracuje s osobn&iacute;mi &uacute;daji, pat&rcaron;&iacute; k zak&aacute;zce zpracovatelsk&aacute; smlouva podle &ccaron;l.&nbsp;28 GDPR.</li>
-      </ul>
-    </div>
-  </section>
+  <Showcase id="priklad" side="r" color="blue" dark title="Katalog, který spravuje obsluha" who="We Love Events · rental techniky"
+    main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky We Love Events", label: "weloveproduction.cz/rental" }}
+    second={{ src: "/assets/ref/wle-cards.webp", alt: "Položky v katalogu s tlačítkem Do košíku", label: "rental/zvuk/reproduktory", w: 900, h: 400 }}
+    bubbles={[
+      { text: "346 položek", c: "blue", at: "top:-6%; left:14%", size: "7.2rem" },
+      { text: "Dostupnost u položky", c: "cyan", at: "top:36%; left:-3%" },
+      { text: "Bez zásahu vývojáře", c: "violet", at: "bottom:2%; right:20%", size: "7.6rem", ghost: true }
+    ]}>
+    <p>Dřív se dostupnost zjišťovala telefonem a v tabulce. Teď ji katalog ukazuje rovnou u položky a obsluha ho spravuje sama v administraci.</p>
+    <ul class="proj-facts">
+      <li>Nejmenší řešení, které problém opravdu vyřeší</li>
+      <li>Napojím se na to, co už máte</li>
+      <li>Kód, účty a dokumentace na vaše jméno</li>
+      <li>Provoz v EU, se smlouvou podle čl. 28 GDPR</li>
+    </ul>
+    <span class="proj-pill">Veřejně brzy</span>
+  </Showcase>
 
   <section class="sec sec-line">
     <div class="wrap">

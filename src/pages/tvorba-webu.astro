@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Showcase from "../components/Showcase.astro";
 ---
 <Base
   title="Tvorba webových stránek: rychlý web bez WordPressu | ALSflow"
@@ -88,6 +89,7 @@ import Base from "../layouts/Base.astro";
     document.documentElement.classList.add('als-loading');
   })();
 </script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
   </Fragment>
 
   <section class="hero-plain">
@@ -109,35 +111,40 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
-  <section class="sec scene-host" id="reference">
-    <canvas class="scene scene-soft" data-scene="halftone" aria-hidden="true"></canvas>
+  <section class="sec" id="reference" style="padding-bottom:0">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Dva weby, jedna <span class="grad">sestava</span></h2>
-        <p class="lead">Oba postaven&eacute; stejn&ecaron;, oba dál spravuji. Prokliknout se d&aacute; obojí, jsou &zcaron;iv&eacute;.</p>
-      </div>
-      <div class="cards-2">
-        <div class="rev">
-          <a class="panel panel-glow panel-sheen tilt" href="https://gen1.cz" target="_blank" rel="noopener">
-            <div class="panel-media"><img src="/assets/ref/gen1-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu gen1.cz" width="1080" height="675" loading="lazy" /></div>
-          </a>
-          <div class="panel-foot">
-            <h3>gen1.cz: politick&eacute; hnut&iacute;</h3>
-            <p>Program, kandidátka a přihláška do hnutí. Aktuality si hnut&iacute; p&iacute;&scaron;e samo, bez redak&ccaron;n&iacute;ho syst&eacute;mu. Sou&ccaron;&aacute;st&iacute; je i povinn&eacute; ozna&ccaron;en&iacute; volebn&iacute; agitace.</p>
-          </div>
-        </div>
-        <div class="rev" data-d="1">
-          <a class="panel panel-glow panel-sheen tilt" href="https://znalecsekelova.sk" target="_blank" rel="noopener">
-            <div class="panel-media"><img src="/assets/ref/sekelova-desktop.jpg" alt="&Uacute;vodn&iacute; str&aacute;nka webu znalecsekelova.sk" width="1080" height="675" loading="lazy" /></div>
-          </a>
-          <div class="panel-foot">
-            <h3>znalecsekelova.sk: soudn&iacute; znalkyn&ecaron;</h3>
-            <p>Osm str&aacute;nek slovensky: slu&zcaron;by, cen&iacute;k, podklady k obhl&iacute;dce. Kresby jsou vlastn&iacute;, d&ecaron;lan&eacute; p&rcaron;&iacute;mo v SVG. Plynulé rolování.</p>
-          </div>
-        </div>
+        <p class="lead">Oba postavené stejně, oba dál spravuji. Prokliknout se dá obojí, jsou živé.</p>
       </div>
     </div>
   </section>
+
+  <Showcase id="ref-gen" side="l" color="violet" title="gen1.cz" who="Politické hnutí · Praha 1"
+    main={{ src: "/assets/ref/gen1-desktop.jpg", alt: "Úvodní stránka webu gen1.cz", label: "gen1.cz", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/gen1-program.webp", alt: "Stránka s programem na gen1.cz", label: "gen1.cz/program" }}
+    phone={{ src: "/assets/ref/gen1-m.webp", alt: "gen1.cz na mobilu" }}
+    bubbles={[
+      { text: "Aktuality si píšou sami", c: "violet", at: "top:-6%; right:14%" },
+      { text: "Bez WordPressu", c: "cyan", at: "top:30%; right:-3%", size: "7rem" },
+      { text: "Rychlý i na mobilu", c: "violet", at: "bottom:4%; left:30%", size: "7.4rem", ghost: true }
+    ]}>
+    <p>Program, kandidátka a přihláška do hnutí. Aktuality si hnutí píše samo, bez redakčního systému. Součástí je i povinné označení volební agitace.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://gen1.cz" target="_blank" rel="noopener">Otevřít gen1.cz</a></div>
+  </Showcase>
+
+  <Showcase id="ref-sekelova" side="r" color="amber" title="znalecsekelova.sk" who="Soudní znalkyně · Slovensko"
+    main={{ src: "/assets/ref/sekelova-desktop.jpg", alt: "Úvodní stránka webu znalecsekelova.sk", label: "znalecsekelova.sk", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/sek-cennik.webp", alt: "Ceník na znalecsekelova.sk", label: "znalecsekelova.sk/cennik" }}
+    phone={{ src: "/assets/ref/sek-m.webp", alt: "znalecsekelova.sk na mobilu" }}
+    bubbles={[
+      { text: "Slovensky", c: "amber", at: "top:-5%; left:12%", size: "7rem" },
+      { text: "Vlastní kresby v SVG", c: "cyan", at: "top:30%; left:-3%" },
+      { text: "Plynulé rolování", c: "amber", at: "bottom:6%; right:30%", size: "7rem", ghost: true }
+    ]}>
+    <p>Osm stránek slovensky: služby, ceník, podklady k obhlídce. Kresby jsou vlastní, dělané přímo v SVG.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Otevřít znalecsekelova.sk</a></div>
+  </Showcase>
 
   <section class="sec sec-dark sec-line">
     <div class="wrap">

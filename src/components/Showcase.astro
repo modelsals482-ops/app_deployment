@@ -1,0 +1,53 @@
+---
+/* Jeden projekt jako vlastní sekce: tři snímky přes sebe (hlavní okno,
+   vnitřní stránka, mobil), barevné bubliny s fakty a text vedle.
+   side="l" = snímky vlevo a přiletí zleva, "r" = zrcadlově zprava.
+   Kopie projektu jde do výchozího slotu, snímky a bubliny v props. */
+interface Shot { src: string; alt: string; label?: string; w?: number; h?: number }
+interface Bubble { text: string; c: string; at: string; size?: string; ghost?: boolean }
+interface Props {
+  id: string;
+  side: "l" | "r";
+  title: string;
+  who: string;
+  color: string;
+  main: Shot;
+  second?: Shot;
+  phone?: Shot;
+  bubbles?: Bubble[];
+  dark?: boolean;
+}
+const { id, side, title, who, color, main, second, phone, bubbles = [], dark = false } = Astro.props;
+const from = side === "l" ? "from-l" : "from-r";
+const back = side === "l" ? "from-r" : "from-l";
+---
+<section class:list={["sec", "proj", `proj--${side}`, { "sec-dark": dark }]} id={id} style={`--c: var(--${color})`}>
+  <div class="wrap proj-grid">
+    <div class={`proj-media rev ${from}`}>
+      <figure class="pm pm-main">
+        <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>{main.label}</b></span>
+        <img src={main.src} alt={main.alt} width={main.w ?? 1200} height={main.h ?? 750} loading="lazy" decoding="async" />
+      </figure>
+      {second && (
+        <figure class="pm pm-second">
+          <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>{second.label}</b></span>
+          <img src={second.src} alt={second.alt} width={second.w ?? 1200} height={second.h ?? 750} loading="lazy" decoding="async" />
+        </figure>
+      )}
+      {phone && (
+        <figure class="pm pm-phone">
+          <img src={phone.src} alt={phone.alt} width={phone.w ?? 360} height={phone.h ?? 779} loading="lazy" decoding="async" />
+        </figure>
+      )}
+      {bubbles.map((b, i) => (
+        <span class:list={["bub", { "bub--ghost": b.ghost }]} style={`--bc: var(--${b.c}); --s: ${b.size ?? "8.5rem"}; ${b.at}; --i: ${i}`}>{b.text}</span>
+      ))}
+      <slot name="media" />
+    </div>
+    <div class={`proj-copy rev ${back}`} data-d="1">
+      <h2 class="h-sec">{title}</h2>
+      <p class="proj-who">{who}</p>
+      <slot />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,149 @@
+/* ====================================================================
+   "Co software udělá za vás": čtyři záložky, každá pouští malou scénu
+   v okně aplikace. Výchozí styly jsou KONEČNÝ stav scény, animace jen
+   přehraje cestu k němu. Bez pohybu (prefers-reduced-motion, minimální
+   stupeň) tak člověk vidí hotový obrázek, nic schovaného.
+   Animace běží jen s třídou .anim na .ap, kterou přidá autopilot.js.
+   ==================================================================== */
+.ap { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); gap: 1.6rem; align-items: stretch; }
+
+.ap-tabs { display: grid; gap: 0.6rem; align-content: start; }
+.ap-tab { position: relative; display: grid; gap: 0.3rem; padding: 1rem 1.1rem 1.1rem; overflow: hidden; font: inherit; color: var(--t2);
+  text-align: left; cursor: pointer; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-tile);
+  transition: border-color 0.25s, background 0.25s, color 0.25s; }
+.ap-tab b { display: flex; gap: 0.55rem; align-items: center; font-size: 1rem; color: var(--t1); letter-spacing: -0.02em; }
+.ap-tab b::before { flex: none; width: 0.55rem; height: 0.55rem; content: ""; background: var(--c); border-radius: 50%; opacity: 0.45; transition: opacity 0.25s; }
+.ap-tab span { font-size: 0.86rem; line-height: 1.45; }
+.ap-tab:hover { border-color: var(--line-2); }
+.ap-tab[aria-selected="true"] { color: var(--t1); background: var(--card-2); border-color: var(--c); }
+.ap-tab[aria-selected="true"] b::before { opacity: 1; }
+.ap-tab:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.ap-prog { position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--c); transform: scaleX(0); transform-origin: left; }
+.ap.auto .ap-tab[aria-selected="true"] .ap-prog { animation: ap-prog var(--ap-dur, 7s) linear forwards; }
+.ap.paused .ap-prog { animation-play-state: paused !important; }
+@keyframes ap-prog { to { transform: scaleX(1); } }
+
+/* Okno aplikace */
+.ap-win { position: relative; min-height: 26rem; overflow: hidden; background: linear-gradient(180deg, #111115, #0a0a0d);
+  border: 1px solid var(--line-2); border-radius: var(--r-card); box-shadow: 0 30px 80px rgb(0 0 0 / 55%); }
+.ap-bar { display: flex; gap: 6px; align-items: center; height: 34px; padding: 0 14px; font-size: 0.75rem; color: var(--t3); background: #141417; border-bottom: 1px solid var(--line); }
+.ap-bar i { width: 9px; height: 9px; background: #2c2c33; border-radius: 50%; }
+.ap-bar b { margin-left: 10px; font-weight: 500; }
+.ap-tag { margin-left: auto; padding: 0.15rem 0.55rem; font-size: 0.7rem; color: var(--t2); border: 1px solid var(--line-2); border-radius: 999px; }
+.ap-panel { position: absolute; inset: 34px 0 0; padding: clamp(1.2rem, 3vw, 2rem); }
+.ap-panel[hidden] { display: none !important; }
+.ap-note { position: absolute; left: clamp(1.2rem, 3vw, 2rem); bottom: 1.1rem; margin: 0; font-size: 0.82rem; color: var(--t3); }
+
+/* 1. Panel nad daty */
+.ap-table { width: 100%; font-size: 0.92rem; border-collapse: collapse; }
+.ap-table th { padding: 0 0.6rem 0.7rem; font-size: 0.75rem; font-weight: 600; color: var(--t3); text-align: left; }
+.ap-table td { padding: 0.8rem 0.6rem; color: var(--t1); border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.ap-hit td { background: rgb(56 219 245 / 7%); }
+.pill { display: inline-grid; padding: 0.2rem 0.6rem; font-size: 0.78rem; font-weight: 600; border-radius: 999px; }
+.pill > span { grid-area: 1 / 1; }
+.pill.ok, .pill.swap { color: #05070d; background: var(--green); }
+.pill.out { color: #05070d; background: var(--amber); }
+.pill.swap > span:first-child, .num-swap > span:first-child { visibility: hidden; }
+.num-swap { display: inline-grid; } .num-swap > span { grid-area: 1 / 1; }
+.ap-cursor { position: absolute; top: 9.6rem; left: 58%; width: 18px; height: 18px; background: #fff; border: 2px solid #05070d; border-radius: 50%;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 50%); pointer-events: none; }
+.ap-toast { position: absolute; right: 1.4rem; bottom: 1.4rem; padding: 0.7rem 1rem; font-size: 0.85rem; font-weight: 600; color: #05070d;
+  background: var(--cyan); border-radius: 12px; box-shadow: 0 14px 34px rgb(0 0 0 / 50%); }
+
+/* 2. Propojení systémů: uzly a balíčky po přímkách mezi nimi */
+.ap-flow { position: relative; height: calc(100% - 2.6rem); }
+.wires { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wires path { fill: none; stroke: var(--line-2); stroke-width: 2; stroke-dasharray: 6 8; vector-effect: non-scaling-stroke; }
+.node { position: absolute; z-index: 1; display: grid; gap: 0.2rem; min-width: 9.5rem; padding: 0.8rem 1rem; text-align: center;
+  background: var(--card-2); border: 1px solid var(--line-2); border-radius: 14px; transform: translate(-50%, -50%); }
+.node b { font-size: 0.95rem; color: var(--t1); }
+.node span { font-size: 0.78rem; color: var(--blue); }
+.n1 { left: 15%; top: 50%; } .n2 { left: 50%; top: 23%; } .n3 { left: 85%; top: 77%; }
+.packet { position: absolute; z-index: 2; width: 12px; height: 12px; background: var(--blue); border-radius: 50%; box-shadow: 0 0 0 4px rgb(91 157 255 / 22%);
+  transform: translate(-50%, -50%); opacity: 0; }
+
+/* 3. Z e-mailu doklad */
+.ap-mail { display: grid; grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1.1fr); gap: 1rem; align-items: center; height: 100%; }
+.mail-card { display: grid; gap: 0.45rem; padding: 1rem 1.1rem; font-size: 0.86rem; line-height: 1.5; color: var(--t2); background: var(--card-2);
+  border: 1px solid var(--line-2); border-radius: 14px; }
+.mail-card b { font-size: 0.92rem; color: var(--t1); }
+.mail-arrow { height: 2px; background: var(--violet); position: relative; }
+.mail-arrow::after { position: absolute; right: -6px; top: -5px; width: 10px; height: 12px; content: ""; background: var(--violet); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.mail-form { display: grid; gap: 0.7rem; margin: 0; }
+.mail-form div { padding: 0.6rem 0.8rem; background: #0e0e12; border: 1px solid var(--line); border-radius: 10px; }
+.mail-form dt { font-size: 0.72rem; color: var(--t3); }
+.mail-form dd { margin: 0.15rem 0 0; font-size: 0.9rem; font-weight: 600; color: var(--t1); }
+.type { display: inline-block; white-space: nowrap; }
+.mail-done { position: absolute; right: 1.6rem; bottom: 1.4rem; padding: 0.6rem 0.95rem; font-size: 0.85rem; font-weight: 700; color: #05070d;
+  background: var(--violet); border-radius: 12px; box-shadow: 0 14px 34px rgb(0 0 0 / 50%); }
+
+/* 4. Přehled */
+.ap-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
+.ap-kpis div { padding: 0.9rem 1rem; background: var(--card-2); border: 1px solid var(--line); border-radius: 12px; }
+.ap-kpis span { display: block; font-size: 0.75rem; color: var(--t3); }
+.ap-kpis b { display: block; margin-top: 0.2rem; font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -0.03em; color: var(--t1); font-variant-numeric: tabular-nums; }
+.ap-chart { position: absolute; left: clamp(1.2rem, 3vw, 2rem); right: clamp(1.2rem, 3vw, 2rem); bottom: 3rem; top: 9.5rem;
+  display: flex; gap: 4%; align-items: flex-end; border-bottom: 1px solid var(--line-2); }
+.ap-chart i { flex: 1; height: var(--h); background: rgb(74 222 128 / 78%); border-radius: 8px 8px 2px 2px; transform-origin: bottom; }
+
+/* ---------- pohyb: jen s .anim (JS), cesta ke konečnému stavu ---------- */
+.ap.anim .is-on .ap-cursor { animation: cur 1.6s cubic-bezier(0.65, 0, 0.35, 1) both; }
+@keyframes cur { from { top: 85%; left: 88%; } 80% { transform: none; } 90% { transform: scale(0.75); } to { transform: none; } }
+.ap.anim .is-on .pill.swap > span:first-child { animation: show-hide 1.75s steps(1) both; }
+.ap.anim .is-on .pill.swap > span:last-child, .ap.anim .is-on .num-swap > span:last-child { animation: hide-show 1.75s steps(1) both; }
+.ap.anim .is-on .num-swap > span:first-child { animation: show-hide 1.75s steps(1) both; }
+.ap.anim .is-on .pill.swap { animation: pill 1.75s steps(1) both; }
+@keyframes show-hide { from { visibility: visible; } to { visibility: hidden; } }
+@keyframes hide-show { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes pill { from { background: var(--amber); } to { background: var(--green); } }
+.ap.anim .is-on .ap-toast { animation: rise 0.6s 2.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+.ap.anim .is-on .node { animation: pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.ap.anim .is-on .n2 { animation-delay: 0.15s; } .ap.anim .is-on .n3 { animation-delay: 0.3s; }
+@keyframes pop { from { opacity: 0; transform: translate(-50%, -40%) scale(0.92); } }
+.ap.anim .is-on .node span { animation: fade 0.4s both; }
+.ap.anim .is-on .n1 span { animation-delay: 0.6s; } .ap.anim .is-on .n2 span { animation-delay: 1.9s; } .ap.anim .is-on .n3 span { animation-delay: 3.2s; }
+@keyframes fade { from { opacity: 0; } }
+.ap.anim .is-on .packet.p1 { animation: p1 1.3s 0.7s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.ap.anim .is-on .packet.p2 { animation: p2 1.3s 2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@keyframes p1 { 0% { left: 15%; top: 50%; opacity: 1; } 100% { left: 50%; top: 23%; opacity: 1; } }
+@keyframes p2 { 0% { left: 50%; top: 23%; opacity: 1; } 100% { left: 85%; top: 77%; opacity: 1; } }
+.ap.anim .is-on .wires path { animation: dash 1.2s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -28; } }
+
+.ap.anim .is-on .mail-card { animation: slide 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes slide { from { opacity: 0; transform: translateX(-24px); } }
+.ap.anim .is-on .mail-arrow { animation: grow 0.5s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: left; }
+@keyframes grow { from { transform: scaleX(0); } }
+.ap.anim .is-on .type { animation: type 0.7s steps(18) both; }
+.ap.anim .is-on .mail-form div:nth-child(1) .type { animation-delay: 1.3s; }
+.ap.anim .is-on .mail-form div:nth-child(2) .type { animation-delay: 2s; }
+.ap.anim .is-on .mail-form div:nth-child(3) .type { animation-delay: 2.7s; }
+@keyframes type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.ap.anim .is-on .mail-done { animation: rise 0.6s 3.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.ap.anim .is-on .ap-chart i { animation: bar 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.ap.anim .is-on .ap-chart i:nth-child(2) { animation-delay: 0.08s; } .ap.anim .is-on .ap-chart i:nth-child(3) { animation-delay: 0.16s; }
+.ap.anim .is-on .ap-chart i:nth-child(4) { animation-delay: 0.24s; } .ap.anim .is-on .ap-chart i:nth-child(5) { animation-delay: 0.32s; }
+.ap.anim .is-on .ap-chart i:nth-child(6) { animation-delay: 0.4s; }
+@keyframes bar { from { transform: scaleY(0); } }
+
+@media (max-width: 980px) {
+  .ap { grid-template-columns: 1fr; }
+  .ap-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ap-tab span { display: none; }
+}
+@media (max-width: 560px) {
+  .ap-win { min-height: 24rem; }
+  .ap-tab { padding: 0.8rem 0.9rem 0.9rem; }
+  .ap-tab b { font-size: 0.86rem; }
+  .ap-table th:nth-child(3), .ap-table td:nth-child(3) { display: none; }
+  .node { min-width: 7rem; padding: 0.6rem 0.7rem; }
+  .ap-mail { grid-template-columns: 1fr; gap: 0.8rem; align-content: start; }
+  .mail-arrow { width: 2px; height: 1.6rem; justify-self: center; }
+  .mail-arrow::after { top: auto; right: -5px; bottom: -6px; transform: rotate(90deg); }
+  .mail-done { right: 1rem; bottom: 1rem; }
+  .ap-kpis b { font-size: 1.2rem; }
+  .ap-chart { top: 9rem; }
+}
