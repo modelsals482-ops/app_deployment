@@ -231,30 +231,26 @@ import Showcase from "../components/Showcase.astro";
     </div>
   </section>
 
-  <section class="sec" id="pod-kapotou">
+  <!-- Technické specifikace (16. 10.): bývalé "Pod kapotou", teď přímo pod
+       katalogem, o kterém mluví. Bez IP adres, adres administrace a verzí
+       softwaru: nic, co by pomohlo útočníkovi. -->
+  <section class="sec sec-dark spec-sec" id="specifikace">
     <div class="wrap">
-      <details class="hood">
-        <summary><span class="hood-mono">&gt;_</span> Pod kapotou <span class="hood-sub">pro technicky založené: jak běží katalog We Love Events</span></summary>
-        <div class="hood-body">
-          <pre class="hood-ascii" role="img" aria-label="Schéma: zákazník a obsluha přes Cloudflare na server v EU s API, administrací a databází Postgres, denní záloha">  zákazník ──<span class="k3">https</span>──▶ ┌──────────────┐
-                      │  <span class="k1">Cloudflare</span>  │  firewall: server přijme jen <span class="k1">Cloudflare</span>
-  obsluha ───<span class="k3">https</span>──▶ │  + Access    │  admin jen pro pozvané e-maily
-                      └──────┬───────┘
-                             ▼
-              ┌──────── server v EU (<span class="k2">Docker</span>) ────────┐
-              │  API katalogu ── <span class="k2">Node.js</span>             │
-              │  administrace ── audit každé změny   │
-              │  databáze ────── <span class="k2">Postgres</span>            │
-              └─────────────┬────────────────────────┘
-                            ▼
-                  záloha databáze každý den ve <span class="k3">3:00</span></pre>
-          <pre class="hood-term" aria-label="Ukázka ověření z terminálu"><span class="pr">$</span> curl -s https://wle-catalog.alsflow.cz/healthz
-<span class="ok">200 OK</span>
-<span class="pr">$</span> curl -s -o /dev/null -w "%&#123;http_code&#125;" https://&lt;ip-serveru&gt;/admin/
-<span class="no">000  (spojení mimo Cloudflare server nepřijme)</span>
-<span class="pr">$</span> <span class="cur" aria-hidden="true"></span></pre>
-          <p class="hood-note">Zdrojový kód, účty i dokumentace jsou vždycky na jméno klienta.</p>
-        </div>
+      <details class="spec rev">
+        <summary><span class="hood-mono">&gt;_</span> Technické specifikace <span class="hood-sub">jak běží katalog We Love Events</span></summary>
+        <dl class="spec-grid">
+            <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. 346 položek ve 48 kategoriích, dostupnost přímo u položky.</dd></div>
+            <div><dt>Server</dt><dd>Node.js API v Dockeru na serveru v EU. HTTPS přes Caddy, před tím Cloudflare (firewall, ochrana proti útokům).</dd></div>
+            <div><dt>Databáze</dt><dd>PostgreSQL. Všechny dotazy parametrizované, takže podstrčený text se nikdy nespustí jako příkaz.</dd></div>
+            <div><dt>Přístup na server</dt><dd>Server přijme spojení jen přes Cloudflare. Přímo na adresu serveru se nikdo nedostane.</dd></div>
+            <div><dt>Administrace</dt><dd>Přihlášení přes Cloudflare Access jen pro pozvané e-maily, záložně vlastní hesla (scrypt). Relace vyprší po 12 hodinách.</dd></div>
+            <div><dt>Historie změn</dt><dd>Každá úprava se zapíše: kdo, kdy a co bylo před a po. Hesla ani klíče se do záznamu nikdy nedostanou.</dd></div>
+            <div><dt>Poptávky z košíku</dt><dd>Odejdou e-mailem týmu, formulář chrání Cloudflare Turnstile. Odeslání se měří v Google Analytics.</dd></div>
+            <div><dt>AI asistent Jack</dt><dd>Odpovídá zákazníkům nad stejným katalogem (Google Gemini). Vždy se představí jako AI.</dd></div>
+            <div><dt>Zálohy</dt><dd>Databáze se zálohuje každý den ve 3:00, drží se 14 dní. Obnova ze zálohy je vyzkoušená.</dd></div>
+            <div><dt>Testy</dt><dd>Automatické testy přihlášení a historie změn, včetně pokusů o SQL injection.</dd></div>
+            <div><dt>Vlastnictví</dt><dd>Zdrojový kód, účty i dokumentace jsou na jméno klienta.</dd></div>
+        </dl>
       </details>
     </div>
   </section>

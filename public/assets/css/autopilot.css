@@ -51,7 +51,7 @@
   background: var(--cyan); border-radius: 12px; box-shadow: 0 14px 34px rgb(0 0 0 / 50%); }
 
 /* 2. Propojení systémů: uzly a balíčky po přímkách mezi nimi */
-.ap-flow { position: relative; height: calc(100% - 2.6rem); }
+.ap-flow { position: relative; height: calc(100% - 2.6rem); container-type: size; }
 .wires { position: absolute; inset: 0; width: 100%; height: 100%; }
 .wires path { fill: none; stroke: var(--line-2); stroke-width: 2; stroke-dasharray: 6 8; vector-effect: non-scaling-stroke; }
 .node { position: absolute; z-index: 1; display: grid; gap: 0.2rem; min-width: 9.5rem; padding: 0.8rem 1rem; text-align: center;
@@ -59,8 +59,13 @@
 .node b { font-size: 0.95rem; color: var(--t1); }
 .node span { font-size: 0.78rem; color: var(--blue); }
 .n1 { left: 15%; top: 50%; } .n2 { left: 50%; top: 23%; } .n3 { left: 85%; top: 77%; }
-.packet { position: absolute; z-index: 2; width: 12px; height: 12px; background: var(--blue); border-radius: 50%; box-shadow: 0 0 0 4px rgb(91 157 255 / 22%);
-  transform: translate(-50%, -50%); opacity: 0; }
+/* Balíček stojí na výchozím uzlu a jede jen přes transform (kontejner
+   má container-type, takže cqw/cqh jsou procenta plochy). Dřív se
+   animovalo left/top, což přepočítávalo rozvržení v každém snímku. */
+.packet { position: absolute; z-index: 2; width: 12px; height: 12px; margin: -6px 0 0 -6px; background: var(--blue); border-radius: 50%;
+  box-shadow: 0 0 0 4px rgb(91 157 255 / 22%); opacity: 0; }
+.packet.p1 { left: 15%; top: 50%; }
+.packet.p2 { left: 50%; top: 23%; }
 
 /* 3. Z e-mailu doklad */
 .ap-mail { display: grid; grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1.1fr); gap: 1rem; align-items: center; height: 100%; }
@@ -107,10 +112,8 @@
 @keyframes fade { from { opacity: 0; } }
 .ap.anim .is-on .packet.p1 { animation: p1 1.3s 0.7s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 .ap.anim .is-on .packet.p2 { animation: p2 1.3s 2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
-@keyframes p1 { 0% { left: 15%; top: 50%; opacity: 1; } 100% { left: 50%; top: 23%; opacity: 1; } }
-@keyframes p2 { 0% { left: 50%; top: 23%; opacity: 1; } 100% { left: 85%; top: 77%; opacity: 1; } }
-.ap.anim .is-on .wires path { animation: dash 1.2s linear infinite; }
-@keyframes dash { to { stroke-dashoffset: -28; } }
+@keyframes p1 { 0% { opacity: 1; transform: none; } 100% { opacity: 1; transform: translate(35cqw, -27cqh); } }
+@keyframes p2 { 0% { opacity: 1; transform: none; } 100% { opacity: 1; transform: translate(35cqw, 54cqh); } }
 
 .ap.anim .is-on .mail-card { animation: slide 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes slide { from { opacity: 0; transform: translateX(-24px); } }
@@ -149,6 +152,7 @@
   .wires { display: none; }
   .node { min-width: 8.5rem; padding: 0.6rem 0.7rem; }
   .n1 { left: 32%; top: 14%; } .n2 { left: 68%; top: 50%; } .n3 { left: 32%; top: 86%; }
+  .packet.p1 { left: 32%; top: 14%; } .packet.p2 { left: 68%; top: 50%; }
   .ap.anim .is-on .packet.p1 { animation-name: p1m; } .ap.anim .is-on .packet.p2 { animation-name: p2m; }
   .ap-mail { grid-template-columns: 1fr; gap: 0.7rem; height: auto; }
   .mail-arrow { width: 2px; height: 1.4rem; justify-self: center; }
@@ -158,48 +162,26 @@
   .ap-kpis b { font-size: 1.2rem; }
   .ap-chart { position: relative; inset: auto; height: 9rem; margin-top: 1.1rem; }
 }
-@keyframes p1m { 0% { left: 32%; top: 14%; opacity: 1; } 100% { left: 68%; top: 50%; opacity: 1; } }
-@keyframes p2m { 0% { left: 68%; top: 50%; opacity: 1; } 100% { left: 32%; top: 86%; opacity: 1; } }
+@keyframes p1m { 0% { opacity: 1; transform: none; } 100% { opacity: 1; transform: translate(36cqw, 36cqh); } }
+@keyframes p2m { 0% { opacity: 1; transform: none; } 100% { opacity: 1; transform: translate(-36cqw, 36cqh); } }
 
 
-/* "Od problému až do provozu": časová osa místo čísel a textu. Velký
-   název kroku, jedna věta, a co člověk po kroku drží v ruce. */
-.tl { position: relative; display: grid; gap: 0.6rem; margin: 2.2rem 0 0; padding: 0; list-style: none; max-width: 52rem; }
-.tl::before { position: absolute; top: 1.4rem; bottom: 1.4rem; left: 1.35rem; width: 2px; content: ""; background: var(--line-2); }
-.tl-step { position: relative; display: grid; grid-template-columns: 2.7rem minmax(0, 1fr); gap: 1.4rem; padding: 1.2rem 0; }
-.tl-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; font-size: 1rem; font-weight: 800;
-  color: #05070d; background: var(--c); border-radius: 50%; box-shadow: 0 0 0 6px var(--bg); font-variant-numeric: tabular-nums; }
-.tl-step h3 { margin: 0.25rem 0 0; font-size: clamp(1.35rem, 2.4vw, 1.75rem); letter-spacing: -0.03em; line-height: 1.15; }
-.tl-step p { margin: 0.45rem 0 0; max-width: 60ch; font-size: 1rem; line-height: 1.6; color: var(--t2); }
-.tl-step .tl-get { display: inline-block; margin-top: 0.8rem; padding: 0.45rem 0.8rem; font-size: 0.9rem; color: var(--t1);
-  background: var(--card-2); border: 1px solid var(--line-2); border-radius: 10px; }
-.tl-get b { color: var(--c); }
-@media (max-width: 560px) {
-  .tl::before { left: 1.1rem; }
-  .tl-step { grid-template-columns: 2.2rem minmax(0, 1fr); gap: 1rem; }
-  .tl-dot { width: 2.2rem; height: 2.2rem; font-size: 0.9rem; }
-}
-
-/* "Pod kapotou": ASCII schéma pro technicky založené. Zavřené, dokud ho
-   někdo sám neotevře, takže běžného návštěvníka nezahltí. */
-.hood { max-width: 62rem; background: #07070a; border: 1px solid var(--line-2); border-radius: var(--r-card); }
-.hood summary { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: baseline; padding: 1.2rem 1.4rem; font-size: 1.15rem; font-weight: 700;
-  letter-spacing: -0.02em; cursor: pointer; list-style: none; }
-.hood summary::-webkit-details-marker { display: none; }
-.hood summary:hover .hood-mono { color: var(--cyan); }
 .hood-mono { font-family: var(--mono); color: var(--green); }
 .hood-sub { font-size: 0.88rem; font-weight: 400; color: var(--t3); letter-spacing: 0; }
-.hood[open] summary { border-bottom: 1px solid var(--line); }
-.hood-body { display: grid; gap: 1rem; padding: 1.4rem; }
-.hood-ascii, .hood-term { margin: 0; padding: 1.1rem 1.2rem; overflow-x: auto; font: 0.86rem/1.5 var(--mono); color: var(--t2);
-  background: #0b0b10; border: 1px solid var(--line); border-radius: 12px; }
-.hood-ascii .k1 { color: var(--amber); } .hood-ascii .k2 { color: var(--cyan); } .hood-ascii .k3 { color: var(--violet); }
-.hood-term .pr { color: var(--green); } .hood-term .ok { color: var(--green); } .hood-term .no { color: var(--amber); }
-.hood-term .cur { display: inline-block; width: 0.55em; height: 1.05em; vertical-align: -0.15em; background: var(--t2); animation: blink 1.1s steps(1) infinite; }
-.hood-note { margin: 0; font-size: 0.9rem; color: var(--t3); }
-@media (prefers-reduced-motion: no-preference) {
-  .hood[open] .hood-ascii { animation: hood-in 0.9s steps(14) both; }
-  .hood[open] .hood-term { animation: hood-in 0.6s 0.5s steps(6) both; }
+/* ---- Technické specifikace pod katalogem WLE (16. 10.) ---- */
+.spec-sec { padding-top: 0 !important; }
+.spec { background: #0b0b0e; border: 1px solid var(--line-2); border-radius: 18px; }
+.spec summary { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; align-items: baseline; padding: 1.2rem 1.4rem; font-size: 1.1rem; font-weight: 800; cursor: pointer; list-style: none; }
+.spec summary::-webkit-details-marker { display: none; }
+.spec summary::after { margin-left: auto; content: "+"; color: var(--t3); transition: transform 0.3s; }
+.spec[open] summary::after { transform: rotate(45deg); }
+.spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin: 0; padding: 0 1.4rem 1.2rem; }
+.spec-grid div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; padding: 0.85rem 0; border-top: 1px solid var(--line); }
+.spec-grid div:nth-child(odd) { padding-right: 1.6rem; }
+.spec-grid dt { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.82rem; font-weight: 700; color: var(--blue); }
+.spec-grid dd { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--t2); }
+@media (max-width: 860px) {
+  .spec-grid { grid-template-columns: 1fr; }
+  .spec-grid div { grid-template-columns: 1fr; gap: 0.25rem; }
+  .spec-grid div:nth-child(odd) { padding-right: 0; }
 }
-@keyframes hood-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
-@media (max-width: 560px) { .hood-ascii, .hood-term { font-size: 0.72rem; } }

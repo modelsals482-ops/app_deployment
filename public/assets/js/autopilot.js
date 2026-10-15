@@ -52,10 +52,13 @@
     schedule();
   }
 
+  /* Sám jede dál po záložkách. Když si záložku vybral člověk, scéna se
+     po doběhnutí přehraje znovu (16. 10.: stojící obrázek působil
+     nudně), ale na jinou záložku už sám nepřepne. */
   function schedule() {
     clearTimeout(timer);
-    if (still || userTook || !visible || hover) return;
-    timer = setTimeout(function () { show(cur + 1); }, DUR);
+    if (still || !visible || hover) return;
+    timer = setTimeout(function () { show(userTook ? cur : cur + 1); }, userTook ? DUR - 1000 : DUR);
   }
 
   tabs.forEach(function (t, k) {
