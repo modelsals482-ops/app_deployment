@@ -23,6 +23,15 @@
   var btn = document.getElementById("send");
   var meter = document.querySelector(".form-meter");
 
+  /* /kontakt?sluzba=web z tlačítek na titulní straně předvyplní "Co potřebujete".
+     Bere se jen hodnota, která v nabídce opravdu je. */
+  var pre = new URLSearchParams(location.search).get("sluzba");
+  var service = document.getElementById("f-service");
+  if (pre && service && Array.prototype.some.call(service.options, function (o) { return o.value === pre && !o.disabled; })) {
+    service.value = pre;
+    service.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
   /* ==================================================================
      Co je vyplněné
 
