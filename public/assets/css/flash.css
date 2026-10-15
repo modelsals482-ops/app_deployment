@@ -803,17 +803,17 @@ a.panel.tilt:hover {
    .rev v site-pages.css zůstává; tohle je varianta pro velké bloky,
    které mají přijet s měřítkem.
    ===================================================================== */
+/* Bez rozmazání (15. 10.): rozmazaný text v půlce cesty vypadal rozbitě
+   a rozmazání se překresluje každý snímek. */
 .rev-pop {
   opacity: 0;
-  filter: blur(10px);
   transform: translateY(38px) scale(0.965);
   transition:
     opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.9s ease;
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.rev-pop.in { opacity: 1; filter: blur(0); transform: none; }
+.rev-pop.in { opacity: 1; transform: none; }
 .rev-pop[data-d="1"] { transition-delay: 0.1s; }
 .rev-pop[data-d="2"] { transition-delay: 0.2s; }
 
