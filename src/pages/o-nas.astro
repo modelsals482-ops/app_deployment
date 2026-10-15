@@ -121,7 +121,7 @@ import Base from "../layouts/Base.astro";
     </div>
   </section>
 
-  <div class="isl-marq marquee" aria-hidden="true">
+  <div class="word-marq marquee" aria-hidden="true">
     <div class="marquee-track">
       <span style="--mc: var(--cyan)">Weby</span><span style="--mc: var(--blue)">Software na míru</span><span style="--mc: var(--violet)">AI asistenti</span><span style="--mc: var(--green)">Osobně</span><span style="--mc: var(--amber)">Cena předem</span>
       <span style="--mc: var(--cyan)">Weby</span><span style="--mc: var(--blue)">Software na míru</span><span style="--mc: var(--violet)">AI asistenti</span><span style="--mc: var(--green)">Osobně</span><span style="--mc: var(--amber)">Cena předem</span>
@@ -249,12 +249,6 @@ import Base from "../layouts/Base.astro";
   .isl.is-in .isl-pings span, .isl.is-in .isl-pings em { opacity: 1; transform: none; }
   .isl.is-in .isl-pings em { transform: rotate(-2deg); }
 
-  .isl-marq { position: relative; z-index: 1; margin: 0 0 clamp(2.2rem, 6vw, 4.5rem); padding: 0.6rem 0; }
-  .isl-marq .marquee-track { gap: 2.6rem; }
-  .isl-marq span { display: inline-flex; gap: 2.6rem; align-items: center; font-size: clamp(2rem, 5.5vw, 4.2rem); font-weight: 800; letter-spacing: -0.03em; white-space: nowrap; color: transparent; -webkit-text-stroke: 1.5px var(--mc); }
-  .isl-marq span:nth-child(odd) { color: var(--mc); -webkit-text-stroke: 0; }
-  .isl-marq span::after { width: 0.6rem; height: 0.6rem; content: ""; background: rgb(255 255 255 / 25%); border-radius: 50%; }
-
   [data-vykon="minimalni"] .isl-pings > *, [data-vykon="minimalni"] .rot > span.on { opacity: 1 !important; transform: none !important; }
   @media (prefers-reduced-motion: reduce) { .isl-pings > * { opacity: 1 !important; transform: none !important; } }
   @media (max-width: 860px) {
@@ -286,9 +280,6 @@ import Base from "../layouts/Base.astro";
     .islands .panel-pad { padding: 1.05rem 1.1rem; }
     .islands .panel h3 { font-size: 1rem; }
     .islands .panel p { font-size: 0.88rem; }
-    .isl-marq { margin-bottom: 2rem; }
-    .isl-marq span { font-size: 1.9rem; gap: 1.6rem; }
-    .isl-marq .marquee-track { gap: 1.6rem; }
   }
 </style>
 <script>

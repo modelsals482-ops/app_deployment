@@ -1,5 +1,31 @@
 ---
 import Base from "../layouts/Base.astro";
+import ChatDemo from "../components/ChatDemo.astro";
+
+/* Ukázka asistenta na úvodu: jeden ukázkový salon, tři zprávy. Poslední
+   asistent sám neřeší, ukazatel proto čeká na "Schválit". */
+const demo = {
+  name: "Asistent ukázkového salonu",
+  botLabel: "AI asistent salonu",
+  idle: "Čekám na zprávu od zákazníka…",
+  functions: [{
+    id: "salon", label: "Salon", desc: "", color: "var(--blue)",
+    messages: [
+      { from: "Zákaznice", time: "21:40", text: "Dobrý den, máte v sobotu volno na barvení?",
+        steps: ["Čte zprávu", "Kontroluje kalendář", "Našel 2 volné termíny"],
+        reply: "Dobrý den, v sobotu je volno v 9:00 a ve 13:30. Mám vám jeden z těch časů zapsat? Barvení trvá zhruba dvě hodiny. Píše vám AI asistent salonu.",
+        endText: "Hotovo, odpovězeno za 4 s" },
+      { from: "Zákazník", time: "22:05", text: "Kolik u vás stojí střih a vousy?",
+        steps: ["Čte zprávu", "Hledá v ceníku"],
+        reply: "Dobrý den, střih s úpravou vousů stojí 650 Kč a trvá 45 minut. Pokud chcete, rovnou vám najdu volný termín. Píše vám AI asistent salonu.",
+        endText: "Hotovo, odpovězeno za 3 s" },
+      { from: "Zákaznice", time: "22:30", text: "Minule mi barva nechytla tak, jak jsme se domluvily. Co s tím?",
+        steps: ["Čte zprávu", "Pozná stížnost", "Tohle nechá na vás"],
+        reply: "Dobrý den, mrzí mě to. Předal jsem vaši zprávu majitelce salonu a ozve se vám osobně. Píše vám AI asistent salonu.",
+        end: "approve", endText: "Shrnutí čeká na vás", doneText: "Hotovo, majitelka to převzala" },
+    ],
+  }],
+};
 ---
 <Base
   title="ALSflow: weby, software a AI asistenti pro malé firmy"
@@ -72,13 +98,14 @@ import Base from "../layouts/Base.astro";
   })();
 </script>
   <link rel="stylesheet" href="/assets/css/showcase.css" />
+  <link rel="stylesheet" href="/assets/css/chatdemo.css" />
   <link rel="stylesheet" href="/assets/css/home.css" />
   </Fragment>
 
   <section class="hero">
     <div class="hero-stage">
-      <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
-      <canvas id="arc3d" aria-hidden="true"></canvas>
+      <!-- Skládané sklo (glassfold.js). Svítící prstence se přestěhovaly do Kontaktu. -->
+      <canvas data-glassfold aria-hidden="true"></canvas>
     </div>
     <div class="wrap">
       <!-- Koláž skutečných webů vpravo, svítící prstence za ní. Celá je
@@ -111,40 +138,6 @@ import Base from "../layouts/Base.astro";
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="sec report-sec">
-    <div class="wrap split report-split">
-      <div>
-        <h2 class="h-sec fade-head reveal-words">Jednou za měsíc <span class="grad">přehled</span></h2>
-        <p class="lead">Kolik lidí přišlo na web, kolikrát vám zavolali, kolik poslali poptávek a kolik termínů zapsal asistent. Ať vidíte, co vám to přináší, a nemusíte to odhadovat.</p>
-      </div>
-      <div class="rev" data-d="1">
-        <div class="panel report">
-          <div class="report-top"><span><b>Měsíční přehled</b> · září</span><span class="pill">Ukázka</span></div>
-          <ul class="report-rows">
-            <li><span class="k">Návštěvy webu</span><span class="d">+18 %</span><span class="v" data-count="412">412</span></li>
-            <li><span class="k">Kliknutí na telefon</span><span class="d">+6</span><span class="v" data-count="37">37</span></li>
-            <li><span class="k">Poptávky z formuláře</span><span class="d">+3</span><span class="v" data-count="9">9</span></li>
-            <li><span class="k">Rezervace přes asistenta</span><span class="d">+11</span><span class="v" data-count="46">46</span></li>
-          </ul>
-          <p class="report-note">Ukázková čísla.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" style="padding-top:0">
-    <nav class="wrap paths" aria-label="Co vás zdržuje">
-      <a class="panel panel-glow panel-sheen panel-pad path rev" href="/tvorba-webu">
-        <h3>Mám provozovnu a nestíhám telefon <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></h3>
-        <p><b>Web a AI asistenti.</b> Zákazník vás najde a asistent odpoví i zapíše termín, zatímco pracujete.</p>
-      </a>
-      <a class="panel panel-glow panel-sheen panel-pad path rev" data-d="1" href="/vyvoj-softwaru">
-        <h3>Ztrácím čas v tabulkách <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></h3>
-        <p><b>Software na míru.</b> Jeden panel nebo propojení dvou systémů místo přepisování údajů mezi tabulkami a e-maily.</p>
-      </a>
-    </nav>
   </section>
 
   <section class="sec sec-line" id="co-delame">
@@ -207,123 +200,82 @@ import Base from "../layouts/Base.astro";
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Vyzkoušejte si <span class="grad">asistenta</span></h2>
-        <p class="lead">Je neděle večer a vy máte volno. Klikněte na zprávu, která přišla do salonu, a uvidíte, co s&nbsp;ní asistent udělá.</p>
+        <p class="lead">Je neděle večer a vy máte volno. Do salonu přišly tři zprávy. Klikněte na kteroukoli a sledujte, co s&nbsp;ní asistent udělá.</p>
       </div>
-      <div class="demo rev" id="demo">
-        <div class="inbox">
-          <button class="mail" type="button" data-k="sobota" aria-pressed="false"><small><span>Zákaznice</span><span>21:40</span></small><span>Dobrý den, máte v sobotu volno na barvení?</span></button>
-          <button class="mail" type="button" data-k="cena" aria-pressed="false"><small><span>Zákazník</span><span>22:05</span></small><span>Kolik u vás stojí střih a vousy?</span></button>
-          <button class="mail" type="button" data-k="reklamace" aria-pressed="false"><small><span>Zákaznice</span><span>22:30</span></small><span>Minule mi barva nechytla tak, jak jsme se domluvily. Co s tím?</span></button>
-        </div>
-        <div class="panel agent">
-          <div class="agent-top"><b>Asistent ukázkového salonu</b><span class="pill">Nic se neodesílá</span></div>
-          <ul class="steps" aria-live="polite">
-            <li><span class="lbl">Přišlo</span><span class="val" data-v="in">Vyberte zprávu vlevo.</span></li>
-            <li><span class="lbl">Co udělá</span><span class="val" data-v="does"></span></li>
-            <li><span class="lbl">Odpověď</span><span class="val" data-v="out"></span></li>
-          </ul>
-          <div class="agent-foot"><span class="status">Čeká</span><button class="link-btn" type="button">Znovu</button></div>
-        </div>
-      </div>
-      <p class="small-note">Asistent se zákazníkům vždy představí jako AI. Co neumí, předá vám.</p>
+      <ChatDemo config={demo} />
+      <p class="small-note">Asistent se zákazníkům vždy představí jako AI. Co neumí, předá vám. <a href="/ai-asistenti#ukazka">Víc ukázek</a></p>
     </div>
   </section>
 
-  <section class="sec sec-line">
-    <div class="wrap">
-      <div class="split">
-        <div>
-          <h2 class="h-sec fade-head reveal-words">Jakub Ryvola</h2>
-          <p class="lead">Zakladatel ALSflow, ne agentura. Web, software i asistenta vám postavím sám a jsem k zastižení, když něco potřebujete. Nepíšete na podporu a nečekáte, až bude mít tým čas.</p>
-          <div class="btn-row">
-            <a class="btn btn-magnet" href="/o-nas">V&iacute;c o mn&ecaron; <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
-          </div>
-        </div>
-        <div class="panel panel-pad panel-glow panel-sheen rev-pop">
-          <blockquote class="quote">&bdquo;Začínal jsem s AI asistenty, kteří za majitele malých provozů odpovídají zákazníkům. Brzy jsem ale viděl, že stejná zbytečná práce je i jinde: na webu, kde zákazník nenajde, co hledá, a v tabulkách, které někdo každý týden ručně přepisuje. Proto dnes stavím weby, software i asistenty a starám se, aby spolu fungovaly.&ldquo;</blockquote>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec-dark sec-line scene-host">
+  <section class="sec sec-dark runs-sec">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Co už <span class="grad">běží</span></h2>
-        <p class="lead">Projekty, které jsem postavil nebo spravuji.</p>
+        <p class="lead">Skutečné weby a asistentka, které jsem postavil a dál se o ně starám.</p>
       </div>
-      <ul class="runs">
-        <li class="rev"><h3>We Love Events<small>event agentura, Praha</small></h3><p>Katalog rentalu techniky. Poptávky z&nbsp;košíku padají rovnou do administrace a týmu přijde e-mail. Weby weloveevents.cz a weloveproduction.cz spravuji.</p><span class="st soon">Veřejně brzy</span></li>
-        <li class="rev" data-d="1"><h3>GEN<small>politické hnutí</small></h3><p>Web s&nbsp;vlastní editací aktualit, kterou si hnutí spravuje samo.</p><span class="st"><a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a></span></li>
-        <li class="rev" data-d="2"><h3>Ing. Dagmar Sekelová<small>soudní znalkyně</small></h3><p>Web soudní znalkyně ve slovenštině.</p><span class="st"><a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a></span></li>
-      </ul>
-      <p class="small-note rev">A&nbsp;na tomhle webu vám odpoví Klára, můj AI asistent, vpravo dole. <a href="/reference">Všechny reference</a></p>
+      <div class="live-grid">
+        <a class="live rev from-l" href="/reference#gen" style="--c: var(--violet)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>gen1.cz</b></span><img src="/assets/ref/gen1-program.webp" alt="Web gen1.cz, stránka programu" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <figure class="pm pm-phone"><img src="/assets/ref/gen1-m.webp" alt="" width="360" height="779" loading="lazy" decoding="async" /></figure>
+            <span class="live-tag" style="--i: 0">Aktuality si píše samo</span>
+          </div>
+          <h3>gen1.cz</h3><p>Politické hnutí, Praha 1</p>
+        </a>
+        <a class="live rev" data-d="1" href="/reference#sekelova" style="--c: var(--amber)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>znalecsekelova.sk</b></span><img src="/assets/ref/sek-sluzby.webp" alt="Web znalecsekelova.sk, stránka služeb" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <figure class="pm pm-phone"><img src="/assets/ref/sek-m.webp" alt="" width="360" height="779" loading="lazy" decoding="async" /></figure>
+            <span class="live-tag" style="--i: 1">Celý ve slovenštině</span>
+          </div>
+          <h3>znalecsekelova.sk</h3><p>Soudní znalkyně, Slovensko</p>
+        </a>
+        <a class="live rev from-r" data-d="2" href="/reference#alsflow" style="--c: var(--cyan)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>alsflow.cz</b></span><img src="/assets/ref/als-home.webp" alt="Úvodní stránka alsflow.cz s Klárou" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <span class="live-chat">Klára · AI<b>Web začíná od 14 900 Kč. Mám Jakubovi předat kontakt?</b></span>
+            <span class="live-tag" style="--i: 2">Představí se jako AI</span>
+          </div>
+          <h3>Klára</h3><p>AI asistentka tady vpravo dole</p>
+        </a>
+      </div>
+      <p class="small-note rev" style="text-align:center">A rental techniky pro We Love Events, veřejně brzy. <a href="/reference">Všechny reference &rarr;</a></p>
     </div>
   </section>
 
-
-  <section class="sec-line" style="padding:3.4rem 0">
-    <div class="wrap">
-      <p class="small-note" style="text-align:center;margin:0 0 1rem">Postavené na ověřených nástrojích</p>
-      <div class="marquee rev">
-        <div class="marquee-track"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Vercel</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Cloudflare</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gemini</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Workspace</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>PostgreSQL</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Node.js</span></div>
+  <section class="sec sec-line call-sec" data-inview>
+    <div class="wrap call-grid">
+      <div>
+        <h2 class="h-sec fade-head reveal-words">Zvednu <span class="grad">telefon</span>. Zbytek je na mně.</h2>
+        <p class="lead">Jednáte se mnou, ne s&nbsp;call centrem. Od vás potřebuju čtvrt hodiny a pár odpovědí.</p>
+        <div class="call-tags">
+          <span style="--c: var(--cyan); --i: 0">Jeden dodavatel na všechno</span>
+          <span style="--c: var(--violet); --i: 1">Cena předem</span>
+          <span style="--c: var(--green); --i: 2">Všechno na vaše jméno</span>
+          <span style="--c: var(--amber); --i: 3">Provoz v paušálu</span>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-grad" href="/kontakt">Začít hovorem</a>
+          <a class="btn btn-magnet" href="tel:+420770162346">+420 770 162 346</a>
+          <a class="btn-quiet" href="/o-nas">Víc o mně &rarr;</a>
+        </div>
       </div>
+      <ol class="call-steps">
+        <li style="--c: var(--cyan); --i: 0"><b>Hovor, čtvrt hodiny</b><span>Řeknete, co vás zdržuje.</span></li>
+        <li style="--c: var(--blue); --i: 1"><b>Návrh a cena</b><span>Co postavím a za kolik. Nezávazně.</span></li>
+        <li style="--c: var(--violet); --i: 2"><b>Náhled během stavby</b><span>Vidíte rozpracovanou verzi na odkazu.</span></li>
+        <li style="--c: var(--green); --i: 3"><b>Spuštění a správa</b><span>Web do 6-10 pracovních dnů, asistent do 5-7.</span></li>
+      </ol>
     </div>
   </section>
 
-  <section class="sec sec-line">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Jak to <span class="grad">probíhá</span></h2>
-        <p class="lead">Od vás potřebuju čtvrt hodiny a pár odpovědí. Zbytek je na mně.</p>
-      </div>
-      <div class="rows">
-        <div class="row rev"><span class="num">01</span><div><h3>Hovor, čtvrt hodiny</h3><p>Řeknete, co vás zdržuje. Stačí telefon.</p></div></div>
-        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Návrh a cena</h3><p>Pošlu, co postavím a za kolik. Nezávazně.</p></div></div>
-        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Náhled během stavby</h3><p>Vidíte rozpracovanou verzi na odkazu a říkáte, co upravit.</p></div></div>
-        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Spuštění</h3><p>Web do 6-10 pracovních dnů na vaší doméně. Asistent běží do 5-7 pracovních dnů.</p></div></div>
-        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Každý měsíc čísla</h3><p>Přehled návštěv, telefonátů a poptávek, ať vidíte, co vám to přináší.</p></div></div>
-      </div>
-      <div class="btn-row rev" data-d="4">
-        <a class="btn btn-fill" href="/kontakt">Začít hovorem</a>
-        <a class="btn btn-magnet" href="tel:+420770162346">+420 770 162 346</a>
-      </div>
+  <div class="word-label">Postavené na ověřených nástrojích</div>
+  <div class="word-marq marquee" aria-label="Vercel, Cloudflare, Gemini, WhatsApp Business, Google Workspace, PostgreSQL, Node.js">
+    <div class="marquee-track" aria-hidden="true">
+      <span style="--mc: var(--cyan)">Vercel</span><span style="--mc: var(--blue)">Cloudflare</span><span style="--mc: var(--violet)">Gemini</span><span style="--mc: var(--green)">WhatsApp Business</span><span style="--mc: var(--amber)">Google Workspace</span><span style="--mc: var(--cyan)">PostgreSQL</span><span style="--mc: var(--blue)">Node.js</span>
+      <span style="--mc: var(--cyan)">Vercel</span><span style="--mc: var(--blue)">Cloudflare</span><span style="--mc: var(--violet)">Gemini</span><span style="--mc: var(--green)">WhatsApp Business</span><span style="--mc: var(--amber)">Google Workspace</span><span style="--mc: var(--cyan)">PostgreSQL</span><span style="--mc: var(--blue)">Node.js</span>
     </div>
-  </section>
-
-  <section class="sec sec-line scene-host">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Zvednu <span class="grad">telefon</span>.</h2>
-        <p class="lead">Nepíšete si s call centrem, ale s člověkem, který na zakázce sám pracuje. Ozvu se do 48 hodin v pracovní dny. Cenu domluvíme spolu podle toho, co potřebujete, a když v průběhu přibude něco navíc, řeknu cenu té změny předem.</p>
-      </div>
-      <div class="rows rows-plain">
-        <div class="row rev"><div><h3>Jeden dodavatel na v&scaron;echno</h3><p>Web, n&aacute;stroj i chatbot od jednoho &ccaron;lov&ecaron;ka, kter&yacute; v&iacute;, jak spolu souvis&iacute;. Nemus&iacute;te sh&aacute;n&ecaron;t t&rcaron;i firmy a p&rcaron;ekl&aacute;dat mezi nimi.</p></div></div>
-        <div class="row rev" data-d="1"><div><h3>Cena podle toho, co opravdu potřebujete</h3><p>Web, asistent, nebo obojí v balíčku. Cenu domluvíme spolu, až víme, co a v jakém rozsahu řešíte. Nezávazně.</p></div></div>
-        <div class="row rev" data-d="2"><div><h3>Provoz je v pau&scaron;&aacute;lu</h3><p>Nemus&iacute;te shán&ecaron;t, kdo to bude spravovat. To jsem pořád já. Drobn&eacute; &uacute;pravy v&ecaron;t&scaron;inou do 48 hodin.</p></div></div>
-        <div class="row rev" data-d="3"><div><h3>V&scaron;echno na va&scaron;e jm&eacute;no</h3><p>Dom&eacute;na, &uacute;&ccaron;ty, zdrojov&yacute; k&oacute;d i dokumentace. Kdybychom se rozlou&ccaron;ili, běží to dál beze mě.</p></div></div>
-      </div>
-      <div class="btn-row rev" data-d="4">
-        <a class="btn btn-fill" href="/kontakt">Napište mi</a>
-        <a class="btn btn-magnet" href="tel:+420770162346">+420 770 162 346</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec-line">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Na co se lidé <span class="grad">ptají</span></h2>
-      </div>
-      <div class="faq rev">
-        <details><summary>Nemám texty</summary><p>Texty napíšu já z&nbsp;toho, co mi řeknete. Vy je jen projdete a opravíte, co nesedí.</p></details>
-        <details><summary>Nemám na to čas</summary><p>Stačí čtvrthodinový hovor. Rozpracovanou verzi vám pošlu na odkaz a vy jen řeknete, co upravit.</p></details>
-        <details><summary>Co když spolu skončíme</summary><p>Doména, účty, zdrojový kód i dokumentace jsou na vaše jméno. Web i asistent běží dál beze mě a převezme je kdokoli jiný.</p></details>
-        <details><summary>Pozná zákazník, že odpovídá AI</summary><p>Ano. Asistent se vždy představí jako AI asistent. Co neví nebo co je citlivé, předá vám.</p></details>
-        <details><summary>Kolik to bude stát</summary><p>Web od 14&nbsp;900&nbsp;Kč, asistent od 2&nbsp;500&nbsp;Kč měsíčně, software od 24&nbsp;900&nbsp;Kč. Přesnou cenu domluvíme podle rozsahu, samostatně nebo v&nbsp;balíčku, nezávazně. <a href="/cenik">Celý ceník</a></p></details>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <section class="closer">
     <div class="wrap">
@@ -331,6 +283,7 @@ import Base from "../layouts/Base.astro";
       <p class="lead lead-center rev" data-d="1">Nez&aacute;vazn&yacute; hovor na &ccaron;tvrt hodiny. Probereme, co potřebujete, a navrhnu řešení i cenu.</p>
       <div class="btn-row rev" data-d="2" style="justify-content:center">
         <a class="btn btn-grad btn-shine" href="/kontakt">Domluvit 15min hovor</a>
+        <a class="btn btn-quiet" href="/otazky">Na co se lidé ptají</a>
         <a class="btn-quiet" href="/cenik">Cel&yacute; cen&iacute;k <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
       </div>
     </div>
@@ -338,10 +291,8 @@ import Base from "../layouts/Base.astro";
 
   
   <Fragment slot="tail">
-  <!-- Svítící prstence: vlastní WebGL bez knihovny (24 kB). V minimálním
-       stupni skript sám skončí. -->
-  <script src="/assets/js/arc3d.js" defer></script>
-  <script src="/assets/js/home.js" defer></script>
+  <script src="/assets/js/glassfold.js" defer></script>
+  <script src="/assets/js/chatdemo.js" defer></script>
   </Fragment>
 
 </Base>

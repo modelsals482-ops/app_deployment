@@ -164,18 +164,22 @@
      2. Odhalování při rolování
      ================================================================== */
   (function () {
-    var items = document.querySelectorAll(".rev");
+    /* [data-inview] je celá sekce, která jen potřebuje vědět, že je
+       v obraze (dostane .in-view a animuje si vnitřek sama), .rev se
+       hýbe celý. */
+    var items = document.querySelectorAll(".rev, [data-inview]");
     if (!items.length) return;
+    function mark(el) { el.classList.add(el.hasAttribute("data-inview") ? "in-view" : "in"); }
 
     if (reduced || !("IntersectionObserver" in window)) {
-      items.forEach(function (el) { el.classList.add("in"); });
+      items.forEach(mark);
       return;
     }
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add("in");
+        mark(e.target);
         io.unobserve(e.target);
       });
     }, { threshold: 0.06, rootMargin: "0px 0px -6% 0px" });

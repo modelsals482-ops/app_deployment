@@ -1,0 +1,55 @@
+---
+import Base from "../layouts/Base.astro";
+/* Časté otázky. Do 16. 10. byly na konci úvodní stránky, Jakub je chtěl
+   z úvodu pryč (stránka byla moc dlouhá), tady mají vlastní místo i se
+   strukturovanými daty FAQPage. Otázky ke konkrétní službě zůstávají
+   na stránce té služby, sem na ně vedou odkazy dole. */
+const qs = [
+  ["Nemám texty", "Texty napíšu já z toho, co mi řeknete. Vy je jen projdete a opravíte, co nesedí."],
+  ["Nemám na to čas", "Stačí čtvrthodinový hovor. Rozpracovanou verzi vám pošlu na odkaz a vy jen řeknete, co upravit."],
+  ["Co když spolu skončíme", "Doména, účty, zdrojový kód i dokumentace jsou na vaše jméno. Web i asistent běží dál beze mě a převezme je kdokoli jiný."],
+  ["Pozná zákazník, že odpovídá AI", "Ano. Asistent se vždy představí jako AI asistent. Co neví nebo co je citlivé, předá vám."],
+  ["Kolik to bude stát", "Web od 14 900 Kč, asistent od 2 500 Kč měsíčně, software od 24 900 Kč. Přesnou cenu domluvíme podle rozsahu, samostatně nebo v balíčku, nezávazně."],
+  ["Jak rychle se ozvete", "Na poptávku odpovídám do 48 hodin v pracovní dny."],
+];
+const ld = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+}).replace(/</g, "\\u003c");
+---
+<Base
+  title="Časté otázky | ALSflow"
+  description="Odpovědi na to, na co se lidé ptají nejčastěji: texty, čas, cena, co když spolupráce skončí a jestli zákazník pozná, že odpovídá AI."
+  canonical="https://alsflow.cz/otazky"
+  ogTitle="Časté otázky"
+  ogDescription="Texty, čas, cena a co když spolupráce skončí."
+  current="/otazky"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json" is:inline set:html={ld}></script>
+  </Fragment>
+
+  <section class="hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <h1 class="h-hero fade-head" style="max-width:16ch">Na co se lidé <span class="grad">ptají</span></h1>
+      <p class="lead">Krátce a na rovinu. Když tu svou otázku nenajdete, napište nebo zavolejte.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="faq">
+        {qs.map(([q, a], i) => (
+          <details class="rev" data-d={String(Math.min(i, 4))} open={i === 0}><summary>{q}</summary><p>{a}</p></details>
+        ))}
+      </div>
+      <p class="small-note" style="margin-top:2rem">Otázky ke konkrétní službě: <a href="/tvorba-webu#otazky">weby</a> · <a href="/vyvoj-softwaru#otazky">software</a> · <a href="/ai-asistenti">AI asistenti</a> · <a href="/cenik">ceník</a></p>
+      <div class="btn-row" style="margin-top:1.6rem">
+        <a class="btn btn-grad" href="/kontakt">Zeptat se osobně</a>
+        <a class="btn btn-quiet" href="tel:+420770162346">+420 770 162 346</a>
+      </div>
+    </div>
+  </section>
+</Base>

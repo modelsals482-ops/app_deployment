@@ -1,0 +1,46 @@
+---
+/* Ukázka asistenta: obal pro chatdemo.js. Obsah (zprávy, kroky, odpovědi)
+   je v `config`, skript z něj vše postaví. Bez skriptu zůstanou vidět
+   zprávy jako obyčejný seznam. */
+interface Props {
+  config: {
+    name: string;
+    botLabel?: string;
+    idle?: string;
+    functions: { id: string; label: string; desc: string; color: string; soon?: boolean; name?: string;
+      messages: { from: string; time: string; text: string; steps: string[]; reply: string; end?: string; endText?: string; doneText?: string }[] }[];
+  };
+  hint?: string;
+  pickLabel?: string;
+}
+const { config, hint = "Vyzkoušejte si to sami", pickLabel = "Vyberte, co chcete vidět" } = Astro.props;
+const fns = config.functions.map((f) => ({ ...f, name: f.name ?? config.name }));
+const json = JSON.stringify({ ...config, functions: fns }).replace(/</g, "\\u003c");
+const many = fns.length > 1;
+---
+<div class:list={["cd", { "cd--many": many }]} data-chatdemo>
+  <script type="application/json" is:inline set:html={json}></script>
+  {many && (
+    <>
+      <p class="cd-label"><span>1</span>{pickLabel}</p>
+      <div class="cd-pick" role="group" aria-label={pickLabel}></div>
+    </>
+  )}
+  <div class="cd-body">
+    <div class="cd-left">
+      <p class="cd-label">{many && <span>2</span>}Klikněte na zprávu od zákazníka</p>
+      <div class="cd-inbox">
+        {fns[0].messages.map((m) => (
+          <button class="cd-mail" type="button"><small><span>{m.from}</span><span>{m.time}</span></small><span class="cd-mail-t">{m.text}</span></button>
+        ))}
+      </div>
+      <span class="cd-hint" aria-hidden="true">{hint} &rarr;</span>
+    </div>
+    <div class="cd-phone">
+      <div class="cd-top"><b class="cd-name">{fns[0].name}</b><span class="cd-pct">0 %</span></div>
+      <div class="cd-bar" aria-hidden="true"><i></i></div>
+      <div class="cd-thread" aria-live="polite"></div>
+      <div class="cd-foot"><span class="cd-state">Čeká na zprávu</span><button class="cd-reset" type="button">Znovu</button></div>
+    </div>
+  </div>
+</div>

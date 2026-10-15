@@ -1,0 +1,103 @@
+/* =====================================================================
+   Ukázka asistenta (ChatDemo.astro + chatdemo.js), 16. 10.
+
+   Okno má pevnou výšku, takže se při psaní odpovědi nic pod ním
+   nehýbe. Pohyb je jen transform/opacity. Nekonečně běží jen tři
+   tečky "píše" a jen dokud jsou vidět.
+   ===================================================================== */
+.cd { --fc: var(--blue); position: relative; }
+.cd-label { display: flex; gap: 0.6rem; align-items: center; margin: 0 0 0.9rem; font-size: 0.9rem; font-weight: 700; color: var(--t2); }
+.cd-label span { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; font-size: 0.8rem; color: #05070d; background: var(--fc); border-radius: 50%; }
+
+/* 1. Volba funkce: velké dlaždice, aby bylo hned jasné, že se vybírá. */
+.cd-pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-bottom: 2rem; }
+.cd-fn { position: relative; display: grid; gap: 0.35rem; padding: 1.1rem 1.2rem 1.15rem; font: inherit; color: var(--t1); text-align: left; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line-2); border-top: 3px solid var(--c); border-radius: 16px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s, border-color 0.25s; }
+.cd-fn b { font-size: 1.08rem; letter-spacing: -0.02em; }
+.cd-fn span { font-size: 0.88rem; line-height: 1.5; color: var(--t2); }
+.cd-fn em { position: absolute; top: 0.8rem; right: 0.9rem; padding: 0.15rem 0.5rem; font-size: 0.7rem; font-style: normal; font-weight: 700; color: var(--t2); border: 1px dashed var(--line-2); border-radius: 6px; }
+.cd-fn:hover { transform: translateY(-3px); }
+.cd-fn[aria-pressed="true"] { background: color-mix(in srgb, var(--c) 12%, var(--card)); border-color: var(--c); }
+.cd-fn[aria-pressed="true"]::after { position: absolute; right: 0.9rem; bottom: 0.8rem; content: "✓"; font-weight: 800; color: var(--c); }
+
+/* 2. Zprávy a okno asistenta */
+.cd-body { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 1.4rem; align-items: start; }
+.cd-left { position: relative; }
+.cd-inbox { display: grid; gap: 0.7rem; }
+.cd-mail { position: relative; display: block; width: 100%; padding: 0.95rem 1.1rem; font: inherit; color: var(--t1); text-align: left; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line-2); border-radius: 14px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background 0.2s; }
+.cd-mail small { display: flex; justify-content: space-between; margin-bottom: 0.35rem; font-size: 0.78rem; color: var(--t3); }
+.cd-mail-t { font-size: 0.96rem; line-height: 1.5; }
+.cd-mail:hover { transform: translateX(5px); border-color: var(--c, var(--fc)); }
+.cd-mail[aria-pressed="true"] { background: color-mix(in srgb, var(--fc) 13%, var(--card)); border-color: var(--fc); }
+/* Dokud nikdo neklikl, první zpráva "zvoní": kroužek se šíří od tečky. */
+.cd-ready:not(.cd-used) .cd-mail:first-child::before { position: absolute; top: 0.95rem; right: -0.35rem; width: 0.7rem; height: 0.7rem; content: "";
+  background: var(--fc); border-radius: 50%; box-shadow: 0 0 0 0 color-mix(in srgb, var(--fc) 60%, transparent); animation: cd-ping 1.6s ease-out 6; }
+@keyframes cd-ping { to { box-shadow: 0 0 0 14px transparent; } }
+
+.cd-hint { position: absolute; top: -1.2rem; right: -1.6rem; z-index: 3; padding: 0.6rem 0.9rem; font-size: 0.9rem; font-weight: 800; color: #05070d;
+  background: var(--fc); border-radius: 11px; box-shadow: 0 16px 34px rgb(0 0 0 / 55%); rotate: 3deg; opacity: 0; transform: scale(0.6);
+  transition: opacity 0.35s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
+.cd-ready .cd-hint { opacity: 1; transform: none; animation: cd-nudge 2.4s 1s ease-in-out 4; }
+.cd-used .cd-hint { opacity: 0; transform: scale(0.8); animation: none; }
+@keyframes cd-nudge { 0%, 70%, 100% { translate: 0 0; } 80% { translate: -6px 0; } 90% { translate: 2px 0; } }
+
+.cd-phone { overflow: hidden; background: #0c0c10; border: 1px solid var(--line-2); border-radius: 20px; box-shadow: 0 30px 70px rgb(0 0 0 / 55%); }
+.cd-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.95rem 1.2rem 0.75rem; }
+.cd-top b { font-size: 0.92rem; }
+.cd-pct { font-size: 0.85rem; font-weight: 800; color: var(--t2); font-variant-numeric: tabular-nums; }
+.cd-bar { height: 4px; margin: 0 1.2rem; overflow: hidden; background: rgb(255 255 255 / 8%); border-radius: 4px; }
+.cd-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--fc)); border-radius: inherit; transform: scaleX(0); transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+[data-state="done"] .cd-bar i { background: var(--green); }
+[data-state="wait"] .cd-bar i { background: var(--amber); }
+[data-state="done"] .cd-pct { color: var(--green); }
+[data-state="wait"] .cd-pct { color: var(--amber); }
+
+.cd-thread { display: flex; flex-direction: column; gap: 0.6rem; height: 22rem; padding: 1.1rem 1.2rem; overflow: hidden; }
+.cd-msg { max-width: 86%; padding: 0.7rem 0.95rem; font-size: 0.93rem; line-height: 1.5; border-radius: 16px; animation: cd-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.cd-msg b { display: block; margin-bottom: 0.15rem; font-size: 0.7rem; letter-spacing: 0.02em; opacity: 0.75; }
+.cd-them { align-self: flex-start; color: var(--t1); background: #1c1c22; border: 1px solid var(--line-2); border-bottom-left-radius: 5px; }
+.cd-bot { align-self: flex-end; color: #05070d; background: var(--fc); border-bottom-right-radius: 5px; }
+.cd-wait { display: flex; gap: 0.6rem; align-items: center; color: var(--t2); background: transparent; border: 1px dashed var(--line-2); }
+.cd-w { opacity: 0.12; transition: opacity 0.2s; }
+.cd-w.on { opacity: 1; }
+@keyframes cd-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } }
+
+.cd-dots { display: inline-block; width: 2.1rem; height: 0.5rem;
+  background: radial-gradient(circle closest-side, currentColor 90%, transparent) 0 50% / 0.5rem 0.5rem no-repeat,
+              radial-gradient(circle closest-side, currentColor 90%, transparent) 50% 50% / 0.5rem 0.5rem no-repeat,
+              radial-gradient(circle closest-side, currentColor 90%, transparent) 100% 50% / 0.5rem 0.5rem no-repeat;
+  animation: cd-dots 1s steps(3) infinite; }
+@keyframes cd-dots { 0% { opacity: 0.35; } 50% { opacity: 1; } }
+.cd-typing { padding: 0.75rem 1rem; }
+
+.cd-steps { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.cd-steps li { display: inline-flex; gap: 0.4rem; align-items: center; padding: 0.3rem 0.65rem; font-size: 0.78rem; font-weight: 600; color: var(--t2);
+  border: 1px solid var(--line-2); border-radius: 8px; animation: cd-in 0.35s both; }
+.cd-steps li::before { width: 0.65rem; height: 0.65rem; content: ""; border: 2px solid var(--fc); border-right-color: transparent; border-radius: 50%; animation: cd-spin 0.7s linear infinite; }
+.cd-steps li.ok { color: var(--t1); border-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.cd-steps li.ok::before { content: "✓"; width: auto; height: auto; font-size: 0.75rem; color: var(--green); border: 0; animation: none; }
+@keyframes cd-spin { to { transform: rotate(360deg); } }
+
+.cd-approve { align-self: flex-end; padding: 0.55rem 1.1rem; font: inherit; font-size: 0.88rem; font-weight: 800; color: #05070d; cursor: pointer;
+  background: var(--amber); border: 0; border-radius: 10px; animation: cd-in 0.4s both; }
+.cd-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.8rem 1.2rem; border-top: 1px solid var(--line); }
+.cd-state { font-size: 0.85rem; font-weight: 700; color: var(--t2); }
+[data-state="done"] .cd-state { color: var(--green); }
+[data-state="wait"] .cd-state { color: var(--amber); }
+.cd-reset { padding: 0.3rem 0; font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--t3); cursor: pointer; background: none; border: 0; }
+.cd-reset:hover { color: var(--t1); }
+
+@media (max-width: 900px) {
+  .cd-pick { grid-template-columns: 1fr; gap: 0.6rem; }
+  .cd-body { grid-template-columns: 1fr; }
+  .cd-hint { top: -1.4rem; right: 0.4rem; }
+  .cd-thread { height: 20rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cd-msg, .cd-steps li, .cd-approve { animation: none; }
+  .cd-hint, .cd-mail::before { animation: none !important; }
+  .cd-w { opacity: 1; }
+}
