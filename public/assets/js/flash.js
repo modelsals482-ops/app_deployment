@@ -6,9 +6,7 @@
    stránka s přechody a funkčním obsahem.
 
    Obsah:
-     1. vrstvy pozadí (koule, zrno, dosvit u kurzoru, ukazatel rolování)
-     2. částicová síť v hlavičce - přenesená z původního webu o chatbotech
-     3. dosvit u kurzoru
+     1. vrstvy pozadí (koule, ukazatel rolování)
      4. ukazatel odrolování
      5. náklon karet a odlesk podle kurzoru
      6. odpočet čísel
@@ -52,129 +50,8 @@
     }
 
     layer("<i class='o1'></i><i class='o2'></i><i class='o3'></i><i class='o4'></i>", "orbs");
-    if (!reduced) layer("", "grain");
     layer("<i></i>", "progress");
   })();
-
-  /* ==================================================================
-     2. Částicová síť v hlavičce
-
-     Přenesené z původního webu (ai-asistenti.html) a upravené: plátno
-     se vkládá do scény hlavičky, běží jen když je hlavička v obraze
-     a body uhýbají kurzoru.
-     ================================================================== */
-  (function () {
-    if (reduced) return;
-
-    var stage = document.querySelector(".hero .hero-stage");
-    if (!stage) return;
-
-    var canvas = document.createElement("canvas");
-    canvas.id = "particles";
-    canvas.setAttribute("aria-hidden", "true");
-    stage.insertBefore(canvas, stage.firstChild);
-
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    var COUNT = coarse ? 26 : 68;
-    var MAX_DIST = 148;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    var w = 0, h = 0;
-    var pts = [];
-
-    function size() {
-      var box = stage.getBoundingClientRect();
-      w = Math.max(1, box.width);
-      h = Math.max(1, box.height);
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function seed() {
-      pts = [];
-      for (var i = 0; i < COUNT; i++) {
-        pts.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.32,
-          vy: (Math.random() - 0.5) * 0.32,
-          r: Math.random() * 1.15 + 0.45,
-        });
-      }
-    }
-
-    function step() {
-      ctx.clearRect(0, 0, w, h);
-
-      var i, j, p;
-      for (i = 0; i < pts.length; i++) {
-        p = pts[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(226,236,255,0.7)";
-        ctx.fill();
-      }
-
-      /* Spojnice se kreslí v modré, ne v bílé jako v předloze - na
-         téhle stránce je modrá jediný akcent a bílá síť by soupeřila
-         s textem hlavičky. */
-      for (i = 0; i < pts.length; i++) {
-        for (j = i + 1; j < pts.length; j++) {
-          var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          var d = Math.sqrt(dx * dx + dy * dy);
-          if (d >= MAX_DIST) continue;
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = "rgba(120,170,255," + ((1 - d / MAX_DIST) * 0.19).toFixed(3) + ")";
-          ctx.lineWidth = 0.6;
-          ctx.stroke();
-        }
-      }
-    }
-
-    var running = false, raf = null;
-
-    function loop() {
-      if (!running) return;
-      step();
-      raf = requestAnimationFrame(loop);
-    }
-
-    function start() { if (running) return; running = true; raf = requestAnimationFrame(loop); }
-    function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
-
-    size();
-    seed();
-
-    window.addEventListener("resize", throttled(function () { size(); seed(); }));
-
-    /* Hvězdné pozadí schválně nereaguje na myš. Efekt byl za hlavním obloukem
-       stejně sotva vidět a stál dvě věci na horké cestě: čtení rozměrů prvku
-       při každém pohybu kurzoru (vynucený přepočet rozvržení) a výpočet
-       vzdálenosti pro každý bod v každém snímku. Na kurzor reaguje jenom
-       hlavní 3D oblouk v arc3d.js - ten je vidět a stojí to za to. */
-
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) {
-        es.forEach(function (e) { e.isIntersecting ? start() : stop(); });
-      }, { threshold: 0 }).observe(stage);
-    } else {
-      start();
-    }
-
-    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
-  })();
-
 
   /* ==================================================================
      4. Ukazatel odrolování
@@ -186,14 +63,21 @@
     var bar = document.querySelector(".progress i");
     if (!bar) return;
 
+    /* Délka stránky se čte jen při změně velikosti, ne v každém snímku:
+       scrollHeight vynutí přepočet rozvržení a na WLE to stálo 12 ms
+       z 16 ms snímku. */
+    var max = 0;
+    function measure() { max = document.documentElement.scrollHeight - window.innerHeight; }
+    measure();
+    if ("ResizeObserver" in window) new ResizeObserver(measure).observe(document.body);
+
     var sync = throttled(function () {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
       var p = max > 0 ? window.scrollY / max : 0;
       bar.style.setProperty("--p", Math.min(1, Math.max(0, p)).toFixed(4));
     });
 
     window.addEventListener("scroll", sync, { passive: true });
-    window.addEventListener("resize", sync);
+    window.addEventListener("resize", function () { measure(); sync(); });
     sync();
   })();
 
@@ -358,21 +242,26 @@
      8. Paralaxa hlavičky
 
      Text hlavičky se při rolování posune o kus pomaleji než stránka
-     a slábne. Scéna za ním zůstává - jinak by se hlavička rozpadla
-     na dvě rychlosti a bylo by to znát.
+     a slábne, aurora za ním ještě pomaleji. Dvě rychlosti dají hloubku
+     bez 3D (jako hlavička na WLE). Jen transform a opacity, takže to
+     zvládne kompozitor bez přepočtu rozvržení.
      ================================================================== */
   (function () {
     if (reduced) return;
 
     var copy = document.querySelector(".hero .hero-copy");
-    if (!copy) return;
+    var glow = document.querySelector(".hero .aurora, .hero-plain > .aurora");
+    if (!copy && !glow) return;
 
     var sync = throttled(function () {
       var y = window.scrollY;
       if (y > window.innerHeight) return;
       var k = Math.min(1, y / (window.innerHeight * 0.9));
-      copy.style.transform = "translate3d(0," + (y * 0.16).toFixed(1) + "px,0)";
-      copy.style.opacity = String(1 - k * 0.85);
+      if (copy) {
+        copy.style.transform = "translate3d(0," + (y * 0.16).toFixed(1) + "px,0)";
+        copy.style.opacity = String(1 - k * 0.85);
+      }
+      if (glow) glow.style.transform = "translate3d(0," + (y * 0.32).toFixed(1) + "px,0)";
     });
 
     window.addEventListener("scroll", sync, { passive: true });

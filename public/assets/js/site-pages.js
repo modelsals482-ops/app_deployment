@@ -10,8 +10,7 @@
    9. obtažení obvodu tlačítka
   10. rok v patičce
 
-   Prostorová scéna v hlavičce má vlastní soubor (arc3d.js), plošná
-   záloha taky (predictive-arc.js). Bez cookies, bez sledování.
+   Bez cookies, bez sledování.
    ===================================================================== */
 (function () {
   "use strict";
@@ -198,8 +197,7 @@
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
     lenis = new window.Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      lerp: 0.09,   /* stejně jako WLE */
       smoothWheel: true,
       syncTouch: false,
     });

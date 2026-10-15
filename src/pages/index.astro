@@ -77,8 +77,6 @@ import Base from "../layouts/Base.astro";
   <section class="hero">
     <div class="hero-stage">
       <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
-      <canvas id="arc3d" aria-hidden="true"></canvas>
-      <canvas id="arcCanvas" aria-hidden="true"></canvas>
     </div>
     <div class="wrap">
       <div class="hero-copy hero-copy--wide">
@@ -231,7 +229,6 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec sec-dark sec-line scene-host">
-    <canvas class="scene" data-scene="halftone" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Co už <span class="grad">běží</span></h2>
@@ -277,7 +274,6 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec sec-line scene-host">
-    <canvas class="scene scene-right" data-scene="lines" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Zvednu <span class="grad">telefon</span>.</h2>
@@ -324,39 +320,6 @@ import Base from "../layouts/Base.astro";
 
   
   <Fragment slot="tail">
-  <!-- Oblouk v hlavičce je vlastní WebGL, ne Three.js, takže je malý (24 kB),
-       ale na slabém telefonu je to pořád GPU práce u každého snímku a hlavička
-       je první, co člověk uvidí a chce odrolovat. V minimálním stupni se proto
-       nenačítá vůbec; hlavička zůstane s plochým pozadím a textem. -->
-  <script is:inline>
-    (function () {
-      if (document.documentElement.getAttribute("data-vykon") === "minimalni") return;
-      /* predictive-arc je plosna zaloha pro stroje bez WebGL. Jakmile nabehne
-         verze na WebGL, CSS ji stejne schova (#arc3d[data-on="1"] ~ #arcCanvas),
-         takze na drtive vetsine zarizeni se stahovala a inicializovala pro nic.
-         Stahujeme ji proto jen tam, kde WebGL neni, nebo kde stupen vykonu neni
-         "plny" (snizeny = zadne 3D, stejne pravidlo jako scenes.js). */
-      var maWebGL = (function () {
-        try {
-          var cv = document.createElement("canvas");
-          var gl = cv.getContext("webgl") || cv.getContext("experimental-webgl");
-          if (!gl) return false;
-          var z = gl.getExtension("WEBGL_lose_context");
-          if (z) z.loseContext();
-          return true;
-        } catch (e) { return false; }
-      })();
-
-      var plny = document.documentElement.getAttribute("data-vykon") === "plny";
-      var soubory = maWebGL && plny ? ["/assets/js/arc3d.js"] : ["/assets/js/predictive-arc.js"];
-      soubory.forEach(function (src) {
-        var el = document.createElement("script");
-        el.src = src;
-        el.async = false;
-        document.head.appendChild(el);
-      });
-    })();
-  </script>
   <script src="/assets/js/home.js" defer></script>
   </Fragment>
 
