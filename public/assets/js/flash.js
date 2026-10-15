@@ -212,7 +212,8 @@
     cards.forEach(function (card) {
       /* Odlesk potřebuje vlastní prvek - ::before i ::after už jsou
          na kartě zabrané dosvitem a barevným obrysem. */
-      if (card.classList.contains("panel-sheen") && !card.querySelector(":scope > .sheen")) {
+      /* Odlesk za myší je vypnutý (15. 10.), karta se jen naklání. */
+      if (false && card.classList.contains("panel-sheen") && !card.querySelector(":scope > .sheen")) {
         var sheen = document.createElement("span");
         sheen.className = "sheen";
         sheen.setAttribute("aria-hidden", "true");

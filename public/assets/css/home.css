@@ -35,7 +35,19 @@
    všechny výzvy k akci jsou pohromadě v jednom pruhu pod nimi. Barva
    služby (--c) spojuje kartu s jejím tlačítkem. */
 .svc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.svc-card { display: flex; flex-direction: column; gap: 1.1rem; }
+.svc-card { display: flex; flex-direction: column; gap: 1.1rem; overflow: visible; }
+/* Kulatá bublina s cenou přes roh karty a obdélníkový štítek s faktem.
+   Vyskočí jednou, když karta přijede (karta je .rev), žádná smyčka. */
+.svc-bub { position: absolute; top: -1.2rem; right: -0.8rem; z-index: 2; display: grid; place-items: center; width: 6.2rem; aspect-ratio: 1;
+  padding: 0.6rem; font-size: 0.82rem; font-weight: 800; line-height: 1.15; color: #05070d; text-align: center; background: var(--c);
+  border-radius: 50%; box-shadow: 0 14px 34px rgb(0 0 0 / 55%); transform: scale(0.6) rotate(-10deg); opacity: 0;
+  transition: transform 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s 0.5s; }
+.svc-card.in .svc-bub { transform: rotate(6deg); opacity: 1; }
+.svc-card .svc-head { padding-right: 4.2rem; } /* místo pro bublinu s cenou, ať nepřekryje název */
+.svc-tag { display: inline-block; margin-top: 0.8rem; padding: 0.38rem 0.7rem; font-size: 0.82rem; font-weight: 700; color: var(--c);
+  border: 1px solid var(--c); border-radius: 8px; }
+[data-vykon="minimalni"] .svc-bub { transform: none; opacity: 1; transition: none; }
+@media (prefers-reduced-motion: reduce) { .svc-bub { transform: none; opacity: 1; transition: none; } }
 .svc-card h3 { display: flex; gap: 0.6rem; align-items: center; margin: 0; font-size: clamp(1.4rem, 2vw, 1.75rem); letter-spacing: -0.03em; line-height: 1.15; }
 .svc-card h3::before { flex: none; width: 0.6rem; height: 0.6rem; content: ""; background: var(--c); border-radius: 50%; }
 .svc-hook { margin: 0.7rem 0 0; font-size: 1.05rem; line-height: 1.5; color: var(--t1); }
@@ -49,10 +61,13 @@
 .svc-more { display: inline-flex; gap: 0.4rem; align-items: center; font-size: 0.9rem; font-weight: 600; color: var(--c); }
 a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
 
-.svc-act { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.2rem 2.4rem; align-items: center; margin-top: 1.2rem; }
-.svc-act-copy h3 { margin: 0; font-size: clamp(1.25rem, 1.8vw, 1.5rem); letter-spacing: -0.03em; }
+/* "Pošlete poptávku" je hlavní a poslední krok sekce: větší, s obrysem. */
+.svc-act { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.4rem 2.4rem; align-items: center; margin-top: 2.2rem;
+  padding: clamp(1.6rem, 3.2vw, 2.4rem); border-color: var(--line-2); }
+.svc-act-copy h3 { margin: 0; font-size: clamp(1.6rem, 2.8vw, 2.2rem); letter-spacing: -0.035em; }
 .svc-act-copy p { margin: 0.4rem 0 0; max-width: 46ch; font-size: 1rem; line-height: 1.55; color: var(--t2); }
-.svc-act-btns { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: flex-end; }
+.svc-act-btns { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: flex-end; }
+.svc-act-btns .btn { padding: 0.9rem 1.4rem; font-size: 0.98rem; }
 .svc-act-alt { grid-column: 1 / -1; margin: 0; padding-top: 1rem; font-size: 0.9rem; color: var(--t3); border-top: 1px solid var(--line); }
 .svc-act-alt a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
 .svc-act-alt a:hover { color: var(--blue); }
@@ -108,10 +123,13 @@ a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
 .faq p { margin: 0 0 1.2rem; max-width: 66ch; font-size: 0.98rem; line-height: 1.65; color: var(--t2); }
 
 @media (max-width: 1100px) {
-  .svc-cards { grid-template-columns: 1fr; }
-  .svc-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.4rem 2.4rem; }
   .svc-act { grid-template-columns: 1fr; }
   .svc-act-btns { justify-content: flex-start; }
+  .svc-bub { width: 5.4rem; font-size: 0.74rem; }
+}
+@media (max-width: 860px) {
+  .svc-cards { grid-template-columns: 1fr; gap: 2rem; }
+  .svc-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1.4rem 2.4rem; }
 }
 @media (max-width: 980px) {
   .demo, .report-split { grid-template-columns: 1fr; }

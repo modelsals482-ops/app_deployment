@@ -60,13 +60,18 @@
 .proj .rev.from-l { transform: translate3d(-14vw, 0, 0) rotate(-3deg); }
 .proj .rev.from-r { transform: translate3d(14vw, 0, 0) rotate(3deg); }
 .proj .rev.from-l.in, .proj .rev.from-r.in { transform: none; }
-.proj .rev { transition-duration: 0.9s, 1.3s, 0.9s; }
+.proj .rev { filter: none; transition-duration: 0.7s, 1s, 0s; }
 
-/* Velký nadpis stránky přiletí zleva stejně jako projekty. */
-.rev.slide-l { transform: translate3d(-14vw, 0, 0) rotate(-3deg); transition-duration: 0.9s, 1.3s, 0.9s; }
-.rev.slide-l.in { transform: none; }
-.ref-hero .h-hero { max-width: 12ch; font-size: clamp(2.5rem, 8.6vw, 7rem); line-height: 1; }
-.ref-hero .lead { max-width: 46ch; }
+/* Nadpis stránky přijede zleva. Jen posun a průhlednost na obalu, žádný
+   .rev s rozmazáním: uvnitř je nadpis, který si slova odhaluje sám
+   (reveal.js), a dvě animace přes sebe ho rozbily. Startuje až po
+   úvodním loaderu, jinak by doběhla pod ním. */
+.ref-hero .h-hero { max-width: 13ch; font-size: clamp(2.6rem, 6.6vw, 6rem); line-height: 1.04; }
+.ref-hero .lead { max-width: 46ch; margin-top: 1.6rem; }
+html:not(.als-loading) .ref-hero-in { animation: ref-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes ref-in { from { opacity: 0; transform: translate3d(-8vw, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { html:not(.als-loading) .ref-hero-in { animation: none; } }
+[data-vykon="minimalni"] .ref-hero-in { animation: none !important; }
 
 @media (max-width: 980px) {
   .proj-grid { grid-template-columns: 1fr; gap: 2.4rem; }

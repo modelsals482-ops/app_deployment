@@ -443,7 +443,7 @@ a.panel.tilt:hover {
   background-size: 42% 100%;
   background-repeat: no-repeat;
   pointer-events: none;
-  animation: lineSweep 7s ease-in-out 1;
+  display: none; /* přejezd světla po linkách mezi sekcemi Jakub nechce (15. 10.) */
 }
 
 @keyframes lineSweep {

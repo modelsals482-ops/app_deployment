@@ -98,15 +98,18 @@ import Base from "../layouts/Base.astro";
         <p class="lead">Ka&zcaron;dou z nich m&uring;&zcaron;ete m&iacute;t samostatn&ecaron;, nebo v&scaron;echny dohromady.</p>
       </div>
       <div class="cards-3">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev">
+        <div class="panel panel-pad tilt rev ai-c" style="--c: var(--cyan)">
+          <span class="ai-tag">E-mail</span>
           <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Schr&aacute;nka, kterou nemus&iacute;te &ccaron;&iacute;st</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Asistent p&rcaron;e&ccaron;te dotaz, nap&iacute;&scaron;e odpov&ecaron;&dcaron; a po&scaron;le ji. Když si není jistý, e-mail vám přepošle.</p>
         </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
+        <div class="panel panel-pad tilt rev ai-c" data-d="1" style="--c: var(--blue)">
+          <span class="ai-tag">Kalendář</span>
           <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Rezervace bez telefonov&aacute;n&iacute;</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Nab&iacute;dne voln&eacute; term&iacute;ny, zap&iacute;&scaron;e je do va&scaron;eho kalend&aacute;&rcaron;e a den p&rcaron;edem po&scaron;le p&rcaron;ipom&iacute;nku. P&rcaron;esun i zru&scaron;en&iacute; zvl&aacute;dne s&aacute;m.</p>
         </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2">
+        <div class="panel panel-pad tilt rev ai-c" data-d="2" style="--c: var(--violet)">
+          <span class="ai-tag">Recenze</span>
           <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Klienti, kte&rcaron;&iacute; se vrac&iacute;</h3>
           <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Po n&aacute;v&scaron;t&ecaron;v&ecaron; se zept&aacute; na spokojenost, navrhne odpov&ecaron;&dcaron; na recenzi a pozve na dal&scaron;&iacute; term&iacute;n.</p>
         </div>
@@ -209,7 +212,7 @@ import Base from "../layouts/Base.astro";
           </div>
           <div class="panel price-card panel-glow panel-sheen tilt rev">
             
-            <h3>Zp&ecaron;tn&aacute; vazba</h3>
+            <h3>Zp&ecaron;tn&aacute; vazba <span class="ai-tag ai-tag--soon">Připravuji</span></h3>
             <p class="what">Po návštěvě se zeptá na spokojenost a připraví odpověď na hodnocení.</p>
             <p class="cost"><b>2&nbsp;500</b><span>K&ccaron; / m&ecaron;s&iacute;c</span></p>
             <ul class="list">
@@ -257,30 +260,30 @@ import Base from "../layouts/Base.astro";
         <p class="lead">Ka&zcaron;d&aacute; slu&zcaron;ba m&aacute; vlastn&iacute; str&aacute;nku s postupem, cenou a t&iacute;m, co je v pau&scaron;&aacute;lu.</p>
       </div>
       <div class="cards-2">
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" href="/e-mailove-odpovedi">
+        <a class="panel panel-pad tilt rev ai-c" href="/e-mailove-odpovedi" style="--c: var(--cyan)">
           <h3>E-mailov&eacute; odpov&ecaron;di</h3>
           <p>Asistent &ccaron;te a odpov&iacute;d&aacute; na z&aacute;kaznick&eacute; e-maily &ccaron;esky a va&scaron;&iacute;m t&oacute;nem.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="ai-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1" href="/rezervace-pripominky">
+        <a class="panel panel-pad tilt rev ai-c" data-d="1" href="/rezervace-pripominky" style="--c: var(--blue)">
           <h3>Rezervace a p&rcaron;ipom&iacute;nky</h3>
           <p>Objedn&aacute;n&iacute; nonstop, potvrzen&iacute; term&iacute;nu a p&rcaron;ipom&iacute;nka den p&rcaron;edem.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="ai-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2" href="/zpetna-vazba">
+        <a class="panel panel-pad tilt rev ai-c" data-d="2" href="/zpetna-vazba" style="--c: var(--violet)">
           <h3>Zp&ecaron;tn&aacute; vazba</h3>
           <p>Dotaz po n&aacute;v&scaron;t&ecaron;v&ecaron;, odpov&ecaron;&dcaron; na recenzi a pozv&aacute;nka zp&aacute;tky.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="ai-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="3" href="/ai-asistent-pro-fyzioterapeuty">
+        <a class="panel panel-pad tilt rev ai-c" data-d="3" href="/ai-asistent-pro-fyzioterapeuty" style="--c: var(--green)">
           <h3>Pro fyzioterapeuty</h3>
           <p>M&eacute;n&ecaron; nenastoupen&yacute;ch term&iacute;n&uring; a di&aacute;&rcaron;, kter&yacute; se pln&iacute; s&aacute;m.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="ai-more">Zjistit v&iacute;c &rarr;</span>
         </a>
-        <a class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="4" href="/ai-asistent-pro-kadernictvi">
+        <a class="panel panel-pad tilt rev ai-c" data-d="4" href="/ai-asistent-pro-kadernictvi" style="--c: var(--amber)">
           <h3>Pro kade&rcaron;nictv&iacute;</h3>
           <p>Objedn&aacute;v&aacute;n&iacute; i mimo otev&iacute;rac&iacute; dobu, bez p&rcaron;eru&scaron;ov&aacute;n&iacute; pr&aacute;ce.</p>
-          <span class="arrow">Zjistit v&iacute;c &rarr;</span>
+          <span class="ai-more">Zjistit v&iacute;c &rarr;</span>
         </a>
       </div>
     </div>

@@ -666,3 +666,14 @@
   border-color: rgb(91 157 255 / 62%);
 }
 
+
+/* Barva služby na kartě (15. 10.): tečka u nadpisu, obdélníkový štítek
+   a barevný odkaz místo šedého textu. */
+.ai-c h3 { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+a.ai-c h3::before { flex: none; width: 0.55rem; height: 0.55rem; content: ""; background: var(--c); border-radius: 50%; }
+a.ai-c { display: flex; flex-direction: column; }
+a.ai-c p { margin: 0.5rem 0 0; color: var(--t2); }
+.ai-tag { display: inline-block; align-self: flex-start; margin-bottom: 0.8rem; padding: 0.3rem 0.6rem; font-size: 0.76rem; font-weight: 700;
+  color: #05070d; background: var(--c); border-radius: 7px; }
+.ai-tag--soon { margin: 0; font-size: 0.7rem; color: var(--t2); background: none; border: 1px solid var(--line-2); }
+.ai-more { margin-top: auto; padding-top: 1rem; font-size: 0.9rem; font-weight: 600; color: var(--c); }

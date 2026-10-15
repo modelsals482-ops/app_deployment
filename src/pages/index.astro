@@ -139,7 +139,8 @@ import Base from "../layouts/Base.astro";
       </div>
       <div class="svc-cards">
         <a class="panel panel-pad svc-card rev" href="/tvorba-webu" style="--c: var(--cyan)">
-          <div class="svc-head"><h3>Weby</h3><p class="svc-hook">Web, přes který vám zákazníci zavolají a pošlou poptávku.</p></div>
+          <span class="svc-bub" aria-hidden="true">od 14 900 Kč</span>
+          <div class="svc-head"><h3>Weby</h3><p class="svc-hook">Web, přes který vám zákazníci zavolají a pošlou poptávku.</p><span class="svc-tag">Bez WordPressu a pluginů</span></div>
           <div class="svc-body">
             <ul class="svc-list"><li>Návrh, texty a spuštění na vaší doméně</li><li>Rychlý a čitelný na mobilu</li><li>Bez pluginů, které je potřeba aktualizovat</li></ul>
             <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 6-10 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 14&nbsp;900&nbsp;Kč, správa 990&nbsp;Kč/měs</dd></div></dl>
@@ -147,7 +148,8 @@ import Base from "../layouts/Base.astro";
           </div>
         </a>
         <a class="panel panel-pad svc-card rev" data-d="1" href="/vyvoj-softwaru" style="--c: var(--blue)">
-          <div class="svc-head"><h3>Software na míru</h3><p class="svc-hook">Jeden přehledný nástroj místo přepisování mezi tabulkami a e-maily.</p></div>
+          <span class="svc-bub" aria-hidden="true">od 24 900 Kč</span>
+          <div class="svc-head"><h3>Software na míru</h3><p class="svc-hook">Jeden přehledný nástroj místo přepisování mezi tabulkami a e-maily.</p><span class="svc-tag">Kód a účty na vaše jméno</span></div>
           <div class="svc-body">
             <ul class="svc-list"><li>Administrace a interní nástroje</li><li>Propojení systémů, které spolu dnes nemluví</li><li>Zdrojový kód a účty na vaše jméno</li></ul>
             <dl class="svc-meta"><div><dt>Spuštění</dt><dd>podle rozsahu, obvykle týdny</dd></div><div><dt>Cena</dt><dd>od 24&nbsp;900&nbsp;Kč</dd></div></dl>
@@ -155,7 +157,8 @@ import Base from "../layouts/Base.astro";
           </div>
         </a>
         <a class="panel panel-pad svc-card rev" data-d="2" href="/ai-asistenti" style="--c: var(--violet)">
-          <div class="svc-head"><h3>AI asistenti</h3><p class="svc-hook">Odpoví zákazníkům a zapíše termíny, i když jste zrovna u práce.</p></div>
+          <span class="svc-bub" aria-hidden="true">od 2 500 Kč/měs</span>
+          <div class="svc-head"><h3>AI asistenti</h3><p class="svc-hook">Odpoví zákazníkům a zapíše termíny, i když jste zrovna u práce.</p><span class="svc-tag">Vždy se představí jako AI</span></div>
           <div class="svc-body">
             <ul class="svc-list"><li>Na WhatsAppu, e-mailu nebo webu, které už máte</li><li>Vždy se představí jako AI</li><li>Měsíční platba, bez závazků</li></ul>
             <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 5-7 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 2&nbsp;500&nbsp;Kč/měs</dd></div></dl>
@@ -163,7 +166,7 @@ import Base from "../layouts/Base.astro";
           </div>
         </a>
       </div>
-      <div class="svc-act panel panel-pad rev" data-d="3">
+      <div class="svc-act panel panel-pad rev" data-d="3" id="poptavka">
         <div class="svc-act-copy">
           <h3>Pošlete poptávku</h3>
           <p>Klikněte na to, co potřebujete. Do 48 hodin vám pošlu termín a přesnou cenu, nezávazně.</p>
