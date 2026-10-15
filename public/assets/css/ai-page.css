@@ -684,15 +684,15 @@ a.ai-c p { margin: 0.5rem 0 0; color: var(--t2); }
    štítky s tím, co umí. Přijede ze strany, štítky jednou vyskočí.
    ==================================================================== */
 .bots { display: grid; gap: clamp(3.5rem, 7vw, 5.5rem); margin-top: 2.6rem; }
-.bot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: center; }
+.aibot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; align-items: center; }
 .bot-art { position: relative; grid-column: 1 / span 6; display: grid; gap: 0.6rem; padding: 1.6rem; background: linear-gradient(160deg, #121218, #0a0a0d);
   border: 1px solid var(--line-2); border-radius: 22px; box-shadow: 0 30px 70px rgb(0 0 0 / 55%); }
 .bot-copy { grid-column: 8 / span 5; }
 .bot--r .bot-art { grid-column: 7 / span 6; grid-row: 1; }
 .bot--r .bot-copy { grid-column: 1 / span 5; grid-row: 1; }
-.bot.rev.from-l { transform: translate3d(-10vw, 0, 0) rotate(-2deg); }
-.bot.rev.from-r { transform: translate3d(10vw, 0, 0) rotate(2deg); }
-.bot.rev.in { transform: none; }
+.aibot.rev.from-l { transform: translate3d(-10vw, 0, 0) rotate(-2deg); }
+.aibot.rev.from-r { transform: translate3d(10vw, 0, 0) rotate(2deg); }
+.aibot.rev.in { transform: none; }
 .bot-copy h3 { display: flex; gap: 0.6rem; align-items: center; margin: 0; font-size: clamp(1.6rem, 2.8vw, 2.2rem); letter-spacing: -0.03em; }
 .bot-copy h3::before { width: 0.65rem; height: 0.65rem; content: ""; background: var(--c); border-radius: 50%; }
 .bot-copy p { margin: 0.8rem 0 0; font-size: 1rem; line-height: 1.6; color: var(--t2); }
@@ -703,8 +703,8 @@ a.ai-c p { margin: 0.5rem 0 0; color: var(--t2); }
   border-radius: 11px; box-shadow: 0 16px 34px rgb(0 0 0 / 55%); opacity: 0; transform: scale(0.6) rotate(-6deg);
   transition: opacity 0.35s calc(0.5s + var(--i) * 0.14s), transform 0.6s calc(0.5s + var(--i) * 0.14s) cubic-bezier(0.16, 1, 0.3, 1); }
 .bot-tag--ghost { color: var(--t1); background: rgb(12 12 16 / 92%); border: 1px solid var(--c); }
-.bot.in .bot-tag { opacity: 1; transform: rotate(-2deg); }
-.bot.in .bot-tag:nth-of-type(even) { transform: rotate(2deg); }
+.aibot.in .bot-tag { opacity: 1; transform: rotate(-2deg); }
+.aibot.in .bot-tag:nth-of-type(even) { transform: rotate(2deg); }
 
 .ba-mail, .ba-rev { display: grid; gap: 0.15rem; padding: 0.75rem 0.95rem; font-size: 0.85rem; background: #17171d; border: 1px solid var(--line); border-radius: 12px; }
 .ba-mail b, .ba-rev b { font-size: 0.8rem; color: var(--t1); }
@@ -717,15 +717,15 @@ a.ai-c p { margin: 0.5rem 0 0; color: var(--t2); }
 .ba-cal i { height: 2.2rem; font-size: 0.72rem; font-style: normal; font-weight: 800; line-height: 2.2rem; text-align: center; background: #17171d; border: 1px solid var(--line); border-radius: 8px; }
 .ba-cal i.x { background: repeating-linear-gradient(135deg, #1d1d24 0 5px, #15151a 5px 10px); }
 .ba-cal i.hit { color: #05070d; background: var(--c); border-color: var(--c); transform: scale(0.6); opacity: 0; transition: transform 0.6s 1s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.3s 1s; }
-.bot.in .ba-cal i.hit { transform: none; opacity: 1; }
+.aibot.in .ba-cal i.hit { transform: none; opacity: 1; }
 .ba-wa { justify-self: end; margin-top: 0.4rem; padding: 0.6rem 0.9rem; font-size: 0.85rem; font-weight: 700; color: #05070d; background: #25d366; border-radius: 14px 14px 4px 14px; }
 
 @media (max-width: 900px) {
-  .bot, .bot--r { grid-template-columns: 1fr; gap: 1.6rem; }
+  .aibot, .bot--r { grid-template-columns: 1fr; gap: 1.6rem; }
   .bot-art, .bot-copy, .bot--r .bot-art, .bot--r .bot-copy { grid-column: 1; grid-row: auto; }
   .bot-art { margin: 0 0.6rem; padding: 1.3rem 1.1rem 1.6rem; }
   .bot-tag { padding: 0.5rem 0.75rem; font-size: 0.78rem; }
-  .bot.rev.from-l, .bot.rev.from-r { transform: translate3d(0, 24px, 0); }
+  .aibot.rev.from-l, .aibot.rev.from-r { transform: translate3d(0, 24px, 0); }
 }
 [data-vykon="minimalni"] .bot-tag, [data-vykon="minimalni"] .ba-cal i.hit { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .bot-tag, .ba-cal i.hit { opacity: 1 !important; transform: none !important; transition: none; } }

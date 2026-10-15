@@ -144,43 +144,6 @@ const demo = {
     </div>
   </section>
 
-  <section class="sec sec-line">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Kde v&aacute;m ute&ccaron;e <span class="grad">nejv&iacute;c &ccaron;asu</span></h2>
-        <p class="lead">Ka&zcaron;dou z nich m&uring;&zcaron;ete m&iacute;t samostatn&ecaron;, nebo v&scaron;echny dohromady.</p>
-      </div>
-      <div class="cards-3">
-        <div class="panel panel-pad tilt rev ai-c" style="--c: var(--cyan)">
-          <span class="ai-tag">E-mail</span>
-          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Schr&aacute;nka, kterou nemus&iacute;te &ccaron;&iacute;st</h3>
-          <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Asistent p&rcaron;e&ccaron;te dotaz, nap&iacute;&scaron;e odpov&ecaron;&dcaron; a po&scaron;le ji. Když si není jistý, e-mail vám přepošle.</p>
-        </div>
-        <div class="panel panel-pad tilt rev ai-c" data-d="1" style="--c: var(--blue)">
-          <span class="ai-tag">Kalendář</span>
-          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Rezervace bez telefonov&aacute;n&iacute;</h3>
-          <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Nab&iacute;dne voln&eacute; term&iacute;ny, zap&iacute;&scaron;e je do va&scaron;eho kalend&aacute;&rcaron;e a den p&rcaron;edem po&scaron;le p&rcaron;ipom&iacute;nku. P&rcaron;esun i zru&scaron;en&iacute; zvl&aacute;dne s&aacute;m.</p>
-        </div>
-        <div class="panel panel-pad tilt rev ai-c" data-d="2" style="--c: var(--violet)">
-          <span class="ai-tag">Recenze</span>
-          <h3 style="margin:0 0 0.45rem;font-size:1.05rem">Klienti, kte&rcaron;&iacute; se vrac&iacute;</h3>
-          <p style="font-size:0.9rem;line-height:1.65;color:var(--t2)">Po n&aacute;v&scaron;t&ecaron;v&ecaron; se zept&aacute; na spokojenost, navrhne odpov&ecaron;&dcaron; na recenzi a pozve na dal&scaron;&iacute; term&iacute;n.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec-dark sec-line" id="ukazka">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">teď</span></h2>
-        <p class="lead">Vyberte, co vás nejvíc zdržuje, a klikněte na zprávu od zákazníka. Uvidíte, jak asistent zprávu přečte, co si ověří a co odpoví. A co sám neřeší, nechá na vás ke schválení.</p>
-      </div>
-      <ChatDemo config={demo} hint="Klikněte na zprávu" />
-      <p class="small-note">Odpovědi v ukázce jsou připravené dopředu. Živou asistentku Kláru najdete v chatu vpravo dole.</p>
-    </div>
-  </section>
-
   <section class="sec sec-line" id="cenik">
     <div class="wrap">
       <div class="sec-head">
@@ -188,7 +151,7 @@ const demo = {
         <p class="lead">M&ecaron;s&iacute;&ccaron;n&ecaron;, bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli. Nejsem plátce DPH, ceny jsou konečné.</p>
       </div>
       <div class="bots">
-        <article class="bot rev from-l" style="--c: var(--cyan)">
+        <article class="aibot rev from-l" style="--c: var(--cyan)">
           <div class="bot-art" aria-hidden="true">
             <div class="ba-mail"><b>Kateřina N.</b><span>Máte volný termín tento týden?</span></div>
             <div class="ba-mail"><b>Marek S.</b><span>Kolik stojí první návštěva?</span></div>
@@ -204,7 +167,7 @@ const demo = {
             <a class="btn btn-svc" style="--c: var(--cyan)" href="/kontakt?sluzba=ai">Chci tenhle</a>
           </div>
         </article>
-        <article class="bot bot--r rev from-r" style="--c: var(--blue)">
+        <article class="aibot bot--r rev from-r" style="--c: var(--blue)">
           <div class="bot-art" aria-hidden="true">
             <div class="ba-cal">
               <span>Po</span><span>Út</span><span>St</span><span>Čt</span><span>Pá</span>
@@ -223,7 +186,7 @@ const demo = {
             <a class="btn btn-svc" style="--c: var(--blue)" href="/kontakt?sluzba=ai">Chci tenhle</a>
           </div>
         </article>
-        <article class="bot rev from-l" style="--c: var(--violet)">
+        <article class="aibot rev from-l" style="--c: var(--violet)">
           <div class="bot-art" aria-hidden="true">
             <div class="ba-rev"><span class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Skvělá péče</b><span>Určitě se vrátím.</span></div>
             <div class="ba-rev ba-ai"><b>Návrh odpovědi</b><span>Moc děkujeme, těšíme se na vás.</span></div>
@@ -246,6 +209,17 @@ const demo = {
       <div class="btn-row">
         <a class="btn btn-fill" href="/kontakt">Chci nez&aacute;vaznou nab&iacute;dku <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
       </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="ukazka">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">teď</span></h2>
+        <p class="lead">Vyberte, co vás nejvíc zdržuje, a klikněte na zprávu od zákazníka. Uvidíte, jak asistent zprávu přečte, co si ověří a co odpoví. A co sám neřeší, nechá na vás ke schválení.</p>
+      </div>
+      <ChatDemo config={demo} hint="Klikněte na zprávu" />
+      <p class="small-note">Odpovědi v ukázce jsou připravené dopředu. Živou asistentku Kláru najdete v chatu vpravo dole.</p>
     </div>
   </section>
 
