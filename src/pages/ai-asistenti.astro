@@ -1,6 +1,59 @@
 ---
 import Base from "../layouts/Base.astro";
 import Zigzag from "../components/Zigzag.astro";
+import ChatDemo from "../components/ChatDemo.astro";
+
+/* "Zkuste si to teď" (16. 10.): tři funkce, u každé pár zpráv. Kroky
+   ukazují, jak asistent "přemýšlí". Co asistent sám neřeší, čeká na
+   schválení. Odpovědi se vždy představí jako AI. */
+const demo = {
+  name: "AI asistent ukázkové ordinace",
+  botLabel: "AI asistent",
+  idle: "Vyberte zprávu vlevo…",
+  functions: [
+    { id: "email", label: "E-mailové odpovědi", color: "var(--cyan)", name: "Schránka ukázkové ordinace",
+      desc: "Pomůže, když vám odpovídání na e-maily bere večery.",
+      messages: [
+        { from: "Kateřina Nováková", time: "e-mail · 19:12", text: "Dobrý den, máte volný termín tento týden?",
+          steps: ["Čte e-mail", "Kontroluje kalendář", "Píše vaším tónem"],
+          reply: "Dobrý den, Kateřino, ve středu od 10:00 a ve čtvrtek od 14:00 mám volno. Hodí se vám některý z termínů? Píše vám AI asistent ordinace." },
+        { from: "Marek Svoboda", time: "e-mail · 20:40", text: "Kolik stojí první návštěva a jak dlouho trvá?",
+          steps: ["Čte e-mail", "Hledá v ceníku"],
+          reply: "Dobrý den, Marku, první návštěva stojí 850 Kč a trvá zhruba 45 minut. Chcete rovnou naplánovat termín? Píše vám AI asistent ordinace." },
+        { from: "Petra K.", time: "e-mail · 21:05", text: "Dáte mi slevu, když přijdu i s kamarádkou?",
+          steps: ["Čte e-mail", "Sleva není v podkladech", "Nechá to na vás"],
+          reply: "Dobrý den, na tohle vám odpoví přímo majitelka, předal jsem jí váš dotaz. Píše vám AI asistent ordinace.",
+          end: "approve", endText: "Dotaz čeká na vás", doneText: "Hotovo, převzali jste to" },
+      ] },
+    { id: "rez", label: "Rezervace a připomínky", color: "var(--blue)", name: "WhatsApp ukázkové ordinace",
+      desc: "Pomůže, když zvoní telefon, zatímco máte klienta.",
+      messages: [
+        { from: "WhatsApp", time: "18:30", text: "Kdy máte volno tento týden?",
+          steps: ["Kontroluje kalendář", "Našel 5 volných časů"],
+          reply: "Volno je ve středu v 10:00 a 15:30, ve čtvrtek v 9:00 a 14:00 a v pátek v 11:00. Který vám vyhovuje? Píše vám AI asistent." },
+        { from: "WhatsApp", time: "18:34", text: "Zarezervuj mi pátek 14:00.",
+          steps: ["Ověří, že je volno", "Zapíše do kalendáře", "Naplánuje připomínku"],
+          reply: "Hotovo, pátek 14:00 je váš. Potvrzení vám přijde e-mailem a ve čtvrtek večer pošlu připomínku. Píše vám AI asistent.",
+          endText: "Hotovo, zapsáno do kalendáře" },
+        { from: "WhatsApp", time: "07:50", text: "Musím zrušit čtvrteční termín, omlouvám se.",
+          steps: ["Najde termín", "Uvolní ho v kalendáři"],
+          reply: "Nevadí, čtvrteční termín jsem zrušil. Chcete rovnou najít náhradní? Píše vám AI asistent.",
+          endText: "Hotovo, termín je volný pro další" },
+      ] },
+    { id: "rate", label: "Zpětná vazba", color: "var(--violet)", soon: true, name: "Recenze ukázkové ordinace",
+      desc: "Pomůže, když chcete víc recenzí a klienty, kteří se vrací.",
+      messages: [
+        { from: "Hodnocení ★★★★★", time: "Google", text: "Skvělá péče, odcházela jsem spokojená. Určitě se vrátím.",
+          steps: ["Přečte hodnocení", "Navrhne poděkování"],
+          reply: "Moc děkujeme za hezká slova, těšíme se na vás. Kdybyste chtěla rovnou další termín, stačí odpovědět.",
+          end: "approve", endText: "Odpověď čeká na schválení", doneText: "Hotovo, odpověď zveřejněna" },
+        { from: "Hodnocení ★★★★☆", time: "Google", text: "Ošetření super, ale čekala jsem skoro dvacet minut.",
+          steps: ["Přečte hodnocení", "Pozná výtku", "Navrhne omluvu"],
+          reply: "Omlouváme se za čekání, mrzí nás to. Děkujeme, že jste nám to napsala, dáme si na to pozor.",
+          end: "approve", endText: "Odpověď čeká na schválení", doneText: "Hotovo, odpověď zveřejněna" },
+      ] },
+  ],
+};
 ---
 <Base
   title="AI asistenti pro malé firmy a živnostníky | ALSflow"
@@ -74,11 +127,11 @@ import Zigzag from "../components/Zigzag.astro";
   </Fragment>
 
 
-  <section class="hero-plain">
-    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+  <section class="hero-plain hero-move">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Z&aacute;kazn&iacute;k p&iacute;&scaron;e. <span class="grad">Asistent odpov&iacute;d&aacute;.</span></h1>
-      <p class="lead">Odpov&iacute;d&aacute; na dotazy, objedn&aacute;v&aacute; term&iacute;ny a p&rcaron;ipom&iacute;n&aacute; je, vaším tónem a z va&scaron;ich podklad&uring;. B&ecaron;&zcaron;&iacute; na WhatsAppu, e-mailu a webu, kter&eacute; u&zcaron; m&aacute;te. Nastaven&iacute; d&ecaron;l&aacute;m j&aacute;, vy nemusíte nic nastavovat.</p>
+      <p class="lead">Odpovídá zákazníkům, zapisuje termíny a připomíná je. Na WhatsAppu, e-mailu i webu, vaším tónem. Nastavím to za vás.</p>
       <div class="btn-row">
         <a class="btn btn-grad btn-shine" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
         <a class="btn btn-magnet" href="#ukazka">Vyzkou&scaron;et &zcaron;iv&ecaron; <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
@@ -119,60 +172,12 @@ import Zigzag from "../components/Zigzag.astro";
 
   <section class="sec sec-dark sec-line" id="ukazka">
     <div class="wrap">
-      <div class="sec-head center">
-        <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">te&dcaron;</span></h2>
-        <p class="lead lead-center">Klikejte, pi&scaron;te, zkou&scaron;ejte. Odpov&ecaron;di v uk&aacute;zce jsou p&rcaron;ipraven&eacute; dop&rcaron;edu. Skutečnou asistentku Kláru najdete v chatu vpravo dole a zeptat se jí můžete na cokoli o ALSflow.</p>
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Zkuste si to <span class="grad">teď</span></h2>
+        <p class="lead">Vyberte, co vás nejvíc zdržuje, a klikněte na zprávu od zákazníka. Uvidíte, jak asistent zprávu přečte, co si ověří a co odpoví. A co sám neřeší, nechá na vás ke schválení.</p>
       </div>
-
-      <div class="demo-frame rev-pop" id="demo">
-        <div class="demo-tabs" role="tablist">
-          <button class="demo-tab on" type="button" role="tab" aria-selected="true" data-pane="email">Schr&aacute;nka</button>
-          <button class="demo-tab" type="button" role="tab" aria-selected="false" data-pane="cal">Rezervace</button>
-          <button class="demo-tab" type="button" role="tab" aria-selected="false" data-pane="rate">Zp&ecaron;tn&aacute; vazba</button>
-        </div>
-
-        <div class="demo-pane on" id="pane-email">
-          <p style="margin-bottom:1rem;font-size:0.85rem;color:var(--t3)">Vyberte zpr&aacute;vu a nechte asistenta nachystat odpov&ecaron;&dcaron;.</p>
-          <div class="mail-row on"><span class="mail-av">K</span><span class="mail-txt"><b>Kate&rcaron;ina Nov&aacute;kov&aacute;</b><span>Dobr&yacute; den, m&aacute;te voln&yacute; term&iacute;n tento t&yacute;den?</span></span><button class="mail-go" type="button" data-reply="0">Odpov&ecaron;d&ecaron;t</button></div>
-            <div class="mail-row"><span class="mail-av">M</span><span class="mail-txt"><b>Marek Svoboda</b><span>Kolik stoj&iacute; prvn&iacute; n&aacute;v&scaron;t&ecaron;va a jak dlouho trv&aacute;?</span></span><button class="mail-go" type="button" data-reply="1">Odpov&ecaron;d&ecaron;t</button></div>
-            <div class="mail-row"><span class="mail-av">L</span><span class="mail-txt"><b>Lenka Dvo&rcaron;&aacute;kov&aacute;</b><span>Pot&rcaron;ebovala bych p&rcaron;esunout &uacute;tern&iacute; term&iacute;n.</span></span><button class="mail-go" type="button" data-reply="2">Odpov&ecaron;d&ecaron;t</button></div>
-          <div class="reply-area" id="replyArea">
-            <div class="reply-box">
-              <div class="head"><span class="ai-badge">AI n&aacute;vrh</span></div>
-              <div class="body" id="replyText"></div>
-              <div class="foot">
-                <button class="mini-btn primary" type="button" data-sent>Odeslat</button>
-                <button class="mini-btn" type="button">Upravit</button>
-              </div>
-            </div>
-          </div>
-          <p class="note-ok" id="replySent" hidden>Odesl&aacute;no. Skute&ccaron;n&yacute; asistent to zvl&aacute;dne bez kliknut&iacute;. Tohle je jen uk&aacute;zka.</p>
-        </div>
-
-        <div class="demo-pane" id="pane-cal">
-          <div class="ask-chips">
-            <button class="ask-chip" type="button" data-ask>Kdy m&aacute;te volno tento t&yacute;den?</button>
-              <button class="ask-chip" type="button" data-ask>Zarezervuj mi p&aacute;tek 14:00</button>
-              <button class="ask-chip" type="button" data-ask>Kolik stoj&iacute; o&scaron;et&rcaron;en&iacute;?</button>
-              <button class="ask-chip" type="button" data-ask>Chci zru&scaron;it term&iacute;n ve &ccaron;tvrtek</button>
-              <button class="ask-chip" type="button" data-ask>Kde v&aacute;s najdu?</button>
-          </div>
-          <div class="ask-wrap" id="askWrap">
-            <div class="ask-bubble bot">Dobrý den, jsem AI asistent ordinace. Zept&aacute;te se na term&iacute;n, cenu nebo cestu k n&aacute;m?</div>
-          </div>
-          <div class="ask-bar">
-            <input id="askInput" type="text" placeholder="Napi&scaron;te dotaz z&aacute;kazn&iacute;ka&hellip;" maxlength="200" autocomplete="off" aria-label="Dotaz do uk&aacute;zky" />
-            <button type="button" data-ask-send aria-label="Odeslat dotaz">&rarr;</button>
-          </div>
-        </div>
-
-        <div class="demo-pane" id="pane-rate">
-          <p style="margin-bottom:0.6rem;font-size:0.85rem;color:var(--t3)">Hodnocen&iacute; p&rcaron;ijde, asistent navrhne odpov&ecaron;&dcaron;. Vy ji jen schv&aacute;l&iacute;te.</p>
-          <div class="rate-row"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div class="what"><b>Skv&ecaron;l&aacute; p&eacute;&ccaron;e</b>Odch&aacute;zela jsem spokojen&aacute;, určitě se vrátím.<div class="rate-reply"><b>Asistent odpov&ecaron;d&ecaron;l:</b> Moc d&ecaron;kujeme za hezk&aacute; slova. T&ecaron;&scaron;&iacute;me se p&rcaron;&iacute;&scaron;t&ecaron;.</div></div></div>
-            <div class="rate-row"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><div class="what"><b>Dlouh&eacute; &ccaron;ek&aacute;n&iacute;</b>O&scaron;et&rcaron;en&iacute; super, ale &ccaron;ekala jsem skoro dvacet minut.<div class="rate-reply"><b>Asistent odpov&ecaron;d&ecaron;l:</b> Omlouváme se za čekání, mrzí nás to. Děkujeme, že jste nám to napsala.</div></div></div>
-            <div class="rate-row"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><div class="what"><b>Rychl&eacute; objedn&aacute;n&iacute;</b>Napsala jsem ve&ccaron;er a term&iacute;n jsem m&ecaron;la za minutu.<div class="rate-reply"><b>Asistent odpov&ecaron;d&ecaron;l:</b> D&ecaron;kujeme. Objedn&aacute;vky vy&rcaron;izujeme i mimo otev&iacute;rac&iacute; dobu.</div></div></div>
-        </div>
-      </div>
+      <ChatDemo config={demo} hint="Klikněte na zprávu" />
+      <p class="small-note">Odpovědi v ukázce jsou připravené dopředu. Živou asistentku Kláru najdete v chatu vpravo dole.</p>
     </div>
   </section>
 
@@ -182,47 +187,56 @@ import Zigzag from "../components/Zigzag.astro";
         <h2 class="h-sec fade-head reveal-words">Veřejné <span class="grad">ceny</span>.</h2>
         <p class="lead">M&ecaron;s&iacute;&ccaron;n&ecaron;, bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli. Nejsem plátce DPH, ceny jsou konečné.</p>
       </div>
-      <div class="price-grid">
-        <div class="panel price-card panel-glow panel-sheen tilt rev">
-            
-            <h3>E-mailov&eacute; odpov&ecaron;di</h3>
-            <p class="what">Asistent &ccaron;te po&scaron;tu, odpov&iacute;d&aacute; na b&ecaron;&zcaron;n&eacute; dotazy a co nezn&aacute;, p&rcaron;ed&aacute; v&aacute;m.</p>
-            <p class="cost"><b>2&nbsp;500</b><span>K&ccaron; / m&ecaron;s&iacute;c</span></p>
-            <ul class="list">
-              <li>Zahrnuto 1&nbsp;500 e-mail&uring; m&ecaron;s&iacute;&ccaron;n&ecaron;</li>
-              <li>U&ccaron;&iacute; se v&aacute;&scaron; t&oacute;n a va&scaron;e podklady</li>
-              <li>Nejist&yacute; dotaz nechá na v&aacute;s</li>
-              <li>Napojen&iacute; na Gmail nebo Outlook</li>
-            </ul>
-            <a class="btn" href="/kontakt">Chci tenhle</a>
+      <div class="bots">
+        <article class="bot rev from-l" style="--c: var(--cyan)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-mail"><b>Kateřina N.</b><span>Máte volný termín tento týden?</span></div>
+            <div class="ba-mail"><b>Marek S.</b><span>Kolik stojí první návštěva?</span></div>
+            <div class="ba-mail ba-ai"><b>AI návrh</b><span>Dobrý den, ve středu od 10:00…</span></div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; right: 8%">1 500 e-mailů v ceně</span>
+            <span class="bot-tag" style="--i: 1; bottom: 42%; left: -1.2rem">Gmail i Outlook</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 2; bottom: -1rem; right: 12%">Nejistý dotaz nechá na vás</span>
           </div>
-          <div class="panel price-card panel-glow panel-sheen tilt rev is-top">
-            <span class="tag">Nej&ccaron;ast&ecaron;ji</span>
-            <h3>Rezervace a p&rcaron;ipom&iacute;nky</h3>
-            <p class="what">Objedn&aacute;v&aacute; term&iacute;ny do va&scaron;eho kalend&aacute;&rcaron;e a den p&rcaron;edem je p&rcaron;ipom&iacute;n&aacute;.</p>
-            <p class="cost"><b>4&nbsp;500</b><span>K&ccaron; / m&ecaron;s&iacute;c</span></p>
-            <ul class="list">
-              <li>Zahrnuto 750 rezervac&iacute; m&ecaron;s&iacute;&ccaron;n&ecaron;</li>
-              <li>Rezervace přes WhatsApp i web</li>
-              <li>Z&aacute;pis rovnou do Google Kalend&aacute;&rcaron;e</li>
-              <li>P&rcaron;ipom&iacute;nka den p&rcaron;edem</li>
-              <li>P&rcaron;esuny a zru&scaron;en&iacute; bez telefonu</li>
-            </ul>
-            <a class="btn btn-grad btn-shine" href="/kontakt">Chci tenhle</a>
+          <div class="bot-copy">
+            <h3>E-mailové odpovědi</h3>
+            <p>Čte poštu, odpovídá na běžné dotazy vaším tónem a co nezná, předá vám.</p>
+            <p class="bot-cost"><b>2&nbsp;500&nbsp;Kč</b> / měsíc</p>
+            <a class="btn btn-svc" style="--c: var(--cyan)" href="/kontakt?sluzba=ai">Chci tenhle</a>
           </div>
-          <div class="panel price-card panel-glow panel-sheen tilt rev">
-            
-            <h3>Zp&ecaron;tn&aacute; vazba <span class="ai-tag ai-tag--soon">Připravuji</span></h3>
-            <p class="what">Po návštěvě se zeptá na spokojenost a připraví odpověď na hodnocení.</p>
-            <p class="cost"><b>2&nbsp;500</b><span>K&ccaron; / m&ecaron;s&iacute;c</span></p>
-            <ul class="list">
-              <li>Dotaz po n&aacute;v&scaron;t&ecaron;v&ecaron;</li>
-              <li>N&aacute;vrh odpov&ecaron;di na recenzi</li>
-              <li>Pozv&aacute;nka na dal&scaron;&iacute; term&iacute;n</li>
-              <li>M&ecaron;s&iacute;&ccaron;n&iacute; p&rcaron;ehled</li>
-            </ul>
-            <a class="btn" href="/zpetna-vazba">Zjistit v&iacute;c</a>
+        </article>
+        <article class="bot bot--r rev from-r" style="--c: var(--blue)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-cal">
+              <span>Po</span><span>Út</span><span>St</span><span>Čt</span><span>Pá</span>
+              <i></i><i class="x"></i><i></i><i class="x"></i><i></i>
+              <i class="x"></i><i></i><i class="x"></i><i></i><i class="hit">14:00</i>
+            </div>
+            <div class="ba-wa">Pátek 14:00 je váš &#10003;</div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; left: 10%">Nejčastěji</span>
+            <span class="bot-tag" style="--i: 1; top: 40%; right: -1rem">Rovnou do Google Kalendáře</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 2; bottom: -1rem; left: 14%">Připomínka den předem</span>
           </div>
+          <div class="bot-copy">
+            <h3>Rezervace a připomínky</h3>
+            <p>Objedná termín přes WhatsApp i web, zapíše ho do kalendáře, den předem připomene. Přesun i zrušení bez telefonu. 750 rezervací měsíčně v ceně.</p>
+            <p class="bot-cost"><b>4&nbsp;500&nbsp;Kč</b> / měsíc</p>
+            <a class="btn btn-svc" style="--c: var(--blue)" href="/kontakt?sluzba=ai">Chci tenhle</a>
+          </div>
+        </article>
+        <article class="bot rev from-l" style="--c: var(--violet)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-rev"><span class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Skvělá péče</b><span>Určitě se vrátím.</span></div>
+            <div class="ba-rev ba-ai"><b>Návrh odpovědi</b><span>Moc děkujeme, těšíme se na vás.</span></div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; right: 10%">Připravuji</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 1; bottom: -1rem; left: 10%">Pozve na další termín</span>
+          </div>
+          <div class="bot-copy">
+            <h3>Zpětná vazba</h3>
+            <p>Po návštěvě se zeptá na spokojenost, navrhne odpověď na recenzi a pozve na další termín. Měsíční přehled hodnocení.</p>
+            <p class="bot-cost"><b>2&nbsp;500&nbsp;Kč</b> / měsíc</p>
+            <a class="btn btn-quiet" href="/zpetna-vazba">Zjistit víc</a>
+          </div>
+        </article>
       </div>
       <div class="price-line" style="margin-top:2.5rem">
         <div><div class="k">V&scaron;echno dohromady</div><div class="v">7&nbsp;500 K&ccaron;/m&ecaron;s</div></div>
@@ -361,7 +375,10 @@ import Zigzag from "../components/Zigzag.astro";
 
   
   <Fragment slot="tail">
+  <link rel="stylesheet" href="/assets/css/chatdemo.css" />
   <script src="/assets/js/ai-asistenti.js" defer></script>
+  <script src="/assets/js/chatdemo.js" defer></script>
   </Fragment>
 
+<script src="/assets/js/dotwave.js" defer is:inline></script>
 </Base>

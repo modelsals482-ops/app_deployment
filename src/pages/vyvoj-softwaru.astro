@@ -103,11 +103,11 @@ import Showcase from "../components/Showcase.astro";
   <script src="/assets/js/autopilot.js" defer></script>
   </Fragment>
 
-  <section class="hero-plain">
-    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+  <section class="hero-plain hero-move">
+    <canvas data-glassfold aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">N&aacute;stroj m&iacute;sto <span class="grad">tabulky</span></h1>
-      <p class="lead">Postav&iacute;m administra&ccaron;n&iacute; panel nad va&scaron;imi daty, propoj&iacute;m systémy, které spolu dnes nekomunikují, a nahrad&iacute;m tabulky p&rcaron;eposílan&eacute; e-mailem intern&iacute;m n&aacute;strojem. Nasazen&iacute; v &rcaron;&aacute;du t&yacute;dn&uring;, ne m&ecaron;s&iacute;c&uring;.</p>
+      <p class="lead">Panel nad vašimi daty a propojení systémů místo přepisování tabulek. Nasazení v řádu týdnů, ne měsíců.</p>
       <div class="btn-row">
         <a class="btn btn-grad btn-fill" href="/kontakt">Chci anal&yacute;zu zdarma</a>
         <a class="btn btn-trace" href="#priklad">Konkr&eacute;tn&iacute; p&rcaron;&iacute;klad</a>
@@ -282,4 +282,5 @@ import Showcase from "../components/Showcase.astro";
   </section>
 
   
+<script src="/assets/js/glassfold.js" defer is:inline></script>
 </Base>

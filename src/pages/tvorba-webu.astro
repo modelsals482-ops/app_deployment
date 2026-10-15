@@ -93,11 +93,11 @@ import Showcase from "../components/Showcase.astro";
   <link rel="stylesheet" href="/assets/css/showcase.css" />
   </Fragment>
 
-  <section class="hero-plain">
-    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+  <section class="hero-plain hero-move">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
     <div class="wrap">
       <h1 class="h-hero fade-head reveal-words" style="max-width:14ch">Web, kter&yacute; <span class="grad">nezest&aacute;rne</span></h1>
-      <p class="lead">Ru&ccaron;n&ecaron; psan&eacute; str&aacute;nky bez redak&ccaron;n&iacute;ho syst&eacute;mu a bez plugin&uring;, kter&eacute; je pot&rcaron;eba aktualizovat. Postavím, nasadím a dál se starám. Vy se o techniku nestar&aacute;te v&uring;bec.</p>
+      <p class="lead">Ručně psaný web bez pluginů a bez starostí. Postavím ho, spustím a dál se o něj starám.</p>
       <div class="btn-row">
         <a class="btn btn-grad btn-magnet" href="/kontakt">Chci nab&iacute;dku</a>
         <a class="btn btn-trace" href="#reference">Podívat se na weby</a>
@@ -232,4 +232,5 @@ import Showcase from "../components/Showcase.astro";
   </section>
 
   
+<script src="/assets/js/dotwave.js" defer is:inline></script>
 </Base>

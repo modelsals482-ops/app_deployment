@@ -249,8 +249,11 @@
   (function () {
     if (reduced) return;
 
-    var copy = document.querySelector(".hero .hero-copy");
-    var glow = document.querySelector(".hero .aurora, .hero-plain > .aurora");
+    /* Od 16. 10. i na podstránkách: text hlavičky odjíždí pomaleji a další
+       sekce se přes něj přesune (viz .hero-move + section v site-pages.css).
+       Ostrovy na O mě mají vlastní pohyb, ty se vynechávají. */
+    var copy = document.querySelector(".hero .hero-copy, .hero-plain:not(.islands > *) > .wrap");
+    var glow = document.querySelector(".hero .aurora, .hero-plain > .aurora, .hero-plain > canvas");
     if (!copy && !glow) return;
 
     var sync = throttled(function () {
