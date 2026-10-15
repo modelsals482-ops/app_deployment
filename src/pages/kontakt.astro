@@ -275,9 +275,13 @@ import Base from "../layouts/Base.astro";
   <script src="/assets/js/form.js" defer></script>
   <script src="/assets/js/arc3d.js" defer></script>
   <style>
-    .kontakt-arc { position: absolute; top: 0; right: 0; z-index: 0; width: 46%; height: 100%; pointer-events: none;
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
-    @media (max-width: 900px) { .kontakt-arc { display: none; } }
+    /* Prstence jen vpravo od textu: plátno začíná až za nadpisem a jeho
+       levý okraj se ztrácí do tmy. */
+    .kontakt-arc { position: absolute; top: 0; right: -2%; z-index: 0; width: 40%; height: 100%; pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+    .kontakt-hero .h-hero { font-size: clamp(2.6rem, 5vw, 4.6rem); }
+    .kontakt-hero .lead { max-width: 34rem; }
+    @media (max-width: 1100px) { .kontakt-arc { display: none; } }
   </style>
   </Fragment>
 
