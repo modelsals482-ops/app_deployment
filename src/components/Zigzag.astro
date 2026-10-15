@@ -1,0 +1,22 @@
+---
+/* Postup krok za krokem jako cik-cak přes celou šířku (16. 10.). Kroky
+   se střídají vlevo a vpravo, mezi nimi se při rolování kreslí křivka
+   (zigzag.js). Na telefonu je to jeden sloupec s rovnou čarou. */
+interface Props {
+  steps: { t: string; p: string; get?: string; c: string }[];
+}
+const { steps } = Astro.props;
+---
+<div class="zz" data-zz>
+  <svg class="zz-svg" aria-hidden="true"><defs><linearGradient id="zzg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#38dbf5" /><stop offset="0.5" stop-color="#5b9dff" /><stop offset="1" stop-color="#a78bfa" /></linearGradient></defs><path class="zz-track" /><path class="zz-line" /><circle class="zz-tip" r="6" /></svg>
+  <ol class="zz-ol">
+  {steps.map((s, i) => (
+    <li class={`zz-step rev ${i % 2 ? "from-r" : "from-l"}`} style={`--c: var(--${s.c}); grid-row: ${i + 1}`}>
+      <span class="zz-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+      <h3>{s.t}</h3>
+      <p>{s.p}</p>
+      {s.get && <p class="zz-get"><b>Dostanete:</b> {s.get}</p>}
+    </li>
+  ))}
+  </ol>
+</div>

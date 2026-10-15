@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Zigzag from "../components/Zigzag.astro";
 import Showcase from "../components/Showcase.astro";
 ---
 <Base
@@ -215,13 +216,14 @@ import Showcase from "../components/Showcase.astro";
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Od probl&eacute;mu <span class="grad">a&zcaron; do provozu</span></h2>
       </div>
-      <ol class="tl">
-        <li class="tl-step rev" style="--c: var(--cyan)"><span class="tl-dot" aria-hidden="true">1</span><div><h3>Popíšete, co vás zdržuje</h3><p>Nemusíte vědět, jestli chcete panel, propojení nebo skript. Stačí říct, kde ztrácíte čas a kde vznikají chyby.</p><p class="tl-get"><b>Dostanete:</b> Nezávazný hovor na čtvrt hodiny</p></div></li>
-        <li class="tl-step rev" data-d="1" style="--c: var(--blue)"><span class="tl-dot" aria-hidden="true">2</span><div><h3>Krátká analýza</h3><p>Podívám se, co už máte a co vaše systémy umí. Když se nástroj nevyplatí, řeknu to na rovinu.</p><p class="tl-get"><b>Dostanete:</b> Návrh rozsahu, cenu a termín, zdarma</p></div></li>
-        <li class="tl-step rev" data-d="2" style="--c: var(--violet)"><span class="tl-dot" aria-hidden="true">3</span><div><h3>První použitelná verze</h3><p>Nejdřív to, co ubere nejvíc ruční práce. Používáte ji dřív, než je hotové všechno ostatní.</p><p class="tl-get"><b>Dostanete:</b> Fungující nástroj na odkazu</p></div></li>
-        <li class="tl-step rev" data-d="3" style="--c: var(--green)"><span class="tl-dot" aria-hidden="true">4</span><div><h3>Nasazení a předání</h3><p>Zprovozním, zaškolím vás a předám všechny přístupy.</p><p class="tl-get"><b>Dostanete:</b> Kód, účty a dokumentaci na vaše jméno</p></div></li>
-        <li class="tl-step rev" data-d="4" style="--c: var(--amber)"><span class="tl-dot" aria-hidden="true">5</span><div><h3>Provoz</h3><p>Měsíční paušál za to, že to běží, aktualizuje se a máte komu napsat.</p><p class="tl-get"><b>Dostanete:</b> Odpověď do 48 hodin v pracovní dny</p></div></li>
-      </ol>
+      <Zigzag steps={[
+        { c: "cyan", t: "Popíšete, co vás zdržuje", p: "Nemusíte vědět, jestli chcete panel, propojení nebo skript. Stačí říct, kde ztrácíte čas a kde vznikají chyby.", get: "Nezávazný hovor na čtvrt hodiny" },
+        { c: "blue", t: "Krátká analýza", p: "Podívám se, co už máte a co vaše systémy umí. Když se nástroj nevyplatí, řeknu to na rovinu.", get: "Návrh rozsahu, cenu a termín, zdarma" },
+        { c: "violet", t: "První použitelná verze", p: "Nejdřív to, co ubere nejvíc ruční práce. Používáte ji dřív, než je hotové všechno ostatní.", get: "Fungující nástroj na odkazu" },
+        { c: "green", t: "Nasazení a předání", p: "Zprovozním, zaškolím vás a předám všechny přístupy.", get: "Kód, účty a dokumentaci na vaše jméno" },
+        { c: "amber", t: "Provoz", p: "Měsíční paušál za to, že to běží, aktualizuje se a máte komu napsat.", get: "Odpověď do 48 hodin v pracovní dny" },
+      ]} />
+      <script src="/assets/js/zigzag.js" defer is:inline></script>
       <div class="btn-row rev">
         <a class="btn btn-swap" href="/kontakt"><span class="lbl"><span>Pop&iacute;&scaron;u probl&eacute;m</span><span>Napi&scaron;te mi</span></span></a>
       </div>
@@ -257,7 +259,7 @@ import Showcase from "../components/Showcase.astro";
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-line" id="otazky">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Na co se pt&aacute;te</h2>

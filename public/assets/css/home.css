@@ -6,21 +6,6 @@
 .hero-copy--wide { max-width: 46rem; }
 .hero-copy--wide .h-hero { font-size: clamp(2.6rem, 5.4vw, 4.6rem); text-wrap: balance; }
 
-/* ---- 2. mesicni prehled: vlastni sekce hned pod hlavickou ---- */
-.report-split { grid-template-columns: 0.9fr 1.1fr; }
-.report { padding: 1.4rem 1.5rem 1.2rem; }
-.report-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
-.report-top b { font-size: 0.95rem; font-weight: 700; color: var(--t1); }
-.report-top span { font-size: 0.82rem; color: var(--t3); }
-.pill { display: inline-flex; padding: 0.22rem 0.6rem; font-size: 0.74rem; font-weight: 600; color: var(--t2); border: 1px solid var(--line-2); border-radius: 100px; }
-.report-rows { list-style: none; margin: 0; padding: 0; }
-.report-rows li { display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: baseline; padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
-.report-rows li:last-child { border-bottom: 0; }
-.report-rows .k { font-size: 0.95rem; color: var(--t2); }
-.report-rows .d { font-size: 0.82rem; font-weight: 600; color: var(--green); }
-.report-rows .v { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; color: var(--t1); font-variant-numeric: tabular-nums; min-width: 2.2ch; text-align: right; }
-.report-note { margin: 0.9rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--t3); }
-
 /* ---- 2. rozcestnik podle toho, co cloveka trapi ---- */
 .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 .path { display: block; text-decoration: none; color: inherit; }
@@ -163,9 +148,9 @@ a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
 /* 16. 10.: koláž lezla přes text. Ukazuje se až od 1200 px, text má
    pevnou šířku a koláž je užší a víc vpravo, takže se nepotkají. */
 @media (min-width: 1200px) {
-  .hero-copy--wide { max-width: 34rem; }
-  .hero-copy--wide .h-hero { font-size: clamp(2.8rem, 4.4vw, 4.4rem); }
-  .hero-collage { position: absolute; top: 50%; right: -3rem; display: block; width: min(40vw, 600px); aspect-ratio: 16 / 12.5; margin-top: -1rem; transform: translateY(-50%); }
+  .hero-copy--wide { max-width: 38rem; }
+  .hero-copy--wide .h-hero { font-size: clamp(2.8rem, 4vw, 4.1rem); }
+  .hero-collage { position: absolute; top: 50%; right: -4rem; display: block; width: min(36vw, 580px); aspect-ratio: 16 / 12.5; margin-top: -1rem; transform: translateY(-50%); }
   .hero-collage .pm { animation: hc-in 1.1s calc(0.2s + var(--i) * 0.14s) cubic-bezier(0.16, 1, 0.3, 1) backwards; transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
   .hero-collage .pm-main { right: 0; }
   .hero-collage .pm-second { top: 44%; left: 0; }
@@ -239,4 +224,11 @@ canvas[data-glassfold] { position: absolute; inset: 0; z-index: 0; width: 100%; 
 @media (prefers-reduced-motion: reduce) {
   .live-tag, .call-tags span, .call-steps li { opacity: 1 !important; transform: none !important; transition: none; }
   .call-steps::before { transform: none; transition: none; }
+}
+
+/* Sklo má být vidět i za textem, jen ztlumené (dřív byla levá třetina
+   čistě černá kvůli prstencům). */
+.hero .hero-stage::after { background: linear-gradient(96deg, rgb(0 0 0 / 78%) 0%, rgb(0 0 0 / 58%) 34%, rgb(0 0 0 / 15%) 66%, transparent 85%); }
+@media (max-width: 1000px) {
+  .hero .hero-stage::after { background: linear-gradient(180deg, rgb(0 0 0 / 35%) 0%, rgb(0 0 0 / 70%) 55%, #000 96%); }
 }

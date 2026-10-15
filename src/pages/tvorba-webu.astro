@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Zigzag from "../components/Zigzag.astro";
 import Showcase from "../components/Showcase.astro";
 ---
 <Base
@@ -148,14 +149,39 @@ import Showcase from "../components/Showcase.astro";
   <section class="sec sec-dark sec-line">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Všechny weby stavím <span class="grad">stejně</span></h2>
-        <p class="lead">Postaven&eacute; tak, aby to za dva roky po&rcaron;&aacute;d b&ecaron;&zcaron;elo. &Zcaron;&aacute;dn&yacute; syst&eacute;m, kter&yacute; je pot&rcaron;eba aktualizovat, a &zcaron;&aacute;dn&eacute; pluginy, kter&eacute; se p&rcaron;i aktualizaci rozb&iacute;jej&iacute;. Jinak by tři různé weby znamenaly trojnásobnou práci. Takhle je to jeden postup a jedno m&iacute;sto, kde se oprav&iacute; chyba pro v&scaron;echny.</p>
+        <h2 class="h-sec fade-head reveal-words">Co můžete <span class="grad">očekávat</span></h2>
+        <p class="lead">Každý web stavím stejným postupem. Tohle dostanete vždycky, ať je web malý, nebo velký.</p>
       </div>
-      <div class="cards-3">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev"><h3 style="margin:0 0 0.45rem;font-size:1rem">Bez složitého sestavování</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Čisté HTML, CSS a JavaScript. Web nepotřebuje žádné programy navíc, takže půjde spustit i za dva roky.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1"><h3 style="margin:0 0 0.45rem;font-size:1rem">Žádná data navíc</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Formul&aacute;&rcaron;e pos&iacute;laj&iacute; e-mail a neukl&aacute;daj&iacute; nic do datab&aacute;ze. &Ccaron;&iacute;m m&iacute;&ncaron; osobn&iacute;ch &uacute;daj&uring; web dr&zcaron;&iacute;, t&iacute;m m&iacute;&ncaron; je co chr&aacute;nit.</p></div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="2"><h3 style="margin:0 0 0.45rem;font-size:1rem">M&ecaron;&rcaron;en&aacute; p&rcaron;&iacute;stupnost</h3><p style="font-size:0.9rem;line-height:1.6;color:var(--t2)">Kontrast ka&zcaron;d&eacute; dvojice text a pozad&iacute; po&ccaron;&iacute;t&aacute;m proti WCAG&nbsp;2.2&nbsp;AA. Na ka&zcaron;d&eacute;m webu to zat&iacute;m odhalilo skute&ccaron;nou chybu.</p></div>
-      </div>
+      <ol class="cascade">
+        <li class="cas rev" style="--c: var(--cyan); --i: 0">
+          <div class="cas-art cas-speed" aria-hidden="true"><span>Načteno</span><i></i></div>
+          <div><h3>Rychlý i na mobilních datech</h3><p>Čisté HTML, CSS a JavaScript, žádné těžké šablony. Stránka naběhne dřív, než zákazník ztratí trpělivost.</p></div>
+        </li>
+        <li class="cas rev" data-d="1" style="--c: var(--blue); --i: 1">
+          <div class="cas-art cas-plug" aria-hidden="true"><span>Pluginy</span><b>0</b></div>
+          <div><h3>Nic, co by bylo potřeba aktualizovat</h3><p>Žádný redakční systém a žádné pluginy, které se při aktualizaci rozbijí. Web poběží i za dva roky.</p></div>
+        </li>
+        <li class="cas rev" data-d="2" style="--c: var(--violet); --i: 2">
+          <div class="cas-art cas-mail" aria-hidden="true"><span>Formulář</span><em>&rarr;</em><span>E-mail</span></div>
+          <div><h3>Žádná data navíc</h3><p>Formuláře pošlou e-mail a nic neukládají do databáze. Čím míň osobních údajů web drží, tím míň je co chránit.</p></div>
+        </li>
+        <li class="cas rev" data-d="3" style="--c: var(--green); --i: 3">
+          <div class="cas-art cas-aa" aria-hidden="true"><b>Aa</b><span>kontrast změřen</span></div>
+          <div><h3>Měřená přístupnost</h3><p>Kontrast každé dvojice text a pozadí počítám proti WCAG 2.2 AA. Na každém webu to zatím odhalilo skutečnou chybu.</p></div>
+        </li>
+        <li class="cas cas-report rev" data-d="4" style="--c: var(--amber); --i: 4">
+          <div><h3>Jednou za měsíc přehled</h3><p>Kolik lidí přišlo na web, kolikrát vám zavolali a kolik poslali poptávek. Ať vidíte, co vám web přináší, a nemusíte to odhadovat.</p></div>
+          <div class="panel report">
+            <div class="report-top"><span><b>Měsíční přehled</b> · září</span><span class="pill">Ukázka</span></div>
+            <ul class="report-rows">
+              <li><span class="k">Návštěvy webu</span><span class="d">+18 %</span><span class="v" data-count="412">412</span></li>
+              <li><span class="k">Kliknutí na telefon</span><span class="d">+6</span><span class="v" data-count="37">37</span></li>
+              <li><span class="k">Poptávky z formuláře</span><span class="d">+3</span><span class="v" data-count="9">9</span></li>
+            </ul>
+            <p class="report-note">Ukázková čísla.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -164,13 +190,14 @@ import Showcase from "../components/Showcase.astro";
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Od hovoru k <span class="grad">&zcaron;iv&eacute;mu webu</span></h2>
       </div>
-      <div class="rows">
-        <div class="row rev"><span class="num">01</span><div><h3>&Uacute;vodn&iacute; hovor</h3><p>&Ccaron;tvrt hodiny. &Rcaron;eknete, komu m&aacute; web slou&zcaron;it a co po n&ecaron;m &ccaron;lov&ecaron;k m&aacute; ud&ecaron;lat. Z toho vyjde struktura stránek a cena.</p></div></div>
-        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Pr&uring;b&ecaron;&zcaron;n&yacute; n&aacute;hled</h3><p>Je&scaron;t&ecaron; ne&zcaron; je web hotov&yacute;, dostanete odkaz na rozpracovanou verzi, funguj&iacute;c&iacute; web, ne obr&aacute;zek. Prokliknete si ho na telefonu i na po&ccaron;&iacute;ta&ccaron;i a &rcaron;eknete, co zm&ecaron;nit.</p></div></div>
-        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Texty a fotky</h3><p>Pokud texty nem&aacute;te, nap&iacute;&scaron;u je j&aacute; a vy je jen schv&aacute;l&iacute;te. Fotky dod&aacute;te, nebo je vyberu a o&rcaron;&iacute;znu.</p></div></div>
-        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Nasazen&iacute; a dom&eacute;na</h3><p>Web spustím, nastav&iacute;m DNS, certifik&aacute;t a p&rcaron;esm&ecaron;rov&aacute;n&iacute;. Vy ne&rcaron;e&scaron;&iacute;te nic technick&eacute;ho.</p></div></div>
-        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Spr&aacute;va</h3><p>Zm&ecaron;na ceny, nov&aacute; str&aacute;nka, jin&eacute; otev&iacute;rac&iacute; hodiny. Nap&iacute;&scaron;ete e-mail, zm&ecaron;n&iacute;m to. Do dvou pracovn&iacute;ch dn&uring;.</p></div></div>
-      </div>
+      <Zigzag steps={[
+        { c: "cyan", t: "Úvodní hovor", p: "Čtvrt hodiny. Řeknete, komu má web sloužit a co po něm člověk má udělat. Z toho vyjde struktura stránek a cena.", get: "Strukturu webu a cenu předem" },
+        { c: "blue", t: "Průběžný náhled", p: "Ještě než je web hotový, dostanete odkaz na rozpracovanou verzi. Fungující web, ne obrázek. Prokliknete ho na telefonu i na počítači.", get: "Odkaz, na kterém vidíte, jak web roste" },
+        { c: "violet", t: "Texty a fotky", p: "Pokud texty nemáte, napíšu je já a vy je jen schválíte. Fotky dodáte, nebo je vyberu a ořížnu.", get: "Hotové texty ke schválení" },
+        { c: "green", t: "Nasazení a doména", p: "Web spustím, nastavím DNS, certifikát a přesměrování. Vy neřešíte nic technického.", get: "Živý web na vaší doméně" },
+        { c: "amber", t: "Správa", p: "Změna ceny, nová stránka, jiné otevírací hodiny. Napíšete e-mail, změním to. Do dvou pracovních dnů.", get: "Jednou za měsíc přehled návštěv a poptávek" },
+      ]} />
+      <script src="/assets/js/zigzag.js" defer is:inline></script>
       <div class="btn-row rev">
         <a class="btn btn-swap" href="/kontakt"><span class="lbl"><span>Chci nabídku</span><span>Napi&scaron;te mi</span></span></a>
       </div>
@@ -178,7 +205,7 @@ import Showcase from "../components/Showcase.astro";
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-line" id="otazky">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Na co se pt&aacute;te</h2>
