@@ -245,34 +245,6 @@
     setTimeout(function () { span.remove(); }, 640);
   });
 
-  /* ==================================================================
-     6. Dosvit uvnitř karty jede za kurzorem
-
-     Souřadnice se předávají do vlastních vlastností, samotný dosvit
-     kreslí CSS - tady se jen počítá pozice.
-     ================================================================== */
-  (function () {
-    if (reduced || !window.matchMedia("(pointer: fine)").matches) return;
-
-    var cards = document.querySelectorAll(".panel-glow");
-    if (!cards.length) return;
-
-    cards.forEach(function (card) {
-      var queued = false, mx = 0, my = 0;
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        mx = e.clientX - r.left;
-        my = e.clientY - r.top;
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(function () {
-          card.style.setProperty("--mx", mx + "px");
-          card.style.setProperty("--my", my + "px");
-          queued = false;
-        });
-      }, { passive: true });
-    });
-  })();
 
 
   /* ==================================================================

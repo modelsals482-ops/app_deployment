@@ -53,7 +53,6 @@
 
     layer("<i class='o1'></i><i class='o2'></i><i class='o3'></i><i class='o4'></i>", "orbs");
     if (!reduced) layer("", "grain");
-    if (fine) layer("", "cursor-glow").id = "cursorGlow";
     layer("<i></i>", "progress");
   })();
 
@@ -176,22 +175,6 @@
     document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
   })();
 
-  /* ==================================================================
-     3. Dosvit u kurzoru
-     ================================================================== */
-  (function () {
-    var glow = document.getElementById("cursorGlow");
-    if (!glow) return;
-
-    var gx = window.innerWidth / 2, gy = window.innerHeight / 2;
-    var move = throttled(function () {
-      glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0) translate(-50%,-50%)";
-    });
-
-    document.addEventListener("pointermove", function (e) {
-      gx = e.clientX; gy = e.clientY; move();
-    }, { passive: true });
-  })();
 
   /* ==================================================================
      4. Ukazatel odrolování

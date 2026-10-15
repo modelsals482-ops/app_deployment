@@ -147,29 +147,6 @@
   100% { transform: translate(0, 0); }
 }
 
-/* Dosvit, který jde za kurzorem. Převzato z původního webu; tady je
-   větší a míchá se aditivně, takže projasní, co je pod ním, a nikdy
-   nic nezastíní. */
-#cursorGlow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 3;
-  width: 760px;
-  height: 760px;
-  background: radial-gradient(circle, rgb(91 157 255 / 7%) 0%, rgb(167 139 250 / 3%) 42%, transparent 66%);
-  border-radius: 50%;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  transform: translate3d(50vw, 50vh, 0) translate(-50%, -50%);
-  transition: transform 0.16s ease-out;
-  will-change: transform;
-}
-
-@media (hover: none), (pointer: coarse) {
-  #cursorGlow { display: none; }
-}
-
 /* Obsah nad vrstvami pozadí.
 
    Mobilní menu (.sheet) sem NEPATŘÍ. Selektor `body > .sheet` je
@@ -876,7 +853,6 @@ a.panel.tilt:hover {
   }
 
   .grain { display: none; }
-  #cursorGlow { display: none; }
   .progress i { transform: none; }
   .chat-demo .chat-row .msg { opacity: 1; transform: none; }
   .grad-underline::after { transform: none; }

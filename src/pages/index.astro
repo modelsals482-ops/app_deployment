@@ -138,31 +138,43 @@ import Base from "../layouts/Base.astro";
         <p class="lead">Vyberte, co řešíte. Do nabídky napíšu termín a přesnou cenu, nezávazně a do 48 hodin.</p>
       </div>
       <div class="svc-cards">
-        <article class="panel panel-glow panel-pad svc-card rev">
-          <h3>Weby</h3>
-          <p class="svc-hook">Web, přes který vám zákazníci zavolají a pošlou poptávku.</p>
-          <ul class="svc-list"><li>Návrh, texty a spuštění na vaší doméně</li><li>Rychlý a čitelný na mobilu</li><li>Bez pluginů, které je potřeba aktualizovat</li></ul>
-          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 6-10 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 14&nbsp;900&nbsp;Kč, správa 990&nbsp;Kč/měs</dd></div></dl>
-          <div class="svc-cta"><a class="btn btn-fill" href="/kontakt?sluzba=web">Chci nabídku na web</a><a class="btn-quiet" href="/tvorba-webu">Jak to funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></div>
-        </article>
-        <article class="panel panel-glow panel-pad svc-card rev" data-d="1">
-          <h3>Software na míru</h3>
-          <p class="svc-hook">Jeden přehledný nástroj místo přepisování mezi tabulkami a e-maily.</p>
-          <ul class="svc-list"><li>Administrace a interní nástroje</li><li>Propojení systémů, které spolu dnes nemluví</li><li>Zdrojový kód a účty na vaše jméno</li></ul>
-          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>podle rozsahu, obvykle týdny</dd></div><div><dt>Cena</dt><dd>od 24&nbsp;900&nbsp;Kč</dd></div></dl>
-          <div class="svc-cta"><a class="btn btn-fill" href="/kontakt?sluzba=software">Probrat zadání</a><a class="btn-quiet" href="/vyvoj-softwaru">Jak to funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></div>
-        </article>
-        <article class="panel panel-glow panel-pad svc-card rev" data-d="2">
-          <h3>AI asistenti</h3>
-          <p class="svc-hook">Odpoví zákazníkům a zapíše termíny, i když jste zrovna u práce.</p>
-          <ul class="svc-list"><li>Na WhatsAppu, e-mailu nebo webu, které už máte</li><li>Vždy se představí jako AI</li><li>Měsíční platba, bez závazků</li></ul>
-          <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 5-7 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 2&nbsp;500&nbsp;Kč/měs</dd></div></dl>
-          <div class="svc-cta"><a class="btn btn-fill" href="/kontakt?sluzba=ai">Chci asistenta</a><a class="btn-quiet" href="#ukazka">Vyzkoušet <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></div>
-        </article>
+        <a class="panel panel-pad svc-card rev" href="/tvorba-webu" style="--c: var(--cyan)">
+          <div class="svc-head"><h3>Weby</h3><p class="svc-hook">Web, přes který vám zákazníci zavolají a pošlou poptávku.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Návrh, texty a spuštění na vaší doméně</li><li>Rychlý a čitelný na mobilu</li><li>Bez pluginů, které je potřeba aktualizovat</li></ul>
+            <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 6-10 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 14&nbsp;900&nbsp;Kč, správa 990&nbsp;Kč/měs</dd></div></dl>
+            <span class="svc-more">Jak to funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="1" href="/vyvoj-softwaru" style="--c: var(--blue)">
+          <div class="svc-head"><h3>Software na míru</h3><p class="svc-hook">Jeden přehledný nástroj místo přepisování mezi tabulkami a e-maily.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Administrace a interní nástroje</li><li>Propojení systémů, které spolu dnes nemluví</li><li>Zdrojový kód a účty na vaše jméno</li></ul>
+            <dl class="svc-meta"><div><dt>Spuštění</dt><dd>podle rozsahu, obvykle týdny</dd></div><div><dt>Cena</dt><dd>od 24&nbsp;900&nbsp;Kč</dd></div></dl>
+            <span class="svc-more">Jak to funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="2" href="/ai-asistenti" style="--c: var(--violet)">
+          <div class="svc-head"><h3>AI asistenti</h3><p class="svc-hook">Odpoví zákazníkům a zapíše termíny, i když jste zrovna u práce.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Na WhatsAppu, e-mailu nebo webu, které už máte</li><li>Vždy se představí jako AI</li><li>Měsíční platba, bez závazků</li></ul>
+            <dl class="svc-meta"><div><dt>Spuštění</dt><dd>do 5-7 pracovních dnů</dd></div><div><dt>Cena</dt><dd>od 2&nbsp;500&nbsp;Kč/měs</dd></div></dl>
+            <span class="svc-more">Jak to funguje <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
       </div>
-      <div class="svc-help panel panel-pad rev" data-d="3">
-        <p><b>Nevíte, co z toho potřebujete?</b> Za čtvrt hodiny to spolu vyjasníme, nezávazně.</p>
-        <div class="btn-row"><a class="btn btn-fill" href="/kontakt?sluzba=nevim">Domluvit 15min hovor</a><a class="btn-quiet" href="/cenik">Celý ceník <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></div>
+      <div class="svc-act panel panel-pad rev" data-d="3">
+        <div class="svc-act-copy">
+          <h3>Pošlete poptávku</h3>
+          <p>Klikněte na to, co potřebujete. Do 48 hodin vám pošlu termín a přesnou cenu, nezávazně.</p>
+        </div>
+        <div class="svc-act-btns">
+          <a class="btn btn-svc" style="--c: var(--cyan)" href="/kontakt?sluzba=web">Chci web</a>
+          <a class="btn btn-svc" style="--c: var(--blue)" href="/kontakt?sluzba=software">Chci software</a>
+          <a class="btn btn-svc" style="--c: var(--violet)" href="/kontakt?sluzba=ai">Chci AI asistenta</a>
+          <a class="btn" href="/kontakt?sluzba=nevim">Nevím, poraďte mi</a>
+        </div>
+        <p class="svc-act-alt">Raději hned? Zavolejte <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/cenik">Celý ceník</a></p>
       </div>
       <!-- Tri hotovi asistenti viseli jen na /ai-asistenti, z titulni strany
            na ne nevedla zadna cesta. Radka je zamerne tiche pismo, hlavni
