@@ -134,16 +134,72 @@
   .ap-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ap-tab span { display: none; }
 }
+/* Telefon: okno roste s obsahem (scény nejsou absolutně položené),
+   tok systémů jde shora dolů cikcak, aby se uzly nevešly mimo okraj. */
 @media (max-width: 560px) {
-  .ap-win { min-height: 24rem; }
+  .ap-win { min-height: 33rem; } /* nejvyšší scéna (e-mail) ~506 px, ať se při přepnutí nic pod oknem nehne */
+  .ap-panel { position: relative; inset: auto; padding: 1.1rem; }
   .ap-tab { padding: 0.8rem 0.9rem 0.9rem; }
   .ap-tab b { font-size: 0.86rem; }
+  .ap-note { position: static; margin-top: 0.9rem; }
   .ap-table th:nth-child(3), .ap-table td:nth-child(3) { display: none; }
-  .node { min-width: 7rem; padding: 0.6rem 0.7rem; }
-  .ap-mail { grid-template-columns: 1fr; gap: 0.8rem; align-content: start; }
-  .mail-arrow { width: 2px; height: 1.6rem; justify-self: center; }
+  .ap-cursor { display: none; }
+  .ap-toast, .mail-done { position: static; display: inline-block; margin-top: 1rem; }
+  .ap-flow { height: 17rem; }
+  .wires { display: none; }
+  .node { min-width: 8.5rem; padding: 0.6rem 0.7rem; }
+  .n1 { left: 32%; top: 14%; } .n2 { left: 68%; top: 50%; } .n3 { left: 32%; top: 86%; }
+  .ap.anim .is-on .packet.p1 { animation-name: p1m; } .ap.anim .is-on .packet.p2 { animation-name: p2m; }
+  .ap-mail { grid-template-columns: 1fr; gap: 0.7rem; height: auto; }
+  .mail-arrow { width: 2px; height: 1.4rem; justify-self: center; }
   .mail-arrow::after { top: auto; right: -5px; bottom: -6px; transform: rotate(90deg); }
-  .mail-done { right: 1rem; bottom: 1rem; }
+  .ap-kpis { gap: 0.5rem; }
+  .ap-kpis div { padding: 0.7rem 0.75rem; }
   .ap-kpis b { font-size: 1.2rem; }
-  .ap-chart { top: 9rem; }
+  .ap-chart { position: relative; inset: auto; height: 9rem; margin-top: 1.1rem; }
 }
+@keyframes p1m { 0% { left: 32%; top: 14%; opacity: 1; } 100% { left: 68%; top: 50%; opacity: 1; } }
+@keyframes p2m { 0% { left: 68%; top: 50%; opacity: 1; } 100% { left: 32%; top: 86%; opacity: 1; } }
+
+
+/* "Od problému až do provozu": časová osa místo čísel a textu. Velký
+   název kroku, jedna věta, a co člověk po kroku drží v ruce. */
+.tl { position: relative; display: grid; gap: 0.6rem; margin: 2.2rem 0 0; padding: 0; list-style: none; max-width: 52rem; }
+.tl::before { position: absolute; top: 1.4rem; bottom: 1.4rem; left: 1.35rem; width: 2px; content: ""; background: var(--line-2); }
+.tl-step { position: relative; display: grid; grid-template-columns: 2.7rem minmax(0, 1fr); gap: 1.4rem; padding: 1.2rem 0; }
+.tl-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; font-size: 1rem; font-weight: 800;
+  color: #05070d; background: var(--c); border-radius: 50%; box-shadow: 0 0 0 6px var(--bg); font-variant-numeric: tabular-nums; }
+.tl-step h3 { margin: 0.25rem 0 0; font-size: clamp(1.35rem, 2.4vw, 1.75rem); letter-spacing: -0.03em; line-height: 1.15; }
+.tl-step p { margin: 0.45rem 0 0; max-width: 60ch; font-size: 1rem; line-height: 1.6; color: var(--t2); }
+.tl-step .tl-get { display: inline-block; margin-top: 0.8rem; padding: 0.45rem 0.8rem; font-size: 0.9rem; color: var(--t1);
+  background: var(--card-2); border: 1px solid var(--line-2); border-radius: 10px; }
+.tl-get b { color: var(--c); }
+@media (max-width: 560px) {
+  .tl::before { left: 1.1rem; }
+  .tl-step { grid-template-columns: 2.2rem minmax(0, 1fr); gap: 1rem; }
+  .tl-dot { width: 2.2rem; height: 2.2rem; font-size: 0.9rem; }
+}
+
+/* "Pod kapotou": ASCII schéma pro technicky založené. Zavřené, dokud ho
+   někdo sám neotevře, takže běžného návštěvníka nezahltí. */
+.hood { max-width: 62rem; background: #07070a; border: 1px solid var(--line-2); border-radius: var(--r-card); }
+.hood summary { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; align-items: baseline; padding: 1.2rem 1.4rem; font-size: 1.15rem; font-weight: 700;
+  letter-spacing: -0.02em; cursor: pointer; list-style: none; }
+.hood summary::-webkit-details-marker { display: none; }
+.hood summary:hover .hood-mono { color: var(--cyan); }
+.hood-mono { font-family: var(--mono); color: var(--green); }
+.hood-sub { font-size: 0.88rem; font-weight: 400; color: var(--t3); letter-spacing: 0; }
+.hood[open] summary { border-bottom: 1px solid var(--line); }
+.hood-body { display: grid; gap: 1rem; padding: 1.4rem; }
+.hood-ascii, .hood-term { margin: 0; padding: 1.1rem 1.2rem; overflow-x: auto; font: 0.86rem/1.5 var(--mono); color: var(--t2);
+  background: #0b0b10; border: 1px solid var(--line); border-radius: 12px; }
+.hood-ascii .k1 { color: var(--amber); } .hood-ascii .k2 { color: var(--cyan); } .hood-ascii .k3 { color: var(--violet); }
+.hood-term .pr { color: var(--green); } .hood-term .ok { color: var(--green); } .hood-term .no { color: var(--amber); }
+.hood-term .cur { display: inline-block; width: 0.55em; height: 1.05em; vertical-align: -0.15em; background: var(--t2); animation: blink 1.1s steps(1) infinite; }
+.hood-note { margin: 0; font-size: 0.9rem; color: var(--t3); }
+@media (prefers-reduced-motion: no-preference) {
+  .hood[open] .hood-ascii { animation: hood-in 0.9s steps(14) both; }
+  .hood[open] .hood-term { animation: hood-in 0.6s 0.5s steps(6) both; }
+}
+@keyframes hood-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@media (max-width: 560px) { .hood-ascii, .hood-term { font-size: 0.72rem; } }

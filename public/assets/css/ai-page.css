@@ -327,9 +327,8 @@
    pseudoprvek. */
 .price-card.is-top::after {
   background: var(--grad-live);
-  background-size: 260% 100%;
+  background-size: 100% 100%;
   opacity: 0.9;
-  animation: gradFlow 9s linear infinite;
 }
 
 .price-card.is-top:hover::after { opacity: 1; }
@@ -367,11 +366,10 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   background: var(--grad-live);
-  background-size: 260% 100%;
+  background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradFlow 9s linear infinite;
 }
 
 .price-card .cost span { font-size: 0.85rem; color: var(--t3); }

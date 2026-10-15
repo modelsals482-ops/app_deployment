@@ -216,17 +216,45 @@ import Showcase from "../components/Showcase.astro";
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Od probl&eacute;mu <span class="grad">a&zcaron; do provozu</span></h2>
       </div>
-      <div class="rows">
-        <div class="row rev"><span class="num">01</span><div><h3>Pop&iacute;&scaron;ete probl&eacute;m</h3><p>Nemus&iacute;te v&ecaron;d&ecaron;t, jestli chcete panel, integraci nebo skript. &Rcaron;eknete, co v&aacute;s zdr&zcaron;uje a kde vznikaj&iacute; chyby.</p></div></div>
-        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Kr&aacute;tk&aacute; anal&yacute;za</h3><p>Pod&iacute;v&aacute;me se, co u&zcaron; m&aacute;te a co m&aacute; API. Z toho vyjde návrh rozsahu, cena a termín. Kdy&zcaron; se n&aacute;stroj nevyplat&iacute;, &rcaron;eknu to.</p></div></div>
-        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Prvn&iacute; pou&zcaron;iteln&aacute; verze</h3><p>Nejd&rcaron;&iacute;v to, co odstran&iacute; nejv&ecaron;t&scaron;&iacute; ru&ccaron;n&iacute; pr&aacute;ci. Pou&zcaron;&iacute;v&aacute;te ji d&rcaron;&iacute;v, ne&zcaron; je hotov&eacute; v&scaron;echno ostatn&iacute;.</p></div></div>
-        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>Nasazen&iacute; a p&rcaron;ed&aacute;n&iacute;</h3><p>Zprovozn&iacute;m, za&scaron;kol&iacute;m a p&rcaron;ed&aacute;m p&rcaron;&iacute;stupy. Účty vedu na vaše jméno.</p></div></div>
-        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Provoz</h3><p>M&ecaron;s&iacute;&ccaron;n&iacute; pau&scaron;&aacute;l za to, &zcaron;e to b&ecaron;&zcaron;&iacute;, aktualizuje se a m&aacute;te komu napsat.</p></div></div>
-      </div>
+      <ol class="tl">
+        <li class="tl-step rev" style="--c: var(--cyan)"><span class="tl-dot" aria-hidden="true">1</span><div><h3>Popíšete, co vás zdržuje</h3><p>Nemusíte vědět, jestli chcete panel, propojení nebo skript. Stačí říct, kde ztrácíte čas a kde vznikají chyby.</p><p class="tl-get"><b>Dostanete:</b> Nezávazný hovor na čtvrt hodiny</p></div></li>
+        <li class="tl-step rev" data-d="1" style="--c: var(--blue)"><span class="tl-dot" aria-hidden="true">2</span><div><h3>Krátká analýza</h3><p>Podívám se, co už máte a co vaše systémy umí. Když se nástroj nevyplatí, řeknu to na rovinu.</p><p class="tl-get"><b>Dostanete:</b> Návrh rozsahu, cenu a termín, zdarma</p></div></li>
+        <li class="tl-step rev" data-d="2" style="--c: var(--violet)"><span class="tl-dot" aria-hidden="true">3</span><div><h3>První použitelná verze</h3><p>Nejdřív to, co ubere nejvíc ruční práce. Používáte ji dřív, než je hotové všechno ostatní.</p><p class="tl-get"><b>Dostanete:</b> Fungující nástroj na odkazu</p></div></li>
+        <li class="tl-step rev" data-d="3" style="--c: var(--green)"><span class="tl-dot" aria-hidden="true">4</span><div><h3>Nasazení a předání</h3><p>Zprovozním, zaškolím vás a předám všechny přístupy.</p><p class="tl-get"><b>Dostanete:</b> Kód, účty a dokumentaci na vaše jméno</p></div></li>
+        <li class="tl-step rev" data-d="4" style="--c: var(--amber)"><span class="tl-dot" aria-hidden="true">5</span><div><h3>Provoz</h3><p>Měsíční paušál za to, že to běží, aktualizuje se a máte komu napsat.</p><p class="tl-get"><b>Dostanete:</b> Odpověď do 48 hodin v pracovní dny</p></div></li>
+      </ol>
       <div class="btn-row rev">
         <a class="btn btn-swap" href="/kontakt"><span class="lbl"><span>Pop&iacute;&scaron;u probl&eacute;m</span><span>Napi&scaron;te mi</span></span></a>
       </div>
       <p class="lead" style="margin-top:2.5rem">Co neberu: mobiln&iacute; aplikace do App Storu, syst&eacute;my pro stovky tis&iacute;c u&zcaron;ivatel&uring; a p&rcaron;evzet&iacute; ciz&iacute;ho projektu bez dokumentace. &Rcaron;eknu to hned na za&ccaron;&aacute;tku, ne po m&ecaron;s&iacute;ci.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="pod-kapotou">
+    <div class="wrap">
+      <details class="hood">
+        <summary><span class="hood-mono">&gt;_</span> Pod kapotou <span class="hood-sub">pro technicky založené: jak běží katalog We Love Events</span></summary>
+        <div class="hood-body">
+          <pre class="hood-ascii" role="img" aria-label="Schéma: zákazník a obsluha přes Cloudflare na server v EU s API, administrací a databází Postgres, denní záloha">  zákazník ──<span class="k3">https</span>──▶ ┌──────────────┐
+                      │  <span class="k1">Cloudflare</span>  │  firewall: server přijme jen <span class="k1">Cloudflare</span>
+  obsluha ───<span class="k3">https</span>──▶ │  + Access    │  admin jen pro pozvané e-maily
+                      └──────┬───────┘
+                             ▼
+              ┌──────── server v EU (<span class="k2">Docker</span>) ────────┐
+              │  API katalogu ── <span class="k2">Node.js</span>             │
+              │  administrace ── audit každé změny   │
+              │  databáze ────── <span class="k2">Postgres</span>            │
+              └─────────────┬────────────────────────┘
+                            ▼
+                  záloha databáze každý den ve <span class="k3">3:00</span></pre>
+          <pre class="hood-term" aria-label="Ukázka ověření z terminálu"><span class="pr">$</span> curl -s https://wle-catalog.alsflow.cz/healthz
+<span class="ok">200 OK</span>
+<span class="pr">$</span> curl -s -o /dev/null -w "%&#123;http_code&#125;" https://&lt;ip-serveru&gt;/admin/
+<span class="no">000  (spojení mimo Cloudflare server nepřijme)</span>
+<span class="pr">$</span> <span class="cur" aria-hidden="true"></span></pre>
+          <p class="hood-note">Zdrojový kód, účty i dokumentace jsou vždycky na jméno klienta.</p>
+        </div>
+      </details>
     </div>
   </section>
 

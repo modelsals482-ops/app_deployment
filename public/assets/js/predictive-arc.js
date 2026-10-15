@@ -147,9 +147,14 @@
   /* ------------------------------------------------------------------
      Snímek
      ------------------------------------------------------------------ */
-  var t0 = 0;
+  var t0 = 0, last = 0;
 
   function frame(now) {
+    /* Oblouk se hýbe pomalu, 30 snímků za vteřinu stačí. Tenhle skript
+       běží právě na slabších strojích (stupeň "snizeny"), plná frekvence
+       tam brala čtvrtinu hlavního vlákna i v klidu (měřeno 15. 10. 2026). */
+    if (now - last < 33) { rafId = requestAnimationFrame(frame); return; }
+    last = now;
     if (!t0) t0 = now;
     var time = (now - t0) / 1000;
 

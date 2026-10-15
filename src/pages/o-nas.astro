@@ -55,7 +55,8 @@ import Base from "../layouts/Base.astro";
 <div class="isl-bg" aria-hidden="true"></div>
 <main class="islands">
   <section class="hero-plain">
-    <div class="wrap">
+    <div class="wrap isl rev slide-l">
+      <span class="isl-bub" style="--bc: var(--cyan); bottom:-1.4rem; right:2.5rem">Odpovím do 48 hodin</span>
       <h1 class="h-hero fade-head reveal-words">Jakub Ryvola</h1>
       <p class="lead">Zakladatel ALSflow, ne agentura. Malá firma potřebuje stejné nástroje jako velká, jen bez IT oddělení a bez smlouvy na tři roky. Proto <strong>všechno nastavuji osobně a jsem k zastižení, když něco potřebujete.</strong></p>
       <div class="btn-row">
@@ -66,7 +67,8 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec">
-    <div class="wrap">
+    <div class="wrap isl rev slide-r">
+      <span class="isl-bub" style="--bc: var(--violet); top:-1.8rem; left:2.5rem">Začalo to AI asistenty</span>
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Jak to <span class="grad">začalo</span></h2>
         <p class="lead">S&aacute;m jsem vid&ecaron;l, jak majitel&eacute; mal&yacute;ch provoz&uring; tr&aacute;v&iacute; hodiny denn&ecaron; odpov&iacute;d&aacute;n&iacute;m na ty sam&eacute; zpr&aacute;vy. Z&aacute;kazn&iacute;k se pt&aacute; na cenu, na voln&yacute; term&iacute;n, na to, kde zaparkovat. Vy jste p&rcaron;itom u pr&aacute;ce, kv&uring;li kter&eacute; za v&aacute;mi lid&eacute; chod&iacute;.</p>
@@ -76,7 +78,8 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec">
-    <div class="wrap">
+    <div class="wrap isl rev slide-l">
+      <span class="isl-bub" style="--bc: var(--green); top:-1.6rem; right:3rem">Bez závazků</span>
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Nejdražší je <span class="grad">ztracený čas</span></h2>
         <p class="lead">Odpovídání na pořád stejné zprávy, přepisování do tabulek, web, který dva roky nikdo neaktualizoval. To všechno jde vyřešit tak, aby vám zbyl čas na práci, kterou děláte rádi.</p>
@@ -103,7 +106,8 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec scene-host">
-    <div class="wrap">
+    <div class="wrap isl rev slide-r">
+      <span class="isl-bub" style="--bc: var(--blue); top:-1.8rem; left:3rem">Tři řemesla, jeden člověk</span>
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Weby, software a <span class="grad">AI asistenti</span></h2>
         <p class="lead">Začalo to AI asistenty. Postupně mě ale začalo naplňovat stavět weby, které fungují a na které je radost se dívat. A protože spolu všechno souvisí, přibyl i software: kdo stavěl web, ví, jak k němu připojit další nástroj.</p>
@@ -133,7 +137,8 @@ import Base from "../layouts/Base.astro";
   </section>
 
   <section class="sec">
-    <div class="wrap">
+    <div class="wrap isl rev slide-l">
+      <span class="isl-bub" style="--bc: var(--amber); top:-1.6rem; right:2.5rem">15 minut, nezávazně</span>
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">D&aacute; se to <span class="grad">nez&aacute;vazn&ecaron; probrat</span></h2>
         <p class="lead">Patn&aacute;ct minut. &Rcaron;eknete, co v&aacute;s nejv&iacute;c zdr&zcaron;uje, a j&aacute; &rcaron;eknu, jestli s t&iacute;m um&iacute;m pomoct. &Zcaron;&aacute;dn&yacute; tlak, &zcaron;&aacute;dn&aacute; technika.</p>
@@ -158,7 +163,7 @@ import Base from "../layouts/Base.astro";
   .islands { position: relative; z-index: 1; padding: 7.5rem 0 3rem; }
   .islands > section { margin: 0 0 clamp(2.2rem, 6vw, 4.5rem); padding: 0 !important; background: none !important; }
   .islands > section::before, .islands > section::after { display: none !important; }
-  .islands > section > .wrap { max-width: min(1060px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1.8rem, 4.5vw, 3.6rem);
+  .islands > section > .wrap { position: relative; max-width: min(1060px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(1.8rem, 4.5vw, 3.6rem);
     background: rgb(11 11 14 / 95%); border: 1px solid var(--line-2); border-radius: 32px;
     box-shadow: 0 40px 90px rgb(0 0 0 / 62%), 0 2px 0 rgb(255 255 255 / 4%) inset; }
   .islands .sec-head { margin-bottom: 0; }
@@ -170,13 +175,27 @@ import Base from "../layouts/Base.astro";
   .isl-more { margin-top: auto; padding-top: 1rem; font-size: 0.9rem; font-weight: 600; color: var(--c); }
   .isl-not { background: none; border-style: dashed; }
   .isl-not h3 { color: var(--t2); }
+  /* Ostrov přiletí ze své strany (jako projekty v referencích) a bublina
+     s faktem na jeho hraně jednou vyskočí. Žádná smyčka. */
+  .isl-bub { position: absolute; z-index: 2; padding: 0.7rem 1.05rem; font-size: 0.9rem; font-weight: 700; color: #05070d; background: var(--bc);
+    border-radius: 999px; box-shadow: 0 16px 36px rgb(0 0 0 / 55%); transform: scale(0.6) rotate(-6deg); opacity: 0;
+    transition: transform 0.7s 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s 0.55s; }
+  .isl.in .isl-bub { transform: rotate(-3deg); opacity: 1; }
+  .isl.slide-r.in .isl-bub { transform: rotate(3deg); }
+  .islands .rev.slide-l { transform: translate3d(-14vw, 0, 0) rotate(-3deg); transition-duration: 0.9s, 1.3s, 0.9s; }
+  .islands .rev.slide-l.in { transform: none; }
+  .islands .rev.slide-r { transform: translate3d(14vw, 0, 0) rotate(3deg); transition-duration: 0.9s, 1.3s, 0.9s; }
+  .islands .rev.slide-r.in { transform: none; }
+  [data-vykon="minimalni"] .isl-bub { transform: none; opacity: 1; transition: none; }
+  @media (prefers-reduced-motion: reduce) { .isl-bub { transform: none; opacity: 1; transition: none; } }
   @media (min-width: 1100px) {
-    .islands > section:nth-of-type(odd) > .wrap { transform: translateX(-4vw); }
-    .islands > section:nth-of-type(even) > .wrap { transform: translateX(4vw); }
+    .islands > section:nth-of-type(odd) > .wrap.in { transform: translateX(-4vw); }
+    .islands > section:nth-of-type(even) > .wrap.in { transform: translateX(4vw); }
     .islands > section:nth-of-type(2) > .wrap, .islands > section:nth-of-type(5) > .wrap { max-width: 880px; }
   }
   @media (max-width: 560px) {
     .islands > section > .wrap { border-radius: 24px; }
+    .isl-bub { font-size: 0.8rem; padding: 0.55rem 0.85rem; }
   }
 </style>
 </Base>

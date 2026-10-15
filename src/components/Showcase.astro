@@ -16,12 +16,13 @@ interface Props {
   phone?: Shot;
   bubbles?: Bubble[];
   dark?: boolean;
+  rect?: boolean;
 }
-const { id, side, title, who, color, main, second, phone, bubbles = [], dark = false } = Astro.props;
+const { id, side, title, who, color, main, second, phone, bubbles = [], dark = false, rect = false } = Astro.props;
 const from = side === "l" ? "from-l" : "from-r";
 const back = side === "l" ? "from-r" : "from-l";
 ---
-<section class:list={["sec", "proj", `proj--${side}`, { "sec-dark": dark }]} id={id} style={`--c: var(--${color})`}>
+<section class:list={["sec", "proj", `proj--${side}`, { "sec-dark": dark, "proj--rect": rect }]} id={id} style={`--c: var(--${color})`}>
   <div class="wrap proj-grid">
     <div class={`proj-media rev ${from}`}>
       <figure class="pm pm-main">

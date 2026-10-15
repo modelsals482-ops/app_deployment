@@ -46,9 +46,14 @@
 .bub { position: absolute; z-index: 4; display: grid; place-items: center; width: var(--s); aspect-ratio: 1; padding: 0.9rem;
   font-size: 0.86rem; font-weight: 700; line-height: 1.2; color: #05070d; text-align: center; letter-spacing: -0.01em;
   background: var(--bc); border-radius: 50%; box-shadow: 0 18px 44px rgb(0 0 0 / 50%);
-  animation: bob 7s ease-in-out infinite; animation-delay: calc(var(--i) * -2.1s); }
+  transform: scale(0.6) rotate(-8deg); opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s; transition-delay: calc(0.5s + var(--i) * 0.12s); }
+/* Bubliny jednou "vyskočí", když sekce přiletí, a pak stojí. Dřív se
+   vznášely pořád dokola a to stálo víc výkonu než všechno ostatní. */
+.proj-media.in .bub { transform: none; opacity: 1; }
+/* Varianta: obdélníky ve tvaru tlačítek (zkouška na GEN, 15. 10.). */
+.proj--rect .bub { width: auto; max-width: 13rem; aspect-ratio: auto; padding: 0.75rem 1.05rem; font-size: 0.9rem; text-align: left; border-radius: 11px; }
 .bub--ghost { color: var(--t1); background: rgb(12 12 16 / 88%); border: 1px solid var(--bc); }
-@keyframes bob { 50% { transform: translateY(-10px) rotate(3deg); } }
 
 /* Příchod ze strany. Minimální stupeň a omezený pohyb to vypnou přes
    pravidla pro .rev v site-pages.css. */
@@ -57,6 +62,12 @@
 .proj .rev.from-l.in, .proj .rev.from-r.in { transform: none; }
 .proj .rev { transition-duration: 0.9s, 1.3s, 0.9s; }
 
+/* Velký nadpis stránky přiletí zleva stejně jako projekty. */
+.rev.slide-l { transform: translate3d(-14vw, 0, 0) rotate(-3deg); transition-duration: 0.9s, 1.3s, 0.9s; }
+.rev.slide-l.in { transform: none; }
+.ref-hero .h-hero { max-width: 12ch; font-size: clamp(2.5rem, 8.6vw, 7rem); line-height: 1; }
+.ref-hero .lead { max-width: 46ch; }
+
 @media (max-width: 980px) {
   .proj-grid { grid-template-columns: 1fr; gap: 2.4rem; }
   .proj--l .proj-media, .proj--r .proj-media, .proj--l .proj-copy, .proj--r .proj-copy { grid-column: 1; grid-row: auto; margin-top: 0; }
@@ -64,12 +75,16 @@
   .bub { --s: 6.4rem !important; font-size: 0.74rem; padding: 0.6rem; }
 }
 @media (max-width: 560px) {
+  .ref-hero { padding: 6.5rem 0 1.5rem; }
+  .proj-copy .h-sec { font-size: 1.85rem; }
+  .proj-copy > p:not(.proj-who) { font-size: 0.95rem; }
+  .proj-grid { gap: 1.6rem; }
   .proj-media { aspect-ratio: 16 / 15; }
   .pm-second { width: 66%; top: 44%; }
   .pm-phone { width: 26%; }
   .bub:nth-of-type(n+3) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bub { animation: none; }
+  .bub { transform: none; opacity: 1; transition: none; }
 }
-[data-vykon="minimalni"] .bub { animation: none; }
+[data-vykon="minimalni"] .bub { transform: none; opacity: 1; transition: none; }

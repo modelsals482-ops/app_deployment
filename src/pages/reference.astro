@@ -24,17 +24,19 @@ import Showcase from "../components/Showcase.astro";
   <link rel="stylesheet" href="/assets/css/showcase.css" />
   </Fragment>
 
-  <section class="hero hero-plain">
+  <section class="hero hero-plain ref-hero">
     <canvas class="scene scene-wide" data-scene="dotmatrix" aria-hidden="true"></canvas>
     <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap">
-      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Moje <span class="grad">reference</span></h1>
+      <div class="rev slide-l">
+      <h1 class="h-hero fade-head reveal-words">Moje <span class="grad">reference</span></h1>
       <p class="lead">V&scaron;echno n&iacute;&zcaron;e je &zcaron;iv&eacute; a d&aacute; se na to prokliknout. U ka&zcaron;d&eacute; polo&zcaron;ky p&iacute;&scaron;u,
         co p&rcaron;esn&ecaron; bylo moje a co ne, v&ccaron;etn&ecaron; toho, kde jsem d&ecaron;lal jen &ccaron;&aacute;st.</p>
+      </div>
     </div>
   </section>
 
-  <Showcase id="gen" side="l" color="violet" title="gen1.cz" who="Politické hnutí · Praha 1"
+  <Showcase id="gen" side="l" color="violet" rect title="gen1.cz" who="Politické hnutí · Praha 1"
     main={{ src: "/assets/ref/gen1-desktop.jpg", alt: "Úvodní stránka webu gen1.cz", label: "gen1.cz", w: 1080, h: 675 }}
     second={{ src: "/assets/ref/gen1-kandidati.webp", alt: "Stránka s kandidáty na gen1.cz", label: "gen1.cz/kandidati" }}
     phone={{ src: "/assets/ref/gen1-m.webp", alt: "gen1.cz na mobilu" }}
