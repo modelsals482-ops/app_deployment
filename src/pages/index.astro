@@ -77,8 +77,25 @@ import Base from "../layouts/Base.astro";
   <section class="hero">
     <div class="hero-stage">
       <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+      <canvas id="arc3d" aria-hidden="true"></canvas>
     </div>
     <div class="wrap">
+      <!-- Koláž skutečných webů vpravo, svítící prstence za ní. Celá je
+           odkaz do referencí. Pod 1100 px se schová, text má přednost. -->
+      <a class="hero-collage" href="/reference" aria-label="Ukázky mé práce v referencích">
+        <figure class="pm pm-main" style="--i: 0">
+          <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>gen1.cz</b></span>
+          <img src="/assets/ref/gen1-program.webp" alt="" width="1200" height="750" decoding="async" fetchpriority="high" />
+        </figure>
+        <figure class="pm pm-second" style="--i: 1">
+          <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>znalecsekelova.sk</b></span>
+          <img src="/assets/ref/sek-sluzby.webp" alt="" width="1200" height="750" decoding="async" />
+        </figure>
+        <figure class="pm pm-phone" style="--i: 2">
+          <img src="/assets/ref/sek-m.webp" alt="" width="360" height="779" decoding="async" />
+        </figure>
+        <span class="hc-tag" style="--i: 3">Moje reference &rarr;</span>
+      </a>
       <div class="hero-copy hero-copy--wide">
         <h1 class="h-hero fade-head reveal-words">Víc poptávek, <span class="grad">méně</span> ruční práce</h1>
         <p class="lead">Postavím vám web, software na míru nebo AI asistenta. Osobně, s&nbsp;cenou předem a s&nbsp;přehledem v&nbsp;číslech každý měsíc, ať vidíte, co vám to přináší.</p>
@@ -320,6 +337,9 @@ import Base from "../layouts/Base.astro";
 
   
   <Fragment slot="tail">
+  <!-- Svítící prstence: vlastní WebGL bez knihovny (24 kB). V minimálním
+       stupni skript sám skončí. -->
+  <script src="/assets/js/arc3d.js" defer></script>
   <script src="/assets/js/home.js" defer></script>
   </Fragment>
 

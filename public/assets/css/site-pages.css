@@ -456,6 +456,7 @@ a:hover > .arrow { transform: translateX(3px); }
 .hero-copy { position: relative; z-index: 2; max-width: 40rem; }
 
 .hero-stage { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+#arc3d { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
 
 #arcCanvas { z-index: 0; }
 /* Když se rozjede prostorová varianta, plošná se schová. */
@@ -1002,7 +1003,6 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
    ===================================================================== */
 
 /* ---- snížený: bez 3D scén, zbytek zůstává ---- */
-[data-vykon="snizeny"] .scene { display: none; }
 /* Aurora je několik velkých rozmazaných kruhů. Rozmazání je na slabé GPU
    drahé pořád, i když se nehýbe, proto se místo něj dá plochá barva. */
 [data-vykon="snizeny"] .aurora { filter: none; opacity: 0.5; }

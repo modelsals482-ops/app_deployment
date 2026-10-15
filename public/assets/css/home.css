@@ -153,3 +153,27 @@ a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
 .small-note a, #co-delame p a, .faq p a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
 .small-note a:hover, #co-delame p a:hover, .faq p a:hover { color: var(--blue); }
 .report-note { padding-top: 0.9rem; border-top: 1px solid var(--line); }
+
+/* ---- Koláž webů v hlavičce (15. 10.) --------------------------------
+   Používá rámečky .pm ze showcase.css. Přijede jednou zprava, až zmizí
+   loader; posun jde přes `translate`, takže otočení v `transform` zůstane.
+   fill-mode backwards: po dojetí se vrátí řízení CSS a funguje hover. */
+.hero > .wrap { position: relative; z-index: 2; }
+.hero-collage { display: none; }
+@media (min-width: 1100px) {
+  .hero-copy--wide { max-width: 38rem; }
+  .hero-collage { position: absolute; top: 50%; right: -1.5rem; display: block; width: min(44vw, 640px); aspect-ratio: 16 / 12.5; margin-top: -2rem; transform: translateY(-50%); }
+  .hero-collage .pm { animation: hc-in 1.1s calc(0.2s + var(--i) * 0.14s) cubic-bezier(0.16, 1, 0.3, 1) backwards; transition: translate 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .hero-collage .pm-main { right: 0; }
+  .hero-collage .pm-second { top: 44%; left: 0; }
+  .hero-collage .pm-phone { right: 4%; bottom: -6%; width: 19%; }
+  .hero-collage:hover .pm-main { translate: 10px -8px; }
+  .hero-collage:hover .pm-second { translate: -12px 6px; }
+  .hero-collage:hover .pm-phone { translate: 6px 10px; }
+  .hc-tag { position: absolute; top: 34%; left: 6%; z-index: 4; padding: 0.7rem 1.05rem; font-size: 0.9rem; font-weight: 700; color: #05070d; background: var(--cyan);
+    border-radius: 11px; box-shadow: 0 16px 36px rgb(0 0 0 / 55%); rotate: -3deg; animation: hc-pop 0.6s calc(0.9s + var(--i) * 0.1s) cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+  html.als-loading .hero-collage .pm, html.als-loading .hc-tag { animation-play-state: paused; }
+}
+@keyframes hc-in { from { opacity: 0; translate: 14vw 0; } }
+@keyframes hc-pop { from { opacity: 0; scale: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .hero-collage .pm, .hc-tag { animation: none; } }

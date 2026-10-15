@@ -25,6 +25,7 @@ import Showcase from "../components/Showcase.astro";
   </Fragment>
 
   <section class="hero hero-plain ref-hero">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
     <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
     <div class="wrap ref-hero-in">
       <h1 class="h-hero fade-head">Moje <span class="grad">reference</span></h1>
@@ -162,4 +163,5 @@ import Showcase from "../components/Showcase.astro";
     });
   </script>
   </Fragment>
+<script src="/assets/js/dotwave.js" defer is:inline></script>
 </Base>
