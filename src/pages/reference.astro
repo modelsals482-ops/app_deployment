@@ -62,7 +62,21 @@ import Showcase from "../components/Showcase.astro";
     <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Otevřít znalecsekelova.sk</a></div>
   </Showcase>
 
-  <Showcase id="software" side="l" color="blue" dark title="We Love Events" who="Rental techniky · event agentura, Praha"
+  <Showcase id="thdata" side="l" color="green" title="TH.data a.s." who="Účetní a daňová kancelář · Praha 2"
+    main={{ src: "/assets/ref/th-home.webp", alt: "Úvodní stránka webu thdata.cz", label: "thdata.cz" }}
+    second={{ src: "/assets/ref/th-cenik.webp", alt: "Stránka Ceník na thdata.cz", label: "thdata.cz/cenik" }}
+    phone={{ src: "/assets/ref/th-m.webp", alt: "thdata.cz na mobilu" }}
+    bubbles={[
+      { text: "Česky, anglicky, rusky", c: "green", at: "top:-6%; right:12%" },
+      { text: "Veřejný ceník", c: "cyan", at: "top:34%; left:-3%" },
+      { text: "Pošta beze změny", c: "green", at: "bottom:4%; left:32%", ghost: true }
+    ]}>
+    <p>Šest stránek ve třech jazycích pro účetní a daňovou kancelář: služby, veřejný ceník, rychlá konzultace a kontakty. Při přechodu na nový hosting zůstala firemní pošta úplně beze změny.</p>
+    <p class="ref-mine"><b>Moje:</b> celý web, od návrhu po spuštění, včetně přesunu na nový hosting.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://thdata.cz" target="_blank" rel="noopener">Otevřít thdata.cz</a></div>
+  </Showcase>
+
+  <Showcase id="software" side="r" color="blue" dark title="We Love Events" who="Rental techniky · event agentura, Praha"
     main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky We Love Events", label: "weloveproduction.cz/rental" }}
     second={{ src: "/assets/ref/wle-cat.webp", alt: "Kategorie Reproduktory v katalogu rentalu", label: "rental/zvuk/reproduktory" }}
     bubbles={[
@@ -76,7 +90,7 @@ import Showcase from "../components/Showcase.astro";
     <span class="proj-pill">Veřejně brzy</span>
   </Showcase>
 
-  <Showcase id="alsflow" side="r" color="cyan" title="Klára" who="AI asistentka přímo na tomhle webu"
+  <Showcase id="alsflow" side="l" color="cyan" title="Klára" who="AI asistentka přímo na tomhle webu"
     main={{ src: "/assets/ref/als-home.webp", alt: "Úvodní stránka alsflow.cz s Klárou v rohu", label: "alsflow.cz" }}
     bubbles={[
       { text: "Představí se jako AI", c: "cyan", at: "top:-6%; left:10%" },
