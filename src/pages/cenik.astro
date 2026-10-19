@@ -4,14 +4,14 @@ import Base from "../layouts/Base.astro";
 /* Ceny na jednom místě: stránka, kalkulačka i data pro Google je čtou odsud.
    Změna ceny = změna tady, nikde jinde na téhle stránce. */
 const P = {
-  web1: 14900, web8: 24900, webX: 34900, sprava: 990,
+  web1: 14900, web8: 24900, webX: 34900, provoz: 990, sprava: 1990,
   sw: 24900, mail: 2500, book: 4500, feed: 2500, bundle: 7500,
 };
 const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
 ---
 <Base
   title="Ceník: weby, software a AI asistenti | ALSflow"
-  description={`Kolik co stojí a co je v paušálu. Web od ${kc(P.web1)} Kč, správa ${kc(P.sprava)} Kč měsíčně, software od ${kc(P.sw)} Kč, AI asistenti od ${kc(P.mail)} Kč měsíčně. Bez závazku.`}
+  description={`Kolik co stojí a co je v paušálu. Web od ${kc(P.web1)} Kč, provoz webu od ${kc(P.provoz)} Kč měsíčně, software od ${kc(P.sw)} Kč, AI asistenti od ${kc(P.mail)} Kč měsíčně. Bez závazku.`}
   canonical="https://alsflow.cz/cenik"
   current="/cenik"
 >
@@ -33,7 +33,8 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
       "itemListElement": [
         { "@type": "Offer", "name": "Jednostránkový web", "priceCurrency": "CZK", "price": String(P.web1), "url": "https://alsflow.cz/tvorba-webu" },
         { "@type": "Offer", "name": "Prezentační web do osmi stránek", "priceCurrency": "CZK", "price": String(P.web8), "url": "https://alsflow.cz/tvorba-webu" },
-        { "@type": "Offer", "name": "Měsíční správa webu", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Provoz webu (měsíčně)", "priceCurrency": "CZK", "price": String(P.provoz), "url": "https://alsflow.cz/cenik#weby" },
+        { "@type": "Offer", "name": "Správa webu (měsíčně)", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/cenik#weby" },
         { "@type": "Offer", "name": "Software na míru", "priceCurrency": "CZK", "price": String(P.sw), "url": "https://alsflow.cz/vyvoj-softwaru" },
         { "@type": "Offer", "name": "E-mailové odpovědi", "priceCurrency": "CZK", "price": String(P.mail), "url": "https://alsflow.cz/e-mailove-odpovedi" },
         { "@type": "Offer", "name": "Rezervace a připomínky", "priceCurrency": "CZK", "price": String(P.book), "url": "https://alsflow.cz/rezervace-pripominky" },
@@ -69,7 +70,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         <p class="lead">Zaškrtněte, co potřebujete. Počítá se rovnou tady v prohlížeči, nic se nikam neodesílá.</p>
       </div>
 
-      <form class="bill" id="calc" novalidate data-sprava={P.sprava} data-bundle={P.bundle}>
+      <form class="bill" id="calc" novalidate data-provoz={P.provoz} data-sprava={P.sprava} data-bundle={P.bundle}>
         <div class="bill-pick">
           <fieldset class="pick rev" style="--c: var(--cyan)">
             <legend>Web</legend>
@@ -77,7 +78,12 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
             <label class="opt"><input type="radio" name="web" value={P.web1} data-name="Web, jednostránkový" /><span>Jednostránkový</span><b>{kc(P.web1)}</b></label>
             <label class="opt"><input type="radio" name="web" value={P.web8} data-name="Web, prezentační do 8 stránek" /><span>Prezentační do 8 stránek</span><b>{kc(P.web8)}</b></label>
             <label class="opt"><input type="radio" name="web" value={P.webX} data-name="Web na míru, od" /><span>Větší, od</span><b>{kc(P.webX)}</b></label>
-            <label class="opt opt-sub" data-needs-web><input type="checkbox" id="sprava" data-name="Měsíční správa webu" /><span>Měsíční správa</span><b>{kc(P.sprava)}/měs</b></label>
+            <div class="care-opts" data-needs-web>
+              <p class="care-h">Po spuštění měsíčně</p>
+              <label class="opt opt-sub"><input type="radio" name="care" value="0" data-name="" checked /><span>Nic měsíčně</span></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.provoz} data-name="Provoz webu" /><span>Provoz: běží a opravy</span><b>{kc(P.provoz)}/měs</b></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.sprava} data-name="Správa webu" /><span>Správa: provoz i změny</span><b>{kc(P.sprava)}/měs</b></label>
+            </div>
           </fieldset>
 
           <fieldset class="pick rev" data-d="1" style="--c: var(--violet)">
@@ -143,15 +149,22 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
           </div>
         </li>
         <li class="cas cas-care rev" data-d="3" style="--c: var(--amber); --i: 3">
-          <div>
-            <h3>Měsíční správa webu</h3>
-            <p class="tier-price"><b>{kc(P.sprava)}&nbsp;Kč</b> měsíčně, bez závazku</p>
-            <p>Drobné úpravy textů, cen a kontaktů do dvou pracovních dnů, zhruba do půl hodiny práce měsíčně.
-              Větší změny nacením předem.</p>
+          <div class="care-plan">
+            <h3>Provoz webu</h3>
+            <p class="tier-price"><b>{kc(P.provoz)}&nbsp;Kč</b> měsíčně, bez závazku</p>
+            <p>Web běží a je v bezpečí. Když se něco rozbije, opravím to. Nové věci a změny obsahu nacením předem.</p>
+            <ul class="care-tags" aria-label="V provozu je">
+              <li>Hosting</li><li>Doména</li><li>SSL certifikát</li><li>Ochrana formulářů proti botům</li><li>Hlídání dostupnosti</li><li>Měsíční přehled</li>
+            </ul>
           </div>
-          <ul class="care-tags" aria-label="Ve správě je">
-            <li>Hosting</li><li>Doména</li><li>Certifikát</li><li>Úpravy do 2 dnů</li><li>Měsíční přehled</li>
-          </ul>
+          <div class="care-plan">
+            <h3>Správa webu</h3>
+            <p class="tier-price"><b>{kc(P.sprava)}&nbsp;Kč</b> měsíčně, bez závazku</p>
+            <p>Všechno z provozu a k tomu změny: texty, ceny, fotky, otevírací hodiny i drobné novinky, zhruba do hodiny práce měsíčně.</p>
+            <ul class="care-tags" aria-label="Ve správě je">
+              <li>Vše z provozu</li><li>Změny do 2 pracovních dnů</li><li>Do hodiny práce měsíčně</li>
+            </ul>
+          </div>
         </li>
       </ol>
     </div>
@@ -241,6 +254,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
       </div>
       <div class="faq">
         <details class="rev"><summary>Je v cenách DPH?</summary><p>DPH se k cenám nepřipočítává, protože nejsem plátce DPH. Weby, software i asistenty fakturuji jako Jakub Ryvola, IČO 30112702. Cena na nabídce je i cena na faktuře.</p></details>
+        <details class="rev"><summary>Jaký je rozdíl mezi provozem a správou webu?</summary><p>Provoz ({kc(P.provoz)}&nbsp;Kč měsíčně) drží web v chodu: hosting, doménu, certifikát, ochranu formulářů a opravy, když se něco rozbije. Nové věci a změny obsahu se u něj platí zvlášť, cenu řeknu předem. Správa ({kc(P.sprava)}&nbsp;Kč měsíčně) k tomu přidává změny textů, cen, fotek a drobné novinky zhruba do hodiny práce měsíčně, hotové do dvou pracovních dnů.</p></details>
         <details class="rev" data-d="1"><summary>Co když si v průběhu vymyslím něco navíc?</summary><p>Řeknu cenu té změny předem a vy se rozhodnete, jestli ji chcete.</p></details>
         <details class="rev" data-d="2"><summary>Co je jednorázové nastavení asistenta?</summary><p>Napojení na vaše nástroje, naučení vašeho tónu, nastavení odpovědí a otestování. Dělám to za vás, asistent jede do 5 až 7 pracovních dnů. Platí se jednou, na začátku.</p></details>
         <details class="rev" data-d="3"><summary>Musím se zavázat na dobu určitou?</summary><p>Ne. Měsíčně, bez smlouvy na dobu určitou, zrušit kdykoli.</p></details>
@@ -293,8 +307,10 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
       .opt span { flex: 1; font-size: 0.97rem; }
       .opt b { font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--t2); white-space: nowrap; }
       .opt:has(input:checked) b { color: var(--c); }
-      .opt-sub { margin-left: 1.6rem; opacity: 0.4; pointer-events: none; }
-      .opt-sub.is-on { opacity: 1; pointer-events: auto; }
+      .care-opts { display: grid; gap: 0.25rem; margin: 0.6rem 0 0 1.6rem; opacity: 0.4; pointer-events: none; transition: opacity 0.2s; }
+      .care-opts.is-on { opacity: 1; pointer-events: auto; }
+      .care-h { margin: 0 0 0.1rem 0.9rem; font-size: 0.8rem; color: var(--t3); }
+      .care-opts .opt + .opt { margin-top: 0; }
 
       .receipt { position: sticky; top: 6.5rem; padding: 1.4rem 1.4rem 1.2rem; background: #0d0d11; border: 1px solid var(--line-2); border-radius: var(--r-card);
         box-shadow: 0 26px 60px rgb(0 0 0 / 55%); }
@@ -342,10 +358,11 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         opacity: 0; transition: opacity 0.4s 0.6s, transform 0.6s 0.6s cubic-bezier(0.34, 1.4, 0.64, 1); }
       .art-lang em:nth-of-type(1) { left: 0.6rem; transform: translateY(4px); } .art-lang em:nth-of-type(2) { right: 0.6rem; transform: translateY(4px); }
       .cas.in .art-lang em { opacity: 1; transform: none; }
-      .cas-care { grid-template-columns: 1fr auto; width: min(calc(100% - var(--i) * 9%), 52rem); }
-      .care-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: flex-end; max-width: 17rem; margin: 0; padding: 0; list-style: none; }
+      .cas-care { grid-template-columns: 1fr 1fr; align-items: start; gap: 1.4rem 2rem; width: min(calc(100% - var(--i) * 9%), 58rem); }
+      .care-plan + .care-plan { padding-left: 2rem; border-left: 1px solid var(--line); }
+      .care-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.9rem 0 0; padding: 0; list-style: none; }
       .care-tags li { padding: 0.32rem 0.65rem; font-size: 0.8rem; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 100px; }
-      @media (max-width: 760px) { .cas-care { grid-template-columns: 1fr; } .care-tags { justify-content: flex-start; max-width: none; } }
+      @media (max-width: 760px) { .cas-care { grid-template-columns: 1fr; } .care-plan + .care-plan { padding: 1.4rem 0 0; border-left: 0; border-top: 1px solid var(--line); } }
       [data-vykon="minimalni"] .art-pages i, [data-vykon="minimalni"] .art-lang em { transition: none; }
 
       /* ---------- software: rozpětí ---------- */
@@ -384,8 +401,8 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         var rows = document.getElementById("rows"), empty = document.getElementById("empty");
         var onceEl = document.getElementById("once"), monthEl = document.getElementById("month");
         var onceNote = document.getElementById("onceNote"), send = document.getElementById("send");
-        var spravaWrap = form.querySelector("[data-needs-web]"), sprava = document.getElementById("sprava");
-        var SPRAVA = parseInt(form.dataset.sprava, 10), BUNDLE = parseInt(form.dataset.bundle, 10);
+        var careWrap = form.querySelector("[data-needs-web]");
+        var BUNDLE = parseInt(form.dataset.bundle, 10);
         var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var COL = { web: "var(--cyan)", ai: "var(--violet)", off: "var(--green)", care: "var(--amber)" };
 
@@ -426,14 +443,17 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         function recalc() {
           var webIn = form.querySelector('input[name="web"]:checked');
           var web = parseInt(webIn.value, 10) || 0;
-          spravaWrap.classList.toggle("is-on", web > 0);
-          if (!web) sprava.checked = false;
+          /* Měsíční služba dává smysl jen k webu. Bez webu se skupina zhasne a vrátí na "nic". */
+          careWrap.classList.toggle("is-on", web > 0);
+          if (!web) form.querySelector('input[name="care"][value="0"]').checked = true;
+          var careIn = form.querySelector('input[name="care"]:checked');
+          var care = parseInt(careIn.value, 10) || 0;
 
           var ai = [].slice.call(form.querySelectorAll(".ai:checked"));
           var aiSum = ai.reduce(function (a, i) { return a + parseInt(i.value, 10); }, 0);
           var list = [];
           if (web) list.push({ key: "web", name: webIn.dataset.name, price: fmt(web) + " Kč", col: COL.web });
-          if (sprava.checked) list.push({ key: "sprava", name: sprava.dataset.name, price: fmt(SPRAVA) + " Kč/měs", col: COL.care });
+          if (care) list.push({ key: "care" + care, name: careIn.dataset.name, price: fmt(care) + " Kč/měs", col: COL.care });
           ai.forEach(function (i) { list.push({ key: "ai" + i.dataset.name, name: i.dataset.name, price: fmt(parseInt(i.value, 10)) + " Kč/měs", col: COL.ai }); });
           if (ai.length === 3) {
             list.push({ key: "bundle", name: "Balíček všech tří", price: "−" + fmt(aiSum - BUNDLE) + " Kč/měs", col: COL.off, off: true });
@@ -451,7 +471,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
           if (kind) send.removeAttribute("aria-disabled"); else send.setAttribute("aria-disabled", "true");
 
           animate(onceEl, web);
-          animate(monthEl, aiSum + (sprava.checked ? SPRAVA : 0));
+          animate(monthEl, aiSum + care);
         }
 
         form.addEventListener("change", recalc);
