@@ -31,6 +31,11 @@
     service.value = pre;
     service.dispatchEvent(new Event("change", { bubbles: true }));
   }
+  /* Z kalkulačky v ceníku přijde i sestava ("Web, prezentační..., E-mailové odpovědi").
+     Jen jako začátek zprávy, a jen do prázdného pole; .value je čistý text, žádné HTML. */
+  var sestava = new URLSearchParams(location.search).get("sestava");
+  var msg = document.getElementById("f-msg");
+  if (sestava && msg && !msg.value) msg.value = "Sestava z ceníku: " + sestava.slice(0, 300) + "\n\n";
 
   /* ==================================================================
      Co je vyplněné

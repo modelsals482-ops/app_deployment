@@ -1,13 +1,22 @@
 ---
 import Base from "../layouts/Base.astro";
+
+/* Ceny na jednom místě: stránka, kalkulačka i data pro Google je čtou odsud.
+   Změna ceny = změna tady, nikde jinde na téhle stránce. */
+const P = {
+  web1: 14900, web8: 24900, webX: 34900, sprava: 990,
+  sw: 24900, mail: 2500, book: 4500, feed: 2500, bundle: 7500,
+};
+const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
 ---
 <Base
   title="Ceník: weby, software a AI asistenti | ALSflow"
-  description="Kolik co stojí a co je v paušálu. Web od 14 900 Kč, správa 990 Kč měsíčně, software od 24 900 Kč, AI asistenti od 2 500 Kč měsíčně. Bez závazku."
+  description={`Kolik co stojí a co je v paušálu. Web od ${kc(P.web1)} Kč, správa ${kc(P.sprava)} Kč měsíčně, software od ${kc(P.sw)} Kč, AI asistenti od ${kc(P.mail)} Kč měsíčně. Bez závazku.`}
   canonical="https://alsflow.cz/cenik"
   current="/cenik"
 >
   <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/home.css" />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "OfferCatalog",
@@ -17,24 +26,18 @@ import Base from "../layouts/Base.astro";
         "@type": "Organization",
         "name": "ALSflow",
         "legalName": "Jakub Ryvola",
-  "taxID": "30112702",
+        "taxID": "30112702",
         "url": "https://alsflow.cz",
         "email": "info@alsflow.cz"
       },
       "itemListElement": [
-        { "@type": "Offer", "name": "Jednostránkový web", "priceCurrency": "CZK", "price": "14900",
-          "url": "https://alsflow.cz/tvorba-webu" },
-        { "@type": "Offer", "name": "Prezentační web do osmi stránek", "priceCurrency": "CZK", "price": "24900",
-          "url": "https://alsflow.cz/tvorba-webu" },
-        { "@type": "Offer", "name": "Měsíční správa webu", "priceCurrency": "CZK", "price": "990",
-          "url": "https://alsflow.cz/tvorba-webu" },
-        { "@type": "Offer", "name": "Software na míru", "priceCurrency": "CZK", "price": "24900",
-          "url": "https://alsflow.cz/vyvoj-softwaru" },
-        { "@type": "Offer", "name": "E-mailové odpovědi", "priceCurrency": "CZK", "price": "2500",
-          "url": "https://alsflow.cz/e-mailove-odpovedi" },
-        { "@type": "Offer", "name": "Rezervace a připomínky", "priceCurrency": "CZK", "price": "4500",
-          "url": "https://alsflow.cz/rezervace-pripominky" },
-        { "@type": "Offer", "name": "Zpětná vazba a opakované rezervace", "priceCurrency": "CZK", "price": "2500" }
+        { "@type": "Offer", "name": "Jednostránkový web", "priceCurrency": "CZK", "price": String(P.web1), "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Prezentační web do osmi stránek", "priceCurrency": "CZK", "price": String(P.web8), "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Měsíční správa webu", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/tvorba-webu" },
+        { "@type": "Offer", "name": "Software na míru", "priceCurrency": "CZK", "price": String(P.sw), "url": "https://alsflow.cz/vyvoj-softwaru" },
+        { "@type": "Offer", "name": "E-mailové odpovědi", "priceCurrency": "CZK", "price": String(P.mail), "url": "https://alsflow.cz/e-mailove-odpovedi" },
+        { "@type": "Offer", "name": "Rezervace a připomínky", "priceCurrency": "CZK", "price": String(P.book), "url": "https://alsflow.cz/rezervace-pripominky" },
+        { "@type": "Offer", "name": "Zpětná vazba a opakované rezervace", "priceCurrency": "CZK", "price": String(P.feed), "url": "https://alsflow.cz/zpetna-vazba" }
       ]
     })} />
   </Fragment>
@@ -46,221 +49,187 @@ import Base from "../layouts/Base.astro";
       <p class="lead">Výchozí ceny, ať víte, s čím počítat. Konečnou cenu domluvíme spolu podle toho,
         co a v jakém rozsahu potřebujete: samostatně, v balíčku, nebo na míru. Nezávazně.</p>
       <div class="btn-row">
-        <a class="btn btn-grad btn-magnet" href="#kalkulacka">Spo&ccaron;&iacute;tat</a>
-        <a class="btn btn-quiet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
+        <a class="btn btn-grad btn-magnet" href="#kalkulacka">Spočítat</a>
+        <a class="btn btn-quiet" href="/kontakt">Nezávazná nabídka</a>
       </div>
-      <div class="price-line" style="margin-top:3.5rem">
-        <div><div class="k">Web od</div><div class="v">14&nbsp;900&nbsp;K&ccaron;</div></div>
-        <div><div class="k">Spr&aacute;va</div><div class="v">990&nbsp;K&ccaron;/m&ecaron;s</div></div>
-        <div><div class="k">Asistent od</div><div class="v">2&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</div></div>
-        <div><div class="k">Odpov&iacute;m do</div><div class="v">48 hodin</div></div>
-      </div>
+      <!-- Rozcestník, ne tabulka čísel: každá bublina skočí na svou část ceníku. -->
+      <nav class="facts jump" aria-label="Části ceníku">
+        <a class="fact" href="#weby" style="--c: var(--cyan)">Web od <b>{kc(P.web1)}&nbsp;Kč</b></a>
+        <a class="fact" href="#software" style="--c: var(--blue)">Software od <b>{kc(P.sw)}&nbsp;Kč</b></a>
+        <a class="fact" href="#asistenti" style="--c: var(--violet)">Asistent od <b>{kc(P.mail)}&nbsp;Kč</b>/měs</a>
+      </nav>
     </div>
   </section>
 
-  <!-- KALKULAČKA -->
+  <!-- KALKULAČKA jako účtenka: vlevo co chcete, vpravo se tiskne, co to stojí. -->
   <section class="sec" id="kalkulacka">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Kolik to bude <span class="grad">u v&aacute;s</span></h2>
-        <p class="lead">Zaškrtněte, co potřebujete. Po&ccaron;&iacute;t&aacute; se rovnou tady
-          v prohl&iacute;&zcaron;e&ccaron;i, nic se nikam neodes&iacute;l&aacute;.</p>
+        <h2 class="h-sec fade-head reveal-words">Kolik to bude <span class="grad">u vás</span></h2>
+        <p class="lead">Zaškrtněte, co potřebujete. Počítá se rovnou tady v prohlížeči, nic se nikam neodesílá.</p>
       </div>
 
-      <form class="calc" id="calc" novalidate>
-        <div class="calc__cols">
-          <fieldset class="calc__group">
+      <form class="bill" id="calc" novalidate data-sprava={P.sprava} data-bundle={P.bundle}>
+        <div class="bill-pick">
+          <fieldset class="pick rev" style="--c: var(--cyan)">
             <legend>Web</legend>
-            <label class="calc__opt"><input type="radio" name="web" value="0" checked /><span>Web nepot&rcaron;ebuju</span><b></b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="14900" /><span>Jednostr&aacute;nkov&yacute;</span><b>14&nbsp;900</b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="24900" /><span>Prezenta&ccaron;n&iacute; do 8 str&aacute;nek</span><b>24&nbsp;900</b></label>
-            <label class="calc__opt"><input type="radio" name="web" value="34900" /><span>V&ecaron;t&scaron;&iacute;, od</span><b>34&nbsp;900</b></label>
-            <label class="calc__opt calc__opt--sub" data-needs-web><input type="checkbox" id="sprava" /><span>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va</span><b>990&nbsp;/m&ecaron;s</b></label>
+            <label class="opt"><input type="radio" name="web" value="0" data-name="" checked /><span>Web nepotřebuju</span></label>
+            <label class="opt"><input type="radio" name="web" value={P.web1} data-name="Web, jednostránkový" /><span>Jednostránkový</span><b>{kc(P.web1)}</b></label>
+            <label class="opt"><input type="radio" name="web" value={P.web8} data-name="Web, prezentační do 8 stránek" /><span>Prezentační do 8 stránek</span><b>{kc(P.web8)}</b></label>
+            <label class="opt"><input type="radio" name="web" value={P.webX} data-name="Web na míru, od" /><span>Větší, od</span><b>{kc(P.webX)}</b></label>
+            <label class="opt opt-sub" data-needs-web><input type="checkbox" id="sprava" data-name="Měsíční správa webu" /><span>Měsíční správa</span><b>{kc(P.sprava)}/měs</b></label>
           </fieldset>
 
-          <fieldset class="calc__group">
+          <fieldset class="pick rev" data-d="1" style="--c: var(--violet)">
             <legend>AI asistenti</legend>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>E-mailov&eacute; odpov&ecaron;di</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="4500" /><span>Rezervace a p&rcaron;ipom&iacute;nky</span><b>4&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <label class="calc__opt"><input type="checkbox" class="ai" value="2500" /><span>Zp&ecaron;tn&aacute; vazba</span><b>2&nbsp;500&nbsp;/m&ecaron;s</b></label>
-            <p class="calc__note" id="bundleNote" hidden>Všechny tři dohromady vycházejí na
-              7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s, zapo&ccaron;&iacute;t&aacute;no.</p>
+            <label class="opt"><input type="checkbox" class="ai" value={P.mail} data-name="E-mailové odpovědi" /><span>E-mailové odpovědi</span><b>{kc(P.mail)}/měs</b></label>
+            <label class="opt"><input type="checkbox" class="ai" value={P.book} data-name="Rezervace a připomínky" /><span>Rezervace a připomínky</span><b>{kc(P.book)}/měs</b></label>
+            <label class="opt"><input type="checkbox" class="ai" value={P.feed} data-name="Zpětná vazba" /><span>Zpětná vazba</span><b>{kc(P.feed)}/měs</b></label>
           </fieldset>
         </div>
 
-        <div class="calc__out" aria-live="polite">
-          <div class="calc__cell">
-            <div class="k">Jednor&aacute;zov&ecaron;</div>
-            <div class="v"><span id="once">0</span>&nbsp;K&ccaron;</div>
-            <div class="calc__sub" id="onceNote">nastaven&iacute; asistenta se p&rcaron;i&ccaron;te po hovoru</div>
+        <aside class="receipt rev" data-d="2" aria-live="polite" aria-label="Spočítaná cena">
+          <div class="receipt-top"><b>Vaše sestava</b><span>nezávazný odhad</span></div>
+          <ul class="receipt-rows" id="rows"></ul>
+          <p class="receipt-empty" id="empty">Zatím nic. Zaškrtněte vlevo, co potřebujete.</p>
+          <div class="receipt-sum">
+            <div><span>Jednorázově</span><b><span id="once">0</span>&nbsp;Kč</b></div>
+            <div><span>Měsíčně</span><b><span id="month">0</span>&nbsp;Kč</b></div>
           </div>
-          <div class="calc__cell">
-            <div class="k">M&ecaron;s&iacute;&ccaron;n&ecaron;</div>
-            <div class="v"><span id="month">0</span>&nbsp;K&ccaron;</div>
-            <div class="calc__sub">bez z&aacute;vazku, zru&scaron;&iacute;te kdykoli</div>
-          </div>
-        </div>
-
-        <p class="calc__foot">Nejsem plátce DPH, ceny jsou konečné. Software se sem nepo&ccaron;&iacute;t&aacute;. Jeho cena
-          vyjde a&zcaron; z anal&yacute;zy. <a href="/kontakt">Po&scaron;lete popt&aacute;vku</a> a &rcaron;eknu
-          p&rcaron;esn&eacute; &ccaron;&iacute;slo.</p>
+          <p class="receipt-note" id="onceNote" hidden></p>
+          <a class="btn btn-grad btn-magnet receipt-cta" id="send" href="/kontakt">Poslat tuhle sestavu</a>
+          <p class="receipt-foot">Bez závazku, měsíční služby zrušíte kdykoli.</p>
+        </aside>
       </form>
+
+      <p class="bill-foot">Nejsem plátce DPH, ceny jsou konečné. Software se sem nepočítá, jeho cena vyjde až z analýzy.
+        <a href="/kontakt?sluzba=software">Pošlete poptávku</a> a řeknu přesné číslo.</p>
     </div>
   </section>
 
-  <!-- WEBY -->
-  <section class="sec sec-line" id="weby">
+  <!-- WEBY: schody od nejmenšího po největší, na konci měsíční správa -->
+  <section class="sec sec-dark sec-line" id="weby">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Jednor&aacute;zov&aacute; cena, pak <span class="grad">drobn&yacute; pau&scaron;&aacute;l</span></h2>
-        <p class="lead">V ceně jsou návrh, texty, nasazení, doména i certifikát.
-          Web b&yacute;v&aacute; &zcaron;iv&yacute; do 6 a&zcaron; 10 pracovn&iacute;ch dn&uring; a rozpracovanou verzi
-          vid&iacute;te pr&uring;b&ecaron;&zcaron;n&ecaron;.</p>
+        <h2 class="h-sec fade-head reveal-words">Jednorázová cena, pak <span class="grad">drobný paušál</span></h2>
+        <p class="lead">V ceně jsou návrh, texty, nasazení, doména i certifikát. Web bývá živý do 6 až 10 pracovních dnů
+          a rozpracovanou verzi vidíte průběžně.</p>
       </div>
 
-      <div class="tier-row tier-row--web">
-        <div class="tier rev">
-          <h3>Jednostr&aacute;nkov&yacute;</h3>
-          <p class="tier__what">Vizitka: kdo jste, co d&ecaron;l&aacute;te, jak se ozvat.</p>
-          <div class="tier__price"><b>14&nbsp;900</b> <span>K&ccaron; jednor&aacute;zov&ecaron;</span></div>
-          <ul class="tier__list">
-            <li>Jedna str&aacute;nka</li>
-            <li>Kontaktn&iacute; formul&aacute;&rcaron;</li>
-            <li>N&aacute;vrh, texty i dom&eacute;na</li>
-            <li>&Zcaron;iv&yacute; do 6&ndash;10 prac. dn&iacute;</li>
+      <ol class="cascade tiers">
+        <li class="cas rev" style="--c: var(--cyan); --i: 0">
+          <div class="cas-art art-pages" aria-hidden="true" style="--n: 1"><i></i><span>1 stránka</span></div>
+          <div>
+            <h3>Jednostránkový</h3>
+            <p class="tier-price"><b>{kc(P.web1)}&nbsp;Kč</b> jednorázově</p>
+            <p>Vizitka: kdo jste, co děláte, jak se ozvat. Kontaktní formulář, návrh, texty i doména.</p>
+          </div>
+        </li>
+        <li class="cas rev" data-d="1" style="--c: var(--blue); --i: 1">
+          <div class="cas-art art-pages" aria-hidden="true" style="--n: 8"><i></i><i></i><i></i><i></i><span>až 8 stránek</span></div>
+          <div>
+            <h3>Prezentační</h3>
+            <p class="tier-price"><b>{kc(P.web8)}&nbsp;Kč</b> jednorázově</p>
+            <p>Všechno z menší varianty a až osm stránek: služby, ceník, kontakt.
+              Takhle běží <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>.</p>
+          </div>
+        </li>
+        <li class="cas rev" data-d="2" style="--c: var(--violet); --i: 2">
+          <div class="cas-art art-pages art-lang" aria-hidden="true"><i></i><i></i><i></i><i></i><em>CZ</em><em>EN</em><span>9 a víc</span></div>
+          <div>
+            <h3>Na míru</h3>
+            <p class="tier-price"><b>od {kc(P.webX)}&nbsp;Kč</b> jednorázově</p>
+            <p>Devět a víc stránek, dva jazyky, víc formulářů. Přesnou cenu řeknu po hovoru.</p>
+          </div>
+        </li>
+        <li class="cas cas-care rev" data-d="3" style="--c: var(--amber); --i: 3">
+          <div>
+            <h3>Měsíční správa webu</h3>
+            <p class="tier-price"><b>{kc(P.sprava)}&nbsp;Kč</b> měsíčně, bez závazku</p>
+            <p>Drobné úpravy textů, cen a kontaktů do dvou pracovních dnů, zhruba do půl hodiny práce měsíčně.
+              Větší změny nacením předem.</p>
+          </div>
+          <ul class="care-tags" aria-label="Ve správě je">
+            <li>Hosting</li><li>Doména</li><li>Certifikát</li><li>Úpravy do 2 dnů</li><li>Měsíční přehled</li>
           </ul>
-          <a class="btn btn-quiet tier__cta" href="/kontakt">Chci tenhle</a>
-        </div>
-
-        <div class="tier tier--flag rev" data-d="1">
-          <span class="tier__flag">Nej&ccaron;ast&ecaron;ji</span>
-          <h3>Prezenta&ccaron;n&iacute;</h3>
-          <p class="tier__what">A&zcaron; osm str&aacute;nek: slu&zcaron;by, cen&iacute;k, kontakt.</p>
-          <div class="tier__price"><b>24&nbsp;900</b> <span>K&ccaron; jednor&aacute;zov&ecaron;</span></div>
-          <ul class="tier__list">
-            <li>V&scaron;echno z men&scaron;&iacute; varianty</li>
-            <li>A&zcaron; osm str&aacute;nek</li>
-            <li>Takhle běží <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a></li>
-            <li>&Zcaron;iv&yacute; do 6&ndash;10 prac. dn&iacute;</li>
-          </ul>
-          <a class="btn btn-grad btn-magnet tier__cta" href="/kontakt">Chci tenhle</a>
-        </div>
-
-        <div class="tier rev" data-d="2">
-          <h3>Na m&iacute;ru</h3>
-          <p class="tier__what">Dev&ecaron;t a v&iacute;c str&aacute;nek, dva jazyky.</p>
-          <div class="tier__price"><b>od 34&nbsp;900</b> <span>K&ccaron; jednor&aacute;zov&ecaron;</span></div>
-          <ul class="tier__list">
-            <li>Dev&ecaron;t a v&iacute;c str&aacute;nek</li>
-            <li>Dva jazyky</li>
-            <li>V&iacute;c formul&aacute;&rcaron;&uring;</li>
-            <li>Cenu &rcaron;eknu po hovoru</li>
-          </ul>
-          <a class="btn btn-quiet tier__cta" href="/kontakt">Chci tenhle</a>
-        </div>
-      </div>
-
-      <!-- Doplněk ke každému webu, proto pod tarify a ne mezi nimi. -->
-      <div class="tier-extra rev">
-        <div>
-          <h3>M&ecaron;s&iacute;&ccaron;n&iacute; spr&aacute;va webu</h3>
-          <p>Hosting, dom&eacute;na, certifik&aacute;t a drobn&eacute; &uacute;pravy text&uring;, cen a kontakt&uring;
-            do dvou pracovn&iacute;ch dn&uring;, zhruba do p&uring;l hodiny pr&aacute;ce m&ecaron;s&iacute;&ccaron;n&ecaron;.
-            V&ecaron;t&scaron;&iacute; zm&ecaron;ny nacen&iacute;m p&rcaron;edem. Bez z&aacute;vazku.</p>
-        </div>
-        <div class="tier-extra__price"><b>990</b> <span>K&ccaron; / m&ecaron;s&iacute;c</span></div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- SOFTWARE -->
-  <section class="sec" id="software">
+  <!-- SOFTWARE: rozpětí místo ceníku, protože ceník by lhal -->
+  <section class="sec sec-line" id="software">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Cena vyjde <span class="grad">z anal&yacute;zy</span></h2>
-        <p class="lead">Tady nem&aacute; smysl d&ecaron;lat cen&iacute;k dop&rcaron;edu: administra&ccaron;n&iacute;
-          panel a propojen&iacute; dvou syst&eacute;m&uring; se li&scaron;&iacute; des&iacute;tkami hodin. &Uacute;vodn&iacute;
-          anal&yacute;za je zdarma a vyjde z ní rozsah, cena a termín podle velikosti
-          zak&aacute;zky. Kdy&zcaron; se n&aacute;stroj nevyplat&iacute;, &rcaron;eknu to.</p>
+        <h2 class="h-sec fade-head reveal-words">Cena vyjde <span class="grad">z analýzy</span></h2>
+        <p class="lead">Tady nemá smysl dělat ceník dopředu: administrační panel a propojení dvou systémů se liší
+          desítkami hodin. Úvodní analýza je zdarma a vyjde z ní rozsah, cena a termín podle velikosti zakázky.
+          Když se nástroj nevyplatí, řeknu to.</p>
       </div>
-      <div class="cards-2">
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev">
-          <h3>od 24&nbsp;900&nbsp;K&ccaron;</h3>
-          <p>Nejmen&scaron;&iacute; u&zcaron;ite&ccaron;n&yacute; n&aacute;stroj: jeden panel, jeden export,
-            jedna úloha, která se dosud dělala ručně.</p>
-        </div>
-        <div class="panel panel-pad panel-glow panel-sheen tilt rev" data-d="1">
-          <h3>b&ecaron;&zcaron;n&ecaron; 25&ndash;80 tis. K&ccaron;</h3>
-          <p>Rozsah, kter&yacute; se ve skute&ccaron;nosti objedn&aacute;v&aacute; nej&ccaron;ast&ecaron;ji: panel nad
-            daty plus napojen&iacute; na to, co u&zcaron; m&aacute;te.</p>
+
+      <div class="span-card panel panel-pad rev" style="--c: var(--blue)">
+        <div class="span-track" aria-hidden="true"><i></i></div>
+        <div class="span-marks">
+          <div class="mark-from">
+            <b>od {kc(P.sw)}&nbsp;Kč</b>
+            <p>Nejmenší užitečný nástroj: jeden panel, jeden export, jedna úloha, která se dosud dělala ručně.</p>
+          </div>
+          <div class="mark-usual">
+            <b>běžně 25 až 80 tis. Kč</b>
+            <p>Rozsah, který se ve skutečnosti objednává nejčastěji: panel nad daty plus napojení na to, co už máte.</p>
+          </div>
         </div>
       </div>
-      <p class="lead" style="margin-top:1.6rem">Provoz a dal&scaron;&iacute; &uacute;pravy jsou m&ecaron;s&iacute;&ccaron;n&iacute;
-        pau&scaron;&aacute;l podle velikosti n&aacute;stroje. Zdrojov&yacute; k&oacute;d, p&rcaron;&iacute;stupy
-        i dokumentace jsou va&scaron;e.
-        <a class="arrow" href="/vyvoj-softwaru">Jak to prob&iacute;h&aacute; &rarr;</a></p>
+      <p class="lead span-after">Provoz a další úpravy jsou měsíční paušál podle velikosti nástroje.
+        Zdrojový kód, přístupy i dokumentace jsou vaše. <a class="arrow" href="/vyvoj-softwaru">Jak to probíhá &rarr;</a></p>
     </div>
   </section>
 
-  <!-- AI ASISTENTI -->
-  <section class="sec sec-line" id="asistenti">
+  <!-- AI ASISTENTI: stejné karty jako na titulní straně, každý svou barvou -->
+  <section class="sec sec-dark sec-line" id="asistenti">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">M&ecaron;s&iacute;&ccaron;n&ecaron;, <span class="grad">bez z&aacute;vazku</span></h2>
-        <p class="lead">Každého z nich můžete mít samostatně, nebo v&scaron;echny dohromady.</p>
+        <h2 class="h-sec fade-head reveal-words">Měsíčně, <span class="grad">bez závazku</span></h2>
+        <p class="lead">Každého z nich můžete mít samostatně, nebo všechny dohromady.</p>
       </div>
 
-      <div class="tier-row tier-row--ai">
-        <a class="tier tier--mail rev" href="/e-mailove-odpovedi">
-          <h3>E-mailov&eacute; odpov&ecaron;di</h3>
-          <p class="tier__what">Asistent &ccaron;te po&scaron;tu, odpov&iacute;d&aacute; na b&ecaron;&zcaron;n&eacute; dotazy a co nezn&aacute;, p&rcaron;ed&aacute; v&aacute;m.</p>
-          <div class="tier__price"><b>2&nbsp;500</b> <span>K&ccaron; / m&ecaron;s&iacute;c</span></div>
-          <ul class="tier__list">
-            <li>Zahrnuto 1&nbsp;500 e-mail&uring; m&ecaron;s&iacute;&ccaron;n&ecaron;</li>
-            <li>U&ccaron;&iacute; se v&aacute;&scaron; t&oacute;n a va&scaron;e podklady</li>
-            <li>Nejist&yacute; dotaz nech&aacute; na v&aacute;s</li>
-            <li>Napojen&iacute; na Gmail nebo Outlook</li>
-          </ul>
-          <span class="btn btn-quiet tier__cta">Zjistit v&iacute;c</span>
+      <div class="svc-cards">
+        <a class="panel panel-pad svc-card rev" href="/e-mailove-odpovedi" style="--c: var(--cyan)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.mail)} Kč/měs</span>
+          <div class="svc-head"><h3>E-mailové odpovědi</h3><p class="svc-hook">Čte poštu, odpovídá na běžné dotazy a co nezná, předá vám.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Zahrnuto 1&nbsp;500 e-mailů měsíčně</li><li>Učí se váš tón a vaše podklady</li><li>Nejistý dotaz nechá na vás</li><li>Napojení na Gmail nebo Outlook</li></ul>
+            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.mail)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
+            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
         </a>
-
-        <a class="tier tier--book tier--flag rev" data-d="1" href="/rezervace-pripominky">
-          <span class="tier__flag">Nej&ccaron;ast&ecaron;ji</span>
-          <h3>Rezervace a p&rcaron;ipom&iacute;nky</h3>
-          <p class="tier__what">Objedn&aacute;v&aacute; term&iacute;ny do va&scaron;eho kalend&aacute;&rcaron;e a den p&rcaron;edem je p&rcaron;ipom&iacute;n&aacute;.</p>
-          <div class="tier__price"><b>4&nbsp;500</b> <span>K&ccaron; / m&ecaron;s&iacute;c</span></div>
-          <ul class="tier__list">
-            <li>Zahrnuto 750 rezervac&iacute; m&ecaron;s&iacute;&ccaron;n&ecaron;</li>
-            <li>Rezervace přes WhatsApp i web</li>
-            <li>Z&aacute;pis rovnou do Google Kalend&aacute;&rcaron;e</li>
-            <li>P&rcaron;ipom&iacute;nka den p&rcaron;edem</li>
-            <li>P&rcaron;esuny a zru&scaron;en&iacute; bez telefonu</li>
-          </ul>
-          <span class="btn btn-grad btn-magnet tier__cta">Zjistit v&iacute;c</span>
+        <a class="panel panel-pad svc-card rev" data-d="1" href="/rezervace-pripominky" style="--c: var(--violet)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.book)} Kč/měs</span>
+          <div class="svc-head"><h3>Rezervace a připomínky</h3><p class="svc-hook">Objednává termíny do vašeho kalendáře a den předem je připomíná.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Zahrnuto 750 rezervací měsíčně</li><li>Rezervace přes WhatsApp i web</li><li>Zápis rovnou do Google Kalendáře</li><li>Přesuny a zrušení bez telefonu</li></ul>
+            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.book)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
+            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
         </a>
-
-        <div class="tier tier--feed rev" data-d="2">
-          <h3>Zp&ecaron;tn&aacute; vazba</h3>
-          <p class="tier__what">Po návštěvě se zeptá na spokojenost a připraví odpověď na hodnocení.</p>
-          <div class="tier__price"><b>2&nbsp;500</b> <span>K&ccaron; / m&ecaron;s&iacute;c</span></div>
-          <ul class="tier__list">
-            <li>Dotaz po n&aacute;v&scaron;t&ecaron;v&ecaron;</li>
-            <li>N&aacute;vrh odpov&ecaron;di na recenzi</li>
-            <li>Pozv&aacute;nka na dal&scaron;&iacute; term&iacute;n</li>
-            <li>M&ecaron;s&iacute;&ccaron;n&iacute; p&rcaron;ehled</li>
-          </ul>
-          <a class="btn btn-quiet tier__cta" href="/zpetna-vazba">Zjistit v&iacute;c</a>
-        </div>
+        <a class="panel panel-pad svc-card rev" data-d="2" href="/zpetna-vazba" style="--c: var(--green)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.feed)} Kč/měs</span>
+          <div class="svc-head"><h3>Zpětná vazba</h3><p class="svc-hook">Po návštěvě se zeptá na spokojenost a připraví odpověď na hodnocení.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Dotaz po návštěvě</li><li>Návrh odpovědi na recenzi</li><li>Pozvánka na další termín</li><li>Měsíční přehled</li></ul>
+            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.feed)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
+            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
       </div>
 
-      <div class="tier-strip rev">
-        <div><span class="k">V&scaron;echno dohromady</span><span class="v">7&nbsp;500&nbsp;K&ccaron;/m&ecaron;s</span></div>
-        <div><span class="k">Jednor&aacute;zov&eacute; nastaven&iacute;</span><span class="v">8 000–10 000 Kč</span></div>
-        <div><span class="k">Spu&scaron;t&ecaron;n&iacute;</span><span class="v">do 5 a&zcaron; 7 pracovn&iacute;ch dn&uring;</span></div>
+      <div class="bundle panel panel-pad rev" data-d="3">
+        <p class="bundle-main">Všechny tři dohromady za <b>{kc(P.bundle)}&nbsp;Kč</b> měsíčně
+          <s>{kc(P.mail + P.book + P.feed)}&nbsp;Kč</s></p>
+        <p class="bundle-sub">K tomu jednorázové nastavení 8&nbsp;000 až 10&nbsp;000&nbsp;Kč: napojení na vaše nástroje,
+          naučení vašeho tónu a otestování. Chcete to vidět rovnou pro svůj obor?
+          <a href="/ai-asistent-pro-fyzioterapeuty">Pro fyzioterapeuty</a> nebo <a href="/ai-asistent-pro-kadernictvi">pro kadeřnictví</a>.</p>
       </div>
-        <p class="lead" style="max-width:none;margin-top:1.4rem">Chcete to vid&ecaron;t rovnou pro sv&uring;j obor?
-          <a href="/ai-asistent-pro-fyzioterapeuty">Pro fyzioterapeuty</a> nebo
-          <a href="/ai-asistent-pro-kadernictvi">pro kade&rcaron;nictv&iacute;</a>.</p>
     </div>
   </section>
 
@@ -268,231 +237,157 @@ import Base from "../layouts/Base.astro";
   <section class="sec sec-line" id="faq">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Na co se pt&aacute;te</h2>
+        <h2 class="h-sec fade-head reveal-words">Na co se ptáte</h2>
       </div>
-      <div class="faq-list">
-        <details class="rev"><summary>Je v cen&aacute;ch DPH?</summary><p>DPH se k cenám nepřipočítává, protože nejsem plátce DPH. Weby, software i asistenty fakturuji jako Jakub Ryvola, IČO 30112702. Cena na nabídce je i cena na faktuře.</p></details>
-        <details class="rev" data-d="1"><summary>Co kdy&zcaron; si v pr&uring;b&ecaron;hu vymysl&iacute;m n&ecaron;co nav&iacute;c?</summary>
-          <p>Řeknu cenu té změny předem a vy se rozhodnete, jestli ji chcete.</p></details>
-        <details class="rev" data-d="2"><summary>Co je jednor&aacute;zov&eacute; nastaven&iacute; asistenta?</summary>
-          <p>Napojen&iacute; na va&scaron;e n&aacute;stroje, nau&ccaron;en&iacute; va&scaron;eho t&oacute;nu, nastaven&iacute;
-          odpov&ecaron;d&iacute; a otestov&aacute;n&iacute;. D&ecaron;l&aacute;m to za v&aacute;s, asistent jede do 5 a&zcaron; 7
-          pracovn&iacute;ch dn&uring;. Plat&iacute; se jednou, na za&ccaron;&aacute;tku.</p></details>
-        <details class="rev" data-d="3"><summary>Mus&iacute;m se zav&aacute;zat na dobu ur&ccaron;itou?</summary>
-          <p>Ne. M&ecaron;s&iacute;&ccaron;n&ecaron;, bez smlouvy na dobu ur&ccaron;itou, zru&scaron;it kdykoli.</p></details>
-        <details class="rev" data-d="4"><summary>Co kdy&zcaron; p&rcaron;ekro&ccaron;&iacute;m limit v bal&iacute;&ccaron;ku?</summary>
-          <p>Limity 1&nbsp;500 e-mail&uring; a 750 rezervac&iacute; m&ecaron;s&iacute;&ccaron;n&ecaron; pokryj&iacute;
-          v&ecaron;t&scaron;inu mal&yacute;ch provoz&uring;. Kdy&zcaron; je pravideln&ecaron; p&rcaron;er&uring;st&aacute;te,
-          domluv&iacute;me vy&scaron;&scaron;&iacute; variantu. &Zcaron;&aacute;dn&eacute; skryt&eacute; dou&ccaron;tov&aacute;n&iacute;.</p></details>
-        <details class="rev" data-d="5"><summary>Proč u softwaru není ceník?</summary>
-          <p>Proto&zcaron;e by lhal. Administra&ccaron;n&iacute; panel a propojen&iacute; dvou syst&eacute;m&uring; se
-          li&scaron;&iacute; des&iacute;tkami hodin pr&aacute;ce. Cenu domluvíme po krátké analýze,
-          až je jasné, co přesně řešíme.</p></details>
+      <div class="faq">
+        <details class="rev"><summary>Je v cenách DPH?</summary><p>DPH se k cenám nepřipočítává, protože nejsem plátce DPH. Weby, software i asistenty fakturuji jako Jakub Ryvola, IČO 30112702. Cena na nabídce je i cena na faktuře.</p></details>
+        <details class="rev" data-d="1"><summary>Co když si v průběhu vymyslím něco navíc?</summary><p>Řeknu cenu té změny předem a vy se rozhodnete, jestli ji chcete.</p></details>
+        <details class="rev" data-d="2"><summary>Co je jednorázové nastavení asistenta?</summary><p>Napojení na vaše nástroje, naučení vašeho tónu, nastavení odpovědí a otestování. Dělám to za vás, asistent jede do 5 až 7 pracovních dnů. Platí se jednou, na začátku.</p></details>
+        <details class="rev" data-d="3"><summary>Musím se zavázat na dobu určitou?</summary><p>Ne. Měsíčně, bez smlouvy na dobu určitou, zrušit kdykoli.</p></details>
+        <details class="rev" data-d="4"><summary>Co když překročím limit v balíčku?</summary><p>Limity 1&nbsp;500 e-mailů a 750 rezervací měsíčně pokryjí většinu malých provozů. Když je pravidelně přerůstáte, domluvíme vyšší variantu. Žádné skryté doúčtování.</p></details>
+        <details class="rev" data-d="5"><summary>Proč u softwaru není ceník?</summary><p>Protože by lhal. Administrační panel a propojení dvou systémů se liší desítkami hodin práce. Cenu domluvíme po krátké analýze, až je jasné, co přesně řešíme.</p></details>
       </div>
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Nev&iacute;te, co z toho <span class="grad">pot&rcaron;ebujete</span>?</h2>
-        <p class="lead">Patn&aacute;ct minut nez&aacute;vazn&ecaron;. &Rcaron;eknete, co v&aacute;s nejv&iacute;c
-          zdr&zcaron;uje, a j&aacute; &rcaron;eknu, co d&aacute;v&aacute; smysl, i kdy&zcaron; to nakonec nebude
-          nic ode m&ecaron;.</p>
-        <div class="btn-row">
-          <a class="btn btn-grad btn-magnet" href="/kontakt">Nez&aacute;vazn&aacute; nab&iacute;dka</a>
-          <a class="btn btn-quiet" href="/o-nas">Kdo za t&iacute;m stoj&iacute;</a>
+      <div class="svc-act panel panel-pad rev">
+        <div class="svc-act-copy">
+          <h3>Nevíte, co z toho potřebujete?</h3>
+          <p>Patnáct minut nezávazně. Řeknete, co vás nejvíc zdržuje, a já řeknu, co dává smysl, i když to nakonec nebude nic ode mě.</p>
         </div>
+        <div class="svc-act-btns">
+          <a class="btn btn-svc" style="--c: var(--cyan)" href="/kontakt?sluzba=web">Chci web</a>
+          <a class="btn btn-svc" style="--c: var(--blue)" href="/kontakt?sluzba=software">Chci software</a>
+          <a class="btn btn-svc" style="--c: var(--violet)" href="/kontakt?sluzba=ai">Chci AI asistenta</a>
+          <a class="btn" href="/kontakt?sluzba=nevim">Nevím, poraďte mi</a>
+        </div>
+        <p class="svc-act-alt">Raději hned? Zavolejte <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/o-nas">Kdo za tím stojí</a></p>
       </div>
     </div>
   </section>
 
   <Fragment slot="tail">
     <style>
-      .calc { max-width: 62rem; margin: 0 auto; }
-      .calc__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-      @media (max-width: 760px) { .calc__cols { grid-template-columns: 1fr; } }
+      /* ---------- rozcestník v hlavičce ---------- */
+      .jump .fact { color: var(--t2); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
+      .jump .fact::before { align-self: center; width: 0.5rem; height: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
+      .jump .fact:hover { color: var(--t1); border-color: color-mix(in srgb, var(--c) 60%, transparent); transform: translateY(-1px); }
+      .jump .fact:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
 
-      .calc__group {
-        padding: 1.25rem; margin: 0; border: 1px solid var(--line-2);
-        border-radius: var(--r-card, 20px); background: var(--card);
-      }
-      .calc__group legend {
-        padding: 0 0.5rem; font-size: 0.7rem; letter-spacing: 0.12em;
-        text-transform: uppercase; color: var(--t3);
-      }
-      .calc__opt {
-        display: flex; gap: 0.7rem; align-items: center; padding: 0.55rem 0.2rem;
-        cursor: pointer; border-bottom: 1px solid var(--line);
-      }
-      .calc__opt:last-of-type { border-bottom: 0; }
-      .calc__opt span { flex: 1; font-size: 0.92rem; }
-      .calc__opt b { font-variant-numeric: tabular-nums; font-size: 0.86rem; color: var(--t2); }
-      .calc__opt input { accent-color: #5b9dff; width: 1.05rem; height: 1.05rem; }
-      .calc__opt--sub { padding-left: 1.6rem; opacity: 0.45; pointer-events: none; }
-      .calc__opt--sub.is-on { opacity: 1; pointer-events: auto; }
+      /* ---------- kalkulačka: výběr + účtenka ---------- */
+      .bill { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.4rem; align-items: start; }
+      .bill-pick { display: grid; gap: 1.2rem; }
+      .pick { margin: 0; padding: 1rem; border: 1px solid var(--line-2); border-radius: var(--r-card); background: var(--card); }
+      .pick legend { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.5rem; font-size: 0.95rem; font-weight: 700; color: var(--t1); }
+      .pick legend::before { width: 0.55rem; height: 0.55rem; content: ""; background: var(--c); border-radius: 50%; }
+      .opt { display: flex; gap: 0.8rem; align-items: center; padding: 0.8rem 0.9rem; cursor: pointer; border: 1px solid transparent; border-radius: var(--r-tile);
+        transition: background 0.2s, border-color 0.2s; }
+      .opt + .opt { margin-top: 0.25rem; }
+      .opt:hover { background: rgb(255 255 255 / 3%); }
+      .opt:has(input:checked) { background: color-mix(in srgb, var(--c) 10%, transparent); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+      .opt:has(input:focus-visible) { outline: 2px solid var(--c); outline-offset: 2px; }
+      .opt input { flex: none; width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--c); }
+      .opt span { flex: 1; font-size: 0.97rem; }
+      .opt b { font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--t2); white-space: nowrap; }
+      .opt:has(input:checked) b { color: var(--c); }
+      .opt-sub { margin-left: 1.6rem; opacity: 0.4; pointer-events: none; }
+      .opt-sub.is-on { opacity: 1; pointer-events: auto; }
 
-      .calc__note { margin: 0.7rem 0 0; font-size: 0.82rem; color: var(--green); }
+      .receipt { position: sticky; top: 6.5rem; padding: 1.4rem 1.4rem 1.2rem; background: #0d0d11; border: 1px solid var(--line-2); border-radius: var(--r-card);
+        box-shadow: 0 26px 60px rgb(0 0 0 / 55%); }
+      .receipt-top { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.9rem; border-bottom: 1px dashed var(--line-2); }
+      .receipt-top b { font-size: 1.05rem; }
+      .receipt-top span { font-size: 0.8rem; color: var(--t3); }
+      .receipt-rows { display: grid; gap: 0.15rem; margin: 0; padding: 0.8rem 0 0; list-style: none; }
+      .receipt-rows li { display: flex; gap: 0.6rem; align-items: baseline; padding: 0.35rem 0; font-size: 0.92rem; animation: rowIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .receipt-rows li::after { order: 1; flex: 1; min-width: 1rem; height: 0; content: ""; border-bottom: 1px dotted var(--line-2); transform: translateY(-0.25em); }
+      .receipt-rows .n { color: var(--t1); }
+      .receipt-rows .n::before { display: inline-block; width: 0.45rem; height: 0.45rem; margin-right: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
+      .receipt-rows .p { order: 2; font-variant-numeric: tabular-nums; color: var(--t2); white-space: nowrap; }
+      .receipt-rows .is-off .p { color: var(--green); }
+      @keyframes rowIn { from { opacity: 0; transform: translateY(-6px); filter: blur(4px); clip-path: inset(0 100% 0 0); } to { opacity: 1; transform: none; filter: none; clip-path: inset(0 0 0 0); } }
+      .receipt-empty { margin: 0.6rem 0 0.3rem; font-size: 0.9rem; color: var(--t3); }
+      .receipt-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--line-2); }
+      .receipt-sum span { display: block; font-size: 0.82rem; color: var(--t3); }
+      .receipt-sum b { display: block; margin-top: 0.2rem; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--t1); }
+      .receipt-note { margin: 0.7rem 0 0; font-size: 0.85rem; color: var(--t2); }
+      .receipt-cta { width: 100%; margin-top: 1.2rem; justify-content: center; }
+      .receipt-cta[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+      .receipt-foot { margin: 0.7rem 0 0; font-size: 0.8rem; text-align: center; color: var(--t3); }
+      .bill-foot { max-width: 70ch; margin-top: 1.4rem; font-size: 0.9rem; color: var(--t2); }
+      .bill-foot a, .bundle-sub a, .tiers a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
+      @media (max-width: 900px) { .bill { grid-template-columns: 1fr; } .receipt { position: static; } }
 
-      .calc__out {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.25rem;
-      }
-      @media (max-width: 560px) { .calc__out { grid-template-columns: 1fr; } }
-      .calc__cell {
-        padding: 1.4rem; border: 1px solid var(--line-2); border-radius: var(--r-card, 20px);
-        background: linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);
-      }
-      .calc__cell .k {
-        font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--t3);
-      }
-      .calc__cell .v {
-        margin-top: 0.35rem; font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800;
-        font-variant-numeric: tabular-nums; background: var(--grad);
-        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      }
-      .calc__sub { margin-top: 0.35rem; font-size: 0.78rem; color: var(--t3); }
-      .calc__foot { margin-top: 1.1rem; font-size: 0.85rem; color: var(--t2); }
-      .calc__foot a { color: var(--t1); }
+      /* ---------- weby: schody ---------- */
+      .tiers .tier-price { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--t3); }
+      .tiers .tier-price b { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--c); }
+      /* Listy papíru: kolik stránek, tolik listů, rozvinou se při příchodu. */
+      .art-pages { position: relative; place-items: end center; padding-bottom: 0.7rem; }
+      .art-pages i { position: absolute; top: 1rem; left: 50%; width: 2.3rem; height: 2.9rem; margin-left: -1.15rem; background: #15151b;
+        border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius: 4px;
+        box-shadow: inset 0 0.55rem 0 -0.42rem var(--c), 0 6px 14px rgb(0 0 0 / 45%);
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      .art-pages i:nth-child(2) { transition-delay: 0.05s; } .art-pages i:nth-child(3) { transition-delay: 0.1s; } .art-pages i:nth-child(4) { transition-delay: 0.15s; }
+      .cas.in .art-pages i:nth-child(1) { transform: translateX(-1.4rem) rotate(-9deg); }
+      .cas.in .art-pages i:nth-child(2) { transform: translateX(-0.45rem) rotate(-3deg); }
+      .cas.in .art-pages i:nth-child(3) { transform: translateX(0.45rem) rotate(3deg); }
+      .cas.in .art-pages i:nth-child(4) { transform: translateX(1.4rem) rotate(9deg); }
+      .cas.in .art-pages i:only-of-type { transform: none; }
+      .art-pages span { position: relative; }
+      .art-lang em { position: absolute; top: 0.55rem; z-index: 2; padding: 0.1rem 0.35rem; font-size: 0.62rem; font-style: normal; font-weight: 800; color: #05070d; background: var(--c); border-radius: 5px;
+        opacity: 0; transition: opacity 0.4s 0.6s, transform 0.6s 0.6s cubic-bezier(0.34, 1.4, 0.64, 1); }
+      .art-lang em:nth-of-type(1) { left: 0.6rem; transform: translateY(4px); } .art-lang em:nth-of-type(2) { right: 0.6rem; transform: translateY(4px); }
+      .cas.in .art-lang em { opacity: 1; transform: none; }
+      .cas-care { grid-template-columns: 1fr auto; width: min(calc(100% - var(--i) * 9%), 52rem); }
+      .care-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; justify-content: flex-end; max-width: 17rem; margin: 0; padding: 0; list-style: none; }
+      .care-tags li { padding: 0.32rem 0.65rem; font-size: 0.8rem; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 100px; }
+      @media (max-width: 760px) { .cas-care { grid-template-columns: 1fr; } .care-tags { justify-content: flex-start; max-width: none; } }
+      [data-vykon="minimalni"] .art-pages i, [data-vykon="minimalni"] .art-lang em { transition: none; }
 
-      .faq-list details {
-        padding: 1.1rem 0; border-bottom: 1px solid var(--line);
-      }
-      .faq-list summary { font-weight: 600; cursor: pointer; list-style: none; }
-      .faq-list summary::-webkit-details-marker { display: none; }
-      .faq-list summary::before { content: '+ '; color: var(--green); }
-      .faq-list details[open] summary::before { content: '− '; }
-      .faq-list p { max-width: 68ch; margin-top: 0.6rem; font-size: 0.92rem; color: var(--t2); }
+      /* ---------- software: rozpětí ---------- */
+      .span-card { padding-top: 2.2rem; }
+      .span-track { position: relative; height: 10px; background: rgb(255 255 255 / 6%); border-radius: 10px; }
+      .span-track::before { position: absolute; top: -7px; left: 0; width: 3px; height: 24px; content: ""; background: var(--c); border-radius: 2px; }
+      .span-track i { position: absolute; inset: 0 22% 0 3%; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 55%, transparent), var(--c)); border-radius: inherit;
+        transform: scaleX(0); transform-origin: left; transition: transform 1.3s 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+      .span-card.in .span-track i { transform: none; }
+      .span-track::after { position: absolute; top: 0; right: 0; width: 22%; height: 100%; content: ""; border-radius: 0 10px 10px 0;
+        background: repeating-linear-gradient(90deg, rgb(255 255 255 / 10%) 0 6px, transparent 6px 12px); }
+      .span-marks { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.6rem 2.4rem; margin-top: 1.4rem; }
+      .span-marks b { display: block; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; }
+      .mark-from b { color: var(--t1); }
+      .mark-usual b { color: var(--c); }
+      .span-marks p { margin: 0.4rem 0 0; font-size: 0.93rem; line-height: 1.6; color: var(--t2); }
+      .span-after { margin-top: 1.6rem; }
+      @media (max-width: 700px) { .span-marks { grid-template-columns: 1fr; } }
+      @media (prefers-reduced-motion: reduce) { .span-track i { transform: none; transition: none; } .receipt-rows li { animation: none; } }
+      [data-vykon="minimalni"] .span-track i { transform: none; transition: none; }
 
-      /* --------------------------------------------------------------
-         Tarify. Tři karty vedle sebe, vlajková loď uprostřed a o kousek
-         výš - člověk čte zleva doprava a uprostřed má zastavit. Doplňky
-         (správa webu, balíček) jsou pod nimi, ne mezi nimi: nejsou to
-         varianty téhož, je to něco navíc.
-         -------------------------------------------------------------- */
-      .tier-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.1rem;
-        align-items: start;
-      }
-      @media (max-width: 900px) { .tier-row { grid-template-columns: 1fr; } }
-
-      .tier {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 1.6rem 1.4rem;
-        color: inherit;
-        text-decoration: none;
-        background: var(--card);
-        border: 1px solid var(--line-2);
-        border-radius: var(--r-card, 20px);
-        --tone: #5b9dff;
-      }
-      .tier h3 { margin: 0 0 0.4rem; font-size: 1.12rem; }
-      .tier__what { margin: 0 0 1.1rem; font-size: 0.9rem; line-height: 1.55; color: var(--t2); }
-
-      .tier__price {
-        display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: baseline;
-        padding-bottom: 1rem; margin-bottom: 1rem;
-        border-bottom: 1px solid var(--line);
-      }
-      .tier__price b {
-        font-size: 2.1rem; font-weight: 800; font-variant-numeric: tabular-nums;
-        color: var(--tone);
-      }
-      .tier__price span { font-size: 0.82rem; color: var(--t3); }
-
-      .tier__list { flex: 1; padding: 0; margin: 0 0 1.3rem; list-style: none; }
-      .tier__list li {
-        position: relative; padding-left: 1.15rem; margin-bottom: 0.55rem;
-        font-size: 0.88rem; line-height: 1.5; color: var(--t2);
-      }
-      /* Odrážka je přímo znak, ne úniková sekvence - ¹3 se při generování
-         souboru skriptem snědlo jako osmičkové číslo a v prohlížeči z toho
-         vypadlo "¹3". */
-      .tier__list li::before {
-        position: absolute; left: 0; top: 0.52em;
-        width: 5px; height: 5px; content: '';
-        background: var(--tone); border-radius: 50%;
-      }
-      .tier__list a { color: var(--t1); }
-      .tier__cta { width: 100%; margin-top: auto; text-align: center; }
-
-      /* Vlajková loď: výš, výraznější obrys, štítek. */
-      .tier--flag {
-        border-color: color-mix(in srgb, var(--tone) 48%, transparent);
-        box-shadow: 0 20px 60px color-mix(in srgb, var(--tone) 14%, transparent);
-      }
-      @media (min-width: 901px) { .tier--flag { transform: translateY(-14px); } }
-      .tier__flag {
-        position: absolute; top: 1.1rem; right: 1.1rem;
-        padding: 0.22rem 0.6rem; font-size: 0.62rem; font-weight: 700;
-        letter-spacing: 0.1em; text-transform: uppercase; color: #06070a;
-        background: var(--grad); border-radius: 999px;
-      }
-
-      /* Každý asistent svou barvou - ať se karty rozeznají na první pohled. */
-      .tier--mail { --tone: #38dbf5; }
-      .tier--book { --tone: #a78bfa; }
-      .tier--feed { --tone: #4ade80; }
-
-      a.tier { transition: border-color 0.25s, transform 0.25s; }
-      a.tier:hover { border-color: color-mix(in srgb, var(--tone) 55%, transparent); }
-      @media (min-width: 901px) { a.tier:hover { transform: translateY(-4px); } }
-      @media (min-width: 901px) { a.tier.tier--flag:hover { transform: translateY(-18px); } }
-
-      /* Doplněk pod tarify */
-      .tier-extra {
-        display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
-        justify-content: space-between; padding: 1.4rem 1.5rem; margin-top: 1.1rem;
-        border: 1px solid var(--line); border-radius: var(--r-card, 20px);
-        background: linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);
-      }
-      .tier-extra h3 { margin: 0 0 0.3rem; font-size: 1rem; }
-      .tier-extra p { max-width: 62ch; margin: 0; font-size: 0.88rem; color: var(--t2); }
-      .tier-extra__price b { font-size: 1.9rem; font-weight: 800; color: var(--t1); }
-      .tier-extra__price span { font-size: 0.82rem; color: var(--t3); }
-
-      /* Pruh s tím, co platí pro všechny tarify */
-      .tier-strip {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
-        padding-top: 1.5rem; margin-top: 1.6rem; border-top: 1px solid var(--line);
-      }
-      @media (max-width: 700px) { .tier-strip { grid-template-columns: 1fr; gap: 0.9rem; } }
-      .tier-strip .k {
-        display: block; font-size: 0.66rem; letter-spacing: 0.12em;
-        text-transform: uppercase; color: var(--t3);
-      }
-      .tier-strip .v { display: block; margin-top: 0.3rem; font-size: 1.25rem; font-weight: 700; }
-
-      .panel.is-best { border-color: rgb(74 222 128 / 35%); }
+      /* ---------- balíček asistentů ---------- */
+      .bundle { margin-top: 2rem; }
+      .bundle-main { margin: 0; font-size: clamp(1.2rem, 2.2vw, 1.55rem); font-weight: 600; letter-spacing: -0.02em; }
+      .bundle-main b { color: var(--green); }
+      .bundle-main s { margin-left: 0.4rem; font-size: 0.75em; font-weight: 500; color: var(--t3); text-decoration-thickness: 1px; }
+      .bundle-sub { max-width: 75ch; margin: 0.6rem 0 0; font-size: 0.93rem; line-height: 1.6; color: var(--t2); }
     </style>
 
     <script is:inline>
-      /* Kalkulačka. Počítá se v prohlížeči, nic se nikam neodesílá.
-         Čísla se při změně přepočítají plynule - je to jediná animace, kterou
-         tahle stránka má, a slouží k tomu, aby si člověk změny všiml. */
+      /* Kalkulačka jako účtenka. Počítá se v prohlížeči, nic se nikam neodesílá.
+         Řádky se při zaškrtnutí "vytisknou" do účtenky a součty dojedou plynule. */
       (function () {
         var form = document.getElementById("calc");
         if (!form) return;
-
-        var onceEl = document.getElementById("once");
-        var monthEl = document.getElementById("month");
-        var onceNote = document.getElementById("onceNote");
-        var bundleNote = document.getElementById("bundleNote");
-        var spravaWrap = form.querySelector("[data-needs-web]");
-        var sprava = document.getElementById("sprava");
-
-        var BUNDLE = 7500;          /* všechny tři služby dohromady */
+        var rows = document.getElementById("rows"), empty = document.getElementById("empty");
+        var onceEl = document.getElementById("once"), monthEl = document.getElementById("month");
+        var onceNote = document.getElementById("onceNote"), send = document.getElementById("send");
+        var spravaWrap = form.querySelector("[data-needs-web]"), sprava = document.getElementById("sprava");
+        var SPRAVA = parseInt(form.dataset.sprava, 10), BUNDLE = parseInt(form.dataset.bundle, 10);
         var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var COL = { web: "var(--cyan)", ai: "var(--violet)", off: "var(--green)", care: "var(--amber)" };
 
-        function fmt(n) {
-          return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        }
-
-        /* Plynulý přechod mezi dvěma částkami. Bez knihovny, a když si někdo
-           vypnul pohyb, číslo se prostě přepíše. */
+        function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
         function animate(el, to) {
           var from = parseInt((el.textContent || "0").replace(/\D/g, ""), 10) || 0;
           if (reduced || from === to) { el.textContent = fmt(to); return; }
@@ -500,42 +395,61 @@ import Base from "../layouts/Base.astro";
           var t0 = performance.now(), dur = 420;
           (function step(now) {
             var p = Math.min(1, (now - t0) / dur);
-            var eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = fmt(Math.round(from + (to - from) * eased));
+            el.textContent = fmt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
             if (p < 1) el._raf = requestAnimationFrame(step);
           })(t0);
         }
 
-        function recalc() {
-          var web = parseInt(form.querySelector('input[name="web"]:checked').value, 10) || 0;
+        /* Řádky se překreslují jen když se změní, aby se "tisk" nespouštěl u řádků, které tam už byly. */
+        var shown = {};
+        function render(list) {
+          var next = {};
+          list.forEach(function (r) { next[r.key] = r; });
+          Object.keys(shown).forEach(function (k) { if (!next[k] || next[k].price !== shown[k].price) { shown[k].el.remove(); delete shown[k]; } });
+          list.forEach(function (r) {
+            if (shown[r.key]) { rows.appendChild(shown[r.key].el); return; }
+            var li = document.createElement("li");
+            if (r.off) li.className = "is-off";
+            li.style.setProperty("--c", r.col);
+            var n = document.createElement("span"); n.className = "n"; n.textContent = r.name;
+            var p = document.createElement("span"); p.className = "p"; p.textContent = r.price;
+            li.append(n, p); rows.appendChild(li);
+            /* Po prvním vytištění animaci vypnout, jinak by se při přeskládání řádků přehrála znovu. */
+            li.addEventListener("animationend", function () { li.style.animation = "none"; }, { once: true });
+            shown[r.key] = { el: li, price: r.price };
+          });
+          empty.hidden = list.length > 0;
+        }
 
-          /* Správa dává smysl jen k webu. Když web není, políčko se zhasne
-             a odškrtne, ať se nezapočítá potichu. */
-          if (web > 0) {
-            spravaWrap.classList.add("is-on");
-          } else {
-            spravaWrap.classList.remove("is-on");
-            sprava.checked = false;
-          }
+        function recalc() {
+          var webIn = form.querySelector('input[name="web"]:checked');
+          var web = parseInt(webIn.value, 10) || 0;
+          spravaWrap.classList.toggle("is-on", web > 0);
+          if (!web) sprava.checked = false;
 
           var ai = [].slice.call(form.querySelectorAll(".ai:checked"));
           var aiSum = ai.reduce(function (a, i) { return a + parseInt(i.value, 10); }, 0);
-          var all = ai.length === 3;
-          if (all) aiSum = BUNDLE;         /* balíček je levnější než součet */
-          bundleNote.hidden = !all;
+          var list = [];
+          if (web) list.push({ key: "web", name: webIn.dataset.name, price: fmt(web) + " Kč", col: COL.web });
+          if (sprava.checked) list.push({ key: "sprava", name: sprava.dataset.name, price: fmt(SPRAVA) + " Kč/měs", col: COL.care });
+          ai.forEach(function (i) { list.push({ key: "ai" + i.dataset.name, name: i.dataset.name, price: fmt(parseInt(i.value, 10)) + " Kč/měs", col: COL.ai }); });
+          if (ai.length === 3) {
+            list.push({ key: "bundle", name: "Balíček všech tří", price: "−" + fmt(aiSum - BUNDLE) + " Kč/měs", col: COL.off, off: true });
+            aiSum = BUNDLE;
+          }
+          render(list);
 
-          var month = aiSum + (sprava.checked ? 990 : 0);
-          var once = web;
-
-          /* Nastavení asistenta je rozpětí, ne jedno číslo - nesmí se tvářit
-             jako přesná částka, tak se jen připomene textem. */
           onceNote.hidden = ai.length === 0;
-          onceNote.textContent = ai.length
-            ? "k tomu jednorázové nastavení asistenta 8 000 až 10 000 Kč"
-            : "";
+          onceNote.textContent = ai.length ? "K tomu jednorázové nastavení asistenta 8 000 až 10 000 Kč, upřesním po hovoru." : "";
 
-          animate(onceEl, once);
-          animate(monthEl, month);
+          /* Odkaz rovnou předvyplní formulář: co chcete a co jste si sestavili. */
+          var kind = web && ai.length ? "vice" : web ? "web" : ai.length ? "ai" : "";
+          var text = list.filter(function (r) { return !r.off; }).map(function (r) { return r.name; }).join(", ");
+          send.href = kind ? "/kontakt?sluzba=" + kind + "&sestava=" + encodeURIComponent(text) : "/kontakt";
+          if (kind) send.removeAttribute("aria-disabled"); else send.setAttribute("aria-disabled", "true");
+
+          animate(onceEl, web);
+          animate(monthEl, aiSum + (sprava.checked ? SPRAVA : 0));
         }
 
         form.addEventListener("change", recalc);
