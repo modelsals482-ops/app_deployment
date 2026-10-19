@@ -269,7 +269,8 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
   </section>
 
   <Fragment slot="tail">
-    <style>
+    <!-- is:global: řádky účtenky vyrábí skript, Astrem scopované styly by na ně nedosáhly. -->
+    <style is:global>
       /* ---------- rozcestník v hlavičce ---------- */
       .jump .fact { color: var(--t2); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
       .jump .fact::before { align-self: center; width: 0.5rem; height: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
@@ -310,22 +311,23 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
       @keyframes rowIn { from { opacity: 0; transform: translateY(-6px); filter: blur(4px); clip-path: inset(0 100% 0 0); } to { opacity: 1; transform: none; filter: none; clip-path: inset(0 0 0 0); } }
       .receipt-empty { margin: 0.6rem 0 0.3rem; font-size: 0.9rem; color: var(--t3); }
       .receipt-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--line-2); }
-      .receipt-sum span { display: block; font-size: 0.82rem; color: var(--t3); }
+      .receipt-sum > div > span { display: block; font-size: 0.82rem; color: var(--t3); }
       .receipt-sum b { display: block; margin-top: 0.2rem; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--t1); }
       .receipt-note { margin: 0.7rem 0 0; font-size: 0.85rem; color: var(--t2); }
       .receipt-cta { width: 100%; margin-top: 1.2rem; justify-content: center; }
       .receipt-cta[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
       .receipt-foot { margin: 0.7rem 0 0; font-size: 0.8rem; text-align: center; color: var(--t3); }
       .bill-foot { max-width: 70ch; margin-top: 1.4rem; font-size: 0.9rem; color: var(--t2); }
-      .bill-foot a, .bundle-sub a, .tiers a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
+      .bill-foot a, .bundle-sub a, .tiers a, .span-after a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
       @media (max-width: 900px) { .bill { grid-template-columns: 1fr; } .receipt { position: static; } }
 
       /* ---------- weby: schody ---------- */
       .tiers .tier-price { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--t3); }
       .tiers .tier-price b { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--c); }
       /* Listy papíru: kolik stránek, tolik listů, rozvinou se při příchodu. */
-      .art-pages { position: relative; place-items: end center; padding-bottom: 0.7rem; }
-      .art-pages i { position: absolute; top: 1rem; left: 50%; width: 2.3rem; height: 2.9rem; margin-left: -1.15rem; background: #15151b;
+      /* Výška se nemění ani na mobilu (tam cas-art jinak spadne na 4.6rem a popisek vleze do listů). */
+      .tiers .art-pages { position: relative; height: 6.2rem; place-items: end center; padding-bottom: 0.55rem; }
+      .art-pages i { position: absolute; top: 0.8rem; left: 50%; width: 2.3rem; height: 2.9rem; margin-left: -1.15rem; background: #15151b;
         border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius: 4px;
         box-shadow: inset 0 0.55rem 0 -0.42rem var(--c), 0 6px 14px rgb(0 0 0 / 45%);
         transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
