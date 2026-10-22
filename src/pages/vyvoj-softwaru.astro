@@ -193,8 +193,8 @@ import Showcase from "../components/Showcase.astro";
     </div>
   </section>
 
-  <Showcase id="priklad" side="r" color="blue" dark title="Katalog, který spravuje obsluha" who="We Love Events · rental techniky"
-    main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky We Love Events", label: "weloveproduction.cz/rental" }}
+  <Showcase id="priklad" side="r" color="blue" dark title="Katalog, který spravuje obsluha" who="We Love Production · rental techniky"
+    main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky na weloveproduction.cz", label: "weloveproduction.cz/rental" }}
     second={{ src: "/assets/ref/wle-cards.webp", alt: "Položky v katalogu s tlačítkem Do košíku", label: "rental/zvuk/reproduktory", w: 900, h: 400 }}
     bubbles={[
       { text: "346 položek", c: "blue", at: "top:-6%; left:14%", size: "7.2rem" },
@@ -237,7 +237,7 @@ import Showcase from "../components/Showcase.astro";
   <section class="sec sec-dark spec-sec" id="specifikace">
     <div class="wrap">
       <details class="spec rev">
-        <summary><span class="hood-mono">&gt;_</span> Technické specifikace <span class="hood-sub">jak běží katalog We Love Events</span></summary>
+        <summary><span class="hood-mono">&gt;_</span> Technické specifikace <span class="hood-sub">jak běží katalog rentalu na weloveproduction.cz</span></summary>
         <dl class="spec-grid">
             <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. 346 položek ve 48 kategoriích, dostupnost přímo u položky.</dd></div>
             <div><dt>Server</dt><dd>Node.js API v Dockeru na serveru v EU. HTTPS přes Caddy, před tím Cloudflare (firewall, ochrana proti útokům).</dd></div>

@@ -31,8 +31,8 @@ export rather than by migrating them. A short analysis produces the scope and a 
 that scope; the deadline is agreed per project size. Source code, accounts and documentation
 belong to the client. Data runs in the EU under an Art. 28 GDPR processing agreement.
 
-Delivered so far: the catalogue admin panel and availability integration for WE LOVE EVENTS,
-a Prague AV and event rental company.
+Delivered so far: the rental catalogue with a basket and its admin panel on weloveproduction.cz
+(WE LOVE PRODUCTION, a Prague AV production and rental company).
 
 ### 3. AI assistants - https://alsflow.cz/ai-asistenti
 An assistant that answers customers, takes bookings and sends reminders, in Czech and in the
