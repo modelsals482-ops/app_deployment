@@ -63,39 +63,54 @@ import Showcase from "../components/Showcase.astro";
     <div class="btn-row"><a class="btn btn-svc" href="https://gen1.cz" target="_blank" rel="noopener">Otevřít gen1.cz</a></div>
   </Showcase>
 
-  <Showcase id="sekelova" side="l" color="amber" title="znalecsekelova.sk" who="Soudní znalkyně · Slovensko"
+  <Showcase id="mooncake" side="l" color="cyan" title="mooncake.sk" who="E-shop se šperky · Slovensko"
+    main={{ src: "/assets/ref/mc-home.webp", alt: "Konfigurátor náramků na mooncake.sk s charmy na řetízku", label: "mooncake.sk/vytvor-si-naramok", w: 1200, h: 750 }}
+    second={{ src: "/assets/ref/mc-pismena.webp", alt: "Náramek se jménem z písmen v konfigurátoru na mooncake.sk", label: "mooncake.sk/vytvor-si-naramok" }}
+    phone={{ src: "/assets/ref/mc-m.webp", alt: "Konfigurátor náramků na mobilu" }}
+    bubbles={[
+      { text: "Vlastní plugin do WooCommerce", c: "cyan", at: "top:-6%; right:14%" },
+      { text: "54 charmů a písmen", c: "violet", at: "top:34%; right:-3%" },
+      { text: "Slovensky", c: "cyan", at: "bottom:4%; left:18%", size: "6.6rem", ghost: true }
+    ]}>
+    <p>Konfigurátor náramků v e-shopu se šperky. Zákaznice si vybere řetízek a délku, naklikává charmy i písmena a hned vidí, jak bude náramek viset. Do košíku jde jako běžné zboží, platba i doprava zůstaly beze změny.</p>
+    <p class="ref-mine"><b>Moje:</b> konfigurátor náramků jako vlastní plugin do WooCommerce, výřezy všech charmů a sdílení seznamu přání. E-shop dál spravuji.
+      <b class="ref-not">Není moje:</b> samotný e-shop a jeho vzhled. Ten postavila jiná agentura.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://mooncake.sk/vytvor-si-naramok/" target="_blank" rel="noopener">Otevřít konfigurátor</a></div>
+  </Showcase>
+
+  <Showcase id="sekelova" side="r" color="amber" title="znalecsekelova.sk" who="Soudní znalkyně · Slovensko"
     main={{ src: "/assets/ref/sekelova-desktop.jpg", alt: "Úvodní stránka webu znalecsekelova.sk", label: "znalecsekelova.sk", w: 1080, h: 675 }}
     second={{ src: "/assets/ref/sek-sluzby.webp", alt: "Stránka Služby na znalecsekelova.sk", label: "znalecsekelova.sk/sluzby" }}
     phone={{ src: "/assets/ref/sek-m.webp", alt: "znalecsekelova.sk na mobilu" }}
     bubbles={[
-      { text: "Slovensky", c: "amber", at: "top:-5%; left:12%", size: "7rem" },
-      { text: "Kresby přímo v SVG", c: "cyan", at: "top:30%; left:-3%" },
-      { text: "8 stránek", c: "amber", at: "bottom:6%; right:30%", size: "6.6rem", ghost: true }
+      { text: "Slovensky", c: "amber", at: "top:-5%; right:12%", size: "7rem" },
+      { text: "Kresby přímo v SVG", c: "cyan", at: "top:30%; right:-3%" },
+      { text: "8 stránek", c: "amber", at: "bottom:6%; left:30%", size: "6.6rem", ghost: true }
     ]}>
     <p>Osm stránek slovensky: služby, ceník, podklady k obhlídce. Kresby jsou vlastní, dělané přímo v SVG, a stránka plynule roluje.</p>
     <p class="ref-mine"><b>Moje:</b> celý web, od návrhu po spuštění. Dál ho spravuji.</p>
     <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Otevřít znalecsekelova.sk</a></div>
   </Showcase>
 
-  <Showcase id="thdata" side="r" color="green" title="TH.data a.s." who="Účetní a daňová kancelář · Praha 2"
+  <Showcase id="thdata" side="l" color="green" title="TH.data a.s." who="Účetní a daňová kancelář · Praha 2"
     main={{ src: "/assets/ref/th-home.webp", alt: "Úvodní stránka webu thdata.cz", label: "thdata.cz" }}
     second={{ src: "/assets/ref/th-cenik.webp", alt: "Stránka Ceník na thdata.cz", label: "thdata.cz/cenik" }}
     phone={{ src: "/assets/ref/th-m.webp", alt: "thdata.cz na mobilu" }}
     bubbles={[
-      { text: "Česky, anglicky, rusky", c: "green", at: "top:-6%; right:12%" },
-      { text: "Veřejný ceník", c: "cyan", at: "top:34%; left:-3%" },
-      { text: "Pošta beze změny", c: "green", at: "bottom:4%; left:32%", ghost: true }
+      { text: "Česky, anglicky, rusky", c: "green", at: "top:-6%; left:12%" },
+      { text: "Veřejný ceník", c: "cyan", at: "top:34%; right:-3%" },
+      { text: "Pošta beze změny", c: "green", at: "bottom:4%; right:32%", ghost: true }
     ]}>
     <p>Šest stránek ve třech jazycích pro účetní a daňovou kancelář: služby, veřejný ceník, rychlá konzultace a kontakty. Při přechodu na nový hosting zůstala firemní pošta úplně beze změny.</p>
     <p class="ref-mine"><b>Moje:</b> celý web, od návrhu po spuštění, včetně přesunu na nový hosting.</p>
     <div class="btn-row"><a class="btn btn-svc" href="https://thdata.cz" target="_blank" rel="noopener">Otevřít thdata.cz</a></div>
   </Showcase>
 
-  <Showcase id="alsflow" side="l" color="cyan" title="Klára" who="AI asistentka přímo na tomhle webu"
+  <Showcase id="alsflow" side="r" color="cyan" title="Klára" who="AI asistentka přímo na tomhle webu"
     main={{ src: "/assets/ref/als-home.webp", alt: "Úvodní stránka alsflow.cz s Klárou v rohu", label: "alsflow.cz" }}
     bubbles={[
-      { text: "Představí se jako AI", c: "cyan", at: "top:-6%; left:10%" },
-      { text: "Česky", c: "violet", at: "top:44%; left:-3%", ghost: true }
+      { text: "Představí se jako AI", c: "cyan", at: "top:-6%; right:10%" },
+      { text: "Česky", c: "violet", at: "top:44%; right:-3%", ghost: true }
     ]}>
     <div class="chatviz" slot="media" aria-label="Ukázka konverzace s Klárou">
       <p class="cv cv-u">Kolik stojí web pro kadeřnictví?</p>
