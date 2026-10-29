@@ -166,22 +166,15 @@
 @keyframes p2m { 0% { opacity: 1; transform: none; } 100% { opacity: 1; transform: translate(-36cqw, 36cqh); } }
 
 
-.hood-mono { font-family: var(--mono); color: var(--green); }
-.hood-sub { font-size: 0.88rem; font-weight: 400; color: var(--t3); letter-spacing: 0; }
-/* ---- Technické specifikace pod katalogem WLE (16. 10.) ---- */
-.spec-sec { padding-top: 0 !important; }
-.spec { background: #0b0b0e; border: 1px solid var(--line-2); border-radius: 18px; }
-.spec summary { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; align-items: baseline; padding: 1.2rem 1.4rem; font-size: 1.1rem; font-weight: 800; cursor: pointer; list-style: none; }
-.spec summary::-webkit-details-marker { display: none; }
-.spec summary::after { margin-left: auto; content: "+"; color: var(--t3); transition: transform 0.3s; }
-.spec[open] summary::after { transform: rotate(45deg); }
-.spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin: 0; padding: 0 1.4rem 1.2rem; }
-.spec-grid div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; padding: 0.85rem 0; border-top: 1px solid var(--line); }
-.spec-grid div:nth-child(odd) { padding-right: 1.6rem; }
-.spec-grid dt { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.82rem; font-weight: 700; color: var(--blue); }
+/* ---- Technické specifikace pod katalogem WLE: otevřená sekce v kartě, stejný jazyk jako zbytek webu (30. 10.) ---- */
+.spec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.4rem; margin: 0; --c: var(--blue); }
+.spec-grid div { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; padding: 0.95rem 0; border-top: 1px solid var(--line); }
+.spec-grid div:nth-child(-n+2) { border-top: 0; }
+.spec-grid dt { display: flex; gap: 0.55rem; align-items: baseline; font-size: 0.92rem; font-weight: 700; color: var(--t1); }
+.spec-grid dt::before { flex: none; width: 0.45rem; height: 0.45rem; content: ""; background: var(--c); border-radius: 50%; }
 .spec-grid dd { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--t2); }
 @media (max-width: 860px) {
   .spec-grid { grid-template-columns: 1fr; }
   .spec-grid div { grid-template-columns: 1fr; gap: 0.25rem; }
-  .spec-grid div:nth-child(odd) { padding-right: 0; }
+  .spec-grid div:nth-child(2) { border-top: 1px solid var(--line); }
 }

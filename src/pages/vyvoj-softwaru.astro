@@ -211,6 +211,48 @@ import Showcase from "../components/Showcase.astro";
     <span class="proj-pill">Veřejně brzy</span>
   </Showcase>
 
+  <!-- Technické specifikace (30. 10.): otevřená sekce hned pod katalogem, o kterém mluví.
+       Bez IP adres, adres administrace a verzí softwaru: nic, co by pomohlo útočníkovi. -->
+  <section class="sec sec-line" id="specifikace">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Jak katalog běží <span class="grad">pod kapotou</span></h2>
+        <p class="lead">Technické specifikace rentalu na weloveproduction.cz. Bez adres serverů a verzí softwaru, ty by pomohly jen útočníkovi.</p>
+      </div>
+      <dl class="spec-grid panel panel-pad rev">
+        <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. 346 položek ve 48 kategoriích, dostupnost přímo u položky.</dd></div>
+        <div><dt>Server</dt><dd>Node.js API v Dockeru na serveru v EU, HTTPS přes Caddy. Spojení přijme jen přes Cloudflare (firewall, ochrana proti útokům), přímo na jeho adresu se nikdo nedostane.</dd></div>
+        <div><dt>Databáze</dt><dd>PostgreSQL. Všechny dotazy parametrizované, takže podstrčený text se nikdy nespustí jako příkaz.</dd></div>
+        <div><dt>Administrace</dt><dd>Přihlášení přes Cloudflare Access jen pro pozvané e-maily, záložně vlastní hesla (scrypt). Relace vyprší po 12 hodinách.</dd></div>
+        <div><dt>Historie změn</dt><dd>Každá úprava se zapíše: kdo, kdy a co bylo před a po. Hesla ani klíče se do záznamu nikdy nedostanou.</dd></div>
+        <div><dt>Poptávky z košíku</dt><dd>Odejdou e-mailem týmu, formulář chrání Cloudflare Turnstile. Odeslání se měří v Google Analytics.</dd></div>
+        <div><dt>AI asistent Jack</dt><dd>Odpovídá zákazníkům nad stejným katalogem (Google Gemini). Vždy se představí jako AI.</dd></div>
+        <div><dt>Zálohy</dt><dd>Databáze se zálohuje každý den ve 3:00, drží se 14 dní. Obnova ze zálohy je vyzkoušená.</dd></div>
+        <div><dt>Testy</dt><dd>Automatické testy přihlášení a historie změn, včetně pokusů o SQL injection.</dd></div>
+        <div><dt>Vlastnictví</dt><dd>Zdrojový kód, účty i dokumentace jsou na jméno klienta.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <Showcase id="mooncake" side="l" color="cyan" dark title="Konfigurátor v e-shopu, který už běží" who="Mooncake · e-shop se šperky, Slovensko"
+    main={{ src: "/assets/ref/mc-home.webp", alt: "Konfigurátor náramků na mooncake.sk s charmy na řetízku", label: "mooncake.sk/vytvor-si-naramok", w: 1200, h: 750 }}
+    second={{ src: "/assets/ref/mc-pismena.webp", alt: "Náramek se jménem z písmen v konfigurátoru na mooncake.sk", label: "mooncake.sk/vytvor-si-naramok" }}
+    phone={{ src: "/assets/ref/mc-m.webp", alt: "Konfigurátor náramků na mobilu" }}
+    bubbles={[
+      { text: "Plugin do WooCommerce", c: "cyan", at: "top:-6%; right:14%" },
+      { text: "54 charmů a písmen", c: "violet", at: "top:34%; right:-3%" },
+      { text: "Bez nového e-shopu", c: "blue", at: "bottom:4%; left:18%", size: "7.2rem", ghost: true }
+    ]}>
+    <p>Zákaznice si v e-shopu sama složí náramek: vybere řetízek a délku, naklikává charmy i písmena a hned vidí, jak bude viset. Do košíku jde jako běžné zboží, platba i doprava zůstaly beze změny.</p>
+    <ul class="proj-facts">
+      <li>Vlastní plugin do WooCommerce, napsaný v&nbsp;PHP</li>
+      <li>Napojený na košík a objednávky, které už běží</li>
+      <li>Výřezy všech charmů a sdílení seznamu přání</li>
+      <li>E-shop samotný postavila jiná agentura, do něj jsem jen přidal konfigurátor</li>
+    </ul>
+    <div class="btn-row"><a class="btn btn-svc" href="https://mooncake.sk/vytvor-si-naramok/" target="_blank" rel="noopener">Otevřít konfigurátor</a></div>
+  </Showcase>
+
   <section class="sec sec-line">
     <div class="wrap">
       <div class="sec-head">
@@ -228,30 +270,6 @@ import Showcase from "../components/Showcase.astro";
         <a class="btn btn-swap" href="/kontakt"><span class="lbl"><span>Pop&iacute;&scaron;u probl&eacute;m</span><span>Napi&scaron;te mi</span></span></a>
       </div>
       <p class="lead" style="margin-top:2.5rem">Co neberu: mobiln&iacute; aplikace do App Storu, syst&eacute;my pro stovky tis&iacute;c u&zcaron;ivatel&uring; a p&rcaron;evzet&iacute; ciz&iacute;ho projektu bez dokumentace. &Rcaron;eknu to hned na za&ccaron;&aacute;tku, ne po m&ecaron;s&iacute;ci.</p>
-    </div>
-  </section>
-
-  <!-- Technické specifikace (16. 10.): bývalé "Pod kapotou", teď přímo pod
-       katalogem, o kterém mluví. Bez IP adres, adres administrace a verzí
-       softwaru: nic, co by pomohlo útočníkovi. -->
-  <section class="sec sec-dark spec-sec" id="specifikace">
-    <div class="wrap">
-      <details class="spec rev">
-        <summary><span class="hood-mono">&gt;_</span> Technické specifikace <span class="hood-sub">jak běží katalog rentalu na weloveproduction.cz</span></summary>
-        <dl class="spec-grid">
-            <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. 346 položek ve 48 kategoriích, dostupnost přímo u položky.</dd></div>
-            <div><dt>Server</dt><dd>Node.js API v Dockeru na serveru v EU. HTTPS přes Caddy, před tím Cloudflare (firewall, ochrana proti útokům).</dd></div>
-            <div><dt>Databáze</dt><dd>PostgreSQL. Všechny dotazy parametrizované, takže podstrčený text se nikdy nespustí jako příkaz.</dd></div>
-            <div><dt>Přístup na server</dt><dd>Server přijme spojení jen přes Cloudflare. Přímo na adresu serveru se nikdo nedostane.</dd></div>
-            <div><dt>Administrace</dt><dd>Přihlášení přes Cloudflare Access jen pro pozvané e-maily, záložně vlastní hesla (scrypt). Relace vyprší po 12 hodinách.</dd></div>
-            <div><dt>Historie změn</dt><dd>Každá úprava se zapíše: kdo, kdy a co bylo před a po. Hesla ani klíče se do záznamu nikdy nedostanou.</dd></div>
-            <div><dt>Poptávky z košíku</dt><dd>Odejdou e-mailem týmu, formulář chrání Cloudflare Turnstile. Odeslání se měří v Google Analytics.</dd></div>
-            <div><dt>AI asistent Jack</dt><dd>Odpovídá zákazníkům nad stejným katalogem (Google Gemini). Vždy se představí jako AI.</dd></div>
-            <div><dt>Zálohy</dt><dd>Databáze se zálohuje každý den ve 3:00, drží se 14 dní. Obnova ze zálohy je vyzkoušená.</dd></div>
-            <div><dt>Testy</dt><dd>Automatické testy přihlášení a historie změn, včetně pokusů o SQL injection.</dd></div>
-            <div><dt>Vlastnictví</dt><dd>Zdrojový kód, účty i dokumentace jsou na jméno klienta.</dd></div>
-        </dl>
-      </details>
     </div>
   </section>
 

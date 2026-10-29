@@ -201,7 +201,8 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   .cookie-banner__row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .cookie-banner__row .btn { flex: 1; padding: 0.6rem 1rem; font-size: 0.85rem; white-space: nowrap; }
   @media (max-width: 480px) {
-    .cookie-banner { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; width: auto; }
+    /* nad tlačítkem chatu s Klárou, jinak zakrývá "Přijmout měření" */
+    .cookie-banner { left: 0.75rem; right: 0.75rem; bottom: 5.5rem; width: auto; }
   }
 </style>
 
