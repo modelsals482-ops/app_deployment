@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 /* Ceny na jednom místě: stránka, kalkulačka i data pro Google je čtou odsud.
    Změna ceny = změna tady, nikde jinde na téhle stránce. */
 const P = {
-  web1: 14900, web8: 24900, webX: 34900, provoz: 990, sprava: 1990,
+  web1: 24900, web8: 49900, webX: 89900, provoz: 1490, sprava: 3490, pece: 6900,
   sw: 24900, mail: 2500, book: 4500, feed: 2500, bundle: 7500,
 };
 const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
@@ -35,6 +35,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         { "@type": "Offer", "name": "Prezentační web do osmi stránek", "priceCurrency": "CZK", "price": String(P.web8), "url": "https://alsflow.cz/tvorba-webu" },
         { "@type": "Offer", "name": "Provoz webu (měsíčně)", "priceCurrency": "CZK", "price": String(P.provoz), "url": "https://alsflow.cz/cenik#weby" },
         { "@type": "Offer", "name": "Správa webu (měsíčně)", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/cenik#weby" },
+        { "@type": "Offer", "name": "Kompletní péče: web, domény a e-maily (měsíčně)", "priceCurrency": "CZK", "price": String(P.pece), "url": "https://alsflow.cz/cenik#weby" },
         { "@type": "Offer", "name": "Software na míru", "priceCurrency": "CZK", "price": String(P.sw), "url": "https://alsflow.cz/vyvoj-softwaru" },
         { "@type": "Offer", "name": "E-mailové odpovědi", "priceCurrency": "CZK", "price": String(P.mail), "url": "https://alsflow.cz/e-mailove-odpovedi" },
         { "@type": "Offer", "name": "Rezervace a připomínky", "priceCurrency": "CZK", "price": String(P.book), "url": "https://alsflow.cz/rezervace-pripominky" },
@@ -83,6 +84,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
               <label class="opt opt-sub"><input type="radio" name="care" value="0" data-name="" checked /><span>Nic měsíčně</span></label>
               <label class="opt opt-sub"><input type="radio" name="care" value={P.provoz} data-name="Provoz webu" /><span>Provoz: běží a opravy</span><b>{kc(P.provoz)}/měs</b></label>
               <label class="opt opt-sub"><input type="radio" name="care" value={P.sprava} data-name="Správa webu" /><span>Správa: provoz i změny</span><b>{kc(P.sprava)}/měs</b></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.pece} data-name="Kompletní péče" /><span>Kompletní péče: web, domény, e-maily</span><b>{kc(P.pece)}/měs</b></label>
             </div>
           </fieldset>
 
@@ -117,7 +119,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
   <section class="sec sec-dark sec-line" id="weby">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="h-sec fade-head reveal-words">Jednorázová cena, pak <span class="grad">drobný paušál</span></h2>
+        <h2 class="h-sec fade-head reveal-words">Jednorázová cena, pak <span class="grad">měsíční péče</span></h2>
         <p class="lead">V ceně jsou návrh, texty, nasazení, doména i certifikát. Web bývá živý do 6 až 10 pracovních dnů
           a rozpracovanou verzi vidíte průběžně.</p>
       </div>
@@ -145,7 +147,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
           <div>
             <h3>Na míru</h3>
             <p class="tier-price"><b>od {kc(P.webX)}&nbsp;Kč</b> jednorázově</p>
-            <p>Devět a víc stránek, dva jazyky, víc formulářů. Přesnou cenu řeknu po hovoru.</p>
+            <p>Vlastní design a pohyb, devět a víc stránek, dva jazyky a obsah, který si upravujete sami, třeba novinky nebo kolekce. Přesnou cenu řeknu po hovoru.</p>
           </div>
         </li>
         <li class="cas cas-care rev" data-d="3" style="--c: var(--amber); --i: 3">
@@ -160,9 +162,17 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
           <div class="care-plan">
             <h3>Správa webu</h3>
             <p class="tier-price"><b>{kc(P.sprava)}&nbsp;Kč</b> měsíčně, bez závazku</p>
-            <p>Všechno z provozu a k tomu změny: texty, ceny, fotky, otevírací hodiny i drobné novinky, zhruba do hodiny práce měsíčně.</p>
+            <p>Všechno z provozu a k tomu změny: texty, ceny, fotky, otevírací hodiny i drobné novinky, zhruba do dvou hodin práce měsíčně.</p>
             <ul class="care-tags" aria-label="Ve správě je">
-              <li>Vše z provozu</li><li>Změny do 2 pracovních dnů</li><li>Do hodiny práce měsíčně</li>
+              <li>Vše z provozu</li><li>Změny do 2 pracovních dnů</li><li>Do 2 hodin práce měsíčně</li>
+            </ul>
+          </div>
+          <div class="care-plan">
+            <h3>Kompletní péče</h3>
+            <p class="tier-price"><b>od {kc(P.pece)}&nbsp;Kč</b> měsíčně, bez závazku</p>
+            <p>O web, domény ani e-maily se nestaráte. Hlídám je, zálohuji a když je potřeba něco vyřešit s jiným dodavatelem, třeba s registrátorem nebo poskytovatelem e-mailu, domluvím to za vás.</p>
+            <ul class="care-tags" aria-label="V kompletní péči je">
+              <li>Vše ze správy</li><li>Domény a DNS</li><li>E-mailové schránky</li><li>Zálohy</li><li>Jednání s dodavateli</li><li>Čtvrtletní kontrola SEO</li><li>Do 4 hodin práce měsíčně</li>
             </ul>
           </div>
         </li>
@@ -254,7 +264,7 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
       </div>
       <div class="faq">
         <details class="rev"><summary>Je v cenách DPH?</summary><p>DPH se k cenám nepřipočítává, protože nejsem plátce DPH. Weby, software i asistenty fakturuji jako Jakub Ryvola, IČO 30112702. Cena na nabídce je i cena na faktuře.</p></details>
-        <details class="rev"><summary>Jaký je rozdíl mezi provozem a správou webu?</summary><p>Provoz ({kc(P.provoz)}&nbsp;Kč měsíčně) drží web v chodu: hosting, doménu, certifikát, ochranu formulářů a opravy, když se něco rozbije. Nové věci a změny obsahu se u něj platí zvlášť, cenu řeknu předem. Správa ({kc(P.sprava)}&nbsp;Kč měsíčně) k tomu přidává změny textů, cen, fotek a drobné novinky zhruba do hodiny práce měsíčně, hotové do dvou pracovních dnů.</p></details>
+        <details class="rev"><summary>Jaký je rozdíl mezi provozem a správou webu?</summary><p>Provoz ({kc(P.provoz)}&nbsp;Kč měsíčně) drží web v chodu: hosting, doménu, certifikát, ochranu formulářů a opravy, když se něco rozbije. Nové věci a změny obsahu se u něj platí zvlášť, cenu řeknu předem. Správa ({kc(P.sprava)}&nbsp;Kč měsíčně) k tomu přidává změny textů, cen, fotek a drobné novinky zhruba do dvou hodin práce měsíčně, hotové do dvou pracovních dnů. Kompletní péče (od {kc(P.pece)}&nbsp;Kč měsíčně) k tomu přidává domény, DNS a e-mailové schránky, zálohy a jednání s vašimi dodavateli. Domény zůstávají napsané na vás a licence schránek platíte za cenu poskytovatele.</p></details>
         <details class="rev" data-d="1"><summary>Co když si v průběhu vymyslím něco navíc?</summary><p>Řeknu cenu té změny předem a vy se rozhodnete, jestli ji chcete.</p></details>
         <details class="rev" data-d="2"><summary>Co je jednorázové nastavení asistenta?</summary><p>Napojení na vaše nástroje, naučení vašeho tónu, nastavení odpovědí a otestování. Dělám to za vás, asistent jede do 5 až 7 pracovních dnů. Platí se jednou, na začátku.</p></details>
         <details class="rev" data-d="3"><summary>Musím se zavázat na dobu určitou?</summary><p>Ne. Měsíčně, bez smlouvy na dobu určitou, zrušit kdykoli.</p></details>
@@ -358,11 +368,11 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         opacity: 0; transition: opacity 0.4s 0.6s, transform 0.6s 0.6s cubic-bezier(0.34, 1.4, 0.64, 1); }
       .art-lang em:nth-of-type(1) { left: 0.6rem; transform: translateY(4px); } .art-lang em:nth-of-type(2) { right: 0.6rem; transform: translateY(4px); }
       .cas.in .art-lang em { opacity: 1; transform: none; }
-      .cas-care { grid-template-columns: 1fr 1fr; align-items: start; gap: 1.4rem 2rem; width: min(calc(100% - var(--i) * 9%), 58rem); }
+      .cas-care { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.4rem 2rem; width: min(calc(100% - var(--i) * 9%), 72rem); }
       .care-plan + .care-plan { padding-left: 2rem; border-left: 1px solid var(--line); }
       .care-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.9rem 0 0; padding: 0; list-style: none; }
       .care-tags li { padding: 0.32rem 0.65rem; font-size: 0.8rem; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 100px; }
-      @media (max-width: 760px) { .cas-care { grid-template-columns: 1fr; } .care-plan + .care-plan { padding: 1.4rem 0 0; border-left: 0; border-top: 1px solid var(--line); } }
+      @media (max-width: 1000px) { .cas-care { grid-template-columns: 1fr; } .care-plan + .care-plan { padding: 1.4rem 0 0; border-left: 0; border-top: 1px solid var(--line); } }
       [data-vykon="minimalni"] .art-pages i, [data-vykon="minimalni"] .art-lang em { transition: none; }
 
       /* ---------- software: rozpětí ---------- */
