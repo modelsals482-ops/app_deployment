@@ -1158,3 +1158,14 @@ a.panel:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 @media (max-width: 1000px) {
   .lang-sw { margin-left: auto; }
 }
+
+/* Hlavička stejná v češtině i angličtině (6. 11. 2026): tlačítko má pevnou
+   šířku, takže přepínač CZ/EN po změně jazyka neuskočí, a položky se nikdy
+   nezalomí na dva řádky. Mezi 1001 a 1180 px se schovají Weby/Software/AI
+   asistenti: jsou v rozbalovacím "Co dělám" hned vedle. */
+.menu > li > a, .menu > li > button { white-space: nowrap; }
+.nav .btn-live { min-width: 11.4rem; justify-content: center; white-space: nowrap; }
+@media (min-width: 1001px) and (max-width: 1180px) {
+  .nav-in { gap: 1.2rem; }
+  .menu > li:nth-child(2), .menu > li:nth-child(3), .menu > li:nth-child(4) { display: none; }
+}
