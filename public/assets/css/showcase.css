@@ -83,7 +83,10 @@ html:not(.als-loading) .ref-hero-in { animation: ref-in 0.9s cubic-bezier(0.16, 
   .proj--rect .bub { max-width: 11.5rem; padding: 0.6rem 0.85rem; font-size: 0.82rem; }
 }
 @media (max-width: 560px) {
-  .ref-hero { padding: 6.5rem 0 1.5rem; }
+  /* Na mobilu hero nemá výšku obrazovky: jinak byl nad i pod nadpisem
+     skoro prázdný displej (5. 11. 2026). */
+  .ref-hero { min-height: 0; padding: 6.5rem 0 2.5rem; }
+  .bub--ghost { display: none; }
   .proj-copy .h-sec { font-size: 1.85rem; }
   .proj-copy > p:not(.proj-who) { font-size: 0.95rem; }
   .proj-grid { gap: 1.6rem; }

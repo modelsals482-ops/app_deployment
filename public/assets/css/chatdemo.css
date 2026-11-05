@@ -93,7 +93,10 @@
 @media (max-width: 900px) {
   .cd-pick { grid-template-columns: 1fr; gap: 0.6rem; }
   .cd-body { grid-template-columns: 1fr; }
-  .cd-hint { top: -1.4rem; right: 0.4rem; }
+  /* Na úzké obrazovce nálepka zakrývala popisek "Klikněte na zprávu",
+     takže tu stojí v toku nad ním, vpravo. */
+  .cd-left { display: flex; flex-direction: column; }
+  .cd-hint { position: relative; top: auto; right: auto; order: -1; align-self: flex-end; margin: 0 0.4rem -0.2rem 0; }
   .cd-thread { height: 20rem; }
 }
 @media (prefers-reduced-motion: reduce) {
