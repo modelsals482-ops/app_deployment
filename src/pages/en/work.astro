@@ -1,0 +1,208 @@
+---
+// VYGENEROVÁNO z src/pages/reference.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/reference.py.
+import Base from "../../layouts/Base.astro";
+import Showcase from "../../components/Showcase.astro";
+---
+<Base
+  lang="en"
+  title="My work: what is already running | ALSflow"
+  description="Websites, software and AI assistants that are live and you can click through. Exactly what I did and what I did not."
+  canonical="https://alsflow.cz/en/work"
+  ogTitle="My work: what is already running"
+  ogDescription="Live websites, software and assistants. For each one I say what was mine and what was not."
+  current="/en/work"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "url": "https://alsflow.cz/en/work",
+  "name": "ALSflow work",
+  "inLanguage": "en",
+  "description": "Websites, software and AI assistants built by ALSflow that are in service."
+  "isPartOf": { "@type": "WebSite", "url": "https://alsflow.cz" }
+}
+  </script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
+  </Fragment>
+
+  <section class="hero hero-plain ref-hero">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap ref-hero-in">
+      <h1 class="h-hero fade-head">My <span class="grad">work</span></h1>
+      <p class="lead">Everything below is live and you can click through it. For each one I say
+        exactly what was mine and what was not, including where I only did part of it.</p>
+    </div>
+  </section>
+
+  <Showcase id="wlp" side="l" color="blue" dark title="weloveproduction.cz" who="Technical production and equipment rental · Prague"
+    main={{ src: "/assets/ref/wlp-home.webp", alt: "The weloveproduction.cz homepage", label: "weloveproduction.cz", w: 1200, h: 750 }}
+    second={{ src: "/assets/ref/wle-rental.webp", alt: "The equipment rental catalogue on weloveproduction.cz", label: "weloveproduction.cz/rental" }}
+    phone={{ src: "/assets/ref/wlp-m.webp", alt: "weloveproduction.cz on a phone" }}
+    bubbles={[
+      { text: "Over 340 items for rent", c: "blue", at: "top:-6%; right:14%" },
+      { text: "Basket straight to the admin panel", c: "cyan", at: "top:34%; right:-3%" },
+      { text: "Czech and English", c: "violet", at: "bottom:2%; left:14%", size: "6.4rem", ghost: true }
+    ]}>
+    <p>The website of a production company: event equipment, production and rental. In the rental section customers click together a setup and send it with one button. The enquiry lands straight in the admin panel, where the staff manage the catalogue themselves.</p>
+    <p class="ref-mine"><b>Mine:</b> the standalone production website, its look and homepage, the rental with its basket, and the catalogue admin panel. I still look after the site.
+      <b class="ref-not">Not mine:</b> the code base the website grew from. Someone else built that before me.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://weloveproduction.cz" target="_blank" rel="noopener">Open weloveproduction.cz</a></div>
+  </Showcase>
+
+  <Showcase id="gen" side="r" color="violet" rect title="gen1.cz" who="Political movement · Prague 1"
+    main={{ src: "/assets/ref/gen1-desktop.jpg", alt: "The gen1.cz homepage", label: "gen1.cz", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/gen1-tym.webp", alt: "The team page on gen1.cz", label: "gen1.cz/tym" }}
+    phone={{ src: "/assets/ref/gen1-m.webp", alt: "gen1.cz on a phone" }}
+    bubbles={[
+      { text: "Programme, team, sign-up", c: "violet", at: "top:-6%; right:14%" },
+      { text: "The whole site", c: "cyan", at: "top:28%; right:-3%", size: "6.6rem" },
+      { text: "No WordPress", c: "violet", at: "bottom:4%; left:30%", size: "7.2rem", ghost: true }
+    ]}>
+    <p>Programme, team, a membership sign-up and a page for the chairman. After the 2026 elections I rebuilt it as a purely informational site.</p>
+    <p class="ref-mine"><b>Mine:</b> the whole website, from design to launch. I still look after it.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://gen1.cz" target="_blank" rel="noopener">Open gen1.cz</a></div>
+  </Showcase>
+
+  <Showcase id="mooncake" side="l" color="cyan" title="mooncake.sk" who="Jewellery e-shop · Slovakia"
+    main={{ src: "/assets/ref/mc-home.webp", alt: "The bracelet configurator on mooncake.sk with charms on a chain", label: "mooncake.sk/vytvor-si-naramok", w: 1200, h: 750 }}
+    second={{ src: "/assets/ref/mc-pismena.webp", alt: "A bracelet spelling a name in letters in the mooncake.sk configurator", label: "mooncake.sk/vytvor-si-naramok" }}
+    phone={{ src: "/assets/ref/mc-m.webp", alt: "The bracelet configurator on a phone" }}
+    bubbles={[
+      { text: "Custom WooCommerce plugin", c: "cyan", at: "top:-6%; right:14%" },
+      { text: "54 charms and letters", c: "violet", at: "top:34%; right:-3%" },
+      { text: "In Slovak", c: "cyan", at: "bottom:4%; left:18%", size: "6.6rem", ghost: true }
+    ]}>
+    <p>A bracelet configurator in a jewellery shop. Customers pick a chain and a length, click on charms and letters, and see straight away how the bracelet will hang. It goes into the basket like any other product; payment and shipping stayed exactly as they were.</p>
+    <p class="ref-mine"><b>Mine:</b> the bracelet configurator as a custom WooCommerce plugin, cut-outs of every charm, and wishlist sharing. I still look after the shop.
+      <b class="ref-not">Not mine:</b> the shop itself and its design. Another agency built that.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://mooncake.sk/vytvor-si-naramok/" target="_blank" rel="noopener">Open the configurator</a></div>
+  </Showcase>
+
+  <Showcase id="sekelova" side="r" color="amber" title="znalecsekelova.sk" who="Court-appointed expert · Slovakia"
+    main={{ src: "/assets/ref/sekelova-desktop.jpg", alt: "The znalecsekelova.sk homepage", label: "znalecsekelova.sk", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/sek-sluzby.webp", alt: "The services page on znalecsekelova.sk", label: "znalecsekelova.sk/sluzby" }}
+    phone={{ src: "/assets/ref/sek-m.webp", alt: "znalecsekelova.sk on a phone" }}
+    bubbles={[
+      { text: "In Slovak", c: "amber", at: "top:-5%; right:12%", size: "7rem" },
+      { text: "Drawings made in SVG", c: "cyan", at: "top:30%; right:-3%" },
+      { text: "7 pages", c: "amber", at: "bottom:6%; left:30%", size: "6.6rem", ghost: true }
+    ]}>
+    <p>Seven pages in Slovak: services, prices, documents for the site inspection. The drawings are original, made directly in SVG, and the page scrolls smoothly.</p>
+    <p class="ref-mine"><b>Mine:</b> the whole website, from design to launch. I still look after it.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Open znalecsekelova.sk</a></div>
+  </Showcase>
+
+  <Showcase id="thdata" side="l" color="green" title="TH.data a.s." who="Accounting and tax office · Prague 2"
+    main={{ src: "/assets/ref/th-home.webp", alt: "The thdata.cz homepage", label: "thdata.cz" }}
+    second={{ src: "/assets/ref/th-cenik.webp", alt: "The price list page on thdata.cz", label: "thdata.cz/cenik" }}
+    phone={{ src: "/assets/ref/th-m.webp", alt: "thdata.cz on a phone" }}
+    bubbles={[
+      { text: "Czech, English, Russian", c: "green", at: "top:-6%; left:12%" },
+      { text: "Public price list", c: "cyan", at: "top:34%; right:-3%" },
+      { text: "Email untouched", c: "green", at: "bottom:4%; right:32%", ghost: true }
+    ]}>
+    <p>Seven pages in three languages for an accounting and tax office: services, a public price list, an order form and contacts. When the site moved to new hosting, the company email stayed completely untouched.</p>
+    <p class="ref-mine"><b>Mine:</b> the whole website, from design to launch, including the move to new hosting.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://thdata.cz" target="_blank" rel="noopener">Open thdata.cz</a></div>
+  </Showcase>
+
+  <Showcase id="alsflow" side="r" color="cyan" title="Klára" who="The AI assistant on this very website"
+    main={{ src: "/assets/ref/als-home.webp", alt: "The alsflow.cz homepage with Klára in the corner", label: "alsflow.cz" }}
+    bubbles={[
+      { text: "Says it is an AI", c: "cyan", at: "top:-6%; right:10%" },
+      { text: "Czech first", c: "violet", at: "top:44%; right:-3%", ghost: true }
+    ]}>
+    <div class="chatviz" slot="media" aria-label="Sample conversation with Klára">
+      <p class="cv cv-u">How much is a website for a hair salon?</p>
+      <p class="cv cv-a"><b>Klára · AI</b>Websites start at 24,900 CZK. Jakub will send you the exact price within 48 hours. Shall I pass him your contact?</p>
+      <p class="cv cv-u">Yes, please.</p>
+      <span class="cv-tag">Sample</span>
+    </div>
+    <p>alsflow.cz is an example too: hand-coded, with no content management system. Klára in the bottom right corner is the same kind of assistant I build for clients, just filled with information about ALSflow.</p>
+    <div class="btn-row"><button class="btn btn-svc" type="button" data-open-chat>Ask Klára</button></div>
+  </Showcase>
+
+  <section class="sec sec-dark">
+    <div class="wrap" style="text-align:center">
+      <h2 class="h-sec fade-head reveal-words">Want one <span class="grad">too</span>?</h2>
+      <p class="lead lead-center rev" data-d="1">A free fifteen-minute call.
+        We go through what you need and I suggest a solution and a price.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+        <a class="btn btn-quiet" href="/en/pricing">Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="tail">
+  <style>
+    .ref-who {
+      margin-top: 0.15rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      color: var(--t3);
+    }
+
+    /* Kdo co delal. Nejdulezitejsi radek na cele strance: bez nej by
+       ctenar predpokladal, ze je moje uplne vsechno, co je na obrazku. */
+    .ref-mine {
+      margin-top: 0.9rem;
+      padding-top: 0.8rem;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      color: var(--t2);
+      border-top: 1px solid var(--line);
+    }
+    .ref-mine b { color: var(--green); }
+    .ref-mine .ref-not { color: var(--t3); }
+
+    .chatviz { position: absolute; right: 4%; bottom: 6%; z-index: 5; display: grid; gap: 0.6rem; width: min(64%, 23rem); }
+    .cv { margin: 0; padding: 0.8rem 1rem; font-size: 0.9rem; line-height: 1.45; border-radius: 18px; box-shadow: 0 16px 40px rgb(0 0 0 / 55%); }
+    .cv b { display: block; margin-bottom: 0.2rem; font-size: 0.72rem; font-weight: 700; color: #05070d; opacity: 0.75; }
+    .cv-u { justify-self: end; max-width: 78%; color: var(--t1); background: #1d1d23; border: 1px solid var(--line-2); border-bottom-right-radius: 6px; }
+    .cv-a { max-width: 90%; color: #05070d; background: var(--cyan); border-bottom-left-radius: 6px; }
+    .cv-tag { justify-self: end; font-size: 0.72rem; color: var(--t3); }
+    /* Na telefonu chat zakrýval skoro celý snímek webu (16. 10.). */
+    @media (max-width: 560px) {
+      .chatviz { right: 3%; bottom: 4%; gap: 0.4rem; width: 56%; }
+      .cv { padding: 0.5rem 0.7rem; font-size: 0.7rem; border-radius: 12px; }
+      .cv b { font-size: 0.6rem; }
+      .cv:nth-of-type(3), .cv-tag { display: none; }
+    }
+    .ref-big { max-width: 54rem; }
+    .ref-big h3 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+    .ref-big > p { margin-top: 0.7rem; color: var(--t2); }
+
+    .ref-list {
+      margin: 1.4rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+    .ref-list li {
+      padding-left: 1rem;
+      border-left: 2px solid color-mix(in srgb, var(--blue) 45%, transparent);
+    }
+    .ref-list b { display: block; font-size: 0.95rem; }
+    .ref-list span {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.88rem;
+      line-height: 1.62;
+      color: var(--t2);
+    }
+    .ref-big .btn { margin-top: 1.5rem; }
+  </style>
+  <script>
+    document.querySelectorAll("[data-open-chat]").forEach(function (b) {
+      b.addEventListener("click", function () { if (window.toggleChat) window.toggleChat(); });
+    });
+  </script>
+  </Fragment>
+<script src="/assets/js/dotwave.js" defer is:inline></script>
+</Base>

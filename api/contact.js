@@ -61,7 +61,7 @@ module.exports = async function handler(req, res) {
   const to = process.env.CONTACT_TO || 'ryvola@alsflow.cz';
 
   const text = [
-    `Nová poptávka z alsflow.cz`, '',
+    b.lang === 'en' ? 'Nová poptávka z ANGLICKÉ verze alsflow.cz (odpovídat anglicky)' : 'Nová poptávka z alsflow.cz', '',
     `Jméno:    ${b.name || '-'}`,
     `E-mail:   ${b.email}`,
     `Telefon:  ${b.phone || '-'}`,
@@ -78,7 +78,7 @@ module.exports = async function handler(req, res) {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-      body: JSON.stringify({ from, to, reply_to: b.email, subject: `Nová poptávka: ${b.name || b.email}`, text }),
+      body: JSON.stringify({ from, to, reply_to: b.email, subject: `${b.lang === 'en' ? '[EN] ' : ''}Nová poptávka: ${b.name || b.email}`, text }),
     });
     if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);
 
@@ -103,7 +103,30 @@ module.exports = async function handler(req, res) {
 // sledovací pixely: stejný přístup jako u zbytku webu, a taky se to spolehlivěji
 // doručí. Shrnutí toho, co poslal, je tam schválně - má tím doklad, co odešlo.
 async function sendConfirmation({ key, from, replyTo, b }) {
-  const text = [
+  // Anglická verze webu (5. 11. 2026) posílá lang: 'en'.
+  const en = b.lang === 'en';
+  const text = en ? [
+    b.name ? `Hello ${b.name},` : 'Hello,', '',
+    'thank you for your message, it arrived safely.',
+    'I will get back to you within 48 hours on working days, by the email or phone you gave.',
+    '',
+    'What happens next:',
+    '1. I read what you need and look at your current website, if you have one.',
+    '2. I write back and suggest a short call, fifteen minutes is enough.',
+    '3. The call gives you a fixed price and a date. Not an estimate.',
+    '',
+    'If it gets urgent in the meantime, write directly to ryvola@alsflow.cz.',
+    '',
+    'For your records, this is what arrived:',
+    b.name ? `  Name:    ${b.name}` : null,
+    `  Email:   ${b.email}`,
+    `  Phone:   ${b.phone || '-'}`,
+    `  Service: ${b.service}`,
+    b.msg ? `  Message: ${b.msg}` : null,
+    '',
+    'Jakub Ryvola',
+    'ALSflow · alsflow.cz/en',
+  ] : [
     b.name ? `Dobrý den, ${b.name},` : 'Dobrý den,', '',
     'děkuji za zprávu, dorazila mi v pořádku.',
     'Ozvu se vám do 48 hodin v pracovní dny, na e-mail nebo telefon, který jste uvedl(a).',
@@ -124,7 +147,8 @@ async function sendConfirmation({ key, from, replyTo, b }) {
     '',
     'Jakub Ryvola',
     'ALSflow · alsflow.cz',
-  ].filter((line) => line !== null).join('\n');
+  ];
+  const body = text.filter((line) => line !== null).join('\n');
 
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -133,8 +157,8 @@ async function sendConfirmation({ key, from, replyTo, b }) {
       from,
       to: b.email,
       reply_to: replyTo,
-      subject: 'Máme vaši poptávku - ozvu se do 48 hodin',
-      text,
+      subject: en ? 'We have your enquiry - I will reply within 48 hours' : 'Máme vaši poptávku - ozvu se do 48 hodin',
+      text: body,
     }),
   });
   if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text().catch(() => '')).slice(0, 200)}`);

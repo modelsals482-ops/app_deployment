@@ -1,0 +1,302 @@
+---
+// VYGENEROVÁNO z src/pages/index.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/index.py.
+import Base from "../../layouts/Base.astro";
+import ChatDemo from "../../components/ChatDemo.astro";
+
+/* Ukázka asistenta na úvodu: jeden ukázkový salon, tři zprávy. Poslední
+   asistent sám neřeší, ukazatel proto čeká na "Schválit". */
+const demo = {
+  name: "Sample salon assistant",
+  botLabel: "Salon AI assistant",
+  idle: "Waiting for a customer message…",
+  functions: [{
+    id: "salon", label: "Salon", desc: "", color: "var(--blue)",
+    messages: [
+      { from: "Customer", time: "21:40", text: "Hi, do you have time for a colour on Saturday?",
+        steps: ["Reads the message", "Checks the calendar", "Found 2 free slots"],
+        reply: "Hello, on Saturday we have 9:00 and 13:30 free. Shall I book one of those for you? A colour takes about two hours. This is the salon's AI assistant.",
+        endText: "Done, replied in 4 s" },
+      { from: "Customer", time: "22:05", text: "How much is a haircut and beard trim?",
+        steps: ["Reads the message", "Looks it up in the price list"],
+        reply: "Hello, a haircut with a beard trim is 650 CZK and takes 45 minutes. If you like, I can find you a free slot right away. This is the salon's AI assistant.",
+        endText: "Done, replied in 3 s" },
+      { from: "Customer", time: "22:30", text: "Last time the colour did not come out the way we agreed. What can we do?",
+        steps: ["Reads the message", "Recognises a complaint", "Leaves this one to you"],
+        reply: "Hello, I am sorry to hear that. I have passed your message to the salon owner and she will contact you personally. This is the salon's AI assistant.",
+        end: "approve", endText: "A summary is waiting for you", doneText: "Done, the owner has taken over" },
+    ],
+  }],
+};
+---
+<Base
+  lang="en"
+  title="ALSflow: websites, software and AI assistants for small businesses"
+  description="Websites, custom software and AI assistants for small businesses and sole traders. Priced by what you actually need, a fast reply, and we keep it running. Based in Prague."
+  canonical="https://alsflow.cz/en"
+  ogDescription="Three things I do: websites, custom software and AI assistants. On their own or as a bundle, with a fast reply."
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "ALSflow",
+  "legalName": "Jakub Ryvola",
+  "taxID": "30112702",
+  "url": "https://alsflow.cz",
+  "email": "info@alsflow.cz",
+  "description": "Websites, custom software and AI assistants for small businesses and sole traders. Fast reply, running costs covered.",
+  "inLanguage": "en",
+  "areaServed": [
+    "CZ",
+    "SK"
+  ],
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Předenická 684/17",
+    "postalCode": "142 00",
+    "addressLocality": "Prague 4",
+    "addressCountry": "CZ"
+  },
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Website development",
+        "url": "https://alsflow.cz/en/websites"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Custom software development",
+        "url": "https://alsflow.cz/en/software"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "AI assistants",
+        "url": "https://alsflow.cz/en/ai-assistants"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
+  <link rel="stylesheet" href="/assets/css/chatdemo.css" />
+  <link rel="stylesheet" href="/assets/css/home.css" />
+  </Fragment>
+
+  <section class="hero">
+    <div class="hero-stage">
+      <!-- Skládané sklo (glassfold.js). Svítící prstence se přestěhovaly do Kontaktu. -->
+      <canvas data-glassfold aria-hidden="true"></canvas>
+    </div>
+    <div class="wrap">
+      <!-- Koláž skutečných webů vpravo, svítící prstence za ní. Celá je
+           odkaz do referencí. Pod 1100 px se schová, text má přednost. -->
+      <a class="hero-collage" href="/en/work" aria-label="Examples of my work">
+        <figure class="pm pm-main" style="--i: 0">
+          <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>weloveproduction.cz</b></span>
+          <img src="/assets/ref/wlp-home.webp" alt="" width="1200" height="750" decoding="async" fetchpriority="high" />
+        </figure>
+        <figure class="pm pm-second" style="--i: 1">
+          <span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>gen1.cz</b></span>
+          <img src="/assets/ref/gen-home.webp" alt="" width="1200" height="750" decoding="async" />
+        </figure>
+        <figure class="pm pm-phone" style="--i: 2">
+          <img src="/assets/ref/sek-m.webp" alt="" width="360" height="779" decoding="async" />
+        </figure>
+        <span class="hc-tag" style="--i: 3">My work &rarr;</span>
+      </a>
+      <div class="hero-copy hero-copy--wide">
+        <h1 class="h-hero fade-head reveal-words">More enquiries, <span class="grad">less</span> manual work</h1>
+        <p class="lead">I build you a website, custom software or an AI assistant. In person, with the price up front and a monthly report in numbers, so you can see what it brings you.</p>
+        <div class="btn-row">
+          <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+          <a class="btn btn-magnet" href="#ukazka">Try the assistant <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+        </div>
+        <div class="facts">
+          <span class="fact">Reply within <b>48 hours</b> on working days</span>
+          <span class="fact">Website from <b>24,900&nbsp;CZK</b></span>
+          <span class="fact">Assistant from <b>2,500&nbsp;CZK</b>/month</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="co-delame">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What I can build for you</h2>
+        <p class="lead">Pick what you need. Within 48 hours you get a quote with a date and an exact price, with no obligation.</p>
+      </div>
+      <div class="svc-cards">
+        <a class="panel panel-pad svc-card rev" href="/en/websites" style="--c: var(--cyan)">
+          <span class="svc-bub" aria-hidden="true">from 24,900 CZK</span>
+          <div class="svc-head"><h3>Websites</h3><p class="svc-hook">A website that gets customers to call you and send an enquiry.</p><span class="svc-tag">No WordPress, no plugins</span></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Design, copy and launch on your own domain</li><li>Fast and easy to read on a phone</li><li>No plugins that need updating</li></ul>
+            <dl class="svc-meta"><div><dt>Launch</dt><dd>within 6-10 working days</dd></div><div><dt>Price</dt><dd>from 24,900&nbsp;CZK, running from 1,490&nbsp;CZK/month</dd></div></dl>
+            <span class="svc-more">How it works <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="1" href="/en/software" style="--c: var(--blue)">
+          <span class="svc-bub" aria-hidden="true">from 24,900 CZK</span>
+          <div class="svc-head"><h3>Custom software</h3><p class="svc-hook">One clear tool instead of copying between spreadsheets and emails.</p><span class="svc-tag">Code and accounts in your name</span></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>Admin panels and internal tools</li><li>Links between systems that do not talk to each other today</li><li>Source code and accounts in your name</li></ul>
+            <dl class="svc-meta"><div><dt>Launch</dt><dd>depends on scope, usually weeks</dd></div><div><dt>Price</dt><dd>from 24,900&nbsp;CZK</dd></div></dl>
+            <span class="svc-more">How it works <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="2" href="/en/ai-assistants" style="--c: var(--violet)">
+          <span class="svc-bub" aria-hidden="true">from 2,500 CZK/month</span>
+          <div class="svc-head"><h3>AI assistants</h3><p class="svc-hook">Replies to customers and books appointments while you are busy working.</p><span class="svc-tag">Always says it is an AI</span></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>On the WhatsApp, email or website you already have</li><li>Always says it is an AI</li><li>Monthly payment, no commitment</li></ul>
+            <dl class="svc-meta"><div><dt>Launch</dt><dd>within 5-7 working days</dd></div><div><dt>Price</dt><dd>from 2,500&nbsp;CZK/month</dd></div></dl>
+            <span class="svc-more">How it works <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+      </div>
+      <div class="svc-act panel panel-pad rev" data-d="3" id="poptavka">
+        <div class="svc-act-copy">
+          <h3>Send an enquiry</h3>
+          <p>Click what you need. Within 48 hours I send you a date and an exact price, with no obligation.</p>
+        </div>
+        <div class="svc-act-btns">
+          <a class="btn btn-svc" style="--c: var(--cyan)" href="/en/contact?sluzba=web">I want a website</a>
+          <a class="btn btn-svc" style="--c: var(--blue)" href="/en/contact?sluzba=software">I want software</a>
+          <a class="btn btn-svc" style="--c: var(--violet)" href="/en/contact?sluzba=ai">I want an AI assistant</a>
+          <a class="btn" href="/en/contact?sluzba=nevim">Not sure, advise me</a>
+        </div>
+        <p class="svc-act-alt">Prefer to talk now? Call <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/en/pricing">Full pricing</a></p>
+      </div>
+      <!-- Tri hotovi asistenti viseli jen na /ai-asistenti, z titulni strany
+           na ne nevedla zadna cesta. Radka je zamerne tiche pismo, hlavni
+           rozcestnik zustavaji tri karty vyse. -->
+      <p class="rev" data-d="3" style="margin-top:1.6rem;text-align:center;font-size:0.88rem;color:var(--t3)">Assistants: <a href="/en/email-replies">Email replies</a> &middot; <a href="/en/bookings-and-reminders">Bookings and reminders</a> &middot; <a href="/en/feedback">Feedback</a> (coming soon)</p>
+    </div>
+  </section>
+
+
+  <section class="sec sec-line" id="ukazka">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Try the <span class="grad">assistant</span></h2>
+        <p class="lead">It is Sunday evening and you are off work. Three messages have come in to the salon. Click any of them and watch what the assistant does with it.</p>
+      </div>
+      <ChatDemo config={demo} lang="en" />
+      <p class="small-note">The assistant always tells customers it is an AI. Whatever it cannot handle, it passes to you. <a href="/en/ai-assistants#ukazka">More examples</a></p>
+    </div>
+  </section>
+
+  <section class="sec sec-dark runs-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Already <span class="grad">running</span></h2>
+        <p class="lead">Real websites and an assistant that I built and still look after.</p>
+      </div>
+      <div class="live-grid">
+        <a class="live rev from-l" href="/en/work#gen" style="--c: var(--violet)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>gen1.cz</b></span><img src="/assets/ref/gen1-program.webp" alt="The gen1.cz website, programme page" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <figure class="pm pm-phone"><img src="/assets/ref/gen1-m.webp" alt="" width="360" height="779" loading="lazy" decoding="async" /></figure>
+            <span class="live-tag" style="--i: 0">The whole site</span>
+          </div>
+          <h3>gen1.cz</h3><p>Political movement, Prague 1</p>
+        </a>
+        <a class="live rev" data-d="1" href="/en/work#sekelova" style="--c: var(--amber)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>znalecsekelova.sk</b></span><img src="/assets/ref/sek-sluzby.webp" alt="The znalecsekelova.sk website, services page" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <figure class="pm pm-phone"><img src="/assets/ref/sek-m.webp" alt="" width="360" height="779" loading="lazy" decoding="async" /></figure>
+            <span class="live-tag" style="--i: 1">All in Slovak</span>
+          </div>
+          <h3>znalecsekelova.sk</h3><p>Court-appointed expert, Slovakia</p>
+        </a>
+        <a class="live rev from-r" data-d="2" href="/en/work#alsflow" style="--c: var(--cyan)">
+          <div class="live-media">
+            <figure class="pm pm-main"><span class="pm-bar" aria-hidden="true"><i></i><i></i><i></i><b>alsflow.cz</b></span><img src="/assets/ref/als-home.webp" alt="The alsflow.cz homepage with Klára" width="1200" height="750" loading="lazy" decoding="async" /></figure>
+            <span class="live-chat">Klára · AI<b>Websites start at 24,900 CZK. Shall I pass your contact to Jakub?</b></span>
+            <span class="live-tag" style="--i: 2">Says it is an AI</span>
+          </div>
+          <h3>Klára</h3><p>The AI assistant in the bottom right corner</p>
+        </a>
+      </div>
+      <p class="small-note rev" style="text-align:center">Plus weloveproduction.cz with its equipment rental. <a href="/en/work">All my work &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="sec sec-line call-sec" data-inview>
+    <div class="wrap call-grid">
+      <div>
+        <h2 class="h-sec fade-head reveal-words">I pick up the <span class="grad">phone</span>. The rest is on me.</h2>
+        <p class="lead">You deal with me, not a call centre. All I need from you is fifteen minutes and a few answers.</p>
+        <div class="call-tags">
+          <span style="--c: var(--cyan); --i: 0">One supplier for everything</span>
+          <span style="--c: var(--violet); --i: 1">Price up front</span>
+          <span style="--c: var(--green); --i: 2">Everything in your name</span>
+          <span style="--c: var(--amber); --i: 3">Running costs in one monthly fee</span>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-grad" href="/en/contact">Start with a call</a>
+          <a class="btn btn-magnet" href="tel:+420770162346">+420 770 162 346</a>
+          <a class="btn-quiet" href="/en/about">More about me &rarr;</a>
+        </div>
+      </div>
+      <ol class="call-steps">
+        <li style="--c: var(--cyan); --i: 0"><b>A fifteen-minute call</b><span>You tell me what is slowing you down.</span></li>
+        <li style="--c: var(--blue); --i: 1"><b>Proposal and price</b><span>What I will build and for how much. No obligation.</span></li>
+        <li style="--c: var(--violet); --i: 2"><b>Preview while I build</b><span>You see the work in progress on a link.</span></li>
+        <li style="--c: var(--green); --i: 3"><b>Launch and care</b><span>A website in 6-10 working days, an assistant in 5-7.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="word-label">Built on proven tools</div>
+  <div class="word-marq marquee" aria-label="Vercel, Cloudflare, Gemini, WhatsApp Business, Google Workspace, PostgreSQL, Node.js">
+    <div class="marquee-track" aria-hidden="true">
+      <span style="--mc: var(--cyan)">Vercel</span><span style="--mc: var(--blue)">Cloudflare</span><span style="--mc: var(--violet)">Gemini</span><span style="--mc: var(--green)">WhatsApp Business</span><span style="--mc: var(--amber)">Google Workspace</span><span style="--mc: var(--cyan)">PostgreSQL</span><span style="--mc: var(--blue)">Node.js</span>
+      <span style="--mc: var(--cyan)">Vercel</span><span style="--mc: var(--blue)">Cloudflare</span><span style="--mc: var(--violet)">Gemini</span><span style="--mc: var(--green)">WhatsApp Business</span><span style="--mc: var(--amber)">Google Workspace</span><span style="--mc: var(--cyan)">PostgreSQL</span><span style="--mc: var(--blue)">Node.js</span>
+    </div>
+  </div>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2 class="h-sec fade-head reveal-words">Tell me what you need.</h2>
+      <p class="lead lead-center rev" data-d="1">A free fifteen-minute call. We go through what you need and I suggest a solution and a price.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Book a 15-minute call</a>
+        <a class="btn btn-quiet" href="/en/faq">Frequently asked questions</a>
+        <a class="btn-quiet" href="/en/pricing">Full pricing <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  
+  <Fragment slot="tail">
+  <script src="/assets/js/glassfold.js" defer></script>
+  <script src="/assets/js/chatdemo.js" defer></script>
+  </Fragment>
+
+</Base>

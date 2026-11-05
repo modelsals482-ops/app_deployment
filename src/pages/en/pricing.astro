@@ -1,0 +1,518 @@
+---
+// VYGENEROVÁNO z src/pages/cenik.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/cenik.py.
+import Base from "../../layouts/Base.astro";
+
+/* Ceny na jednom místě: stránka, kalkulačka i data pro Google je čtou odsud.
+   Změna ceny = změna tady, nikde jinde na téhle stránce. */
+const P = {
+  web1: 24900, web8: 49900, webX: 89900, provoz: 1490, sprava: 3490, pece: 6900,
+  sw: 24900, mail: 2500, book: 4500, feed: 2500, bundle: 7500,
+};
+const kc = (n: number) => n.toLocaleString("en-GB");
+---
+<Base
+  lang="en"
+  title="Pricing: websites, software and AI assistants | ALSflow"
+  description={`What everything costs and what the monthly fee includes. A website from ${kc(P.web1)} CZK, running a website from ${kc(P.provoz)} CZK a month, software from ${kc(P.sw)} CZK, AI assistants from ${kc(P.mail)} CZK a month. No commitment.`}
+  canonical="https://alsflow.cz/en/pricing"
+  current="/en/pricing"
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/home.css" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "OfferCatalog",
+      "name": "ALSflow pricing",
+      "inLanguage": "en",
+      "url": "https://alsflow.cz/en/pricing",
+      "provider": {
+        "@type": "Organization",
+        "name": "ALSflow",
+        "legalName": "Jakub Ryvola",
+        "taxID": "30112702",
+        "url": "https://alsflow.cz",
+        "email": "info@alsflow.cz"
+      },
+      "itemListElement": [
+        { "@type": "Offer", "name": "One-page website", "priceCurrency": "CZK", "price": String(P.web1), "url": "https://alsflow.cz/en/websites" },
+        { "@type": "Offer", "name": "Business website of up to eight pages", "priceCurrency": "CZK", "price": String(P.web8), "url": "https://alsflow.cz/en/websites" },
+        { "@type": "Offer", "name": "Website running (monthly)", "priceCurrency": "CZK", "price": String(P.provoz), "url": "https://alsflow.cz/en/pricing#weby" },
+        { "@type": "Offer", "name": "Website care (monthly)", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/en/pricing#weby" },
+        { "@type": "Offer", "name": "Complete care: website, domains and email (monthly)", "priceCurrency": "CZK", "price": String(P.pece), "url": "https://alsflow.cz/en/pricing#weby" },
+        { "@type": "Offer", "name": "Custom software", "priceCurrency": "CZK", "price": String(P.sw), "url": "https://alsflow.cz/en/software" },
+        { "@type": "Offer", "name": "Email replies", "priceCurrency": "CZK", "price": String(P.mail), "url": "https://alsflow.cz/en/email-replies" },
+        { "@type": "Offer", "name": "Bookings and reminders", "priceCurrency": "CZK", "price": String(P.book), "url": "https://alsflow.cz/en/bookings-and-reminders" },
+        { "@type": "Offer", "name": "Feedback and repeat bookings", "priceCurrency": "CZK", "price": String(P.feed), "url": "https://alsflow.cz/en/feedback" }
+      ]
+    })} />
+  </Fragment>
+
+  <section class="hero-plain hero-move">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">What it <span class="grad">roughly</span> costs</h1>
+      <p class="lead">Starting prices, so you know what to expect. We agree the final price together based on
+        what you need and how much of it: on its own, as a bundle, or custom. No obligation.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-magnet" href="#kalkulacka">Calculate</a>
+        <a class="btn btn-quiet" href="/en/contact">Get a free quote</a>
+      </div>
+      <!-- Rozcestník, ne tabulka čísel: každá bublina skočí na svou část ceníku. -->
+      <nav class="facts jump" aria-label="Pricing sections">
+        <a class="fact" href="#weby" style="--c: var(--cyan)">Website from <b>{kc(P.web1)}&nbsp;CZK</b></a>
+        <a class="fact" href="#software" style="--c: var(--blue)">Software from <b>{kc(P.sw)}&nbsp;CZK</b></a>
+        <a class="fact" href="#asistenti" style="--c: var(--violet)">Assistant from <b>{kc(P.mail)}&nbsp;CZK</b>/month</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- KALKULAČKA jako účtenka: vlevo co chcete, vpravo se tiskne, co to stojí. -->
+  <section class="sec" id="kalkulacka">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What it would cost <span class="grad">you</span></h2>
+        <p class="lead">Tick what you need. It is calculated right here in your browser; nothing is sent anywhere.</p>
+      </div>
+
+      <form class="bill" id="calc" novalidate data-provoz={P.provoz} data-sprava={P.sprava} data-bundle={P.bundle}>
+        <div class="bill-pick">
+          <fieldset class="pick rev" style="--c: var(--cyan)">
+            <legend>Website</legend>
+            <label class="opt"><input type="radio" name="web" value="0" data-name="" checked /><span>No website</span></label>
+            <label class="opt"><input type="radio" name="web" value={P.web1} data-name="Website, one page" /><span>One page</span><b>{kc(P.web1)}</b></label>
+            <label class="opt"><input type="radio" name="web" value={P.web8} data-name="Website, up to 8 pages" /><span>Business site, up to 8 pages</span><b>{kc(P.web8)}</b></label>
+            <label class="opt"><input type="radio" name="web" value={P.webX} data-name="Custom website, from" /><span>Larger, from</span><b>{kc(P.webX)}</b></label>
+            <div class="care-opts" data-needs-web>
+              <p class="care-h">Monthly after launch</p>
+              <label class="opt opt-sub"><input type="radio" name="care" value="0" data-name="" checked /><span>Nothing monthly</span></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.provoz} data-name="Website running" /><span>Running: it runs, I fix it</span><b>{kc(P.provoz)}/mo</b></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.sprava} data-name="Website care" /><span>Care: running plus changes</span><b>{kc(P.sprava)}/mo</b></label>
+              <label class="opt opt-sub"><input type="radio" name="care" value={P.pece} data-name="Complete care" /><span>Complete care: website, domains, email</span><b>{kc(P.pece)}/mo</b></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="pick rev" data-d="1" style="--c: var(--blue)">
+            <legend>Custom software</legend>
+            <label class="opt"><input type="checkbox" id="sw" value={P.sw} data-name="Custom software" /><span>A custom tool: dashboard, integration, export</span><b>from {kc(P.sw)}</b></label>
+          </fieldset>
+
+          <fieldset class="pick rev" data-d="2" style="--c: var(--violet)">
+            <legend>AI assistants</legend>
+            <label class="opt"><input type="checkbox" class="ai" value={P.mail} data-name="Email replies" /><span>Email replies</span><b>{kc(P.mail)}/mo</b></label>
+            <label class="opt"><input type="checkbox" class="ai" value={P.book} data-name="Bookings and reminders" /><span>Bookings and reminders</span><b>{kc(P.book)}/mo</b></label>
+            <label class="opt"><input type="checkbox" class="ai" value={P.feed} data-name="Feedback" /><span>Feedback</span><b>{kc(P.feed)}/mo</b></label>
+          </fieldset>
+        </div>
+
+        <aside class="receipt rev" data-d="3" aria-live="polite" aria-label="Calculated price">
+          <div class="receipt-top"><b>Your selection</b><span>non-binding estimate</span></div>
+          <ul class="receipt-rows" id="rows"></ul>
+          <p class="receipt-empty" id="empty">Nothing yet. Tick what you need on the left.</p>
+          <div class="receipt-sum">
+            <div><span>One-time</span><b><span id="once">0</span>&nbsp;CZK</b></div>
+            <div><span>Monthly</span><b><span id="month">0</span>&nbsp;CZK</b></div>
+          </div>
+          <p class="receipt-note" id="onceNote" hidden></p>
+          <a class="btn btn-grad btn-magnet receipt-cta" id="send" href="/en/contact">Send this selection</a>
+          <p class="receipt-foot">No commitment; monthly services can be cancelled any time.</p>
+        </aside>
+      </form>
+
+      <p class="bill-foot">I am not a VAT payer, so the prices are final. Software is counted at its lowest price; the exact figure comes out of a short free analysis.
+        <a href="/en/contact?sluzba=software">Send an enquiry</a> and I will tell you.</p>
+    </div>
+  </section>
+
+  <!-- WEBY: schody od nejmenšího po největší, na konci měsíční správa -->
+  <section class="sec sec-dark sec-line" id="weby">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">A one-time price, then <span class="grad">monthly care</span></h2>
+        <p class="lead">The price includes design, copy, deployment, the domain and the certificate. A website is usually live in 6 to 10 working days
+          and you see the work in progress along the way.</p>
+      </div>
+
+      <ol class="cascade tiers">
+        <li class="cas rev" style="--c: var(--cyan); --i: 0">
+          <div class="cas-art art-pages" aria-hidden="true" style="--n: 1"><i></i><span>1 page</span></div>
+          <div>
+            <h3>One page</h3>
+            <p class="tier-price"><b>{kc(P.web1)}&nbsp;CZK</b> one-time</p>
+            <p>A business card: who you are, what you do, how to get in touch. Contact form, design, copy and domain.</p>
+          </div>
+        </li>
+        <li class="cas rev" data-d="1" style="--c: var(--blue); --i: 1">
+          <div class="cas-art art-pages" aria-hidden="true" style="--n: 8"><i></i><i></i><i></i><i></i><span>up to 8 pages</span></div>
+          <div>
+            <h3>Business site</h3>
+            <p class="tier-price"><b>{kc(P.web8)}&nbsp;CZK</b> one-time</p>
+            <p>Everything from the smaller option plus up to eight pages: services, prices, contact.
+              This is how <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a> runs.</p>
+          </div>
+        </li>
+        <li class="cas rev" data-d="2" style="--c: var(--violet); --i: 2">
+          <div class="cas-art art-pages art-lang" aria-hidden="true"><i></i><i></i><i></i><i></i><em>CZ</em><em>EN</em><span>9 and more</span></div>
+          <div>
+            <h3>Custom</h3>
+            <p class="tier-price"><b>from {kc(P.webX)}&nbsp;CZK</b> one-time</p>
+            <p>Your own design and motion, nine or more pages, two languages, and content you edit yourself, such as news or collections. I give the exact price after a call.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="care-label rev">Monthly after launch, no commitment</p>
+      <div class="care-row" style="--c: var(--amber)">
+        <div class="care-plan panel panel-pad rev" data-d="0">
+          <h3>Website running</h3>
+          <p class="tier-price"><b>{kc(P.provoz)}&nbsp;CZK</b> a month, no commitment</p>
+          <p>The website runs and stays safe. If something breaks, I fix it. New features and content changes are quoted up front.</p>
+          <ul class="care-tags" aria-label="Running includes">
+            <li>Hosting</li><li>Domain</li><li>SSL certificate</li><li>Form protection against bots</li><li>Uptime monitoring</li><li>Monthly report</li>
+          </ul>
+        </div>
+        <div class="care-plan panel panel-pad rev" data-d="1">
+          <h3>Website care</h3>
+          <p class="tier-price"><b>{kc(P.sprava)}&nbsp;CZK</b> a month, no commitment</p>
+          <p>Everything from Running plus changes: texts, prices, photos, opening hours and small news items, up to about two hours of work a month.</p>
+          <ul class="care-tags" aria-label="Care includes">
+            <li>Everything from Running</li><li>Changes within 2 working days</li><li>Up to 2 hours of work a month</li>
+          </ul>
+        </div>
+        <div class="care-plan panel panel-pad rev" data-d="2">
+          <h3>Complete care</h3>
+          <p class="tier-price"><b>from {kc(P.pece)}&nbsp;CZK</b> a month, no commitment</p>
+          <p>You do not have to think about the website, domains or email. I monitor them, back them up, and when something needs sorting out with another supplier, such as the registrar or the email provider, I deal with it for you.</p>
+          <ul class="care-tags" aria-label="Complete care includes">
+            <li>Everything from Care</li><li>Domains and DNS</li><li>Mailboxes</li><li>Backups</li><li>Dealing with suppliers</li><li>Quarterly SEO check</li><li>Up to 4 hours of work a month</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE: rozpětí místo ceníku, protože ceník by lhal -->
+  <section class="sec sec-line" id="software">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">The price comes from <span class="grad">an analysis</span></h2>
+        <p class="lead">A fixed price list makes no sense here: an admin panel and a link between two systems can differ
+          by dozens of hours. The first analysis is free and gives you the scope, price and date based on the size of the project.
+          If a tool would not pay off, I will say so.</p>
+      </div>
+
+      <div class="span-card panel panel-pad rev" style="--c: var(--blue)">
+        <div class="span-track" aria-hidden="true"><i></i></div>
+        <div class="span-marks">
+          <div class="mark-from">
+            <b>from {kc(P.sw)}&nbsp;CZK</b>
+            <p>The smallest useful tool: one dashboard, one export, one task that used to be done by hand.</p>
+          </div>
+          <div class="mark-usual">
+            <b>typically 25,000 to 80,000 CZK</b>
+            <p>The scope people actually order most often: a dashboard over the data plus a connection to what you already have.</p>
+          </div>
+        </div>
+      </div>
+      <p class="lead span-after">Running and further changes are a monthly fee based on the size of the tool.
+        The source code, access and documentation are yours. <a class="arrow" href="/en/software">How it works &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- AI ASISTENTI: stejné karty jako na titulní straně, každý svou barvou -->
+  <section class="sec sec-dark sec-line" id="asistenti">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Monthly, <span class="grad">no commitment</span></h2>
+        <p class="lead">You can have each of them on its own, or all of them together.</p>
+      </div>
+
+      <div class="svc-cards">
+        <a class="panel panel-pad svc-card rev" href="/en/email-replies" style="--c: var(--cyan)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.mail)} CZK/month</span>
+          <div class="svc-head"><h3>Email replies</h3><p class="svc-hook">Reads your email, answers routine questions and passes on whatever it does not know.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>1,500 emails a month included</li><li>Learns your tone and your information</li><li>Leaves unclear questions to you</li><li>Connects to Gmail or Outlook</li></ul>
+            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.mail)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
+            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="1" href="/en/bookings-and-reminders" style="--c: var(--violet)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.book)} CZK/month</span>
+          <div class="svc-head"><h3>Bookings and reminders</h3><p class="svc-hook">Books appointments into your calendar and reminds people the day before.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>750 bookings a month included</li><li>Bookings via WhatsApp and the website</li><li>Written straight into Google Calendar</li><li>Rescheduling and cancelling without a phone call</li></ul>
+            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.book)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
+            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+        <a class="panel panel-pad svc-card rev" data-d="2" href="/en/feedback" style="--c: var(--green)">
+          <span class="svc-bub" aria-hidden="true">{kc(P.feed)} CZK/month</span>
+          <div class="svc-head"><h3>Feedback</h3><p class="svc-hook">Asks how the visit went and drafts a reply to the review.</p></div>
+          <div class="svc-body">
+            <ul class="svc-list"><li>A question after the visit</li><li>A draft reply to the review</li><li>An invitation to book again</li><li>Monthly overview</li></ul>
+            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.feed)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
+            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="bundle panel panel-pad rev" data-d="3">
+        <p class="bundle-main">All three together for <b>{kc(P.bundle)}&nbsp;CZK</b> a month
+          <s>{kc(P.mail + P.book + P.feed)}&nbsp;CZK</s></p>
+        <p class="bundle-sub">Plus a one-time setup of 8,000 to 10,000&nbsp;CZK: connecting your tools,
+          teaching it your tone and testing. Want to see it for your own field?
+          <a href="/en/ai-assistant-for-physiotherapists">For physiotherapists</a> or <a href="/en/ai-assistant-for-hair-salons">for hair salons</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec sec-line" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Your questions</h2>
+      </div>
+      <div class="faq">
+        <details class="rev"><summary>Do the prices include VAT?</summary><p>No VAT is added, because I am not a VAT payer. I invoice websites, software and assistants as Jakub Ryvola, Company ID (I&Ccaron;O) 30112702. The price on the quote is the price on the invoice. For clients outside the Czech Republic, I confirm the invoicing details with you before we start.</p></details>
+        <details class="rev"><summary>What is the difference between Running and Care?</summary><p>Running ({kc(P.provoz)}&nbsp;CZK a month) keeps the website going: hosting, domain, certificate, form protection and fixes when something breaks. New features and content changes are paid separately and quoted up front. Care ({kc(P.sprava)}&nbsp;CZK a month) adds changes to texts, prices, photos and small news items, up to about two hours of work a month, done within two working days. Complete care (from {kc(P.pece)}&nbsp;CZK a month) adds domains, DNS and mailboxes, backups and dealing with your suppliers. Domains stay registered in your name and you pay for mailbox licences at the provider&rsquo;s price.</p></details>
+        <details class="rev" data-d="1"><summary>What if I think of something extra along the way?</summary><p>I tell you the price of that change up front and you decide whether you want it.</p></details>
+        <details class="rev" data-d="2"><summary>What is the one-time assistant setup?</summary><p>Connecting your tools, teaching it your tone, setting up the replies and testing. I do it for you and the assistant runs within 5 to 7 working days. It is paid once, at the start.</p></details>
+        <details class="rev" data-d="3"><summary>Do I have to sign up for a fixed term?</summary><p>No. Monthly, with no fixed-term contract, cancel any time.</p></details>
+        <details class="rev" data-d="4"><summary>What if I go over the limit?</summary><p>The limits of 1,500 emails and 750 bookings a month cover most small businesses. If you regularly go over them, we agree a higher plan. No hidden extra charges.</p></details>
+        <details class="rev" data-d="5"><summary>Why is there no price list for software?</summary><p>Because it would lie. An admin panel and a link between two systems can differ by dozens of hours of work. We agree the price after a short analysis, once it is clear what exactly we are solving.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="svc-act panel panel-pad rev">
+        <div class="svc-act-copy">
+          <h3>Not sure which of these you need?</h3>
+          <p>Fifteen minutes, no obligation. You tell me what slows you down most and I tell you what makes sense, even if in the end it is nothing from me.</p>
+        </div>
+        <div class="svc-act-btns">
+          <a class="btn btn-svc" style="--c: var(--cyan)" href="/en/contact?sluzba=web">I want a website</a>
+          <a class="btn btn-svc" style="--c: var(--blue)" href="/en/contact?sluzba=software">I want software</a>
+          <a class="btn btn-svc" style="--c: var(--violet)" href="/en/contact?sluzba=ai">I want an AI assistant</a>
+          <a class="btn" href="/en/contact?sluzba=nevim">Not sure, advise me</a>
+        </div>
+        <p class="svc-act-alt">Prefer to talk now? Call <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/en/about">Who is behind it</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="tail">
+    <!-- is:global: řádky účtenky vyrábí skript, Astrem scopované styly by na ně nedosáhly. -->
+    <style is:global>
+      /* ---------- rozcestník v hlavičce ---------- */
+      .jump .fact { color: var(--t2); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
+      .jump .fact::before { align-self: center; width: 0.5rem; height: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
+      .jump .fact:hover { color: var(--t1); border-color: color-mix(in srgb, var(--c) 60%, transparent); transform: translateY(-1px); }
+      .jump .fact:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
+
+      /* ---------- kalkulačka: výběr + účtenka ---------- */
+      .bill { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.4rem; align-items: start; }
+      .bill-pick { display: grid; gap: 1.2rem; }
+      .pick { margin: 0; padding: 1rem; border: 1px solid var(--line-2); border-radius: var(--r-card); background: var(--card); }
+      .pick legend { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.5rem; font-size: 0.95rem; font-weight: 700; color: var(--t1); }
+      .pick legend::before { width: 0.55rem; height: 0.55rem; content: ""; background: var(--c); border-radius: 50%; }
+      .opt { display: flex; gap: 0.8rem; align-items: center; padding: 0.8rem 0.9rem; cursor: pointer; border: 1px solid transparent; border-radius: var(--r-tile);
+        transition: background 0.2s, border-color 0.2s; }
+      .opt + .opt { margin-top: 0.25rem; }
+      .opt:hover { background: rgb(255 255 255 / 3%); }
+      .opt:has(input:checked) { background: color-mix(in srgb, var(--c) 10%, transparent); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+      .opt:has(input:focus-visible) { outline: 2px solid var(--c); outline-offset: 2px; }
+      .opt input { flex: none; width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--c); }
+      .opt span { flex: 1; font-size: 0.97rem; }
+      .opt b { font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--t2); white-space: nowrap; }
+      .opt:has(input:checked) b { color: var(--c); }
+      .care-opts { display: grid; gap: 0.25rem; margin: 0.6rem 0 0 1.6rem; opacity: 0.4; pointer-events: none; transition: opacity 0.2s; }
+      .care-opts.is-on { opacity: 1; pointer-events: auto; }
+      .care-h { margin: 0 0 0.1rem 0.9rem; font-size: 0.8rem; color: var(--t3); }
+      .care-opts .opt + .opt { margin-top: 0; }
+
+      .receipt { position: sticky; top: 6.5rem; padding: 1.4rem 1.4rem 1.2rem; background: #0d0d11; border: 1px solid var(--line-2); border-radius: var(--r-card);
+        box-shadow: 0 26px 60px rgb(0 0 0 / 55%); }
+      .receipt-top { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.9rem; border-bottom: 1px dashed var(--line-2); }
+      .receipt-top b { font-size: 1.05rem; }
+      .receipt-top span { font-size: 0.8rem; color: var(--t3); }
+      .receipt-rows { display: grid; gap: 0.15rem; margin: 0; padding: 0.8rem 0 0; list-style: none; }
+      .receipt-rows li { display: flex; gap: 0.6rem; align-items: baseline; padding: 0.35rem 0; font-size: 0.92rem; animation: rowIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .receipt-rows li::after { order: 1; flex: 1; min-width: 1rem; height: 0; content: ""; border-bottom: 1px dotted var(--line-2); transform: translateY(-0.25em); }
+      .receipt-rows .n { color: var(--t1); }
+      .receipt-rows .n::before { display: inline-block; width: 0.45rem; height: 0.45rem; margin-right: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
+      .receipt-rows .p { order: 2; font-variant-numeric: tabular-nums; color: var(--t2); white-space: nowrap; }
+      .receipt-rows .is-off .p { color: var(--green); }
+      @keyframes rowIn { from { opacity: 0; transform: translateY(-6px); filter: blur(4px); clip-path: inset(0 100% 0 0); } to { opacity: 1; transform: none; filter: none; clip-path: inset(0 0 0 0); } }
+      .receipt-empty { margin: 0.6rem 0 0.3rem; font-size: 0.9rem; color: var(--t3); }
+      .receipt-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--line-2); }
+      .receipt-sum > div > span { display: block; font-size: 0.82rem; color: var(--t3); }
+      .receipt-sum b { display: block; margin-top: 0.2rem; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--t1); }
+      .receipt-note { margin: 0.7rem 0 0; font-size: 0.85rem; color: var(--t2); }
+      .receipt-cta { width: 100%; margin-top: 1.2rem; justify-content: center; }
+      .receipt-cta[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+      .receipt-foot { margin: 0.7rem 0 0; font-size: 0.8rem; text-align: center; color: var(--t3); }
+      .bill-foot { max-width: 70ch; margin-top: 1.4rem; font-size: 0.9rem; color: var(--t2); }
+      .bill-foot a, .bundle-sub a, .tiers a, .span-after a { color: var(--t1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 0.2em; }
+      @media (max-width: 900px) { .bill { grid-template-columns: 1fr; } .receipt { position: static; } }
+
+      /* ---------- weby: schody ---------- */
+      .tiers .tier-price { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--t3); }
+      .tiers .tier-price b { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--c); }
+      /* Listy papíru: kolik stránek, tolik listů, rozvinou se při příchodu. */
+      /* Výška se nemění ani na mobilu (tam cas-art jinak spadne na 4.6rem a popisek vleze do listů). */
+      .tiers .art-pages { position: relative; height: 6.2rem; place-items: end center; padding-bottom: 0.55rem; }
+      .art-pages i { position: absolute; top: 0.8rem; left: 50%; width: 2.3rem; height: 2.9rem; margin-left: -1.15rem; background: #15151b;
+        border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius: 4px;
+        box-shadow: inset 0 0.55rem 0 -0.42rem var(--c), 0 6px 14px rgb(0 0 0 / 45%);
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      .art-pages i:nth-child(2) { transition-delay: 0.05s; } .art-pages i:nth-child(3) { transition-delay: 0.1s; } .art-pages i:nth-child(4) { transition-delay: 0.15s; }
+      .cas.in .art-pages i:nth-child(1) { transform: translateX(-1.4rem) rotate(-9deg); }
+      .cas.in .art-pages i:nth-child(2) { transform: translateX(-0.45rem) rotate(-3deg); }
+      .cas.in .art-pages i:nth-child(3) { transform: translateX(0.45rem) rotate(3deg); }
+      .cas.in .art-pages i:nth-child(4) { transform: translateX(1.4rem) rotate(9deg); }
+      .cas.in .art-pages i:only-of-type { transform: none; }
+      .art-pages span { position: relative; }
+      .art-lang em { position: absolute; top: 0.55rem; z-index: 2; padding: 0.1rem 0.35rem; font-size: 0.62rem; font-style: normal; font-weight: 800; color: #05070d; background: var(--c); border-radius: 5px;
+        opacity: 0; transition: opacity 0.4s 0.6s, transform 0.6s 0.6s cubic-bezier(0.34, 1.4, 0.64, 1); }
+      .art-lang em:nth-of-type(1) { left: 0.6rem; transform: translateY(4px); } .art-lang em:nth-of-type(2) { right: 0.6rem; transform: translateY(4px); }
+      .cas.in .art-lang em { opacity: 1; transform: none; }
+      .care-label { margin: 3rem 0 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+      .care-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: stretch; }
+      .care-plan { display: flex; flex-direction: column; border-top: 2px solid color-mix(in srgb, var(--c) 70%, transparent); }
+      .care-plan h3 { margin: 0 0 0.4rem; font-size: 1.15rem; letter-spacing: -0.02em; }
+      .care-plan p { margin: 0; font-size: 0.94rem; line-height: 1.6; color: var(--t2); }
+      .care-plan .tier-price { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--t3); }
+      .care-plan .tier-price b { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--c); }
+      .care-plan .care-tags { margin-top: auto; padding-top: 1rem; }
+      .care-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.9rem 0 0; padding: 0; list-style: none; }
+      .care-tags li { padding: 0.32rem 0.65rem; font-size: 0.8rem; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 100px; }
+      @media (max-width: 900px) { .care-row { grid-template-columns: 1fr; } }
+      [data-vykon="minimalni"] .art-pages i, [data-vykon="minimalni"] .art-lang em { transition: none; }
+
+      /* ---------- software: rozpětí ---------- */
+      .span-card { padding-top: 2.2rem; }
+      .span-track { position: relative; height: 10px; background: rgb(255 255 255 / 6%); border-radius: 10px; }
+      .span-track::before { position: absolute; top: -7px; left: 0; width: 3px; height: 24px; content: ""; background: var(--c); border-radius: 2px; }
+      .span-track i { position: absolute; inset: 0 22% 0 3%; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 55%, transparent), var(--c)); border-radius: inherit;
+        transform: scaleX(0); transform-origin: left; transition: transform 1.3s 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+      .span-card.in .span-track i { transform: none; }
+      .span-track::after { position: absolute; top: 0; right: 0; width: 22%; height: 100%; content: ""; border-radius: 0 10px 10px 0;
+        background: repeating-linear-gradient(90deg, rgb(255 255 255 / 10%) 0 6px, transparent 6px 12px); }
+      .span-marks { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.6rem 2.4rem; margin-top: 1.4rem; }
+      .span-marks b { display: block; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; }
+      .mark-from b { color: var(--t1); }
+      .mark-usual b { color: var(--c); }
+      .span-marks p { margin: 0.4rem 0 0; font-size: 0.93rem; line-height: 1.6; color: var(--t2); }
+      .span-after { margin-top: 1.6rem; }
+      @media (max-width: 700px) { .span-marks { grid-template-columns: 1fr; } }
+      @media (prefers-reduced-motion: reduce) { .span-track i { transform: none; transition: none; } .receipt-rows li { animation: none; } }
+      [data-vykon="minimalni"] .span-track i { transform: none; transition: none; }
+
+      /* ---------- balíček asistentů ---------- */
+      .bundle { margin-top: 2rem; }
+      .bundle-main { margin: 0; font-size: clamp(1.2rem, 2.2vw, 1.55rem); font-weight: 600; letter-spacing: -0.02em; }
+      .bundle-main b { color: var(--green); }
+      .bundle-main s { margin-left: 0.4rem; font-size: 0.75em; font-weight: 500; color: var(--t3); text-decoration-thickness: 1px; }
+      .bundle-sub { max-width: 75ch; margin: 0.6rem 0 0; font-size: 0.93rem; line-height: 1.6; color: var(--t2); }
+    </style>
+
+    <script is:inline>
+      /* Kalkulačka jako účtenka. Počítá se v prohlížeči, nic se nikam neodesílá.
+         Řádky se při zaškrtnutí "vytisknou" do účtenky a součty dojedou plynule. */
+      (function () {
+        var form = document.getElementById("calc");
+        if (!form) return;
+        var rows = document.getElementById("rows"), empty = document.getElementById("empty");
+        var onceEl = document.getElementById("once"), monthEl = document.getElementById("month");
+        var onceNote = document.getElementById("onceNote"), send = document.getElementById("send");
+        var careWrap = form.querySelector("[data-needs-web]");
+        var BUNDLE = parseInt(form.dataset.bundle, 10);
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var COL = { web: "var(--cyan)", sw: "var(--blue)", ai: "var(--violet)", off: "var(--green)", care: "var(--amber)" };
+
+        function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+        function animate(el, to) {
+          var from = parseInt((el.textContent || "0").replace(/\D/g, ""), 10) || 0;
+          if (reduced || from === to) { el.textContent = fmt(to); return; }
+          if (el._raf) cancelAnimationFrame(el._raf);
+          var t0 = performance.now(), dur = 420;
+          (function step(now) {
+            var p = Math.min(1, (now - t0) / dur);
+            el.textContent = fmt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+            if (p < 1) el._raf = requestAnimationFrame(step);
+          })(t0);
+        }
+
+        /* Řádky se překreslují jen když se změní, aby se "tisk" nespouštěl u řádků, které tam už byly. */
+        var shown = {};
+        function render(list) {
+          var next = {};
+          list.forEach(function (r) { next[r.key] = r; });
+          Object.keys(shown).forEach(function (k) { if (!next[k] || next[k].price !== shown[k].price) { shown[k].el.remove(); delete shown[k]; } });
+          list.forEach(function (r) {
+            if (shown[r.key]) { rows.appendChild(shown[r.key].el); return; }
+            var li = document.createElement("li");
+            if (r.off) li.className = "is-off";
+            li.style.setProperty("--c", r.col);
+            var n = document.createElement("span"); n.className = "n"; n.textContent = r.name;
+            var p = document.createElement("span"); p.className = "p"; p.textContent = r.price;
+            li.append(n, p); rows.appendChild(li);
+            /* Po prvním vytištění animaci vypnout, jinak by se při přeskládání řádků přehrála znovu. */
+            li.addEventListener("animationend", function () { li.style.animation = "none"; }, { once: true });
+            shown[r.key] = { el: li, price: r.price };
+          });
+          empty.hidden = list.length > 0;
+        }
+
+        function recalc() {
+          var webIn = form.querySelector('input[name="web"]:checked');
+          var web = parseInt(webIn.value, 10) || 0;
+          /* Měsíční služba dává smysl jen k webu. Bez webu se skupina zhasne a vrátí na "nic". */
+          careWrap.classList.toggle("is-on", web > 0);
+          if (!web) form.querySelector('input[name="care"][value="0"]').checked = true;
+          var careIn = form.querySelector('input[name="care"]:checked');
+          var care = parseInt(careIn.value, 10) || 0;
+
+          var swIn = document.getElementById("sw");
+          var sw = swIn.checked ? parseInt(swIn.value, 10) : 0;
+          var ai = [].slice.call(form.querySelectorAll(".ai:checked"));
+          var aiSum = ai.reduce(function (a, i) { return a + parseInt(i.value, 10); }, 0);
+          var list = [];
+          if (web) list.push({ key: "web", name: webIn.dataset.name, price: fmt(web) + " CZK", col: COL.web });
+          if (sw) list.push({ key: "sw", name: swIn.dataset.name, price: "from " + fmt(sw) + " CZK", col: COL.sw });
+          if (care) list.push({ key: "care" + care, name: careIn.dataset.name, price: fmt(care) + " CZK/mo", col: COL.care });
+          ai.forEach(function (i) { list.push({ key: "ai" + i.dataset.name, name: i.dataset.name, price: fmt(parseInt(i.value, 10)) + " CZK/mo", col: COL.ai }); });
+          if (ai.length === 3) {
+            list.push({ key: "bundle", name: "Bundle of all three", price: "−" + fmt(aiSum - BUNDLE) + " CZK/mo", col: COL.off, off: true });
+            aiSum = BUNDLE;
+          }
+          render(list);
+
+          var notes = [];
+          if (sw) notes.push("Software is a starting price, typically 25,000 to 80,000 CZK. The exact figure comes out of a free analysis.");
+          if (ai.length) notes.push("Plus a one-time assistant setup of 8,000 to 10,000 CZK, confirmed after a call.");
+          onceNote.hidden = !notes.length;
+          onceNote.textContent = notes.join(" ");
+
+          /* Odkaz rovnou předvyplní formulář: co chcete a co jste si sestavili. */
+          var picked = [web && "web", sw && "software", ai.length && "ai"].filter(Boolean);
+          var kind = picked.length > 1 ? "vice" : picked[0] || "";
+          var text = list.filter(function (r) { return !r.off; }).map(function (r) { return r.name; }).join(", ");
+          send.href = kind ? "/en/contact?sluzba=" + kind + "&sestava=" + encodeURIComponent(text) : "/en/contact";
+          if (kind) send.removeAttribute("aria-disabled"); else send.setAttribute("aria-disabled", "true");
+
+          animate(onceEl, web + sw);
+          animate(monthEl, aiSum + care);
+        }
+
+        form.addEventListener("change", recalc);
+        form.addEventListener("submit", function (e) { e.preventDefault(); });
+        recalc();
+      })();
+    </script>
+  </Fragment>
+<script src="/assets/js/dotwave.js" defer is:inline></script>
+</Base>

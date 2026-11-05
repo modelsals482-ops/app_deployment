@@ -197,7 +197,7 @@ import Showcase from "../components/Showcase.astro";
     main={{ src: "/assets/ref/wle-rental.webp", alt: "Katalog rentalu techniky na weloveproduction.cz", label: "weloveproduction.cz/rental" }}
     second={{ src: "/assets/ref/wle-cards.webp", alt: "Položky v katalogu s tlačítkem Do košíku", label: "rental/zvuk/reproduktory", w: 900, h: 400 }}
     bubbles={[
-      { text: "346 položek", c: "blue", at: "top:-6%; left:14%", size: "7.2rem" },
+      { text: "Přes 340 položek", c: "blue", at: "top:-6%; left:14%", size: "7.2rem" },
       { text: "Dostupnost u položky", c: "cyan", at: "top:36%; left:-3%" },
       { text: "Bez zásahu vývojáře", c: "violet", at: "bottom:2%; right:20%", size: "7.6rem", ghost: true }
     ]}>
@@ -208,7 +208,6 @@ import Showcase from "../components/Showcase.astro";
       <li>Kód, účty a dokumentace na vaše jméno</li>
       <li>Provoz v EU, se smlouvou podle čl. 28 GDPR</li>
     </ul>
-    <span class="proj-pill">Veřejně brzy</span>
   </Showcase>
 
   <!-- Technické specifikace (30. 10.): otevřená sekce hned pod katalogem, o kterém mluví.
@@ -220,7 +219,7 @@ import Showcase from "../components/Showcase.astro";
         <p class="lead">Technické specifikace rentalu na weloveproduction.cz. Bez adres serverů a verzí softwaru, ty by pomohly jen útočníkovi.</p>
       </div>
       <dl class="spec-grid panel panel-pad rev">
-        <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. 346 položek ve 48 kategoriích, dostupnost přímo u položky.</dd></div>
+        <div><dt>Web a katalog</dt><dd>Statický web (Astro) na Cloudflare Pages. Přes 340 položek, dostupnost přímo u položky.</dd></div>
         <div><dt>Server</dt><dd>Node.js API v Dockeru na serveru v EU, HTTPS přes Caddy. Spojení přijme jen přes Cloudflare (firewall, ochrana proti útokům), přímo na jeho adresu se nikdo nedostane.</dd></div>
         <div><dt>Databáze</dt><dd>PostgreSQL. Všechny dotazy parametrizované, takže podstrčený text se nikdy nespustí jako příkaz.</dd></div>
         <div><dt>Administrace</dt><dd>Přihlášení přes Cloudflare Access jen pro pozvané e-maily, záložně vlastní hesla (scrypt). Relace vyprší po 12 hodinách.</dd></div>

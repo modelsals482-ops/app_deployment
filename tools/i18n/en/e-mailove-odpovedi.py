@@ -1,0 +1,162 @@
+import json as _j
+
+FAQ = [
+    ("How much does AI email answering cost?", "2,500 CZK a month, with 1,500 emails included. On its own, or together with bookings and feedback for 7,500 CZK a month. One-time setup 8,000 to 10,000 CZK. No commitment, cancel any time."),
+    ("Does it work with the Gmail I already have?", "Yes. I connect the assistant to your existing mailbox, whether it is Gmail or anything else. You do not have to change your address or your system. The assistant's replies are labelled so the customer knows they are writing with an AI."),
+    ("Will the assistant write in my tone?", "Yes, in your tone and with your signature. I set it up from a few of your real replies."),
+    ("What if the assistant does not know what to reply?", "It does not guess. It does not answer a complicated email blindly; it forwards it to you. Better no answer than a wrong one you then have to put right."),
+    ("How long does the setup take?", "5 to 7 working days from the first fifteen-minute call. I handle the connection, the tone and the testing."),
+]
+SERVICE = {
+    "@context": "https://schema.org", "@type": "Service", "name": "Email replies", "inLanguage": "en",
+    "serviceType": "Automated replies to customer emails for small businesses",
+    "description": "The assistant reads incoming email, answers routine questions in the client's tone, and forwards anything it is not sure about to a person.",
+    "areaServed": {"@type": "Country", "name": "Czech Republic"},
+    "provider": {"@type": "Organization", "name": "ALSflow", "legalName": "Jakub Ryvola", "taxID": "30112702", "url": "https://alsflow.cz"},
+    "offers": {"@type": "Offer", "price": "2500", "priceCurrency": "CZK", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "2500", "priceCurrency": "CZK", "unitCode": "MON"}},
+}
+FAQLD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+FAQHTML = "\n".join(
+    f'        <details class="rev"{"" if i == 0 else f" data-d=\"{i}\""}><summary>{q}</summary><p>{a}</p></details>' for i, (q, a) in enumerate(FAQ))
+
+BASE = '''<Base
+  lang="en"
+  title="Email replies | ALSflow"
+  description="The assistant reads your email, answers routine questions in your tone, and forwards anything it does not know to you. 2,500 CZK a month, no commitment."
+  canonical="https://alsflow.cz/e-mailove-odpovedi"
+  ogTitle="Email replies"
+  ogDescription="A customer writes in the evening and gets a reply within minutes. 2,500 CZK a month."
+  current="/ai-asistenti"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+''' + _j.dumps(SERVICE, ensure_ascii=False, indent=2) + '''
+  </script>
+  <script type="application/ld+json">
+''' + _j.dumps(FAQLD, ensure_ascii=False, indent=2) + '''
+  </script>
+  </Fragment>
+
+  <section class="hero hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">A customer writes in the evening. <span class="grad">The reply is instant.</span></h1>
+      <p class="lead">A question comes in about a price or a free slot. You are with a customer, at home with your family, or
+        you simply do not want to tap at your phone at midnight. By the time you get to it, it is morning and the customer has
+        written to someone else. The assistant replies for you, in your tone.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Get a free quote</a>
+        <a class="btn btn-quiet" href="/cenik">Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line scene-host" id="co-dela">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What you write <span class="grad">over and over</span></h2>
+        <p class="lead">Most of the email you get is the same four or five questions.</p>
+      </div>
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>Answers routine questions</h3><p>Prices, free slots, how to find you, how things work. Questions you could answer in your sleep, but that still take your time.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>Writes in your tone</h3><p>I set it up from a few of your real replies. Every reply is labelled as written by an AI assistant.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>Works with your mailbox</h3><p>Gmail or any email you already have. No new address, and nothing new for you to learn.</p></div></div>
+        <div class="row rev" data-d="3"><span class="num">04</span><div><h3>When it does not know, it does not guess</h3><p>It does not answer a complicated email blindly; it forwards it to you. Better no answer than a wrong one you then have to put right.</p></div></div>
+        <div class="row rev" data-d="4"><span class="num">05</span><div><h3>Monthly report</h3><p>Once a month you see what the assistant handled and what it passed to you. On one page.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="proc">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Whoever replies first <span class="grad">usually gets the job</span></h2>
+        <p class="lead">A slow reply is not a detail. A customer asking about a date is asking elsewhere too,
+          and decides by who gets back first. Yet you cannot sit by your inbox while you do
+          your work, and that is the whole problem. The assistant does not replace you. It writes what you would have written anyway, just faster and without eating your evenings.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="jak">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">How it <span class="grad">works</span></h2>
+      </div>
+      <div class="cards-3">
+        <div class="panel panel-pad panel-glow rev">
+          <h3>1. A fifteen-minute call</h3>
+          <p>You show me a few typical questions and how you answer them. No tech talk.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="1">
+          <h3>2. I set it up for you</h3>
+          <p>Within 5 to 7 working days I connect your mailbox, teach the assistant your tone and test it.</p>
+        </div>
+        <div class="panel panel-pad panel-glow rev" data-d="2">
+          <h3>3. It replies for you</h3>
+          <p>From the first minute. You just glance at the report of what it handled now and then.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="cena">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">2,500 CZK a month, <span class="grad">no commitment</span></h2>
+        <p class="lead">1,500 emails a month are included. You can have it on its own, or together
+          with the other two assistants for 7,500 CZK a month. One-time setup 8,000 to 10,000 CZK.
+          Cancel any time, with no notice period.</p>
+        <div class="btn-row">
+          <a class="btn btn-grad btn-magnet" href="/kontakt">I want this one</a>
+          <a class="btn btn-quiet" href="/cenik">Full pricing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="dalsi">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Other <span class="grad">assistants</span></h2>
+      </div>
+      <div class="cards-2">
+        <a class="panel panel-pad panel-glow rev" href="/rezervace-pripominky">
+          <h3>Bookings and reminders</h3>
+          <p>Books appointments into your calendar and reminds people the day before. 4,500 CZK a month.</p>
+        </a>
+        <a class="panel panel-pad panel-glow rev" data-d="1" href="/zpetna-vazba">
+          <h3>Feedback and repeat bookings</h3>
+          <p>Asks after the visit, drafts a reply to the review and invites the customer back. 2,500 CZK a month.</p>
+        </a>
+      </div>
+        <p class="lead" style="max-width:none;margin-top:1.4rem">Want to see it for your own field?
+          <a href="/ai-asistent-pro-fyzioterapeuty">For physiotherapists</a> or
+          <a href="/ai-asistent-pro-kadernictvi">for hair salons</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Your questions</h2>
+      </div>
+      <div class="faq">
+''' + FAQHTML + '''
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="text-align:center">
+      <h2 class="h-sec fade-head reveal-words">How many customers <span class="grad">slipped away overnight</span>?</h2>
+      <p class="lead lead-center rev" data-d="1">A free fifteen-minute call. We go through what you need and I suggest a solution and a price.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/kontakt">Get a free quote</a>
+        <a class="btn btn-quiet" href="/ai-asistenti">All assistants</a>
+      </div>
+    </div>
+  </section>
+</Base>'''
+
+EDITS = [("<<", "<Base", "</Base>", BASE)]

@@ -1,0 +1,239 @@
+---
+// VYGENEROVÁNO z src/pages/tvorba-webu.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/tvorba-webu.py.
+import Base from "../../layouts/Base.astro";
+import Zigzag from "../../components/Zigzag.astro";
+import Showcase from "../../components/Showcase.astro";
+---
+<Base
+  lang="en"
+  title="Website development: a fast website without WordPress | ALSflow"
+  description="Hand-coded websites with no content management system and no plugins that need updating. Design, copy, deployment, domain and ongoing care. Based in Prague."
+  canonical="https://alsflow.cz/en/websites"
+  ogDescription="A hand-coded website without WordPress, live in 6 to 10 working days."
+  current="/en/websites"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website development",
+      "serviceType": "Design, development and ongoing care of business websites",
+      "description": "Hand-coded websites with no content management system and no plugins that need updating. Design, copy, deployment, domain and ongoing care.",
+      "url": "https://alsflow.cz/en/websites",
+      "areaServed": [
+        "CZ",
+        "SK"
+      ],
+      "inLanguage": "en",
+      "provider": {
+        "@type": "Organization",
+        "name": "ALSflow",
+        "legalName": "Jakub Ryvola",
+        "taxID": "30112702",
+        "url": "https://alsflow.cz",
+        "email": "info@alsflow.cz"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will I be able to edit the content myself?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I make small changes to texts, prices and contacts myself: with Website care (3,490 CZK a month) they are included, you send an email and the change is done within 2 working days. With Running only (1,490 CZK a month) I quote them up front. If you need to change content several times a week, I will say so at the start and suggest a solution with your own editing screen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why not WordPress?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not out of ideology. WordPress means a core, a theme and plugins that have to be updated regularly, and every update can break the site. I simply do not have that layer, so you do not pay for it either."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will I see what the website brings me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. I set up visitor analytics, so you see how many people visited, where they came from and how many of them clicked on the phone number, the email or the form. Analytics stores cookies, so it comes with a consent banner as Czech law requires (Section 89(3) of Act No. 127/2005 Coll.)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who owns the website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You do. The domain and the accounts are in your name and you get the complete source code. If we ever part ways, the website keeps running and anyone who knows HTML can take it over."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
+  </Fragment>
+
+  <section class="hero-plain hero-move">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:14ch">A website that <span class="grad">does not age</span></h1>
+      <p class="lead">A hand-coded website with no plugins and no worries. I build it, launch it and keep looking after it.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-magnet" href="/en/contact">Get a quote</a>
+        <a class="btn btn-trace" href="#reference">See the websites</a>
+      </div>
+      <div class="price-line" style="margin-top:3.5rem">
+        <div><div class="k">Website price</div><div class="v">from 24,900&nbsp;CZK</div></div>
+        <div><div class="k">Running the website</div><div class="v">from 1,490&nbsp;CZK/month</div></div>
+        <div><div class="k">I reply within</div><div class="v">48 hours</div></div>
+        <div><div class="k">Website live in</div><div class="v">6&ndash;10 working days</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="reference" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Two websites, one <span class="grad">build</span></h2>
+        <p class="lead">Both built the same way, both still looked after by me. You can click through both, they are live.</p>
+      </div>
+    </div>
+  </section>
+
+  <Showcase id="ref-gen" side="l" color="violet" title="gen1.cz" who="Political movement · Prague 1"
+    main={{ src: "/assets/ref/gen1-desktop.jpg", alt: "The gen1.cz homepage", label: "gen1.cz", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/gen1-program.webp", alt: "The programme page on gen1.cz", label: "gen1.cz/program" }}
+    phone={{ src: "/assets/ref/gen1-m.webp", alt: "gen1.cz on a phone" }}
+    bubbles={[
+      { text: "Programme, team, sign-up", c: "violet", at: "top:-6%; right:14%" },
+      { text: "No WordPress", c: "cyan", at: "top:30%; right:-3%", size: "7rem" },
+      { text: "Fast on phones too", c: "violet", at: "bottom:4%; left:30%", size: "7.4rem", ghost: true }
+    ]}>
+    <p>Programme, team, a membership sign-up and a page for the chairman. After the 2026 elections I rebuilt it as a purely informational site.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://gen1.cz" target="_blank" rel="noopener">Open gen1.cz</a></div>
+  </Showcase>
+
+  <Showcase id="ref-sekelova" side="r" color="amber" title="znalecsekelova.sk" who="Court-appointed expert · Slovakia"
+    main={{ src: "/assets/ref/sekelova-desktop.jpg", alt: "The znalecsekelova.sk homepage", label: "znalecsekelova.sk", w: 1080, h: 675 }}
+    second={{ src: "/assets/ref/sek-cennik.webp", alt: "The price list on znalecsekelova.sk", label: "znalecsekelova.sk/cennik" }}
+    phone={{ src: "/assets/ref/sek-m.webp", alt: "znalecsekelova.sk on a phone" }}
+    bubbles={[
+      { text: "In Slovak", c: "amber", at: "top:-5%; left:12%", size: "7rem" },
+      { text: "Own SVG drawings", c: "cyan", at: "top:30%; left:-3%" },
+      { text: "Smooth scrolling", c: "amber", at: "bottom:6%; right:30%", size: "7rem", ghost: true }
+    ]}>
+    <p>Seven pages in Slovak: services, prices, documents for the site inspection. The drawings are original, made directly in SVG.</p>
+    <div class="btn-row"><a class="btn btn-svc" href="https://znalecsekelova.sk" target="_blank" rel="noopener">Open znalecsekelova.sk</a></div>
+  </Showcase>
+
+  <section class="sec sec-dark sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What you can <span class="grad">expect</span></h2>
+        <p class="lead">I build every website the same way. This is what you always get, whether the site is small or large.</p>
+      </div>
+      <ol class="cascade">
+        <li class="cas rev" style="--c: var(--cyan); --i: 0">
+          <div class="cas-art cas-speed" aria-hidden="true"><span>Loaded</span><i></i></div>
+          <div><h3>Fast even on mobile data</h3><p>Clean HTML, CSS and JavaScript, no heavy themes. The page loads before the customer loses patience.</p></div>
+        </li>
+        <li class="cas rev" data-d="1" style="--c: var(--blue); --i: 1">
+          <div class="cas-art cas-plug" aria-hidden="true"><span>Plugins</span><b>0</b></div>
+          <div><h3>Nothing that needs updating</h3><p>No content management system and no plugins that break when updated. The website will still run in two years.</p></div>
+        </li>
+        <li class="cas rev" data-d="2" style="--c: var(--violet); --i: 2">
+          <div class="cas-art cas-mail" aria-hidden="true"><span>Form</span><em>&rarr;</em><span>Email</span></div>
+          <div><h3>No extra data</h3><p>Forms send an email and store nothing in a database. The less personal data a website holds, the less there is to protect.</p></div>
+        </li>
+        <li class="cas rev" data-d="3" style="--c: var(--green); --i: 3">
+          <div class="cas-art cas-aa" aria-hidden="true"><b>Aa</b><span>contrast measured</span></div>
+          <div><h3>Measured accessibility</h3><p>I check the contrast of every text and background pair against WCAG 2.2 AA. So far it has found a real error on every website.</p></div>
+        </li>
+        <li class="cas cas-report rev" data-d="4" style="--c: var(--amber); --i: 4">
+          <div><h3>A report once a month</h3><p>How many people visited, how many times they called you and how many enquiries they sent. So you see what the website brings you instead of guessing.</p></div>
+          <div class="panel report">
+            <div class="report-top"><span><b>Monthly report</b> · September</span><span class="pill">Sample</span></div>
+            <ul class="report-rows">
+              <li><span class="k">Website visits</span><span class="d">+18 %</span><span class="v" data-count="412">412</span></li>
+              <li><span class="k">Clicks on the phone number</span><span class="d">+6</span><span class="v" data-count="37">37</span></li>
+              <li><span class="k">Enquiries from the form</span><span class="d">+3</span><span class="v" data-count="9">9</span></li>
+            </ul>
+            <p class="report-note">Sample numbers.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">From a call to a <span class="grad">live website</span></h2>
+      </div>
+      <Zigzag steps={[
+        { c: "cyan", t: "First call", p: "Fifteen minutes. You tell me who the website is for and what a visitor should do on it. That gives us the page structure and the price.", get: "The site structure and the price up front" },
+        { c: "blue", t: "Preview along the way", p: "Before the website is finished you get a link to the work in progress. A working website, not a picture. You can click through it on your phone and your computer.", get: "A link where you watch the website grow" },
+        { c: "violet", t: "Copy and photos", p: "If you have no texts, I write them and you just approve them. You supply the photos, or I choose and crop them.", get: "Finished copy to approve" },
+        { c: "green", t: "Launch and domain", p: "I launch the website and set up DNS, the certificate and redirects. You deal with nothing technical.", get: "A live website on your own domain" },
+        { c: "amber", t: "Care", p: "A new price, a new page, different opening hours. You send an email, I change it. Within two working days.", get: "A monthly report of visits and enquiries" },
+      ]} lang="en" />
+      <script src="/assets/js/zigzag.js" defer is:inline></script>
+      <div class="btn-row rev">
+        <a class="btn btn-swap" href="/en/contact"><span class="lbl"><span>Get a quote</span><span>Write to me</span></span></a>
+      </div>
+      <p class="lead" style="margin-top:2.5rem">What I do not do: websites with hundreds of pages and new content every day. If that is your case, I will tell you on the first call.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="otazky">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Your questions</h2>
+      </div>
+      <div class="faq">
+        <details class="rev" data-d="0"><summary>How quickly do you reply?</summary><p>I reply to every enquiry within 48 hours on working days and suggest a time for a call straight away. The same applies while I build the website and afterwards, when something needs changing.</p></details>
+        <details class="rev" data-d="1"><summary>Will I be able to edit the content myself?</summary><p>I make small changes to texts, prices and contacts myself: with Website care (3,490 CZK a month) they are included, you send an email and the change is done within 2 working days. With Running only (1,490 CZK a month) I quote them up front. If you need to change content several times a week, I will say so at the start and suggest a solution with your own editing screen.</p></details>
+        <details class="rev" data-d="2"><summary>Why not WordPress?</summary><p>Not out of ideology. WordPress means a core, a theme and plugins that have to be updated regularly, and every update can break the site. I simply do not have that layer, so you do not pay for it either.</p></details>
+        <details class="rev" data-d="3"><summary>Will I see what the website brings me?</summary><p>Yes. I set up visitor analytics, so you see how many people visited, where they came from and how many of them clicked on the phone number, the email or the form. Analytics stores cookies, so it comes with a consent banner as Czech law requires (Section 89(3) of Act No. 127/2005 Coll.).</p></details>
+        <details class="rev" data-d="4"><summary>Who owns the website?</summary><p>You do. The domain and the accounts are in your name and you get the complete source code. If we ever part ways, the website keeps running and anyone who knows HTML can take it over.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2 class="h-sec fade-head reveal-words">Been needing a website for a while?</h2>
+      <p class="lead lead-center rev" data-d="1">Tell me what you need and I will suggest a solution and a price.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+        <a class="btn-quiet" href="/en/software">Custom software <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  
+<script src="/assets/js/dotwave.js" defer is:inline></script>
+</Base>

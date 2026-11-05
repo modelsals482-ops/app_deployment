@@ -1,0 +1,363 @@
+---
+// VYGENEROVÁNO z src/pages/ai-asistenti.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/ai-asistenti.py.
+import Base from "../../layouts/Base.astro";
+import Zigzag from "../../components/Zigzag.astro";
+import ChatDemo from "../../components/ChatDemo.astro";
+
+/* "Zkuste si to teď" (16. 10.): tři funkce, u každé pár zpráv. Kroky
+   ukazují, jak asistent "přemýšlí". Co asistent sám neřeší, čeká na
+   schválení. Odpovědi se vždy představí jako AI. */
+const demo = {
+  name: "Sample practice AI assistant",
+  botLabel: "AI assistant",
+  idle: "Pick a message on the left…",
+  functions: [
+    { id: "email", label: "Email replies", color: "var(--cyan)", name: "Sample practice inbox",
+      desc: "Helps when answering emails eats your evenings.",
+      messages: [
+        { from: "Kate Novak", time: "email · 19:12", text: "Hello, do you have a free slot this week?",
+          steps: ["Reads the email", "Checks the calendar", "Writes in your tone"],
+          reply: "Hello Kate, I have Wednesday from 10:00 and Thursday from 14:00 free. Would either of those suit you? This is the practice's AI assistant." },
+        { from: "Mark Smith", time: "email · 20:40", text: "How much is the first visit and how long does it take?",
+          steps: ["Reads the email", "Looks it up in the price list"],
+          reply: "Hello Mark, the first visit is 850 CZK and takes about 45 minutes. Would you like to book a time straight away? This is the practice's AI assistant." },
+        { from: "Petra K.", time: "email · 21:05", text: "Can I get a discount if I bring a friend?",
+          steps: ["Reads the email", "No discount in its information", "Leaves it to you"],
+          reply: "Hello, the owner will answer this one herself, I have passed your question to her. This is the practice's AI assistant.",
+          end: "approve", endText: "The question is waiting for you", doneText: "Done, you have taken over" },
+      ] },
+    { id: "rez", label: "Bookings and reminders", color: "var(--blue)", name: "Sample practice WhatsApp",
+      desc: "Helps when the phone rings while you are with a client.",
+      messages: [
+        { from: "WhatsApp", time: "18:30", text: "When are you free this week?",
+          steps: ["Checks the calendar", "Found 5 free times"],
+          reply: "We have Wednesday at 10:00 and 15:30, Thursday at 9:00 and 14:00, and Friday at 11:00. Which one suits you? This is the AI assistant." },
+        { from: "WhatsApp", time: "18:34", text: "Book me in for Friday at 14:00.",
+          steps: ["Checks the slot is free", "Writes it in the calendar", "Schedules a reminder"],
+          reply: "Done, Friday at 14:00 is yours. You will get a confirmation by email and I will send a reminder on Thursday evening. This is the AI assistant.",
+          endText: "Done, written in the calendar" },
+        { from: "WhatsApp", time: "07:50", text: "I am sorry, I have to cancel my Thursday appointment.",
+          steps: ["Finds the appointment", "Frees it in the calendar"],
+          reply: "No problem, I have cancelled the Thursday appointment. Shall I find you another one straight away? This is the AI assistant.",
+          endText: "Done, the slot is free for someone else" },
+      ] },
+    { id: "rate", label: "Feedback", color: "var(--violet)", soon: true, name: "Sample practice reviews",
+      desc: "Helps when you want more reviews and clients who come back.",
+      messages: [
+        { from: "Review ★★★★★", time: "Google", text: "Great care, I left very happy. I will definitely be back.",
+          steps: ["Reads the review", "Drafts a thank-you"],
+          reply: "Thank you so much for the kind words, we look forward to seeing you. If you would like your next appointment, just reply.",
+          end: "approve", endText: "The reply is waiting for approval", doneText: "Done, the reply is published" },
+        { from: "Review ★★★★☆", time: "Google", text: "Great treatment, but I waited almost twenty minutes.",
+          steps: ["Reads the review", "Spots the complaint", "Drafts an apology"],
+          reply: "We are sorry about the wait. Thank you for telling us, we will make sure it does not happen again.",
+          end: "approve", endText: "The reply is waiting for approval", doneText: "Done, the reply is published" },
+      ] },
+  ],
+};
+---
+<Base
+  lang="en"
+  title="AI assistants for small businesses | ALSflow"
+  description="An assistant that replies to customers, books appointments and reminds them, in your tone. From 2,500 CZK a month, set up in 5 to 7 days."
+  canonical="https://alsflow.cz/en/ai-assistants"
+  ogDescription="Your email. Your calendar. Your AI. I set it all up, you look after your clients."
+  current="/en/ai-assistants"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ALSflow",
+    "legalName": "Jakub Ryvola",
+    "taxID": "30112702",
+    "url": "https://alsflow.cz",
+    "image": "https://alsflow.cz/og-image.png",
+    "description": "AI assistants for small businesses: automated email replies, bookings and customer communication.",
+    "telephone": "+420770162346",
+    "email": "info@alsflow.cz",
+    "priceRange": "2500-7500 CZK",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Předenická 684/17, Písnice",
+      "addressLocality": "Prague 4",
+      "postalCode": "142 00",
+      "addressCountry": "CZ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@alsflow.cz",
+      "telephone": "+420770162346",
+      "contactType": "customer service",
+      "availableLanguage": ["Czech", "English"]
+    },
+    "areaServed": "Praha",
+    "sameAs": [
+      "https://www.instagram.com/als.flow"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI automation for small businesses",
+    "provider": { "@type": "Organization", "name": "ALSflow" },
+    "areaServed": "CZ",
+    "description": "Automated email replies, online bookings and feedback for hair salons, physiotherapists, vets and dental practices.",
+    "offers": [
+      { "@type": "Offer", "name": "Email replies", "price": "2500", "priceCurrency": "CZK" },
+      { "@type": "Offer", "name": "Bookings and reminders", "price": "4500", "priceCurrency": "CZK" },
+      { "@type": "Offer", "name": "Complete bundle", "price": "7500", "priceCurrency": "CZK" }
+    ]
+  }
+  </script>
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
+  </Fragment>
+
+
+  <section class="hero-plain hero-move">
+    <canvas class="scene scene-wide" data-dotwave aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">A customer writes. <span class="grad">The assistant replies.</span></h1>
+      <p class="lead">It replies to customers, books appointments and reminds them. On WhatsApp, email and your website, in your tone. I set it up for you.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+        <a class="btn btn-magnet" href="#ukazka">Try it live <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+      <div class="facts">
+        <span class="fact">From <b>2,500 CZK</b>/month</span>
+        <span class="fact">Live in <b>5 to 7 working days</b></span>
+        <span class="fact">No commitment, <b>cancel any time</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="cenik">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Public <span class="grad">prices</span>.</h2>
+        <p class="lead">Monthly, no commitment, cancel any time. I am not a VAT payer, so the prices are final.</p>
+      </div>
+      <div class="bots">
+        <article class="aibot rev from-l" style="--c: var(--cyan)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-mail"><b>Kate N.</b><span>Do you have a free slot this week?</span></div>
+            <div class="ba-mail"><b>Mark S.</b><span>How much is the first visit?</span></div>
+            <div class="ba-mail ba-ai"><b>AI draft</b><span>Hello, on Wednesday from 10:00…</span></div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; right: 8%">1,500 emails included</span>
+            <span class="bot-tag" style="--i: 1; bottom: 42%; left: -1.2rem">Gmail and Outlook</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 2; bottom: -1rem; right: 12%">Leaves unclear questions to you</span>
+          </div>
+          <div class="bot-copy">
+            <h3>Email replies</h3>
+            <p>Reads your email, answers routine questions in your tone, and passes on whatever it does not know.</p>
+            <p class="bot-cost"><b>2,500&nbsp;CZK</b> / month</p>
+            <a class="btn btn-svc" style="--c: var(--cyan)" href="/en/contact?sluzba=ai">I want this one</a>
+          </div>
+        </article>
+        <article class="aibot bot--r rev from-r" style="--c: var(--blue)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-cal">
+              <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span>
+              <i></i><i class="x"></i><i></i><i class="x"></i><i></i>
+              <i class="x"></i><i></i><i class="x"></i><i></i><i class="hit">14:00</i>
+            </div>
+            <div class="ba-wa">Friday 14:00 is yours &#10003;</div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; left: 10%">Most popular</span>
+            <span class="bot-tag" style="--i: 1; top: 40%; right: -1rem">Straight into Google Calendar</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 2; bottom: -1rem; left: 14%">Reminder the day before</span>
+          </div>
+          <div class="bot-copy">
+            <h3>Bookings and reminders</h3>
+            <p>Books appointments through WhatsApp and your website, writes them in the calendar and sends a reminder the day before. Rescheduling and cancelling without a phone call. 750 bookings a month included.</p>
+            <p class="bot-cost"><b>4,500&nbsp;CZK</b> / month</p>
+            <a class="btn btn-svc" style="--c: var(--blue)" href="/en/contact?sluzba=ai">I want this one</a>
+          </div>
+        </article>
+        <article class="aibot rev from-l" style="--c: var(--violet)">
+          <div class="bot-art" aria-hidden="true">
+            <div class="ba-rev"><span class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Great care</b><span>I will definitely be back.</span></div>
+            <div class="ba-rev ba-ai"><b>Draft reply</b><span>Thank you so much, see you soon.</span></div>
+            <span class="bot-tag" style="--i: 0; top: -1rem; right: 10%">Coming soon</span>
+            <span class="bot-tag bot-tag--ghost" style="--i: 1; bottom: -1rem; left: 10%">Invites them back</span>
+          </div>
+          <div class="bot-copy">
+            <h3>Feedback</h3>
+            <p>After the visit it asks how it went, drafts a reply to the review and invites the customer back. A monthly overview of ratings.</p>
+            <p class="bot-cost"><b>2,500&nbsp;CZK</b> / month</p>
+            <a class="btn btn-quiet" href="/en/feedback">Learn more</a>
+          </div>
+        </article>
+      </div>
+      <div class="price-line" style="margin-top:2.5rem">
+        <div><div class="k">All together</div><div class="v">7,500 CZK/month</div></div>
+        <div><div class="k">One-time setup</div><div class="v">8,000–10,000 CZK</div></div>
+        <div><div class="k">Launch</div><div class="v">within 5 to 7 working days</div></div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-fill" href="/en/contact">Get a free quote <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="ukazka">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Try it <span class="grad">now</span></h2>
+        <p class="lead">Choose what slows you down the most and click a message from a customer. You will see how the assistant reads it, what it checks and what it replies. Whatever it does not handle itself, it leaves to you to approve.</p>
+      </div>
+      <ChatDemo config={demo} hint="Click a message" lang="en" />
+      <p class="small-note">The replies in this demo are prepared in advance. You will find the live assistant Klára in the chat in the bottom right corner.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="pro-koho">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Who I build <span class="grad">assistants for</span></h2>
+        <p class="lead">Most often it is businesses where the owner works with their hands and cannot get to the phone.</p>
+      </div>
+      <div class="cards-3 cards-4">
+        <div class="panel panel-pad panel-glow panel-sheen tilt rev ai-c" style="--c: var(--cyan)"><h3>Physiotherapists</h3><p>Fewer calls and fewer emails. You focus on the client on the table, the assistant handles the rest.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev ai-c" data-d="1" style="--c: var(--blue)"><h3>Hair and beauty salons</h3><p>No missed bookings. The assistant takes an appointment even on Saturday evening while you are with a customer.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev ai-c" data-d="2" style="--c: var(--violet)"><h3>Vets</h3><p>Clients ask and book any time, without disturbing the practice or the night shift.</p></div>
+          <div class="panel panel-pad panel-glow panel-sheen tilt rev ai-c" data-d="3" style="--c: var(--green)"><h3>Dental practices</h3><p>The assistant answers questions, confirms appointments and sends reminders. A reception desk that never sleeps.</p></div>
+      </div>
+      <p class="lead" style="margin-top:2rem">And any other small business that does not want to lose customers because it cannot keep up with replies.</p>
+    </div>
+  </section>
+
+  <!-- Podrobnejsi stranky. Byly osirele: v novem designu na ne neodkazovala
+       ani jedna stranka, takze jim Google prestaval prisuzovat vahu. -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What the assistant <span class="grad">can do</span></h2>
+        <p class="lead">Each service has its own page with the process, the price and what the monthly fee includes.</p>
+      </div>
+      <div class="cards-3">
+        <a class="panel panel-pad tilt rev ai-c" href="/en/email-replies" style="--c: var(--cyan)">
+          <h3>Email replies</h3>
+          <p>The assistant reads and answers customer emails in your tone.</p>
+          <span class="ai-more">Learn more &rarr;</span>
+        </a>
+        <a class="panel panel-pad tilt rev ai-c" data-d="1" href="/en/bookings-and-reminders" style="--c: var(--blue)">
+          <h3>Bookings and reminders</h3>
+          <p>Booking around the clock, instant confirmation and a reminder the day before.</p>
+          <span class="ai-more">Learn more &rarr;</span>
+        </a>
+        <a class="panel panel-pad tilt rev ai-c" data-d="2" href="/en/feedback" style="--c: var(--violet)">
+          <h3>Feedback <span class="ai-tag ai-tag--soon">Coming soon</span></h3>
+          <p>A question after the visit, a reply to the review and an invitation to come back.</p>
+          <span class="ai-more">Learn more &rarr;</span>
+        </a>
+      </div>
+      <div class="cards-2 ai-obor">
+        <a class="panel panel-pad tilt rev ai-c" data-d="3" href="/en/ai-assistant-for-physiotherapists" style="--c: var(--green)">
+          <h3>For physiotherapists</h3>
+          <p>Fewer no-shows and a diary that fills itself.</p>
+          <span class="ai-more">Learn more &rarr;</span>
+        </a>
+        <a class="panel panel-pad tilt rev ai-c" data-d="4" href="/en/ai-assistant-for-hair-salons" style="--c: var(--amber)">
+          <h3>For hair salons</h3>
+          <p>Bookings outside opening hours too, without interrupting your work.</p>
+          <span class="ai-more">Learn more &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-line" style="padding:3.4rem 0">
+    <div class="wrap">
+      <div class="marquee rev">
+        <div class="marquee-track"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gmail</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Outlook</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>WhatsApp Business</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Gmail</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Outlook</span><span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5 9.6 6.4 13.5 8l-3.9 1.6L8 13.5 6.4 9.6 2.5 8l3.9-1.6z"/></svg>Google Calendar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line scene-host" id="postup">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">I set it up <span class="grad">for you</span></h2>
+        <p class="lead">Three steps from the first call to a running assistant. You need no technical knowledge at all.</p>
+      </div>
+      <Zigzag steps={[
+        { c: "cyan", t: "You call or write", p: "You tell me how your business runs and what takes up most of your time. Fifteen minutes is enough.", get: "A proposal of what the assistant takes over, and a price" },
+        { c: "violet", t: "I set everything up", p: "Within 5 to 7 working days I connect the assistant to your email, calendar and WhatsApp, teach it your tone and test it.", get: "An assistant that sounds like you" },
+        { c: "green", t: "The assistant starts working", p: "It runs from the first minute. Every month you get an overview of what it handled.", get: "A monthly report of handled messages" },
+      ]} lang="en" />
+      <script src="/assets/js/zigzag.js" defer is:inline></script>
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <h2 class="h-sec fade-head reveal-words">An appointment booked <span class="grad">within a minute</span></h2>
+          <p class="lead">People keep asking the same things: when are you free, how much is it, where can I park. The assistant answers in your tone and from your own information, books the appointment in the calendar and sends a reminder the day before.</p>
+          <ul class="list" style="margin-top:2.1rem">
+            <li><strong>It replies at ten in the evening too.</strong> When your hands are busy, the customer does not wait until morning.</li>
+            <li><strong>It runs where you already are.</strong> WhatsApp, email and the chat on the website you have.</li>
+            <li><strong>It does not make things up.</strong> When it does not know, it sends the question straight to you.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-fill" href="#postup">How the assistant works <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+          </div>
+        </div>
+        <div class="chat-demo panel-ring rev-pop" data-d="1">
+          <div class="chat-top">
+            <span class="av">AI</span>
+            <div>
+              <div class="who">Hair salon assistant</div>
+              <div class="live">usually replies within a minute</div>
+            </div>
+            <span class="ai-badge">AI</span>
+          </div>
+          <div class="chat-body">
+            <div class="chat-row me"><span class="msg">Hi, do you have anything free on Friday afternoon?</span></div>
+            <div class="chat-row bot"><span class="msg">Hello! On Friday we have 14:30 and 16:00 free. Which suits you better?</span></div>
+            <div class="chat-row me"><span class="msg">16:00, please.</span></div>
+            <div class="chat-row bot"><span class="msg">Booked for Friday 16:00. I will send you a reminder on WhatsApp the day before.</span></div>
+            <div class="chat-row bot"><span class="msg"><span class="typing" aria-hidden="true"><i></i><i></i><i></i></span><span class="vh">The assistant is typing another reply.</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2 class="h-sec fade-head reveal-words">Shall we try it on your business?</h2>
+      <p class="lead lead-center rev" data-d="1">A free fifteen-minute call. I will tell you what the assistant can handle, what it cannot, and how much it will cost.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+        <a class="btn-quiet" href="/en/pricing">Full pricing <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  
+  <Fragment slot="tail">
+  <link rel="stylesheet" href="/assets/css/chatdemo.css" />
+  <script src="/assets/js/ai-asistenti.js" defer></script>
+  <script src="/assets/js/chatdemo.js" defer></script>
+  </Fragment>
+
+<script src="/assets/js/dotwave.js" defer is:inline></script>
+</Base>

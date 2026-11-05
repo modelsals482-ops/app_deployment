@@ -1,0 +1,43 @@
+---
+// VYGENEROVÁNO z src/pages/dekujeme.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/dekujeme.py.
+import Base from "../../layouts/Base.astro";
+// Destination of the /dakuji redirect in vercel.json and the landing page after the contact form.
+// noindex: it is a confirmation screen, not a page anyone should reach from a search result.
+---
+<Base
+  lang="en"
+  title="Thank you | ALSflow"
+  description="Your enquiry has arrived. I will reply within 48 hours on working days."
+  canonical="https://alsflow.cz/en/thank-you"
+  ogTitle="Thank you"
+  ogDescription="Your enquiry has arrived. I will reply within 48 hours on working days."
+  current=""
+  robots="noindex, follow"
+>
+  <section class="hero hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:16ch">Got it. <span class="grad">I will be in touch.</span></h1>
+      <p class="lead">Your enquiry has arrived at info@alsflow.cz. I will prepare a tailored quote and get back to you
+        within 48 hours on working days.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-shine" href="/en">Back to the homepage</a>
+        <a class="btn btn-quiet" href="/en/work">What I have built</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="dal">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Three steps, <span class="grad">and the first one is mine</span></h2>
+      </div>
+      <div class="rows">
+        <div class="row rev"><span class="num">01</span><div><h3>I read it</h3><p>I prepare a quote for your specific business, not a generic price list.</p></div></div>
+        <div class="row rev" data-d="1"><span class="num">02</span><div><h3>I reply within 48 hours</h3><p>On working days. I write back and suggest a time for a short call, fifteen minutes is enough.</p></div></div>
+        <div class="row rev" data-d="2"><span class="num">03</span><div><h3>I set it up for you</h3><p>Once you approve: 5 to 7 working days for an assistant, 6 to 10 for a website. You do not have to deal with anything.</p></div></div>
+      </div>
+    </div>
+  </section>
+</Base>

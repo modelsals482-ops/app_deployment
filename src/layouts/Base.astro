@@ -10,6 +10,7 @@
  *
  * Vystup je porad staticke HTML. Do prohlizece nejde zadny JavaScript navic.
  */
+import { CS2EN, EN2CS } from "../i18n.mjs";
 export interface Props {
   title: string;
   description: string;
@@ -19,6 +20,10 @@ export interface Props {
   current?: string;
   cta?: string;
   robots?: string;
+  /* Anglická verze (5. 11. 2026) žije pod /en/. `alt` je adresa stejné
+     stránky v druhém jazyce: z ní je přepínač CZ/EN i hreflang. */
+  lang?: "cs" | "en";
+  alt?: string;
 }
 
 const {
@@ -28,16 +33,23 @@ const {
   ogTitle = title,
   ogDescription = description,
   current = "",
-  cta = "/kontakt",
+  lang = "cs",
   robots = "index, follow",
 } = Astro.props;
+const en = lang === "en";
+const cta = Astro.props.cta ?? (en ? "/en/contact" : "/kontakt");
+const path = canonical.replace("https://alsflow.cz", "") || "/";
+const alt = Astro.props.alt ?? (en ? EN2CS[path] ?? "/" : CS2EN[path] ?? "/en");
+const altAbs = "https://alsflow.cz" + (alt === "/" ? "/" : alt);
+const csAbs = en ? altAbs : canonical;
+const enAbs = en ? canonical : altAbs;
 
 /* aria-current patri jen na aktivni polozku; jinde musi atribut uplne zmizet,
    ne byt prazdny - proto undefined, ktere Astro vynecha. */
 const cur = (href: string) => (href === current ? "page" : undefined);
 ---
 <!DOCTYPE html>
-<html lang="cs">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -346,6 +358,10 @@ const cur = (href: string) => (href === current ? "page" : undefined);
   <meta property="og:title" content={ogTitle} />
   <meta property="og:description" content={ogDescription} />
   <meta property="og:url" content={canonical} />
+  {robots.startsWith("index") && <link rel="alternate" hreflang="cs" href={csAbs} />}
+  {robots.startsWith("index") && <link rel="alternate" hreflang="en" href={enAbs} />}
+  {robots.startsWith("index") && <link rel="alternate" hreflang="x-default" href={csAbs} />}
+  {en && <meta property="og:locale" content="en_GB" />}
   <slot name="head" />
 </head>
 <body>
@@ -441,6 +457,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
 </script>
 
   
+{!en && (<Fragment>
 <header class="nav">
     <div class="nav-in">
       <a class="brand" href="/">ALS<span>flow</span></a>
@@ -475,6 +492,7 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         <li><a href="/o-nas" aria-current={cur("/o-nas")}>O mn&ecaron;</a></li>
         <li><a href="/kontakt" aria-current={cur("/kontakt")}>Kontakt</a></li>
       </ul>
+      <a class="lang-sw" href={alt} hreflang="en" lang="en" aria-label="English version">EN</a>
       <a class="btn btn-live btn-magnet" href={cta}>Nez&aacute;vazn&aacute; nab&iacute;dka</a>
       <button class="burger" id="burger" type="button" aria-label="Otev&rcaron;&iacute;t menu" aria-expanded="false" aria-controls="sheet">
         <span></span><span></span><span></span>
@@ -493,7 +511,59 @@ const cur = (href: string) => (href === current ? "page" : undefined);
     <a href="/kontakt">Kontakt</a>
     <a class="btn" href={cta}>Nez&aacute;vazn&aacute; nab&iacute;dka</a>
   </div>
+</Fragment>)}
+{en && (<Fragment>
+<header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="/en">ALS<span>flow</span></a>
+      <ul class="menu">
+        <li class="has-drop">
+          <button type="button" aria-expanded="false" aria-haspopup="true">What I do <svg class="caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6.5 4 4 4-4"/></svg></button>
+          <div class="drop drop--pick">
+            <span class="drop__hint">What is slowing you down?</span>
+            <a href="/en/websites">
+              <b>&ldquo;I need a website I can send people to.&rdquo;</b>
+              <small>A hand-coded website. No content management system you would have to keep updating. <em>live in 6&ndash;10 working days</em></small>
+            </a>
+            <a href="/en/software">
+              <b>&ldquo;We keep copying data between spreadsheets.&rdquo;</b>
+              <small>A dashboard over your data, or a link between two systems. <em>timeline depends on scope</em></small>
+            </a>
+            <a href="/en/ai-assistants">
+              <b>&ldquo;I can&rsquo;t keep up with customer messages.&rdquo;</b>
+              <small>An assistant takes bookings, sends reminders and replies for you. <em>set up in 5&ndash;7 working days</em></small>
+            </a>
+            <a class="drop__all" href="/en/pricing">Not sure? Start with the prices &rarr;</a>
+          </div>
+        </li>
+        <li><a href="/en/websites" aria-current={cur("/en/websites")}>Websites</a></li>
+        <li><a href="/en/software" aria-current={cur("/en/software")}>Software</a></li>
+        <li><a href="/en/ai-assistants" aria-current={cur("/en/ai-assistants")}>AI assistants</a></li>
+        <li><a href="/en/pricing" aria-current={cur("/en/pricing")}>Pricing</a></li>
+        <li><a href="/en/work" aria-current={cur("/en/work")}>Work</a></li>
+        <li><a href="/en/about" aria-current={cur("/en/about")}>About</a></li>
+        <li><a href="/en/contact" aria-current={cur("/en/contact")}>Contact</a></li>
+      </ul>
+      <a class="lang-sw" href={alt} hreflang="cs" lang="cs" aria-label="Česká verze">CZ</a>
+      <a class="btn btn-live btn-magnet" href={cta}>Get a quote</a>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="sheet" id="sheet">
+    <a href="/en/websites">Websites</a>
+    <a href="/en/software">Custom software</a>
+    <a href="/en/ai-assistants">AI assistants</a>
+    <a href="/en/pricing">Pricing</a>
+    <a href="/en/work">Work</a>
+    <a href="/en/about">About</a>
+    <a href="/en/contact">Contact</a>
+    <a class="btn" href={cta}>Get a quote</a>
+  </div>
+</Fragment>)}
   <slot />
+{!en && (<Fragment>
 <footer class="foot">
     <div class="wrap">
       <div class="foot-in">
@@ -551,6 +621,64 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       </p>
     </div>
   </footer>
+</Fragment>)}
+{en && (<Fragment>
+<footer class="foot">
+    <div class="wrap">
+      <div class="foot-in">
+        <div class="foot-col">
+          <a class="brand" href="/en" style="font-size:1.15rem">ALS<span>flow</span></a>
+          <div class="foot-social">
+            <a href="tel:+420770162346" aria-label="Call +420 770 162 346" title="+420 770 162 346">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h3.5l1.8 4.5-2.3 1.6a12 12 0 0 0 6.9 6.9l1.6-2.3L21 15.5V19a2 2 0 0 1-2.2 2A18 18 0 0 1 3 5.2 2 2 0 0 1 5 3Z" /></svg>
+            </a>
+            <a href="mailto:info@alsflow.cz" aria-label="Email info@alsflow.cz" title="info@alsflow.cz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" /><path d="m3 6.5 9 6.5 9-6.5" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/als.flow/" target="_blank" rel="noopener" aria-label="ALSflow on Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>Services</h4>
+          <a href="/en/websites">Websites</a>
+          <a href="/en/software">Custom software</a>
+          <a href="/en/ai-assistants">AI assistants</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/en/about">About</a>
+          <a href="/en/pricing">Pricing</a>
+          <a href="/en/contact">Contact</a>
+          <a href="/en/privacy">Privacy</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="/en/contact">Contact and quote</a>
+          <a href={alt} hreflang="cs" lang="cs">Česky</a>
+          <a href="https://gen1.cz" target="_blank" rel="noopener">gen1.cz</a>
+          <a href="https://znalecsekelova.sk" target="_blank" rel="noopener">znalecsekelova.sk</a>
+        </div>
+      </div>
+      <div class="foot-mark" aria-hidden="true"><span>ALSflow</span></div>
+
+      <p class="foot-report">
+        Found a bug?
+        <a id="reportBug" href="mailto:info@alsflow.cz?subject=Bug%20on%20the%20website">Report it</a>
+      </p>
+
+      <p class="foot-legal">
+        &copy; <span data-year>2026</span> ALSflow &middot; Jakub Ryvola &middot; Company ID (I&Ccaron;O) 30112702 &middot; Předenická 684/17, 142&nbsp;00 Prague 4, Czech Republic<br />
+        Sole trader registered in the Czech Trade Register &middot; Not a VAT payer
+      </p>
+    </div>
+  </footer>
+</Fragment>)}
   <!-- Vždycky: chování stránky, ne ozdoby. -->
   <script src="/assets/js/site-pages.js" defer></script>
 
@@ -592,21 +720,29 @@ const cur = (href: string) => (href === current ? "page" : undefined);
          když se tenhle soubor generuje skriptem, escape sekvence se cestou
          snadno spolkne a ze string literálu zbude nedokončený řádek. */
       var NL = String.fromCharCode(10);
-      var body = [
+      var EN = document.documentElement.lang === "en";
+      var body = (EN ? [
+        "What happened:", "", "",
+        "-- leave this as it is, it helps to find the bug --",
+        "Page: " + location.href,
+        "Browser: " + navigator.userAgent,
+        "Window: " + window.innerWidth + "x" + window.innerHeight
+      ] : [
         "Co se stalo:", "", "",
         "-- nevyplňujte, pomáhá to při hledání --",
         "Stránka: " + location.href,
         "Prohlížeč: " + navigator.userAgent,
         "Okno: " + window.innerWidth + "x" + window.innerHeight
-      ].join(NL);
+      ]).join(NL);
       a.href = "mailto:info@alsflow.cz?subject=" +
-        encodeURIComponent("Chyba na webu: " + location.pathname) +
+        encodeURIComponent((EN ? "Bug on the website: " : "Chyba na webu: ") + location.pathname) +
         "&body=" + encodeURIComponent(body);
     })();
   </script>
   <!-- Cookie lišta + Google Analytics. GA se stahuje a inicializuje jen
        po souhlasu, nikdy dřív - to je to, co ochrana_dat slibuje. Volba
        (granted/denied) se pamatuje v localStorage, ať se lišta neptá znovu. -->
+  {!en && (<Fragment>
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Souhlas s analytick&yacute;mi cookies">
     <p>Pou&zcaron;&iacute;v&aacute;me Google Analytics ke sledov&aacute;n&iacute; n&aacute;v&scaron;t&ecaron;vnosti. Podrobnosti v <a href="/ochrana_dat">ochran&ecaron; dat</a>.</p>
     <div class="cookie-banner__row">
@@ -614,6 +750,16 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       <button class="btn btn-grad btn-shine" type="button" id="cookieAccept">Přijmout měření</button>
     </div>
   </div>
+  </Fragment>)}
+  {en && (<Fragment>
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Consent to analytics cookies">
+    <p>We use Google Analytics to measure visits. Details in the <a href="/en/privacy">privacy policy</a>.</p>
+    <div class="cookie-banner__row">
+      <button class="btn btn-quiet" type="button" id="cookieDeny">Decline</button>
+      <button class="btn btn-grad btn-shine" type="button" id="cookieAccept">Accept analytics</button>
+    </div>
+  </div>
+  </Fragment>)}
   <script is:inline>
     (function () {
       var GA_ID = "G-EX3VZ1E4VF";
@@ -655,12 +801,22 @@ const cur = (href: string) => (href === current ? "page" : undefined);
         try { localStorage.setItem(KEY, "denied"); } catch (e) {}
         if (banner) banner.classList.remove("is-visible");
       });
+
+      /* Tlačítko "Změnit souhlas s měřením" v ochraně dat (5. 11. 2026: do
+         té doby nedělalo nic). Smaže volbu a ukáže lištu znovu. Už načtené
+         GA v téhle návštěvě zůstane, do další stránky se bez souhlasu nenačte. */
+      var reset = document.getElementById("consentReset");
+      if (reset) reset.addEventListener("click", function () {
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        if (banner) { banner.classList.add("is-visible"); if (accept) accept.focus(); }
+      });
     })();
   </script>
 
   <!-- Klára. V obalu, takže je na každé stránce: umí odpovědět na dotaz
        i navigovat po webu. Načítá se až po zbytku stránky (defer) a bez
        JavaScriptu se nezobrazí vůbec - nic, co by chybělo. -->
+  {!en && (<Fragment>
   <button class="chat-open" id="chatBubble" type="button" aria-label="Otev&rcaron;&iacute;t chat s Kl&aacute;rou">
     <span class="chat-open__dot" aria-hidden="true"></span>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
@@ -682,6 +838,30 @@ const cur = (href: string) => (href === current ? "page" : undefined);
       <button id="chatSend" type="button" aria-label="Odeslat">&rarr;</button>
     </div>
   </div>
+  </Fragment>)}
+  {en && (<Fragment>
+  <button class="chat-open" id="chatBubble" type="button" aria-label="Open the chat with Klára">
+    <span class="chat-open__dot" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+    <span class="chat-open__label">Ask Klára</span>
+    <span class="badge" id="chatBadge" aria-hidden="true">&#10022;</span>
+  </button>
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Klára from ALSflow" aria-hidden="true" data-lenis-prevent>
+    <div class="chat-head">
+      <span class="av">K</span>
+      <div><div class="who">Kl&aacute;ra</div><div class="live">automated assistant, replies instantly</div></div>
+      <span class="chat-count" title="Messages in this chat, 20 at most"><span id="chatCounter">0/20</span> messages</span>
+      <button class="chat-x" id="chatClose" type="button" aria-label="Close the chat">&times;</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot"><div class="chat-bubble-msg">Hello, I am the automated assistant of ALSflow. Ask about prices or what ALSflow does, or tell me what you are looking for and I will point you to the right page.</div></div>
+    </div>
+    <div class="chat-bar">
+      <input id="chatInput" type="text" placeholder="Type your question&hellip;" maxlength="500" autocomplete="off" aria-label="Chat message" />
+      <button id="chatSend" type="button" aria-label="Send">&rarr;</button>
+    </div>
+  </div>
+  </Fragment>)}
   <script src="/assets/js/chat-widget.js" defer></script>
 </body>
 </html>

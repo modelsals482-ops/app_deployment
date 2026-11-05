@@ -27,6 +27,8 @@
     sessionStorage.setItem('als_chat_sid', sid);
   }
   var history = []; var msgCount = 0; var sending = false; var opened = false;
+  /* Anglická verze webu (5. 11. 2026): stejný widget, texty podle <html lang>. */
+  var EN = document.documentElement.lang === 'en';
 
   /* STATIC FLOOR. The live bot is an upgrade, not a dependency. These answers are baked
      into the page, so an outage degrades the chat to a worse answer, never to no answer.
@@ -49,14 +51,35 @@
     { re: /kontakt|mail|telefon|zavolat|schuzk|schůzk|domluv/i,
       a: 'Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt. Odpovídáme do 48 hodin v pracovní dny a rovnou nabídneme termín hovoru.' }
   ];
+  var FALLBACK_EN = [
+    { re: /price|cost|how much|pay|package/i,
+      a: 'AI assistants: Email replies 2,500 CZK a month, Bookings and reminders 4,500 CZK a month, all three services 7,500 CZK a month, one-time setup 8,000 to 10,000 CZK. The price of a website or software is fixed for the agreed scope after a first call.' },
+    { re: /web|site|page|wordpress|domain|hosting/i,
+      a: 'Websites are hand-coded, with no content management system and no plugins. A site is usually live in 6 to 10 working days and you see the work in progress along the way. More at alsflow.cz/en/websites.' },
+    { re: /software|app|dashboard|panel|integrat|api|connect|spreadsheet|excel|tool/i,
+      a: 'We build small custom tools: admin panels, links between systems that do not talk to each other, and replacements for manual copying into spreadsheets. The timeline and price come out of a short analysis. More at alsflow.cz/en/software.' },
+    { re: /how long|setup|set up|launch|ready|take|deadline|when/i,
+      a: 'An assistant is set up in 5 to 7 working days, a website is usually live in 6 to 10 working days. For software the timeline depends on the scope.' },
+    { re: /what.{0,15}(do|offer)|how does it work|what is it for/i,
+      a: 'ALSflow does three things: websites, small custom software, and AI assistants that reply to customers and book appointments for you.' },
+    { re: /salon|hair|physio|vet|dent|industry|business|company/i,
+      a: 'The assistants are built for hair salons, physiotherapists, vets, dental practices and other small businesses. Websites and tools are for anyone who needs them.' },
+    { re: /contact|mail|phone|call|meeting|talk/i,
+      a: 'Email info@alsflow.cz or fill in the form at alsflow.cz/en/contact. We reply within 48 hours on working days and suggest a time for a call.' }
+  ];
   function degraded(q) {
-    for (var i = 0; i < FALLBACK.length; i++) {
-      if (FALLBACK[i].re.test(q)) {
-        return FALLBACK[i].a + ' (Chat je teď dočasně omezený, proto odpovídám zjednodušeně. Pro detaily napište na info@alsflow.cz.)';
+    var list = EN ? FALLBACK_EN : FALLBACK;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].re.test(q)) {
+        return list[i].a + (EN ? ' (The chat is limited right now, so this is a short answer. For details, email info@alsflow.cz.)' : ' (Chat je teď dočasně omezený, proto odpovídám zjednodušeně. Pro detaily napište na info@alsflow.cz.)');
       }
     }
-    return 'Chat je teď dočasně nedostupný. Napište prosím na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.';
+    return EN ? 'The chat is unavailable right now. Please email info@alsflow.cz or use the form at alsflow.cz/en/contact.' : 'Chat je teď dočasně nedostupný. Napište prosím na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.';
   }
+  /* Server odpovídá 200 i ve chvíli, kdy mu nejde model (5. 11. 2026: došel
+     kredit Gemini), jen s omluvnou větou. Tu bereme jako výpadek, ať
+     návštěvník dostane aspoň odpověď ze statického základu. */
+  var OUTAGE = /momentálně nemohu odpovědět|cannot answer right now/i;
   window.toggleChat = function() {
     opened = !opened;
     var panel = document.getElementById('chatPanel');
@@ -82,6 +105,15 @@
     { path: '/rezervace-pripominky', label: 'Rezervace a připomínky', re: /rezervace-pripominky|rezervac|p[řr]ipom[íi]nk/i },
     { path: '/zpetna-vazba',    label: 'Zpětná vazba',    re: /zpetna-vazba|zp[ěe]tn[áa] vazb|recenz|hodnocen/i },
     { path: '/ochrana_dat',     label: 'Ochrana dat',      re: /ochrana_dat|ochran[aě] (osobn[íi]ch )?[úu]daj|gdpr/i }
+  ];
+  if (EN) PAGES = [
+    { path: '/en/pricing',        label: 'Pricing',         re: /\/en\/pricing|price|cost|how much/i },
+    { path: '/en/contact',        label: 'Get a quote',     re: /\/en\/contact|contact|quote|enquir|form\b/i },
+    { path: '/en/websites',       label: 'Websites',        re: /\/en\/websites|\bwebsites?\b/i },
+    { path: '/en/software',       label: 'Custom software', re: /\/en\/software|software|dashboard|integrat/i },
+    { path: '/en/ai-assistants',  label: 'AI assistants',   re: /\/en\/ai-assistants|assistant/i },
+    { path: '/en/about',          label: 'About',           re: /\/en\/about|who (is|are)/i },
+    { path: '/en/privacy',        label: 'Privacy',         re: /\/en\/privacy|privacy|gdpr/i }
   ];
 
   /* Bere jen stránky, které Klára opravdu zmínila - nejdřív podle konkrétní
@@ -146,12 +178,12 @@
     fetch(WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
-      body: JSON.stringify({ message: msg, session_id: sid, history: sendHistory, website: '' })
+      body: JSON.stringify({ message: msg, session_id: sid, history: sendHistory, website: '', lang: EN ? 'en' : 'cs' })
     })
     .then(function(r) { if (!r.ok) { throw new Error('http ' + r.status); } return r.json(); })
     .then(function(data) {
       removeTyping();
-      var reply = (data && data.reply) ? String(data.reply) : degraded(msg);
+      var reply = (data && data.reply && !OUTAGE.test(String(data.reply))) ? String(data.reply) : degraded(msg);
       addMsg('bot', reply);
       history.push({ role: 'model', content: reply });
       if (history.length > 12) history = history.slice(-12);
@@ -159,7 +191,7 @@
     .catch(function() { removeTyping(); addMsg('bot', degraded(msg)); })
     .finally(function() {
       sending = false; if(btn) btn.disabled = (msgCount >= MAX); updateCounter();
-      if (msgCount >= MAX) addMsg('bot', 'Dosáhli jste limitu zpráv. Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.');
+      if (msgCount >= MAX) addMsg('bot', EN ? 'You have reached the message limit. Please email info@alsflow.cz or use the form at alsflow.cz/en/contact.' : 'Dosáhli jste limitu zpráv. Napište na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.');
     });
   };
 

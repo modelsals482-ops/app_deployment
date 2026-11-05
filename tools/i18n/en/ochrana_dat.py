@@ -1,0 +1,199 @@
+BODY = '''<section class="hero hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:18ch">Privacy <span class="grad">policy</span></h1>
+      <p class="lead">What happens to the details you give us through a form. Last updated
+        17 September 2026. This is a translation; if it differs from the <a href="/ochrana_dat">Czech version</a>, the Czech version applies.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="spravce">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Data controller</h2>
+      </div>
+      <div class="prose rev">
+        <p>The controller of your personal data is <strong>Jakub Ryvola</strong>, operator of
+          ALSflow, a sole trader registered in the Czech Trade Register, Company ID (I&Ccaron;O) 30112702,
+          registered at Předenická 684/17, 142 00 Prague 4, Czech Republic.</p>
+        <p>All communication about personal data protection goes through
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="jake-udaje">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What data we process</h2>
+      </div>
+      <div class="prose rev">
+        <p>We process the data you give us voluntarily through the contact form, the onboarding form or the chat with the assistant Klára:</p>
+        <ul>
+          <li><strong>Identification data:</strong> first name and surname</li>
+          <li><strong>Contact data:</strong> email address, phone number (optional)</li>
+          <li><strong>Business data:</strong> type of business, team size, the service you are interested in, a description of your main problem</li>
+          <li><strong>Free text:</strong> the content of your message in the form or in the chat</li>
+        </ul>
+        <p>We do not ask for national ID numbers, document numbers, bank details or any sensitive personal
+          data within the meaning of Art. 9 GDPR.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="ucel">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Purpose and legal basis</h2>
+      </div>
+      <div class="prose rev">
+        <p>We process your data only for these purposes:</p>
+        <ul>
+          <li><strong>Preparing an individual quote</strong>: replying to your enquiry and sending a
+            quote tailored to your business.<br>
+            <em>Legal basis: consent of the data subject (Art. 6(1)(a) GDPR)</em></li>
+          <li><strong>Business communication</strong>: follow-up communication during the enquiry process,
+            at most until a business relationship is concluded or declined.<br>
+            <em>Legal basis: legitimate interest of the controller (Art. 6(1)(f) GDPR)</em></li>
+        </ul>
+        <p>We <strong>never</strong> sell your data to third parties, never use it for advertising networks
+          and never share it beyond the purposes above.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="doba">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">How long we keep it</h2>
+      </div>
+      <div class="prose rev">
+        <p>We keep your data only as long as necessary for the purpose of processing:</p>
+        <ul>
+          <li>If you do not become a client: <strong>at most 12 months</strong> from the last
+            contact, then we delete it.</li>
+          <li>If you become a client: for the duration of the contract and then
+            <strong>5 years</strong> because of possible tax and accounting obligations.</li>
+        </ul>
+        <p>You can withdraw your consent at any time, see <a href="#kontakt">Contact and complaints</a>.
+          After you withdraw consent, we delete the data without undue delay, within 30 days at the latest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="prijemci">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Recipients and processors</h2>
+      </div>
+      <div class="prose rev">
+        <p>Only the controller (ALSflow) has access to your data. To run the technical infrastructure
+          we use these processors:</p>
+        <ul>
+          <li><strong>Vercel Inc.</strong> (USA): hosting of the alsflow.cz website and processing of submitted
+            forms. Transfer to the USA under the EU-US Data Privacy Framework.</li>
+          <li><strong>WebGlobe, s.r.o.</strong> (Czech Republic): hosting of the server infrastructure for the chatbots
+            and the database.</li>
+          <li><strong>Cloudflare, Inc.</strong> (USA): CDN, DNS and protection against spam and bots
+            (Turnstile), processing of IP addresses. Transfer to the USA under the EU-US Data Privacy Framework.</li>
+          <li><strong>Resend</strong> (USA): sending transactional and notification emails. Transfer
+            to the USA under the EU standard contractual clauses.</li>
+          <li><strong>Seznam.cz, a.s.</strong> (Czech Republic): the info@alsflow.cz mailbox.</li>
+          <li><strong>Google LLC</strong> (USA): email communication (Gmail), website analytics
+            (Google Analytics, only after your consent) and the AI model (Gemini) for the chatbot.
+            Transfer to the USA under the EU-US Data Privacy Framework.</li>
+        </ul>
+        <p>Data processing agreements under Art. 28 GDPR are in place with all processors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="prava">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Your rights</h2>
+      </div>
+      <div class="prose rev">
+        <p>As a data subject you have these rights under the GDPR:</p>
+        <ul>
+          <li><strong>Right of access.</strong> You can ask us to confirm whether we process your
+            personal data and to give you a copy of it.</li>
+          <li><strong>Right to rectification.</strong> You can ask us to correct inaccurate or complete
+            incomplete personal data.</li>
+          <li><strong>Right to erasure.</strong> We delete your data on request unless a legal
+            obligation prevents it.</li>
+          <li><strong>Right to restriction.</strong> You can ask us to restrict processing, for example if
+            you contest the accuracy of your data.</li>
+          <li><strong>Right to data portability.</strong> Data processed automatically on the basis of
+            consent will be provided to you in a structured format (JSON or CSV).</li>
+          <li><strong>Right to object.</strong> You can object at any time to processing based on
+            legitimate interest.</li>
+          <li><strong>Right to withdraw consent.</strong> You can withdraw the consent given in the form
+            at any time, without affecting earlier lawful processing.</li>
+          <li><strong>Right to lodge a complaint</strong> with the supervisory authority, the Czech
+            <strong>Office for Personal Data Protection</strong> (&Uacute;OO&Uacute;),
+            <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a>.</li>
+        </ul>
+        <p>Exercise your rights at <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>. We reply to your
+          request within <strong>30 days</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="cookies">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Cookies</h2>
+      </div>
+      <div class="prose rev">
+        <p>The <strong>alsflow.cz</strong> website uses <strong>Google Analytics</strong>
+          (Google LLC, USA) to measure visits and analyse behaviour on the website. This data helps us
+          understand which products and features you are interested in.</p>
+        <p>We turn Google Analytics on <strong>only with your consent</strong>. On your first visit
+          a banner appears where you either agree with the &ldquo;Accept analytics&rdquo; button or
+          decline with the &ldquo;Decline&rdquo; button. Until you consent, all analytics storage is
+          disabled by default.</p>
+        <p>Google Analytics mainly processes:</p>
+        <ul>
+          <li>an anonymised IP address</li>
+          <li>the pages viewed and the length of the visit</li>
+          <li>the type of device and browser</li>
+          <li>the source of the visit (link, search engine, direct visit)</li>
+        </ul>
+        <p>The data is processed on Google servers (USA) under the EU-US Data Privacy Framework.
+          More information:
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+          You can change or withdraw your consent to analytics at any time: <button type="button" class="btn btn-quiet" id="consentReset">Change analytics consent</button></p>
+        <p>Fonts are stored directly on our server. Your browser does not download them from Google or any other third party, so your IP address is not sent anywhere when the page is displayed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-dark sec-line" id="kontakt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Contact and complaints</h2>
+      </div>
+      <div class="prose rev">
+        <p>Send all requests concerning personal data protection to
+          <a href="mailto:info@alsflow.cz">info@alsflow.cz</a>. We reply within 30 days of receiving
+          the request.</p>
+        <p>If you are not satisfied with our response, you have the right to contact the supervisory authority:</p>
+        <ul>
+          <li><strong>Office for Personal Data Protection (&Uacute;OO&Uacute;)</strong><br>
+            Pplk. Sochora 27, 170 00 Prague 7, Czech Republic<br>
+            <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">uoou.gov.cz</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>'''
+
+EDITS = [
+    ('title="Ochrana osobních údajů | ALSflow"', 'title="Privacy policy | ALSflow"'),
+    ('description="Jak ALSflow nakládá s údaji z kontaktního formuláře: jaké údaje sbíráme, proč, jak dlouho je držíme, komu je předáváme a jaká máte práva."',
+     'description="How ALSflow handles the data from the contact form: what we collect, why, how long we keep it, who we pass it to and what rights you have."'),
+    ('ogTitle="Ochrana osobních údajů"', 'ogTitle="Privacy policy"'),
+    ('ogDescription="Jaké údaje sbíráme, proč, jak dlouho je držíme a jaká máte práva."', 'ogDescription="What we collect, why, how long we keep it and what rights you have."'),
+    ("<<", '<section class="hero hero-plain">', '</section>\n</Base>', BODY + '\n</Base>'),
+]
+KEEP_CZECH = ["Předenická"]

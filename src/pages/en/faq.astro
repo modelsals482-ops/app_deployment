@@ -1,0 +1,58 @@
+---
+// VYGENEROVÁNO z src/pages/otazky.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/otazky.py.
+import Base from "../../layouts/Base.astro";
+/* Časté otázky. Do 16. 10. byly na konci úvodní stránky, Jakub je chtěl
+   z úvodu pryč (stránka byla moc dlouhá), tady mají vlastní místo i se
+   strukturovanými daty FAQPage. Otázky ke konkrétní službě zůstávají
+   na stránce té služby, sem na ně vedou odkazy dole. */
+const qs = [
+  ["I have no texts", "I write the texts from what you tell me. You just read them and correct what is not right."],
+  ["I have no time for this", "A fifteen-minute call is enough. I send you the work in progress as a link and you just tell me what to change."],
+  ["What if we stop working together", "The domain, accounts, source code and documentation are all in your name. The website and the assistant keep running without me and anyone else can take them over."],
+  ["Will customers know they are talking to AI", "Yes. The assistant always introduces itself as an AI assistant. Anything it does not know, or anything sensitive, it passes to you."],
+  ["How much will it cost", "A website from 24,900 CZK, an assistant from 2,500 CZK a month, software from 24,900 CZK. We agree the exact price by scope, on its own or as a bundle, with no obligation."],
+  ["How quickly do you reply", "I reply to every enquiry within 48 hours on working days."],
+];
+const ld = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: qs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+}).replace(/</g, "\\u003c");
+---
+<Base
+  lang="en"
+  title="FAQ | ALSflow"
+  description="Answers to the most common questions: texts, time, price, what happens if we stop working together, and whether customers know they are talking to AI."
+  canonical="https://alsflow.cz/en/faq"
+  ogTitle="Frequently asked questions"
+  ogDescription="Texts, time, price, and what happens if we stop working together."
+  current="/en/faq"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json" is:inline set:html={ld}></script>
+  </Fragment>
+
+  <section class="hero-plain">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i></div>
+    <div class="wrap">
+      <h1 class="h-hero fade-head" style="max-width:16ch">What people <span class="grad">ask</span></h1>
+      <p class="lead">Short and straight. If your question is not here, write or call.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="faq">
+        {qs.map(([q, a], i) => (
+          <details class="rev" data-d={String(Math.min(i, 4))} open={i === 0}><summary>{q}</summary><p>{a}</p></details>
+        ))}
+      </div>
+      <p class="small-note" style="margin-top:2rem">Questions about a specific service: <a href="/en/websites#otazky">websites</a> · <a href="/en/software#otazky">software</a> · <a href="/en/ai-assistants">AI assistants</a> · <a href="/en/pricing">pricing</a></p>
+      <div class="btn-row" style="margin-top:1.6rem">
+        <a class="btn btn-grad" href="/en/contact">Ask me in person</a>
+        <a class="btn btn-quiet" href="tel:+420770162346">+420 770 162 346</a>
+      </div>
+    </div>
+  </section>
+</Base>

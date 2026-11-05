@@ -17,6 +17,10 @@
 (function () {
   "use strict";
 
+  /* Anglická verze webu (5. 11. 2026): texty ukazatele podle <html lang>. */
+  var EN = document.documentElement.lang === "en";
+  function t(cs, en) { return EN ? en : cs; }
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
     document.documentElement.getAttribute("data-vykon") === "minimalni";
 
@@ -58,9 +62,9 @@
       thread.textContent = "";
       var w = el("div", "cd-msg cd-bot cd-wait");
       w.append(el("span", "cd-dots"));
-      w.append(el("span", null, cfg.idle || "Čekám na zprávu…"));
+      w.append(el("span", null, cfg.idle || t("Čekám na zprávu…", "Waiting for a message…")));
       thread.append(w);
-      progress(0, "Čeká na zprávu", "idle");
+      progress(0, t("Čeká na zprávu", "Waiting for a message"), "idle");
       root.classList.remove("cd-used");
     }
 
@@ -88,7 +92,7 @@
 
       var q = el("div", "cd-msg cd-them", m.text);
       thread.append(q);
-      progress(8, "Přišla zpráva");
+      progress(8, t("Přišla zpráva", "Message received"));
 
       var steps = el("ul", "cd-steps");
       thread.append(steps);
@@ -109,7 +113,7 @@
         var typing = el("div", "cd-msg cd-bot cd-typing");
         typing.append(el("span", "cd-dots"));
         thread.append(typing);
-        progress(72, "Píše odpověď");
+        progress(72, t("Píše odpověď", "Writing a reply"));
 
         later(function () {
           if (me !== run) return;
@@ -124,16 +128,16 @@
           later(function () {
             if (me !== run) return;
             if (m.end === "approve") {
-              progress(90, m.endText || "Čeká na vaše schválení", "wait");
-              var ok = el("button", "cd-approve", "Schválit");
+              progress(90, m.endText || t("Čeká na vaše schválení", "Waiting for your approval"), "wait");
+              var ok = el("button", "cd-approve", t("Schválit", "Approve"));
               ok.type = "button";
               ok.addEventListener("click", function () {
                 ok.remove();
-                progress(100, m.doneText || "Hotovo, odesláno", "done");
+                progress(100, m.doneText || t("Hotovo, odesláno", "Done, sent"), "done");
               });
               thread.append(ok);
             } else {
-              progress(100, m.endText || "Hotovo, odpovězeno", "done");
+              progress(100, m.endText || t("Hotovo, odpovězeno", "Done, replied"), "done");
             }
           }, words.length * 45 + 250);
         }, 900);
@@ -148,7 +152,7 @@
         b.setAttribute("aria-pressed", String(k === 0));
         b.append(el("b", null, f.label));
         b.append(el("span", null, f.desc));
-        if (f.soon) b.append(el("em", null, "Připravuji"));
+        if (f.soon) b.append(el("em", null, t("Připravuji", "Coming soon")));
         b.addEventListener("click", function () {
           cur = f;
           picker.querySelectorAll(".cd-fn").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });

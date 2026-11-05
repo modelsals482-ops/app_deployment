@@ -12,8 +12,12 @@ interface Props {
   };
   hint?: string;
   pickLabel?: string;
+  lang?: "cs" | "en";
 }
-const { config, hint = "Vyzkoušejte si to sami", pickLabel = "Vyberte, co chcete vidět" } = Astro.props;
+const { config, lang = "cs" } = Astro.props;
+const en = lang === "en";
+const hint = Astro.props.hint ?? (en ? "Try it yourself" : "Vyzkoušejte si to sami");
+const pickLabel = Astro.props.pickLabel ?? (en ? "Choose what you want to see" : "Vyberte, co chcete vidět");
 const fns = config.functions.map((f) => ({ ...f, name: f.name ?? config.name }));
 const json = JSON.stringify({ ...config, functions: fns }).replace(/</g, "\\u003c");
 const many = fns.length > 1;
@@ -28,7 +32,7 @@ const many = fns.length > 1;
   )}
   <div class="cd-body">
     <div class="cd-left">
-      <p class="cd-label">{many && <span>2</span>}Klikněte na zprávu od zákazníka</p>
+      <p class="cd-label">{many && <span>2</span>}{en ? "Click a message from a customer" : "Klikněte na zprávu od zákazníka"}</p>
       <div class="cd-inbox">
         {fns[0].messages.map((m) => (
           <button class="cd-mail" type="button"><small><span>{m.from}</span><span>{m.time}</span></small><span class="cd-mail-t">{m.text}</span></button>
@@ -40,7 +44,7 @@ const many = fns.length > 1;
       <div class="cd-top"><b class="cd-name">{fns[0].name}</b><span class="cd-pct">0 %</span></div>
       <div class="cd-bar" aria-hidden="true"><i></i></div>
       <div class="cd-thread" aria-live="polite"></div>
-      <div class="cd-foot"><span class="cd-state">Čeká na zprávu</span><button class="cd-reset" type="button">Znovu</button></div>
+      <div class="cd-foot"><span class="cd-state">{en ? "Waiting for a message" : "Čeká na zprávu"}</span><button class="cd-reset" type="button">{en ? "Again" : "Znovu"}</button></div>
     </div>
   </div>
 </div>

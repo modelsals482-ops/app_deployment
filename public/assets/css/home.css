@@ -162,6 +162,16 @@ a.svc-card:hover .svc-more .arrow { transform: translateX(3px); }
     border-radius: 11px; box-shadow: 0 16px 36px rgb(0 0 0 / 55%); rotate: -3deg; animation: hc-pop 0.6s calc(0.9s + var(--i) * 0.1s) cubic-bezier(0.16, 1, 0.3, 1) backwards; }
   html.als-loading .hero-collage .pm, html.als-loading .hc-tag { animation-play-state: paused; }
 }
+/* 5. 11.: na telefonu a tabletu nebyla na první obrazovce žádná reference
+   (Jakub). Pod 1200 px stojí koláž pod textem, menší a bez příjezdu. */
+@media (max-width: 1199.98px) {
+  .hero > .wrap { display: flex; flex-direction: column; }
+  .hero-collage { order: 2; position: relative; display: block; width: min(100%, 440px); aspect-ratio: 16 / 12; margin: 2.4rem auto 0; color: inherit; text-decoration: none; }
+  .hero-collage .pm-main { right: 0; }
+  .hero-collage .pm-second { top: 44%; left: 0; }
+  .hero-collage .pm-phone { right: 4%; bottom: -4%; width: 20%; }
+  .hc-tag { position: absolute; top: 30%; left: 4%; z-index: 4; padding: 0.55rem 0.85rem; font-size: 0.82rem; font-weight: 700; color: #05070d; background: var(--cyan); border-radius: 10px; box-shadow: 0 12px 28px rgb(0 0 0 / 55%); rotate: -3deg; }
+}
 @keyframes hc-in { from { opacity: 0; translate: 14vw 0; } }
 @keyframes hc-pop { from { opacity: 0; scale: 0.6; } }
 @media (prefers-reduced-motion: reduce) { .hero-collage .pm, .hc-tag { animation: none; } }

@@ -20,8 +20,9 @@ Measurement is the client's decision, not a fixed policy: a presentation site ca
 tracking at all, in which case no consent banner is needed; an e-shop or booking system normally
 wants analytics, which is set up together with a correctly configured consent banner.
 
-Built so far: gen1.cz (political movement GEN, 11 pages, news editor behind Cloudflare Access),
-znalecsekelova.sk (Slovak court expert in construction, 8 pages, Slovak), alsflow.cz.
+Built so far: gen1.cz (political movement GEN, 11 pages), znalecsekelova.sk (Slovak court expert
+in construction, 7 pages, Slovak), thdata.cz (accounting and tax office, 7 pages in Czech, English
+and Russian), alsflow.cz (Czech and English).
 
 ### 2. Custom software - https://alsflow.cz/vyvoj-softwaru
 Small tools one developer can deploy in weeks, not months: admin panels over data the client
@@ -32,7 +33,8 @@ that scope; the deadline is agreed per project size. Source code, accounts and d
 belong to the client. Data runs in the EU under an Art. 28 GDPR processing agreement.
 
 Delivered so far: the rental catalogue with a basket and its admin panel on weloveproduction.cz
-(WE LOVE PRODUCTION, a Prague AV production and rental company).
+(WE LOVE PRODUCTION, a Prague AV production and rental company), and a bracelet configurator
+plugin for the existing WooCommerce shop mooncake.sk (the shop itself was built by another agency).
 
 ### 3. AI assistants - https://alsflow.cz/ai-asistenti
 An assistant that answers customers, takes bookings and sends reminders, in Czech and in the
@@ -76,7 +78,7 @@ https://alsflow.cz/ai-asistent-pro-kadernictvi
 
 ## Does not do
 
-E-shops, mobile apps for the App Store or Google Play, systems for hundreds of thousands of
+Mobile apps for the App Store or Google Play, systems for hundreds of thousands of
 users, and taking over undocumented legacy projects. This is said at the first call, not after
 a month.
 

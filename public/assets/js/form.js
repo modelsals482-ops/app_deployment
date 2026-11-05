@@ -35,7 +35,7 @@
      Jen jako začátek zprávy, a jen do prázdného pole; .value je čistý text, žádné HTML. */
   var sestava = new URLSearchParams(location.search).get("sestava");
   var msg = document.getElementById("f-msg");
-  if (sestava && msg && !msg.value) msg.value = "Sestava z ceníku: " + sestava.slice(0, 300) + "\n\n";
+  if (sestava && msg && !msg.value) msg.value = (document.documentElement.lang === "en" ? "My selection from the price list: " : "Sestava z ceníku: ") + sestava.slice(0, 300) + "\n\n";
 
   /* ==================================================================
      Co je vyplněné
@@ -187,7 +187,7 @@
     if (!btn) return;
     btn.disabled = on;
     btn.innerHTML = on
-      ? '<span class="spin" aria-hidden="true"></span>Odes&iacute;l&aacute;m&hellip;'
+      ? '<span class="spin" aria-hidden="true"></span>' + (document.documentElement.lang === "en" ? "Sending&hellip;" : "Odes&iacute;l&aacute;m&hellip;")
       : LABEL;
   }
 
@@ -221,7 +221,7 @@
         var focusable = first.matches("input, select, textarea") ? first : control(first);
         if (focusable) focusable.focus();
       }
-      fail("Zkontrolujte prosím označená pole.");
+      fail(document.documentElement.lang === "en" ? "Please check the highlighted fields." : "Zkontrolujte prosím označená pole.");
       return;
     }
 
@@ -239,6 +239,7 @@
       service: val("service"),
       pain: val("pain"),
       pref_time: val("pref_time") || "kdykoliv",
+      lang: document.documentElement.lang === "en" ? "en" : "cs",
       msg: val("msg"),
       website: val("website"),
       turnstileToken: val("cf-turnstile-response"),
@@ -267,7 +268,7 @@
       .catch(function () {
         busy(false);
         shake(btn);
-        fail("Odeslání se nepovedlo. Zkuste to prosím znovu, nebo napište přímo na info@alsflow.cz.");
+        fail(document.documentElement.lang === "en" ? "Sending failed. Please try again, or email info@alsflow.cz directly." : "Odeslání se nepovedlo. Zkuste to prosím znovu, nebo napište přímo na info@alsflow.cz.");
         /* Turnstile token je jednorázový - bez obnovení by druhý pokus
            spadl na serveru, i kdyby už bylo všechno v pořádku. */
         if (window.turnstile) window.turnstile.reset();

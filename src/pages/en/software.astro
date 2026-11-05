@@ -1,0 +1,306 @@
+---
+// VYGENEROVÁNO z src/pages/vyvoj-softwaru.astro skriptem tools/i18n/make_en.py.
+// Neupravovat ručně: změny patří do tools/i18n/en/vyvoj-softwaru.py.
+import Base from "../../layouts/Base.astro";
+import Zigzag from "../../components/Zigzag.astro";
+import Showcase from "../../components/Showcase.astro";
+---
+<Base
+  lang="en"
+  title="Custom software: admin panels and integrations | ALSflow"
+  description="Small custom software: admin panels, links between systems that do not talk to each other today, and internal tools instead of spreadsheets. Deployed in weeks."
+  canonical="https://alsflow.cz/en/software"
+  ogDescription="Admin panels, integrations and internal tools. Deployed in weeks."
+  current="/en/software"
+>
+  <Fragment slot="head">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Custom software development",
+      "serviceType": "Internal tools, admin interfaces and system integrations",
+      "description": "Small custom software: admin panels over data a business already has, links between systems that do not talk to each other, and tools that replace manual spreadsheet work.",
+      "url": "https://alsflow.cz/en/software",
+      "areaServed": [
+        "CZ",
+        "SK"
+      ],
+      "inLanguage": "en",
+      "provider": {
+        "@type": "Organization",
+        "name": "ALSflow",
+        "legalName": "Jakub Ryvola",
+        "taxID": "30112702",
+        "url": "https://alsflow.cz",
+        "email": "info@alsflow.cz"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What size of projects do you take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tools that one developer can deploy in weeks, not months: an admin panel, a link between two systems, a tool that replaces manual copying into a spreadsheet. For a banking system or an app for a hundred thousand users I am not the right person, and I will say so at the start."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we have to change the system we use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. I almost always build next to what you already have and connect through an API or an export. Migrating a whole system is the most expensive and riskiest option, and I only suggest it when there really is no other way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When will we see the first result?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I first build the part that removes the most manual work, and you use it before everything else is finished. Then I adjust the rest based on what real use shows. That costs less than delivering something after six months that does not fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if we still need you in a year?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Running and further changes are a monthly fee based on the size of the tool. If you decide to carry on yourselves, you get the source code, access and documentation; I keep nothing that would force you to stay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where will the data live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In the European Union, on infrastructure in your name, or by agreement on my server in the Czech Republic. I process only the data the tool needs to work. Where personal data is involved, the project comes with a data processing agreement under Art. 28 GDPR."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!-- úvodní loader - jediný zdroj je tenhle obal, samostatný soubor už neexistuje -->
+<script>
+  /* Běží co nejdřív, ještě před vykreslením obsahu - jinak by loader
+     naskočil až na chvíli hotovou stránku a probliklo by to. */
+  (function () {
+    try {
+      if (sessionStorage.getItem('als-seen')) return;
+    } catch (e) {
+      /* privátní okno nebo zakázané úložiště - loader prostě ukážeme */
+    }
+    document.documentElement.classList.add('als-loading');
+  })();
+</script>
+  <link rel="stylesheet" href="/assets/css/showcase.css" />
+  <link rel="stylesheet" href="/assets/css/autopilot.css" />
+  <script src="/assets/js/autopilot.js" defer></script>
+  </Fragment>
+
+  <section class="hero-plain hero-move">
+    <canvas data-glassfold aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1 class="h-hero fade-head reveal-words" style="max-width:15ch">A tool instead of a <span class="grad">spreadsheet</span></h1>
+      <p class="lead">A dashboard over your data and links between systems instead of retyping spreadsheets. Deployed in weeks, not months.</p>
+      <div class="btn-row">
+        <a class="btn btn-grad btn-fill" href="/en/contact">Get a free analysis</a>
+        <a class="btn btn-trace" href="#priklad">A real example</a>
+      </div>
+      <div class="price-line" style="margin-top:3.5rem">
+        <div><div class="k">Price per tool</div><div class="v">from 24,900&nbsp;CZK</div></div>
+        <div><div class="k">Running</div><div class="v">monthly fee</div></div>
+        <div><div class="k">I reply within</div><div class="v">48 hours</div></div>
+        <div><div class="k">First analysis</div><div class="v">free</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="co-udela">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">What software does <span class="grad">for you</span></h2>
+        <p class="lead">A project almost never starts with the word &ldquo;software&rdquo;. It starts with something that slows you down or keeps going wrong. Click and see what it looks like when a computer does it.</p>
+      </div>
+
+      <div class="ap rev" data-ap>
+        <div class="ap-tabs" role="tablist" aria-label="What software does">
+          <button class="ap-tab" role="tab" id="ap-t1" aria-controls="ap-p1" aria-selected="true" style="--c: var(--cyan)"><b>A dashboard over your own data</b><span>The team manages the catalogue, prices or orders without Excel.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t2" aria-controls="ap-p2" aria-selected="false" tabindex="-1" style="--c: var(--blue)"><b>Connected systems</b><span>Website, stock and accounting pass data to each other on their own.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t3" aria-controls="ap-p3" aria-selected="false" tabindex="-1" style="--c: var(--violet)"><b>No more manual work</b><span>An email becomes a filled-in document in a second.</span><i class="ap-prog" aria-hidden="true"></i></button>
+          <button class="ap-tab" role="tab" id="ap-t4" aria-controls="ap-p4" aria-selected="false" tabindex="-1" style="--c: var(--green)"><b>Numbers that add up</b><span>One place with the figures instead of five exports.</span><i class="ap-prog" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="ap-win">
+          <div class="ap-bar" aria-hidden="true"><i></i><i></i><i></i><b>your-tool.com</b><span class="ap-tag">Sample</span></div>
+
+          <div class="ap-panel is-on" role="tabpanel" id="ap-p1" aria-labelledby="ap-t1">
+            <table class="ap-table">
+              <thead><tr><th>Item</th><th>Status</th><th>Qty</th></tr></thead>
+              <tbody>
+                <tr><td>Speaker 12"</td><td><span class="pill ok">In stock</span></td><td>8</td></tr>
+                <tr class="ap-hit"><td>LED wall 3×2 m</td><td><span class="pill swap"><span>Rented</span><span>In stock</span></span></td><td><span class="num-swap"><span>0</span><span>4</span></span></td></tr>
+                <tr><td>Mixing desk</td><td><span class="pill ok">In stock</span></td><td>3</td></tr>
+                <tr><td>Lighting truss</td><td><span class="pill out">Rented</span></td><td>0</td></tr>
+              </tbody>
+            </table>
+            <span class="ap-cursor" aria-hidden="true"></span>
+            <span class="ap-toast">Saved. The website already shows &ldquo;In stock&rdquo;.</span>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p2" aria-labelledby="ap-t2" hidden>
+            <div class="ap-flow">
+              <div class="node n1"><b>Website</b><span>Order #1042</span></div>
+              <div class="node n2"><b>Stock</b><span>2 pcs deducted</span></div>
+              <div class="node n3"><b>Accounting</b><span>Invoice issued</span></div>
+              <svg class="wires" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true"><path d="M150 130 C 230 130, 230 60, 300 60"/><path d="M300 60 C 370 60, 370 200, 450 200"/></svg>
+              <span class="packet p1" aria-hidden="true"></span><span class="packet p2" aria-hidden="true"></span>
+            </div>
+            <p class="ap-note">Nobody retypes anything, and there are never two versions of the truth.</p>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p3" aria-labelledby="ap-t3" hidden>
+            <div class="ap-mail">
+              <div class="mail-card"><b>Website enquiry</b><span>Hello, I need 2× speaker and a mixing desk on 14 Nov. Anna Smith</span></div>
+              <div class="mail-arrow" aria-hidden="true"></div>
+              <dl class="mail-form">
+                <div><dt>Customer</dt><dd><span class="type">Anna Smith</span></dd></div>
+                <div><dt>Items</dt><dd><span class="type">2× speaker, 1× mixing desk</span></dd></div>
+                <div><dt>Date</dt><dd><span class="type">14 Nov 2026</span></dd></div>
+              </dl>
+              <span class="mail-done">Document.pdf is ready</span>
+            </div>
+          </div>
+
+          <div class="ap-panel" role="tabpanel" id="ap-p4" aria-labelledby="ap-t4" hidden>
+            <div class="ap-kpis">
+              <div><span>Enquiries</span><b data-to="128">128</b></div>
+              <div><span>Handled</span><b data-to="96" data-suf=" %">96 %</b></div>
+              <div><span>Saved</span><b data-to="31" data-suf=" h">31 h</b></div>
+            </div>
+            <div class="ap-chart" aria-hidden="true">
+              <i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:47%"></i><i style="--h:66%"></i><i style="--h:71%"></i><i style="--h:88%"></i>
+            </div>
+            <p class="ap-note">Sample numbers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Showcase id="priklad" side="r" color="blue" dark title="A catalogue the staff run themselves" who="We Love Production · equipment rental"
+    main={{ src: "/assets/ref/wle-rental.webp", alt: "The equipment rental catalogue on weloveproduction.cz", label: "weloveproduction.cz/rental" }}
+    second={{ src: "/assets/ref/wle-cards.webp", alt: "Catalogue items with an Add to basket button", label: "rental/zvuk/reproduktory", w: 900, h: 400 }}
+    bubbles={[
+      { text: "Over 340 items", c: "blue", at: "top:-6%; left:14%", size: "7.2rem" },
+      { text: "Availability per item", c: "cyan", at: "top:36%; left:-3%" },
+      { text: "No developer needed", c: "violet", at: "bottom:2%; right:20%", size: "7.6rem", ghost: true }
+    ]}>
+    <p>Availability used to be checked by phone and in a spreadsheet. Now the catalogue shows it right next to each item, and the staff manage it themselves in the admin panel.</p>
+    <ul class="proj-facts">
+      <li>The smallest solution that really solves the problem</li>
+      <li>I connect to what you already have</li>
+      <li>Code, accounts and documentation in your name</li>
+      <li>Hosted in the EU, with an Art. 28 GDPR agreement</li>
+    </ul>
+  </Showcase>
+
+  <!-- Technické specifikace (30. 10.): otevřená sekce hned pod katalogem, o kterém mluví.
+       Bez IP adres, adres administrace a verzí softwaru: nic, co by pomohlo útočníkovi. -->
+  <section class="sec sec-line" id="specifikace">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">How the catalogue runs <span class="grad">under the hood</span></h2>
+        <p class="lead">Technical specifications of the rental on weloveproduction.cz. Without server addresses or software versions, which would only help an attacker.</p>
+      </div>
+      <dl class="spec-grid panel panel-pad rev">
+        <div><dt>Website and catalogue</dt><dd>Static website (Astro) on Cloudflare Pages. Over 340 items, with availability shown next to each one.</dd></div>
+        <div><dt>Server</dt><dd>Node.js API in Docker on a server in the EU, HTTPS through Caddy. It only accepts connections through Cloudflare (firewall, attack protection); nobody can reach its address directly.</dd></div>
+        <div><dt>Database</dt><dd>PostgreSQL. All queries are parameterised, so injected text never runs as a command.</dd></div>
+        <div><dt>Admin panel</dt><dd>Sign-in through Cloudflare Access for invited emails only, with own passwords (scrypt) as a fallback. Sessions expire after 12 hours.</dd></div>
+        <div><dt>Change history</dt><dd>Every edit is logged: who, when, and what it was before and after. Passwords and keys never end up in the log.</dd></div>
+        <div><dt>Basket enquiries</dt><dd>Sent to the team by email, with the form protected by Cloudflare Turnstile. Submissions are measured in Google Analytics.</dd></div>
+        <div><dt>AI assistant Jack</dt><dd>Answers customers from the same catalogue (Google Gemini). Always says it is an AI.</dd></div>
+        <div><dt>Backups</dt><dd>The database is backed up every day at 3:00 and kept for 14 days. Restoring from a backup has been tested.</dd></div>
+        <div><dt>Tests</dt><dd>Automated tests of sign-in and the change history, including SQL injection attempts.</dd></div>
+        <div><dt>Ownership</dt><dd>Source code, accounts and documentation are in the client&rsquo;s name.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <Showcase id="mooncake" side="l" color="cyan" dark title="A configurator inside a shop that was already running" who="Mooncake · jewellery e-shop, Slovakia"
+    main={{ src: "/assets/ref/mc-home.webp", alt: "The bracelet configurator on mooncake.sk with charms on a chain", label: "mooncake.sk/vytvor-si-naramok", w: 1200, h: 750 }}
+    second={{ src: "/assets/ref/mc-pismena.webp", alt: "A bracelet spelling a name in letters in the mooncake.sk configurator", label: "mooncake.sk/vytvor-si-naramok" }}
+    phone={{ src: "/assets/ref/mc-m.webp", alt: "The bracelet configurator on a phone" }}
+    bubbles={[
+      { text: "WooCommerce plugin", c: "cyan", at: "top:-6%; right:14%" },
+      { text: "54 charms and letters", c: "violet", at: "top:34%; right:-3%" },
+      { text: "No new shop needed", c: "blue", at: "bottom:4%; left:18%", size: "7.2rem", ghost: true }
+    ]}>
+    <p>Customers put together their own bracelet in the shop: they pick a chain and a length, click on charms and letters, and see straight away how it will hang. It goes into the basket like any other product; payment and shipping stayed exactly as they were.</p>
+    <ul class="proj-facts">
+      <li>A custom WooCommerce plugin, written in PHP</li>
+      <li>Connected to the basket and orders that were already running</li>
+      <li>Cut-outs of every charm and wishlist sharing</li>
+      <li>The shop itself was built by another agency; I only added the configurator</li>
+    </ul>
+    <div class="btn-row"><a class="btn btn-svc" href="https://mooncake.sk/vytvor-si-naramok/" target="_blank" rel="noopener">Open the configurator</a></div>
+  </Showcase>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">From the problem <span class="grad">to a running tool</span></h2>
+      </div>
+      <Zigzag steps={[
+        { c: "cyan", t: "You describe what slows you down", p: "You do not need to know whether you want a dashboard, an integration or a script. Just tell me where you lose time and where mistakes happen.", get: "A free fifteen-minute call" },
+        { c: "blue", t: "A short analysis", p: "I look at what you already have and what your systems can do. If a tool would not pay off, I will tell you straight.", get: "A proposed scope, price and date, for free" },
+        { c: "violet", t: "The first usable version", p: "First the part that removes the most manual work. You use it before everything else is finished.", get: "A working tool on a link" },
+        { c: "green", t: "Deployment and handover", p: "I put it into service, train you and hand over all access.", get: "Code, accounts and documentation in your name" },
+        { c: "amber", t: "Running", p: "A monthly fee for keeping it running and updated, and for having someone to write to.", get: "A reply within 48 hours on working days" },
+      ]} lang="en" />
+      <script src="/assets/js/zigzag.js" defer is:inline></script>
+      <div class="btn-row rev">
+        <a class="btn btn-swap" href="/en/contact"><span class="lbl"><span>Describe my problem</span><span>Write to me</span></span></a>
+      </div>
+      <p class="lead" style="margin-top:2.5rem">What I do not take on: mobile apps for the App Store, systems for hundreds of thousands of users, and taking over someone else&rsquo;s project without documentation. I will say so at the start, not after a month.</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line" id="otazky">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h-sec fade-head reveal-words">Your questions</h2>
+      </div>
+      <div class="faq">
+        <details class="rev" data-d="0"><summary>What size of projects do you take?</summary><p>Tools that one developer can deploy in weeks, not months: an admin panel, a link between two systems, a tool that replaces manual copying into a spreadsheet. For a banking system or an app for a hundred thousand users I am not the right person, and I will say so at the start.</p></details>
+        <details class="rev" data-d="1"><summary>Do we have to change the system we use?</summary><p>No. I almost always build next to what you already have and connect through an API or an export. Migrating a whole system is the most expensive and riskiest option, and I only suggest it when there really is no other way.</p></details>
+        <details class="rev" data-d="2"><summary>When will we see the first result?</summary><p>I first build the part that removes the most manual work, and you use it before everything else is finished. Then I adjust the rest based on what real use shows. That costs less than delivering something after six months that does not fit.</p></details>
+        <details class="rev" data-d="3"><summary>What if we still need you in a year?</summary><p>Running and further changes are a monthly fee based on the size of the tool. If you decide to carry on yourselves, you get the source code, access and documentation; I keep nothing that would force you to stay.</p></details>
+        <details class="rev" data-d="4"><summary>Where will the data live?</summary><p>In the European Union, on infrastructure in your name, or by agreement on my server in the Czech Republic. I process only the data the tool needs to work. Where personal data is involved, the project comes with a data processing agreement under Art. 28 GDPR.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2 class="h-sec fade-head reveal-words">Is something slowing you down that a computer should be doing?</h2>
+      <p class="lead lead-center rev" data-d="1">A free call and a short analysis. I will tell you whether software is worth it, and for how much.</p>
+      <div class="btn-row rev" data-d="2" style="justify-content:center">
+        <a class="btn btn-grad btn-shine" href="/en/contact">Get a free quote</a>
+        <a class="btn-quiet" href="/en/websites">Websites <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  
+<script src="/assets/js/glassfold.js" defer is:inline></script>
+</Base>
