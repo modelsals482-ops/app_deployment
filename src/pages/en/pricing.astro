@@ -58,11 +58,13 @@ const kc = (n: number) => n.toLocaleString("en-GB");
         <a class="btn btn-grad btn-magnet" href="#kalkulacka">Calculate</a>
         <a class="btn btn-quiet" href="/en/contact">Get a free quote</a>
       </div>
-      <!-- Rozcestník, ne tabulka čísel: každá bublina skočí na svou část ceníku. -->
-      <nav class="facts jump" aria-label="Pricing sections">
-        <a class="fact" href="#weby" style="--c: var(--cyan)">Website from <b>{kc(P.web1)}&nbsp;CZK</b></a>
-        <a class="fact" href="#software" style="--c: var(--blue)">Software from <b>{kc(P.sw)}&nbsp;CZK</b></a>
-        <a class="fact" href="#asistenti" style="--c: var(--violet)">Assistant from <b>{kc(P.mail)}&nbsp;CZK</b>/month</a>
+      <!-- Rozcestník (6. 11. 2026): jedna řádka místo bublin, každý odkaz skočí na svou část ceníku. -->
+      <nav aria-label="Pricing sections">
+        <ul class="hero-line">
+          <li><a href="#weby">website from <b class="c1">{kc(P.web1)}&nbsp;CZK</b></a></li>
+          <li><a href="#software">software from <b class="c2">{kc(P.sw)}&nbsp;CZK</b></a></li>
+          <li><a href="#asistenti">assistant from <b class="c3">{kc(P.mail)}&nbsp;CZK</b> a month</a></li>
+        </ul>
       </nav>
     </div>
   </section>
@@ -219,41 +221,31 @@ const kc = (n: number) => n.toLocaleString("en-GB");
     </div>
   </section>
 
-  <!-- AI ASISTENTI: stejné karty jako na titulní straně, každý svou barvou -->
+  <!-- AI ASISTENTI: rejstřík jako na titulní straně (6. 11. 2026), každý svou barvou -->
   <section class="sec sec-dark sec-line" id="asistenti">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Monthly, <span class="grad">no commitment</span></h2>
-        <p class="lead">You can have each of them on its own, or all of them together.</p>
       </div>
 
-      <div class="svc-cards">
-        <a class="panel panel-pad svc-card rev" href="/en/email-replies" style="--c: var(--cyan)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.mail)} CZK/month</span>
-          <div class="svc-head"><h3>Email replies</h3><p class="svc-hook">Reads your email, answers routine questions and passes on whatever it does not know.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>1,500 emails a month included</li><li>Learns your tone and your information</li><li>Leaves unclear questions to you</li><li>Connects to Gmail or Outlook</li></ul>
-            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.mail)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
-            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+      <div class="svc-index svc-index--rows">
+        <a class="svc-row rev" href="/en/email-replies" style="--c: var(--cyan)">
+          <span class="svc-n">01</span>
+          <div class="svc-t"><h3>Email replies</h3><span class="svc-s">Reads your email and answers routine questions.</span></div>
+          <span class="svc-p">{kc(P.mail)}&nbsp;CZK<small>a month, 1,500 emails</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-pad svc-card rev" data-d="1" href="/en/bookings-and-reminders" style="--c: var(--violet)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.book)} CZK/month</span>
-          <div class="svc-head"><h3>Bookings and reminders</h3><p class="svc-hook">Books appointments into your calendar and reminds people the day before.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>750 bookings a month included</li><li>Bookings via WhatsApp and the website</li><li>Written straight into Google Calendar</li><li>Rescheduling and cancelling without a phone call</li></ul>
-            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.book)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
-            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc-row rev" data-d="1" href="/en/bookings-and-reminders" style="--c: var(--violet)">
+          <span class="svc-n">02</span>
+          <div class="svc-t"><h3>Bookings and reminders</h3><span class="svc-s">Books appointments and reminds people the day before.</span></div>
+          <span class="svc-p">{kc(P.book)}&nbsp;CZK<small>a month, 750 bookings</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-pad svc-card rev" data-d="2" href="/en/feedback" style="--c: var(--green)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.feed)} CZK/month</span>
-          <div class="svc-head"><h3>Feedback</h3><p class="svc-hook">Asks how the visit went and drafts a reply to the review.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>A question after the visit</li><li>A draft reply to the review</li><li>An invitation to book again</li><li>Monthly overview</li></ul>
-            <dl class="svc-meta"><div><dt>Price</dt><dd>{kc(P.feed)}&nbsp;CZK/month</dd></div><div><dt>Launch</dt><dd>within 5-7 working days</dd></div></dl>
-            <span class="svc-more">Learn more <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc-row rev" data-d="2" href="/en/feedback" style="--c: var(--green)">
+          <span class="svc-n">03</span>
+          <div class="svc-t"><h3>Feedback</h3><span class="svc-s">Asks how the visit went.</span></div>
+          <span class="svc-p">{kc(P.feed)}&nbsp;CZK<small>a month</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
 
@@ -287,30 +279,13 @@ const kc = (n: number) => n.toLocaleString("en-GB");
 
   <section class="sec">
     <div class="wrap">
-      <div class="svc-act panel panel-pad rev">
-        <div class="svc-act-copy">
-          <h3>Not sure which of these you need?</h3>
-          <p>Fifteen minutes, no obligation. You tell me what slows you down most and I tell you what makes sense, even if in the end it is nothing from me.</p>
-        </div>
-        <div class="svc-act-btns">
-          <a class="btn btn-svc" style="--c: var(--cyan)" href="/en/contact?sluzba=web">I want a website</a>
-          <a class="btn btn-svc" style="--c: var(--blue)" href="/en/contact?sluzba=software">I want software</a>
-          <a class="btn btn-svc" style="--c: var(--violet)" href="/en/contact?sluzba=ai">I want an AI assistant</a>
-          <a class="btn" href="/en/contact?sluzba=nevim">Not sure, advise me</a>
-        </div>
-        <p class="svc-act-alt">Prefer to talk now? Call <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/en/about">Who is behind it</a></p>
-      </div>
+      <p class="svc-help rev"><span>Not sure which of these you need? Fifteen minutes, no obligation, or call <a class="tel" href="tel:+420770162346">+420&nbsp;770&nbsp;162&nbsp;346</a>.</span> <a href="/en/contact?sluzba=nevim">Free advice <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></p>
     </div>
   </section>
 
   <Fragment slot="tail">
     <!-- is:global: řádky účtenky vyrábí skript, Astrem scopované styly by na ně nedosáhly. -->
     <style is:global>
-      /* ---------- rozcestník v hlavičce ---------- */
-      .jump .fact { color: var(--t2); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-      .jump .fact::before { align-self: center; width: 0.5rem; height: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
-      .jump .fact:hover { color: var(--t1); border-color: color-mix(in srgb, var(--c) 60%, transparent); transform: translateY(-1px); }
-      .jump .fact:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
 
       /* ---------- kalkulačka: výběr + účtenka ---------- */
       .bill { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.4rem; align-items: start; }
@@ -515,4 +490,5 @@ const kc = (n: number) => n.toLocaleString("en-GB");
     </script>
   </Fragment>
 <script src="/assets/js/dotwave.js" defer is:inline></script>
+<script src="/assets/js/rejstrik.js" defer is:inline></script>
 </Base>

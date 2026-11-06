@@ -54,11 +54,13 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
         <a class="btn btn-grad btn-magnet" href="#kalkulacka">Spočítat</a>
         <a class="btn btn-quiet" href="/kontakt">Nezávazná nabídka</a>
       </div>
-      <!-- Rozcestník, ne tabulka čísel: každá bublina skočí na svou část ceníku. -->
-      <nav class="facts jump" aria-label="Části ceníku">
-        <a class="fact" href="#weby" style="--c: var(--cyan)">Web od <b>{kc(P.web1)}&nbsp;Kč</b></a>
-        <a class="fact" href="#software" style="--c: var(--blue)">Software od <b>{kc(P.sw)}&nbsp;Kč</b></a>
-        <a class="fact" href="#asistenti" style="--c: var(--violet)">Asistent od <b>{kc(P.mail)}&nbsp;Kč</b>/měs</a>
+      <!-- Rozcestník (6. 11. 2026): jedna řádka místo bublin, každý odkaz skočí na svou část ceníku. -->
+      <nav aria-label="Části ceníku">
+        <ul class="hero-line">
+          <li><a href="#weby">web od <b class="c1">{kc(P.web1)}&nbsp;Kč</b></a></li>
+          <li><a href="#software">software od <b class="c2">{kc(P.sw)}&nbsp;Kč</b></a></li>
+          <li><a href="#asistenti">asistent od <b class="c3">{kc(P.mail)}&nbsp;Kč</b> měsíčně</a></li>
+        </ul>
       </nav>
     </div>
   </section>
@@ -215,41 +217,31 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
     </div>
   </section>
 
-  <!-- AI ASISTENTI: stejné karty jako na titulní straně, každý svou barvou -->
+  <!-- AI ASISTENTI: rejstřík jako na titulní straně (6. 11. 2026), každý svou barvou -->
   <section class="sec sec-dark sec-line" id="asistenti">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec fade-head reveal-words">Měsíčně, <span class="grad">bez závazku</span></h2>
-        <p class="lead">Každého z nich můžete mít samostatně, nebo všechny dohromady.</p>
       </div>
 
-      <div class="svc-cards">
-        <a class="panel panel-pad svc-card rev" href="/e-mailove-odpovedi" style="--c: var(--cyan)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.mail)} Kč/měs</span>
-          <div class="svc-head"><h3>E-mailové odpovědi</h3><p class="svc-hook">Čte poštu, odpovídá na běžné dotazy a co nezná, předá vám.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>Zahrnuto 1&nbsp;500 e-mailů měsíčně</li><li>Učí se váš tón a vaše podklady</li><li>Nejistý dotaz nechá na vás</li><li>Napojení na Gmail nebo Outlook</li></ul>
-            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.mail)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
-            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+      <div class="svc-index svc-index--rows">
+        <a class="svc-row rev" href="/e-mailove-odpovedi" style="--c: var(--cyan)">
+          <span class="svc-n">01</span>
+          <div class="svc-t"><h3>E-mailové odpovědi</h3><span class="svc-s">Čte poštu a odpovídá na běžné dotazy.</span></div>
+          <span class="svc-p">{kc(P.mail)}&nbsp;Kč<small>měsíčně, 1&nbsp;500 e&#8209;mailů</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-pad svc-card rev" data-d="1" href="/rezervace-pripominky" style="--c: var(--violet)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.book)} Kč/měs</span>
-          <div class="svc-head"><h3>Rezervace a připomínky</h3><p class="svc-hook">Objednává termíny do vašeho kalendáře a den předem je připomíná.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>Zahrnuto 750 rezervací měsíčně</li><li>Rezervace přes WhatsApp i web</li><li>Zápis rovnou do Google Kalendáře</li><li>Přesuny a zrušení bez telefonu</li></ul>
-            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.book)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
-            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc-row rev" data-d="1" href="/rezervace-pripominky" style="--c: var(--violet)">
+          <span class="svc-n">02</span>
+          <div class="svc-t"><h3>Rezervace a připomínky</h3><span class="svc-s">Zapisuje termíny a den předem je připomene.</span></div>
+          <span class="svc-p">{kc(P.book)}&nbsp;Kč<small>měsíčně, 750 rezervací</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="panel panel-pad svc-card rev" data-d="2" href="/zpetna-vazba" style="--c: var(--green)">
-          <span class="svc-bub" aria-hidden="true">{kc(P.feed)} Kč/měs</span>
-          <div class="svc-head"><h3>Zpětná vazba</h3><p class="svc-hook">Po návštěvě se zeptá na spokojenost a připraví odpověď na hodnocení.</p></div>
-          <div class="svc-body">
-            <ul class="svc-list"><li>Dotaz po návštěvě</li><li>Návrh odpovědi na recenzi</li><li>Pozvánka na další termín</li><li>Měsíční přehled</li></ul>
-            <dl class="svc-meta"><div><dt>Cena</dt><dd>{kc(P.feed)}&nbsp;Kč/měs</dd></div><div><dt>Spuštění</dt><dd>do 5-7 prac. dnů</dd></div></dl>
-            <span class="svc-more">Zjistit víc <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></span>
-          </div>
+        <a class="svc-row rev" data-d="2" href="/zpetna-vazba" style="--c: var(--green)">
+          <span class="svc-n">03</span>
+          <div class="svc-t"><h3>Zpětná vazba</h3><span class="svc-s">Po návštěvě se zeptá, jak to šlo.</span></div>
+          <span class="svc-p">{kc(P.feed)}&nbsp;Kč<small>měsíčně</small></span>
+          <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
 
@@ -283,30 +275,13 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
 
   <section class="sec">
     <div class="wrap">
-      <div class="svc-act panel panel-pad rev">
-        <div class="svc-act-copy">
-          <h3>Nevíte, co z toho potřebujete?</h3>
-          <p>Patnáct minut nezávazně. Řeknete, co vás nejvíc zdržuje, a já řeknu, co dává smysl, i když to nakonec nebude nic ode mě.</p>
-        </div>
-        <div class="svc-act-btns">
-          <a class="btn btn-svc" style="--c: var(--cyan)" href="/kontakt?sluzba=web">Chci web</a>
-          <a class="btn btn-svc" style="--c: var(--blue)" href="/kontakt?sluzba=software">Chci software</a>
-          <a class="btn btn-svc" style="--c: var(--violet)" href="/kontakt?sluzba=ai">Chci AI asistenta</a>
-          <a class="btn" href="/kontakt?sluzba=nevim">Nevím, poraďte mi</a>
-        </div>
-        <p class="svc-act-alt">Raději hned? Zavolejte <a href="tel:+420770162346">+420 770 162 346</a> · <a href="/o-nas">Kdo za tím stojí</a></p>
-      </div>
+      <p class="svc-help rev"><span>Nevíte, co z toho potřebujete? Patnáct minut nezávazně, nebo zavolejte <a class="tel" href="tel:+420770162346">+420&nbsp;770&nbsp;162&nbsp;346</a>.</span> <a href="/kontakt?sluzba=nevim">Poradit se zdarma <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg></a></p>
     </div>
   </section>
 
   <Fragment slot="tail">
     <!-- is:global: řádky účtenky vyrábí skript, Astrem scopované styly by na ně nedosáhly. -->
     <style is:global>
-      /* ---------- rozcestník v hlavičce ---------- */
-      .jump .fact { color: var(--t2); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-      .jump .fact::before { align-self: center; width: 0.5rem; height: 0.5rem; content: ""; background: var(--c); border-radius: 50%; }
-      .jump .fact:hover { color: var(--t1); border-color: color-mix(in srgb, var(--c) 60%, transparent); transform: translateY(-1px); }
-      .jump .fact:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
 
       /* ---------- kalkulačka: výběr + účtenka ---------- */
       .bill { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.4rem; align-items: start; }
@@ -511,4 +486,5 @@ const kc = (n: number) => n.toLocaleString("cs-CZ").replace(/\s/g, " ");
     </script>
   </Fragment>
 <script src="/assets/js/dotwave.js" defer is:inline></script>
+<script src="/assets/js/rejstrik.js" defer is:inline></script>
 </Base>
