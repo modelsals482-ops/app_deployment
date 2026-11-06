@@ -242,3 +242,93 @@ canvas[data-glassfold] { position: absolute; inset: 0; z-index: 0; width: 100%; 
 @media (max-width: 1000px) {
   .hero .hero-stage::after { background: linear-gradient(180deg, rgb(0 0 0 / 35%) 0%, rgb(0 0 0 / 70%) 55%, #000 96%); }
 }
+
+/* =====================================================================
+   Řádek pod tlačítky v hero + sekce "Co pro vás postavím" (6. 11. 2026)
+   Výchozí = návrh B (jedna věta, rejstřík řádků s náhledem zakázky).
+   Návrh A (tři čísla, barevné bloky) = html[data-sluzby="a"] (?sluzby=a),
+   nebo samo, když žádný řádek nemá obrázek (.svc-index bez .svc-shot).
+   ===================================================================== */
+.hero-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; margin: 1.9rem 0 0; padding: 0; list-style: none; font-size: .98rem; color: var(--t2); }
+.hero-line li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 .7rem .2rem .2rem; border-radius: 50%; background: var(--t3); vertical-align: middle; }
+.hero-line b { font-weight: 800; color: var(--t1); }
+.hero-line b.c1 { color: var(--cyan); } .hero-line b.c3 { color: var(--violet); }
+.hero-line .hl-a { display: none; }
+[data-sluzby="a"] .hero-line { gap: 0; max-width: 46rem; margin-top: 2.6rem; border-top: 1px solid var(--line-2); }
+[data-sluzby="a"] .hero-line li { flex: 1 1 11rem; padding: 1.1rem 1.4rem 0 0; }
+[data-sluzby="a"] .hero-line li + li { padding-left: 1.4rem; border-left: 1px solid var(--line-2); }
+[data-sluzby="a"] .hero-line li + li::before, [data-sluzby="a"] .hero-line .hl-b { display: none; }
+[data-sluzby="a"] .hero-line b { display: block; font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1; letter-spacing: -.03em; color: var(--t1); }
+[data-sluzby="a"] .hero-line .hl-a { display: block; margin-top: .5rem; font-size: .85rem; color: var(--t3); }
+@media (max-width: 620px) {
+  [data-sluzby="a"] .hero-line li { flex-basis: 100%; display: flex; justify-content: space-between; align-items: baseline; padding: .8rem 0; border-left: 0 !important; padding-left: 0 !important; border-bottom: 1px solid var(--line); }
+  [data-sluzby="a"] .hero-line .hl-a { margin: 0; }
+}
+
+/* --- B: rejstřík --- */
+.svc-index { margin-top: 2.2rem; border-bottom: 1px solid var(--line-2); }
+.svc-row { position: relative; display: grid; grid-template-columns: 3.6rem minmax(0, 1fr) 12rem auto 3.6rem; gap: 1.5rem; align-items: center; padding: 2.1rem 1.6rem;
+  color: var(--t1); text-decoration: none; border-top: 1px solid var(--line-2); isolation: isolate; transition: color .35s; }
+.svc-row::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c); transform: scaleY(0); transform-origin: bottom; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+.svc-row:hover, .svc-row:focus-visible { color: #05070d; outline: none; }
+.svc-row:hover::before, .svc-row:focus-visible::before { transform: none; }
+.svc-n { font-size: .95rem; font-weight: 700; color: var(--c); transition: color .35s; }
+.svc-t h3 { margin: 0; font-size: clamp(2.6rem, 5vw, 4.6rem); font-weight: 800; line-height: .95; letter-spacing: -.05em; }
+.svc-s { display: block; margin-top: .6rem; font-size: 1.1rem; color: var(--t2); transition: color .35s; }
+.svc-p { text-align: right; font-size: 1.25rem; font-weight: 800; white-space: nowrap; }
+.svc-p small { display: block; margin-top: .2rem; font-size: .8rem; font-weight: 600; color: var(--t3); transition: color .35s; }
+.svc-go { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1.5px solid currentColor; border-radius: 50%; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+.svc-go svg { width: 1.35rem; height: 1.35rem; }
+.svc-row:hover .svc-n, .svc-row:focus-visible .svc-n { color: #05070d; }
+.svc-row:hover .svc-s, .svc-row:focus-visible .svc-s { color: rgb(5 7 13 / 82%); }
+.svc-row:hover .svc-p small, .svc-row:focus-visible .svc-p small { color: rgb(5 7 13 / 78%); }
+.svc-row:hover .svc-go { transform: rotate(-45deg); }
+/* náhled má vlastní sloupec mezi názvem a cenou, takže nikdy nepřekryje text */
+.svc-shot { position: relative; z-index: 2; pointer-events: none; opacity: 0; transform: translateY(10px) rotate(-5deg) scale(.9);
+  transition: opacity .3s, transform .5s cubic-bezier(.16, 1, .3, 1); }
+.svc-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 12px; box-shadow: 0 30px 50px -20px rgb(0 0 0 / 75%); }
+.svc-shot span { display: block; margin-top: .5rem; font-size: .8rem; font-weight: 700; }
+.svc-row:hover .svc-shot, .svc-row:focus-visible .svc-shot { opacity: 1; transform: rotate(-3deg); }
+.svc-help { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; justify-content: space-between; align-items: center; margin-top: 1.8rem; color: var(--t2); }
+.svc-help a { display: inline-flex; gap: .4rem; align-items: center; font-weight: 700; color: var(--t1); text-decoration: none; border-bottom: 1.5px solid var(--blue); }
+.svc-help .arrow { width: 14px; height: 14px; }
+@media (max-width: 1100px) { .svc-row { grid-template-columns: 3.6rem minmax(0, 1fr) auto 3.6rem; } .svc-shot { display: none; } }
+@media (max-width: 900px) {
+  .svc-row { grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1rem; padding: 1.7rem .3rem 1.7rem 1rem; }
+  .svc-n { grid-column: 1 / -1; }
+  .svc-p { grid-column: 1; text-align: left; }
+  .svc-go { grid-column: 2; grid-row: 2 / span 2; align-self: end; width: 3rem; height: 3rem; }
+  .svc-shot { display: none; }
+  .svc-row::before { transform: none; inset: 0 auto 0 0; width: 4px; }
+  .svc-row:hover, .svc-row:focus-visible { color: var(--t1); }
+  .svc-row:hover .svc-n, .svc-row:focus-visible .svc-n { color: var(--c); }
+  .svc-row:hover .svc-s { color: var(--t2); } .svc-row:hover .svc-p small { color: var(--t3); }
+}
+
+/* --- A: barevné bloky (?sluzby=a, nebo když nejsou obrázky) --- */
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; border: 0; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-row {
+  grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr auto; gap: .4rem 1rem; align-items: end; min-height: 26rem; padding: 1.8rem 1.8rem 1.6rem;
+  color: #05070d; background: var(--c); border: 0; border-radius: 22px; overflow: hidden; transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-row::before { display: none; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-row:hover { transform: translateY(-6px); }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-n { grid-column: 1 / -1; align-self: start; color: #05070d; font-weight: 800; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-t { grid-column: 1 / -1; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-t h3 { font-size: clamp(2.3rem, 3.8vw, 3.6rem); }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-s { max-width: 22ch; font-size: 1.05rem; font-weight: 500; color: #05070d; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-p { grid-column: 1; text-align: left; margin-top: 1.4rem; padding-top: 1rem; border-top: 1.5px solid rgb(5 7 13 / 20%); }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-p small { color: rgb(5 7 13 / 82%); }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-go { grid-column: 2; align-self: end; color: var(--c); background: #05070d; border: 0; }
+:is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-shot { display: none; }
+@media (max-width: 900px) {
+  :is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) { grid-template-columns: 1fr; }
+  :is([data-sluzby="a"] .svc-index, .svc-index:not(:has(.svc-shot))) .svc-row { min-height: 18rem; }
+}
+@media (prefers-reduced-motion: reduce) { .svc-row, .svc-row::before, .svc-shot, .svc-go { transition: none; } }
+@media (min-width: 1101px) {
+  :not([data-sluzby="a"]) > body .svc-index:has(.svc-shot) .svc-shot { grid-column: 3; grid-row: 1; }
+  :not([data-sluzby="a"]) > body .svc-index:has(.svc-shot) .svc-p { grid-column: 4; grid-row: 1; }
+  :not([data-sluzby="a"]) > body .svc-index:has(.svc-shot) .svc-go { grid-column: 5; grid-row: 1; }
+  .svc-t h3 { font-size: clamp(2.6rem, 4.2vw, 3.9rem); white-space: nowrap; }
+  .svc-shot { margin-block: -4.5rem; }
+}
