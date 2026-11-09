@@ -57,6 +57,10 @@
     }
     return 'Chat je teď dočasně nedostupný. Napište prosím na info@alsflow.cz nebo vyplňte formulář na alsflow.cz/kontakt.';
   }
+  /* Server odpovídá 200 i ve chvíli, kdy mu nejde model (5. 11. 2026: došel
+     kredit Gemini), jen s omluvnou větou. Tu bereme jako výpadek, ať
+     návštěvník dostane aspoň odpověď ze statického základu. */
+  var OUTAGE = /momentálně nemohu odpovědět|cannot answer right now/i;
   window.toggleChat = function() {
     opened = !opened;
     var panel = document.getElementById('chatPanel');
@@ -151,7 +155,7 @@
     .then(function(r) { if (!r.ok) { throw new Error('http ' + r.status); } return r.json(); })
     .then(function(data) {
       removeTyping();
-      var reply = (data && data.reply) ? String(data.reply) : degraded(msg);
+      var reply = (data && data.reply && !OUTAGE.test(String(data.reply))) ? String(data.reply) : degraded(msg);
       addMsg('bot', reply);
       history.push({ role: 'model', content: reply });
       if (history.length > 12) history = history.slice(-12);
