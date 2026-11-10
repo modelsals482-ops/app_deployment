@@ -6,7 +6,7 @@ import Base from "../../layouts/Base.astro";
 /* Ceny na jednom místě: stránka, kalkulačka i data pro Google je čtou odsud.
    Změna ceny = změna tady, nikde jinde na téhle stránce. */
 const P = {
-  web1: 24900, web8: 49900, webX: 89900, provoz: 1490, sprava: 3490, pece: 6900,
+  web1: 14900, web8: 24900, webX: 34900, provoz: 990, sprava: 1990,
   sw: 24900, mail: 2500, book: 4500, feed: 2500, bundle: 7500,
 };
 const kc = (n: number) => n.toLocaleString("en-GB");
@@ -39,7 +39,6 @@ const kc = (n: number) => n.toLocaleString("en-GB");
         { "@type": "Offer", "name": "Business website of up to eight pages", "priceCurrency": "CZK", "price": String(P.web8), "url": "https://alsflow.cz/en/websites" },
         { "@type": "Offer", "name": "Website running (monthly)", "priceCurrency": "CZK", "price": String(P.provoz), "url": "https://alsflow.cz/en/pricing#weby" },
         { "@type": "Offer", "name": "Website care (monthly)", "priceCurrency": "CZK", "price": String(P.sprava), "url": "https://alsflow.cz/en/pricing#weby" },
-        { "@type": "Offer", "name": "Complete care: website, domains and email (monthly)", "priceCurrency": "CZK", "price": String(P.pece), "url": "https://alsflow.cz/en/pricing#weby" },
         { "@type": "Offer", "name": "Custom software", "priceCurrency": "CZK", "price": String(P.sw), "url": "https://alsflow.cz/en/software" },
         { "@type": "Offer", "name": "Email replies", "priceCurrency": "CZK", "price": String(P.mail), "url": "https://alsflow.cz/en/email-replies" },
         { "@type": "Offer", "name": "Bookings and reminders", "priceCurrency": "CZK", "price": String(P.book), "url": "https://alsflow.cz/en/bookings-and-reminders" },
@@ -90,7 +89,6 @@ const kc = (n: number) => n.toLocaleString("en-GB");
               <label class="opt opt-sub"><input type="radio" name="care" value="0" data-name="" checked /><span>Nothing monthly</span></label>
               <label class="opt opt-sub"><input type="radio" name="care" value={P.provoz} data-name="Website running" /><span>Running: it runs, I fix it</span><b>{kc(P.provoz)}/mo</b></label>
               <label class="opt opt-sub"><input type="radio" name="care" value={P.sprava} data-name="Website care" /><span>Care: running plus changes</span><b>{kc(P.sprava)}/mo</b></label>
-              <label class="opt opt-sub"><input type="radio" name="care" value={P.pece} data-name="Complete care" /><span>Complete care: website, domains, email</span><b>{kc(P.pece)}/mo</b></label>
             </div>
           </fieldset>
 
@@ -158,7 +156,7 @@ const kc = (n: number) => n.toLocaleString("en-GB");
           <div>
             <h3>Custom</h3>
             <p class="tier-price"><b>from {kc(P.webX)}&nbsp;CZK</b> one-time</p>
-            <p>Your own design and motion, nine or more pages, two languages, and content you edit yourself, such as news or collections. I give the exact price after a call.</p>
+            <p>Nine or more pages, two languages, more forms. I give the exact price after a call.</p>
           </div>
         </li>
       </ol>
@@ -176,17 +174,9 @@ const kc = (n: number) => n.toLocaleString("en-GB");
         <div class="care-plan panel panel-pad rev" data-d="1">
           <h3>Website care</h3>
           <p class="tier-price"><b>{kc(P.sprava)}&nbsp;CZK</b> a month, no commitment</p>
-          <p>Everything from Running plus changes: texts, prices, photos, opening hours and small news items, up to about two hours of work a month.</p>
+          <p>Everything from Running plus changes: texts, prices, photos, opening hours and small news items, up to about an hour of work a month.</p>
           <ul class="care-tags" aria-label="Care includes">
-            <li>Everything from Running</li><li>Changes within 2 working days</li><li>Up to 2 hours of work a month</li>
-          </ul>
-        </div>
-        <div class="care-plan panel panel-pad rev" data-d="2">
-          <h3>Complete care</h3>
-          <p class="tier-price"><b>from {kc(P.pece)}&nbsp;CZK</b> a month, no commitment</p>
-          <p>You do not have to think about the website, domains or email. I monitor them, back them up, and when something needs sorting out with another supplier, such as the registrar or the email provider, I deal with it for you.</p>
-          <ul class="care-tags" aria-label="Complete care includes">
-            <li>Everything from Care</li><li>Domains and DNS</li><li>Mailboxes</li><li>Backups</li><li>Dealing with suppliers</li><li>Quarterly SEO check</li><li>Up to 4 hours of work a month</li>
+            <li>Everything from Running</li><li>Changes within 2 working days</li><li>Up to an hour of work a month</li>
           </ul>
         </div>
       </div>
@@ -267,7 +257,7 @@ const kc = (n: number) => n.toLocaleString("en-GB");
       </div>
       <div class="faq">
         <details class="rev"><summary>Do the prices include VAT?</summary><p>No VAT is added, because I am not a VAT payer. I invoice websites, software and assistants as Jakub Ryvola, Company ID (I&Ccaron;O) 30112702. The price on the quote is the price on the invoice. For clients outside the Czech Republic, I confirm the invoicing details with you before we start.</p></details>
-        <details class="rev"><summary>What is the difference between Running and Care?</summary><p>Running ({kc(P.provoz)}&nbsp;CZK a month) keeps the website going: hosting, domain, certificate, form protection and fixes when something breaks. New features and content changes are paid separately and quoted up front. Care ({kc(P.sprava)}&nbsp;CZK a month) adds changes to texts, prices, photos and small news items, up to about two hours of work a month, done within two working days. Complete care (from {kc(P.pece)}&nbsp;CZK a month) adds domains, DNS and mailboxes, backups and dealing with your suppliers. Domains stay registered in your name and you pay for mailbox licences at the provider&rsquo;s price.</p></details>
+        <details class="rev"><summary>What is the difference between Running and Care?</summary><p>Running ({kc(P.provoz)}&nbsp;CZK a month) keeps the website going: hosting, domain, certificate, form protection and fixes when something breaks. New features and content changes are paid separately and quoted up front. Care ({kc(P.sprava)}&nbsp;CZK a month) adds changes to texts, prices, photos and small news items, up to about an hour of work a month, done within two working days.</p></details>
         <details class="rev" data-d="1"><summary>What if I think of something extra along the way?</summary><p>I tell you the price of that change up front and you decide whether you want it.</p></details>
         <details class="rev" data-d="2"><summary>What is the one-time assistant setup?</summary><p>Connecting your tools, teaching it your tone, setting up the replies and testing. I do it for you and the assistant runs within 5 to 7 working days. It is paid once, at the start.</p></details>
         <details class="rev" data-d="3"><summary>Do I have to sign up for a fixed term?</summary><p>No. Monthly, with no fixed-term contract, cancel any time.</p></details>
@@ -355,7 +345,7 @@ const kc = (n: number) => n.toLocaleString("en-GB");
       .art-lang em:nth-of-type(1) { left: 0.6rem; transform: translateY(4px); } .art-lang em:nth-of-type(2) { right: 0.6rem; transform: translateY(4px); }
       .cas.in .art-lang em { opacity: 1; transform: none; }
       .care-label { margin: 3rem 0 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
-      .care-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; align-items: stretch; }
+      .care-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; align-items: stretch; }
       .care-plan { display: flex; flex-direction: column; border-top: 2px solid color-mix(in srgb, var(--c) 70%, transparent); }
       .care-plan h3 { margin: 0 0 0.4rem; font-size: 1.15rem; letter-spacing: -0.02em; }
       .care-plan p { margin: 0; font-size: 0.94rem; line-height: 1.6; color: var(--t2); }
