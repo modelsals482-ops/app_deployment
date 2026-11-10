@@ -57,6 +57,7 @@ EDITS = [
     ('od 24&nbsp;900&nbsp;Kč<small>kód a účty na vaše jméno</small>', 'from 24,900&nbsp;CZK<small>code and accounts in your name</small>'),
     ('<h3>AI asistenti</h3><span class="svc-s">Odpoví zákazníkům, i když pracujete.</span>', '<h3>AI assistants</h3><span class="svc-s">Replies to customers while you work.</span>'),
     ('od 2&nbsp;500&nbsp;Kč<small>měsíčně, bez závazku</small>', 'from 2,500&nbsp;CZK<small>a month, no commitment</small>'),
+    ('<span>Konfigurátor na mooncake.sk</span>', '<span>Bracelet builder on mooncake.sk</span>'),
     ('<span>Klára na alsflow.cz</span>', '<span>Klára on alsflow.cz</span>'),
     ('<span>Nevíte, co z toho? Řekněte, co vás zdržuje.</span>', '<span>Not sure which? Tell me what slows you down.</span>'),
     ('Poradit se zdarma <svg', 'Free advice <svg'),
